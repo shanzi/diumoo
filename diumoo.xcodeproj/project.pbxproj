@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148AB21580E58D002B3D61 /* Cocoa.framework */; };
+		F5148ABD1580E58D002B3D61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5148ABB1580E58D002B3D61 /* InfoPlist.strings */; };
+		F5148ABF1580E58D002B3D61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ABE1580E58D002B3D61 /* main.m */; };
+		F5148AC31580E58D002B3D61 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F5148AC11580E58D002B3D61 /* Credits.rtf */; };
+		F5148AC61580E58D002B3D61 /* DMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AC51580E58D002B3D61 /* DMDocument.m */; };
+		F5148AC91580E58D002B3D61 /* DMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5148AC71580E58D002B3D61 /* DMDocument.xib */; };
+		F5148ACC1580E58E002B3D61 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5148ACA1580E58E002B3D61 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F5148AAE1580E58D002B3D61 /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5148AB21580E58D002B3D61 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F5148AB51580E58D002B3D61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F5148AB61580E58D002B3D61 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F5148AB71580E58D002B3D61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F5148ABA1580E58D002B3D61 /* diumoo-Info.plist */ = {isa = PBXFileReference; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
+		F5148ABC1580E58D002B3D61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F5148ABE1580E58D002B3D61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F5148AC01580E58D002B3D61 /* diumoo-Prefix.pch */ = {isa = PBXFileReference; path = "diumoo-Prefix.pch"; sourceTree = "<group>"; };
+		F5148AC21580E58D002B3D61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F5148AC41580E58D002B3D61 /* DMDocument.h */ = {isa = PBXFileReference; path = DMDocument.h; sourceTree = "<group>"; };
+		F5148AC51580E58D002B3D61 /* DMDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMDocument.m; sourceTree = "<group>"; };
+		F5148AC81580E58D002B3D61 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMDocument.xib; sourceTree = "<group>"; };
+		F5148ACB1580E58E002B3D61 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F5148AAB1580E58D002B3D61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F5148AA31580E58D002B3D61 = {
+			isa = PBXGroup;
+			children = (
+				F5148AB81580E58D002B3D61 /* diumoo */,
+				F5148AB11580E58D002B3D61 /* Frameworks */,
+				F5148AAF1580E58D002B3D61 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F5148AAF1580E58D002B3D61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5148AAE1580E58D002B3D61 /* diumoo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5148AB11580E58D002B3D61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5148AB21580E58D002B3D61 /* Cocoa.framework */,
+				F5148AB41580E58D002B3D61 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5148AB41580E58D002B3D61 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5148AB51580E58D002B3D61 /* AppKit.framework */,
+				F5148AB61580E58D002B3D61 /* CoreData.framework */,
+				F5148AB71580E58D002B3D61 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F5148AB81580E58D002B3D61 /* diumoo */ = {
+			isa = PBXGroup;
+			children = (
+				F5148AC41580E58D002B3D61 /* DMDocument.h */,
+				F5148AC51580E58D002B3D61 /* DMDocument.m */,
+				F5148AC71580E58D002B3D61 /* DMDocument.xib */,
+				F5148ACA1580E58E002B3D61 /* MainMenu.xib */,
+				F5148AB91580E58D002B3D61 /* Supporting Files */,
+			);
+			path = diumoo;
+			sourceTree = "<group>";
+		};
+		F5148AB91580E58D002B3D61 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F5148ABA1580E58D002B3D61 /* diumoo-Info.plist */,
+				F5148ABB1580E58D002B3D61 /* InfoPlist.strings */,
+				F5148ABE1580E58D002B3D61 /* main.m */,
+				F5148AC01580E58D002B3D61 /* diumoo-Prefix.pch */,
+				F5148AC11580E58D002B3D61 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F5148AAD1580E58D002B3D61 /* diumoo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5148ACF1580E58E002B3D61 /* Build configuration list for PBXNativeTarget "diumoo" */;
+			buildPhases = (
+				F5148AAA1580E58D002B3D61 /* Sources */,
+				F5148AAB1580E58D002B3D61 /* Frameworks */,
+				F5148AAC1580E58D002B3D61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = diumoo;
+			productName = diumoo;
+			productReference = F5148AAE1580E58D002B3D61 /* diumoo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F5148AA51580E58D002B3D61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DM;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = F5148AA81580E58D002B3D61 /* Build configuration list for PBXProject "diumoo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F5148AA31580E58D002B3D61;
+			productRefGroup = F5148AAF1580E58D002B3D61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5148AAD1580E58D002B3D61 /* diumoo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F5148AAC1580E58D002B3D61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5148ABD1580E58D002B3D61 /* InfoPlist.strings in Resources */,
+				F5148AC31580E58D002B3D61 /* Credits.rtf in Resources */,
+				F5148AC91580E58D002B3D61 /* DMDocument.xib in Resources */,
+				F5148ACC1580E58E002B3D61 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F5148AAA1580E58D002B3D61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5148ABF1580E58D002B3D61 /* main.m in Sources */,
+				F5148AC61580E58D002B3D61 /* DMDocument.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F5148ABB1580E58D002B3D61 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5148ABC1580E58D002B3D61 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F5148AC11580E58D002B3D61 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5148AC21580E58D002B3D61 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F5148AC71580E58D002B3D61 /* DMDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5148AC81580E58D002B3D61 /* en */,
+			);
+			name = DMDocument.xib;
+			sourceTree = "<group>";
+		};
+		F5148ACA1580E58E002B3D61 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5148ACB1580E58E002B3D61 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F5148ACD1580E58E002B3D61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F5148ACE1580E58E002B3D61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F5148AD01580E58E002B3D61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
+				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F5148AD11580E58E002B3D61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
+				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F5148AA81580E58D002B3D61 /* Build configuration list for PBXProject "diumoo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5148ACD1580E58E002B3D61 /* Debug */,
+				F5148ACE1580E58E002B3D61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5148ACF1580E58E002B3D61 /* Build configuration list for PBXNativeTarget "diumoo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5148AD01580E58E002B3D61 /* Debug */,
+				F5148AD11580E58E002B3D61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F5148AA51580E58D002B3D61 /* Project object */;
+}
