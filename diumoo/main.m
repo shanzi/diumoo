@@ -7,8 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "DMApp.h"
 
 int main(int argc, char *argv[])
 {
-    return NSApplicationMain(argc, (const char **)argv);
+    NSAutoreleasePool* pool = [NSAutoreleasePool new];
+    [DMApp sharedApplication];
+    [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
+    [NSApp run];
+    [pool drain];
+    return 0;
+
 }
