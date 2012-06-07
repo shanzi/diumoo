@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPMediaKeyTap.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 
