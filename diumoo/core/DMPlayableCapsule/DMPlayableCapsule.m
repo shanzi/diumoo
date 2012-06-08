@@ -211,7 +211,7 @@
     }
     else if([timer userInfo] == kTimerPulseTypePause)
     {
-        if(movie.volume > 0.0 && movie.rate > 0) movie.volume -= 0.8;
+        if(movie.volume > 0.0 && movie.rate > 0) movie.volume -= 0.08;
         else {
             [self invalidateTimer];
             [movie stop];
