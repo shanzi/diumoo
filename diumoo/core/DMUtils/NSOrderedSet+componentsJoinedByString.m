@@ -18,7 +18,7 @@
         if(i>0) [str appendString:string];
         [str appendFormat:@"%@",[self objectAtIndex:i]];
     }
-    return [str autorelease];
+    return str ;
 }
 
 @end

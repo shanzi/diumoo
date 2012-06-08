@@ -18,10 +18,18 @@
 
 #import "DMPlayableCapsuleDelegate.h"
 
+typedef enum{
+    WAIT_TO_PLAY = 0,
+    PLAYING,
+    PLAYING_AND_WILL_REPLAY,
+    REPLAYING,
+    REPLAYED
+}CapsulePlayState;
 
 @interface DMPlayableCapsule : NSObject
 // {
 @property long loadState;
+@property CapsulePlayState playState;
 @property(nonatomic) float volume;
 
 @property BOOL like;
@@ -59,6 +67,10 @@
 
 -(void) play;
 -(void) pause;
+-(void) replay;
+
 -(void) commitVolume:(float) volume;
+
+-(NSString*) startAttributeWithChannel:(NSString*)channel;
 
 @end

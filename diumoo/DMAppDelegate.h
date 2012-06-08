@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SPMediaKeyTap.h"
+#import "DMControlCenter.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
+@property(assign) IBOutlet DMControlCenter* center;
 
 @end

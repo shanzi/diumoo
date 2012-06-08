@@ -47,7 +47,26 @@
 		F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4B1580EE4D002B3D61 /* Security.framework */; };
 		F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4D1580EE68002B3D61 /* QTKit.framework */; };
 		F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4F1580EE92002B3D61 /* QuartzCore.framework */; };
+		F5148B531580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B521580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m */; };
+		F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B191580E7EE002B3D61 /* Growl.framework */; };
+		F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
+		F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5148B5415810758002B3D61 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */,
+				F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */,
+				F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F5148AAE1580E58D002B3D61 /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +143,8 @@
 		F5148B4B1580EE4D002B3D61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F5148B4D1580EE68002B3D61 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F5148B4F1580EE92002B3D61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F5148B511580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+componentsJoinedByString.h"; sourceTree = "<group>"; };
+		F5148B521580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+componentsJoinedByString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,8 +215,8 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
-				F5148B321580E969002B3D61 /* ui */,
 				F5148B1F1580E904002B3D61 /* core */,
+				F5148B321580E969002B3D61 /* ui */,
 				F5148AC41580E58D002B3D61 /* DMDocument.h */,
 				F5148AC51580E58D002B3D61 /* DMDocument.m */,
 				F5148AD21580E5F4002B3D61 /* DMAppDelegate.h */,
@@ -361,6 +382,8 @@
 			children = (
 				F5148B2C1580E904002B3D61 /* NSDictionary+UrlEncoding.h */,
 				F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */,
+				F5148B511580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.h */,
+				F5148B521580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m */,
 			);
 			path = DMUtils;
 			sourceTree = "<group>";
@@ -429,6 +452,7 @@
 				F5148AAA1580E58D002B3D61 /* Sources */,
 				F5148AAB1580E58D002B3D61 /* Frameworks */,
 				F5148AAC1580E58D002B3D61 /* Resources */,
+				F5148B5415810758002B3D61 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -511,6 +535,7 @@
 				F5148B3E1580E969002B3D61 /* DMCoverControlView.m in Sources */,
 				F5148B3F1580E969002B3D61 /* DMCoverSlide.m in Sources */,
 				F5148B401580E969002B3D61 /* DMVolumeControlLayer.m in Sources */,
+				F5148B531580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,9 @@
 
 
 #import "DMPlaylistFetcher.h"
+#import "NSDictionary+UrlEncoding.h"
+#import "NSOrderedSet+componentsJoinedByString.h"
+
 
 @implementation DMPlaylistFetcher
 @synthesize playlist,playedSongs,delegate;
@@ -21,7 +24,7 @@
     if (self) {
         srand((int)time(0));
         playlist = [NSMutableArray new];
-        playedSongs = [NSMutableArray new];
+        playedSongs = [NSMutableOrderedSet new];
     }
     return self;
 }
@@ -34,7 +37,7 @@
 
 -(NSString*) hstring
 {
-    return [[playedSongs componentsJoinedByString:@"|"] autorelease];
+    return [playedSongs componentsJoinedByString:@"|"];
 }
 
 -(void) fetchPlaylistWithDictionary:(NSDictionary *)dic withStartAttribute:(NSString *)start
@@ -43,7 +46,7 @@
                             [dic urlEncodedString]];
     
 #ifdef DEBUG
-    NSLog(@"%@",urlString);
+    NSLog(@"urlstring ----> %@",urlString);
 #endif
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
@@ -63,11 +66,6 @@
     
     NSHTTPCookie* startAttributeCookie = [NSHTTPCookie cookieWithProperties:startAttributeCookieDict];
     
-#ifdef DEBUG
-    NSLog(@"%@\n%@\n%@",startAttributeCookieDict,
-          startAttributeCookie,
-          [[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies] objectAtIndex:0]);
-#endif
     
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:startAttributeCookie];
     
@@ -85,29 +83,28 @@
              [delegate fetchPlaylistError:err withComment:nil];
          }
          else {
-             NSString* string = [NSString stringWithCString:[data bytes] encoding:NSUTF8StringEncoding];
-             if ([string isEqualToString:@"OK"]) {
-                 return;
-             }
              
              NSError* jerr = NULL;
-             NSDictionary* response_dic = [[CJSONDeserializer deserializer] 
+             id jresponse = [[CJSONDeserializer deserializer] 
                                            deserialize:data 
                                            error:&jerr];
              if(jerr){
                  [delegate fetchPlaylistError:jerr withComment:nil];
              }
              else {
-                 if ([[response_dic valueForKey:@"r"] intValue] != 0) {
+                 if([jresponse respondsToSelector:@selector(isEqualToString:)] && [jresponse isEqualToString:@"ok"])
+                     [delegate fetchPlaylistSuccessWithStartSong:nil];
+                 else 
+                 if ([[jresponse valueForKey:@"r"] intValue] != 0) {
                      // do something when an error code is responsed
-                     [delegate fetchPlaylistError:nil withComment:[response_dic valueForKey:@"err"]];
+                     [delegate fetchPlaylistError:nil withComment:[jresponse valueForKey:@"err"]];
                  }
                  else {
                      // do something to update playlist
                      @try {
                          if (start){
                              NSMutableArray* songs = [NSMutableArray arrayWithArray:
-                                                      [response_dic valueForKey:@"song"]];
+                                                      [jresponse valueForKey:@"song"]];
                              
                              NSDictionary* startSong = [songs objectAtIndex:0];
                              [songs removeObjectAtIndex:0];
@@ -118,7 +115,7 @@
                              
                          }
                          else {
-                             [playlist addObjectsFromArray:[response_dic valueForKey:@"song"]];
+                             [playlist addObjectsFromArray:[jresponse valueForKey:@"song"]];
                              [delegate fetchPlaylistSuccessWithStartSong:nil];
                          }
                      }
@@ -138,6 +135,9 @@
                              sid:(NSString *)sid
                   startAttribute:(NSString *)startstr
 {
+    if (type == kFetchPlaylistTypeEnd && [self.playlist count]==0) {
+        type = kFetchPlaylistTypeNew;
+    }
     if(sid && ![type isEqualToString:kFetchPlaylistTypeNew])
     {
         [playedSongs addObject:[NSString stringWithFormat:@"%@:%@",sid,type]];
@@ -154,12 +154,19 @@
                                      @"mainsite",@"from",
                                       nil];
     
-#ifdef DEBUG
-    NSLog(@"here");
-    NSLog(@"%@",fetchDictionary);
-#endif
     
     [self fetchPlaylistWithDictionary:fetchDictionary withStartAttribute:startstr];
+}
+
+-(DMPlayableCapsule*) getOnePlayableCapsule
+{
+    if([playlist count]>0){
+        id songdic = [[playlist objectAtIndex:0] retain];
+        [playlist removeObject:songdic];
+        return [DMPlayableCapsule playableCapsuleWithDictionary:songdic];
+        [songdic release];
+    }
+    else return nil;
 }
 
 

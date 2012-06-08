@@ -17,13 +17,12 @@
 #import <Foundation/Foundation.h>
 #import "DMPlayableCapsule.h"
 #import "DMPlaylistFetcherDeleate.h"
-#import "NSDictionary+UrlEncoding.h"
 #import "CJSONDeserializer.h"
 
 @interface DMPlaylistFetcher : NSObject
 
 @property(assign) NSMutableArray* playlist;
-@property(assign) NSMutableArray* playedSongs;
+@property(assign) NSMutableOrderedSet* playedSongs;
 @property(retain) id<DMPlaylistFetcherDeleate> delegate;
 
 
@@ -31,6 +30,7 @@
 -(void) fetchPlaylistFromChannel:(NSString* )channel 
                         withType:(NSString *)type 
                              sid:(NSString *)sid startAttribute:(NSString*) startstr;
+-(DMPlayableCapsule*) getOnePlayableCapsule;
 
 
 @end

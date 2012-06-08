@@ -9,10 +9,11 @@
 #import "DMAppDelegate.h"
 
 @implementation DMAppDelegate
+@synthesize center;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    
+    [center fireToPlay:nil];
 }
 
 

@@ -6,21 +6,34 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
+#define MAX_WAIT_PLAYLIST_COUNT 2
+
+#define kPauseOperationTypePass @"pass"
+#define kPauseOperationTypeSkip @"skip"
+#define kPauseOperationTypeFetchNewPlaylist @"newplaylist"
+
 #import <Foundation/Foundation.h>
 #import "DMPlayableCapsule.h"
 #import "DMPlaylistFetcher.h"
 
+
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate>
 // {
-@property(retain) DMPlayableCapsule* capsule;
-@property(assign) DMPlaylistFetcher* fetcher; 
+@property(retain) NSString* channel;
+@property(retain) DMPlayableCapsule* playingCapsule;
+@property(assign) DMPlaylistFetcher* fetcher;
+@property(assign) NSMutableOrderedSet* waitPlaylist;
+@property(assign) NSString* pausedOperationType;
+
 // }
 
+-(void) fireToPlay:(NSString*)startSongAttribute;
 
-//-------------------临时使用的UI delegate 函数---------------------
--(IBAction)playAction:(id) sender;
--(IBAction)pauseAction:(id) sneder;
+//-------------------播放控制用的action函数--------------------------
+-(IBAction)playOrPauseAction:(id) sender;
+-(IBAction)skipAction:(id)sender;
 -(IBAction)volumeChange:(id)sender;
+-(IBAction)skipAction:(id) sender;
 //---------------------------------------------------------------
 
 @end
