@@ -7,7 +7,6 @@
 //
 
 #define MAX_WAIT_PLAYLIST_COUNT 2
-
 #define kPauseOperationTypePass @"pass"
 #define kPauseOperationTypeSkip @"skip"
 #define kPauseOperationTypeFetchNewPlaylist @"newplaylist"
@@ -18,22 +17,29 @@
 
 
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate>
-// {
-@property(retain) NSString* channel;
-@property(retain) DMPlayableCapsule* playingCapsule;
-@property(assign) DMPlaylistFetcher* fetcher;
-@property(assign) NSMutableOrderedSet* waitPlaylist;
-@property(assign) NSString* pausedOperationType;
+{
+    NSString *channel;
+    NSString *pausedOperationType;
+    
+    NSMutableOrderedSet *waitPlaylist;
+    
+    DMPlayableCapsule *playingCapsule;
+    DMPlaylistFetcher *fetcher;
+}
+@property(retain) NSString *channel;
+@property(retain) DMPlayableCapsule *playingCapsule;
+@property(assign) DMPlaylistFetcher *fetcher;
+@property(assign) NSMutableOrderedSet *waitPlaylist;
+@property(assign) NSString *pausedOperationType;
 
-// }
 
--(void) fireToPlay:(NSString*)startSongAttribute;
+-(void) fireToPlay:(NSString*)aSong;
 
 //-------------------播放控制用的action函数--------------------------
--(IBAction)playOrPauseAction:(id) sender;
--(IBAction)skipAction:(id)sender;
--(IBAction)volumeChange:(id)sender;
--(IBAction)skipAction:(id) sender;
+-(IBAction) playOrPauseAction:(id)sender;
+-(IBAction) skipAction:(id)sender;
+-(IBAction) volumeChange:(id)sender;
+-(IBAction) skipAction:(id)sender;
 //---------------------------------------------------------------
 
 @end

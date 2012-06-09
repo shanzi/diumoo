@@ -14,40 +14,61 @@
 #import "NSDictionary+UrlEncoding.h"
 #import "NSOrderedSet+componentsJoinedByString.h"
 
+@interface DMPlaylistFetcher()
+- (NSString *)randomString;
+- (NSString *)hstring;
+@end
+
 
 @implementation DMPlaylistFetcher
 @synthesize playlist,playedSongs,delegate;
 
--(id)init
+#pragma init & dealloc
+
+- (id)init
 {
     self = [super init];
     if (self) {
         srand((int)time(0));
-        playlist = [NSMutableArray new];
-        playedSongs = [NSMutableOrderedSet new];
+        playlist = [[NSMutableArray alloc] init];
+        playedSongs = [[NSMutableOrderedSet alloc] init];
+        
+        //new 不是一个很好的 Method，个人认为，参考http://www.cnblogs.com/ulihj/archive/2011/01/15/1936342.html
     }
     return self;
 }
 
--(NSString*) randomString
+- (void)dealloc
 {
-    long rnd = ((rand() & 0xffffffffff) | 0x1000000000);
-    return [NSString stringWithFormat:@"%lx",rnd] ;
+    [playlist release];
+    [playedSongs release];
+    [super dealloc];
 }
 
--(NSString*) hstring
+#pragma -
+
+#pragma stringProcess(Private)
+
+-(NSString *) randomString
+{
+    return [NSString stringWithFormat:@"%lx",((rand() & 0xffffffffff) | 0x1000000000)] ;
+}
+
+-(NSString *) hstring
 {
     return [playedSongs componentsJoinedByString:@"|"];
 }
+
+#pragma -
 
 -(void) fetchPlaylistWithDictionary:(NSDictionary *)dic withStartAttribute:(NSString *)start
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dic urlEncodedString]];
     
-#ifdef DEBUG
-    NSLog(@"urlstring ----> %@",urlString);
-#endif
+    #ifdef DEBUG
+         NSLog(@"urlstring ----> %@",urlString);
+    #endif
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy

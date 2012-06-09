@@ -11,8 +11,6 @@
 
 //  Playable State
 
-
-
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
 
@@ -27,7 +25,9 @@ typedef enum{
 }CapsulePlayState;
 
 @interface DMPlayableCapsule : NSObject
-// {
+{
+    
+}
 @property long loadState;
 @property CapsulePlayState playState;
 @property(nonatomic) float volume;
@@ -56,7 +56,6 @@ typedef enum{
 @property(retain) QTMovie* movie;
 @property(retain) NSString* skipType;
 
-// }
 
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;
 -(id) initWithDictionary:(NSDictionary*) dic;

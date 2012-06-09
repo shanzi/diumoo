@@ -11,7 +11,6 @@
 @protocol DMPlayableCapsuleDelegate <NSObject>
 
 -(void) playableCapsule:(id)capsule loadStateChanged:(long) state;
-
 -(void) playableCapsuleDidPlay:(id)capsule;
 -(void) playableCapsuleWillPause:(id)capsule;
 -(void) playableCapsuleDidPause:(id)capsule;
