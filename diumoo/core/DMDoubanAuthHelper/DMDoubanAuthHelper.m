@@ -9,6 +9,7 @@
 #import "DMDoubanAuthHelper.h"
 #import "CJSONDeserializer.h"
 #import "NSDictionary+UrlEncoding.h"
+#import "HTMLParser.h"
 
 #define AUTH_STRING @"http://douban.fm/j/login"
 
@@ -30,12 +31,9 @@
         if ([name length] && [password length] && [captcha length]
             && [captchacode length]) {
             
-            NSMutableDictionary* authdict = [NSMutableDictionary dictionaryWithCapacity:6];
-            [authdict addEntriesFromDictionary:dict];
-            [authdict setValue:@"radio" forKey:@"source"];
-            [authdict setValue:@"on" forKey:@"remember"];
             
-            return [authdict urlEncodedString];
+            NSString* encodedstring = [dict urlEncodedString];
+            return [NSString stringWithFormat:@"remember=on&source=radio&%@",encodedstring];
         }
     }
     
@@ -89,6 +87,45 @@
 
 -(NSDictionary*) tryParseHtmlForAuthWithData:(NSData*) data
 {
+    NSError* herr=NULL;
+    HTMLParser* parser = [[HTMLParser alloc] initWithData:data error:&herr];
+    if(herr == NULL)
+    {
+        HTMLNode* bodynode=[parser body];
+        
+        HTMLNode* total=[[bodynode findChildOfClass:@"stat-total"] findChildTag:@"i"];
+        HTMLNode* liked=[[bodynode findChildOfClass:@"stat-liked"] findChildTag:@"i"];
+        HTMLNode* banned=[[bodynode findChildOfClass:@"stat-banned"] findChildTag:@"i"];
+        HTMLNode* user=[[bodynode findChildOfClass:@"login-usr"] findChildTag:@"a"];
+        
+        if(total && liked && banned && user){
+            NSString* userlink=[user getAttributeNamed:@"href"];
+            HTMLParser* imgParser=[[HTMLParser alloc] 
+                                   initWithContentsOfURL:[NSURL URLWithString:userlink]
+                                   error:&herr];
+            
+            if(herr==NULL){
+                
+                HTMLNode* userfacenode=[[imgParser body] findChildOfClass:@"userface"];
+                if(userfacenode){
+                    
+                    NSDictionary* play_record = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [total contents],@"played",
+                                                 [liked contents],@"liked",
+                                                 [banned contents],@"banned",nil];
+                    
+                    NSDictionary* user_info=[NSDictionary dictionaryWithObjectsAndKeys:
+                               [user contents],@"name",
+                               play_record,@"play_record",
+                               userlink,@"url",
+                               [userfacenode getAttributeNamed:@"src"],@"userface",
+                               nil];
+                    
+                    return [user_info autorelease];
+                }
+            }
+        }
+    }
     
     return nil;
 }
@@ -99,20 +136,35 @@
     NSDictionary* obj = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
     
     if(jerr){
+        
         // 返回的内容不能解析成json，尝试解析HTML获得用户登陆信息
         NSDictionary* info = [self tryParseHtmlForAuthWithData:data];
         if (info) {
-            // 登陆成功
+            
+            // 登陆成功，此时无需重新记录cookie
             [self loginSuccessWithUserinfo:info];
         }
         else {
+            
             // 登陆失败
         }
     }
     else {
+        
         // json解析成功
         if([[obj valueForKey:@"r"] intValue] == 0){
+            
             // 登陆成功
+            // 将cookie记录下来
+            NSArray *cookies = [NSHTTPCookie 
+                                cookiesWithResponseHeaderFields:
+                                [response  performSelector:@selector(allHeaderFields)]
+                                                        forURL:[response URL]] ;
+            
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies
+                                                               forURL:[response URL]
+                                                      mainDocumentURL:nil];
+            
             [self loginSuccessWithUserinfo:[obj valueForKey:@"user_info"]];
         }
         else {
