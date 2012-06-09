@@ -164,6 +164,8 @@
             [self startToPlay:nil];
         }
     }
+    // 歌曲播放结束时，无论如何都要解除lock
+    [skipLock unlock];
 }
 
 -(void) playableCapsule:(id)c loadStateChanged:(long)state
@@ -178,6 +180,8 @@
                 [playingCapsule play];
         
         if(state >= QTMovieLoadStateComplete)
+            
+            // 在这里执行一些缓冲歌曲的操作
             if ([self.waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
                 DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
                 if(!waitsong){

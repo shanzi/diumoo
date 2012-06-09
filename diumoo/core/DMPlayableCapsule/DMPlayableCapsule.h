@@ -25,9 +25,8 @@ typedef enum{
 }CapsulePlayState;
 
 @interface DMPlayableCapsule : NSObject
-{
-    
-}
+//{
+
 @property long loadState;
 @property CapsulePlayState playState;
 @property(nonatomic) float volume;
@@ -37,17 +36,17 @@ typedef enum{
 @property float rating_avg;
 
 
-@property(retain) NSString* aid;
-@property(retain) NSString* sid;
-@property(retain) NSString* ssid;
-@property(retain) NSString* subtype;
-@property(retain) NSString* title;
-@property(retain) NSString* artist;
-@property(retain) NSString* albumWithYear;
-@property(retain) NSString* albumLocation;
-@property(retain) NSString* musicLocation;
-@property(retain) NSString* pictureLocation;
-@property(retain) NSString* largePictureLocation;
+@property(copy) NSString* aid;
+@property(copy) NSString* sid;
+@property(copy) NSString* ssid;
+@property(copy) NSString* subtype;
+@property(copy) NSString* title;
+@property(copy) NSString* artist;
+@property(copy) NSString* albumWithYear;
+@property(copy) NSString* albumLocation;
+@property(copy) NSString* musicLocation;
+@property(copy) NSString* pictureLocation;
+@property(copy) NSString* largePictureLocation;
 
 @property(assign) NSImage* picture;
 @property(retain,nonatomic) NSTimer* timer;
@@ -55,6 +54,8 @@ typedef enum{
 
 @property(retain) QTMovie* movie;
 @property(retain) NSString* skipType;
+
+//}
 
 
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;

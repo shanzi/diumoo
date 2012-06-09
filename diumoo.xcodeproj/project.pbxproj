@@ -47,10 +47,10 @@
 		F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4B1580EE4D002B3D61 /* Security.framework */; };
 		F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4D1580EE68002B3D61 /* QTKit.framework */; };
 		F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4F1580EE92002B3D61 /* QuartzCore.framework */; };
-		F5148B531580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B521580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m */; };
 		F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B191580E7EE002B3D61 /* Growl.framework */; };
 		F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
 		F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
+		F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -143,8 +143,8 @@
 		F5148B4B1580EE4D002B3D61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F5148B4D1580EE68002B3D61 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F5148B4F1580EE92002B3D61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F5148B511580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+componentsJoinedByString.h"; sourceTree = "<group>"; };
-		F5148B521580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+componentsJoinedByString.m"; sourceTree = "<group>"; };
+		F54A524D158347DE00F6C18A /* DMDoubanAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMDoubanAuthHelper.h; path = DMDoubanAuthHelper/DMDoubanAuthHelper.h; sourceTree = "<group>"; };
+		F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDoubanAuthHelper.m; path = DMDoubanAuthHelper/DMDoubanAuthHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +340,7 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
 				F5148B201580E904002B3D61 /* DMControlCenter */,
 				F5148B231580E904002B3D61 /* DMPlayableCapsule */,
 				F5148B271580E904002B3D61 /* DMPlaylistFetcher */,
@@ -382,8 +383,6 @@
 			children = (
 				F5148B2C1580E904002B3D61 /* NSDictionary+UrlEncoding.h */,
 				F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */,
-				F5148B511580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.h */,
-				F5148B521580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m */,
 			);
 			path = DMUtils;
 			sourceTree = "<group>";
@@ -440,6 +439,15 @@
 				F5148B3D1580E969002B3D61 /* DMVolumeControlLayer.m */,
 			);
 			path = DMVolumeControlLayer;
+			sourceTree = "<group>";
+		};
+		F54A524C1583477300F6C18A /* DMDoubanAuthHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F54A524D158347DE00F6C18A /* DMDoubanAuthHelper.h */,
+				F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */,
+			);
+			name = DMDoubanAuthHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,7 +543,7 @@
 				F5148B3E1580E969002B3D61 /* DMCoverControlView.m in Sources */,
 				F5148B3F1580E969002B3D61 /* DMCoverSlide.m in Sources */,
 				F5148B401580E969002B3D61 /* DMVolumeControlLayer.m in Sources */,
-				F5148B531580F344002B3D61 /* NSOrderedSet+componentsJoinedByString.m in Sources */,
+				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +681,7 @@
 				F5148AD11580E58E002B3D61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

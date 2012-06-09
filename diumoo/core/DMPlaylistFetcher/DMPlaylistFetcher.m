@@ -12,11 +12,9 @@
 
 #import "DMPlaylistFetcher.h"
 #import "NSDictionary+UrlEncoding.h"
-#import "NSOrderedSet+componentsJoinedByString.h"
 
 @interface DMPlaylistFetcher()
 - (NSString *)randomString;
-- (NSString *)hstring;
 @end
 
 
@@ -31,7 +29,7 @@
     if (self) {
         srand((int)time(0));
         playlist = [[NSMutableArray alloc] init];
-        playedSongs = [[NSMutableOrderedSet alloc] init];
+        playedSongs = [[NSMutableDictionary alloc] init];
         
         //new 不是一个很好的 Method，个人认为，参考http://www.cnblogs.com/ulihj/archive/2011/01/15/1936342.html
     }
@@ -54,10 +52,6 @@
     return [NSString stringWithFormat:@"%lx",((rand() & 0xffffffffff) | 0x1000000000)] ;
 }
 
--(NSString *) hstring
-{
-    return [playedSongs componentsJoinedByString:@"|"];
-}
 
 #pragma -
 
@@ -161,8 +155,7 @@
     }
     if(sid && ![type isEqualToString:kFetchPlaylistTypeNew])
     {
-        [playedSongs addObject:[NSString stringWithFormat:@"%@:%@",sid,type]];
-        while([playedSongs count] > 40) [playedSongs removeObjectAtIndex:0];
+        [playedSongs setValue:type forKey:sid];
     }
     
     
@@ -170,7 +163,7 @@
                                      type,@"type",
                                      channel,@"channel",
                                      (sid?sid:@""),@"sid",
-                                     [self hstring],@"h",
+                                     [self.playedSongs hString],@"h",
                                      [self randomString],@"r",
                                      @"mainsite",@"from",
                                       nil];

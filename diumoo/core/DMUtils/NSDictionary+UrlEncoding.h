@@ -12,4 +12,5 @@
 
 @interface NSDictionary (UrlEncoding)
 -(NSString*) urlEncodedString;
+-(NSString*) hString;
 @end
