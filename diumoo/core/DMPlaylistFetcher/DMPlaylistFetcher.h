@@ -20,23 +20,16 @@
 #import "CJSONDeserializer.h"
 
 @interface DMPlaylistFetcher : NSObject
-//{
+{
+    id<DMPlaylistFetcherDeleate> delegate;
+}
 
-@property(assign) NSMutableArray* playlist;
-@property(assign) NSMutableDictionary* playedSongs;
 @property(retain) id<DMPlaylistFetcherDeleate> delegate;
 
-//}
 
-
-- (void)fetchPlaylistWithDictionary:(NSDictionary*) dic withStartAttribute:(NSString*) start;
-
-- (void)fetchPlaylistFromChannel:(NSString*)channel 
-                        withType:(NSString*)type 
-                             sid:(NSString*)sid 
-                  startAttribute:(NSString*)startAttr;
-
-- (DMPlayableCapsule *)getOnePlayableCapsule;
+- (void)fetchPlaylistWithDictionary:(NSDictionary*)dic withStartAttribute:(NSString*)startAttr;
+- (void)fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;
+- (DMPlayableCapsule*)getOnePlayableCapsule;
 
 
 @end

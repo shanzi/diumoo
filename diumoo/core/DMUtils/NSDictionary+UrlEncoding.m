@@ -9,11 +9,13 @@
 #import "NSDictionary+UrlEncoding.h"
 
 
-static NSString *toString(id object) {
+static NSString *toString(id object) 
+{
     return [NSString stringWithFormat: @"%@", object];
 }
 
-static NSString *urlEncode(id object) {
+static NSString *urlEncode(id object) 
+{
     NSString *string = toString(object);
     return [string stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 }
@@ -21,7 +23,8 @@ static NSString *urlEncode(id object) {
 
 @implementation NSDictionary (UrlEncoding)
 
--(NSString*) urlEncodedString {
+- (NSString*)urlEncodedString 
+{
     NSMutableArray *parts = [NSMutableArray array];
     for (id key in self) {
         id value = [self objectForKey: key];
@@ -31,7 +34,7 @@ static NSString *urlEncode(id object) {
     return [parts componentsJoinedByString: @"&"];
 }
 
--(NSString*) hString
+- (NSString*)hString
 {
     NSMutableArray* parts = [NSMutableArray array];
     for (id key in self) {

@@ -69,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		F5148AAE1580E58D002B3D61 /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5148AB21580E58D002B3D61 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5148AB51580E58D002B3D61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -231,6 +232,7 @@
 		F5148AB91580E58D002B3D61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				179AFA331583916200968BAD /* debugLog.h */,
 				F5148AD51580E6AD002B3D61 /* DMApp.h */,
 				F5148AD61580E6AD002B3D61 /* DMApp.m */,
 				F5148ABA1580E58D002B3D61 /* diumoo-Info.plist */,

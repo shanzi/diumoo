@@ -14,7 +14,15 @@
 #import "NSDictionary+UrlEncoding.h"
 
 @interface DMPlaylistFetcher()
-- (NSString *)randomString;
+{
+    NSMutableArray *playlist;
+    NSMutableDictionary *playedSongs;
+}
+
+@property(assign) NSMutableArray *playlist;
+@property(assign) NSMutableDictionary *playedSongs;
+
+- (NSString*)randomString;
 @end
 
 
@@ -29,15 +37,14 @@
     if (self) {
         srand((int)time(0));
         playlist = [[NSMutableArray alloc] init];
-        playedSongs = [[NSMutableDictionary alloc] init];
-        
-        //new 不是一个很好的 Method，个人认为，参考http://www.cnblogs.com/ulihj/archive/2011/01/15/1936342.html
+        playedSongs = [[NSMutableDictionary alloc] init];        
     }
     return self;
 }
 
 - (void)dealloc
 {
+    self.delegate = nil;
     [playlist release];
     [playedSongs release];
     [super dealloc];
@@ -47,62 +54,47 @@
 
 #pragma stringProcess(Private)
 
--(NSString *) randomString
+- (NSString*)randomString
 {
     return [NSString stringWithFormat:@"%lx",((rand() & 0xffffffffff) | 0x1000000000)] ;
 }
 
-
 #pragma -
 
--(void) fetchPlaylistWithDictionary:(NSDictionary *)dic withStartAttribute:(NSString *)start
+- (void)fetchPlaylistWithDictionary:(NSDictionary *)dic withStartAttribute:(NSString *)startAttr
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dic urlEncodedString]];
     
-    #ifdef DEBUG
-         NSLog(@"urlstring ----> %@",urlString);
-    #endif
+    DMLog(@"urlString>>>>>%@\n\n",urlString);
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                             timeoutInterval:5.0];
     
     //----------------------------处理start属性-------------------------
-    NSDictionary* startAttributeCookieDict =
-    [NSDictionary dictionaryWithObjectsAndKeys:
-     @"douban.fm",NSHTTPCookieDomain,
-     @"start",NSHTTPCookieName,
-     (start?start:@""),NSHTTPCookieValue,
-     @"TRUE",NSHTTPCookieDiscard,
-     @"/",NSHTTPCookiePath,
-     nil];
-    
-    
-    NSHTTPCookie* startAttributeCookie = [NSHTTPCookie cookieWithProperties:startAttributeCookieDict];
-    
-    
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:startAttributeCookie];
-    
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:
+                                                              [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                @"douban.fm",NSHTTPCookieDomain,
+                                                                    @"start",NSHTTPCookieName,
+                                                   (startAttr?startAttr:@""),NSHTTPCookieValue,
+                                                                     @"TRUE",NSHTTPCookieDiscard,
+                                                                        @"/",NSHTTPCookiePath, nil]]];
 
     //----------------------------------------------------------------
     
-    
     [NSURLConnection sendAsynchronousRequest:urlrequest 
                                        queue:[NSOperationQueue currentQueue]
-                           completionHandler:
-     ^(NSURLResponse *response, NSData * data, NSError *err){
+                           completionHandler:^(NSURLResponse *response, NSData * data, NSError *err){
 
          if (err) {
              // do something when connection err
              [delegate fetchPlaylistError:err withComment:nil];
          }
          else {
+             NSError* jerr = nil;
+             id jresponse = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
              
-             NSError* jerr = NULL;
-             id jresponse = [[CJSONDeserializer deserializer] 
-                                           deserialize:data 
-                                           error:&jerr];
              if(jerr){
                  [delegate fetchPlaylistError:jerr withComment:nil];
              }
@@ -117,17 +109,12 @@
                  else {
                      // do something to update playlist
                      @try {
-                         if (start){
-                             NSMutableArray* songs = [NSMutableArray arrayWithArray:
-                                                      [jresponse valueForKey:@"song"]];
-                             
-                             NSDictionary* startSong = [songs objectAtIndex:0];
-                             [songs removeObjectAtIndex:0];
-                             [playlist addObjectsFromArray:songs];
-                             
+                         if (startAttr){
+                             playlist = [NSMutableArray arrayWithArray:[jresponse valueForKey:@"song"]];
                              [delegate fetchPlaylistSuccessWithStartSong:
-                              [DMPlayableCapsule playableCapsuleWithDictionary:startSong]];
-                             
+                             [DMPlayableCapsule playableCapsuleWithDictionary:[playlist objectAtIndex:0]]];
+                             [playlist removeObjectAtIndex:0];
+
                          }
                          else {
                              [playlist addObjectsFromArray:[jresponse valueForKey:@"song"]];
@@ -145,10 +132,7 @@
     }];
 }
 
--(void) fetchPlaylistFromChannel:(NSString* )channel
-                        withType:(NSString *)type
-                             sid:(NSString *)sid
-                  startAttribute:(NSString *)startstr
+- (void)fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr
 {
     if (type == kFetchPlaylistTypeEnd && [self.playlist count]==0) {
         type = kFetchPlaylistTypeNew;
@@ -157,7 +141,6 @@
     {
         [playedSongs setValue:type forKey:sid];
     }
-    
     
     NSDictionary* fetchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                      type,@"type",
@@ -168,19 +151,18 @@
                                      @"mainsite",@"from",
                                       nil];
     
-    
-    [self fetchPlaylistWithDictionary:fetchDictionary withStartAttribute:startstr];
+    [self fetchPlaylistWithDictionary:fetchDictionary withStartAttribute:startAttr];
 }
 
--(DMPlayableCapsule*) getOnePlayableCapsule
+- (DMPlayableCapsule*)getOnePlayableCapsule
 {
     if([playlist count]>0){
-        id songdic = [[playlist objectAtIndex:0] retain];
-        [playlist removeObject:songdic];
-        return [DMPlayableCapsule playableCapsuleWithDictionary:songdic];
-        [songdic release];
+        NSDictionary *songDict = [[[playlist objectAtIndex:0] retain] autorelease];
+        [playlist removeObjectAtIndex:0];
+        return [DMPlayableCapsule playableCapsuleWithDictionary:songDict];
     }
-    else return nil;
+    else 
+        return nil;
 }
 
 
