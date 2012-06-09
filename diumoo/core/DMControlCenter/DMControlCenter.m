@@ -9,7 +9,7 @@
 #import "DMControlCenter.h"
 
 @implementation DMControlCenter
-@synthesize playingCapsule,fetcher,waitPlaylist,channel,pausedOperationType;
+@synthesize playingCapsule,fetcher,waitPlaylist,channel,pausedOperationType,skipLock;
 
 -(id) init
 {
@@ -18,6 +18,7 @@
         fetcher = [DMPlaylistFetcher new];
         fetcher.delegate = self;
         waitPlaylist = [NSMutableOrderedSet new];
+        skipLock = [NSLock new];
         channel = @"1";
     }
     return self;
@@ -122,6 +123,7 @@
     }
 
     self.pausedOperationType = kPauseOperationTypePass;
+    [skipLock unlock];
 }
 
 -(void) playableCapsuleDidEnd:(id)c
@@ -214,8 +216,10 @@
 
 -(void) playOrPauseAction:(id)sender
 {
+    
     if (self.playingCapsule.movie.rate > 0) 
     {
+        if (![skipLock tryLock]) return;
         [self.playingCapsule pause];
     }
     else {
@@ -225,6 +229,8 @@
 
 -(void) skipAction:(id) sender
 {
+    if (![skipLock tryLock]) return;
+    
     // ping 豆瓣，将skip操作记录下来
     [fetcher fetchPlaylistFromChannel:channel 
                              withType:kFetchPlaylistTypeSkip
@@ -238,9 +244,46 @@
     [playingCapsule pause];
 }
 
+-(void)rateOrUnrateAction:(id)sender
+{
+    if(self.playingCapsule == nil) return;
+    
+    if (self.playingCapsule.like) {
+        // 歌曲已经被加红心了，于是取消红心
+        [fetcher fetchPlaylistFromChannel:channel
+                                 withType:kFetchPlaylistTypeUnrate
+                                      sid:self.playingCapsule.sid
+                           startAttribute:nil];
+
+    }
+    else {
+        [fetcher fetchPlaylistFromChannel:channel
+                                 withType:kFetchPlaylistTypeRate
+                                      sid:self.playingCapsule.sid
+                           startAttribute:nil];
+    }
+    // 在这里做些什么事情来更新 UI
+}
+
 -(void) volumeChange:(id)sender
 {
     [self.playingCapsule commitVolume:[sender intValue]*0.01];
+}
+
+-(void) trashAction:(id)sender
+{
+    if (![skipLock tryLock]) return;
+    
+    [fetcher fetchPlaylistFromChannel:channel
+                             withType:kFetchPlaylistTypeBye
+                                  sid:self.playingCapsule.sid
+                       startAttribute:nil];
+    
+    // 指定歌曲暂停后的operation
+    self.pausedOperationType = kPauseOperationTypeSkip;
+    
+    // 暂停当前歌曲
+    [playingCapsule pause];
 }
 
 @end

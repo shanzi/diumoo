@@ -179,6 +179,8 @@
         [delegate playableCapsuleWillPause:self];
         [self.timer fire];
     }
+    else
+        [delegate playableCapsuleDidPause:self];
 }
 
 -(void) replay
@@ -220,6 +222,7 @@
     else {
         if (delta < 0.1 && -delta < 0.1) {
             [self invalidateTimer];
+            movie.volume = self.volume;
         }
         else {
             movie.volume += delta>0?0.08:-0.08;
