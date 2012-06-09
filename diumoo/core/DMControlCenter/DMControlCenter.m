@@ -8,8 +8,17 @@
 
 #import "DMControlCenter.h"
 
+@interface DMControlCenter() 
+//私有函数的
+-(void) startToPlay:(DMPlayableCapsule*)aSong;
+
+@end
+
+
 @implementation DMControlCenter
 @synthesize playingCapsule,fetcher,waitPlaylist,channel,pausedOperationType,skipLock;
+
+#pragma init & dealloc
 
 -(id) init
 {
@@ -24,27 +33,39 @@
     return self;
 }
 
--(void) fireToPlay:(NSString*)song
+-(void)dealloc
+{
+    [pausedOperationType release];
+    [channel release];
+    [waitPlaylist release];
+    [fetcher release];
+    [playingCapsule release];
+    [super dealloc];
+}
+
+#pragma -
+
+-(void) fireToPlay:(NSString*)aSong
 {
     [fetcher fetchPlaylistFromChannel:channel 
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
-                       startAttribute:song];
+                       startAttribute:aSong];
 }
 
--(void) startToPlay:(DMPlayableCapsule*)song
+-(void) startToPlay:(DMPlayableCapsule*)aSong
 {
 #ifdef DEBUG
-    NSLog(@"start to play: %@",song);
+    NSLog(@"start to play: %@",aSong);
 #endif
     [self.playingCapsule invalidateMovie];
     
-    if(song == nil){
+    if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
         
         if ([waitPlaylist count]>0) {
-            
             // 缓冲列表不是空的，从缓冲列表里取出一个来
+            
             self.playingCapsule = [waitPlaylist objectAtIndex:0];
             [self.playingCapsule setDelegate:self];
             [waitPlaylist removeObject:playingCapsule];
@@ -74,8 +95,8 @@
     }
     else {
         // 指定了要播放的歌曲
-        [song setDelegate:self];
-        self.playingCapsule = song;
+        [aSong setDelegate:self];
+        self.playingCapsule = aSong;
         
         if(playingCapsule.loadState < 0 && ![self.playingCapsule createNewMovie]){
             // 歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
@@ -83,7 +104,7 @@
             [fetcher fetchPlaylistFromChannel:channel 
                                      withType:kFetchPlaylistTypeNew 
                                           sid:nil 
-                               startAttribute:[song startAttributeWithChannel:channel]];
+                               startAttribute:[aSong startAttributeWithChannel:channel]];
         }
         else [self.playingCapsule play];
     }

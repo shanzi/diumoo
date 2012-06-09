@@ -6,12 +6,11 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-
-#import "DMPlayableCapsule.h"
-
 #define kTimerPulseTypePlay @"kTimerPulseTypePlay"
 #define kTimerPulseTypePause @"kTimerPulseTypePause"
 #define KTimerPulseTypeVolumeChange @"kTimerPulseTypeVolumeChange"
+
+#import "DMPlayableCapsule.h"
 
 @implementation DMPlayableCapsule
 
