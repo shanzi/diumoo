@@ -23,6 +23,8 @@
 @property(assign) NSMutableDictionary *playedSongs;
 
 - (NSString*)randomString;
+- (void)fetchPlaylistWithDictionary:(NSDictionary*)dic withStartAttribute:(NSString*)startAttr;
+
 @end
 
 

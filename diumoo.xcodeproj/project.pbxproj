@@ -463,6 +463,7 @@
 				F5148AAB1580E58D002B3D61 /* Frameworks */,
 				F5148AAC1580E58D002B3D61 /* Resources */,
 				F5148B5415810758002B3D61 /* CopyFiles */,
+				17FE6B001584AD5900EA34EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -513,6 +514,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17FE6B001584AD5900EA34EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH`\nversion=`expr $version + 1`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $PRODUCT_SETTINGS_PATH";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F5148AAA1580E58D002B3D61 /* Sources */ = {
@@ -639,6 +656,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/frameworks\"",
 				);
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
@@ -655,6 +673,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/frameworks\"",
 				);
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
