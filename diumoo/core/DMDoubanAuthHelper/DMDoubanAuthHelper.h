@@ -8,7 +8,9 @@
 #define kAuthAttributeUsername @"alias"
 #define kAuthAttributePassword @"form_password"
 #define kAuthAttributeCaptchaSolution @"captcha_solution"
-#define kAuthAttributeCaptchaCode @"capcha_code"
+#define kAuthAttributeCaptchaCode @"captcha_id"
+
+#define AccountStateChangedNotification @"accountstatechanged"
 
 #import <Foundation/Foundation.h>
 
@@ -16,7 +18,6 @@
 //{
 
 @property(copy) NSString* username;
-@property(copy) NSString* userId;
 @property(copy) NSString* userUrl;
 @property(copy) NSString* iconUrl;
 @property(retain) NSImage* icon;
@@ -28,8 +29,12 @@
 //}
 
 +(NSString*) stringEncodedForAuth:(NSDictionary*) dict;
++(NSString*) getNewCaptchaCode; 
++(NSImage*) getNewCapchaImageWithCode:(NSString*) code;
++(DMDoubanAuthHelper*) sharedHelper;
 
--(void) authWithDictionary:(NSDictionary*) dict asynchronousRequest:(BOOL)asyn;
+-(NSError*) authWithDictionary:(NSDictionary*) dict;
 -(void) logoutAndCleanData;
+
 
 @end

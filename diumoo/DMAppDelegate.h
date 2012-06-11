@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SPMediaKeyTap.h"
 #import "DMControlCenter.h"
+#import "DMDoubanAuthHelper.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 @property(assign) IBOutlet DMControlCenter* center;

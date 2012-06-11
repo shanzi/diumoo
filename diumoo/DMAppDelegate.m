@@ -13,7 +13,17 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    [center fireToPlay:nil];
+    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         @"airobot1@163.com",kAuthAttributeUsername,
+                         @"akirasphere",kAuthAttributePassword,
+                         @"K9Mr6E7212DEOWjN7pXRt8EV",kAuthAttributeCaptchaCode,
+                         @"mistake",kAuthAttributeCaptchaSolution,
+                         nil];
+
+    [[DMDoubanAuthHelper sharedHelper] authWithDictionary:dic asynchronousRequest:NO];
+    
+    NSLog(@"%@",[DMDoubanAuthHelper sharedHelper]);
+    //[center fireToPlay:nil];
 }
 
 

@@ -13,8 +13,10 @@
 
 #define AUTH_STRING @"http://douban.fm/j/login"
 
+static DMDoubanAuthHelper* sharedHelper;
+
 @implementation DMDoubanAuthHelper
-@synthesize username,userId,userUrl,iconUrl,icon;
+@synthesize username,userUrl,iconUrl,icon;
 @synthesize playedSongsCount,likedSongsCount,bannedSongsCount;
 
 +(NSString*) stringEncodedForAuth:(NSDictionary *)dict
@@ -40,49 +42,71 @@
     return nil;
 }
 
--(void) authWithDictionary:(NSDictionary *)dict asynchronousRequest:(BOOL)asyn
++(NSString*) getNewCaptchaCode
 {
-    NSString* authStringBody = [DMDoubanAuthHelper stringEncodedForAuth:dict];
-    if(authStringBody)
+    NSString* urlstring = @"http://douban.fm/j/new_captcha";
+    NSURL* codeurl = [NSURL URLWithString:urlstring];
+    
+    NSError* codeerr = NULL;
+    NSString* code = [NSString stringWithContentsOfURL:codeurl 
+                                              encoding:NSASCIIStringEncoding 
+                                                 error:&codeerr];
+    
+    if(codeerr == NULL)
     {
-        // 全新登陆一个账号
-        [self logoutAndCleanData];
-        NSURL* urlForAuth =[NSURL URLWithString:AUTH_STRING];
-        NSData* authRequestBody = [authStringBody dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSMutableURLRequest* authRequest = [NSMutableURLRequest requestWithURL:urlForAuth];
-        [authRequest setHTTPMethod:@"POST"];
-        [authRequest setHTTPBody:authRequestBody];
-        
-        if (asyn) 
-        {
-            // 发出异步请求
-            [NSURLConnection sendAsynchronousRequest:authRequest
-                                               queue:[NSOperationQueue currentQueue]
-                                   completionHandler:
-             ^(NSURLResponse *r, NSData *d, NSError *e) {
-                 if (!e) {
-                     // 连接成功
-                     [self connectionResponseHandlerWithResponse:r andData:d];
-                 }
-             }];
-        }
-        else {
-            // 发出同步请求
-            NSURLResponse* response;
-            NSError* error;
-            NSData* data = [NSURLConnection sendSynchronousRequest:authRequest
-                                  returningResponse:&response
-                                              error:&error];
-            
-            if(!error){
-                [self connectionResponseHandlerWithResponse:response andData:data];
-            }
-            
-        }
+        return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     }
     else {
+        return nil;
     }
+}
+
++(NSImage*) getNewCapchaImageWithCode:(NSString *)code
+{
+    NSString* urlstring = [@"http://douban.fm/misc/captcha?size=m&id=" 
+                           stringByAppendingString:code];
+    NSURL* imageurl = [NSURL URLWithString:urlstring];
+    NSImage* image = [[NSImage alloc] initWithContentsOfURL:imageurl];
+    
+    return [image autorelease];
+}
+
++(DMDoubanAuthHelper*) sharedHelper
+{
+    if(sharedHelper) return sharedHelper;
+    else {
+        sharedHelper = [[DMDoubanAuthHelper alloc] init];
+        return  sharedHelper;
+    }
+}
+
+-(NSError*) authWithDictionary:(NSDictionary *)dict
+{
+    NSString* authStringBody = [DMDoubanAuthHelper stringEncodedForAuth:dict];
+    
+    
+    // 全新登陆一个账号
+    [self logoutAndCleanData];
+    NSURL* urlForAuth =[NSURL URLWithString:AUTH_STRING];
+    NSData* authRequestBody = [authStringBody dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest* authRequest = [NSMutableURLRequest requestWithURL:urlForAuth];
+    [authRequest setHTTPMethod:@"POST"];
+    [authRequest setHTTPBody:authRequestBody];
+    
+    
+    // 发出同步请求
+    NSURLResponse* response;
+    NSError* error = NULL;
+    NSData* data = [NSURLConnection sendSynchronousRequest:authRequest
+                                         returningResponse:&response
+                                                     error:&error];
+    
+    if(!error){
+        return [self connectionResponseHandlerWithResponse:response andData:data];
+    }
+    else return [error autorelease];
+    
 }
 
 -(NSDictionary*) tryParseHtmlForAuthWithData:(NSData*) data
@@ -118,7 +142,7 @@
                                [user contents],@"name",
                                play_record,@"play_record",
                                userlink,@"url",
-                               [userfacenode getAttributeNamed:@"src"],@"userface",
+                               [userfacenode getAttributeNamed:@"src"],@"icon_url",
                                nil];
                     
                     return [user_info autorelease];
@@ -130,9 +154,10 @@
     return nil;
 }
 
--(void) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data
+-(NSError*) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data
 {
-    NSError* jerr;
+
+    NSError* jerr = NULL;
     NSDictionary* obj = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
     
     if(jerr){
@@ -147,11 +172,13 @@
         else {
             
             // 登陆失败
+            return [NSError errorWithDomain:@"DM Auth Error" code:-1 userInfo:nil];
         }
     }
     else {
         
         // json解析成功
+
         if([[obj valueForKey:@"r"] intValue] == 0){
             
             // 登陆成功
@@ -165,22 +192,82 @@
                                                                forURL:[response URL]
                                                       mainDocumentURL:nil];
             
+            
             [self loginSuccessWithUserinfo:[obj valueForKey:@"user_info"]];
         }
         else {
             // 登陆失败
+            return [NSError errorWithDomain:@"DM Auth Error" code:-2 userInfo:obj];
         }
     }
+    return nil;
 }
 
 -(void) loginSuccessWithUserinfo:(NSDictionary*) userinfo
 {
+    self.username = [userinfo valueForKey:@"name"];
+    self.userUrl = [userinfo valueForKey:@"url"];
     
+    
+    
+    NSDictionary* play_record = [userinfo valueForKey:@"play_record"];
+    
+    if (play_record) {
+        
+        self.playedSongsCount = [[play_record valueForKey:@"played"] integerValue];
+        self.likedSongsCount =  [[play_record valueForKey:@"liked"] integerValue];
+        self.bannedSongsCount = [[play_record valueForKey:@"banned"] integerValue];
+        
+    }
+    
+    
+    NSString* _id = [userinfo valueForKey:@"id"];
+    if (_id) 
+    {
+        NSString* iconstring = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
+        self.iconUrl = iconstring;
+    }
+    else 
+    {
+        self.iconUrl = [userinfo valueForKey:@"icon_url"];
+    }
+    
+    NSURL* iconImageURL = [NSURL URLWithString:self.iconUrl];
+    self.icon = [[NSImage alloc] initWithContentsOfURL:iconImageURL];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
+                                                        object:self];
 }
 
 -(void) logoutAndCleanData
 {
+    self.username = nil;
+    self.userUrl = nil;
+    self.iconUrl = nil;
+    self.icon = nil;
+    self.playedSongsCount = 0;
+    self.likedSongsCount = 0;
+    self.bannedSongsCount = 0;
     
+    NSURL* url = [NSURL URLWithString:AUTH_STRING];
+    NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+    
+    for (NSHTTPCookie* cookie in cookies) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
+                                                        object:self];
+}
+
+-(NSString*) description
+{
+   NSDictionary* descriptDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                self.username,@"username",
+                                self.userUrl,@"userUrl",
+                                self.iconUrl, @"iconUrl"
+                                , nil];
+    return [NSString stringWithFormat:@"<DMDoubanAuthHelper:\n%@ >",descriptDic];
 }
 
 @end
