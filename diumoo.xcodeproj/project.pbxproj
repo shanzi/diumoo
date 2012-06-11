@@ -39,9 +39,6 @@
 		F5148B2F1580E904002B3D61 /* DMPlayableCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B251580E904002B3D61 /* DMPlayableCapsule.m */; };
 		F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */; };
 		F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */; };
-		F5148B3E1580E969002B3D61 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B371580E969002B3D61 /* DMCoverControlView.m */; };
-		F5148B3F1580E969002B3D61 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B3A1580E969002B3D61 /* DMCoverSlide.m */; };
-		F5148B401580E969002B3D61 /* DMVolumeControlLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B3D1580E969002B3D61 /* DMVolumeControlLayer.m */; };
 		F5148B441580EC15002B3D61 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B431580EC15002B3D61 /* libxml2.2.7.3.dylib */; };
 		F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B491580EE1F002B3D61 /* Carbon.framework */; };
 		F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4B1580EE4D002B3D61 /* Security.framework */; };
@@ -133,12 +130,6 @@
 		F5148B2A1580E904002B3D61 /* DMPlaylistFetcherDeleate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlaylistFetcherDeleate.h; sourceTree = "<group>"; };
 		F5148B2C1580E904002B3D61 /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
 		F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
-		F5148B361580E969002B3D61 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
-		F5148B371580E969002B3D61 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
-		F5148B391580E969002B3D61 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
-		F5148B3A1580E969002B3D61 /* DMCoverSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverSlide.m; sourceTree = "<group>"; };
-		F5148B3C1580E969002B3D61 /* DMVolumeControlLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMVolumeControlLayer.h; sourceTree = "<group>"; };
-		F5148B3D1580E969002B3D61 /* DMVolumeControlLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMVolumeControlLayer.m; sourceTree = "<group>"; };
 		F5148B431580EC15002B3D61 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		F5148B491580EE1F002B3D61 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		F5148B4B1580EE4D002B3D61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -217,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				F5148B1F1580E904002B3D61 /* core */,
-				F5148B321580E969002B3D61 /* ui */,
 				F5148AC41580E58D002B3D61 /* DMDocument.h */,
 				F5148AC51580E58D002B3D61 /* DMDocument.m */,
 				F5148AD21580E5F4002B3D61 /* DMAppDelegate.h */,
@@ -389,60 +379,6 @@
 			path = DMUtils;
 			sourceTree = "<group>";
 		};
-		F5148B321580E969002B3D61 /* ui */ = {
-			isa = PBXGroup;
-			children = (
-				F5148B331580E969002B3D61 /* DMMusicPanel */,
-			);
-			name = ui;
-			path = core/ui;
-			sourceTree = "<group>";
-		};
-		F5148B331580E969002B3D61 /* DMMusicPanel */ = {
-			isa = PBXGroup;
-			children = (
-				F5148B341580E969002B3D61 /* DMChannelMenuLayer */,
-				F5148B351580E969002B3D61 /* DMCoverControlView */,
-				F5148B381580E969002B3D61 /* DMCoverSlide */,
-				F5148B3B1580E969002B3D61 /* DMVolumeControlLayer */,
-			);
-			path = DMMusicPanel;
-			sourceTree = "<group>";
-		};
-		F5148B341580E969002B3D61 /* DMChannelMenuLayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DMChannelMenuLayer;
-			sourceTree = "<group>";
-		};
-		F5148B351580E969002B3D61 /* DMCoverControlView */ = {
-			isa = PBXGroup;
-			children = (
-				F5148B361580E969002B3D61 /* DMCoverControlView.h */,
-				F5148B371580E969002B3D61 /* DMCoverControlView.m */,
-			);
-			path = DMCoverControlView;
-			sourceTree = "<group>";
-		};
-		F5148B381580E969002B3D61 /* DMCoverSlide */ = {
-			isa = PBXGroup;
-			children = (
-				F5148B391580E969002B3D61 /* DMCoverSlide.h */,
-				F5148B3A1580E969002B3D61 /* DMCoverSlide.m */,
-			);
-			path = DMCoverSlide;
-			sourceTree = "<group>";
-		};
-		F5148B3B1580E969002B3D61 /* DMVolumeControlLayer */ = {
-			isa = PBXGroup;
-			children = (
-				F5148B3C1580E969002B3D61 /* DMVolumeControlLayer.h */,
-				F5148B3D1580E969002B3D61 /* DMVolumeControlLayer.m */,
-			);
-			path = DMVolumeControlLayer;
-			sourceTree = "<group>";
-		};
 		F54A524C1583477300F6C18A /* DMDoubanAuthHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,9 +495,6 @@
 				F5148B2F1580E904002B3D61 /* DMPlayableCapsule.m in Sources */,
 				F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
-				F5148B3E1580E969002B3D61 /* DMCoverControlView.m in Sources */,
-				F5148B3F1580E969002B3D61 /* DMCoverSlide.m in Sources */,
-				F5148B401580E969002B3D61 /* DMVolumeControlLayer.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
