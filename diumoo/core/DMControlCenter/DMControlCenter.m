@@ -55,9 +55,9 @@
 
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
-#ifdef DEBUG
-    NSLog(@"start to play: %@",aSong);
-#endif
+
+    DMLog(@"start to play: %@",aSong);
+    
     [self.playingCapsule invalidateMovie];
     
     if(aSong == nil){
@@ -65,7 +65,6 @@
         
         if ([waitPlaylist count]>0) {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
-            
             self.playingCapsule = [waitPlaylist objectAtIndex:0];
             [self.playingCapsule setDelegate:self];
             [waitPlaylist removeObject:playingCapsule];

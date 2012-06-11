@@ -36,9 +36,9 @@
 {
     self = [super init];
     if (self) {
-#ifdef DEBUG
-        NSLog(@"init>>>>>>>>>>%@",dic);
-#endif
+
+        DMLog(@"init>>>>>>>%@",dic);
+        
         loadState = -1;
         self.aid = [dic valueForKey:@"aid"]; 
         self.sid = [dic valueForKey:@"sid"];
@@ -71,8 +71,7 @@
     NSLog(@"%@",musicLocation);
 #endif
     if(!self.movie){
-        NSURL* musicUrl = [NSURL URLWithString:musicLocation];
-        return [QTMovie canInitWithURL:musicUrl];
+        return [QTMovie canInitWithURL:[NSURL URLWithString:musicLocation]];
     }
     else {
         return loadState >0;
@@ -81,12 +80,13 @@
 
 -(BOOL) createNewMovie
 {
-    if(loadState >= QTMovieLoadStatePlaythroughOK) return YES;
+    if(loadState >= QTMovieLoadStatePlaythroughOK) 
+        return YES;
+    
     self.playState = WAIT_TO_PLAY;
     
-    NSURL*  musicUrl = [NSURL URLWithString:musicLocation];
-    NSError* err = NULL;
-    QTMovie* m = [QTMovie movieWithURL:musicUrl error:&err];
+    NSError* err = nil;
+    QTMovie* m = [QTMovie movieWithURL:[NSURL URLWithString:musicLocation] error:&err];
     
     if(!err)
     {

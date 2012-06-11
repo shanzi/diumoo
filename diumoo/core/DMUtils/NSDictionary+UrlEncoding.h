@@ -11,6 +11,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (UrlEncoding)
--(NSString*) urlEncodedString;
--(NSString*) hString;
+- (NSString*)urlEncodedString;
+- (NSString*)hString;
 @end

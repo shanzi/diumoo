@@ -10,7 +10,7 @@
 
 @protocol DMPlaylistFetcherDeleate <NSObject>
 
--(void) fetchPlaylistError:(NSError*) err withComment:(NSString*) comment;
--(void) fetchPlaylistSuccessWithStartSong:(id) startsong;
+- (void)fetchPlaylistError:(NSError *)err withComment:(NSString *)comment;
+- (void)fetchPlaylistSuccessWithStartSong:(id)startSong;
 
 @end
