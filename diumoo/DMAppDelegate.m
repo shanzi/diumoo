@@ -9,23 +9,30 @@
 #import "DMAppDelegate.h"
 
 @implementation DMAppDelegate
-@synthesize center;
+@synthesize center,panel;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"airobot1@163.com",kAuthAttributeUsername,
-                         @"akirasphere",kAuthAttributePassword,
-                         @"K9Mr6E7212DEOWjN7pXRt8EV",kAuthAttributeCaptchaCode,
-                         @"mistake",kAuthAttributeCaptchaSolution,
-                         nil];
-
-    [[DMDoubanAuthHelper sharedHelper] authWithDictionary:dic asynchronousRequest:NO];
-    
-    NSLog(@"%@",[DMDoubanAuthHelper sharedHelper]);
-    //[center fireToPlay:nil];
+    NSLog(@"finishlaunching");
+//    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
+//                         @"airobot1@163.com",kAuthAttributeUsername,
+//                         @"akirasphere",kAuthAttributePassword,
+//                         @"K9Mr6E7212DEOWjN7pXRt8EV",kAuthAttributeCaptchaCode,
+//                         @"mistake",kAuthAttributeCaptchaSolution,
+//                         nil];
+//
+//    [[DMDoubanAuthHelper sharedHelper] authWithDictionary:dic asynchronousRequest:NO];
+//    
+//    NSLog(@"%@",[DMDoubanAuthHelper sharedHelper]);
+//    //[center fireToPlay:nil];
+    self.panel = [[DMPanelWindowController alloc] init];
+    [self.panel showWindow:nil];
 }
 
+-(void) applicationWillTerminate:(NSNotification *)notification
+{
+    
+}
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
     
@@ -42,6 +49,12 @@
                 break;
         }
     
+}
+
+-(BOOL) application:(NSApplication*)app openFile:(NSString *)filename
+{
+    NSLog(@"TEST");
+    return NO;
 }
 
 @end

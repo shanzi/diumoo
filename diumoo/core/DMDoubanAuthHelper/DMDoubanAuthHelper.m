@@ -203,14 +203,14 @@ static DMDoubanAuthHelper* sharedHelper;
     return nil;
 }
 
--(void) loginSuccessWithUserinfo:(NSDictionary*) userinfo
+-(void) loginSuccessWithUserinfo:(NSDictionary*) info
 {
-    self.username = [userinfo valueForKey:@"name"];
-    self.userUrl = [userinfo valueForKey:@"url"];
-    self.userinfo = userinfo;
+    self.username = [info valueForKey:@"name"];
+    self.userUrl = [info valueForKey:@"url"];
+    self.userinfo = info;
     
     
-    NSDictionary* play_record = [userinfo valueForKey:@"play_record"];
+    NSDictionary* play_record = [info valueForKey:@"play_record"];
     
     if (play_record) {
         
@@ -221,7 +221,7 @@ static DMDoubanAuthHelper* sharedHelper;
     }
     
     
-    NSString* _id = [userinfo valueForKey:@"id"];
+    NSString* _id = [info valueForKey:@"id"];
     if (_id) 
     {
         NSString* iconstring = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
@@ -229,7 +229,7 @@ static DMDoubanAuthHelper* sharedHelper;
     }
     else 
     {
-        self.iconUrl = [userinfo valueForKey:@"icon_url"];
+        self.iconUrl = [info valueForKey:@"icon_url"];
     }
     
     NSURL* iconImageURL = [NSURL URLWithString:self.iconUrl];

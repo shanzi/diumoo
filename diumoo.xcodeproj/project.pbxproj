@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
+		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
+		F501B3B915877062001C6158 /* DMVolumeControlLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B615877062001C6158 /* DMVolumeControlLayer.m */; };
+		F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3BB1587708F001C6158 /* DMPanelWindowController.m */; };
+		F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */; };
+		F501B3C815877A88001C6158 /* ban.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C315877A88001C6158 /* ban.png */; };
+		F501B3C915877A88001C6158 /* playpause.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C415877A88001C6158 /* playpause.png */; };
+		F501B3CA15877A88001C6158 /* rate.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C515877A88001C6158 /* rate.png */; };
+		F501B3CB15877A88001C6158 /* rate_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C615877A88001C6158 /* rate_red.png */; };
+		F501B3CC15877A88001C6158 /* skip.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C715877A88001C6158 /* skip.png */; };
 		F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148AB21580E58D002B3D61 /* Cocoa.framework */; };
 		F5148ABD1580E58D002B3D61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5148ABB1580E58D002B3D61 /* InfoPlist.strings */; };
 		F5148ABF1580E58D002B3D61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ABE1580E58D002B3D61 /* main.m */; };
@@ -47,6 +57,7 @@
 		F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B191580E7EE002B3D61 /* Growl.framework */; };
 		F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
 		F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
+		F53D619E15877DCD00F92CEC /* volumeback.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D619D15877DCD00F92CEC /* volumeback.png */; };
 		F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */; };
 		F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */; };
 /* End PBXBuildFile section */
@@ -68,6 +79,20 @@
 
 /* Begin PBXFileReference section */
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
+		F501B3B015877062001C6158 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
+		F501B3B215877062001C6158 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
+		F501B3B315877062001C6158 /* DMCoverSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverSlide.m; sourceTree = "<group>"; };
+		F501B3B515877062001C6158 /* DMVolumeControlLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMVolumeControlLayer.h; sourceTree = "<group>"; };
+		F501B3B615877062001C6158 /* DMVolumeControlLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMVolumeControlLayer.m; sourceTree = "<group>"; };
+		F501B3BA1587708F001C6158 /* DMPanelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanelWindowController.h; sourceTree = "<group>"; };
+		F501B3BB1587708F001C6158 /* DMPanelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanelWindowController.m; sourceTree = "<group>"; };
+		F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMPanelWindowController.xib; sourceTree = "<group>"; };
+		F501B3C315877A88001C6158 /* ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban.png; sourceTree = "<group>"; };
+		F501B3C415877A88001C6158 /* playpause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playpause.png; sourceTree = "<group>"; };
+		F501B3C515877A88001C6158 /* rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate.png; sourceTree = "<group>"; };
+		F501B3C615877A88001C6158 /* rate_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate_red.png; sourceTree = "<group>"; };
+		F501B3C715877A88001C6158 /* skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skip.png; sourceTree = "<group>"; };
 		F5148AAE1580E58D002B3D61 /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5148AB21580E58D002B3D61 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5148AB51580E58D002B3D61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -136,6 +161,7 @@
 		F5148B4B1580EE4D002B3D61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F5148B4D1580EE68002B3D61 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F5148B4F1580EE92002B3D61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F53D619D15877DCD00F92CEC /* volumeback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumeback.png; sourceTree = "<group>"; };
 		F54A524D158347DE00F6C18A /* DMDoubanAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMDoubanAuthHelper.h; path = DMDoubanAuthHelper/DMDoubanAuthHelper.h; sourceTree = "<group>"; };
 		F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDoubanAuthHelper.m; path = DMDoubanAuthHelper/DMDoubanAuthHelper.m; sourceTree = "<group>"; };
 		F599851D15870E3F00BF26A0 /* DMChannelListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMChannelListHandler.h; sourceTree = "<group>"; };
@@ -162,10 +188,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F501B3AC15877062001C6158 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				F501B3AD15877062001C6158 /* DMPanel */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		F501B3AD15877062001C6158 /* DMPanel */ = {
+			isa = PBXGroup;
+			children = (
+				F501B3AE15877062001C6158 /* DMCoverControlView */,
+				F501B3B115877062001C6158 /* DMCoverSlide */,
+				F501B3B415877062001C6158 /* DMVolumeControlLayer */,
+				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
+				F501B3BB1587708F001C6158 /* DMPanelWindowController.m */,
+				F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */,
+			);
+			path = DMPanel;
+			sourceTree = "<group>";
+		};
+		F501B3AE15877062001C6158 /* DMCoverControlView */ = {
+			isa = PBXGroup;
+			children = (
+				F501B3AF15877062001C6158 /* DMCoverControlView.h */,
+				F501B3B015877062001C6158 /* DMCoverControlView.m */,
+			);
+			path = DMCoverControlView;
+			sourceTree = "<group>";
+		};
+		F501B3B115877062001C6158 /* DMCoverSlide */ = {
+			isa = PBXGroup;
+			children = (
+				F501B3B215877062001C6158 /* DMCoverSlide.h */,
+				F501B3B315877062001C6158 /* DMCoverSlide.m */,
+			);
+			path = DMCoverSlide;
+			sourceTree = "<group>";
+		};
+		F501B3B415877062001C6158 /* DMVolumeControlLayer */ = {
+			isa = PBXGroup;
+			children = (
+				F501B3B515877062001C6158 /* DMVolumeControlLayer.h */,
+				F501B3B615877062001C6158 /* DMVolumeControlLayer.m */,
+			);
+			path = DMVolumeControlLayer;
+			sourceTree = "<group>";
+		};
+		F501B3C215877A88001C6158 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				F53D619D15877DCD00F92CEC /* volumeback.png */,
+				F501B3C315877A88001C6158 /* ban.png */,
+				F501B3C415877A88001C6158 /* playpause.png */,
+				F501B3C515877A88001C6158 /* rate.png */,
+				F501B3C615877A88001C6158 /* rate_red.png */,
+				F501B3C715877A88001C6158 /* skip.png */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		F5148AA31580E58D002B3D61 = {
 			isa = PBXGroup;
 			children = (
 				F5148AB81580E58D002B3D61 /* diumoo */,
+				F501B3C215877A88001C6158 /* resources */,
 				F5148AD81580E707002B3D61 /* extern */,
 				F5148AB11580E58D002B3D61 /* Frameworks */,
 				F5148AAF1580E58D002B3D61 /* Products */,
@@ -210,6 +298,7 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F501B3AC15877062001C6158 /* ui */,
 				F5148B1F1580E904002B3D61 /* core */,
 				F5148AC41580E58D002B3D61 /* DMDocument.h */,
 				F5148AC51580E58D002B3D61 /* DMDocument.m */,
@@ -459,6 +548,13 @@
 				F5148AC91580E58D002B3D61 /* DMDocument.xib in Resources */,
 				F5148ACC1580E58E002B3D61 /* MainMenu.xib in Resources */,
 				F5148B0D1580E707002B3D61 /* LICENSE in Resources */,
+				F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */,
+				F501B3C815877A88001C6158 /* ban.png in Resources */,
+				F501B3C915877A88001C6158 /* playpause.png in Resources */,
+				F501B3CA15877A88001C6158 /* rate.png in Resources */,
+				F501B3CB15877A88001C6158 /* rate_red.png in Resources */,
+				F501B3CC15877A88001C6158 /* skip.png in Resources */,
+				F53D619E15877DCD00F92CEC /* volumeback.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +606,10 @@
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
 				F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */,
+				F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */,
+				F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */,
+				F501B3B915877062001C6158 /* DMVolumeControlLayer.m in Sources */,
+				F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
