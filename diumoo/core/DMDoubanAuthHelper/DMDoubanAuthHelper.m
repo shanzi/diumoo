@@ -16,7 +16,7 @@
 static DMDoubanAuthHelper* sharedHelper;
 
 @implementation DMDoubanAuthHelper
-@synthesize username,userUrl,iconUrl,icon;
+@synthesize username,userUrl,iconUrl,icon,userinfo;
 @synthesize playedSongsCount,likedSongsCount,bannedSongsCount;
 
 +(NSString*) stringEncodedForAuth:(NSDictionary *)dict
@@ -207,7 +207,7 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     self.username = [userinfo valueForKey:@"name"];
     self.userUrl = [userinfo valueForKey:@"url"];
-    
+    self.userinfo = userinfo;
     
     
     NSDictionary* play_record = [userinfo valueForKey:@"play_record"];
@@ -244,6 +244,7 @@ static DMDoubanAuthHelper* sharedHelper;
     self.username = nil;
     self.userUrl = nil;
     self.iconUrl = nil;
+    self.userinfo = nil;
     self.icon = nil;
     self.playedSongsCount = 0;
     self.likedSongsCount = 0;

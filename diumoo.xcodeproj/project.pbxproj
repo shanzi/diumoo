@@ -48,6 +48,7 @@
 		F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
 		F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
 		F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */; };
+		F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +138,8 @@
 		F5148B4F1580EE92002B3D61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F54A524D158347DE00F6C18A /* DMDoubanAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMDoubanAuthHelper.h; path = DMDoubanAuthHelper/DMDoubanAuthHelper.h; sourceTree = "<group>"; };
 		F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDoubanAuthHelper.m; path = DMDoubanAuthHelper/DMDoubanAuthHelper.m; sourceTree = "<group>"; };
+		F599851D15870E3F00BF26A0 /* DMChannelListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMChannelListHandler.h; sourceTree = "<group>"; };
+		F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMChannelListHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +335,7 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				F599851C15870E3E00BF26A0 /* DMChannelListHandler */,
 				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
 				F5148B201580E904002B3D61 /* DMControlCenter */,
 				F5148B231580E904002B3D61 /* DMPlayableCapsule */,
@@ -386,6 +390,15 @@
 				F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */,
 			);
 			name = DMDoubanAuthHelper;
+			sourceTree = "<group>";
+		};
+		F599851C15870E3E00BF26A0 /* DMChannelListHandler */ = {
+			isa = PBXGroup;
+			children = (
+				F599851D15870E3F00BF26A0 /* DMChannelListHandler.h */,
+				F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */,
+			);
+			path = DMChannelListHandler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,6 +509,7 @@
 				F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
+				F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

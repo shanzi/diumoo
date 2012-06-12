@@ -21,6 +21,8 @@
 @property(copy) NSString* userUrl;
 @property(copy) NSString* iconUrl;
 @property(retain) NSImage* icon;
+@property(retain) NSDictionary* userinfo;
+
 
 @property NSInteger playedSongsCount;
 @property NSInteger likedSongsCount;
