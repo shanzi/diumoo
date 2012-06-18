@@ -11,8 +11,12 @@
 #import "DMControlCenter.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
+#import "PLTabPreferenceControl.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 @property(assign) IBOutlet DMControlCenter* center;
 @property(assign) DMPanelWindowController* panel;
+
+-(IBAction)showPreference:(id)sender;
+
 @end

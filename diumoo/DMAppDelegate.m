@@ -57,4 +57,11 @@
     return NO;
 }
 
+-(void) showPreference:(id)sender
+{
+    PLTabPreferenceControl* pc = [[PLTabPreferenceControl alloc]initWithWindowNibName:@"DMPrefsPanel"];
+    [pc showWindow:nil];
+}
+
+
 @end
