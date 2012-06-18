@@ -1979,6 +1979,14 @@
 					</object>
 					<int key="connectionID">678</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreference:</string>
+						<reference key="source" ref="881728587"/>
+						<reference key="destination" ref="609285721"/>
+					</object>
+					<int key="connectionID">708</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -3129,7 +3137,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">707</int>
+			<int key="maxID">708</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3144,6 +3152,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DMAppDelegate</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">showPreference:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">showPreference:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">showPreference:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">center</string>
 						<string key="NS.object.0">DMControlCenter</string>
