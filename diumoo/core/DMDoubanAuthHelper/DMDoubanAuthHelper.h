@@ -30,13 +30,16 @@
 
 //}
 
++(DMDoubanAuthHelper*) sharedHelper;
 +(NSString*) stringEncodedForAuth:(NSDictionary*) dict;
 +(NSString*) getNewCaptchaCode; 
 +(NSImage*) getNewCapchaImageWithCode:(NSString*) code;
-+(DMDoubanAuthHelper*) sharedHelper;
+
 
 -(NSError*) authWithDictionary:(NSDictionary*) dict;
 -(void) logoutAndCleanData;
+
+-(NSImage*) getUserIcon;
 
 
 @end

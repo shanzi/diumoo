@@ -19,6 +19,15 @@ static DMDoubanAuthHelper* sharedHelper;
 @synthesize username,userUrl,iconUrl,icon,userinfo;
 @synthesize playedSongsCount,likedSongsCount,bannedSongsCount;
 
++(DMDoubanAuthHelper*) sharedHelper
+{
+    if(sharedHelper) return sharedHelper;
+    else {
+        sharedHelper = [[DMDoubanAuthHelper alloc] init];
+        return  sharedHelper;
+    }
+}
+
 +(NSString*) stringEncodedForAuth:(NSDictionary *)dict
 {
     // 检查参数是否正确，正确的话，返回预处理过的stringbody
@@ -71,14 +80,7 @@ static DMDoubanAuthHelper* sharedHelper;
     return [image autorelease];
 }
 
-+(DMDoubanAuthHelper*) sharedHelper
-{
-    if(sharedHelper) return sharedHelper;
-    else {
-        sharedHelper = [[DMDoubanAuthHelper alloc] init];
-        return  sharedHelper;
-    }
-}
+
 
 -(NSError*) authWithDictionary:(NSDictionary *)dict
 {
@@ -107,6 +109,35 @@ static DMDoubanAuthHelper* sharedHelper;
     }
     else return [error autorelease];
     
+}
+
+-(NSArray*) djCollectionFromBodyNode:(HTMLNode*) body
+{
+    HTMLNode* ulnode = [[body findChildWithAttribute:@"id" 
+                                            matchingName:@"collection"
+                                            allowPartial:NO] findChildTag:@"ul"];
+    if (ulnode) {
+        NSArray* children = [ulnode children];
+        NSMutableArray* array = [NSMutableArray arrayWithCapacity:[children count]];
+        for (HTMLNode* node in children) {
+            
+            HTMLNode* anode = [node findChildOfClass:@"chl_name"];
+            
+            NSString* cid = [node getAttributeNamed:@"data-cid"];
+            NSString* name = [anode getAttributeNamed:@"data-name"];
+            
+            if (cid && name) {
+                NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     cid , @"id",
+                                     name , @"real_name",
+                                     nil];
+                [array addObject:dic];
+            }
+        }
+        return array;
+    }
+
+    return nil;
 }
 
 -(NSDictionary*) tryParseHtmlForAuthWithData:(NSData*) data
@@ -139,11 +170,12 @@ static DMDoubanAuthHelper* sharedHelper;
                                                  [banned contents],@"banned",nil];
                     
                     NSDictionary* user_info=[NSDictionary dictionaryWithObjectsAndKeys:
-                               [user contents],@"name",
-                               play_record,@"play_record",
-                               userlink,@"url",
-                               [userfacenode getAttributeNamed:@"src"],@"icon_url",
-                               nil];
+                                             [user contents],@"name",
+                                             play_record,@"play_record",
+                                             userlink,@"url",
+                                             [userfacenode getAttributeNamed:@"src"],@"icon_url",
+                                             [self djCollectionFromBodyNode:bodynode],@"collected_chls",
+                                             nil];
                     
                     return [user_info autorelease];
                 }
@@ -197,7 +229,8 @@ static DMDoubanAuthHelper* sharedHelper;
         }
         else {
             // 登陆失败
-            return [NSError errorWithDomain:@"DM Auth Error" code:-2 userInfo:obj];
+            return [NSError errorWithDomain:@"DM Auth Error" code:-2 
+                                   userInfo:[obj valueForKey:@"err_msg"]];
         }
     }
     return nil;
@@ -259,6 +292,19 @@ static DMDoubanAuthHelper* sharedHelper;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];
+}
+
+-(NSImage*) getUserIcon
+{
+    if(self.username && self.userUrl)
+    {
+        if (icon==nil) {
+            NSURL* url = [NSURL URLWithString:self.userUrl];
+            self.icon = [[NSImage alloc] initWithContentsOfURL:url];
+        }
+        return icon;
+    }
+    return nil;
 }
 
 -(NSString*) description
