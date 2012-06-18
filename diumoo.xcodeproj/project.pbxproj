@@ -57,9 +57,18 @@
 		F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B191580E7EE002B3D61 /* Growl.framework */; };
 		F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
 		F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
+		F52EEC22158F7E6C004A39EF /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC21158F7E6C004A39EF /* cog.png */; };
+		F52EEC26158F8053004A39EF /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC23158F8053004A39EF /* heart-icon.png */; };
+		F52EEC27158F8053004A39EF /* played-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC24158F8053004A39EF /* played-icon.png */; };
+		F52EEC28158F8053004A39EF /* trash-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC25158F8053004A39EF /* trash-icon.png */; };
 		F53D619E15877DCD00F92CEC /* volumeback.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D619D15877DCD00F92CEC /* volumeback.png */; };
 		F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */; };
 		F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */; };
+		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
+		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
+		F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */; };
+		F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */; };
+		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -161,11 +170,24 @@
 		F5148B4B1580EE4D002B3D61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F5148B4D1580EE68002B3D61 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F5148B4F1580EE92002B3D61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F52EEC21158F7E6C004A39EF /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
+		F52EEC23158F8053004A39EF /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
+		F52EEC24158F8053004A39EF /* played-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "played-icon.png"; sourceTree = "<group>"; };
+		F52EEC25158F8053004A39EF /* trash-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-icon.png"; sourceTree = "<group>"; };
 		F53D619D15877DCD00F92CEC /* volumeback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumeback.png; sourceTree = "<group>"; };
 		F54A524D158347DE00F6C18A /* DMDoubanAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMDoubanAuthHelper.h; path = DMDoubanAuthHelper/DMDoubanAuthHelper.h; sourceTree = "<group>"; };
 		F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDoubanAuthHelper.m; path = DMDoubanAuthHelper/DMDoubanAuthHelper.m; sourceTree = "<group>"; };
 		F599851D15870E3F00BF26A0 /* DMChannelListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMChannelListHandler.h; sourceTree = "<group>"; };
 		F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMChannelListHandler.m; sourceTree = "<group>"; };
+		F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpButtonCell.h; sourceTree = "<group>"; };
+		F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPopUpButtonCell.m; sourceTree = "<group>"; };
+		F5ECCBED158CC85600512F6A /* DMPopUpMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpMenuController.h; sourceTree = "<group>"; };
+		F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPopUpMenuController.m; sourceTree = "<group>"; };
+		F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMPrefsPanel.xib; sourceTree = "<group>"; };
+		F5ECCBFF158CE39500512F6A /* PLTabPreferenceControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTabPreferenceControl.h; sourceTree = "<group>"; };
+		F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTabPreferenceControl.m; sourceTree = "<group>"; };
+		F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPrefsPanelDataProvider.h; sourceTree = "<group>"; };
+		F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPrefsPanelDataProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +213,7 @@
 		F501B3AC15877062001C6158 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */,
 				F501B3AD15877062001C6158 /* DMPanel */,
 			);
 			path = ui;
@@ -199,6 +222,7 @@
 		F501B3AD15877062001C6158 /* DMPanel */ = {
 			isa = PBXGroup;
 			children = (
+				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
 				F501B3B115877062001C6158 /* DMCoverSlide */,
 				F501B3B415877062001C6158 /* DMVolumeControlLayer */,
@@ -239,6 +263,10 @@
 		F501B3C215877A88001C6158 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F52EEC23158F8053004A39EF /* heart-icon.png */,
+				F52EEC24158F8053004A39EF /* played-icon.png */,
+				F52EEC25158F8053004A39EF /* trash-icon.png */,
+				F52EEC21158F7E6C004A39EF /* cog.png */,
 				F53D619D15877DCD00F92CEC /* volumeback.png */,
 				F501B3C315877A88001C6158 /* ban.png */,
 				F501B3C415877A88001C6158 /* playpause.png */,
@@ -329,6 +357,7 @@
 		F5148AD81580E707002B3D61 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
 				F5148AD91580E707002B3D61 /* HTMLParser */,
 				F5148ADE1580E707002B3D61 /* SPMediaKeyTap */,
 				F5148AE81580E707002B3D61 /* SSKeychain */,
@@ -490,6 +519,36 @@
 			path = DMChannelListHandler;
 			sourceTree = "<group>";
 		};
+		F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */,
+				F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */,
+				F5ECCBED158CC85600512F6A /* DMPopUpMenuController.h */,
+				F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */,
+			);
+			path = DMPopUpButtonCell;
+			sourceTree = "<group>";
+		};
+		F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */ = {
+			isa = PBXGroup;
+			children = (
+				F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */,
+				F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */,
+				F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */,
+			);
+			path = DMPrefsPanel;
+			sourceTree = "<group>";
+		};
+		F5ECCBFE158CE39500512F6A /* PLTabPreference */ = {
+			isa = PBXGroup;
+			children = (
+				F5ECCBFF158CE39500512F6A /* PLTabPreferenceControl.h */,
+				F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */,
+			);
+			path = PLTabPreference;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -555,6 +614,11 @@
 				F501B3CB15877A88001C6158 /* rate_red.png in Resources */,
 				F501B3CC15877A88001C6158 /* skip.png in Resources */,
 				F53D619E15877DCD00F92CEC /* volumeback.png in Resources */,
+				F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */,
+				F52EEC22158F7E6C004A39EF /* cog.png in Resources */,
+				F52EEC26158F8053004A39EF /* heart-icon.png in Resources */,
+				F52EEC27158F8053004A39EF /* played-icon.png in Resources */,
+				F52EEC28158F8053004A39EF /* trash-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +674,10 @@
 				F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */,
 				F501B3B915877062001C6158 /* DMVolumeControlLayer.m in Sources */,
 				F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */,
+				F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */,
+				F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */,
+				F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */,
+				F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
