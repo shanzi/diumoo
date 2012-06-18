@@ -14,31 +14,9 @@
 #import "CJSONDeserializer.h"
 #import "NSDictionary+UrlEncoding.h"
 
-static DMChannelListHandler* sharedHandler;
-
 @implementation DMChannelListHandler
 @synthesize public_list,dj_list,dj_collected_list;
 
-
-
-+(DMChannelListHandler*) sharedHandler
-{
-    if(sharedHandler) return sharedHandler;
-    else {
-        sharedHandler = [[DMChannelListHandler alloc] initWithCollectedChannels:nil];
-        return sharedHandler;
-    }
-}
-
-+(DMChannelListHandler*) sharedHandlerWithCollectedChannels:(NSArray *)array
-{
-    if (sharedHandler) {
-        [sharedHandler.dj_collected_list removeAllObjects];
-        [sharedHandler setDjCollectListWithArray:array];
-    }
-    else sharedHandler = [[DMChannelListHandler alloc] initWithCollectedChannels:array];
-    return sharedHandler;
-}
 
 -(id) initWithCollectedChannels:(NSArray*) array
 {
@@ -53,8 +31,12 @@ static DMChannelListHandler* sharedHandler;
 
 -(void) setDjCollectListWithArray:(NSArray*)array
 {
+    if (array == nil) {
+        [self.dj_collected_list removeAllObjects];
+    }
     for (NSDictionary* dic in array) {
-        [dj_collected_list addObject:[[dic valueForKey:@"id"] description]];
+        NSString* cid = [NSString stringWithFormat:@"%@",[dic valueForKey:@"id"]];
+        [self.dj_collected_list addObject:cid];
     }
 }
 

@@ -15,10 +15,8 @@
 @property(retain)NSArray* dj_list;
 @property(retain)NSMutableSet* dj_collected_list;
 
-+(DMChannelListHandler*) sharedHandler;
-+(DMChannelListHandler*) sharedHandlerWithCollectedChannels:(NSArray*) array;
-
 -(id) initWithCollectedChannels:(NSArray*) array;
+-(void) setDjCollectListWithArray:(NSArray*)array;
 -(void) updateChannelList;
 -(void) collectDjChannelWithChannelID:(NSString*) cid;
 -(void) uncollectDjChannelWithChannelId:(NSString*) cid;
