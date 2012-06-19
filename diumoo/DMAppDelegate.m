@@ -25,6 +25,7 @@
 //    
 //    NSLog(@"%@",[DMDoubanAuthHelper sharedHelper]);
 //    //[center fireToPlay:nil];
+    [[DMDoubanAuthHelper sharedHelper]authWithDictionary:nil];
     self.panel = [[DMPanelWindowController alloc] init];
     [self.panel showWindow:nil];
 }
