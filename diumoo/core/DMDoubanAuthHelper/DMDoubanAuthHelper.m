@@ -88,7 +88,7 @@ static DMDoubanAuthHelper* sharedHelper;
     
     
     // 全新登陆一个账号
-    [self logoutAndCleanData];
+    if(authStringBody)[self logoutAndCleanData];
     NSURL* urlForAuth =[NSURL URLWithString:AUTH_STRING];
     NSData* authRequestBody = [authStringBody dataUsingEncoding:NSUTF8StringEncoding];
     
