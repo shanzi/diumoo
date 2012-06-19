@@ -224,16 +224,34 @@
         NSString* likedString = [NSString stringWithFormat:@"%d", sh.likedSongsCount];
         NSString* bannedString = [NSString stringWithFormat:@"%d",sh.bannedSongsCount];
         
-        [usernameButton setTitle:sh.username];
+        [usernameTextField setStringValue:sh.username];
         [userIconButton setImage:[sh getUserIcon]];
         
-        [playedCount setStringValue:playedString];
-        [likedCount setStringValue:likedString];
-        [bannedCount setStringValue:bannedString];
+        [playrecordButton setLabel:playedString forSegment:0];
+        [playrecordButton setLabel:likedString forSegment:1];
+        [playrecordButton setLabel:bannedString forSegment:2];
         
         return account;
     }
     else return login;
+}
+
+-(void)showPlayRecord:(id)sender
+{
+    NSInteger selectedSegment = [sender selectedSegment];
+    NSString* urlstring = nil;
+    switch (selectedSegment) {
+        case 0:
+            urlstring = @"http://douban.fm/mine?type=played";
+            break;
+        case 1:
+            urlstring = @"http://douban.fm/mine?type=liked";
+            break;
+        case 2:
+            urlstring = @"http://douban.fm/mine?type=banned";
+    }
+    NSURL* openurl = [NSURL URLWithString:urlstring];
+    [[NSWorkspace sharedWorkspace] openURL:openurl];
 }
 
 @end

@@ -33,10 +33,8 @@
     
     //------ account view outlet -------
     IBOutlet NSButton* userIconButton;
-    IBOutlet NSButton* usernameButton;
-    IBOutlet NSTextField* playedCount;
-    IBOutlet NSTextField* likedCount;
-    IBOutlet NSTextField* bannedCount;
+    IBOutlet NSTextField* usernameTextField;
+    IBOutlet NSSegmentedControl* playrecordButton;
     //----------------------------------
     
 }
@@ -45,5 +43,6 @@
 
 -(IBAction)loginAction:(id)sender;
 -(IBAction)logoutAction:(id)sender;
+-(IBAction)showPlayRecord:(id)sender;
 
 @end
