@@ -9,11 +9,19 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DMPopUpMenuController : NSObjectController
+
 @property(retain) IBOutlet NSButton* mainButton;
 @property(retain) IBOutlet NSButton* subButton;
 @property(retain) IBOutlet NSMenu* mainMenu;
-@property(retain) IBOutlet NSMenu* subMenu;
+
+@property(retain) IBOutlet NSMenu* publicMenu;
+@property(retain) IBOutlet NSMenu* djMenu;
+@property(retain) IBOutlet NSMenu* djExploreMenu;
+@property(retain) IBOutlet NSMenu* djCollectMenu;
+
+@property NSInteger currentChannelID;
 
 -(IBAction)popUpMenu:(id)sender;
+-(IBAction)menuItemAction:(id)sender;
 
 @end
