@@ -10,14 +10,14 @@
 
 @interface DMPopUpMenuController : NSObjectController
 
-@property(retain) IBOutlet NSButton* mainButton;
-@property(retain) IBOutlet NSButton* subButton;
-@property(retain) IBOutlet NSMenu* mainMenu;
 
+@property(retain) IBOutlet NSMenu* mainMenu;
 @property(retain) IBOutlet NSMenu* publicMenu;
 @property(retain) IBOutlet NSMenu* djMenu;
 @property(retain) IBOutlet NSMenu* djExploreMenu;
 @property(retain) IBOutlet NSMenu* djCollectMenu;
+
+@property(retain) NSPopUpButtonCell* popupCell;
 
 @property NSInteger currentChannelID;
 

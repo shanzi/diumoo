@@ -100,5 +100,11 @@
 
 }
 
+-(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+{
+    [self drawBorderAndBackgroundWithFrame:cellFrame inView:controlView];
+    [self drawTitleWithFrame:cellFrame inView:controlView];
+}
+
 
 @end

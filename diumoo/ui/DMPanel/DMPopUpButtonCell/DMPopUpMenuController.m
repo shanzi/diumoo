@@ -19,32 +19,65 @@
 #import "NSDictionary+UrlEncoding.h"
 
 @implementation DMPopUpMenuController
-@synthesize mainButton,subButton,mainMenu;
-@synthesize publicMenu,djMenu,djExploreMenu,djCollectMenu;
+@synthesize mainMenu,publicMenu,djMenu,djExploreMenu,djCollectMenu,popupCell;
 @synthesize currentChannelID;
 
 -(void) awakeFromNib
 {
-    [[mainButton cell] setMenu:mainMenu];
-    [[mainButton cell] setPullsDown:YES];
-    [[mainButton cell] setPreferredEdge:NSMaxYEdge];
+    //[[mainButton cell] setMenu:mainMenu];
+    self.popupCell = [[NSPopUpButtonCell alloc] init];
+    [popupCell setPullsDown:YES];
+    [popupCell setPreferredEdge:NSMaxYEdge];
     
-    [[subButton cell] setMenu:djMenu];
-    [[subButton cell] setPullsDown:YES];
-    [[subButton cell] setPreferredEdge:NSMaxYEdge];
+    currentChannelID = 1;
     
     [self updateChannelList];
 }
 
 -(void)popUpMenu:(id)sender
 {
-    [[sender cell] attachPopUpWithFrame:[sender bounds] inView:nil];
+    
+    NSView* view = sender;
+    NSPoint point = [view convertPoint:NSMakePoint(0, 40) toView:nil];
+    
+    
+    NSEvent* event = [NSEvent mouseEventWithType:NSLeftMouseUp
+                                        location:point
+                                   modifierFlags:0
+                                       timestamp:0
+                                    windowNumber:view.window.windowNumber 
+                                         context:nil
+                                     eventNumber:0
+                                      clickCount:1 
+                                        pressure:1];
+    
+    NSMenu* menuToPopup;
+    
+    if ([sender tag]) {
+        menuToPopup = mainMenu;
+    }
+    else {
+        if (currentChannelID > 1000000) {
+            if (djCollectMenu == nil) {
+                [[djMenu itemWithTag:-11] setHidden:YES];
+            }
+            menuToPopup = djMenu;
+        }
+        else if(currentChannelID > 0) {
+            menuToPopup = publicMenu;
+        }
+    }
+    
+
+    
+    [NSMenu popUpContextMenu:menuToPopup withEvent:event forView:sender];
 
 }
 
 -(void) updateChannelList
 {
     NSString* filepath = [[NSBundle mainBundle] pathForResource:@"channels" ofType:@"plist"];
+    
     NSDictionary* channelDict = [NSDictionary dictionaryWithContentsOfFile:filepath];
     
     NSArray* public_list = nil;
@@ -103,12 +136,12 @@
 {
     if (publiclist) {
         self.publicMenu = [self buildMenuWithChannelListArray:publiclist];
-        [[self.mainMenu itemWithTitle:@"公共兆赫"] setSubmenu:publicMenu];
+        [[mainMenu itemWithTag:1] setSubmenu:publicMenu];
     }
     if (djlist)
     {
         self.djExploreMenu = [self buildMenuWithChannelListArray:djlist];
-        [[self.mainMenu itemWithTitle:@"DJ 兆赫"] setSubmenu:djExploreMenu];
+        [[mainMenu itemWithTag:1000000]setSubmenu:djExploreMenu];
     }
     
     DMDoubanAuthHelper* dmah = [DMDoubanAuthHelper sharedHelper];
@@ -127,11 +160,11 @@
                 [djcollectedmenu addItem:item];
             }
             self.djCollectMenu = djcollectedmenu;
+            [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
         }
         else {
             self.djCollectMenu = nil;
         }
-        [[self.djMenu itemWithTag:-11]setSubmenu:djCollectMenu];
     }
 }
 
@@ -141,12 +174,9 @@
     for (NSDictionary* dic in array) {
         if([dic valueForKey:@"cate"])
         {
-            
-            NSMenuItem* separatorItem =[NSMenuItem separatorItem];
-            [menu addItem:separatorItem];
-            if(!([menu numberOfItems]>1)) [separatorItem setHidden:YES];
-            
-
+            if ([menu numberOfItems] > 0) {
+                [menu addItem:[NSMenuItem separatorItem]];
+            }
             
             NSMenuItem* cateitem = [[NSMenuItem alloc]
                                 initWithTitle:[dic valueForKey:@"cate"] 
@@ -172,7 +202,11 @@
 
 -(void) menuItemAction:(id)sender
 {
+
     NSInteger tag = [sender tag];
+    
+        NSLog(@"%ld",tag);
+    
     switch (tag) {
         case -11:
             // 收藏与解除收藏 dj 兆赫
