@@ -70,7 +70,7 @@
 #ifdef DEBUG
     NSLog(@"%@",musicLocation);
 #endif
-    if(!self.movie){
+    if(!movie){
         return [QTMovie canInitWithURL:[NSURL URLWithString:musicLocation]];
     }
     else {
@@ -97,11 +97,11 @@
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(movieRateDidChanged:) 
                                                      name:QTMovieRateDidChangeNotification 
-                                                   object:self.movie];
+                                                   object:movie];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(movieLoadStateDidChanged:) 
                                                      name:QTMovieLoadStateDidChangeNotification
-                                                   object:self.movie];
+                                                   object:movie];
         return YES;
     }
     return NO;
@@ -114,18 +114,18 @@
     
     self.loadState = -1;
     self.playState = WAIT_TO_PLAY;
-    [self.movie invalidate];
+    [movie invalidate];
     self.movie = nil;
 }
 
 -(void) movieRateDidChanged:(NSNotification* )n
 {
     
-    if (self.movie.rate > 0) {
+    if (movie.rate > 0) {
         [self.delegate playableCapsuleDidPlay:self];
     }
     else if (
-        (self.movie.duration.timeValue - self.movie.currentTime.timeValue) < 100) {
+        (movie.duration.timeValue - movie.currentTime.timeValue) < 100) {
         [self.delegate playableCapsuleDidEnd:self];
     }
     else {
@@ -147,7 +147,7 @@
     
     if(movie && movie.rate < 0.1){
         if(timer) [timer invalidate];
-        if(movie.currentTime.timeValue < 100) [self.movie autoplay];
+        if(movie.currentTime.timeValue < 100) [movie autoplay];
         
         self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
                                              target:self 
@@ -157,8 +157,11 @@
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
-        [self.movie play];
-        [self.timer fire];
+        [movie play];
+        [timer fire];
+    }
+    else {
+        [self.delegate playableCapsuleDidPlay:self];
     }
 }
 
@@ -176,7 +179,7 @@
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         [delegate playableCapsuleWillPause:self];
-        [self.timer fire];
+        [timer fire];
     }
     else
         [delegate playableCapsuleDidPause:self];
@@ -184,27 +187,27 @@
 
 -(void) replay
 {
-    [self.movie stop];
-    [self.movie gotoBeginning];
+    [movie stop];
+    [movie gotoBeginning];
     [self play];
 }
 
 -(void) invalidateTimer
 {
     CFRunLoopRemoveTimer(CFRunLoopGetMain(),(CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
-    [self.timer invalidate];
+    [timer invalidate];
     self.timer = nil;
 }
 
 -(void) timerPulse:(NSTimer*)t
 {
-    float delta =  self.volume - movie.volume;
+    float delta =  volume - movie.volume;
     if([timer userInfo] == kTimerPulseTypePlay)
     {
         if(delta < 0.1 && -delta < 0.1) 
         {
             [self invalidateTimer];
-            movie.volume = self.volume;
+            movie.volume = volume;
         }
         else {
             movie.volume += delta>0?0.08:-0.08;
@@ -221,7 +224,7 @@
     else {
         if (delta < 0.1 && -delta < 0.1) {
             [self invalidateTimer];
-            movie.volume = self.volume;
+            movie.volume = volume;
         }
         else {
             movie.volume += delta>0?0.08:-0.08;
@@ -232,22 +235,46 @@
 -(void) commitVolume:(float)v
 {
     self.volume = v;
-    if(self.timer|| movie.rate < 0.1) return;
+    if(timer|| movie.rate < 0.1) return;
     else{
         self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
                                         target:self 
                                       selector:@selector(timerPulse:) 
                                       userInfo:KTimerPulseTypeVolumeChange 
                                        repeats:YES];
+        
         CFRunLoopAddTimer(CFRunLoopGetMain(),(CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
-        [self.timer fire];
+        [timer fire];
     }
 }
 
 -(NSString*) startAttributeWithChannel:(NSString *)channel
 {
-    if(self.ssid==nil) return  nil;
-    else return [NSString stringWithFormat:@"%@g%@g%@",self.sid,self.ssid,channel];
+    if(ssid==nil) return  nil;
+    else return [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
+}
+
+-(void) prepareCoverWithCallbackBlock:(void (^)(NSImage*))block
+{
+    if (picture == nil) {
+
+        NSBlockOperation* blockoperation = 
+        [NSBlockOperation blockOperationWithBlock:^{
+            NSURL* url = [NSURL URLWithString:largePictureLocation];
+            picture = [[NSImage alloc] initWithContentsOfURL:url]; 
+            if (picture) {
+                if(block) block(picture);
+            }
+            else {
+                picture = [NSImage imageNamed:@"albumfail.png"];
+                if(block)block(picture);
+            }
+        }];
+        [[NSOperationQueue currentQueue] addOperation:blockoperation];
+    }
+    else{
+        if(block) block(picture);
+    }
 }
 
 @end

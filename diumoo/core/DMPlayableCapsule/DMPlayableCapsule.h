@@ -3,7 +3,7 @@
 //  diumoo-core
 //
 //  Created by Shanzi on 12-5-31.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  retainright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
 #define DOUBAN_URL_PRIFIX @"http://music.douban.com/"
@@ -36,17 +36,17 @@ typedef enum{
 @property float rating_avg;
 
 
-@property(copy) NSString* aid;
-@property(copy) NSString* sid;
-@property(copy) NSString* ssid;
-@property(copy) NSString* subtype;
-@property(copy) NSString* title;
-@property(copy) NSString* artist;
-@property(copy) NSString* albumWithYear;
-@property(copy) NSString* albumLocation;
-@property(copy) NSString* musicLocation;
-@property(copy) NSString* pictureLocation;
-@property(copy) NSString* largePictureLocation;
+@property(retain) NSString* aid;
+@property(retain) NSString* sid;
+@property(retain) NSString* ssid;
+@property(retain) NSString* subtype;
+@property(retain) NSString* title;
+@property(retain) NSString* artist;
+@property(retain) NSString* albumWithYear;
+@property(retain) NSString* albumLocation;
+@property(retain) NSString* musicLocation;
+@property(retain) NSString* pictureLocation;
+@property(retain) NSString* largePictureLocation;
 
 @property(assign) NSImage* picture;
 @property(retain,nonatomic) NSTimer* timer;
@@ -70,6 +70,8 @@ typedef enum{
 -(void) replay;
 
 -(void) commitVolume:(float) volume;
+
+-(void) prepareCoverWithCallbackBlock: (void (^)(NSImage*))block;
 
 -(NSString*) startAttributeWithChannel:(NSString*)channel;
 
