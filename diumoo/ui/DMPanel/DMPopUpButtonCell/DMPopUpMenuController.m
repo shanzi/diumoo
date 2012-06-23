@@ -11,7 +11,8 @@
 
 //#define UPDATE_URL @"http://diumoo.xiuxiu.de/j/channels/"
 #define UPDATE_URL @"http://diumoo.xiuxiu.de/fmlist/2?timestamp=1331269290.0"
-#define DJ_EXPLORER_URL @"http://douban.fm/explore/"
+#define DJ_EXPLORER_URL @"http://douban.fm/j/explore/"
+
 #define kDMCollectChannel @"collect_channel"
 #define kDMUncollectChannel @"uncollect_channel"
 
@@ -19,15 +20,15 @@
 #import "NSDictionary+UrlEncoding.h"
 
 @implementation DMPopUpMenuController
-@synthesize mainMenu,publicMenu,djMenu,djExploreMenu,djCollectMenu,popupCell;
+
+@synthesize delegate;
+@synthesize publicMenu,djExploreMenu,djCollectMenu,currentChannelMenuItem;
 @synthesize currentChannelID;
+
 
 -(void) awakeFromNib
 {
-    //[[mainButton cell] setMenu:mainMenu];
-    self.popupCell = [[NSPopUpButtonCell alloc] init];
-    [popupCell setPullsDown:YES];
-    [popupCell setPreferredEdge:NSMaxYEdge];
+
     
     currentChannelID = 1;
     
@@ -38,8 +39,10 @@
 {
     
     NSView* view = sender;
-    NSPoint point = [view convertPoint:NSMakePoint(0, 40) toView:nil];
-    
+    NSRect rect = [view convertRect:view.bounds toView:nil];
+    NSPoint point = NSMakePoint(rect.origin.x + rect.size.width, 
+                                rect.origin.y + rect.size.height
+                                );
     
     NSEvent* event = [NSEvent mouseEventWithType:NSLeftMouseUp
                                         location:point
@@ -55,12 +58,21 @@
     
     if ([sender tag]) {
         menuToPopup = mainMenu;
+        [djSaveItem setHidden:YES]; 
     }
     else {
+        if([djSaveItem tag]==-10)
+            [djSaveItem setHidden:NO];
+        
         if (currentChannelID > 1000000) {
-            if (djCollectMenu == nil) {
+            
+            if ([djCollectMenu numberOfItems]<1) {
                 [[djMenu itemWithTag:-11] setHidden:YES];
             }
+            else {
+                [[djMenu itemWithTag:-11] setHidden:NO];
+            }
+            
             menuToPopup = djMenu;
         }
         else if(currentChannelID > 0) {
@@ -141,7 +153,8 @@
     if (djlist)
     {
         self.djExploreMenu = [self buildMenuWithChannelListArray:djlist];
-        [[mainMenu itemWithTag:1000000]setSubmenu:djExploreMenu];
+        [[djMenu itemWithTag:-12] setSubmenu:djExploreMenu];
+        [[mainMenu itemWithTag:1000000]setSubmenu:djMenu];
     }
     
     DMDoubanAuthHelper* dmah = [DMDoubanAuthHelper sharedHelper];
@@ -153,7 +166,7 @@
             for (NSDictionary* dic in collected) {
                 NSMenuItem* item = [[NSMenuItem alloc]
                                     initWithTitle:[dic valueForKey:@"real_name"]
-                                    action:@selector(menuItemAction:)
+                                    action:@selector(changeChannelAction:)
                                     keyEquivalent:@""];
                 [item setTag:[[dic valueForKey:@"id"] integerValue]];
                 [item setTarget:self];
@@ -162,9 +175,17 @@
             self.djCollectMenu = djcollectedmenu;
             [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
         }
-        else {
+        else 
+        {
             self.djCollectMenu = nil;
         }
+        
+        [djSaveItem setTag:-10];
+        [djSaveItem setHidden:NO];
+    }
+    else {
+        [djSaveItem setTag:-9];
+        [djSaveItem setHidden:YES];
     }
 }
 
@@ -188,7 +209,7 @@
             for (NSDictionary* channel in channelsArray) {
                 NSMenuItem* item = [[NSMenuItem alloc] 
                                     initWithTitle:[channel valueForKey:@"name"]
-                                    action:@selector(menuItemAction:)
+                                    action:@selector(changeChannelAction:)
                                     keyEquivalent:@""];
                 [item setTag:[[channel valueForKey:@"channel_id"] integerValue]];
                 [item setIndentationLevel:1];
@@ -200,29 +221,160 @@
     return menu;
 }
 
--(void) menuItemAction:(id)sender
+-(BOOL) djChannelCollectRequestWithType:(NSString*) type andCid:(NSString*) cid
 {
+    
+    NSURL* requestURL = [NSURL URLWithString:[DJ_EXPLORER_URL stringByAppendingString:type]];
+    NSArray* cookies= [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:requestURL];
+    NSString* ck = nil;
+    
+    for (NSHTTPCookie* cookie in cookies) {
+        if([cookie.name isEqualToString:@"ck"]){
+            ck = [cookie value];
+            ck = [ck stringByReplacingOccurrencesOfString:@"\""
+                                               withString:@""];
+        }
+    }
+    
+    NSDictionary* formdic=[NSDictionary dictionaryWithObjectsAndKeys:
+                           cid,@"channel_id",
+                           ck,@"ck",nil];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[[formdic urlEncodedString]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setTimeoutInterval:2.0];
+    
+    NSURLResponse* r;
+    NSError* e = NULL;
+    NSData* d = [NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
+    
+    NSLog(@"%@",formdic);
+    
+    if(e==NULL){
+        NSDictionary* dic = [[CJSONDeserializer deserializer] deserializeAsDictionary:d error:&e];
+        
+        NSLog(@"%@",dic);
+        
+        if(e==NULL && [[dic valueForKey:@"status"] boolValue])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
 
-    NSInteger tag = [sender tag];
+
+-(void) saveDJChannelAction:(id)sender
+{
+    if ([[NSThread currentThread] isMainThread]) {
+        return [self performSelectorInBackground:@selector(saveDJChannelAction:)
+                                      withObject:sender];
+    }
     
-        NSLog(@"%ld",tag);
+    NSString* cid = [NSString stringWithFormat:@"%d",currentChannelID];
     
-    switch (tag) {
-        case -11:
-            // 收藏与解除收藏 dj 兆赫
-            NSLog(@"save");
-            break;
-        case -13:
-            // 打开豆瓣
-            [[NSWorkspace sharedWorkspace] openURL:
-             [NSURL URLWithString:@"http://douban.fm/explorer/"]
-             ];
-            break;
-        default:
-            // 改变电台兆赫
-            break;
+    if (currentChannelID > 1000000) {
+        if ([sender state]==NSOnState) {
+            // 取消收藏
+            
+            BOOL ok = [self djChannelCollectRequestWithType:kDMUncollectChannel 
+                                           andCid:cid];
+            if (ok) {
+                [djCollectMenu removeItem:currentChannelMenuItem];
+                [sender setState:NSOffState];
+            }
+        }
+        else {
+            // 收藏当前电台
+            BOOL ok = [self djChannelCollectRequestWithType:kDMCollectChannel andCid:cid];
+            if (ok) {
+                if ([djCollectMenu indexOfItem:currentChannelMenuItem]<0) {
+                    NSMenuItem * newItem = [currentChannelMenuItem copy];
+                    [djCollectMenu addItem:newItem];
+                }
+                [sender setState:NSOnState];
+            }
+        }
     }
 }
 
+-(void) changeChannelAction:(id)sender
+{
+    [[self delegate] performSelector:@selector(channelChangeActionWithSender:) 
+                          withObject:sender];
+}
+
+-(void) updateChannelMenuWithSender:(id)sender
+{
+    if (self.currentChannelMenuItem == sender) {
+        return;
+    }
+    
+    NSMenuItem* citem = currentChannelMenuItem;
+    while (citem != nil) {
+        [citem setState:NSOffState];
+        citem = [citem parentItem];
+    }
+    
+    
+    NSInteger tag = [sender tag];
+    
+    if (tag <1) {
+        
+        [mainButton setTitle:[sender title]];
+        
+        
+        NSRect frame = mainButton.frame;
+        if (frame.size.width < 200) {
+            NSRect  newframe = NSMakeRect(frame.origin.x, frame.origin.y, 
+                                          frame.size.width*2, frame.size.height);
+            
+            [mainButton setFrame:newframe];
+
+        }
+        
+    }
+    else {
+        
+        if (tag > 1000000) 
+        {
+            NSMenuItem* djMenuItem = [mainMenu itemWithTag:1000000];
+            [mainButton setTitle:djMenuItem.title];
+            [subButton setTitle:[sender title]];
+            
+            if ([djCollectMenu itemWithTag:tag]) {
+                [djSaveItem setState:NSOnState];
+            }
+            
+        }
+        else if(tag >0 )
+        {
+            NSMenuItem* publicMenuItem = [mainMenu itemWithTag:1];
+            [mainButton setTitle:publicMenuItem.title];
+            [subButton setTitle:[sender title]];
+            
+        }
+        
+        if (mainButton.bounds.size.width > 126) {
+            NSRect frame = mainButton.frame;
+            NSRect  newframe = NSMakeRect(frame.origin.x, frame.origin.y, 
+                                          125, frame.size.height);
+            
+            [mainButton setFrame:newframe];
+        }
+        
+        
+    }
+    
+    [sender setState:NSOnState];
+    NSMenuItem* pitem = [sender parentItem];
+    while (pitem!=nil) {
+        [pitem setState:NSMixedState];
+        pitem = [pitem parentItem];
+    }
+    self.currentChannelID = tag;
+    self.currentChannelMenuItem = sender;
+}
 
 @end

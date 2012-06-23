@@ -23,19 +23,16 @@
 {
     CALayer* frontCover;
     CALayer* frontFadeTransitionLayer;
-    CALayer* backCover;
-    CALayer* backFadeTransitionLayer;
     
     CATextLayer* titleLayer;
     CATextLayer* artistLayer;
     CATextLayer* albumLayer;
 }
 @property(assign,readonly) CALayer* frontCover;
-@property(assign,readonly) CALayer* backCover;
+
 
 -(void) setTitle:(NSString*) title artist:(NSString*)artist andAlbum:(NSString*) album;
 
 -(void) setFrontCoverImage:(NSImage*) image;
--(void) setBackCoverImage:(NSImage*) image;
 
 @end

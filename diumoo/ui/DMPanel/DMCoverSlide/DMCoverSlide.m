@@ -9,7 +9,7 @@
 #import "DMCoverSlide.h"
 
 @implementation DMCoverSlide
-@synthesize frontCover,backCover;
+@synthesize frontCover;
 
 -(id) init
 {
@@ -21,18 +21,17 @@
         // init
         frontCover = [CALayer new];
         frontFadeTransitionLayer = [CALayer new];
-        backCover = [CALayer new];
-        backFadeTransitionLayer = [CALayer new];
+
         titleLayer = [CATextLayer new];
         artistLayer = [CATextLayer new];
         albumLayer = [CATextLayer new];
         
         // anchor
         CGPoint anchor = CGPointMake(0, 0);
+        
         frontCover.anchorPoint = anchor;
         frontFadeTransitionLayer.anchorPoint = anchor;
-        backCover.anchorPoint = CGPointMake(1.0,0.5);
-        backFadeTransitionLayer.anchorPoint = anchor;
+
         titleLayer.anchorPoint = anchor;
         artistLayer.anchorPoint = anchor;
         albumLayer.anchorPoint = anchor;
@@ -40,43 +39,27 @@
         // position
         frontCover.position = FRONT_POSITION;
         frontFadeTransitionLayer.position = anchor;
-        backCover.position = BACK_POSITION;
-        backFadeTransitionLayer.position = anchor;
+
         titleLayer.position = TITLE_POSITION;
         artistLayer.position = ARTIST_POSITION;
         albumLayer.position = ALBUM_POSITION;
         
         // bounds
         frontCover.bounds = FRONT_BOUNDS;
-        frontFadeTransitionLayer.bounds = frontCover.bounds;
+        frontFadeTransitionLayer.bounds = FRONT_BOUNDS;
         titleLayer.bounds = TITLE_BOUNDS;
         artistLayer.bounds = ARTIST_BOUNDS;
         albumLayer.bounds = ALBUM_BOUNDS;
         
-        // shadow
-        CGColorRef shadowColor = CGColorCreateGenericGray(0.0, 0.8);
-        CGSize shadowOffset = CGSizeMake(0, 0);
-        
-        frontCover.shadowColor = shadowColor;
-        frontCover.shadowOpacity = 0.4;
-        frontCover.shadowRadius = 1.0;
-        frontCover.shadowOffset = shadowOffset;
-        
-        backCover.shadowColor = shadowColor;
-        backCover.shadowOpacity = 0.8;
-        backCover.shadowRadius = 1.0;
-        backCover.shadowOffset = shadowOffset;
         
         // border
-        CGColorRef borderColor = CGColorCreateGenericGray(1.0, 0.8);
+        CGColorRef borderColor = CGColorCreateGenericGray(0.0, 0.4);
         frontCover.borderColor = borderColor;
-        backCover.borderColor = borderColor;
         frontCover.borderWidth = 1.0;
-        backCover.borderWidth = 2.0;
         
         // gravity
         frontCover.contentsGravity = kCAGravityResizeAspectFill;
-        backCover.contentsGravity = kCAGravityResize;
+        frontFadeTransitionLayer.contentsGravity = kCAGravityResizeAspectFill;
         
         // text
         CGFontRef helveticaConsensedBold = CGFontCreateWithFontName((__bridge CFStringRef)@"Helvetica Neue Condensed Bold");
@@ -105,14 +88,11 @@
         
         // opacity
         frontFadeTransitionLayer.opacity = 0;
-        backFadeTransitionLayer.opacity = 0;
-        backCover.opacity = 0;
-        
+
         // sublayer
+        [frontCover setMasksToBounds:YES];
         [frontCover addSublayer:frontFadeTransitionLayer];
-        [backCover addSublayer:backFadeTransitionLayer];
         [self addSublayer:frontCover];
-        [self addSublayer:backCover];
         [self addSublayer:titleLayer];
         [self addSublayer:artistLayer];
         [self addSublayer:albumLayer];
@@ -122,10 +102,23 @@
 
 
 -(void)setTitle:(NSString *)title artist:(NSString *)artist andAlbum :(NSString *)album
-{
-    titleLayer.string = title;
-    artistLayer.string = artist;
-    albumLayer.string = album;
+{  
+    [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        titleLayer.string = title;
+        artistLayer.string = artist;
+        albumLayer.string = album;
+        
+        titleLayer.opacity = 1;
+        artistLayer.opacity = 1;
+        albumLayer.opacity = 1;
+        
+    }];
+    titleLayer.opacity = 0;
+    artistLayer.opacity = 0;
+    albumLayer.opacity = 0;
+    [CATransaction commit];
+
 }
 
 -(void) setFrontCoverImage:(NSImage *)image
@@ -145,36 +138,6 @@
     }];
     frontFadeTransitionLayer.opacity = 1.0;
     [CATransaction commit];
-}
-
--(void) setBackCoverImage:(NSImage *)image
-{
-    CGFloat imgwidth = image.size.width;
-    CGFloat imgheight = image.size.height;
-    
-    CGFloat width = imgwidth * 100 / imgheight;
-    CGRect backBounds = CGRectMake(0, 0, width, 100.0);
-    
-    backFadeTransitionLayer.contents = image;
-    backFadeTransitionLayer.bounds = backBounds;
-     backCover.bounds = backBounds;
-    
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:1.0];
-    [CATransaction setAnimationTimingFunction:
-     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [CATransaction setCompletionBlock:^{
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0.0];
-        backCover.contents = image;
-        backFadeTransitionLayer.opacity = 0;
-        [CATransaction commit];
-    }];
-   
-    backFadeTransitionLayer.opacity = 1.0;
-    [CATransaction commit];
-    
-    
 }
 
 @end

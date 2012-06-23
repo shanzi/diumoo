@@ -8,16 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DMCoverSlide.h"
-#import "DMVolumeControlLayer.h"
 
 @interface DMCoverControlView : NSView
 {
     DMCoverSlide* slide;
-    DMVolumeControlLayer* volumeControl;
-    
-    CALayer* rootLayer;
 }
 @property(assign,readonly)DMCoverSlide* slide;
-@property(assign,readonly)DMVolumeControlLayer* volumeControl;
+
+-(void) setPlayingInfo:(NSString*) musictitle 
+                      :(NSString*) artist 
+                      :(NSString*) albumTitle ;
+                    
+-(void) setAlbumImage:(NSImage*) albumImage;
 
 @end
