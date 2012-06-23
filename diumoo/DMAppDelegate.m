@@ -9,7 +9,6 @@
 #import "DMAppDelegate.h"
 
 @implementation DMAppDelegate
-@synthesize center,panel;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
@@ -25,9 +24,9 @@
 //    
 //    NSLog(@"%@",[DMDoubanAuthHelper sharedHelper]);
 //    //[center fireToPlay:nil];
-    [[DMDoubanAuthHelper sharedHelper]authWithDictionary:nil];
-    self.panel = [[DMPanelWindowController alloc] init];
-    [self.panel showWindow:nil];
+    //[[DMDoubanAuthHelper sharedHelper]authWithDictionary:nil];
+    //self.panel = [[DMPanelWindowController alloc] init];
+    //[self.panel showWindow:nil];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
