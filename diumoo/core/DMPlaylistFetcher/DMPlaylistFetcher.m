@@ -167,5 +167,9 @@
         return nil;
 }
 
+-(void) clearPlaylist
+{
+    [self.playlist removeAllObjects];
+}
 
 @end
