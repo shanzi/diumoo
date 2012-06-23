@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
-		F501B3B915877062001C6158 /* DMVolumeControlLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B615877062001C6158 /* DMVolumeControlLayer.m */; };
 		F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3BB1587708F001C6158 /* DMPanelWindowController.m */; };
 		F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */; };
 		F501B3C815877A88001C6158 /* ban.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C315877A88001C6158 /* ban.png */; };
-		F501B3C915877A88001C6158 /* playpause.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C415877A88001C6158 /* playpause.png */; };
+		F501B3C915877A88001C6158 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C415877A88001C6158 /* pause.png */; };
 		F501B3CA15877A88001C6158 /* rate.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C515877A88001C6158 /* rate.png */; };
 		F501B3CB15877A88001C6158 /* rate_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C615877A88001C6158 /* rate_red.png */; };
 		F501B3CC15877A88001C6158 /* skip.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C715877A88001C6158 /* skip.png */; };
@@ -61,10 +60,11 @@
 		F52EEC26158F8053004A39EF /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC23158F8053004A39EF /* heart-icon.png */; };
 		F52EEC27158F8053004A39EF /* played-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC24158F8053004A39EF /* played-icon.png */; };
 		F52EEC28158F8053004A39EF /* trash-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC25158F8053004A39EF /* trash-icon.png */; };
+		F52F3B88159627F700EDBBD7 /* albumfail.png in Resources */ = {isa = PBXBuildFile; fileRef = F52F3B87159627F700EDBBD7 /* albumfail.png */; };
 		F53D619E15877DCD00F92CEC /* volumeback.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D619D15877DCD00F92CEC /* volumeback.png */; };
 		F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */; };
+		F55A75991595FA230022574F /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = F55A75981595FA230022574F /* play.png */; };
 		F5815F561590E397007EB0D3 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5815F551590E397007EB0D3 /* channels.plist */; };
-		F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */; };
 		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
 		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
 		F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */; };
@@ -93,13 +93,11 @@
 		F501B3B015877062001C6158 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
 		F501B3B215877062001C6158 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
 		F501B3B315877062001C6158 /* DMCoverSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverSlide.m; sourceTree = "<group>"; };
-		F501B3B515877062001C6158 /* DMVolumeControlLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMVolumeControlLayer.h; sourceTree = "<group>"; };
-		F501B3B615877062001C6158 /* DMVolumeControlLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMVolumeControlLayer.m; sourceTree = "<group>"; };
 		F501B3BA1587708F001C6158 /* DMPanelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanelWindowController.h; sourceTree = "<group>"; };
 		F501B3BB1587708F001C6158 /* DMPanelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanelWindowController.m; sourceTree = "<group>"; };
 		F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMPanelWindowController.xib; sourceTree = "<group>"; };
 		F501B3C315877A88001C6158 /* ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban.png; sourceTree = "<group>"; };
-		F501B3C415877A88001C6158 /* playpause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playpause.png; sourceTree = "<group>"; };
+		F501B3C415877A88001C6158 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		F501B3C515877A88001C6158 /* rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate.png; sourceTree = "<group>"; };
 		F501B3C615877A88001C6158 /* rate_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate_red.png; sourceTree = "<group>"; };
 		F501B3C715877A88001C6158 /* skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skip.png; sourceTree = "<group>"; };
@@ -175,12 +173,12 @@
 		F52EEC23158F8053004A39EF /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
 		F52EEC24158F8053004A39EF /* played-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "played-icon.png"; sourceTree = "<group>"; };
 		F52EEC25158F8053004A39EF /* trash-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-icon.png"; sourceTree = "<group>"; };
+		F52F3B87159627F700EDBBD7 /* albumfail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albumfail.png; sourceTree = "<group>"; };
 		F53D619D15877DCD00F92CEC /* volumeback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumeback.png; sourceTree = "<group>"; };
 		F54A524D158347DE00F6C18A /* DMDoubanAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMDoubanAuthHelper.h; path = DMDoubanAuthHelper/DMDoubanAuthHelper.h; sourceTree = "<group>"; };
 		F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDoubanAuthHelper.m; path = DMDoubanAuthHelper/DMDoubanAuthHelper.m; sourceTree = "<group>"; };
+		F55A75981595FA230022574F /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		F5815F551590E397007EB0D3 /* channels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channels.plist; sourceTree = "<group>"; };
-		F599851D15870E3F00BF26A0 /* DMChannelListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMChannelListHandler.h; sourceTree = "<group>"; };
-		F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMChannelListHandler.m; sourceTree = "<group>"; };
 		F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpButtonCell.h; sourceTree = "<group>"; };
 		F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPopUpButtonCell.m; sourceTree = "<group>"; };
 		F5ECCBED158CC85600512F6A /* DMPopUpMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpMenuController.h; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
 				F501B3B115877062001C6158 /* DMCoverSlide */,
-				F501B3B415877062001C6158 /* DMVolumeControlLayer */,
 				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
 				F501B3BB1587708F001C6158 /* DMPanelWindowController.m */,
 				F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */,
@@ -253,26 +250,19 @@
 			path = DMCoverSlide;
 			sourceTree = "<group>";
 		};
-		F501B3B415877062001C6158 /* DMVolumeControlLayer */ = {
-			isa = PBXGroup;
-			children = (
-				F501B3B515877062001C6158 /* DMVolumeControlLayer.h */,
-				F501B3B615877062001C6158 /* DMVolumeControlLayer.m */,
-			);
-			path = DMVolumeControlLayer;
-			sourceTree = "<group>";
-		};
 		F501B3C215877A88001C6158 /* resources */ = {
 			isa = PBXGroup;
 			children = (
 				F5815F551590E397007EB0D3 /* channels.plist */,
+				F52F3B87159627F700EDBBD7 /* albumfail.png */,
+				F55A75981595FA230022574F /* play.png */,
 				F52EEC23158F8053004A39EF /* heart-icon.png */,
 				F52EEC24158F8053004A39EF /* played-icon.png */,
 				F52EEC25158F8053004A39EF /* trash-icon.png */,
 				F52EEC21158F7E6C004A39EF /* cog.png */,
 				F53D619D15877DCD00F92CEC /* volumeback.png */,
 				F501B3C315877A88001C6158 /* ban.png */,
-				F501B3C415877A88001C6158 /* playpause.png */,
+				F501B3C415877A88001C6158 /* pause.png */,
 				F501B3C515877A88001C6158 /* rate.png */,
 				F501B3C615877A88001C6158 /* rate_red.png */,
 				F501B3C715877A88001C6158 /* skip.png */,
@@ -456,7 +446,6 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				F599851C15870E3E00BF26A0 /* DMChannelListHandler */,
 				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
 				F5148B201580E904002B3D61 /* DMControlCenter */,
 				F5148B231580E904002B3D61 /* DMPlayableCapsule */,
@@ -511,15 +500,6 @@
 				F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */,
 			);
 			name = DMDoubanAuthHelper;
-			sourceTree = "<group>";
-		};
-		F599851C15870E3E00BF26A0 /* DMChannelListHandler */ = {
-			isa = PBXGroup;
-			children = (
-				F599851D15870E3F00BF26A0 /* DMChannelListHandler.h */,
-				F599851E15870E3F00BF26A0 /* DMChannelListHandler.m */,
-			);
-			path = DMChannelListHandler;
 			sourceTree = "<group>";
 		};
 		F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */ = {
@@ -612,7 +592,7 @@
 				F5148B0D1580E707002B3D61 /* LICENSE in Resources */,
 				F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */,
 				F501B3C815877A88001C6158 /* ban.png in Resources */,
-				F501B3C915877A88001C6158 /* playpause.png in Resources */,
+				F501B3C915877A88001C6158 /* pause.png in Resources */,
 				F501B3CA15877A88001C6158 /* rate.png in Resources */,
 				F501B3CB15877A88001C6158 /* rate_red.png in Resources */,
 				F501B3CC15877A88001C6158 /* skip.png in Resources */,
@@ -623,6 +603,8 @@
 				F52EEC27158F8053004A39EF /* played-icon.png in Resources */,
 				F52EEC28158F8053004A39EF /* trash-icon.png in Resources */,
 				F5815F561590E397007EB0D3 /* channels.plist in Resources */,
+				F55A75991595FA230022574F /* play.png in Resources */,
+				F52F3B88159627F700EDBBD7 /* albumfail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,10 +655,8 @@
 				F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
-				F599851F15870E3F00BF26A0 /* DMChannelListHandler.m in Sources */,
 				F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */,
 				F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */,
-				F501B3B915877062001C6158 /* DMVolumeControlLayer.m in Sources */,
 				F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */,
 				F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */,
 				F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */,
