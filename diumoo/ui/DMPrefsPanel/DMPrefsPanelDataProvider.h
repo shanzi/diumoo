@@ -23,6 +23,7 @@
     
     //------- login view outlet --------
     IBOutlet NSProgressIndicator* indicator;
+    IBOutlet NSButton* captchaButton;
     IBOutlet NSButton* submitButton;
     IBOutlet NSButton* resetButton;
     IBOutlet NSTextField* email;

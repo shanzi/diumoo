@@ -199,6 +199,9 @@
                 [errorLabel setStringValue:@"登陆失败！"];
             }
             [errorLabel setHidden:NO];
+            [captcha setStringValue:@""];
+            [captchaButton performClick:nil];
+            
         }
         else {
             [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
