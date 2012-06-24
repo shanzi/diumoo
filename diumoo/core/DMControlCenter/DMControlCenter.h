@@ -29,7 +29,7 @@
 @property(assign) NSString* pausedOperationType;
 @property(assign) NSLock* skipLock; // 用于在skip和bye的时候锁住线程，防止多余操作
 
-@property(assign) DMPanelWindowController* mainPanel;
+@property(retain) DMPanelWindowController* mainPanel;
 
 // }
 

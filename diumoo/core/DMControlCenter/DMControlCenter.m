@@ -31,10 +31,15 @@
         skipLock = [NSLock new];
         channel = @"1";
         
+        DMLog(@"before auth");
         [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
+        DMLog(@"after auth");
+        
         self.mainPanel = [[DMPanelWindowController alloc] init];
         [mainPanel setDelegate:self];
         [mainPanel showWindow:nil];
+        
+        DMLog(@"init center");
     }
     return self;
 }
@@ -117,6 +122,7 @@
     if(playingCapsule)
     {
         [playingCapsule play];
+        [mainPanel setRated:playingCapsule.like];
         [mainPanel setPlayingCapsule:playingCapsule];
     }
         
@@ -136,6 +142,7 @@
 }
 -(void) playableCapsuleDidPause:(id)c
 {
+    [mainPanel setPlaying:NO];
 
     if([pausedOperationType isEqualToString:kPauseOperationTypeSkip])
     {
@@ -293,7 +300,8 @@
                                  withType:kFetchPlaylistTypeUnrate
                                       sid:playingCapsule.sid
                            startAttribute:nil];
-
+        [mainPanel countRated:-1];
+        [mainPanel setRated:NO];
     }
     else {
         
@@ -302,11 +310,14 @@
                                  withType:kFetchPlaylistTypeRate
                                       sid:playingCapsule.sid
                            startAttribute:nil];
+        
+        [mainPanel countRated:1];
+        [mainPanel setRated:YES];
     }
     // 在这里做些什么事情来更新 UI
     
     playingCapsule.like = (playingCapsule.like == NO);
-    [mainPanel setRated:YES];
+    
 }
 
 
@@ -339,11 +350,6 @@
     [fetcher clearPlaylist];
     
     if (playingCapsule) {
-        
-        [fetcher fetchPlaylistFromChannel:channel 
-                                 withType:kFetchPlaylistTypeSkip
-                                      sid:playingCapsule.sid
-                           startAttribute:nil];
 
         self.pausedOperationType = kPauseOperationTypeFetchNewPlaylist;
         
@@ -353,12 +359,13 @@
         [self startToPlay:nil];
         [skipLock unlock];
     }
+    
     return YES;
 }
 
--(void) volumeChange:(id)sender
+-(void) volumeChange:(float)volume
 {
-    [playingCapsule commitVolume:[sender intValue]*0.01];
+    [playingCapsule commitVolume:volume];
 }
 
 //--------------------------------------------------------------------
