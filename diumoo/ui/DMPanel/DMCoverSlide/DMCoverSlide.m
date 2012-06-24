@@ -52,14 +52,11 @@
         albumLayer.bounds = ALBUM_BOUNDS;
         
         
-        // border
-        CGColorRef borderColor = CGColorCreateGenericGray(0.0, 0.4);
-        frontCover.borderColor = borderColor;
-        frontCover.borderWidth = 1.0;
-        
         // gravity
         frontCover.contentsGravity = kCAGravityResizeAspectFill;
         frontFadeTransitionLayer.contentsGravity = kCAGravityResizeAspectFill;
+        
+        frontCover.backgroundColor = CGColorCreateGenericGray(0.95, 1.0);
         
         // text
         CGFontRef helveticaConsensedBold = CGFontCreateWithFontName((__bridge CFStringRef)@"Helvetica Neue Condensed Bold");
