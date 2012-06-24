@@ -65,6 +65,10 @@
 		F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */; };
 		F55A75991595FA230022574F /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = F55A75981595FA230022574F /* play.png */; };
 		F5815F561590E397007EB0D3 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5815F551590E397007EB0D3 /* channels.plist */; };
+		F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */; };
+		F5BB89F8159748DB0017E6FE /* sound_high.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BB89F5159748DB0017E6FE /* sound_high.png */; };
+		F5BB89F9159748DB0017E6FE /* sound_low.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BB89F6159748DB0017E6FE /* sound_low.png */; };
+		F5BB89FA159748DB0017E6FE /* sound_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BB89F7159748DB0017E6FE /* sound_mute.png */; };
 		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
 		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
 		F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */; };
@@ -179,6 +183,11 @@
 		F54A524E158347DE00F6C18A /* DMDoubanAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDoubanAuthHelper.m; path = DMDoubanAuthHelper/DMDoubanAuthHelper.m; sourceTree = "<group>"; };
 		F55A75981595FA230022574F /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		F5815F551590E397007EB0D3 /* channels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channels.plist; sourceTree = "<group>"; };
+		F5BB89F2159744B80017E6FE /* DMVolumeSlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMVolumeSlideCell.h; path = DMVolumeSlideCell/DMVolumeSlideCell.h; sourceTree = "<group>"; };
+		F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMVolumeSlideCell.m; path = DMVolumeSlideCell/DMVolumeSlideCell.m; sourceTree = "<group>"; };
+		F5BB89F5159748DB0017E6FE /* sound_high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_high.png; sourceTree = "<group>"; };
+		F5BB89F6159748DB0017E6FE /* sound_low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_low.png; sourceTree = "<group>"; };
+		F5BB89F7159748DB0017E6FE /* sound_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_mute.png; sourceTree = "<group>"; };
 		F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpButtonCell.h; sourceTree = "<group>"; };
 		F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPopUpButtonCell.m; sourceTree = "<group>"; };
 		F5ECCBED158CC85600512F6A /* DMPopUpMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpMenuController.h; sourceTree = "<group>"; };
@@ -222,6 +231,7 @@
 		F501B3AD15877062001C6158 /* DMPanel */ = {
 			isa = PBXGroup;
 			children = (
+				F5BB89F01597447F0017E6FE /* DMVolumeSlideCell */,
 				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
 				F501B3B115877062001C6158 /* DMCoverSlide */,
@@ -254,6 +264,9 @@
 			isa = PBXGroup;
 			children = (
 				F5815F551590E397007EB0D3 /* channels.plist */,
+				F5BB89F5159748DB0017E6FE /* sound_high.png */,
+				F5BB89F6159748DB0017E6FE /* sound_low.png */,
+				F5BB89F7159748DB0017E6FE /* sound_mute.png */,
 				F52F3B87159627F700EDBBD7 /* albumfail.png */,
 				F55A75981595FA230022574F /* play.png */,
 				F52EEC23158F8053004A39EF /* heart-icon.png */,
@@ -502,6 +515,15 @@
 			name = DMDoubanAuthHelper;
 			sourceTree = "<group>";
 		};
+		F5BB89F01597447F0017E6FE /* DMVolumeSlideCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5BB89F2159744B80017E6FE /* DMVolumeSlideCell.h */,
+				F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */,
+			);
+			name = DMVolumeSlideCell;
+			sourceTree = "<group>";
+		};
 		F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,6 +627,9 @@
 				F5815F561590E397007EB0D3 /* channels.plist in Resources */,
 				F55A75991595FA230022574F /* play.png in Resources */,
 				F52F3B88159627F700EDBBD7 /* albumfail.png in Resources */,
+				F5BB89F8159748DB0017E6FE /* sound_high.png in Resources */,
+				F5BB89F9159748DB0017E6FE /* sound_low.png in Resources */,
+				F5BB89FA159748DB0017E6FE /* sound_mute.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +687,7 @@
 				F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */,
 				F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */,
 				F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */,
+				F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
