@@ -58,7 +58,9 @@
 
 - (NSString*)randomString
 {
-    return [NSString stringWithFormat:@"%lx",((rand() & 0xffffffffff) | 0x1000000000)] ;
+    int rand1 = rand();
+    int rand2 = rand();
+    return [NSString stringWithFormat:@"%5x%5x",((rand1 & 0xfffff) | 0x10000),rand2] ;
 }
 
 #pragma -
