@@ -7,6 +7,7 @@
 //
 
 #import "DMPanelWindowController.h"
+#import "DMDoubanAuthHelper.h"
 
 @interface DMPanelWindowController ()
 
@@ -30,7 +31,38 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
     [self.window setBackgroundColor:[NSColor whiteColor]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(accountStateChanged:)
+                                                 name:AccountStateChangedNotification
+                                               object:nil];
+    
+    [self accountStateChanged:nil];
 }
+
+-(void) accountStateChanged:(NSNotification*)n
+{
+    DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
+    if (helper.username) {
+        [userIconButton setImage:[helper getUserIcon]];
+        [usernameTextField setStringValue:helper.username];
+        
+        NSString* ratedCountString= [NSString stringWithFormat:@"♥ %ld",helper.likedSongsCount];
+        [ratedCountTextField setStringValue:ratedCountString];
+        
+        [ratedCountTextField setHidden:NO];
+        [usernameTextField setHidden:NO];
+        
+    }
+    else {
+        
+        [userIconButton setImage:[NSImage imageNamed:NSImageNameUser]];
+        [ratedCountTextField setStringValue:@""];
+        [usernameTextField setStringValue:@""];
+        [ratedCountTextField setHidden:YES];
+        [usernameTextField setHidden:YES];
+    }
+}
+
 
 -(void) channelChangeActionWithSender:(id)sender
 {
@@ -58,6 +90,9 @@
         case 3:
             [self.delegate ban];
             break;
+        case 4:
+            [self.delegate volumeChange:[sender floatValue]];
+            break;
     }
 }
 
@@ -69,6 +104,16 @@
     else {
         [rateButton setImage:[NSImage imageNamed:@"rate.png"]];
     }     
+}
+
+-(void) countRated:(NSInteger)count
+{
+    DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
+    if(helper.username){
+        helper.likedSongsCount += count ;
+        NSString* ratedCountString= [NSString stringWithFormat:@"♥ %ld",helper.likedSongsCount];
+        [ratedCountTextField setStringValue:ratedCountString];
+    }
 }
 
 -(void) setPlaying:(BOOL)playing

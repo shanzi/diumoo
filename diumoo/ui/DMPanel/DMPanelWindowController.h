@@ -17,7 +17,7 @@
 -(void)skip;
 -(void)rateOrUnrate;
 -(void)ban;
--(void)volumeChange:(id)sender;
+-(void)volumeChange:(float)volume;
 -(BOOL)channelChangedTo:(NSString*)channel;
 
 @end
@@ -31,6 +31,10 @@
     IBOutlet NSButton* skipButton;
     IBOutlet NSButton* rateButton;
     IBOutlet NSButton* banButton;
+    
+    IBOutlet NSButton* userIconButton;
+    IBOutlet NSTextField* usernameTextField;
+    IBOutlet NSTextField* ratedCountTextField;
 }
 
 @property(assign) IBOutlet DMCoverControlView* view;
@@ -40,8 +44,10 @@
 -(IBAction)controlAction:(id)sender;
 
 -(void) setRated:(BOOL)rated;
+-(void) countRated:(NSInteger)count;
 -(void) setPlaying:(BOOL) playing;
 -(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
+
 
 
 @end
