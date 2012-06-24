@@ -95,6 +95,7 @@ static DMDoubanAuthHelper* sharedHelper;
     NSMutableURLRequest* authRequest = [NSMutableURLRequest requestWithURL:urlForAuth];
     [authRequest setHTTPMethod:@"POST"];
     [authRequest setHTTPBody:authRequestBody];
+    [authRequest setTimeoutInterval:2.0];
     
     
     // 发出同步请求
@@ -104,10 +105,11 @@ static DMDoubanAuthHelper* sharedHelper;
                                          returningResponse:&response
                                                      error:&error];
     
+    NSLog(@"%@",error);
     if(!error){
         return [self connectionResponseHandlerWithResponse:response andData:data];
     }
-    else return [error autorelease];
+    else return error;
     
 }
 
@@ -177,12 +179,12 @@ static DMDoubanAuthHelper* sharedHelper;
                                              [self djCollectionFromBodyNode:bodynode],@"collected_chls",
                                              nil];
                     
-                    return [user_info autorelease];
+                    return user_info ;
                 }
             }
         }
     }
-    
+    [parser release];
     return nil;
 }
 
