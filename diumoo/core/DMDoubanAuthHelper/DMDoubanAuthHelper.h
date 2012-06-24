@@ -11,35 +11,42 @@
 #define kAuthAttributeCaptchaCode @"captcha_id"
 
 #define AccountStateChangedNotification @"accountstatechanged"
+#define AUTH_STRING @"http://douban.fm/j/login"
+
 
 #import <Foundation/Foundation.h>
+#import "CJSONDeserializer.h"
+#import "NSDictionary+UrlEncoding.h"
+#import "HTMLParser.h"
 
 @interface DMDoubanAuthHelper : NSObject
-//{
+{   
+    NSString *username;
+    NSString *userUrl;
+    NSString *iconUrl;
+    NSImage  *icon;
+    NSDictionary *userinfo;
+    
+    NSInteger playedSongsCount;
+    NSInteger likedSongsCount;
+    NSInteger bannedSongsCount;
+}
 
-@property(copy) NSString* username;
-@property(copy) NSString* userUrl;
-@property(copy) NSString* iconUrl;
-@property(retain) NSImage* icon;
-@property(retain) NSDictionary* userinfo;
-
-
+@property(copy) NSString *username;
+@property(copy) NSString *userUrl;
+@property(copy) NSString *iconUrl;
+@property(retain) NSImage *icon;
+@property(retain) NSDictionary *userinfo;
 @property NSInteger playedSongsCount;
 @property NSInteger likedSongsCount;
 @property NSInteger bannedSongsCount;
 
-//}
-
 +(DMDoubanAuthHelper*) sharedHelper;
-+(NSString*) stringEncodedForAuth:(NSDictionary*) dict;
 +(NSString*) getNewCaptchaCode; 
 +(NSImage*) getNewCapchaImageWithCode:(NSString*) code;
 
-
 -(NSError*) authWithDictionary:(NSDictionary*) dict;
 -(void) logoutAndCleanData;
-
 -(NSImage*) getUserIcon;
-
 
 @end
