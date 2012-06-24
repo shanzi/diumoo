@@ -95,7 +95,7 @@
     NSArray* public_list = nil;
     NSArray* dj_list = nil;
     
-    if (channelDict == nil) {
+    if (channelDict != nil) {
         double timestamp = [[channelDict valueForKey:@"timestamp"] doubleValue];
         if(([NSDate timeIntervalSinceReferenceDate] - timestamp) > 3600 * 24){
             
@@ -114,6 +114,9 @@
             
             if(error==NULL){
                 channelDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
+                
+                DMLog(@"%@",channelDict);
+                
                 if(error == NULL){
                     public_list = [channelDict valueForKey:@"public"];
                     dj_list = [channelDict valueForKey:@"dj"];
@@ -171,6 +174,7 @@
                 [item setTag:[[dic valueForKey:@"id"] integerValue]];
                 [item setTarget:self];
                 [djcollectedmenu addItem:item];
+                [item release];
             }
             self.djCollectMenu = djcollectedmenu;
             [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
@@ -307,6 +311,7 @@
 
 -(void) updateChannelMenuWithSender:(id)sender
 {
+    
     if (self.currentChannelMenuItem == sender) {
         return;
     }
@@ -320,20 +325,11 @@
     
     NSInteger tag = [sender tag];
     
+    
     if (tag <1) {
-        
-        [mainButton setTitle:[sender title]];
-        
-        
-        NSRect frame = mainButton.frame;
-        if (frame.size.width < 200) {
-            NSRect  newframe = NSMakeRect(frame.origin.x, frame.origin.y, 
-                                          frame.size.width*2, frame.size.height);
-            
-            [mainButton setFrame:newframe];
 
-        }
-        
+        [longMainButton setTitle:[sender title]];
+        [longMainButton setHidden:NO];
     }
     else {
         
@@ -356,13 +352,7 @@
             
         }
         
-        if (mainButton.bounds.size.width > 126) {
-            NSRect frame = mainButton.frame;
-            NSRect  newframe = NSMakeRect(frame.origin.x, frame.origin.y, 
-                                          125, frame.size.height);
-            
-            [mainButton setFrame:newframe];
-        }
+        [longMainButton setHidden:YES];
         
         
     }

@@ -11,6 +11,7 @@
 @interface DMPopUpMenuController : NSObjectController
 {
     IBOutlet NSButton* mainButton;
+    IBOutlet NSButton* longMainButton;
     IBOutlet NSButton* subButton;
     
     IBOutlet NSMenuItem* djSaveItem;
