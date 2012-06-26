@@ -99,9 +99,7 @@
             [sender setEnabled:NO];
             [indicator setHidden:NO];
             [indicator startAnimation:nil];
-            NSBlockOperation* fetchCapcha = 
-            [NSBlockOperation
-             blockOperationWithBlock:
+            NSBlockOperation* fetchCapcha = [NSBlockOperation blockOperationWithBlock:
              ^{
                  self.captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
                  NSImage* image = [DMDoubanAuthHelper getNewCapchaImageWithCode:self.captcha_code];
