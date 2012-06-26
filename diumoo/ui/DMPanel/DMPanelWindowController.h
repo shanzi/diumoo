@@ -40,6 +40,8 @@
 @property(assign) IBOutlet DMCoverControlView* view;
 @property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
 
++(DMPanelWindowController*)sharedWindowController;
+
 -(void) channelChangeActionWithSender:(id)sender;
 -(IBAction)controlAction:(id)sender;
 

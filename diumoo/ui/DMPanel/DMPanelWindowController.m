@@ -9,12 +9,22 @@
 #import "DMPanelWindowController.h"
 #import "DMDoubanAuthHelper.h"
 
+DMPanelWindowController *sharedWindow;
+
 @interface DMPanelWindowController ()
 
 @end
 
 @implementation DMPanelWindowController
 @synthesize view,delegate;
+
++(DMPanelWindowController*)sharedWindowController
+{
+    if (sharedWindow == nil) {
+        sharedWindow = [[DMPanelWindowController alloc] init];
+    }
+    return sharedWindow;
+}
 
 -(id) init
 {

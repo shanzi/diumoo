@@ -59,8 +59,8 @@
 
 -(void) showPreference:(id)sender
 {
-    PLTabPreferenceControl* pc = [[PLTabPreferenceControl alloc]initWithWindowNibName:@"DMPrefsPanel"];
-    [pc showWindow:nil];
+    pref = [DMPrefsPanelDataProvider sharedPrefs];
+    [pref showPreferences];
 }
 
 
