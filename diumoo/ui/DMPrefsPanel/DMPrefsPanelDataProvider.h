@@ -42,6 +42,9 @@
 
 @property(copy) NSString* captcha_code;
 
++ (DMPrefsPanelDataProvider*)sharedPrefs;
+
+-(void) showPreferences;
 -(IBAction)loginAction:(id)sender;
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;

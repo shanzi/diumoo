@@ -35,7 +35,7 @@
         [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
         DMLog(@"after auth");
         
-        self.mainPanel = [[DMPanelWindowController alloc] init];
+        self.mainPanel = [DMPanelWindowController sharedWindowController];
         [mainPanel setDelegate:self];
         [mainPanel showWindow:nil];
         

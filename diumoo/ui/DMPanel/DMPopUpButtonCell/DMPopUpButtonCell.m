@@ -29,7 +29,7 @@
                                    NSMidY(cellFrame) - stringSize.height/2, 
                                    cellFrame.size.width - 40, stringSize.height);
     [string drawInRect:stringRect];
-    
+    [string release];
 }
 
 -(NSDictionary*) stringAttribute
@@ -47,6 +47,7 @@
                                         ps, NSParagraphStyleAttributeName,
                                        self.font,NSFontAttributeName,
                                        nil] retain];
+            [ps release];
             return stringHighligtAttribute;
         }
     }
@@ -63,6 +64,7 @@
                                 ps, NSParagraphStyleAttributeName,
                                 self.font,NSFontAttributeName,
                                 nil] retain];
+            [ps release];
             return stringAttribute;
         }
     }
@@ -97,7 +99,7 @@
         [rect stroke];
         [tri stroke];
     }
-
+    [tri release];
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView

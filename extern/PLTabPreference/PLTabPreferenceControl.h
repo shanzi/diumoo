@@ -11,9 +11,9 @@
 
 @protocol PLTabPreferenceDelegate;
 
-@interface PLTabPreferenceControl : NSWindowController<NSToolbarDelegate> {
-@private
-    
+@interface PLTabPreferenceControl : NSWindowController<NSToolbarDelegate> 
+{
+    @private
     NSToolbar *toolbar;
     NSArray* prefIdentifyAry;
     id<PLTabPreferenceDelegate> delegate;

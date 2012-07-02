@@ -10,9 +10,10 @@
 #import "PLTabPreferenceControl.h"
 
 
-@interface PLTabPreferenceControl(Private)
+@interface PLTabPreferenceControl()
 - (void)switchPanel:(id)sender;
 @end
+
 
 @implementation PLTabPreferenceControl
 @synthesize delegate;
@@ -34,13 +35,10 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-//    NSLog(@"window loaded");
-
 }
 
 
 - (void)awakeFromNib{
-//    NSLog(@"awaked");
     
     NSWindow* theWin = [self window];
     [theWin setShowsToolbarButton:NO];

@@ -37,7 +37,6 @@
 
 -(void)popUpMenu:(id)sender
 {
-    
     NSView* view = sender;
     NSRect rect = [view convertRect:view.bounds toView:nil];
     NSPoint point = NSMakePoint(rect.origin.x + rect.size.width, 
@@ -53,9 +52,10 @@
                                      eventNumber:0
                                       clickCount:1 
                                         pressure:1];
+        
     
-    NSMenu* menuToPopup;
-    
+    NSMenu* menuToPopup = [[[NSMenu alloc] init] autorelease];
+
     if ([sender tag]) {
         menuToPopup = mainMenu;
         [djSaveItem setHidden:YES]; 
@@ -79,11 +79,7 @@
             menuToPopup = publicMenu;
         }
     }
-    
-
-    
     [NSMenu popUpContextMenu:menuToPopup withEvent:event forView:sender];
-
 }
 
 -(void) updateChannelList
@@ -178,6 +174,7 @@
             }
             self.djCollectMenu = djcollectedmenu;
             [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
+            [djcollectedmenu release];
         }
         else 
         {
@@ -208,6 +205,7 @@
                                 action:nil
                                 keyEquivalent:@""];
             [menu addItem:cateitem];
+            [cateitem release];
             
             NSArray* channelsArray = [dic valueForKey:@"channels"];
             for (NSDictionary* channel in channelsArray) {
@@ -219,10 +217,11 @@
                 [item setIndentationLevel:1];
                 [item setTarget:self];
                 [menu addItem:item];
+                [item release];
             }
         }
     }
-    return menu;
+    return [menu autorelease];
 }
 
 -(BOOL) djChannelCollectRequestWithType:(NSString*) type andCid:(NSString*) cid
@@ -296,6 +295,7 @@
                 if ([djCollectMenu indexOfItem:currentChannelMenuItem]<0) {
                     NSMenuItem * newItem = [currentChannelMenuItem copy];
                     [djCollectMenu addItem:newItem];
+                    [newItem release];
                 }
                 [sender setState:NSOnState];
             }

@@ -15,9 +15,32 @@
 #define SPACE_PANEL_ID 2
 #define INFO_PANEL_ID 3
 
+DMPrefsPanelDataProvider *sharedPrefPanel;
 
 @implementation DMPrefsPanelDataProvider
 @synthesize captcha_code;
+
+
++ (DMPrefsPanelDataProvider*)sharedPrefs
+{
+    if (sharedPrefPanel == nil) {
+        sharedPrefPanel = [[DMPrefsPanelDataProvider alloc] init];
+    }
+    return sharedPrefPanel;
+}
+
+- (void)showPreferences
+{
+    DMLog(@"111");
+    tabcontroller = [[PLTabPreferenceControl alloc] initWithWindowNibName:@"DMPrefsPanel"];
+    [tabcontroller showWindow:nil];
+}
+
+- (void)dealloc
+{
+    [tabcontroller release];
+    [super dealloc];
+}
 
 - (int)countOfPreferencePanels
 {
@@ -99,9 +122,7 @@
             [sender setEnabled:NO];
             [indicator setHidden:NO];
             [indicator startAnimation:nil];
-            NSBlockOperation* fetchCapcha = 
-            [NSBlockOperation
-             blockOperationWithBlock:
+            NSBlockOperation* fetchCapcha = [NSBlockOperation blockOperationWithBlock:
              ^{
                  self.captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
                  NSImage* image = [DMDoubanAuthHelper getNewCapchaImageWithCode:self.captcha_code];
