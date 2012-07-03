@@ -35,6 +35,11 @@
     return self;
 }
 
+-(void)dealloc
+{
+    [lock release];
+    [super dealloc];
+}
 
 - (void)windowDidLoad
 {
@@ -64,6 +69,7 @@
         item.keyEquivalent = @"1";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
+        [item release];
     }
     {
         NSImage *image = [NSImage imageNamed:@"detail_icon.png"];
@@ -73,6 +79,7 @@
         item.keyEquivalent = @"2";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
+        [item release];
     }
 
     self.tabBar.items = tabBarItems;
@@ -93,6 +100,7 @@
     self.albumTitle = [dict valueForKey:@"albumtitle"]; 
     starRating.rating = [[dict valueForKey:@"rating_avg"] floatValue];
     [starRating setNeedsDisplay];
+    [image release];
 }
 
 -(void)updateDocumentContent
