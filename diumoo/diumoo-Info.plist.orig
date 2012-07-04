@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dmplist</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string></string>
+			<key>CFBundleTypeName</key>
+			<string>shortcut</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>????</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>NSDocumentClass</key>
+			<string>DMDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dmsid</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>_private_record</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>????</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>NSDocumentClass</key>
+			<string>DMDocument</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>xiuxiu.${PRODUCT_NAME:rfc1034identifier}</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+<<<<<<< HEAD
+	<string>496</string>
+=======
+	<string>364</string>
+>>>>>>> 914da3d8651861b4f57755865224f7aef4d808d7
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.music</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2012年 __MyCompanyName__. All rights reserved.</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
