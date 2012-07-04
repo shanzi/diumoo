@@ -98,8 +98,6 @@ static DMDoubanAuthHelper* sharedHelper;
                                          returningResponse:&response
                                                      error:&error];
     
-    DMLog(@"%@",error);
-    
     if(!error){
         return [self connectionResponseHandlerWithResponse:response andData:data];
     }
@@ -123,7 +121,6 @@ static DMDoubanAuthHelper* sharedHelper;
     for (NSHTTPCookie* cookie in cookies) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];
 }

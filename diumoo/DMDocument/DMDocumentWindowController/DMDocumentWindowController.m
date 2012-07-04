@@ -47,7 +47,7 @@
     starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted.png"];
     starRating.starImage = [NSImage imageNamed:@"star.png"];
     [self buildTabButton];
-    [self setupWindowForDocument];
+    [self setupWindowForDocument:self.document];
     if ([self.document isInViewingMode]) {
         [revertButton setEnabled:NO];
     }
@@ -78,9 +78,10 @@
     self.tabBar.items = tabBarItems;
 }
 
--(void)setupWindowForDocument
+-(void)setupWindowForDocument:(NSDocument *)doc
 {
-    NSDictionary* dict = [self.document performSelector:@selector(baseSongInfo)];
+    
+    NSDictionary* dict = [doc performSelector:@selector(baseSongInfo)];
     
     NSString* picture_url = [dict valueForKey:@"picture"];
     NSURL * purl = [NSURL URLWithString:picture_url];
@@ -95,15 +96,13 @@
     [starRating setNeedsDisplay];
 }
 
--(void)updateDocumentContent
-{
-    
-}
 
 -(NSString*) windowTitleForDocumentDisplayName:(NSString *)displayName
 {
+
     return [NSString stringWithFormat:@"专辑:《%@》", self.albumTitle];
 }
+
 
 -(void) revert:(id)sender
 {
@@ -114,8 +113,8 @@
 -(NSSize) window:(NSWindow*) w willResizeForVersionBrowserWithMaxPreferredSize:(NSSize)maxPreferredFrameSize maxAllowedSize:(NSSize)maxAllowedFrameSize
 {
     NSSize maxWindowSize = self.window.maxSize;
-    if (maxAllowedFrameSize.width > maxWindowSize.width &&
-        maxAllowedFrameSize.height > maxWindowSize.height
+    if (maxAllowedFrameSize.width > (maxWindowSize.width * 2) &&
+        maxAllowedFrameSize.height > (maxWindowSize.height * 2)
         ) {
         return self.window.maxSize;
     }

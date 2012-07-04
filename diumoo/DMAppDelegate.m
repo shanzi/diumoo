@@ -7,31 +7,30 @@
 //
 
 #import "DMAppDelegate.h"
+#import "DMDoubanAuthHelper.h"
 
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    NSLog(@"finishlaunching");
-//    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
-//                         @"airobot1@163.com",kAuthAttributeUsername,
-//                         @"akirasphere",kAuthAttributePassword,
-//                         @"K9Mr6E7212DEOWjN7pXRt8EV",kAuthAttributeCaptchaCode,
-//                         @"mistake",kAuthAttributeCaptchaSolution,
-//                         nil];
-//
-//    [[DMDoubanAuthHelper sharedHelper] authWithDictionary:dic asynchronousRequest:NO];
-//    
-//    NSLog(@"%@",[DMDoubanAuthHelper sharedHelper]);
-//    //[center fireToPlay:nil];
-    //[[DMDoubanAuthHelper sharedHelper]authWithDictionary:nil];
-    //self.panel = [[DMPanelWindowController alloc] init];
-    //[self.panel showWindow:nil];
+    [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
+    [center fireToPlayDefaultChannel];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     
+}
+
+-(void) makeDefaultPreference
+{
+    NSDictionary* defaultPreferences = nil;
+    defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithInteger:1],@"channel",
+                          
+                           nil];
+    [[NSUserDefaultsController sharedUserDefaultsController]
+     setInitialValues:defaultPreferences];
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
@@ -51,16 +50,23 @@
     
 }
 
--(BOOL) application:(NSApplication*)app openFile:(NSString *)filename
-{
-    NSLog(@"TEST");
-    return NO;
-}
 
 -(void) showPreference:(id)sender
 {
     pref = [DMPrefsPanelDataProvider sharedPrefs];
     [pref showPreferences];
+}
+
+-(BOOL) application:(NSApplication *)sender openFile:(NSString *)filename
+{
+    DMLog(@"open file");
+    return YES;
+}
+
+-(BOOL) applicationShouldOpenUntitledFile:(NSApplication *)sender
+{
+    DMLog(@"untitled file");
+    return NO;
 }
 
 

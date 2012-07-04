@@ -31,7 +31,7 @@ DMPrefsPanelDataProvider *sharedPrefPanel;
 
 - (void)showPreferences
 {
-    DMLog(@"111");
+
     tabcontroller = [[PLTabPreferenceControl alloc] initWithWindowNibName:@"DMPrefsPanel"];
     [tabcontroller showWindow:nil];
 }

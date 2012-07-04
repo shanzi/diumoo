@@ -16,7 +16,7 @@
 
 @synthesize loadState,playState,volume;
 @synthesize like,length,rating_avg;
-@synthesize aid,sid,ssid,subtype,title,artist,albumWithYear;
+@synthesize aid,sid,ssid,subtype,title,artist,albumtitle;
 @synthesize albumLocation,musicLocation,pictureLocation,largePictureLocation;
 @synthesize picture,movie,timer,delegate,skipType;
 
@@ -36,8 +36,6 @@
 {
     self = [super init];
     if (self) {
-
-        DMLog(@"init>>>>>>>%@",dic);
         
         loadState = -1;
         self.aid = [dic valueForKey:@"aid"]; 
@@ -46,11 +44,7 @@
         self.subtype = [dic valueForKey:@"subtype"];
         self.title = [dic valueForKey:@"title"];
         self.artist = [dic valueForKey:@"artist"];
-        id year = [dic valueForKey:@"year"];
-        if(year) self.albumWithYear = [NSString stringWithFormat:@"%@ - %@",
-                             [dic valueForKey:@"albumtitle"],
-                             [dic valueForKey:@"public_time"]];
-        else self.albumWithYear = [dic valueForKey:@"albumtitle"];
+        self.albumtitle = [dic valueForKey:@"albumtitle"];
         self.albumLocation = [NSString stringWithFormat:@"%@%@",DOUBAN_URL_PRIFIX,[dic valueForKey:@"album"]];
         self.musicLocation = [dic valueForKey:@"url"];
         self.pictureLocation = [dic valueForKey:@"picture"];

@@ -42,10 +42,16 @@
         self.songsView = [self buildTableView];
         
         self.summaryView = [[NSTextView alloc]
-                            initWithFrame:NSMakeRect(0, 0, 400, 400)];
+                            initWithFrame:NSMakeRect(0, 0, 400, 200)];
         [summaryView setEditable:NO];
         [summaryView setAutoresizingMask:NSViewWidthSizable];
-        self.summaryView.string = summary;
+
+        if (summary) {
+            self.summaryView.string = summary;
+        }
+        else {
+            self.summaryView.string = @"(无)";
+        }
         
         
         baseInfoDict = [info retain];
@@ -57,7 +63,7 @@
         
         JUInspectorView* summaryInspector = [[JUInspectorView alloc] init];
         NSScrollView* scrollView = [[NSScrollView alloc]
-                                    initWithFrame:NSMakeRect(0, 0, 400, 300)];
+                                    initWithFrame:NSMakeRect(0, 0, 400, 200)];
         
         [scrollView setDocumentView:summaryView];
         [scrollView setHasVerticalScroller:YES];

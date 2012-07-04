@@ -28,11 +28,12 @@
 
 -(void) awakeFromNib
 {
-
     
-    currentChannelID = 1;
-    
-    [self updateChannelList];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    currentChannelID = [[values valueForKey:@"channel"] integerValue];
+    if (currentChannelID == 0 || currentChannelID == -3) {
+        self.currentChannelMenuItem = [mainMenu itemWithTag:currentChannelID];
+    }
 }
 
 -(void)popUpMenu:(id)sender
@@ -52,10 +53,10 @@
                                      eventNumber:0
                                       clickCount:1 
                                         pressure:1];
-        
+    
     
     NSMenu* menuToPopup = [[[NSMenu alloc] init] autorelease];
-
+    
     if ([sender tag]) {
         menuToPopup = mainMenu;
         [djSaveItem setHidden:YES]; 
@@ -79,6 +80,7 @@
             menuToPopup = publicMenu;
         }
     }
+    
     [NSMenu popUpContextMenu:menuToPopup withEvent:event forView:sender];
 }
 
@@ -110,8 +112,6 @@
             
             if(error==NULL){
                 channelDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
-                
-                DMLog(@"%@",channelDict);
                 
                 if(error == NULL){
                     public_list = [channelDict valueForKey:@"public"];
@@ -167,26 +167,55 @@
                                     initWithTitle:[dic valueForKey:@"real_name"]
                                     action:@selector(changeChannelAction:)
                                     keyEquivalent:@""];
-                [item setTag:[[dic valueForKey:@"id"] integerValue]];
+                NSInteger tag = [[dic valueForKey:@"id"] integerValue];
+                [item setTag:tag];
                 [item setTarget:self];
                 [djcollectedmenu addItem:item];
                 [item release];
             }
             self.djCollectMenu = djcollectedmenu;
             [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
-            [djcollectedmenu release];
+            [djcollectedmenu autorelease];
         }
         else 
         {
             self.djCollectMenu = nil;
         }
-        
-        [djSaveItem setTag:-10];
         [djSaveItem setHidden:NO];
     }
-    else {
-        [djSaveItem setTag:-9];
+    else 
+    {
         [djSaveItem setHidden:YES];
+    }
+    
+    NSArray* oldRecentDJ = [djMenu itemArray];
+    for (NSMenuItem* item in oldRecentDJ) {
+        if ([item tag]>1000000) {
+            [djMenu removeItem:item];
+        }
+    }
+    
+    NSArray* recentlyPlayedDJ = nil;
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    recentlyPlayedDJ = [values valueForKey:@"recentdj"];
+    
+    if ([recentlyPlayedDJ count]>0) {
+        [[djMenu itemWithTag:-13] setHidden:YES];
+        for (NSDictionary* channel in recentlyPlayedDJ) {
+            NSInteger tag = [[channel valueForKey:@"cid"] integerValue];
+            NSString* title = [channel valueForKey:@"title"];
+            NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:title 
+                                                          action:@selector(changeChannelAction:)
+                                                   keyEquivalent:@""] ;
+            [item setTarget:self];
+            [item setIndentationLevel:1];
+            [item setTag:tag];
+            [djMenu addItem:item];
+            if (tag == currentChannelID) {
+                currentChannelMenuItem = item;
+            }
+            [item release];
+        }
     }
 }
 
@@ -201,9 +230,9 @@
             }
             
             NSMenuItem* cateitem = [[NSMenuItem alloc]
-                                initWithTitle:[dic valueForKey:@"cate"] 
-                                action:nil
-                                keyEquivalent:@""];
+                                    initWithTitle:[dic valueForKey:@"cate"] 
+                                    action:nil
+                                    keyEquivalent:@""] ;
             [menu addItem:cateitem];
             [cateitem release];
             
@@ -213,10 +242,15 @@
                                     initWithTitle:[channel valueForKey:@"name"]
                                     action:@selector(changeChannelAction:)
                                     keyEquivalent:@""];
-                [item setTag:[[channel valueForKey:@"channel_id"] integerValue]];
+                
+                NSInteger tag = [[channel valueForKey:@"channel_id"] integerValue];
+                [item setTag:tag];
                 [item setIndentationLevel:1];
                 [item setTarget:self];
                 [menu addItem:item];
+                if (tag == currentChannelID) {
+                    self.currentChannelMenuItem = item;
+                }
                 [item release];
             }
         }
@@ -257,7 +291,6 @@
     if(e==NULL){
         NSDictionary* dic = [[CJSONDeserializer deserializer] deserializeAsDictionary:d error:&e];
         
-        NSLog(@"%@",dic);
         
         if(e==NULL && [[dic valueForKey:@"status"] boolValue])
         {
@@ -282,7 +315,7 @@
             // 取消收藏
             
             BOOL ok = [self djChannelCollectRequestWithType:kDMUncollectChannel 
-                                           andCid:cid];
+                                                     andCid:cid];
             if (ok) {
                 [djCollectMenu removeItem:currentChannelMenuItem];
                 [sender setState:NSOffState];
@@ -293,7 +326,7 @@
             BOOL ok = [self djChannelCollectRequestWithType:kDMCollectChannel andCid:cid];
             if (ok) {
                 if ([djCollectMenu indexOfItem:currentChannelMenuItem]<0) {
-                    NSMenuItem * newItem = [currentChannelMenuItem copy];
+                    NSMenuItem * newItem = [currentChannelMenuItem copy] ;
                     [djCollectMenu addItem:newItem];
                     [newItem release];
                 }
@@ -311,11 +344,7 @@
 
 -(void) updateChannelMenuWithSender:(id)sender
 {
-    
-    if (self.currentChannelMenuItem == sender) {
-        return;
-    }
-    
+
     NSMenuItem* citem = currentChannelMenuItem;
     while (citem != nil) {
         [citem setState:NSOffState];
@@ -327,7 +356,7 @@
     
     
     if (tag <1) {
-
+        
         [longMainButton setTitle:[sender title]];
         [longMainButton setHidden:NO];
     }
@@ -339,10 +368,54 @@
             [mainButton setTitle:djMenuItem.title];
             [subButton setTitle:[sender title]];
             
-            if ([djCollectMenu itemWithTag:tag]) {
+            if ([djCollectMenu itemWithTag:tag])
+            {
                 [djSaveItem setState:NSOnState];
             }
             
+            
+            // -------------------------- 处理dj兆赫的菜单和记录 --------------------------
+            NSMenuItem* newItem = [djMenu itemWithTag:tag]; //先检查当前的dj兆赫是不是已经在最近播放的列表里了
+            if(newItem) sender = newItem ; // 如果是，就直接使用这个item就好
+            else {
+                // 当前的dj兆赫还没被加入到最近播放列表，现在加入它
+                newItem = [sender copy]; // 将sender copy一份先
+                
+                // 先获取到当前dj菜单下所有item，检查item的数量是否超过了要求，超过了的话，就删掉一些
+                NSArray* menuarray = [djMenu itemArray]; 
+                if ([menuarray count]>20) {
+                    NSMenuItem* itemToRemove = [menuarray lastObject];
+                    if ([itemToRemove tag] > 1000000) {
+                        [djMenu removeItem:itemToRemove];
+                    }
+                }
+                
+                
+                // 把“空”字样那个菜单项隐藏掉
+                NSMenuItem* itemToHide = [djMenu itemWithTag:-13];
+                [itemToHide setHidden:YES];
+                
+                // 计算将新item插入的index
+                NSInteger indexToInsert = [djMenu indexOfItem:itemToHide] +1;
+                [djMenu insertItem:newItem atIndex:indexToInsert];
+                sender = newItem; // 插入进去了，把sender改为新的item
+                
+                // 现在将新的最近播放列表保存到用户偏好里
+                NSArray* newMenuArray = [djMenu itemArray];
+                NSMutableArray* arrayToSave = [[NSMutableArray alloc] init];
+                for (NSMenuItem* menuItem in newMenuArray) {
+                    NSInteger ttag = [menuItem tag];
+                    if(ttag > 1000000){
+                        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              [NSNumber numberWithInteger:ttag],@"cid",
+                                              [menuItem title],@"title", nil];
+                        [arrayToSave addObject:dict];
+                    }
+                }
+                id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+                [values setValue:arrayToSave forKey:@"recentdj"];
+                [arrayToSave release];
+            }
         }
         else if(tag >0 )
         {
@@ -356,15 +429,22 @@
         
         
     }
-    
+    NSLog(@"------pitem %@",[sender parentItem]);
     [sender setState:NSOnState];
     NSMenuItem* pitem = [sender parentItem];
     while (pitem!=nil) {
         [pitem setState:NSMixedState];
         pitem = [pitem parentItem];
     }
+    
+    
+    
     self.currentChannelID = tag;
     self.currentChannelMenuItem = sender;
+    
+    
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    [values setValue:[NSNumber numberWithInteger:tag] forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
 }
 
 @end

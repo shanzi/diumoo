@@ -16,7 +16,7 @@
 #import "DMPlayableCapsule.h"
 #import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
-#import "DMDoubanAuthHelper.h"
+#import "DMPlayRecordHandler.h"
 
 
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate>
@@ -29,11 +29,12 @@
 @property(assign) NSString* pausedOperationType;
 @property(assign) NSLock* skipLock; // 用于在skip和bye的时候锁住线程，防止多余操作
 
-@property(retain) DMPanelWindowController* mainPanel;
+@property(assign) DMPanelWindowController* mainPanel;
+@property(assign) DMPlayRecordHandler* recordHandler;
 
 // }
 
 -(void) fireToPlay:(NSString*)startSongAttribute;
-
+-(void) fireToPlayDefaultChannel;
 
 @end

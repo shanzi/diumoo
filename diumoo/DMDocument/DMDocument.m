@@ -8,6 +8,7 @@
 
 #import "DMDocument.h"
 #import "DMDocumentWindowController.h"
+#import "DMPlayRecordHandler.h"
 
 @implementation DMDocument
 @synthesize baseSongInfo,aid,sid,ssid;
@@ -35,13 +36,13 @@
 
 -(BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 {
-    NSLog(@"revert:%@",url);
     BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
     if (success) {
-        [[self windowControllers]makeObjectsPerformSelector:@selector(setupWindowForDocument)];
+        [[self windowControllers]makeObjectsPerformSelector:@selector(setupWindowForDocument:) withObject:self];
     }
     return YES;
 }
+
 
 +(BOOL) autosavesInPlace
 {
@@ -73,20 +74,39 @@
     // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
     // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
-    if (dict) {
-        self.sid = [dict valueForKey:@"sid"];
-        self.ssid = [dict valueForKey:@"ssid"];
-        self.aid = [dict valueForKey:@"aid"];
-        self.baseSongInfo = dict;
-        return YES;
+    
+    if ([type isEqualToString:@"shortcut"]) {
+        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
+        if (dict) {
+            self.sid = [dict valueForKey:@"sid"];
+            self.ssid = [dict valueForKey:@"ssid"];
+            self.aid = [dict valueForKey:@"aid"];
+            self.baseSongInfo = dict;
+            if (sid) {
+                return YES;
+            }
+        }
     }
-    else {
-        NSError * error = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
-        *outError = error;
-        return NO;
+    else if([type isEqualToString:@"_private_record"]) {
+        NSString* _sid = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        if (_sid) {
+            NSManagedObject* object = [[DMPlayRecordHandler sharedRecordHandler] songWithSid:_sid];
+            if (object) {
+                self.sid = [object valueForKey:@"sid"];
+                self.ssid = [object valueForKey:@"ssid"];
+                self.aid = [object valueForKey:@"aid"];
+                
+                NSArray* keyarray = [[[object entity] attributesByName] allKeys];
+                NSDictionary*  infodict = [object dictionaryWithValuesForKeys:keyarray];
+                self.baseSongInfo = infodict;
+                return YES;
+            }
+        }
     }
+    
+    NSError * error = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
+    *outError = error;
+    return NO;
 }
 
 

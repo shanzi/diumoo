@@ -20,6 +20,7 @@
 -(void)volumeChange:(float)volume;
 -(BOOL)channelChangedTo:(NSString*)channel;
 
+
 @end
 
 @interface DMPanelWindowController : NSWindowController
@@ -44,12 +45,13 @@
 
 -(void) channelChangeActionWithSender:(id)sender;
 -(IBAction)controlAction:(id)sender;
+-(IBAction)showAlbumWindow:(id)sender;
 
 -(void) setRated:(BOOL)rated;
 -(void) countRated:(NSInteger)count;
 -(void) setPlaying:(BOOL) playing;
 -(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
-
+-(void) playDefaultChannel;
 
 
 @end

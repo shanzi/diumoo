@@ -36,17 +36,18 @@ typedef enum{
 @property float rating_avg;
 
 
-@property(retain) NSString* aid;
-@property(retain) NSString* sid;
-@property(retain) NSString* ssid;
-@property(retain) NSString* subtype;
-@property(retain) NSString* title;
-@property(retain) NSString* artist;
-@property(retain) NSString* albumWithYear;
-@property(retain) NSString* albumLocation;
-@property(retain) NSString* musicLocation;
-@property(retain) NSString* pictureLocation;
-@property(retain) NSString* largePictureLocation;
+@property(nonatomic,copy) NSString* aid;
+@property(nonatomic,copy) NSString* sid;
+@property(nonatomic,copy) NSString* ssid;
+@property(nonatomic,copy) NSString* subtype;
+@property(nonatomic,copy) NSString* title;
+@property(nonatomic,copy) NSString* artist;
+@property(nonatomic,copy) NSString* albumtitle;
+@property(nonatomic,copy) NSString* albumLocation;
+@property(nonatomic,copy) NSString* musicLocation;
+@property(nonatomic,copy) NSString* pictureLocation;
+@property(nonatomic,copy) NSString* largePictureLocation;
+
 
 @property(assign) NSImage* picture;
 @property(retain,nonatomic) NSTimer* timer;

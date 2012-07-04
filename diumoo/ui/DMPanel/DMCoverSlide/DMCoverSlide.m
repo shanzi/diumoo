@@ -21,6 +21,7 @@
         // init
         frontCover = [CALayer new];
         frontFadeTransitionLayer = [CALayer new];
+        shade = [CALayer new];
 
         titleLayer = [CATextLayer new];
         artistLayer = [CATextLayer new];
@@ -31,6 +32,7 @@
         
         frontCover.anchorPoint = anchor;
         frontFadeTransitionLayer.anchorPoint = anchor;
+        shade.anchorPoint = anchor;
 
         titleLayer.anchorPoint = anchor;
         artistLayer.anchorPoint = anchor;
@@ -39,6 +41,7 @@
         // position
         frontCover.position = FRONT_POSITION;
         frontFadeTransitionLayer.position = anchor;
+        shade.position = anchor;
 
         titleLayer.position = TITLE_POSITION;
         artistLayer.position = ARTIST_POSITION;
@@ -47,6 +50,7 @@
         // bounds
         frontCover.bounds = FRONT_BOUNDS;
         frontFadeTransitionLayer.bounds = FRONT_BOUNDS;
+        shade.bounds = FRONT_BOUNDS;
         titleLayer.bounds = TITLE_BOUNDS;
         artistLayer.bounds = ARTIST_BOUNDS;
         albumLayer.bounds = ALBUM_BOUNDS;
@@ -83,12 +87,16 @@
         CGFontRelease(helveticaConsensedBold);
         CGFontRelease(helveticaLight);
         
+        shade.backgroundColor = CGColorCreateGenericGray(0, 0.5);
+        
         // opacity
         frontFadeTransitionLayer.opacity = 0;
+        shade.opacity = 0;
 
         // sublayer
         [frontCover setMasksToBounds:YES];
         [frontCover addSublayer:frontFadeTransitionLayer];
+        [frontCover addSublayer:shade];
         [self addSublayer:frontCover];
         [self addSublayer:titleLayer];
         [self addSublayer:artistLayer];
@@ -135,6 +143,16 @@
     }];
     frontFadeTransitionLayer.opacity = 1.0;
     [CATransaction commit];
+}
+
+-(void) showShade:(BOOL) show
+{
+    if (show) {
+        shade.opacity = 1.0;
+    }
+    else {
+        shade.opacity = 0.0;
+    }
 }
 
 @end

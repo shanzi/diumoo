@@ -35,8 +35,7 @@
 
 -(id) init;
 
--(void)setupWindowForDocument;
--(void)updateDocumentContent;
+-(void)setupWindowForDocument:(NSDocument*) doc;
 
 -(IBAction)revert:(id)sender;
 @end

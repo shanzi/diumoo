@@ -40,8 +40,6 @@
 		F5148B171580E707002B3D61 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B011580E707002B3D61 /* CJSONScanner.m */; };
 		F5148B181580E707002B3D61 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B031580E707002B3D61 /* CJSONSerializer.m */; };
 		F5148B1C1580E7EE002B3D61 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B191580E7EE002B3D61 /* Growl.framework */; };
-		F5148B1D1580E7EE002B3D61 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
-		F5148B1E1580E7EE002B3D61 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
 		F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B221580E904002B3D61 /* DMControlCenter.m */; };
 		F5148B2F1580E904002B3D61 /* DMPlayableCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B251580E904002B3D61 /* DMPlayableCapsule.m */; };
 		F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */; };
@@ -52,8 +50,6 @@
 		F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4D1580EE68002B3D61 /* QTKit.framework */; };
 		F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4F1580EE92002B3D61 /* QuartzCore.framework */; };
 		F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B191580E7EE002B3D61 /* Growl.framework */; };
-		F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */; };
-		F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5148B1B1580E7EE002B3D61 /* Sparkle.framework */; };
 		F52EEC22158F7E6C004A39EF /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC21158F7E6C004A39EF /* cog.png */; };
 		F52EEC26158F8053004A39EF /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC23158F8053004A39EF /* heart-icon.png */; };
 		F52EEC27158F8053004A39EF /* played-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC24158F8053004A39EF /* played-icon.png */; };
@@ -95,6 +91,7 @@
 		F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */; };
 		F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */; };
 		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
+		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -105,8 +102,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F5148B5515810767002B3D61 /* Growl.framework in CopyFiles */,
-				F5148B5615810769002B3D61 /* ShortcutRecorder.framework in CopyFiles */,
-				F5148B571581076B002B3D61 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +169,6 @@
 		F5148B031580E707002B3D61 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F5148B041580E707002B3D61 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		F5148B191580E7EE002B3D61 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = frameworks/Growl.framework; sourceTree = "<group>"; };
-		F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShortcutRecorder.framework; path = frameworks/ShortcutRecorder.framework; sourceTree = "<group>"; };
-		F5148B1B1580E7EE002B3D61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F5148B211580E904002B3D61 /* DMControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMControlCenter.h; sourceTree = "<group>"; };
 		F5148B221580E904002B3D61 /* DMControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMControlCenter.m; sourceTree = "<group>"; };
 		F5148B241580E904002B3D61 /* DMPlayableCapsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlayableCapsule.h; sourceTree = "<group>"; };
@@ -252,6 +245,7 @@
 		F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTabPreferenceControl.m; sourceTree = "<group>"; };
 		F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPrefsPanelDataProvider.h; sourceTree = "<group>"; };
 		F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPrefsPanelDataProvider.m; sourceTree = "<group>"; };
+		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,8 +259,6 @@
 				F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */,
 				F5148B441580EC15002B3D61 /* libxml2.2.7.3.dylib in Frameworks */,
 				F5148B1C1580E7EE002B3D61 /* Growl.framework in Frameworks */,
-				F5148B1D1580E7EE002B3D61 /* ShortcutRecorder.framework in Frameworks */,
-				F5148B1E1580E7EE002B3D61 /* Sparkle.framework in Frameworks */,
 				F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,8 +349,6 @@
 				F5148B4B1580EE4D002B3D61 /* Security.framework */,
 				F5148B491580EE1F002B3D61 /* Carbon.framework */,
 				F5148B191580E7EE002B3D61 /* Growl.framework */,
-				F5148B1A1580E7EE002B3D61 /* ShortcutRecorder.framework */,
-				F5148B1B1580E7EE002B3D61 /* Sparkle.framework */,
 				F5148AB21580E58D002B3D61 /* Cocoa.framework */,
 				F5148AB41580E58D002B3D61 /* Other Frameworks */,
 			);
@@ -708,6 +698,7 @@
 			children = (
 				F5D3633E15A1F3AF003A40B2 /* DMPlayRecordHandler.h */,
 				F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */,
+				F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */,
 			);
 			name = DMPlayRecordHandler;
 			sourceTree = "<group>";
@@ -897,6 +888,7 @@
 				F5D3632A15A1F0EF003A40B2 /* SMTabBarButtonCell.m in Sources */,
 				F5D3632B15A1F0EF003A40B2 /* SMTabBarItem.m in Sources */,
 				F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */,
+				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -982,7 +974,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/frameworks\"",
 				);
-				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
@@ -999,7 +991,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/frameworks\"",
 				);
-				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
@@ -1031,6 +1023,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */,
+			);
+			currentVersion = F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */;
+			name = DMPlayRecordModel.xcdatamodeld;
+			path = DMPlayRecordHandler/DMPlayRecordModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F5148AA51580E58D002B3D61 /* Project object */;
 }

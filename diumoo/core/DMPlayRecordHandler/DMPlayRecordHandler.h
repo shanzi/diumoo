@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DMPlayableCapsule;
 
 @interface DMPlayRecordHandler : NSObject
+{
+    
+}
 
+
+@property(nonatomic,copy) NSURL* recordFileURL;
+@property(nonatomic,retain) NSManagedObjectContext* context;
+
++(DMPlayRecordHandler*) sharedRecordHandler;
++(NSString*) pathToDataFileFolder;
+-(NSManagedObject*) songWithSid:(NSString*) sid;
+-(void) addRecordWithCapsule:(DMPlayableCapsule*) capsule;
+-(void) addRecordAsyncWithCapsule:(DMPlayableCapsule*)capsule;
+-(void) open;
 @end

@@ -18,6 +18,7 @@
     
     IBOutlet NSMenu * mainMenu;
     IBOutlet NSMenu * djMenu;
+    
 }
 
 @property(retain) IBOutlet id delegate;
@@ -36,5 +37,6 @@
 -(IBAction)saveDJChannelAction:(id)sender;
 -(IBAction)changeChannelAction:(id)sender;
 -(void) updateChannelMenuWithSender:(id)sender;
+-(void) updateChannelList;
 
 @end

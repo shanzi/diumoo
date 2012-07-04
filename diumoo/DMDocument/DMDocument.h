@@ -19,4 +19,5 @@
 @property(nonatomic,copy) NSString* ssid;
 @property(nonatomic,copy) NSString* aid;
 
+
 @end

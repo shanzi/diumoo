@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DMCoverSlide.h"
 
-@interface DMCoverControlView : NSView
+@interface DMCoverControlView : NSButton
 {
     DMCoverSlide* slide;
 }

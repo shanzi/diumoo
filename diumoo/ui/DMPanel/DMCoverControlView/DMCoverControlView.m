@@ -15,17 +15,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        CGRect bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
         
         slide = [DMCoverSlide new];
         slide.anchorPoint = CGPointMake(0, 0);
         slide.position =slide.anchorPoint;
         
-        
         [self setWantsLayer:YES];
         [self setLayer:slide];
         
-        //[self addTrackingRect:bounds owner:self userData:NULL assumeInside:NO];
+        [self addTrackingRect:self.bounds
+                        owner:self
+                     userData:NULL assumeInside:NO];
+        
     }
     
     return self;
@@ -38,15 +39,15 @@
 
 -(void) mouseEntered:(NSEvent *)event
 {
-
-    
+    [[NSCursor pointingHandCursor] push];
+    [slide showShade:YES];
 }
 
 -(void) mouseExited:(NSEvent *)event
 {
-
+    [NSCursor pop];
+    [slide showShade:NO];
 }
-
 
 -(void) setPlayingInfo:(NSString *)musictitle :(NSString *)artist :(NSString *)albumTitle 
 {

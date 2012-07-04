@@ -17,7 +17,7 @@
 
 @implementation DMControlCenter
 @synthesize playingCapsule,fetcher,waitPlaylist,channel,pausedOperationType,skipLock;
-@synthesize mainPanel;
+@synthesize mainPanel,recordHandler;
 
 #pragma init & dealloc
 
@@ -31,15 +31,11 @@
         skipLock = [NSLock new];
         channel = @"1";
         
-        DMLog(@"before auth");
-        [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
-        DMLog(@"after auth");
-        
         self.mainPanel = [DMPanelWindowController sharedWindowController];
         [mainPanel setDelegate:self];
         [mainPanel showWindow:nil];
         
-        DMLog(@"init center");
+        self.recordHandler = [DMPlayRecordHandler sharedRecordHandler];
     }
     return self;
 }
@@ -51,6 +47,9 @@
     [waitPlaylist release];
     [fetcher release];
     [playingCapsule release];
+    [mainPanel close];
+    [mainPanel release];
+    [recordHandler release];
     [super dealloc];
 }
 
@@ -64,10 +63,13 @@
                        startAttribute:aSong];
 }
 
+-(void) fireToPlayDefaultChannel
+{
+    [mainPanel playDefaultChannel];
+}
+
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
-
-    DMLog(@"start to play: %@",aSong);
     
     [self.playingCapsule invalidateMovie];
     
@@ -124,6 +126,8 @@
         [playingCapsule play];
         [mainPanel setRated:playingCapsule.like];
         [mainPanel setPlayingCapsule:playingCapsule];
+        DMLog(@"add record");
+        [recordHandler addRecordAsyncWithCapsule:playingCapsule];
     }
         
         
@@ -245,7 +249,6 @@
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
-    DMLog(@"fetch success");
     if (playingCapsule == nil || startsong) 
     {
         if(!startsong) startsong = [fetcher getOnePlayableCapsule];
@@ -340,6 +343,9 @@
 
 -(BOOL)channelChangedTo:(NSString *)ch
 {
+    if (self.channel == ch) {
+        return YES;
+    }
     if (![skipLock tryLock]) {
         return NO;
     };
@@ -367,6 +373,7 @@
 {
     [playingCapsule commitVolume:volume];
 }
+
 
 //--------------------------------------------------------------------
 

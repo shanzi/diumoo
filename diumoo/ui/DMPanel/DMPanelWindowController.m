@@ -8,6 +8,7 @@
 
 #import "DMPanelWindowController.h"
 #import "DMDoubanAuthHelper.h"
+#import "DMPlayRecordHandler.h"
 
 DMPanelWindowController *sharedWindow;
 
@@ -46,7 +47,6 @@ DMPanelWindowController *sharedWindow;
                                                  name:AccountStateChangedNotification
                                                object:nil];
     
-    [self accountStateChanged:nil];
 }
 
 -(void) accountStateChanged:(NSNotification*)n
@@ -71,6 +71,8 @@ DMPanelWindowController *sharedWindow;
         [ratedCountTextField setHidden:YES];
         [usernameTextField setHidden:YES];
     }
+
+    [popupMenuController updateChannelList];
 }
 
 
@@ -148,9 +150,28 @@ DMPanelWindowController *sharedWindow;
         [coverView setAlbumImage:coverImage];
     }
     
-    [coverView setPlayingInfo:capsule.title :capsule.artist :capsule.albumWithYear];
+    [coverView setPlayingInfo:capsule.title :capsule.artist :capsule.albumtitle];
 }
 
+-(void) showAlbumWindow:(id)sender
+{
+    [[DMPlayRecordHandler sharedRecordHandler] open];
+}
 
+-(void) playDefaultChannel
+{
+    if (popupMenuController.publicMenu == nil) {
+        [popupMenuController updateChannelList];
+    }
+    
+    if(popupMenuController.currentChannelMenuItem)
+    {
+        [self channelChangeActionWithSender:popupMenuController.currentChannelMenuItem];
+    }
+    else {
+        [self channelChangeActionWithSender:[popupMenuController.publicMenu 
+                                             itemWithTag:1]];
+    }
+}
 
 @end
