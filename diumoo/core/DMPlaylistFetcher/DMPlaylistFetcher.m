@@ -70,7 +70,7 @@
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dic urlEncodedString]];
     
-    DMLog(@"urlString>>>>>%@\n\n",urlString);
+    DMLog(@"startattr,%@",startAttr);
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -114,11 +114,11 @@
                      // do something to update playlist
                      @try {
                          if (startAttr){
+                             
                              playlist = [NSMutableArray arrayWithArray:[jresponse valueForKey:@"song"]];
                              [delegate fetchPlaylistSuccessWithStartSong:
                              [DMPlayableCapsule playableCapsuleWithDictionary:[playlist objectAtIndex:0]]];
                              [playlist removeObjectAtIndex:0];
-
                          }
                          else {
                              [playlist addObjectsFromArray:[jresponse valueForKey:@"song"]];

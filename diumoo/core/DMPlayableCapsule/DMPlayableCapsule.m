@@ -53,7 +53,9 @@
         self.like = [[dic valueForKey:@"like"] boolValue];
         self.length = [[dic valueForKey:@"length"] floatValue] * 1000;
         self.rating_avg = [[dic valueForKey:@"rating_avg"] floatValue];
-        self.volume = 1.0;
+        
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        self.volume = [[values valueForKey:@"volume"] floatValue];
         
     }
     return self;
@@ -86,7 +88,7 @@
     {
         [self invalidateMovie];
         self.movie = m;
-        
+
         // 添加新的侦听
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(movieRateDidChanged:) 
@@ -135,6 +137,8 @@
 
 -(void) play
 {
+
+    
     if(loadState < QTMovieLoadStatePlayable) return;
     if(playState == WAIT_TO_PLAY) self.playState = PLAYING;
     else self.playState = REPLAYING;
@@ -151,6 +155,7 @@
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
+        [self.movie setVolume: self.volume];
         [movie play];
         [timer fire];
     }
@@ -229,6 +234,10 @@
 -(void) commitVolume:(float)v
 {
     self.volume = v;
+
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    [values setValue:[NSNumber numberWithFloat:v] forKey:@"volume"];
+    
     if(timer|| movie.rate < 0.1) return;
     else{
         self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
@@ -250,25 +259,27 @@
 
 -(void) prepareCoverWithCallbackBlock:(void (^)(NSImage*))block
 {
-    if (picture == nil) {
-
-        NSBlockOperation* blockoperation = 
-        [NSBlockOperation blockOperationWithBlock:^{
-            NSURL* url = [NSURL URLWithString:largePictureLocation];
-            picture = [[NSImage alloc] initWithContentsOfURL:url]; 
-            if (picture) {
-                if(block) block(picture);
-            }
-            else {
-                picture = [NSImage imageNamed:@"albumfail.png"];
-                if(block)block(picture);
-            }
-        }];
-        [[NSOperationQueue currentQueue] addOperation:blockoperation];
-    }
-    else{
-        if(block) block(picture);
-    }
+    NSBlockOperation* blockoperation = [NSBlockOperation blockOperationWithBlock:^{
+        if (self.picture == nil) {
+            NSBlockOperation* blockoperation = 
+            [NSBlockOperation blockOperationWithBlock:^{
+                NSURL* url = [NSURL URLWithString:largePictureLocation];
+                picture = [[NSImage alloc] initWithContentsOfURL:url]; 
+                if (picture) {
+                    if(block) block(picture);
+                }
+                else {
+                    picture = [NSImage imageNamed:@"albumfail.png"];
+                    if(block)block(picture);
+                }
+            }];
+            [[NSOperationQueue currentQueue] addOperation:blockoperation];
+        }
+        else{
+            if(block) block(picture);
+        }
+    }];
+    [[NSOperationQueue currentQueue] addOperation:blockoperation];
 }
 
 @end

@@ -13,6 +13,7 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
+    [self makeDefaultPreference];
     [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
     [center fireToPlayDefaultChannel];
 }
@@ -27,7 +28,7 @@
     NSDictionary* defaultPreferences = nil;
     defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithInteger:1],@"channel",
-                          
+                          [NSNumber numberWithFloat:1.0],@"volume",
                            nil];
     [[NSUserDefaultsController sharedUserDefaultsController]
      setInitialValues:defaultPreferences];

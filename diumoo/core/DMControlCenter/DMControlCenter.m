@@ -16,7 +16,7 @@
 
 
 @implementation DMControlCenter
-@synthesize playingCapsule,fetcher,waitPlaylist,channel,pausedOperationType,skipLock;
+@synthesize playingCapsule,songToPlay,fetcher,waitPlaylist,channel,pausedOperationType,skipLock;
 @synthesize mainPanel,recordHandler;
 
 #pragma init & dealloc
@@ -36,6 +36,8 @@
         [mainPanel showWindow:nil];
         
         self.recordHandler = [DMPlayRecordHandler sharedRecordHandler];
+        [recordHandler setDelegate:self];
+        
     }
     return self;
 }
@@ -126,7 +128,6 @@
         [playingCapsule play];
         [mainPanel setRated:playingCapsule.like];
         [mainPanel setPlayingCapsule:playingCapsule];
-        DMLog(@"add record");
         [recordHandler addRecordAsyncWithCapsule:playingCapsule];
     }
         
@@ -151,7 +152,14 @@
     if([pausedOperationType isEqualToString:kPauseOperationTypeSkip])
     {
         // 跳过当前歌曲
-        [self startToPlay:nil];
+        if (self.songToPlay!=nil) {
+            [self startToPlay:songToPlay];
+            self.songToPlay = nil;
+        }
+        else {
+            [self startToPlay:nil];
+        }
+
     }
     else if([pausedOperationType isEqualToString:kPauseOperationTypeFetchNewPlaylist])
     {
@@ -190,7 +198,7 @@
 
 -(void) playableCapsule:(id)c loadStateChanged:(long)state
 {
-    
+    DMLog(@"loadstate %@, %d , %d",c,c==playingCapsule,playingCapsule.playState == WAIT_TO_PLAY);
     if (state > QTMovieLoadStatePlayable) {
         if (c == playingCapsule && 
             playingCapsule.playState == WAIT_TO_PLAY)
@@ -205,7 +213,7 @@
             // 在这里执行一些缓冲歌曲的操作
             if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
                 DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
-                if(!waitsong){
+                if(waitsong==nil){
                     
                     [fetcher fetchPlaylistFromChannel:channel
                                                   withType:kFetchPlaylistTypePlaying
@@ -249,10 +257,21 @@
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
+    NSLog(@"%@",startsong);
     if (playingCapsule == nil || startsong) 
     {
-        if(!startsong) startsong = [fetcher getOnePlayableCapsule];
-        [self startToPlay:startsong];
+        if(startsong == nil)
+        {
+            DMPlayableCapsule* c = [fetcher getOnePlayableCapsule];
+            [self startToPlay:c];
+        }
+        else {
+            self.songToPlay = startsong;
+            if ([skipLock tryLock]) {
+                self.pausedOperationType = kPauseOperationTypeSkip;
+                [self.playingCapsule pause];
+            }
+        }
     }
 
 }
@@ -376,5 +395,16 @@
 
 
 //--------------------------------------------------------------------
+
+
+//-------------------------playrecord handler delegate ---------------
+-(void) playSongWithSid:(NSString *)sid andSsid:(NSString *)ssid
+{
+    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,self.channel];
+    [fetcher fetchPlaylistFromChannel:self.channel
+                             withType:kFetchPlaylistTypeNew 
+                                  sid:nil 
+                       startAttribute:startattribute];
+}
 
 @end

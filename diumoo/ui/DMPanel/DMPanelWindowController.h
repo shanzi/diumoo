@@ -53,5 +53,4 @@
 -(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
 -(void) playDefaultChannel;
 
-
 @end

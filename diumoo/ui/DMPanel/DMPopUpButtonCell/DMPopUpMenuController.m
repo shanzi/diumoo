@@ -55,7 +55,7 @@
                                         pressure:1];
     
     
-    NSMenu* menuToPopup = [[[NSMenu alloc] init] autorelease];
+    NSMenu* menuToPopup = nil;
     
     if ([sender tag]) {
         menuToPopup = mainMenu;
@@ -80,7 +80,7 @@
             menuToPopup = publicMenu;
         }
     }
-    
+    NSLog(@"%@",menuToPopup);
     [NSMenu popUpContextMenu:menuToPopup withEvent:event forView:sender];
 }
 
@@ -171,7 +171,7 @@
                 [item setTag:tag];
                 [item setTarget:self];
                 [djcollectedmenu addItem:item];
-                [item release];
+                [item autorelease];
             }
             self.djCollectMenu = djcollectedmenu;
             [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
@@ -214,7 +214,7 @@
             if (tag == currentChannelID) {
                 currentChannelMenuItem = item;
             }
-            [item release];
+            [item autorelease];
         }
     }
 }
@@ -234,7 +234,7 @@
                                     action:nil
                                     keyEquivalent:@""] ;
             [menu addItem:cateitem];
-            [cateitem release];
+            [cateitem autorelease];
             
             NSArray* channelsArray = [dic valueForKey:@"channels"];
             for (NSDictionary* channel in channelsArray) {
@@ -251,7 +251,7 @@
                 if (tag == currentChannelID) {
                     self.currentChannelMenuItem = item;
                 }
-                [item release];
+                [item autorelease];
             }
         }
     }
@@ -328,7 +328,7 @@
                 if ([djCollectMenu indexOfItem:currentChannelMenuItem]<0) {
                     NSMenuItem * newItem = [currentChannelMenuItem copy] ;
                     [djCollectMenu addItem:newItem];
-                    [newItem release];
+                    [newItem autorelease];
                 }
                 [sender setState:NSOnState];
             }
@@ -414,7 +414,7 @@
                 }
                 id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
                 [values setValue:arrayToSave forKey:@"recentdj"];
-                [arrayToSave release];
+                [arrayToSave autorelease];
             }
         }
         else if(tag >0 )

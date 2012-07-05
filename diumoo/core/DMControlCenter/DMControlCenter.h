@@ -19,11 +19,14 @@
 #import "DMPlayRecordHandler.h"
 
 
-@interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate>
+@interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
 // {
 
 @property(retain) NSString* channel;
+
 @property(retain) DMPlayableCapsule* playingCapsule;
+@property(assign) DMPlayableCapsule* songToPlay;
+
 @property(assign) DMPlaylistFetcher* fetcher;
 @property(assign) NSMutableOrderedSet* waitPlaylist;
 @property(assign) NSString* pausedOperationType;
@@ -31,6 +34,7 @@
 
 @property(assign) DMPanelWindowController* mainPanel;
 @property(assign) DMPlayRecordHandler* recordHandler;
+
 
 // }
 

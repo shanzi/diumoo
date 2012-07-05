@@ -12,7 +12,7 @@
 static DMPlayRecordHandler* recordHandler;
 
 @implementation DMPlayRecordHandler
-@synthesize recordFileURL,context;
+@synthesize recordFileURL,context,delegate;
 
 +(DMPlayRecordHandler*) sharedRecordHandler
 {
@@ -180,6 +180,17 @@ static DMPlayRecordHandler* recordHandler;
                                           display:YES
                                             error:nil];
     
+}
+
+-(void) removeCurrentVersion
+{
+    NSFileVersion* current = [NSFileVersion currentVersionOfItemAtURL:self.recordFileURL];
+    [current removeAndReturnError:nil];
+}
+
+-(void) playSongWith:(NSString *)sid andSsid:(NSString *)ssid
+{
+    [self.delegate playSongWithSid:sid andSsid:ssid];
 }
 
 @end
