@@ -23,7 +23,7 @@
 @property(assign) NSMutableDictionary *playedSongs;
 
 - (NSString*)randomString;
-- (void)fetchPlaylistWithDictionary:(NSDictionary*)dic withStartAttribute:(NSString*)startAttr;
+- (void)fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr;
 
 @end
 
@@ -65,10 +65,10 @@
 
 #pragma -
 
-- (void)fetchPlaylistWithDictionary:(NSDictionary *)dic withStartAttribute:(NSString *)startAttr
+- (void)fetchPlaylistWithDictionary:(NSDictionary *)dict withStartAttribute:(NSString *)startAttr
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
-                            [dic urlEncodedString]];
+                            [dict urlEncodedString]];
     
     DMLog(@"startattr,%@",startAttr);
     

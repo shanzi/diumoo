@@ -11,13 +11,22 @@
 
 static DMPlayRecordHandler* recordHandler;
 
+@interface DMPlayableCapsule ()
+
++(NSString*) pathToDataFileFolder;
+
+-(NSManagedObjectContext*) makeContextWithPath:(NSString*) datapath;
+
+@end
+
 @implementation DMPlayRecordHandler
 @synthesize recordFileURL,context,delegate;
 
+#pragma class methods
 +(DMPlayRecordHandler*) sharedRecordHandler
 {
     if (recordHandler==nil) {
-        recordHandler = [[[DMPlayRecordHandler alloc] init] retain];
+        recordHandler = [[DMPlayRecordHandler alloc] init];
     }
     return recordHandler;
 }
@@ -44,8 +53,9 @@ static DMPlayRecordHandler* recordHandler;
     }
     return pathToDiumooDataFolder;
 }
+#pragma ---
 
-
+#pragma init and dealloc
 -(id) init
 {
     self = [super init];
@@ -58,59 +68,61 @@ static DMPlayRecordHandler* recordHandler;
     return self;
 }
 
+-(void)dealloc
+{
+    self.delegate = nil;
+    [recordFileURL release];
+    [context release];
+    [super dealloc];
+}
+#pragma ---
+
+#pragma private methods
 -(NSManagedObjectContext*) makeContextWithPath:(NSString*) datapath
 {
-    if (datapath == nil) {
-        datapath = [[DMPlayRecordHandler pathToDataFileFolder]
-                    stringByAppendingPathComponent:@"dmdata.db"];
-    }
-    else {
-        datapath = [datapath stringByAppendingPathComponent:@"dmdata.db"];
-    }
-    NSURL* databaseURL = [NSURL fileURLWithPath:datapath];
+    DMLog(@"DMPlayerRecordDatabase Path = %@",datapath);
+    
+    datapath = [datapath stringByAppendingPathComponent:@"dmdata.db"];
     
     NSManagedObjectModel* model = [NSManagedObjectModel mergedModelFromBundles:nil];
-    NSPersistentStoreCoordinator* coordinator = nil;
-    coordinator = [[NSPersistentStoreCoordinator alloc]
-                   initWithManagedObjectModel:model];
-    NSError* err = nil;
     
+    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc]
+                   initWithManagedObjectModel:model];
+    
+    NSError *err = nil;
 
     [coordinator addPersistentStoreWithType:NSBinaryStoreType
                               configuration:nil 
-                                        URL:databaseURL
+                                        URL:[NSURL fileURLWithPath:datapath]
                                     options:nil
                                       error:&err];
     if (err) {
-        NSLog(@"%@",err);
+        DMLog(@"Load RecordDatabase with #Error# = %@",err);
     }
     
-    context = [[[NSManagedObjectContext alloc] initWithConcurrencyType:
-                NSPrivateQueueConcurrencyType] retain];
+    context = [[NSManagedObjectContext alloc] initWithConcurrencyType:
+                NSPrivateQueueConcurrencyType];
     
     [context setPersistentStoreCoordinator:coordinator];
     return  context;
 }
-
+#pragma ---
 
 
 -(NSManagedObject*) songWithSid:(NSString*) sid
 {
 
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"sid = %@",sid];
     NSFetchRequest* fetchRequset = [NSFetchRequest fetchRequestWithEntityName:@"Song"];
-    [fetchRequset setPredicate:predicate];
+    [fetchRequset setPredicate:[NSPredicate predicateWithFormat:@"sid = %@",sid]];
     
     NSError* fetchErr = nil;
     NSArray* results = [context executeFetchRequest:fetchRequset error:&fetchErr];
     
-    
-    if ([results count]) {
+    if ([results count]>0) {
         // 找到了之前的记录
-        NSManagedObject* object = [results objectAtIndex:0];
-        return object;
+        return [results objectAtIndex:0];
     }
-    return  nil;
+    return nil;
 }
 
 -(void) addRecordWithCapsule:(DMPlayableCapsule *)capsule
@@ -118,12 +130,12 @@ static DMPlayRecordHandler* recordHandler;
     NSString* sid = capsule.sid;
 
     NSManagedObject* theSong = [self songWithSid:sid];
+    
     if (theSong) {
         [theSong setValue:[NSDate date] forKey:@"date"];
     }
     else {
         // 没有找到之前的记录
-        
         NSDate* date = [NSDate date];
         
         NSManagedObject* song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
@@ -144,10 +156,9 @@ static DMPlayRecordHandler* recordHandler;
         NSError* err = nil;
         [context save:&err];
         if (err) {
-            NSLog(@"%@",err);
+            DMLog(@"Context save with #Error# = %@",err);
         }
     }
-    
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {
         [NSFileVersion addVersionOfItemAtURL: self.recordFileURL
@@ -179,7 +190,6 @@ static DMPlayRecordHandler* recordHandler;
     [controller openDocumentWithContentsOfURL:self.recordFileURL
                                           display:YES
                                             error:nil];
-    
 }
 
 -(void) removeCurrentVersion

@@ -13,14 +13,15 @@
 
 @protocol DMPlayRecordHandlerDelegate <NSObject>
 -(void) playSongWithSid:(NSString*)sid andSsid:(NSString*)ssid;
-
 @end
 
 @class DMPlayableCapsule;
 
 @interface DMPlayRecordHandler : NSObject
 {
-    
+    NSURL *recordFileURL;
+    NSManagedObjectContext *context;
+    id<DMPlayRecordHandlerDelegate> delegate;
 }
 
 
@@ -29,7 +30,8 @@
 @property(nonatomic,assign) id<DMPlayRecordHandlerDelegate> delegate;
 
 +(DMPlayRecordHandler*) sharedRecordHandler;
-+(NSString*) pathToDataFileFolder;
+
+
 -(NSManagedObject*) songWithSid:(NSString*) sid;
 -(void) addRecordWithCapsule:(DMPlayableCapsule*) capsule;
 -(void) addRecordAsyncWithCapsule:(DMPlayableCapsule*)capsule;

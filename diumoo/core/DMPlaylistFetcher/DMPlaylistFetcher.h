@@ -27,9 +27,9 @@
 @property(retain) id<DMPlaylistFetcherDeleate> delegate;
 
 
-- (void)fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;
-- (DMPlayableCapsule*)getOnePlayableCapsule;
-- (void) clearPlaylist;
+-(void) fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;
+-(DMPlayableCapsule*) getOnePlayableCapsule;
+-(void) clearPlaylist;
 
 
 @end
