@@ -11,27 +11,28 @@
 @class EDStarRating;
 
 @interface DMDocumentWindowController : NSWindowController <NSWindowDelegate>
+{
+    
+}
 
-
-
-@property(nonatomic,retain) IBOutlet SMTabBar *tabBar;
-@property(nonatomic,retain)IBOutlet NSTabView * tabView;
+@property(nonatomic,assign) IBOutlet SMTabBar *tabBar;
+@property(nonatomic,assign) IBOutlet NSTabView *tabView;
 
 // -------------------------预览标签页--------------------------
-@property(nonatomic,retain) IBOutlet EDStarRating* starRating;
-@property(nonatomic,retain) IBOutlet NSButton* revertButton;
-@property(nonatomic,retain) IBOutlet NSButton* albumCoverButton;
-@property(nonatomic,retain) IBOutlet NSTextField* songTitle;
-@property(nonatomic,retain) IBOutlet NSTextField* artist;
+@property(nonatomic,assign) IBOutlet EDStarRating *starRating;
+@property(nonatomic,assign) IBOutlet NSButton *revertButton;
+@property(nonatomic,assign) IBOutlet NSButton *albumCoverButton;
+@property(nonatomic,assign) IBOutlet NSTextField *songTitle;
+@property(nonatomic,assign) IBOutlet NSTextField *artist;
 
 // ------------------------详细信息标签页------------------------
-@property(nonatomic,retain) IBOutlet NSTextField* indicatorText;
-@property(nonatomic,retain) IBOutlet NSProgressIndicator* progressIndicator;
+@property(nonatomic,assign) IBOutlet NSTextField *indicatorText;
+@property(nonatomic,assign) IBOutlet NSProgressIndicator *progressIndicator;
 
 
 // --------------------------其他------------------------------
-@property(copy) NSString* albumTitle;
-@property(nonatomic,assign) NSLock* lock;
+@property(copy) NSString *albumTitle;
+@property(nonatomic,assign) NSLock *lock;
 
 -(id) init;
 

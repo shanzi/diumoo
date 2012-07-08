@@ -18,6 +18,7 @@
 @interface DMDocumentWindowController ()
 
 -(void)buildTabButton;
+
 @end
 
 @implementation DMDocumentWindowController

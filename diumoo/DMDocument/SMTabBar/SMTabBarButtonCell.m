@@ -75,8 +75,9 @@
                                        endAngle:270.0f];
         [path closePath];
         [path fill];
-        
+    
         [[NSGraphicsContext currentContext] restoreGraphicsState];
+        [shadow release];
     }
 }
 

@@ -104,7 +104,10 @@ static DMPlayRecordHandler* recordHandler;
                 NSPrivateQueueConcurrencyType];
     
     [context setPersistentStoreCoordinator:coordinator];
-    return  context;
+    
+    [coordinator release];
+    
+    return  [context autorelease];
 }
 #pragma ---
 
