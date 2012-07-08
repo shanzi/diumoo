@@ -23,10 +23,22 @@
     
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+	if (flag) {
+		return NO;
+	}	
+    else
+	{
+        [center.mainPanel showWindow:nil];
+        return YES;	
+	}
+    
+}
+
 -(void) makeDefaultPreference
 {
-    NSDictionary* defaultPreferences = nil;
-    defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary *defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithInteger:1],@"channel",
                           [NSNumber numberWithFloat:1.0],@"volume",
                            nil];
@@ -48,27 +60,11 @@
             case NX_KEYTYPE_REWIND:
                 break;
         }
-    
 }
-
 
 -(void) showPreference:(id)sender
 {
-    pref = [DMPrefsPanelDataProvider sharedPrefs];
-    [pref showPreferences];
+    [[DMPrefsPanelDataProvider sharedPrefs] showPreferences];
 }
-
--(BOOL) application:(NSApplication *)sender openFile:(NSString *)filename
-{
-    DMLog(@"open file");
-    return YES;
-}
-
--(BOOL) applicationShouldOpenUntitledFile:(NSApplication *)sender
-{
-    DMLog(@"untitled file");
-    return NO;
-}
-
 
 @end

@@ -16,9 +16,7 @@
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {
     IBOutlet DMControlCenter* center;
-    DMPrefsPanelDataProvider *pref;
 }
-//@property(assign) DMPanelWindowController* panel;
 
 -(IBAction)showPreference:(id)sender;
 
