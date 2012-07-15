@@ -14,6 +14,11 @@
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
     [self makeDefaultPreference];
+    [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
+}
+
+-(void) startPlayInBackground;
+{
     [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
     [center fireToPlayDefaultChannel];
 }
@@ -41,6 +46,7 @@
     NSDictionary *defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithInteger:1],@"channel",
                           [NSNumber numberWithFloat:1.0],@"volume",
+                          [NSNumber numberWithInteger:2],@"max_wait_playlist_count",           
                            nil];
     [[NSUserDefaultsController sharedUserDefaultsController]
      setInitialValues:defaultPreferences];

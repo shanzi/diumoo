@@ -77,8 +77,8 @@ typedef NSUInteger EDStarRatingDisplayMode;
 
 @property (nonatomic,assign) NSColor *backgrounColor;
 @property (nonatomic,assign) NSImage *backgroundImage;
-@property (nonatomic,assign) NSImage *starHighlightedImage;
-@property (nonatomic,assign) NSImage *starImage;
+@property (nonatomic,retain) NSImage *starHighlightedImage;
+@property (nonatomic,retain) NSImage *starImage;
 @property (nonatomic) NSInteger maxRating;
 @property (nonatomic) float rating;
 @property (nonatomic) CGFloat horizontalMargin;

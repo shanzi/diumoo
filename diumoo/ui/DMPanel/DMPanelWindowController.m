@@ -140,15 +140,11 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setPlayingCapsule:(DMPlayableCapsule *)capsule
 {
-    NSImage * coverImage = capsule.picture;
-    if (coverImage == nil) {
-        [capsule prepareCoverWithCallbackBlock:^(NSImage *image) {
+
+    [capsule prepareCoverWithCallbackBlock:^(NSImage *image) {
             [coverView setAlbumImage:image];
-        }];
-    }
-    else {
-        [coverView setAlbumImage:coverImage];
-    }
+    }];
+
     
     [coverView setPlayingInfo:capsule.title :capsule.artist :capsule.albumtitle];
 }

@@ -63,7 +63,7 @@ static DMPlayRecordHandler* recordHandler;
         NSString* pathToFolder = [DMPlayRecordHandler pathToDataFileFolder];
         NSString* recordFilePath = [pathToFolder stringByAppendingPathComponent:@"record.dmsid"];
         self.recordFileURL = [NSURL fileURLWithPath:recordFilePath];
-        self.context = [self makeContextWithPath:pathToFolder];;
+        self.context = [[self makeContextWithPath:pathToFolder] retain];
     }
     return self;
 }
@@ -119,8 +119,9 @@ static DMPlayRecordHandler* recordHandler;
     [fetchRequset setPredicate:[NSPredicate predicateWithFormat:@"sid = %@",sid]];
     
     NSError* fetchErr = nil;
+    DMLog(@"%@",context);
     NSArray* results = [context executeFetchRequest:fetchRequset error:&fetchErr];
-    
+
     if ([results count]>0) {
         // 找到了之前的记录
         return [results objectAtIndex:0];

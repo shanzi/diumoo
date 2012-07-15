@@ -80,7 +80,7 @@
             menuToPopup = publicMenu;
         }
     }
-    NSLog(@"%@",menuToPopup);
+
     [NSMenu popUpContextMenu:menuToPopup withEvent:event forView:sender];
 }
 
@@ -375,6 +375,7 @@
             
             
             // -------------------------- 处理dj兆赫的菜单和记录 --------------------------
+            DMLog(@"处理DJ兆赫的菜单和记录");
             NSMenuItem* newItem = [djMenu itemWithTag:tag]; //先检查当前的dj兆赫是不是已经在最近播放的列表里了
             if(newItem) sender = newItem ; // 如果是，就直接使用这个item就好
             else {
@@ -397,6 +398,7 @@
                 
                 // 计算将新item插入的index
                 NSInteger indexToInsert = [djMenu indexOfItem:itemToHide] +1;
+                [newItem setIndentationLevel:1];
                 [djMenu insertItem:newItem atIndex:indexToInsert];
                 sender = newItem; // 插入进去了，把sender改为新的item
                 
@@ -429,7 +431,7 @@
         
         
     }
-    NSLog(@"------pitem %@",[sender parentItem]);
+
     [sender setState:NSOnState];
     NSMenuItem* pitem = [sender parentItem];
     while (pitem!=nil) {

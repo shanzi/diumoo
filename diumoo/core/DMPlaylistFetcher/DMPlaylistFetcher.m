@@ -70,11 +70,11 @@
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
     
-    DMLog(@"startattr,%@",startAttr);
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                             timeoutInterval:5.0];
+
     
     //----------------------------处理start属性-------------------------
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:
@@ -86,9 +86,8 @@
                                                                         @"/",NSHTTPCookiePath, nil]]];
 
     //----------------------------------------------------------------
-    
     [NSURLConnection sendAsynchronousRequest:urlrequest 
-                                       queue:[NSOperationQueue currentQueue]
+                                       queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData * data, NSError *err){
 
          if (err) {
@@ -98,6 +97,8 @@
          else {
              NSError* jerr = nil;
              id jresponse = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
+             
+             
              
              if(jerr){
                  [delegate fetchPlaylistError:jerr withComment:nil];
@@ -115,7 +116,7 @@
                      @try {
                          if (startAttr){
                              
-                             playlist = [NSMutableArray arrayWithArray:[jresponse valueForKey:@"song"]];
+                             self.playlist = [NSMutableArray arrayWithArray:[jresponse valueForKey:@"song"]];
                              [delegate fetchPlaylistSuccessWithStartSong:
                              [DMPlayableCapsule playableCapsuleWithDictionary:[playlist objectAtIndex:0]]];
                              [playlist removeObjectAtIndex:0];

@@ -6,7 +6,6 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#define MAX_WAIT_PLAYLIST_COUNT 2
 
 #define kPauseOperationTypePass @"pass"
 #define kPauseOperationTypeSkip @"skip"

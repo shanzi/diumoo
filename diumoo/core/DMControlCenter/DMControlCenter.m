@@ -38,6 +38,8 @@
         self.recordHandler = [DMPlayRecordHandler sharedRecordHandler];
         [recordHandler setDelegate:self];
         
+
+        
     }
     return self;
 }
@@ -202,32 +204,38 @@
     if (state > QTMovieLoadStatePlayable) {
         if (c == playingCapsule && 
             playingCapsule.playState == WAIT_TO_PLAY)
-                [playingCapsule play];
+            [playingCapsule play];
         
         if(state >= QTMovieLoadStateComplete)
             
             if ([c picture] == nil) {
                 [c prepareCoverWithCallbackBlock:nil];
             }
-            
-            // 在这里执行一些缓冲歌曲的操作
-            if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
-                DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
-                if(waitsong==nil){
-                    
-                    [fetcher fetchPlaylistFromChannel:channel
-                                                  withType:kFetchPlaylistTypePlaying
-                                                       sid:playingCapsule.sid
-                                            startAttribute:nil];
-                    
-                }
-                else{
-                    [waitsong setDelegate:self];
-                    if([waitsong createNewMovie])
-                        [waitPlaylist addObject:waitsong];
-                }
-                    
+        
+        // 在这里执行一些缓冲歌曲的操作
+        
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
+        
+        DMLog(@"%ld",MAX_WAIT_PLAYLIST_COUNT);
+        
+        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
+            DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
+            if(waitsong==nil){
+                
+                [fetcher fetchPlaylistFromChannel:channel
+                                         withType:kFetchPlaylistTypePlaying
+                                              sid:playingCapsule.sid
+                                   startAttribute:nil];
+                
             }
+            else{
+                [waitsong setDelegate:self];
+                if([waitsong createNewMovie])
+                    [waitPlaylist addObject:waitsong];
+            }
+            
+        }
     }
     else if(state < 0){
         if(c == playingCapsule)
@@ -248,16 +256,16 @@
 
 -(void) fetchPlaylistError:(NSError *)err withComment:(NSString *)comment
 {
-#ifdef DEBUG
-    NSLog(@"fetch error : %@ comment : %@",err,comment);
-#endif
+
+    DMLog(@"fetch error");
 }
 
 
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
-    NSLog(@"%@",startsong);
+    DMLog(@"fetch success");
+    
     if (playingCapsule == nil || startsong) 
     {
         if(startsong == nil)
@@ -365,6 +373,7 @@
     if (self.channel == ch) {
         return YES;
     }
+    
     if (![skipLock tryLock]) {
         return NO;
     };

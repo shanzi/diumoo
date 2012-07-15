@@ -259,27 +259,25 @@
 
 -(void) prepareCoverWithCallbackBlock:(void (^)(NSImage*))block
 {
-    NSBlockOperation* blockoperation = [NSBlockOperation blockOperationWithBlock:^{
-        if (self.picture == nil) {
-            NSBlockOperation* blockoperation = 
-            [NSBlockOperation blockOperationWithBlock:^{
-                NSURL* url = [NSURL URLWithString:largePictureLocation];
-                picture = [[NSImage alloc] initWithContentsOfURL:url]; 
-                if (picture) {
-                    if(block) block(picture);
-                }
-                else {
-                    picture = [NSImage imageNamed:@"albumfail.png"];
-                    if(block)block(picture);
-                }
-            }];
-            [[NSOperationQueue currentQueue] addOperation:blockoperation];
-        }
-        else{
-            if(block) block(picture);
-        }
-    }];
-    [[NSOperationQueue currentQueue] addOperation:blockoperation];
+
+    if (self.picture == nil) {
+        NSBlockOperation* blockoperation = 
+        [NSBlockOperation blockOperationWithBlock:^{
+            NSURL* url = [NSURL URLWithString:largePictureLocation];
+            picture = [[NSImage alloc] initWithContentsOfURL:url]; 
+            if (picture) {
+                if(block) block(picture);
+            }
+            else {
+                picture = [NSImage imageNamed:@"albumfail.png"];
+                if(block)block(picture);
+            }
+        }];
+        [[NSOperationQueue mainQueue] addOperation:blockoperation];
+    }
+    else{
+        if(block) block(picture);
+    }
 }
 
 @end
