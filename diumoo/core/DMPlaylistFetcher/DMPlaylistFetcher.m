@@ -8,6 +8,7 @@
 
 #define PLAYLIST_FETCH_URL_BASE @"http://douban.fm/j/mine/playlist"
 #define DOUBAN_FM_ORIGIN_URL @".douban.fm"
+#define DM_ALBUM_GET_URL @"http://127.0.0.1:8000/album/"
 
 
 #import "DMPlaylistFetcher.h"
@@ -19,8 +20,8 @@
     NSMutableDictionary *playedSongs;
 }
 
-@property(assign) NSMutableArray *playlist;
-@property(assign) NSMutableDictionary *playedSongs;
+@property(retain) NSMutableArray *playlist;
+@property(retain) NSMutableDictionary *playedSongs;
 
 - (NSString*)randomString;
 - (void)fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr;
@@ -98,8 +99,6 @@
              NSError* jerr = nil;
              id jresponse = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
              
-             
-             
              if(jerr){
                  [delegate fetchPlaylistError:jerr withComment:nil];
              }
@@ -122,7 +121,7 @@
                              [playlist removeObjectAtIndex:0];
                          }
                          else {
-                             [playlist addObjectsFromArray:[jresponse valueForKey:@"song"]];
+                             [playlist addObjectsFromArray:[jresponse objectForKey:@"song"]];
                              [delegate fetchPlaylistSuccessWithStartSong:nil];
                          }
                      }
@@ -173,6 +172,32 @@
 -(void) clearPlaylist
 {
     [self.playlist removeAllObjects];
+}
+
+-(void) dmGetAlbumSongsWithAid:(NSString *)aid andCompletionBlock:(void (^)(NSArray *))block
+{
+    if (block==nil) {
+        return;
+    }
+    
+    NSString* urlstring = [DM_ALBUM_GET_URL stringByAppendingFormat:@"?aid=%@",aid];
+    NSURL* url = [NSURL URLWithString:urlstring];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                         timeoutInterval:5.0];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+
+                               NSArray* list = [[CJSONDeserializer deserializer] deserializeAsArray:d error:&e];
+                               if (e) {
+                                   block(nil);
+                               }
+                               else {
+                                   block(list);
+                               }
+                               
+                           }];
 }
 
 @end

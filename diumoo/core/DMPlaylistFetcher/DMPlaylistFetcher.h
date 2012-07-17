@@ -31,5 +31,7 @@
 -(DMPlayableCapsule*) getOnePlayableCapsule;
 -(void) clearPlaylist;
 
+-(void) dmGetAlbumSongsWithAid:(NSString*)aid andCompletionBlock:(void(^)(NSArray* list)) block;
+
 
 @end

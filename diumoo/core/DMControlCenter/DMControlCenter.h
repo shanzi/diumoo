@@ -10,6 +10,7 @@
 #define kPauseOperationTypePass @"pass"
 #define kPauseOperationTypeSkip @"skip"
 #define kPauseOperationTypeFetchNewPlaylist @"newplaylist"
+#define kPauseOperationTypePlaySpecial @"special"
 
 #import <Foundation/Foundation.h>
 #import "DMPlayableCapsule.h"
@@ -24,7 +25,7 @@
 @property(retain) NSString* channel;
 
 @property(retain) DMPlayableCapsule* playingCapsule;
-@property(assign) DMPlayableCapsule* songToPlay;
+@property(retain) DMPlayableCapsule* songToPlay;
 
 @property(assign) DMPlaylistFetcher* fetcher;
 @property(assign) NSMutableOrderedSet* waitPlaylist;
@@ -34,10 +35,11 @@
 @property(assign) DMPanelWindowController* mainPanel;
 @property(assign) DMPlayRecordHandler* recordHandler;
 
+@property(retain) NSMutableArray* specialWaitList;
+
 
 // }
 
--(void) fireToPlay:(NSString*)startSongAttribute;
 -(void) fireToPlayDefaultChannel;
 
 @end

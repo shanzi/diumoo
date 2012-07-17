@@ -31,7 +31,9 @@
 
 
 // --------------------------其他------------------------------
-@property(copy) NSString *albumTitle;
+@property(copy) NSString* albumTitle;
+@property(copy) NSString* aid;
+
 @property(nonatomic,assign) NSLock *lock;
 
 -(id) init;
@@ -39,4 +41,5 @@
 -(void)setupWindowForDocument:(NSDocument*) doc;
 
 -(IBAction)revert:(id)sender;
+-(IBAction)playAlbum:(id)sender;
 @end

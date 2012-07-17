@@ -23,7 +23,7 @@
 
 @synthesize delegate;
 @synthesize publicMenu,djExploreMenu,djCollectMenu,currentChannelMenuItem;
-@synthesize currentChannelID;
+@synthesize currentChannelID,specialMode;
 
 
 -(void) awakeFromNib
@@ -57,11 +57,17 @@
     
     NSMenu* menuToPopup = nil;
     
-    if ([sender tag]) {
+    DMLog(@"special mode %d",self.specialMode);
+    
+    if (self.specialMode) {
+        menuToPopup = exitSpecialMenu;
+    }
+    else if ([sender tag]) {
         menuToPopup = mainMenu;
         [djSaveItem setHidden:YES]; 
     }
     else {
+        
         if([djSaveItem tag]==-10)
             [djSaveItem setHidden:NO];
         
@@ -375,7 +381,7 @@
             
             
             // -------------------------- 处理dj兆赫的菜单和记录 --------------------------
-            DMLog(@"处理DJ兆赫的菜单和记录");
+
             NSMenuItem* newItem = [djMenu itemWithTag:tag]; //先检查当前的dj兆赫是不是已经在最近播放的列表里了
             if(newItem) sender = newItem ; // 如果是，就直接使用这个item就好
             else {
@@ -447,6 +453,38 @@
     
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     [values setValue:[NSNumber numberWithInteger:tag] forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
+}
+
+-(void) enterSpecialPlayingModeWithTitle:(NSString *)title artist:(NSString*)artist andTypeString:(NSString*) type
+{
+    self.specialMode = YES;
+    
+    NSString* typeTitle = [NSString stringWithFormat:@"%@:%@",type,title];
+    NSString* fullTitle = [@"名称 : " stringByAppendingString:title];
+    
+    [longMainButton setTitle:typeTitle];
+    [longMainButton setHidden:NO];
+    
+    NSString* exitTitle = [NSString stringWithFormat:@"返回“%@”兆赫",[currentChannelMenuItem title]];
+    NSString* fulltype = [@"类型 : " stringByAppendingString:type];
+    
+    [[exitSpecialMenu itemWithTag:0] setTitle:exitTitle];
+    [[exitSpecialMenu itemWithTag:1] setTitle:fullTitle];
+    [[exitSpecialMenu itemWithTag:2] setTitle:artist];
+    [[exitSpecialMenu itemWithTag:3] setTitle:fulltype];
+    
+}
+
+-(void) exitSepecialPlayingMode
+{
+    if (self.currentChannelID < 1) {
+        [longMainButton setTitle:[currentChannelMenuItem title]];
+    }
+    else {
+        [longMainButton setHidden:YES];
+    }
+    
+    self.specialMode = NO;
 }
 
 @end

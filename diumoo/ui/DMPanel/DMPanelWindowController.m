@@ -17,7 +17,7 @@ DMPanelWindowController *sharedWindow;
 @end
 
 @implementation DMPanelWindowController
-@synthesize view,delegate;
+@synthesize view,delegate,openURL;
 
 +(DMPanelWindowController*)sharedWindowController
 {
@@ -108,6 +108,24 @@ DMPanelWindowController *sharedWindow;
     }
 }
 
+-(void) specialAction:(id)sender
+{
+    NSInteger tag = [sender tag];
+    switch (tag) {
+        case 0:
+            // 退出special
+            [self.delegate exitedSpecialMode];
+            break;
+        case -2:
+            // 打开网页
+        {
+            NSURL* url = [NSURL URLWithString:self.openURL];
+            [[NSWorkspace sharedWorkspace] openURL:url];
+        }
+        break;
+    }
+}
+
 -(void) setRated:(BOOL)rated
 {
     if (rated){
@@ -167,6 +185,27 @@ DMPanelWindowController *sharedWindow;
     else {
         [self channelChangeActionWithSender:[popupMenuController.publicMenu 
                                              itemWithTag:1]];
+    }
+}
+
+-(void) toggleSpecialWithDictionary:(NSDictionary *)info;
+{
+    
+    if (info) {
+        DMLog(@"play info : %@",info);
+        NSString* title = [info objectForKey:@"title"];
+        NSString* artist = [info objectForKey:@"artist"];
+        NSString* type = [info objectForKey:@"typestring"];
+
+        self.openURL = [DOUBAN_URL_PRIFIX stringByAppendingFormat:@"subject/%@/",[info objectForKey:@"aid"]];
+        
+        [popupMenuController enterSpecialPlayingModeWithTitle:title
+                                                       artist:artist
+                                                andTypeString:type];
+    }
+    else {
+        self.openURL = nil;
+        [popupMenuController exitSepecialPlayingMode];
     }
 }
 

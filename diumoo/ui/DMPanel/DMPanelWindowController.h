@@ -19,7 +19,7 @@
 -(void)ban;
 -(void)volumeChange:(float)volume;
 -(BOOL)channelChangedTo:(NSString*)channel;
-
+-(void)exitedSpecialMode;
 
 @end
 
@@ -40,17 +40,20 @@
 
 @property(assign) IBOutlet DMCoverControlView* view;
 @property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
+@property(copy) NSString* openURL;
 
 +(DMPanelWindowController*)sharedWindowController;
 
 -(void) channelChangeActionWithSender:(id)sender;
 -(IBAction)controlAction:(id)sender;
 -(IBAction)showAlbumWindow:(id)sender;
+-(IBAction)specialAction:(id)sender;
 
 -(void) setRated:(BOOL)rated;
 -(void) countRated:(NSInteger)count;
 -(void) setPlaying:(BOOL) playing;
 -(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
 -(void) playDefaultChannel;
+-(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 
 @end

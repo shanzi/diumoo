@@ -25,7 +25,7 @@
 @synthesize tabView,tabBar;
 @synthesize starRating,revertButton,albumCoverButton,songTitle,artist;
 @synthesize indicatorText,progressIndicator;
-@synthesize albumTitle,lock;
+@synthesize albumTitle,aid,lock;
 
 -(id)init
 {
@@ -100,6 +100,7 @@
     self.songTitle.stringValue = [dict valueForKey:@"title"];
     
     self.albumTitle = [dict valueForKey:@"albumtitle"]; 
+    self.aid = [dict valueForKey:@"aid"];
     starRating.rating = [[dict valueForKey:@"rating_avg"] floatValue];
     [starRating setNeedsDisplay];
     [image release];
@@ -258,6 +259,25 @@
     NSTabViewItem* detailTabViewItem = [tabView tabViewItemAtIndex:1];
     [detailTabViewItem setView:scrollview];
     
+}
+
+-(void) playAlbum:(id)sender
+{
+    DMLog(@"post play album signal");
+    NSString* type = @"album";
+    NSString* typestring = @"专辑";
+    NSString* artisttitle = [@"艺术家 : " stringByAppendingString:[artist stringValue]];
+    NSDictionary* userinfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              aid ,@"aid",
+                              albumTitle,@"title",
+                              artisttitle,@"artist",
+                              type,@"type",
+                              typestring,@"typestring",
+                              nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playspecial" 
+                                                        object:self
+                                                      userInfo:userinfo];
 }
 
 @end

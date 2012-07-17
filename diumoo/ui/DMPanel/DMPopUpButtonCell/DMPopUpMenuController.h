@@ -18,7 +18,7 @@
     
     IBOutlet NSMenu * mainMenu;
     IBOutlet NSMenu * djMenu;
-    
+    IBOutlet NSMenu* exitSpecialMenu;
 }
 
 @property(retain) IBOutlet id delegate;
@@ -30,7 +30,7 @@
 @property NSInteger currentChannelID;
 @property(retain) id currentChannelMenuItem;
 
-
+@property BOOL specialMode;
 
 -(IBAction)popUpMenu:(id)sender;
 
@@ -38,5 +38,8 @@
 -(IBAction)changeChannelAction:(id)sender;
 -(void) updateChannelMenuWithSender:(id)sender;
 -(void) updateChannelList;
+
+-(void) enterSpecialPlayingModeWithTitle:(NSString *)title artist:(NSString*)artist andTypeString:(NSString*) type;
+-(void) exitSepecialPlayingMode;
 
 @end
