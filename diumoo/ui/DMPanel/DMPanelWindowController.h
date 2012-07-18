@@ -10,6 +10,7 @@
 #import "DMCoverControlView.h"
 #import "DMPlayableCapsule.h"
 #import "DMPopUpMenuController.h"
+#import "MenubarController.h"
 
 @protocol DMPanelWindowDelegate <NSObject>
 
@@ -36,11 +37,16 @@
     IBOutlet NSButton* userIconButton;
     IBOutlet NSTextField* usernameTextField;
     IBOutlet NSTextField* ratedCountTextField;
+    
+    BOOL _hasActivePanel;
 }
 
-@property(assign) IBOutlet DMCoverControlView* view;
+@property(nonatomic,assign) IBOutlet DMCoverControlView* view;
+@property(nonatomic,retain) MenubarController* menubarController;
+
 @property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
 @property(copy) NSString* openURL;
+@property (nonatomic) BOOL hasActivePanel;
 
 +(DMPanelWindowController*)sharedWindowController;
 
@@ -55,5 +61,6 @@
 -(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
 -(void) playDefaultChannel;
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
+- (IBAction)togglePanel:(id)sender;
 
 @end

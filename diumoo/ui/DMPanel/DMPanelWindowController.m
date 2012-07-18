@@ -9,6 +9,7 @@
 #import "DMPanelWindowController.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMPlayRecordHandler.h"
+#import "StatusItemView.h"
 
 DMPanelWindowController *sharedWindow;
 
@@ -17,7 +18,7 @@ DMPanelWindowController *sharedWindow;
 @end
 
 @implementation DMPanelWindowController
-@synthesize view,delegate,openURL;
+@synthesize view,delegate,openURL,menubarController;
 
 +(DMPanelWindowController*)sharedWindowController
 {
@@ -31,9 +32,21 @@ DMPanelWindowController *sharedWindow;
 {
     self = [super initWithWindowNibName:@"DMPanelWindowController"];
     if(self){
-        
+        self.menubarController = [[MenubarController alloc] init];
+        [menubarController setAction:@selector(togglePanel:) withTarget:self];
     }
     return self;
+}
+
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    NSWindow* panel = self.window;
+    
+    [panel setLevel:NSPopUpMenuWindowLevel];
+    [panel setBackgroundColor:[NSColor whiteColor]];
+    [panel setOpaque:NO];
+    [panel setAlphaValue:0.9];
 }
 
 - (void)windowDidLoad
@@ -41,7 +54,6 @@ DMPanelWindowController *sharedWindow;
     [super windowDidLoad];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
-    [self.window setBackgroundColor:[NSColor whiteColor]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(accountStateChanged:)
                                                  name:AccountStateChangedNotification
@@ -169,6 +181,7 @@ DMPanelWindowController *sharedWindow;
 
 -(void) showAlbumWindow:(id)sender
 {
+    [NSApp activateIgnoringOtherApps:YES];
     [[DMPlayRecordHandler sharedRecordHandler] open];
 }
 
@@ -209,6 +222,90 @@ DMPanelWindowController *sharedWindow;
     }
 }
 
+// ------------------------------ 弹出窗口 ----------------------------
+
+- (NSRect)statusRectForWindow:(NSWindow *)window
+{
+    NSRect statusRect = NSZeroRect;
+    StatusItemView *statusItemView = nil;
+
+    statusItemView = menubarController.statusItemView;
+
+    statusRect = statusItemView.globalRect;
+    statusRect.origin.y = NSMinY(statusRect) - NSHeight(statusRect);
+
+    return statusRect;
+}
+
+- (BOOL)hasActivePanel
+{
+    return _hasActivePanel;
+}
+
+- (void)setHasActivePanel:(BOOL)flag
+{
+    if (_hasActivePanel != flag)
+    {
+        _hasActivePanel = flag;
+        
+        if (_hasActivePanel)
+        {
+            [self openPanel];
+        }
+        else
+        {
+            [self closePanel];
+        }
+    }
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification;
+{
+    if ([[self window] isVisible])
+    {
+        [self windowWillClose:nil];
+    }
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    self.hasActivePanel = NO;
+    self.menubarController.hasActiveIcon = NO;
+}
+
+-(void) openPanel
+{
+    NSWindow *panel = [self window];
+    
+    NSRect screenRect = [[panel screen] frame];
+    NSRect statusRect = [self statusRectForWindow:panel];
+    
+    NSRect panelRect = [panel frame];
+    CGFloat panelWidth = NSWidth(panelRect);
+    CGFloat screenWidth = NSWidth(screenRect);
+    CGFloat left = NSMinX(statusRect);
+    CGFloat leftSafe = screenWidth - panelWidth;
+    
+    panelRect.origin.x = roundf(left<leftSafe?left:leftSafe);
+    panelRect.origin.y = NSMaxY(statusRect) - NSHeight(panelRect);
+    
+    
+    [NSApp activateIgnoringOtherApps:NO];
+    [panel setFrame:panelRect display:YES];
+    [panel makeKeyAndOrderFront:panel];
+}
+
+-(void) closePanel
+{
+    NSWindow *panel = [self window];
+    [panel orderOut:nil];
+}
+
+- (IBAction)togglePanel:(id)sender
+{
+    self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
+    self.hasActivePanel = self.menubarController.hasActiveIcon;
+}
 
 
 @end
