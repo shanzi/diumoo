@@ -23,9 +23,9 @@
 
 @property(retain) IBOutlet id delegate;
 
-@property(retain) IBOutlet NSMenu* publicMenu;
-@property(retain) IBOutlet NSMenu* djExploreMenu;
-@property(retain) IBOutlet NSMenu* djCollectMenu;
+@property(retain) NSMenu* publicMenu;
+@property(retain) NSMenu* djExploreMenu;
+@property(retain) NSMenu* djCollectMenu;
 
 @property NSInteger currentChannelID;
 @property(retain) id currentChannelMenuItem;
