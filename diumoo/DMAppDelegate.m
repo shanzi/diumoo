@@ -23,6 +23,8 @@
     [center fireToPlayDefaultChannel];
 }
 
+
+
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     
@@ -35,7 +37,6 @@
 	}	
     else
 	{
-        [center.mainPanel showWindow:nil];
         return YES;	
 	}
     
