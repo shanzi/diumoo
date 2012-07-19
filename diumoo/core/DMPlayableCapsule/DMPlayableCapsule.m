@@ -280,4 +280,17 @@
     }
 }
 
+-(void)synchronousStop
+{
+    if(movie.rate < 0.1) return;
+    if(timer){
+        [self invalidateTimer];
+    }
+    
+    while (movie.volume>0) {
+        movie.volume -= 0.14;
+        [NSThread sleepForTimeInterval:0.1];
+    }
+}
+
 @end

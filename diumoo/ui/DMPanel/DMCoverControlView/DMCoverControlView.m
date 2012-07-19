@@ -39,14 +39,12 @@
 
 -(void) mouseEntered:(NSEvent *)event
 {
-    [[NSCursor pointingHandCursor] push];
-    [slide showShade:YES];
+    [slide setOpacity:0.6];
 }
 
 -(void) mouseExited:(NSEvent *)event
 {
-    [NSCursor pop];
-    [slide showShade:NO];
+    [slide setOpacity:1.0];
 }
 
 -(void) setPlayingInfo:(NSString *)musictitle :(NSString *)artist :(NSString *)albumTitle 

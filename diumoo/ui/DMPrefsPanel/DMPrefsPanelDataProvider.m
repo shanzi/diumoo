@@ -9,25 +9,12 @@
 #import "DMPrefsPanelDataProvider.h"
 #import "DMDoubanAuthHelper.h"
 
-#define PANEL_VIEW_COUNT 4
-#define GENERAL_PANEL_ID 0
-#define ACCOUNT_PANEL_ID 1
-#define SPACE_PANEL_ID 2
-#define INFO_PANEL_ID 3
 
-DMPrefsPanelDataProvider *sharedPrefPanel;
 
 @implementation DMPrefsPanelDataProvider
 @synthesize captcha_code;
 
 
-+ (DMPrefsPanelDataProvider*)sharedPrefs
-{
-    if (sharedPrefPanel == nil) {
-        sharedPrefPanel = [[DMPrefsPanelDataProvider alloc] init];
-    }
-    return sharedPrefPanel;
-}
 
 - (void)showPreferences
 {

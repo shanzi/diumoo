@@ -10,6 +10,7 @@
 #import "DMDoubanAuthHelper.h"
 #import "DMPlayRecordHandler.h"
 #import "StatusItemView.h"
+#import "DMPrefsPanelDataProvider.h"
 
 DMPanelWindowController *sharedWindow;
 
@@ -64,6 +65,7 @@ DMPanelWindowController *sharedWindow;
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
+    DMLog(@"%@",helper);
     if (helper.username) {
         [userIconButton setImage:[helper getUserIcon]];
         [usernameTextField setStringValue:helper.username];
@@ -74,6 +76,10 @@ DMPanelWindowController *sharedWindow;
         [ratedCountTextField setHidden:NO];
         [usernameTextField setHidden:NO];
         
+        [rateButton setEnabled:YES];
+        [banButton setEnabled:[self.delegate canBanSong]];
+        
+        [popupMenuController setPrivateChannelEnabled:YES];
     }
     else {
         
@@ -82,8 +88,12 @@ DMPanelWindowController *sharedWindow;
         [usernameTextField setStringValue:@""];
         [ratedCountTextField setHidden:YES];
         [usernameTextField setHidden:YES];
+        
+        [popupMenuController setPrivateChannelEnabled:NO];
+        
+        [rateButton setEnabled:NO];
+        [banButton setEnabled:NO];
     }
-
     [popupMenuController updateChannelList];
 }
 
@@ -93,6 +103,16 @@ DMPanelWindowController *sharedWindow;
     NSInteger tag = [sender tag];
     NSString* channel = [NSString stringWithFormat:@"%d",tag];
     if ([self.delegate channelChangedTo:channel]) {
+        
+        if (tag == 0 || tag == -3) {
+            if ([DMDoubanAuthHelper sharedHelper].username) {
+                [banButton setEnabled:YES];
+            }
+        }
+        else {
+            [banButton setEnabled:NO];
+        }
+        
         [popupMenuController updateChannelMenuWithSender:sender];
     }
 }
@@ -116,6 +136,12 @@ DMPanelWindowController *sharedWindow;
             break;
         case 4:
             [self.delegate volumeChange:[sender floatValue]];
+            break;
+        case 5:
+            [PLTabPreferenceControl showPrefsAtIndex:ACCOUNT_PANEL_ID];
+            break;
+        case 6:
+            [[NSApplication sharedApplication] terminate:nil];
             break;
     }
 }
@@ -191,8 +217,20 @@ DMPanelWindowController *sharedWindow;
         [popupMenuController updateChannelList];
     }
     
-    if(popupMenuController.currentChannelMenuItem)
-    {
+    NSMenuItem* currentItem=popupMenuController.currentChannelMenuItem;
+
+    if ([DMDoubanAuthHelper sharedHelper].username == nil) {
+        [popupMenuController setPrivateChannelEnabled:NO];
+        [rateButton setEnabled:NO];
+        [banButton setEnabled:NO];
+        if (currentItem && currentItem.tag <= 0) {
+            [self channelChangeActionWithSender:[popupMenuController.publicMenu 
+                                                 itemWithTag:1]];
+            return;
+        }
+    }
+    
+    if(currentItem){
         [self channelChangeActionWithSender:popupMenuController.currentChannelMenuItem];
     }
     else {

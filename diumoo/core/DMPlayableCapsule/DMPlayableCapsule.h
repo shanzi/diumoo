@@ -75,5 +75,5 @@ typedef enum{
 -(void) prepareCoverWithCallbackBlock: (void (^)(NSImage*))block;
 
 -(NSString*) startAttributeWithChannel:(NSString*)channel;
-
+-(void)synchronousStop;
 @end

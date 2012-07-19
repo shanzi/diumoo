@@ -21,6 +21,7 @@
 -(void)volumeChange:(float)volume;
 -(BOOL)channelChangedTo:(NSString*)channel;
 -(void)exitedSpecialMode;
+-(BOOL)canBanSong;
 
 @end
 

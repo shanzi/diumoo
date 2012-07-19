@@ -11,7 +11,7 @@
 #import "DMControlCenter.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
-#import "DMPrefsPanelDataProvider.h"
+#import "PLTabPreferenceControl.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {

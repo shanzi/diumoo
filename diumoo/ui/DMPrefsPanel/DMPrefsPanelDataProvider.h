@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "PLTabPreferenceControl.h"
 
+#define PANEL_VIEW_COUNT 4
+#define GENERAL_PANEL_ID 0
+#define ACCOUNT_PANEL_ID 1
+#define SPACE_PANEL_ID 2
+#define INFO_PANEL_ID 3
+
 @interface DMPrefsPanelDataProvider : NSObject <PLTabPreferenceDelegate>
 {
     // tab controller ( file owner )
@@ -42,9 +48,6 @@
 
 @property(copy) NSString* captcha_code;
 
-+ (DMPrefsPanelDataProvider*)sharedPrefs;
-
--(void) showPreferences;
 -(IBAction)loginAction:(id)sender;
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;

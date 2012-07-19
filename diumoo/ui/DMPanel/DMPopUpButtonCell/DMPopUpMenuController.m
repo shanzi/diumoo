@@ -31,6 +31,7 @@
     
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     currentChannelID = [[values valueForKey:@"channel"] integerValue];
+    
     if (currentChannelID == 0 || currentChannelID == -3) {
         self.currentChannelMenuItem = [mainMenu itemWithTag:currentChannelID];
     }
@@ -179,7 +180,7 @@
                 [djcollectedmenu addItem:item];
                 [item autorelease];
             }
-            self.djCollectMenu = djcollectedmenu;
+            self.djCollectMenu = [djcollectedmenu retain];
             [[djMenu itemWithTag:-11] setSubmenu:djcollectedmenu];
             [djcollectedmenu autorelease];
         }
@@ -485,6 +486,26 @@
     }
     
     self.specialMode = NO;
+}
+
+-(void) setPrivateChannelEnabled:(BOOL)enable
+{
+
+    NSMenuItem* itemHeartChannel = [mainMenu itemWithTag:-3];
+    NSMenuItem* itemPrivateChannel = [mainMenu itemWithTag:0];
+    
+    if (enable == NO) {
+        itemPrivateChannel.action = nil;
+        itemHeartChannel.action = nil;
+        if (itemHeartChannel.state != NSOffState || itemHeartChannel.state != NSOffState) {
+            [self changeChannelAction:[publicMenu itemWithTag:1]];
+        }
+    }
+    else {
+        [itemHeartChannel setAction:@selector(changeChannelAction:)];
+        [itemPrivateChannel setAction:@selector(changeChannelAction:)];
+    }
+    
 }
 
 @end

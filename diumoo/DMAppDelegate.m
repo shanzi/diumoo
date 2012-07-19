@@ -27,7 +27,7 @@
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
-    
+    [center stopForExit];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -71,7 +71,8 @@
 
 -(void) showPreference:(id)sender
 {
-    [[DMPrefsPanelDataProvider sharedPrefs] showPreferences];
+    [PLTabPreferenceControl showPrefsAtIndex:0];
 }
+
 
 @end

@@ -41,5 +41,6 @@
 // }
 
 -(void) fireToPlayDefaultChannel;
+-(void) stopForExit;
 
 @end

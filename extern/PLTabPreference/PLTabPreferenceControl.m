@@ -9,6 +9,7 @@
 
 #import "PLTabPreferenceControl.h"
 
+static PLTabPreferenceControl* shared;
 
 @interface PLTabPreferenceControl()
 - (void)switchPanel:(id)sender;
@@ -17,6 +18,26 @@
 
 @implementation PLTabPreferenceControl
 @synthesize delegate;
+
+
++(PLTabPreferenceControl*) sharedPreferenceController
+{
+    if (shared) {
+        return shared;
+    }
+    else {
+        shared = [[PLTabPreferenceControl alloc] initWithWindowNibName:@"DMPrefsPanel"];
+        return shared;
+    }
+}
+
++(void)showPrefsAtIndex:(NSInteger)index
+{
+    [PLTabPreferenceControl sharedPreferenceController];
+    [shared showWindow:nil];
+    [shared selectPanelAtIndex:index];
+}
+
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
@@ -26,7 +47,6 @@
     
     return self;
 }
-
 - (void)dealloc
 {
     [super dealloc];

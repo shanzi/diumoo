@@ -23,7 +23,6 @@
 {
     CALayer* frontCover;
     CALayer* frontFadeTransitionLayer;
-    CALayer* shade;
     
     CATextLayer* titleLayer;
     CATextLayer* artistLayer;
@@ -35,6 +34,5 @@
 -(void) setTitle:(NSString*) title artist:(NSString*)artist andAlbum:(NSString*) album;
 
 -(void) setFrontCoverImage:(NSImage*) image;
--(void) showShade:(BOOL) show;
 
 @end

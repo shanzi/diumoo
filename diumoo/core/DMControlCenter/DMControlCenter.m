@@ -80,6 +80,15 @@
     [mainPanel playDefaultChannel];
 }
 
+-(void) stopForExit
+{
+    [skipLock lock];
+    mainPanel.hasActivePanel = NO;
+    if (playingCapsule) {
+        [playingCapsule synchronousStop];
+    }
+}
+
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
     DMLog(@"start to play : %@",aSong);
@@ -447,6 +456,23 @@
     self.specialWaitList = nil;
     [mainPanel toggleSpecialWithDictionary:nil];
     [self skip];
+}
+
+-(BOOL)canBanSong
+{
+    NSString* c = self.channel;
+    @try {
+        NSInteger channel_id = [c integerValue];
+        if (channel_id == 0 || channel_id == -3) {
+            return YES;
+        }
+        else {
+            return NO;
+        }
+    }
+    @catch (NSException *exception) {
+        return NO;
+    }
 }
 
 //--------------------------------------------------------------------

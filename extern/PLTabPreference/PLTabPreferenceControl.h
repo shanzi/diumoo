@@ -21,8 +21,10 @@
 
 @property(nonatomic,assign) IBOutlet id<PLTabPreferenceDelegate> delegate;
 
-- (void)selectPanelAtIndex:(int)index;
++(PLTabPreferenceControl*) sharedPreferenceController;
++(void) showPrefsAtIndex:(NSInteger) index;
 
+- (void)selectPanelAtIndex:(int)index;
 
 @end
 
