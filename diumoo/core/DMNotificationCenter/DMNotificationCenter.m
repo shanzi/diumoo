@@ -33,10 +33,6 @@
     return dict;
 }
 
--(void) growlNotificationWasClicked:(id)clickContext
-{
-    [[DMPanelWindowController sharedWindowController] openPanel];
-}
 
 -(void) notifyMusicWithCapsule:(DMPlayableCapsule*) capsule
 {
@@ -52,7 +48,7 @@
                                        iconData:data
                                        priority:0
                                        isSticky:NO 
-                                   clickContext:capsule.sid];
+                                   clickContext:nil];
     }
     
     if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState)

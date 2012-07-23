@@ -1071,9 +1071,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/frameworks\"/**",
 					"\"$(SRCROOT)\"/**",
-					"\"$(SRCROOT)\"",
 				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1093,9 +1091,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/frameworks\"/**",
 					"\"$(SRCROOT)\"/**",
-					"\"$(SRCROOT)\"",
 				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
