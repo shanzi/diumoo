@@ -63,7 +63,6 @@
 -(void) playDefaultChannel;
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 - (IBAction)togglePanel:(id)sender;
--(void) openPanel;
--(void) closePanel;
+
 
 @end
