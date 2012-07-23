@@ -167,9 +167,11 @@ DMPanelWindowController *sharedWindow;
 -(void) setRated:(BOOL)rated
 {
     if (rated){
+        [menubarController setMixed:YES];
         [rateButton setImage:[NSImage imageNamed:@"rate_red.png"]];
     }
     else {
+        [menubarController setMixed:NO];
         [rateButton setImage:[NSImage imageNamed:@"rate.png"]];
     }     
 }
@@ -219,6 +221,7 @@ DMPanelWindowController *sharedWindow;
     
     NSMenuItem* currentItem=popupMenuController.currentChannelMenuItem;
 
+    
     if ([DMDoubanAuthHelper sharedHelper].username == nil) {
         [popupMenuController setPrivateChannelEnabled:NO];
         [rateButton setEnabled:NO];
@@ -231,7 +234,7 @@ DMPanelWindowController *sharedWindow;
     }
     
     if(currentItem){
-        [self channelChangeActionWithSender:popupMenuController.currentChannelMenuItem];
+        [self channelChangeActionWithSender:currentItem];
     }
     else {
         [self channelChangeActionWithSender:[popupMenuController.publicMenu 

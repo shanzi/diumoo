@@ -58,8 +58,6 @@
     
     NSMenu* menuToPopup = nil;
     
-    DMLog(@"special mode %d",self.specialMode);
-    
     if (self.specialMode) {
         menuToPopup = exitSpecialMenu;
     }
@@ -152,6 +150,7 @@
 
 -(void) updateMenuItemsWithPublicList:(NSArray*) publiclist andDJList:(NSArray*) djlist
 {
+    DMLog(@"update");
     if (publiclist) {
         self.publicMenu = [self buildMenuWithChannelListArray:publiclist];
         [[mainMenu itemWithTag:1] setSubmenu:publicMenu];
@@ -219,7 +218,7 @@
             [item setTag:tag];
             [djMenu addItem:item];
             if (tag == currentChannelID) {
-                currentChannelMenuItem = item;
+                self.currentChannelMenuItem = item;
             }
             [item autorelease];
         }
@@ -351,8 +350,10 @@
 
 -(void) updateChannelMenuWithSender:(id)sender
 {
-
+    DMLog(@"ismain: %d,%@",[NSThread isMainThread],[NSThread currentThread]);
     NSMenuItem* citem = currentChannelMenuItem;
+    NSMenuItem* newItem = nil;
+    
     while (citem != nil) {
         [citem setState:NSOffState];
         citem = [citem parentItem];
@@ -363,9 +364,10 @@
     
     
     if (tag <1) {
-        
+        newItem = sender;
         [longMainButton setTitle:[sender title]];
         [longMainButton setHidden:NO];
+
     }
     else {
         
@@ -383,11 +385,10 @@
             
             // -------------------------- 处理dj兆赫的菜单和记录 --------------------------
 
-            NSMenuItem* newItem = [djMenu itemWithTag:tag]; //先检查当前的dj兆赫是不是已经在最近播放的列表里了
-            if(newItem) sender = newItem ; // 如果是，就直接使用这个item就好
-            else {
+            newItem = [djMenu itemWithTag:tag]; //先检查当前的dj兆赫是不是已经在最近播放的列表里了
+            if(newItem == nil){
                 // 当前的dj兆赫还没被加入到最近播放列表，现在加入它
-                newItem = [sender copy]; // 将sender copy一份先
+                newItem = [sender copy];
                 
                 // 先获取到当前dj菜单下所有item，检查item的数量是否超过了要求，超过了的话，就删掉一些
                 NSArray* menuarray = [djMenu itemArray]; 
@@ -407,7 +408,6 @@
                 NSInteger indexToInsert = [djMenu indexOfItem:itemToHide] +1;
                 [newItem setIndentationLevel:1];
                 [djMenu insertItem:newItem atIndex:indexToInsert];
-                sender = newItem; // 插入进去了，把sender改为新的item
                 
                 // 现在将新的最近播放列表保存到用户偏好里
                 NSArray* newMenuArray = [djMenu itemArray];
@@ -428,19 +428,18 @@
         }
         else if(tag >0 )
         {
+            newItem = sender;
             NSMenuItem* publicMenuItem = [mainMenu itemWithTag:1];
             [mainButton setTitle:publicMenuItem.title];
-            [subButton setTitle:[sender title]];
+            [subButton setTitle:[newItem title]];
             
         }
         
         [longMainButton setHidden:YES];
-        
-        
     }
 
-    [sender setState:NSOnState];
-    NSMenuItem* pitem = [sender parentItem];
+    [newItem setState:NSOnState];
+    NSMenuItem* pitem = [newItem parentItem];
     while (pitem!=nil) {
         [pitem setState:NSMixedState];
         pitem = [pitem parentItem];
@@ -449,11 +448,12 @@
     
     
     self.currentChannelID = tag;
-    self.currentChannelMenuItem = sender;
+    self.currentChannelMenuItem = newItem;
     
     
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     [values setValue:[NSNumber numberWithInteger:tag] forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
+
 }
 
 -(void) enterSpecialPlayingModeWithTitle:(NSString *)title artist:(NSString*)artist andTypeString:(NSString*) type

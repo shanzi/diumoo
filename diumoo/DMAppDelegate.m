@@ -14,7 +14,51 @@
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
     [self makeDefaultPreference];
+    [self handleDockIconDisplayWithChange:nil];
+    
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"showDockIcon" 
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"displayAlbumCoverOnDock" 
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+    
+    // handle dock icon
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (keyPath == @"showDockIcon") {
+        [self handleDockIconDisplayWithChange:change];
+    }
+    else if(keyPath == @"displayAlbumCoverOnDock")
+    {
+        NSInteger new  = [[change valueForKey:@"new"] integerValue];
+        if (new == NSOnState) {
+            [NSApp setApplicationIconImage:center.playingCapsule.picture];
+        }
+        else {
+            [NSApp setApplicationIconImage:nil];
+        }
+    }
+}
+
+-(void) handleDockIconDisplayWithChange:(id)change
+{
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSInteger displayIcon = [[values valueForKey:@"showDockIcon"] integerValue];
+    if (displayIcon == NSOnState) {
+        ProcessSerialNumber psn = { 0, kCurrentProcess };
+        TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    }
+    else if(change == nil){
+        ProcessSerialNumber psn = { 0, kCurrentProcess };
+        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+    }
 }
 
 -(void) startPlayInBackground;
@@ -47,7 +91,12 @@
     NSDictionary *defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithInteger:1],@"channel",
                           [NSNumber numberWithFloat:1.0],@"volume",
-                          [NSNumber numberWithInteger:2],@"max_wait_playlist_count",           
+                          [NSNumber numberWithInteger:2],@"max_wait_playlist_count", 
+                          [NSNumber numberWithInteger:NSOnState],@"autoCheckUpdate",
+                          [NSNumber numberWithInteger:NSOnState],@"showDockIcon",
+                          [NSNumber numberWithInteger:NSOnState],@"displayAlbumCoverOnDock",
+                          [NSNumber numberWithInteger:NSOnState],@"enableGrowl",
+                          [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
                            nil];
     [[NSUserDefaultsController sharedUserDefaultsController]
      setInitialValues:defaultPreferences];

@@ -16,7 +16,7 @@
 
 
 @implementation DMControlCenter
-@synthesize playingCapsule,songToPlay,fetcher,waitPlaylist,channel,pausedOperationType,skipLock;
+@synthesize playingCapsule,songToPlay,fetcher,waitPlaylist,channel,pausedOperationType,skipLock,notificationCenter;
 @synthesize mainPanel,recordHandler;
 @synthesize specialWaitList;
 
@@ -28,6 +28,7 @@
     if (self) {
         fetcher = [DMPlaylistFetcher new];
         fetcher.delegate = self;
+        notificationCenter = [[DMNotificationCenter alloc] init];
         waitPlaylist = [NSMutableOrderedSet new];
         skipLock = [NSLock new];
         channel = @"1";
@@ -54,6 +55,7 @@
     [channel release];
     [waitPlaylist release];
     [fetcher release];
+    [notificationCenter release];
     [playingCapsule release];
     [mainPanel close];
     [mainPanel release];
@@ -77,13 +79,16 @@
 
 -(void) fireToPlayDefaultChannel
 {
-    [mainPanel playDefaultChannel];
+    [mainPanel performSelectorOnMainThread:@selector(playDefaultChannel)
+                                withObject:nil
+                             waitUntilDone:NO];
 }
+
 
 -(void) stopForExit
 {
     [skipLock lock];
-    mainPanel.hasActivePanel = NO;
+    [mainPanel closePanel];
     if (playingCapsule) {
         [playingCapsule synchronousStop];
     }
@@ -158,9 +163,12 @@
     if(playingCapsule)
     {
         [playingCapsule play];
-        [mainPanel setRated:playingCapsule.like];
-        [mainPanel setPlayingCapsule:playingCapsule];
-        [recordHandler addRecordAsyncWithCapsule:playingCapsule];
+        [playingCapsule prepareCoverWithCallbackBlock:^(NSImage * image) {
+            [mainPanel setRated:playingCapsule.like];
+            [mainPanel setPlayingCapsule:playingCapsule];
+            [notificationCenter notifyMusicWithCapsule:playingCapsule];
+            [recordHandler addRecordAsyncWithCapsule:playingCapsule];
+        }];
     }
         
         

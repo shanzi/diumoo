@@ -43,6 +43,9 @@
         case ACCOUNT_PANEL_ID:
             return @"账户";
             break;
+        case KEYBINDINGS_PANNEL_ID:
+            return @"快捷键";
+            break;
         case INFO_PANEL_ID:
             return @"关于";
             break;
@@ -60,6 +63,9 @@
             break;
         case ACCOUNT_PANEL_ID:
             return [NSImage imageNamed:NSImageNameUser];
+            break;
+        case KEYBINDINGS_PANNEL_ID:
+            return [NSImage imageNamed:NSImageNameAdvanced];
             break;
         case INFO_PANEL_ID:
             return [NSImage imageNamed:NSImageNameInfo];
@@ -79,6 +85,9 @@
         case ACCOUNT_PANEL_ID:
             return [self accountView];
             break;
+        case KEYBINDINGS_PANNEL_ID:
+            return keybindings;
+            break;
         case INFO_PANEL_ID:
             return info;
             break;
@@ -97,6 +106,8 @@
         return [NSString stringWithFormat:@"%d",index];
     }
 }
+
+
 
 
 //------------------------------界面的action------------------------------

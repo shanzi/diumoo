@@ -4,8 +4,10 @@
 
 @synthesize statusItem = _statusItem;
 @synthesize image = _image;
+@synthesize mixedImage = _mixedImage;
 @synthesize alternateImage = _alternateImage;
 @synthesize isHighlighted = _isHighlighted;
+@synthesize isMixed = _isMixed;
 @synthesize action = _action;
 @synthesize target = _target;
 
@@ -32,7 +34,7 @@
 {
 	[self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
     
-    NSImage *icon = self.isHighlighted ? self.alternateImage : self.image;
+    NSImage *icon = self.isHighlighted ? self.alternateImage : (self.isMixed ? self.mixedImage:self.image);
     NSSize iconSize = [icon size];
     NSRect bounds = self.bounds;
     CGFloat iconX = roundf((NSWidth(bounds) - iconSize.width) / 2);
@@ -57,6 +59,17 @@
     if (_isHighlighted == newFlag) return;
     _isHighlighted = newFlag;
     [self setNeedsDisplay:YES];
+}
+
+-(void) setMixed:(BOOL)isMixed
+{
+    if (_isMixed == isMixed) {
+        return;
+    }
+    else {
+        _isMixed = isMixed;
+        [self setNeedsDisplay:YES];
+    }
 }
 
 #pragma mark -

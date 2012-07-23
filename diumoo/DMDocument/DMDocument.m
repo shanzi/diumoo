@@ -106,8 +106,8 @@
         }
     }
     
-    NSError * error = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
-    *outError = error;
+    *outError = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
+    
     return NO;
 }
 

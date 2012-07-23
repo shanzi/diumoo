@@ -36,7 +36,9 @@ static PLTabPreferenceControl* shared;
     [PLTabPreferenceControl sharedPreferenceController];
     [shared showWindow:nil];
     [shared selectPanelAtIndex:index];
+    [NSApp activateIgnoringOtherApps:YES];
 }
+
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -47,6 +49,7 @@ static PLTabPreferenceControl* shared;
     
     return self;
 }
+
 - (void)dealloc
 {
     [super dealloc];
@@ -61,6 +64,7 @@ static PLTabPreferenceControl* shared;
 - (void)awakeFromNib{
     
     NSWindow* theWin = [self window];
+    
     [theWin setShowsToolbarButton:NO];
 //    [theWin setShowsResizeIndicator:NO];
     
@@ -82,8 +86,15 @@ static PLTabPreferenceControl* shared;
     NSView *viewToShow = [delegate panelViewForPreferencePanelAt:(int)[sender tag]];
 	NSWindow* theWin = [self window];
     
-	if (viewToShow && ([theWin contentView] != viewToShow)) {
-		
+    
+	if (viewToShow && ([theWin contentView] != viewToShow.superview)) {
+        
+        for (NSView*v in [[theWin contentView] subviews]) {
+            [v removeFromSuperview];
+        }
+        
+        viewToShow.alphaValue = 0;
+        
         //will appear
         if ([delegate respondsToSelector:@selector(prefViewWillAppear:atIndex:)]) {
             [delegate prefViewWillAppear:viewToShow atIndex:[sender tag]];
@@ -96,20 +107,21 @@ static PLTabPreferenceControl* shared;
 		
 		newFrame.origin = oldFrame.origin;
 		newFrame.origin.y -= (newFrame.size.height - oldFrame.size.height);
-		viewToShow.alphaValue = 0;
-        [theWin setContentView:viewToShow];
+        [[theWin contentView] addSubview:viewToShow];
         
-        [NSAnimationContext beginGrouping];
-        [[viewToShow animator] setAlphaValue:1.0];
+        
+
+
 		[theWin setFrame:newFrame display:YES animate:YES];
-        [NSAnimationContext endGrouping];
+        [viewToShow.animator setAlphaValue:1.0];
         
 		[theWin setTitle:[sender label]];
 
-        //did appear
+        
         if ([delegate respondsToSelector:@selector(prefViewDidAppear:atIndex:)]) {
             [delegate prefViewDidAppear:viewToShow atIndex:[sender tag]];
         }
+        
 	}
 }
 

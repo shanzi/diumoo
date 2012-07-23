@@ -17,7 +17,7 @@
 #import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
-
+#import "DMNotificationCenter.h"
 
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
 // {
@@ -28,6 +28,7 @@
 @property(retain) DMPlayableCapsule* songToPlay;
 
 @property(assign) DMPlaylistFetcher* fetcher;
+@property(assign) DMNotificationCenter* notificationCenter;
 @property(assign) NSMutableOrderedSet* waitPlaylist;
 @property(assign) NSString* pausedOperationType;
 @property(assign) NSLock* skipLock; // 用于在skip和bye的时候锁住线程，防止多余操作

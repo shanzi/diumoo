@@ -13,5 +13,6 @@
 @property (nonatomic, assign, readonly) StatusItemView *statusItemView;
 
 - (NSStatusItem *)statusItem;
+-(void) setMixed:(BOOL) mixed;
 -(void) setAction:(SEL) action withTarget:(id) target;
 @end

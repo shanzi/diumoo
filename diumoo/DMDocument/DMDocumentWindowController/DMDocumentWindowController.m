@@ -47,7 +47,6 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    
     starRating.displayMode = EDStarRatingDisplayAccurate;
     starRating.editable = NO;
     starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted.png"];
@@ -57,6 +56,11 @@
     if ([self.document isInViewingMode]) {
         [revertButton setEnabled:NO];
     }
+}
+
+-(void) windowDidExpose:(NSNotification *)notification
+{
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 -(void)buildTabButton

@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "PLTabPreferenceControl.h"
+#import "MASShortcutView.h"
 
-#define PANEL_VIEW_COUNT 4
+#define PANEL_VIEW_COUNT 5
 #define GENERAL_PANEL_ID 0
 #define ACCOUNT_PANEL_ID 1
-#define SPACE_PANEL_ID 2
-#define INFO_PANEL_ID 3
+#define KEYBINDINGS_PANNEL_ID 2
+#define SPACE_PANEL_ID 3
+#define INFO_PANEL_ID 4
 
 @interface DMPrefsPanelDataProvider : NSObject <PLTabPreferenceDelegate>
 {
@@ -24,6 +26,7 @@
     IBOutlet NSView* general;
     IBOutlet NSView* login;
     IBOutlet NSView* account;
+    IBOutlet NSView* keybindings;
     IBOutlet NSView* info;
     //----------------------------------
     
@@ -44,6 +47,11 @@
     IBOutlet NSSegmentedControl* playrecordButton;
     //----------------------------------
     
+    //------ key bindings outlet -------
+    IBOutlet MASShortcutView* playShortcut;
+    IBOutlet MASShortcutView* skipShortcut;
+    IBOutlet MASShortcutView* rateShortcut;
+    IBOutlet MASShortcutView* banShortcut;
 }
 
 @property(copy) NSString* captcha_code;

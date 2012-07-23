@@ -140,7 +140,11 @@
 
     
     if(loadState < QTMovieLoadStatePlayable) return;
-    if(playState == WAIT_TO_PLAY) self.playState = PLAYING;
+    if(playState == WAIT_TO_PLAY)
+    {
+        self.playState = PLAYING;
+        [movie setVolume: self.volume];
+    }
     else self.playState = REPLAYING;
     
     if(movie && movie.rate < 0.1){
@@ -155,7 +159,6 @@
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
-        [self.movie setVolume: self.volume];
         [movie play];
         [timer fire];
     }
@@ -203,7 +206,7 @@
     float delta =  volume - movie.volume;
     if([timer userInfo] == kTimerPulseTypePlay)
     {
-        if(delta < 0.1 && -delta < 0.1) 
+        if(delta < 0.08 && -delta < 0.08) 
         {
             [self invalidateTimer];
             movie.volume = volume;
@@ -261,19 +264,23 @@
 {
 
     if (self.picture == nil) {
-        NSBlockOperation* blockoperation = 
-        [NSBlockOperation blockOperationWithBlock:^{
-            NSURL* url = [NSURL URLWithString:largePictureLocation];
-            picture = [[NSImage alloc] initWithContentsOfURL:url]; 
-            if (picture) {
-                if(block) block(picture);
-            }
-            else {
-                picture = [NSImage imageNamed:@"albumfail.png"];
-                if(block)block(picture);
-            }
-        }];
-        [[NSOperationQueue mainQueue] addOperation:blockoperation];
+        NSURL* url = [NSURL URLWithString:largePictureLocation];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url
+                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
+        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+                                   picture = [[NSImage alloc] initWithData:d];
+                                   if (picture) {
+                                       if(block) block(picture);
+                                   }
+                                   else {
+                                       picture = [NSImage imageNamed:@"albumfail.png"];
+                                       if(block)block(picture);
+                                   }
+                                   
+                               }];
     }
     else{
         if(block) block(picture);

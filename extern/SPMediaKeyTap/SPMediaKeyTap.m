@@ -283,6 +283,7 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 		kProcessDictionaryIncludeAllInformationMask
 	) autorelease];
 	NSString *bundleIdentifier = [processInfo objectForKey:(id)kCFBundleIdentifierKey];
+    [processInfo release];
 
 	NSArray *whitelistIdentifiers = [[NSUserDefaults standardUserDefaults] arrayForKey:kMediaKeyUsingBundleIdentifiersDefaultsKey];
 	if(![whitelistIdentifiers containsObject:bundleIdentifier]) return;
