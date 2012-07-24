@@ -39,14 +39,14 @@
     double rate = (self.floatValue - self.minValue)/self.maxValue;
     NSImage* image =nil;
     if (rate > 0.6) {
-        image = [NSImage imageNamed:@"sound_high.png"];
+        image = [NSImage imageNamed:@"sound_high"];
     }
     else if(rate > 0.1)
     {
-        image = [NSImage imageNamed:@"sound_low.png"];
+        image = [NSImage imageNamed:@"sound_low"];
     }
     else {
-        image = [NSImage imageNamed:@"sound_mute.png"];
+        image = [NSImage imageNamed:@"sound_mute"];
     }
     
     NSRect fromRect = NSMakeRect(0, 0, image.size.width, image.size.height);

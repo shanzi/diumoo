@@ -49,8 +49,8 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     starRating.displayMode = EDStarRatingDisplayAccurate;
     starRating.editable = NO;
-    starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted.png"];
-    starRating.starImage = [NSImage imageNamed:@"star.png"];
+    starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted"];
+    starRating.starImage = [NSImage imageNamed:@"star"];
     [self buildTabButton];
     [self setupWindowForDocument:self.document];
     if ([self.document isInViewingMode]) {
@@ -67,7 +67,7 @@
 {
     NSMutableArray *tabBarItems = [NSMutableArray arrayWithCapacity:2];
     {
-        NSImage *image = [NSImage imageNamed:@"view_icon.png"];
+        NSImage *image = [NSImage imageNamed:@"view_icon"];
         [image setTemplate:YES];
         SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:0];
         item.toolTip = @"预览";
@@ -77,7 +77,7 @@
         [item release];
     }
     {
-        NSImage *image = [NSImage imageNamed:@"detail_icon.png"];
+        NSImage *image = [NSImage imageNamed:@"detail_icon"];
         [image setTemplate:YES];
         SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:1];
         item.toolTip = @"详细信息";

@@ -276,7 +276,7 @@
                                        if(block) block(picture);
                                    }
                                    else {
-                                       picture = [NSImage imageNamed:@"albumfail.png"];
+                                       picture = [NSImage imageNamed:@"albumfail"];
                                        if(block)block(picture);
                                    }
                                    

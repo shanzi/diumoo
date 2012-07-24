@@ -850,7 +850,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DM;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = F5148AA81580E58D002B3D61 /* Build configuration list for PBXProject "diumoo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1071,6 +1071,7 @@
 		F5148AD01580E58E002B3D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
@@ -1092,6 +1093,7 @@
 		F5148AD11580E58E002B3D61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
