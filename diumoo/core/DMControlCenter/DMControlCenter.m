@@ -35,7 +35,6 @@
         
         self.mainPanel = [DMPanelWindowController sharedWindowController];
         [mainPanel setDelegate:self];
-        [mainPanel togglePanel:nil];
 
         self.recordHandler = [DMPlayRecordHandler sharedRecordHandler];
         [recordHandler setDelegate:self];

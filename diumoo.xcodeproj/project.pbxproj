@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F57847915BE536C000A68BE /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F57847815BE536C000A68BE /* libxml2.2.dylib */; };
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
 		F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3BB1587708F001C6158 /* DMPanelWindowController.m */; };
@@ -43,7 +44,6 @@
 		F5148B2F1580E904002B3D61 /* DMPlayableCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B251580E904002B3D61 /* DMPlayableCapsule.m */; };
 		F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */; };
 		F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */; };
-		F5148B441580EC15002B3D61 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B431580EC15002B3D61 /* libxml2.2.7.3.dylib */; };
 		F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B491580EE1F002B3D61 /* Carbon.framework */; };
 		F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4B1580EE4D002B3D61 /* Security.framework */; };
 		F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4D1580EE68002B3D61 /* QTKit.framework */; };
@@ -120,6 +120,7 @@
 
 /* Begin PBXFileReference section */
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		3F57847815BE536C000A68BE /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
 		F501B3B015877062001C6158 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
 		F501B3B215877062001C6158 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
@@ -285,11 +286,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F57847915BE536C000A68BE /* libxml2.2.dylib in Frameworks */,
 				F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */,
 				F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */,
 				F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */,
 				F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */,
-				F5148B441580EC15002B3D61 /* libxml2.2.7.3.dylib in Frameworks */,
 				F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */,
 				F5B9DC7B15BD995B004788A9 /* Growl.framework in Frameworks */,
 			);
@@ -359,6 +360,7 @@
 		F5148AA31580E58D002B3D61 = {
 			isa = PBXGroup;
 			children = (
+				3F57847815BE536C000A68BE /* libxml2.2.dylib */,
 				F5148AB81580E58D002B3D61 /* diumoo */,
 				F5148AD81580E707002B3D61 /* extern */,
 				F501B3C215877A88001C6158 /* resources */,
@@ -1082,6 +1084,7 @@
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1102,6 +1105,7 @@
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
