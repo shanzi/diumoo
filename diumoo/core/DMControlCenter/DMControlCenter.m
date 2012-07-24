@@ -16,30 +16,39 @@
 
 
 @implementation DMControlCenter
-@synthesize playingCapsule,songToPlay,fetcher,waitPlaylist,channel,pausedOperationType,skipLock,notificationCenter;
-@synthesize mainPanel,recordHandler;
-@synthesize specialWaitList;
+//@synthesize playingCapsule,songToPlay,fetcher,waitPlaylist,channel,pausedOperationType,skipLock,notificationCenter;
+//@synthesize mainPanel,recordHandler;
+//@synthesize specialWaitList;
+@synthesize playingCapsule;
 
 #pragma init & dealloc
 
 -(id) init
 {
-    self = [super init];
-    if (self) {
-        fetcher = [DMPlaylistFetcher new];
-        fetcher.delegate = self;
-        notificationCenter = [[DMNotificationCenter alloc] init];
-        waitPlaylist = [NSMutableOrderedSet new];
-        skipLock = [NSLock new];
+    if (self = [super init]) {
+        //init iVars
         channel = @"1";
+        pausedOperationType = @"";
+        playingCapsule = [[DMPlayableCapsule alloc] init];
+        waitingCapsule = [[DMPlayableCapsule alloc] init];
+        fetcher = [[DMPlaylistFetcher alloc] init];
+        waitPlaylist = [[NSMutableOrderedSet alloc] init];
         
-        self.mainPanel = [DMPanelWindowController sharedWindowController];
-        [mainPanel setDelegate:self];
-
-        self.recordHandler = [DMPlayRecordHandler sharedRecordHandler];
-        [recordHandler setDelegate:self];
+        skipLock = [[NSLock alloc] init];
         
+        notificationCenter = [[DMNotificationCenter alloc] init];
+        
+        diumooPanel = [DMPanelWindowController sharedWindowController];
+        recordHandler = [DMPlayRecordHandler sharedRecordHandler];
+        
+        specialWaitList = [[NSMutableArray alloc] init];
+        
+        //set delegate
+        fetcher.delegate = self;
+        diumooPanel.delegate = self;
+        recordHandler.delegate = self;
 
+        //add Observer
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(playSpecialNotification:)
                                                     name:@"playspecial"
@@ -50,15 +59,19 @@
 
 -(void)dealloc
 {
-    [pausedOperationType release];
-    [channel release];
-    [waitPlaylist release];
-    [fetcher release];
-    [notificationCenter release];
+    channel=nil;
     [playingCapsule release];
-    [mainPanel close];
-    [mainPanel release];
+    [waitingCapsule release];
+    [fetcher release];
+    [waitPlaylist release];
+    [skipLock release];
+    [notificationCenter release];
+    [diumooPanel release];
     [recordHandler release];
+    fetcher.delegate = nil;
+    diumooPanel.delegate = nil;
+    recordHandler.delegate = nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [super dealloc];
 }
 
@@ -66,28 +79,26 @@
 
 -(void) fireToPlay:(NSDictionary*)firstSong
 {
-    id sid = [firstSong objectForKey:@"sid"];
-    id ssid = [firstSong objectForKey:@"ssid"];
-    NSString* startattribute =
-    [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
     [fetcher fetchPlaylistFromChannel:channel 
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
-                       startAttribute:startattribute];
+                       startAttribute:[NSString stringWithFormat:@"%@g%@g%@",[firstSong objectForKey:@"sid"],[firstSong objectForKey:@"ssid"],channel]];
+    [self startToPlay:nil];
 }
 
 -(void) fireToPlayDefaultChannel
 {
-    [mainPanel performSelectorOnMainThread:@selector(playDefaultChannel)
-                                withObject:nil
-                             waitUntilDone:NO];
+    [self fireToPlay:nil];
+    [diumooPanel performSelectorOnMainThread:@selector(playDefaultChannel)
+                                  withObject:nil
+                               waitUntilDone:NO];
 }
 
 
 -(void) stopForExit
 {
-    [skipLock lock];
-    [mainPanel closePanel];
+    [skipLock tryLock];
+    //[diumooPanel closePanel];
     if (playingCapsule) {
         [playingCapsule synchronousStop];
     }
@@ -97,61 +108,65 @@
 {
     DMLog(@"start to play : %@",aSong);
     
-    [self.playingCapsule invalidateMovie];
+    [playingCapsule invalidateMovie];
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
-
-        if ([specialWaitList count]) {
-            self.playingCapsule = nil;
-            NSDictionary* song = [specialWaitList objectAtIndex:0];
-            [self fireToPlay:song];
-            [specialWaitList removeObject:song];
+        if ([specialWaitList count]>0)
+        {
+            playingCapsule = nil;
+            [self fireToPlay:[specialWaitList objectAtIndex:0]];
+            [specialWaitList removeObject:[specialWaitList objectAtIndex:0]];
             return;
         }
         else {
-            [mainPanel toggleSpecialWithDictionary:nil];
+            [diumooPanel toggleSpecialWithDictionary:nil];
         }
         
+        DMLog(@"waitPlayList count = %ld",[waitPlaylist count]);
         
-        if ([waitPlaylist count]>0) {
+        if ([waitPlaylist count]>0)
+        {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
-            self.playingCapsule = [waitPlaylist objectAtIndex:0];
-            [playingCapsule setDelegate:self];
-            [waitPlaylist removeObject:playingCapsule];
+            playingCapsule = nil;
+            playingCapsule = [waitPlaylist objectAtIndex:0];
+            playingCapsule.delegate = self;
+            [waitPlaylist removeObjectAtIndex:0];
 
             
             // 再从播放列表里抓取一个歌曲出来放到缓冲列表里
-            id waitcapsule = [fetcher getOnePlayableCapsule];
-            if(waitcapsule){
-                [waitcapsule setDelegate:self];
-                if([waitcapsule createNewMovie])
-                    [waitPlaylist addObject:waitcapsule];
+            if((waitingCapsule = [fetcher getOnePlayableCapsule]))
+            {
+                waitingCapsule.delegate = self;
+                if([waitingCapsule createNewMovie])
+                    [waitPlaylist addObject:waitingCapsule];
             }
         }
         else{
             
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
-            self.playingCapsule = [fetcher getOnePlayableCapsule];
-            [playingCapsule setDelegate:self];
-            
-            
-            // 没有获取到capsule，说明歌曲列表已经为空，那么新获取一个播放列表
-            if(playingCapsule == nil)
-                [fetcher fetchPlaylistFromChannel:channel 
-                                               withType:kFetchPlaylistTypeNew 
-                                                    sid:nil 
-                                         startAttribute:nil];
+            if ((playingCapsule = [fetcher getOnePlayableCapsule]))
+                playingCapsule.delegate = self;
+            else
+            {
+                // 没有获取到capsule，说明歌曲列表已经为空，那么新获取一个播放列表
+
+                [fetcher fetchPlaylistFromChannel:channel
+                                         withType:kFetchPlaylistTypeNew
+                                              sid:nil
+                                   startAttribute:nil];
+            }
         }
     }
     else {
         // 指定了要播放的歌曲
-        [aSong setDelegate:self];
-        self.playingCapsule = aSong;
+        //[aSong setDelegate:self];
+        playingCapsule = aSong;
+        playingCapsule.delegate = self;
         
         if(playingCapsule.loadState < 0 && ![playingCapsule createNewMovie]){
             // 歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
-            self.playingCapsule = nil;
+            playingCapsule = nil;
             [fetcher fetchPlaylistFromChannel:channel 
                                      withType:kFetchPlaylistTypeNew 
                                           sid:nil 
@@ -163,8 +178,8 @@
     {
         [playingCapsule play];
         [playingCapsule prepareCoverWithCallbackBlock:^(NSImage * image) {
-            [mainPanel setRated:playingCapsule.like];
-            [mainPanel setPlayingCapsule:playingCapsule];
+            [diumooPanel setRated:playingCapsule.like];
+            [diumooPanel setPlayingCapsule:playingCapsule];
             [notificationCenter notifyMusicWithCapsule:playingCapsule];
             [recordHandler addRecordAsyncWithCapsule:playingCapsule];
         }];
@@ -177,23 +192,23 @@
 
 -(void) playableCapsuleDidPlay:(id)c
 {
-    [mainPanel setPlaying:YES];
+    [diumooPanel setPlaying:YES];
 }
 
 -(void) playableCapsuleWillPause:(id)c
 {
-    [mainPanel setPlaying:NO];
+    [diumooPanel setPlaying:NO];
 }
 -(void) playableCapsuleDidPause:(id)c
 {
-    [mainPanel setPlaying:NO];
+    [diumooPanel setPlaying:NO];
 
     if([pausedOperationType isEqualToString:kPauseOperationTypeSkip])
     {
         // 跳过当前歌曲
-        if (self.songToPlay) {
-            [self startToPlay:self.songToPlay];
-            self.songToPlay = nil;
+        if (waitingCapsule) {
+            [self startToPlay:waitingCapsule];
+            waitingCapsule = nil;
         }
         else {
             [self startToPlay:nil];
@@ -223,15 +238,14 @@
     [skipLock unlock];
 }
 
--(void) playableCapsuleDidEnd:(id)c
+-(void) playableCapsuleDidEnd:(id)capsule
 {
-    [mainPanel setPlaying:NO];
+    [diumooPanel setPlaying:NO];
     
-    if (c == playingCapsule) {
-        if( playingCapsule.playState == PLAYING_AND_WILL_REPLAY)
+    if (capsule == playingCapsule) {
+        if(playingCapsule.playState == PLAYING_AND_WILL_REPLAY)
             [playingCapsule replay];
         else {
-            
             // 将当前歌曲标记为已经播放完毕
             [fetcher fetchPlaylistFromChannel:channel
                                           withType:kFetchPlaylistTypeEnd
@@ -243,63 +257,58 @@
         }
     }
     // 歌曲播放结束时，无论如何都要解除lock
-
     [skipLock unlock];
 }
 
--(void) playableCapsule:(id)c loadStateChanged:(long)state
+-(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
-    
-    if (state > QTMovieLoadStatePlayable) {
-        if (c == playingCapsule && 
-            playingCapsule.playState == WAIT_TO_PLAY)
+    if (state > 20000) {
+        if(capsule == playingCapsule && playingCapsule.playState == WAIT_TO_PLAY)
             [playingCapsule play];
         
         if(state >= QTMovieLoadStateComplete)
-            
-            if ([c picture] == nil) {
-                [c prepareCoverWithCallbackBlock:nil];
+        {
+            if ([capsule picture] == nil) {
+                [capsule prepareCoverWithCallbackBlock:nil];
             }
-        
+        }
         
          
         // 特殊播放模式下不缓冲
-        if (self.specialWaitList) {
+        if ([specialWaitList count]>0) {
             return;
         }
         
         // 在这里执行一些缓冲歌曲的操作
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
+        NSInteger MAX_WAIT_PLAYLIST_COUNT = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"max_wait_playlist_count"] integerValue];
+
         
-        
-        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
-            DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
-            if(waitsong==nil){
-                
+        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT)
+        {
+            DMPlayableCapsule *newWaitingCapsule = [fetcher getOnePlayableCapsule];
+            
+            if(newWaitingCapsule == nil){
                 [fetcher fetchPlaylistFromChannel:channel
                                          withType:kFetchPlaylistTypePlaying
                                               sid:playingCapsule.sid
                                    startAttribute:nil];
-                
             }
             else{
-                [waitsong setDelegate:self];
-                if([waitsong createNewMovie])
-                    [waitPlaylist addObject:waitsong];
+                newWaitingCapsule.delegate = self;
+                if([newWaitingCapsule createNewMovie])
+                    [waitPlaylist addObject:newWaitingCapsule];
             }
-            
         }
     }
     else if(state < 0){
-        if(c == playingCapsule)
+        if(capsule == playingCapsule)
         {
             // 当前歌曲加载失败
             // 做些事情
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
-            [waitPlaylist removeObject:c];
+            [waitPlaylist removeObject:capsule];
         }
     }
 }
@@ -318,14 +327,17 @@
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
-    DMLog(@"fetch success:%@ %@",playingCapsule,startsong);
+    DMLog(@"fetch success:playing = %@; startsong = %@",playingCapsule,startsong);
     
-    if (startsong) {
-        if (playingCapsule) {
-            self.songToPlay = startsong;
-            if ([skipLock tryLock]) {
-                self.pausedOperationType = kPauseOperationTypeSkip;
-                [self.playingCapsule pause];
+    if (startsong)
+    {
+        if (playingCapsule)
+        {
+            waitingCapsule = startsong;
+            if ([skipLock tryLock])
+            {
+                pausedOperationType = kPauseOperationTypeSkip;
+                [playingCapsule pause];
             }
         }
         else {
@@ -334,8 +346,7 @@
     }
     else if (playingCapsule == nil) 
     {
-        DMPlayableCapsule* c = [fetcher getOnePlayableCapsule];
-        [self startToPlay:c];
+        [self startToPlay:[fetcher getOnePlayableCapsule]];
     }
 
 }
@@ -370,7 +381,7 @@
                        startAttribute:nil];
     
     // 指定歌曲暂停后的operation
-    self.pausedOperationType = kPauseOperationTypeSkip;
+    pausedOperationType = kPauseOperationTypeSkip;
     
     // 暂停当前歌曲
     [playingCapsule pause];
@@ -386,8 +397,8 @@
                                  withType:kFetchPlaylistTypeUnrate
                                       sid:playingCapsule.sid
                            startAttribute:nil];
-        [mainPanel countRated:-1];
-        [mainPanel setRated:NO];
+        [diumooPanel countRated:-1];
+        [diumooPanel setRated:NO];
     }
     else {
         
@@ -397,8 +408,8 @@
                                       sid:playingCapsule.sid
                            startAttribute:nil];
         
-        [mainPanel countRated:1];
-        [mainPanel setRated:YES];
+        [diumooPanel countRated:1];
+        [diumooPanel setRated:YES];
     }
     // 在这里做些什么事情来更新 UI
     
@@ -418,7 +429,7 @@
                        startAttribute:nil];
     
     // 指定歌曲暂停后的operation
-    self.pausedOperationType = kPauseOperationTypeSkip;
+    pausedOperationType = kPauseOperationTypeSkip;
     
     // 暂停当前歌曲
     [playingCapsule pause];
@@ -426,7 +437,7 @@
 
 -(BOOL)channelChangedTo:(NSString *)ch
 {
-    if (self.channel == ch) {
+    if (channel == ch) {
         return YES;
     }
     
@@ -434,14 +445,14 @@
         return NO;
     };
     
-    self.channel = ch;
+    channel = ch;
     
     [waitPlaylist removeAllObjects];
     [fetcher clearPlaylist];
     
     if (playingCapsule) {
 
-        self.pausedOperationType = kPauseOperationTypeFetchNewPlaylist;
+        pausedOperationType = kPauseOperationTypeFetchNewPlaylist;
         
         [playingCapsule pause];
     }
@@ -460,14 +471,14 @@
 
 -(void)exitedSpecialMode
 {
-    self.specialWaitList = nil;
-    [mainPanel toggleSpecialWithDictionary:nil];
+    specialWaitList = nil;
+    [diumooPanel toggleSpecialWithDictionary:nil];
     [self skip];
 }
 
 -(BOOL)canBanSong
 {
-    NSString* c = self.channel;
+    NSString* c = channel;
     @try {
         NSInteger channel_id = [c integerValue];
         if (channel_id == 0 || channel_id == -3) {
@@ -488,8 +499,8 @@
 //-------------------------playrecord handler delegate ---------------
 -(void) playSongWithSid:(NSString *)sid andSsid:(NSString *)ssid
 {
-    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,self.channel];
-    [fetcher fetchPlaylistFromChannel:self.channel
+    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
+    [fetcher fetchPlaylistFromChannel:channel
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
                        startAttribute:startattribute];
@@ -518,15 +529,15 @@
         if([list count]){
             NSMutableArray* array = nil;
             array = [NSMutableArray arrayWithArray:list];
-            self.specialWaitList = [array retain];
-            [mainPanel toggleSpecialWithDictionary:info];
+            specialWaitList = [array retain];
+            [diumooPanel toggleSpecialWithDictionary:info];
             
-            self.pausedOperationType = kPauseOperationTypePlaySpecial;
+            pausedOperationType = kPauseOperationTypePlaySpecial;
             [playingCapsule pause];
             
         }
         else {
-            self.specialWaitList = nil;
+            specialWaitList = nil;
             [skipLock unlock];
         }
     }];

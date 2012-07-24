@@ -6,7 +6,6 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-
 #define kPauseOperationTypePass @"pass"
 #define kPauseOperationTypeSkip @"skip"
 #define kPauseOperationTypeFetchNewPlaylist @"newplaylist"
@@ -20,9 +19,28 @@
 #import "DMNotificationCenter.h"
 
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
-// {
+{
+    NSString *channel;
+    
+    DMPlayableCapsule *playingCapsule;
+    DMPlayableCapsule *waitingCapsule;
+    DMPlaylistFetcher *fetcher;
+    NSMutableOrderedSet *waitPlaylist;
+    
+    NSLock *skipLock;
+    
+    DMNotificationCenter *notificationCenter;
+    DMPanelWindowController *diumooPanel;
+    DMPlayRecordHandler *recordHandler;
+    
+    NSMutableArray *specialWaitList;
+    
+    NSString *pausedOperationType;
+}
 
-@property(retain) NSString* channel;
+@property (assign) DMPlayableCapsule *playingCapsule;
+
+/*@property(retain) NSString* channel;
 
 @property(retain) DMPlayableCapsule* playingCapsule;
 @property(retain) DMPlayableCapsule* songToPlay;
@@ -36,10 +54,7 @@
 @property(assign) DMPanelWindowController* mainPanel;
 @property(assign) DMPlayRecordHandler* recordHandler;
 
-@property(retain) NSMutableArray* specialWaitList;
-
-
-// }
+@property(retain) NSMutableArray* specialWaitList;*/
 
 -(void) fireToPlayDefaultChannel;
 -(void) stopForExit;
