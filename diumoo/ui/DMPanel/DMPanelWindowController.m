@@ -141,6 +141,7 @@ DMPanelWindowController *sharedWindow;
             [PLTabPreferenceControl showPrefsAtIndex:ACCOUNT_PANEL_ID];
             break;
         case 6:
+            [self togglePanel:nil];
             [[NSApplication sharedApplication] terminate:nil];
             break;
     }
@@ -166,14 +167,16 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setRated:(BOOL)rated
 {
-    if (rated){
-        [menubarController setMixed:YES];
-        [rateButton setImage:[NSImage imageNamed:@"rate_red.png"]];
+    if ([rateButton isEnabled]) {
+        if (rated){
+            [menubarController setMixed:YES];
+            [rateButton setImage:[NSImage imageNamed:@"rate_red.png"]];
+        }
+        else {
+            [menubarController setMixed:NO];
+            [rateButton setImage:[NSImage imageNamed:@"rate.png"]];
+        }
     }
-    else {
-        [menubarController setMixed:NO];
-        [rateButton setImage:[NSImage imageNamed:@"rate.png"]];
-    }     
 }
 
 -(void) countRated:(NSInteger)count

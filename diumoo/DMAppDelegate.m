@@ -13,7 +13,12 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
+    
     [self makeDefaultPreference];
+    mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    
+    [DMShortcutsHandler registrationShortcuts];
+    
     [self handleDockIconDisplayWithChange:nil];
     
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
@@ -37,7 +42,13 @@
     }
     else if(keyPath == @"displayAlbumCoverOnDock")
     {
-        NSInteger new  = [[change valueForKey:@"new"] integerValue];
+        DMLog(@"%@",change);
+        id newvalue = [change valueForKey:@"new"];
+        NSInteger new = NSOnState;
+        if ([newvalue respondsToSelector:@selector(integerValue)]) {
+            new = [newvalue integerValue];
+        }
+        
         if (new == NSOnState) {
             [NSApp setApplicationIconImage:center.playingCapsule.picture];
         }
@@ -97,6 +108,7 @@
                           [NSNumber numberWithInteger:NSOnState],@"displayAlbumCoverOnDock",
                           [NSNumber numberWithInteger:NSOnState],@"enableGrowl",
                           [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
+                          [NSNumber numberWithInteger:NSOnState],@"usesMediaKey",
                            nil];
     [[NSUserDefaultsController sharedUserDefaultsController]
      setInitialValues:defaultPreferences];
@@ -110,12 +122,49 @@
     if(keyState==0)
         switch (keyCode) {
             case NX_KEYTYPE_PLAY:
+                [center playOrPause];
                 break;
             case NX_KEYTYPE_FAST:
-                break;
-            case NX_KEYTYPE_REWIND:
+                [center skip];
                 break;
         }
+}
+
+-(void) keyShortcuts:(id)key
+{
+    DMLog(@"%@",key);
+    if([key isEqualToString:keyPlayShortcut])
+    {
+        [center playOrPause];
+    }
+    else if ([key isEqualToString:keySkipShortcut]) 
+    {
+        [center skip];
+    }
+    else if ([key isEqualToString:keyRateShortcut])
+    {
+        [center rateOrUnrate];
+    }
+    else if ([key isEqualToString:keyBanShortcut])
+    {
+        [center ban];
+    }
+    else if ([key isEqualToString:keyTogglePanelShortcut])
+    {
+        [center.mainPanel togglePanel:nil];
+    }
+    else if([key isEqualToString:mediaKeyOn])
+    {
+        [mediaKeyTap startWatchingMediaKeys];
+    }
+    else if([key isEqualToString:mediaKeyOff])
+    {
+        [mediaKeyTap stopWatchingMediaKeys];
+    }
+    else 
+    {
+        [self showPreference:nil];
+    }
 }
 
 -(void) showPreference:(id)sender

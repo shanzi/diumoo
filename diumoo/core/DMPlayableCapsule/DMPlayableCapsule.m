@@ -266,7 +266,8 @@
     if (self.picture == nil) {
         NSURL* url = [NSURL URLWithString:largePictureLocation];
         NSURLRequest* request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
+                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                             timeoutInterval:2.0];
         
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
@@ -295,7 +296,7 @@
     }
     
     while (movie.volume>0) {
-        movie.volume -= 0.14;
+        movie.volume -= 0.1;
         [NSThread sleepForTimeInterval:0.1];
     }
 }

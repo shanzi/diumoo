@@ -14,6 +14,8 @@
 #define keyBanShortcut  @"banShortcut"
 #define keyShowPrefsPanel  @"showPrefsPanel"
 #define keyTogglePanelShortcut  @"togglePanelShortcut"
+#define mediaKeyOn @"mediaKeyOn"
+#define mediaKeyOff @"mediaKeyOff"
 
 @interface DMShortcutsHandler : NSObject
 

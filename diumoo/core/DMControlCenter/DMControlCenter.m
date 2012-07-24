@@ -88,7 +88,6 @@
 -(void) stopForExit
 {
     [skipLock lock];
-    [mainPanel closePanel];
     if (playingCapsule) {
         [playingCapsule synchronousStop];
     }
@@ -380,6 +379,7 @@
 -(void)rateOrUnrate
 {
     if(self.playingCapsule == nil) return;
+    
     
     if (playingCapsule.like) {
         // 歌曲已经被加红心了，于是取消红心
