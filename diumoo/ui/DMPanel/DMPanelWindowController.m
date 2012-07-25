@@ -35,7 +35,6 @@ DMPanelWindowController *sharedWindow;
     if(self){
         self.menubarController = [[MenubarController alloc] init];
         [menubarController setAction:@selector(togglePanel:) withTarget:self];
-        [self awakeFromNib];
     }
     return self;
 }
@@ -142,6 +141,7 @@ DMPanelWindowController *sharedWindow;
             [PLTabPreferenceControl showPrefsAtIndex:ACCOUNT_PANEL_ID];
             break;
         case 6:
+            [self togglePanel:nil];
             [[NSApplication sharedApplication] terminate:nil];
             break;
     }
@@ -167,14 +167,16 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setRated:(BOOL)rated
 {
-    if (rated){
-        [menubarController setMixed:YES];
-        [rateButton setImage:[NSImage imageNamed:@"rate_red"]];
+    if ([rateButton isEnabled]) {
+        if (rated){
+            [menubarController setMixed:YES];
+            [rateButton setImage:[NSImage imageNamed:@"rate_red.png"]];
+        }
+        else {
+            [menubarController setMixed:NO];
+            [rateButton setImage:[NSImage imageNamed:@"rate.png"]];
+        }
     }
-    else {
-        [menubarController setMixed:NO];
-        [rateButton setImage:[NSImage imageNamed:@"rate"]];
-    }     
 }
 
 -(void) countRated:(NSInteger)count
@@ -190,10 +192,10 @@ DMPanelWindowController *sharedWindow;
 -(void) setPlaying:(BOOL)playing
 {
     if (playing) {
-        [playPauseButton setImage:[NSImage imageNamed:@"pause"]];
+        [playPauseButton setImage:[NSImage imageNamed:@"pause.png"]];
     }
     else {
-        [playPauseButton setImage:[NSImage imageNamed:@"play"]];
+        [playPauseButton setImage:[NSImage imageNamed:@"play.png"]];
     }
 }
 

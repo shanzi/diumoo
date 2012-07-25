@@ -12,12 +12,15 @@
 #import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
 #import "PLTabPreferenceControl.h"
+#import "DMShortcutsHandler.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {
     IBOutlet DMControlCenter* center;
+    SPMediaKeyTap* mediaKeyTap;
 }
 
 -(IBAction)showPreference:(id)sender;
+-(void)keyShortcuts:(id) key;
 
 @end

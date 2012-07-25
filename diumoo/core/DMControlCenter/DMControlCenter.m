@@ -97,8 +97,12 @@
 
 -(void) stopForExit
 {
+<<<<<<< HEAD
     [skipLock tryLock];
     //[diumooPanel closePanel];
+=======
+    [skipLock lock];
+>>>>>>> b2608129ddbae20e3e06de48a5cd5ac0aa23e386
     if (playingCapsule) {
         [playingCapsule synchronousStop];
     }
@@ -390,6 +394,7 @@
 -(void)rateOrUnrate
 {
     if(self.playingCapsule == nil) return;
+    
     
     if (playingCapsule.like) {
         // 歌曲已经被加红心了，于是取消红心

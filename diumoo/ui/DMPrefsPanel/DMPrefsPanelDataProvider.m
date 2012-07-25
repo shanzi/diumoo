@@ -8,12 +8,12 @@
 
 #import "DMPrefsPanelDataProvider.h"
 #import "DMDoubanAuthHelper.h"
+#import "MASShortcutView+UserDefaults.h"
 
 
 
 @implementation DMPrefsPanelDataProvider
 @synthesize captcha_code;
-
 
 
 - (void)showPreferences
@@ -274,6 +274,36 @@
     }
     NSURL* openurl = [NSURL URLWithString:urlstring];
     [[NSWorkspace sharedWorkspace] openURL:openurl];
+}
+// ----------------------- 快捷键控制 ----------------------------
+
+-(void) changePlayControlShortcutMode:(id)sender
+{
+    if ([sender state] == NSOnState) {
+        [playShortcut setEnabled:NO];
+        [skipShortcut setEnabled:NO];
+    }
+    else {
+        [playShortcut setEnabled:YES];
+        [skipShortcut setEnabled:YES];
+    }
+    [DMShortcutsHandler registrationShortcuts];
+}
+
+-(void) awakeFromNib
+{
+    playShortcut.associatedUserDefaultsKey = keyPlayShortcut;
+    skipShortcut.associatedUserDefaultsKey = keySkipShortcut;
+    rateShortcut.associatedUserDefaultsKey = keyRateShortcut;
+    banShortcut.associatedUserDefaultsKey = keyBanShortcut;
+    showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
+    togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
+    
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    if ([[values valueForKey:@"usesMediaKey"] integerValue] == NSOnState) {
+        [playShortcut setEnabled:NO];
+        [skipShortcut setEnabled:NO];
+    }
 }
 
 @end

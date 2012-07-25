@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PLTabPreferenceControl.h"
 #import "MASShortcutView.h"
+#import "DMShortcutsHandler.h"
+
 
 #define PANEL_VIEW_COUNT 5
 #define GENERAL_PANEL_ID 0
@@ -52,6 +54,9 @@
     IBOutlet MASShortcutView* skipShortcut;
     IBOutlet MASShortcutView* rateShortcut;
     IBOutlet MASShortcutView* banShortcut;
+    IBOutlet MASShortcutView* togglePanelShortcut;
+    IBOutlet MASShortcutView* showPrefsPanel;
+    
 }
 
 @property(copy) NSString* captcha_code;
@@ -59,5 +64,6 @@
 -(IBAction)loginAction:(id)sender;
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;
+-(IBAction)changePlayControlShortcutMode:(id)sender;
 
 @end
