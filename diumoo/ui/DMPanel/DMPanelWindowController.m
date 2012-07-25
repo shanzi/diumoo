@@ -35,6 +35,7 @@ DMPanelWindowController *sharedWindow;
     if(self){
         self.menubarController = [[MenubarController alloc] init];
         [menubarController setAction:@selector(togglePanel:) withTarget:self];
+        [self awakeFromNib];
     }
     return self;
 }

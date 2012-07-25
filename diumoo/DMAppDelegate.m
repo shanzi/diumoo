@@ -151,7 +151,7 @@
     }
     else if ([key isEqualToString:keyTogglePanelShortcut])
     {
-        [center.mainPanel togglePanel:nil];
+        [center.diumooPanel togglePanel:nil];
     }
     else if([key isEqualToString:mediaKeyOn])
     {

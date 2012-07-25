@@ -137,9 +137,8 @@
 
 -(void) play
 {
-
-    
-    if(loadState < QTMovieLoadStatePlayable) return;
+    if(loadState < QTMovieLoadStatePlayable)
+        return;
     if(playState == WAIT_TO_PLAY)
     {
         self.playState = PLAYING;
