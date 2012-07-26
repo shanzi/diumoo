@@ -34,7 +34,7 @@
     return  PANEL_VIEW_COUNT;
 }
 
-- (NSString*)titleForPreferencePanelAt:(int)index
+- (NSString*)titleForPreferencePanelAt:(NSInteger)index
 {
     switch (index) {
         case GENERAL_PANEL_ID:
@@ -55,7 +55,7 @@
     }
 }
 
-- (NSImage*)imageForPreferencePanelAt:(int)index
+- (NSImage*)imageForPreferencePanelAt:(NSInteger)index
 {
     switch (index) {
         case GENERAL_PANEL_ID:
@@ -76,7 +76,7 @@
     }
 }
 
-- (NSView*)panelViewForPreferencePanelAt:(int)index
+- (NSView*)panelViewForPreferencePanelAt:(NSInteger)index
 {
     switch (index) {
         case GENERAL_PANEL_ID:
@@ -97,13 +97,13 @@
     }
 }
 
--(NSString*) identifyForPreferencePanelAt:(int)index
+-(NSString*) identifyForPreferencePanelAt:(NSInteger)index
 {
     if (index == SPACE_PANEL_ID) {
         return NSToolbarFlexibleSpaceItemIdentifier;
     }
     else {
-        return [NSString stringWithFormat:@"%d",index];
+        return [NSString stringWithFormat:@"%ld",index];
     }
 }
 
@@ -242,9 +242,9 @@
         // update account view 
         DMDoubanAuthHelper* sh = [DMDoubanAuthHelper sharedHelper];
         
-        NSString* playedString = [NSString stringWithFormat:@"%d", sh.playedSongsCount];
-        NSString* likedString = [NSString stringWithFormat:@"%d", sh.likedSongsCount];
-        NSString* bannedString = [NSString stringWithFormat:@"%d",sh.bannedSongsCount];
+        NSString* playedString = [NSString stringWithFormat:@"%ld", sh.playedSongsCount];
+        NSString* likedString = [NSString stringWithFormat:@"%ld", sh.likedSongsCount];
+        NSString* bannedString = [NSString stringWithFormat:@"%ld",sh.bannedSongsCount];
         
         [usernameTextField setStringValue:sh.username];
         [userIconButton setImage:[sh getUserIcon]];

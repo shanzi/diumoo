@@ -24,7 +24,7 @@
 +(PLTabPreferenceControl*) sharedPreferenceController;
 +(void) showPrefsAtIndex:(NSInteger) index;
 
-- (void)selectPanelAtIndex:(int)index;
+- (void)selectPanelAtIndex:(NSInteger)index;
 
 @end
 
@@ -34,12 +34,12 @@
 @required
 
 - (int)countOfPreferencePanels;
-- (NSString*)titleForPreferencePanelAt:(int)index;
-- (NSImage*)imageForPreferencePanelAt:(int)index;
-- (NSView*)panelViewForPreferencePanelAt:(int)index;
+- (NSString*)titleForPreferencePanelAt:(NSInteger)index;
+- (NSImage*)imageForPreferencePanelAt:(NSInteger)index;
+- (NSView*)panelViewForPreferencePanelAt:(NSInteger)index;
 
 @optional
-- (NSString*)identifyForPreferencePanelAt:(int)index;
+- (NSString*)identifyForPreferencePanelAt:(NSInteger)index;
 - (void)prefViewWillAppear:(NSView*)view atIndex:(NSInteger)index;
 - (void)prefViewDidAppear:(NSView*)view atIndex:(NSInteger)index;
 @end

@@ -101,7 +101,7 @@ DMPanelWindowController *sharedWindow;
 -(void) channelChangeActionWithSender:(id)sender
 {
     NSInteger tag = [sender tag];
-    NSString* channel = [NSString stringWithFormat:@"%d",tag];
+    NSString* channel = [NSString stringWithFormat:@"%ld",tag];
     if ([self.delegate channelChangedTo:channel]) {
         
         if (tag == 0 || tag == -3) {
@@ -143,6 +143,8 @@ DMPanelWindowController *sharedWindow;
         case 6:
             [self togglePanel:nil];
             [[NSApplication sharedApplication] terminate:nil];
+        case 7:
+            [PLTabPreferenceControl showPrefsAtIndex:0];
             break;
     }
 }

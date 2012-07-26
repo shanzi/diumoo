@@ -149,7 +149,7 @@
 {
     if (tableView == songsView) {
         if ([tableColumn.identifier isEqualToString:kColumnKey]) {
-            return [NSString stringWithFormat:@"%d",row+1];
+            return [NSString stringWithFormat:@"%ld",row+1];
         }
         else {
             return [songsArray objectAtIndex:row];

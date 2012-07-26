@@ -59,8 +59,8 @@
         frontCover.backgroundColor = CGColorCreateGenericGray(0.95, 1.0);
         
         // text
-        CGFontRef helveticaConsensedBold = CGFontCreateWithFontName((__bridge CFStringRef)@"Helvetica Neue Condensed Bold");
-        CGFontRef helveticaLight = CGFontCreateWithFontName((__bridge CFStringRef)@"Helvetica Neue Light");
+        CGFontRef helveticaConsensedBold = CGFontCreateWithFontName(( CFStringRef)@"Helvetica Neue Condensed Bold");
+        CGFontRef helveticaLight = CGFontCreateWithFontName((CFStringRef)@"Helvetica Neue Light");
         CGColorRef titleColor = CGColorCreateGenericRGB(0.2, 0.5, 1.0, 1.0);
         CGColorRef lighterColor = CGColorCreateGenericGray(0.2, 1.0);
         
