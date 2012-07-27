@@ -350,7 +350,7 @@
 
 -(void) updateChannelMenuWithSender:(id)sender
 {
-    DMLog(@"ismain: %d,%@",[NSThread isMainThread],[NSThread currentThread]);
+    //DMLog(@"ismain: %d,%@",[NSThread isMainThread],[NSThread currentThread]);
     NSMenuItem* citem = currentChannelMenuItem;
     NSMenuItem* newItem = nil;
     

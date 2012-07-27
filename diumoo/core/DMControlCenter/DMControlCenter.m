@@ -8,8 +8,8 @@
 
 #import "DMControlCenter.h"
 
-@interface DMControlCenter() 
-//私有函数的
+@interface DMControlCenter()
+
 -(void) startToPlay:(DMPlayableCapsule*)aSong;
 
 @end
@@ -62,7 +62,10 @@
 
 -(void)dealloc
 {
+    //release all NSStrings
     channel=nil;
+    pausedOperationType = nil;
+    //release iVar objects
     [playingCapsule release];
     [fetcher release];
     [waitPlaylist release];
@@ -70,10 +73,13 @@
     [notificationCenter release];
     [diumooPanel release];
     [recordHandler release];
+    //release delegate
     fetcher.delegate = nil;
     diumooPanel.delegate = nil;
     recordHandler.delegate = nil;
+    //rremove observer
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    //drain menory pool
     [bufferingMusicPool drain];
     [bufferingMusicPool release];
     [super dealloc];
@@ -92,10 +98,10 @@
 
 -(void) fireToPlayDefaultChannel
 {
-    [self fireToPlay:nil];
     [diumooPanel performSelectorOnMainThread:@selector(playDefaultChannel)
                                   withObject:nil
                                waitUntilDone:NO];
+    [self fireToPlay:nil];
 }
 
 -(void) stopForExit
@@ -261,7 +267,7 @@
 -(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
     DMLog(@"capsule:%@ loadState = %ld",capsule,state);
-    if (state == QTMovieLoadStatePlayable || state == QTMovieLoadStateComplete) {
+    if (state >= 20000) {
         if(capsule == playingCapsule && playingCapsule.playState == WAIT_TO_PLAY)
             [playingCapsule play];
         
@@ -280,7 +286,6 @@
         // 在这里执行一些缓冲歌曲的操作
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"max_wait_playlist_count"] integerValue];
 
-        
         if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT)
         {
             DMPlayableCapsule *newWaitingCapsule = [fetcher getOnePlayableCapsule];
@@ -346,7 +351,6 @@
     {
         [self startToPlay:[fetcher getOnePlayableCapsule]];
     }
-
 }
 
 //-------------------------------------------------------------------------
@@ -357,7 +361,7 @@
 
 -(void) playOrPause
 {
-    
+    DMLog(@"play");
     if (playingCapsule.movie.rate > 0) 
     {
         if (![skipLock tryLock]) return;

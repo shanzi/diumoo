@@ -7,16 +7,21 @@
 //
 
 #import "DMAppDelegate.h"
-#import "DMDoubanAuthHelper.h"
 
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
+    //load preferences if first launch
+    if ([NSUserDefaultsController sharedUserDefaultsController] == nil) {
+        [self makeDefaultPreference];
+
+    }
     
-    [self makeDefaultPreference];
+    //alloc everything
+    center = [[DMControlCenter alloc] init];
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-    
+
     [DMShortcutsHandler registrationShortcuts];
     
     [self handleDockIconDisplayWithChange:nil];

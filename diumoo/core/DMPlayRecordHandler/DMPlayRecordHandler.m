@@ -79,9 +79,7 @@ static DMPlayRecordHandler* recordHandler;
 
 #pragma private methods
 -(NSManagedObjectContext*) makeContextWithPath:(NSString*) datapath
-{
-    DMLog(@"DMPlayerRecordDatabase Path = %@",datapath);
-    
+{    
     datapath = [datapath stringByAppendingPathComponent:@"dmdata.db"];
     
     NSManagedObjectModel* model = [NSManagedObjectModel mergedModelFromBundles:nil];
@@ -119,7 +117,7 @@ static DMPlayRecordHandler* recordHandler;
     [fetchRequset setPredicate:[NSPredicate predicateWithFormat:@"sid = %@",sid]];
     
     NSError* fetchErr = nil;
-    DMLog(@"%@",context);
+    //DMLog(@"%@",context);
     NSArray* results = [context executeFetchRequest:fetchRequset error:&fetchErr];
 
     if ([results count]>0) {

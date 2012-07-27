@@ -158,7 +158,7 @@
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
-        [movie play];
+        [movie autoplay];
         [timer fire];
     }
     else {
