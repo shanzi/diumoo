@@ -7,6 +7,7 @@
 //
 
 #import "DMControlCenter.h"
+#import "NSDictionary+UrlEncoding.h"
 
 @interface DMControlCenter() 
 //私有函数的
@@ -481,6 +482,75 @@
     @catch (NSException *exception) {
         return NO;
     }
+}
+
+-(void)share:(SNS_CODE)code
+{
+    if (playingCapsule == nil) {
+        return;
+    }
+    
+    NSString* shareTitle = playingCapsule.title;
+    NSString* shareString = [NSString stringWithFormat:@"%@ - %@ <%@>",
+                             shareTitle,
+                             playingCapsule.artist,
+                             playingCapsule.albumtitle
+                             ];
+    NSString* shareAttribute = [playingCapsule startAttributeWithChannel:channel];
+    NSString* shareLink = [NSString stringWithFormat:@"http://douban.fm/?start=%@&cid=%@",shareAttribute,channel];
+    
+    NSString* imageLink = playingCapsule.pictureLocation;
+    NSDictionary* args = nil;
+    NSString* urlBase = nil;
+    
+    switch (code) {
+        case DOUBAN:
+            urlBase = @"http://shuo.douban.com/!service/share";
+            args = [NSDictionary dictionaryWithObjectsAndKeys:
+                    shareString,@"name",
+                    shareLink,@"href",
+                    imageLink,@"image",
+                    nil];
+            break;
+        case FANFOU:
+            urlBase = @"http://fanfou.com/sharer";
+            args = [NSDictionary dictionaryWithObjectsAndKeys:
+                    shareString,@"d",
+                    shareTitle,@"t",
+                    shareLink,@"u",
+                    nil];
+            break;
+        case SINA_WEIBO:
+            urlBase = @"http://v.t.sina.com.cn/share/share.php";
+            args = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ %@",shareString,shareLink]
+                                               forKey:@"title"];
+            break;
+        case TWITTER:
+            if(YES){
+                NSString* content =[NSString stringWithFormat:@"%@ %@",shareString,shareLink];
+                NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
+                [pb setData:[content dataUsingEncoding:NSUTF8StringEncoding]
+                    forType:NSStringPboardType];
+                if(NSPerformService(@"Tweet", pb))
+                    return;
+                else{
+                    urlBase = @"http://twitter.com/home";
+                    args = [NSDictionary dictionaryWithObject:content forKey:@"status"];
+                }
+            }
+            break;
+        case FACEBOOK:
+            urlBase = @"http://www.facebook.com/sharer.php";
+            args = [NSDictionary dictionaryWithObjectsAndKeys:
+                    shareString,@"t",
+                    shareLink,@"u",
+                    nil];
+            break;
+    }
+    
+    NSString* urlstring = [urlBase stringByAppendingFormat:@"?%@",[args urlEncodedString]];
+    NSURL* url = [NSURL URLWithString:urlstring];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 //--------------------------------------------------------------------

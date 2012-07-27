@@ -167,6 +167,11 @@ DMPanelWindowController *sharedWindow;
     }
 }
 
+-(void)shareAction:(id)sender
+{
+    [self.delegate share:(SNS_CODE)[sender tag]];
+}
+
 -(void) setRated:(BOOL)rated
 {
     if ([rateButton isEnabled]) {

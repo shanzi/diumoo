@@ -19,6 +19,8 @@
     IBOutlet NSMenu * mainMenu;
     IBOutlet NSMenu * djMenu;
     IBOutlet NSMenu* exitSpecialMenu;
+    
+    IBOutlet NSMenu* shareMenu;
 }
 
 @property(retain) IBOutlet id delegate;
