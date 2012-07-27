@@ -28,7 +28,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"SMTabBarItem{tag=%i}", self.tag];
+    return [NSString stringWithFormat:@"SMTabBarItem{tag=%li}", self.tag];
 }
 
 @end

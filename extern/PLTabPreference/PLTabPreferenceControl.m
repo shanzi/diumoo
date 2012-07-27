@@ -83,7 +83,7 @@ static PLTabPreferenceControl* shared;
 #pragma TabPreference methods
 - (void)switchPanel:(id)sender
 {
-    NSView *viewToShow = [delegate panelViewForPreferencePanelAt:(int)[sender tag]];
+    NSView *viewToShow = [delegate panelViewForPreferencePanelAt:(NSInteger)[sender tag]];
 	NSWindow* theWin = [self window];
     
     
@@ -125,7 +125,7 @@ static PLTabPreferenceControl* shared;
 	}
 }
 
-- (void)selectPanelAtIndex:(int)index
+- (void)selectPanelAtIndex:(NSInteger)index
 {
    NSToolbarItem* item = [[toolbar items] objectAtIndex:index];
     if (item) {
@@ -141,14 +141,14 @@ static PLTabPreferenceControl* shared;
         return prefIdentifyAry;
     }
     if (self.delegate) {
-        int count = [self.delegate countOfPreferencePanels];
+        NSInteger count = [self.delegate countOfPreferencePanels];
         NSMutableArray* array = [NSMutableArray arrayWithCapacity:count];
-        for (int i = 0; i< count; i++) {
+        for (NSInteger i = 0; i< count; i++) {
             NSString* identify;
             if ([delegate respondsToSelector:@selector(identifyForPreferencePanelAt:)]) {
                 identify = [delegate identifyForPreferencePanelAt:i];
             }else{
-                identify = [NSString stringWithFormat:@"%d",i];
+                identify = [NSString stringWithFormat:@"%ld",i];
             }
             [array addObject:identify];
         }
@@ -178,8 +178,8 @@ static PLTabPreferenceControl* shared;
     NSToolbarItem *item = nil;
     
     item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-    [item setLabel:[delegate titleForPreferencePanelAt:(int)index]];
-    [item setImage:[delegate imageForPreferencePanelAt:(int)index]];
+    [item setLabel:[delegate titleForPreferencePanelAt:(NSInteger)index]];
+    [item setImage:[delegate imageForPreferencePanelAt:(NSInteger)index]];
     [item setTag:index];
 		
 	[item setTarget:self];

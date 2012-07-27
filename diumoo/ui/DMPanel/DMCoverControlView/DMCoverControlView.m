@@ -47,6 +47,7 @@
     [slide setOpacity:1.0];
 }
 
+
 -(void) setPlayingInfo:(NSString *)musictitle :(NSString *)artist :(NSString *)albumTitle 
 {
     [self.slide setTitle:musictitle artist:artist andAlbum:albumTitle];
@@ -57,5 +58,6 @@
 {
     [self.slide setFrontCoverImage:albumImage];
 }
+
 
 @end

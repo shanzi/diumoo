@@ -101,7 +101,7 @@
     if (channelDict != nil) {
         double timestamp = [[channelDict valueForKey:@"timestamp"] doubleValue];
         if(([NSDate timeIntervalSinceReferenceDate] - timestamp) > 3600 * 24){
-            
+            DMLog(@"获取新的列表");
             // -------------------------获取新的列表--------------------------
             NSURL* updateUrl = [NSURL URLWithString:UPDATE_URL];
             NSURLRequest* urlrequest = [NSURLRequest requestWithURL:updateUrl
@@ -130,7 +130,7 @@
                                               public_list,@"public",
                                               dj_list,@"dj",
                                               timestamp,@"timestamp",nil ];
-                    
+                    DMLog(@"写入电台列表");
                     [writedic writeToFile:filepath atomically:YES];
                     [self updateMenuItemsWithPublicList:public_list andDJList:dj_list];
                     
@@ -314,7 +314,7 @@
                                       withObject:sender];
     }
     
-    NSString* cid = [NSString stringWithFormat:@"%d",currentChannelID];
+    NSString* cid = [NSString stringWithFormat:@"%ld",currentChannelID];
     
     if (currentChannelID > 1000000) {
         if ([sender state]==NSOnState) {
