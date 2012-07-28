@@ -559,6 +559,10 @@
 //-------------------------playrecord handler delegate ---------------
 -(void) playSongWithSid:(NSString *)sid andSsid:(NSString *)ssid
 {
+    if ([specialWaitList count]) {
+        [specialWaitList removeAllObjects];
+        [mainPanel toggleSpecialWithDictionary:nil];
+    }
     NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,self.channel];
     [fetcher fetchPlaylistFromChannel:self.channel
                              withType:kFetchPlaylistTypeNew 

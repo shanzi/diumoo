@@ -57,6 +57,9 @@
     IBOutlet MASShortcutView* togglePanelShortcut;
     IBOutlet MASShortcutView* showPrefsPanel;
     
+    //------ info outlet ---------------
+    IBOutlet NSTextField* displayName;
+    IBOutlet NSTextField* version;
 }
 
 @property(copy) NSString* captcha_code;
