@@ -47,7 +47,9 @@ DMPanelWindowController *sharedWindow;
     [panel setLevel:NSPopUpMenuWindowLevel];
     [panel setBackgroundColor:[NSColor whiteColor]];
     [panel setOpaque:NO];
-    [panel setAlphaValue:0.9];
+    [panel setAlphaValue:0.95];
+
+    [loadingIndicator startAnimation:nil];
 }
 
 - (void)windowDidLoad
@@ -172,6 +174,23 @@ DMPanelWindowController *sharedWindow;
     [self.delegate share:(SNS_CODE)[sender tag]];
 }
 
+-(void)unlockUIWithError:(BOOL)has_err
+{
+    [loadingIndicator stopAnimation:nil];
+    [popupMenuController unlockChannelMenuButton];
+    
+    if(has_err){
+        [coverView setHidden:YES];
+        [indicateString setStringValue:@"发生网络错误，请尝试重启应用"];
+    }
+    else{
+        [loadingIndicator setHidden:YES];
+        [indicateString setHidden:YES];
+        
+        [coverView setHidden:NO];
+    }
+}
+
 -(void) setRated:(BOOL)rated
 {
     if ([rateButton isEnabled]) {
@@ -208,6 +227,9 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setPlayingCapsule:(DMPlayableCapsule *)capsule
 {
+    if ([coverView isHidden]) {
+        [self unlockUIWithError:NO];
+    }
 
     [capsule prepareCoverWithCallbackBlock:^(NSImage *image) {
             [coverView setAlbumImage:image];

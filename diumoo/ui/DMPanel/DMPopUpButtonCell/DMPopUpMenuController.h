@@ -44,5 +44,6 @@
 -(void) enterSpecialPlayingModeWithTitle:(NSString *)title artist:(NSString*)artist andTypeString:(NSString*) type;
 -(void) exitSepecialPlayingMode;
 -(void) setPrivateChannelEnabled:(BOOL) enable;
+-(void) unlockChannelMenuButton;
 
 @end

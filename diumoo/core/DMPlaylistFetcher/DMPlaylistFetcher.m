@@ -24,7 +24,6 @@
 @property(retain) NSMutableDictionary *playedSongs;
 
 - (NSString*)randomString;
-- (void)fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr;
 
 @end
 
@@ -66,7 +65,7 @@
 
 #pragma -
 
-- (void)fetchPlaylistWithDictionary:(NSDictionary *)dict withStartAttribute:(NSString *)startAttr
+- (void)fetchPlaylistWithDictionary:(NSDictionary *)dict withStartAttribute:(NSString *)startAttr  andErrorCount:(NSInteger)errcount
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
@@ -93,14 +92,18 @@
 
          if (err) {
              // do something when connection err
-             [delegate fetchPlaylistError:err withComment:nil];
+             [delegate fetchPlaylistError:err withDictionary:dict
+                           startAttribute:startAttr
+                            andErrorCount:(errcount)];
          }
          else {
              NSError* jerr = nil;
              id jresponse = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
              
              if(jerr){
-                 [delegate fetchPlaylistError:jerr withComment:nil];
+                 [delegate fetchPlaylistError:jerr withDictionary:dict
+                               startAttribute:startAttr
+                                andErrorCount:errcount ];
              }
              else {
                  if([jresponse respondsToSelector:@selector(isEqualToString:)] && [jresponse isEqualToString:@"ok"])
@@ -108,7 +111,7 @@
                  else 
                  if ([[jresponse valueForKey:@"r"] intValue] != 0) {
                      // do something when an error code is responsed
-                     [delegate fetchPlaylistError:nil withComment:[jresponse valueForKey:@"err"]];
+                     [delegate fetchPlaylistError:nil withDictionary:dict startAttribute:startAttr andErrorCount:errcount];
                  }
                  else {
                      // do something to update playlist
@@ -127,7 +130,9 @@
                      }
                      @catch (NSException *exception) {
                          // throw exception
-                         [delegate fetchPlaylistError:nil withComment:@"update playlist error"];
+                         [delegate fetchPlaylistError:nil withDictionary:dict
+                                       startAttribute:startAttr
+                                        andErrorCount:errcount];
                      }
                  }
              }
@@ -155,7 +160,9 @@
                                      @"mainsite",@"from",
                                       nil];
     
-    [self fetchPlaylistWithDictionary:fetchDictionary withStartAttribute:startAttr];
+    [self fetchPlaylistWithDictionary:fetchDictionary
+                   withStartAttribute:startAttr
+                        andErrorCount:0];
 }
 
 - (DMPlayableCapsule*)getOnePlayableCapsule

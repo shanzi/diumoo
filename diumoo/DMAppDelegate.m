@@ -110,8 +110,9 @@
                           [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
                           [NSNumber numberWithInteger:NSOnState],@"usesMediaKey",
                            nil];
-    [[NSUserDefaultsController sharedUserDefaultsController]
-     setInitialValues:defaultPreferences];
+    //[[NSUserDefaultsController sharedUserDefaultsController]
+     //setInitialValues:defaultPreferences];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
