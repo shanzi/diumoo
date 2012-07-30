@@ -12,6 +12,15 @@
 #import "DMPopUpMenuController.h"
 #import "MenubarController.h"
 
+typedef enum{
+    DOUBAN = 1,
+    FANFOU = 2,
+    SINA_WEIBO = 3,
+    
+    TWITTER = 4,
+    FACEBOOK = 5
+} SNS_CODE ;
+
 @protocol DMPanelWindowDelegate <NSObject>
 
 -(void)playOrPause;
@@ -22,6 +31,7 @@
 -(BOOL)channelChangedTo:(NSString*)channel;
 -(void)exitedSpecialMode;
 -(BOOL)canBanSong;
+-(void)share:(SNS_CODE) code;
 
 @end
 
@@ -55,6 +65,7 @@
 -(IBAction)controlAction:(id)sender;
 -(IBAction)showAlbumWindow:(id)sender;
 -(IBAction)specialAction:(id)sender;
+-(IBAction)shareAction:(id)sender;
 
 -(void) setRated:(BOOL)rated;
 -(void) countRated:(NSInteger)count;

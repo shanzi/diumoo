@@ -58,7 +58,10 @@
     
     NSMenu* menuToPopup = nil;
     
-    if (self.specialMode) {
+    if ([sender tag] == -1) {
+        menuToPopup = shareMenu;
+    }
+    else if (self.specialMode) {
         menuToPopup = exitSpecialMenu;
     }
     else if ([sender tag]) {

@@ -292,6 +292,13 @@
 
 -(void) awakeFromNib
 {
+    NSDictionary* dict = [[NSBundle mainBundle] infoDictionary];
+    [displayName setStringValue:[dict objectForKey:@"CFBundleDisplayName"]];
+    version.stringValue = [NSString stringWithFormat:@"%@.%@",
+                           [dict objectForKey:@"CFBundleShortVersionString"],
+                           [dict objectForKey:@"CFBundleVersion"]
+                           ];
+    
     playShortcut.associatedUserDefaultsKey = keyPlayShortcut;
     skipShortcut.associatedUserDefaultsKey = keySkipShortcut;
     rateShortcut.associatedUserDefaultsKey = keyRateShortcut;

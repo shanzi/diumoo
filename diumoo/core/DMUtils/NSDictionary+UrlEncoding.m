@@ -17,7 +17,13 @@ static NSString *toString(id object)
 static NSString *urlEncode(id object) 
 {
     NSString *string = toString(object);
-    return [string stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    NSString * encodedString = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                   NULL,
+                                                                                   (CFStringRef)string,
+                                                                                   NULL,
+                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                   kCFStringEncodingUTF8 );
+    return encodedString;
 }
 
 
