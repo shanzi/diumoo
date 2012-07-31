@@ -177,6 +177,7 @@ DMPanelWindowController *sharedWindow;
 -(void)unlockUIWithError:(BOOL)has_err
 {
     [loadingIndicator stopAnimation:nil];
+    [loadingIndicator setHidden:YES];
     [popupMenuController unlockChannelMenuButton];
     
     if(has_err){
@@ -184,9 +185,8 @@ DMPanelWindowController *sharedWindow;
         [indicateString setStringValue:@"发生网络错误，请尝试重启应用"];
     }
     else{
-        [loadingIndicator setHidden:YES];
-        [indicateString setHidden:YES];
         
+        [indicateString setHidden:YES];
         [coverView setHidden:NO];
     }
 }
@@ -283,7 +283,7 @@ DMPanelWindowController *sharedWindow;
         NSString* artist = [info objectForKey:@"artist"];
         NSString* type = [info objectForKey:@"typestring"];
 
-        self.openURL = [DOUBAN_URL_PRIFIX stringByAppendingFormat:@"subject/%@/",[info objectForKey:@"aid"]];
+        self.openURL = [info objectForKey:@"album_location"];
         
         [popupMenuController enterSpecialPlayingModeWithTitle:title
                                                        artist:artist

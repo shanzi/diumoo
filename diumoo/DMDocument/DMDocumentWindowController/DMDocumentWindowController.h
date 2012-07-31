@@ -13,28 +13,32 @@
 @interface DMDocumentWindowController : NSWindowController <NSWindowDelegate>
 {
     
+    IBOutlet SMTabBar *tabBar;
+    IBOutlet NSTabView *tabView;
+    
+    // -------------------------预览标签页--------------------------
+    IBOutlet EDStarRating *starRating;
+    IBOutlet NSButton *revertButton;
+    IBOutlet NSButton *albumCoverButton;
+    IBOutlet NSTextField *songTitle;
+    IBOutlet NSTextField *artist;
+    
+    // ------------------------详细信息标签页------------------------
+    IBOutlet NSTextField *indicatorText;
+    IBOutlet NSProgressIndicator *progressIndicator;
+    
+    // -----------------------其他---------------------------------
+    NSString* albumTitle;
+    NSString* aid;
+    NSString* albumLocation;
+    
+    NSLock *lock;
 }
 
-@property(nonatomic,assign) IBOutlet SMTabBar *tabBar;
-@property(nonatomic,assign) IBOutlet NSTabView *tabView;
-
-// -------------------------预览标签页--------------------------
-@property(nonatomic,assign) IBOutlet EDStarRating *starRating;
-@property(nonatomic,assign) IBOutlet NSButton *revertButton;
-@property(nonatomic,assign) IBOutlet NSButton *albumCoverButton;
-@property(nonatomic,assign) IBOutlet NSTextField *songTitle;
-@property(nonatomic,assign) IBOutlet NSTextField *artist;
-
-// ------------------------详细信息标签页------------------------
-@property(nonatomic,assign) IBOutlet NSTextField *indicatorText;
-@property(nonatomic,assign) IBOutlet NSProgressIndicator *progressIndicator;
 
 
-// --------------------------其他------------------------------
-@property(copy) NSString* albumTitle;
-@property(copy) NSString* aid;
 
-@property(nonatomic,assign) NSLock *lock;
+
 
 -(id) init;
 
@@ -42,4 +46,5 @@
 
 -(IBAction)revert:(id)sender;
 -(IBAction)playAlbum:(id)sender;
+-(IBAction)openAlbumLocation:(id)sender;
 @end

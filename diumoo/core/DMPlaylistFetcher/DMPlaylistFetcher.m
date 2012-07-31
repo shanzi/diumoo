@@ -169,6 +169,12 @@
 {
     if([playlist count]>0){
         NSDictionary *songDict = [[[playlist objectAtIndex:0] retain] autorelease];
+        if([songDict objectForKey:@"ssid"] == nil){
+            if([[[NSUserDefaults standardUserDefaults]
+                 valueForKey:@"filterAds"] integerValue] == NSOnState){
+                return [self getOnePlayableCapsule];
+            }
+        }
         [playlist removeObjectAtIndex:0];
         return [DMPlayableCapsule playableCapsuleWithDictionary:songDict];
     }

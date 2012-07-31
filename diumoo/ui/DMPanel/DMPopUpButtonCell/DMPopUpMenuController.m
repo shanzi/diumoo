@@ -29,8 +29,9 @@
 -(void) awakeFromNib
 {
     
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    currentChannelID = [[values valueForKey:@"channel"] integerValue];
+
+    currentChannelID = [[[NSUserDefaults standardUserDefaults]
+                         valueForKey:@"channel"]integerValue];
     
     if (currentChannelID == 0 || currentChannelID == -3) {
         self.currentChannelMenuItem = [mainMenu itemWithTag:currentChannelID];
@@ -207,8 +208,8 @@
     }
     
     NSArray* recentlyPlayedDJ = nil;
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    recentlyPlayedDJ = [values valueForKey:@"recentdj"];
+    
+    recentlyPlayedDJ = [[NSUserDefaults standardUserDefaults] valueForKey:@"recentdj"];
     
     if ([recentlyPlayedDJ count]>0) {
         [[djMenu itemWithTag:-13] setHidden:YES];
@@ -426,6 +427,7 @@
                         [arrayToSave addObject:dict];
                     }
                 }
+                
                 id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
                 [values setValue:arrayToSave forKey:@"recentdj"];
                 [arrayToSave autorelease];

@@ -54,8 +54,7 @@
         self.length = [[dic valueForKey:@"length"] floatValue] * 1000;
         self.rating_avg = [[dic valueForKey:@"rating_avg"] floatValue];
         
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        self.volume = [[values valueForKey:@"volume"] floatValue];
+        self.volume = [[[NSUserDefaults standardUserDefaults] valueForKey:@"volume"] floatValue];
         
     }
     return self;
@@ -266,7 +265,7 @@
     if (self.picture == nil) {
         NSURL* url = [NSURL URLWithString:largePictureLocation];
         NSURLRequest* request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                                 cachePolicy:NSURLCacheStorageAllowed
                                              timeoutInterval:2.0];
         
         [NSURLConnection sendAsynchronousRequest:request

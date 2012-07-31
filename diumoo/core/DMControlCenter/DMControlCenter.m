@@ -270,7 +270,7 @@
         }
         
         // 在这里执行一些缓冲歌曲的操作
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
         
         

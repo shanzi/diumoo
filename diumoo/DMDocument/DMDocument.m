@@ -72,11 +72,7 @@
 
 -(BOOL) readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError **)outError
 {
-    
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    
+    DMLog(@"read from url %@, type : %@",url.path,type);
     if ([type isEqualToString:@"shortcut"]) {
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
         if (dict) {
@@ -90,9 +86,13 @@
         }
     }
     else if([type isEqualToString:@"_private_record"]) {
+
         NSString* _sid = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+
         if (_sid) {
-            NSManagedObject* object = [[DMPlayRecordHandler sharedRecordHandler] songWithSid:_sid];
+            DMPlayRecordHandler* sharedHandler = [DMPlayRecordHandler sharedRecordHandler];
+            //[[sharedHandler context] save:nil];
+            NSManagedObject* object = [sharedHandler songWithSid:_sid];
             if (object) {
                 self.sid = [object valueForKey:@"sid"];
                 self.ssid = [object valueForKey:@"ssid"];

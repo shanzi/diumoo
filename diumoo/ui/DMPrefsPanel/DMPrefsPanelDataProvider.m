@@ -227,7 +227,7 @@
         }
         
     }];
-    [[NSOperationQueue currentQueue] addOperation:loginOperation];
+    [[NSOperationQueue mainQueue] addOperation:loginOperation];
 }
 
 -(void) logoutAction:(id)sender
@@ -306,8 +306,9 @@
     showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
     togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
     
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    if ([[values valueForKey:@"usesMediaKey"] integerValue] == NSOnState) {
+
+    if ([[[NSUserDefaults standardUserDefaults]
+          valueForKey:@"usesMediaKey"] integerValue] == NSOnState) {
         [playShortcut setEnabled:NO];
         [skipShortcut setEnabled:NO];
     }

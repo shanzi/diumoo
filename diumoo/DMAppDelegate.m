@@ -8,6 +8,7 @@
 
 #import "DMAppDelegate.h"
 #import "DMDoubanAuthHelper.h"
+#import "DMQuickStartPanelController.h"
 
 @implementation DMAppDelegate
 
@@ -15,11 +16,11 @@
 {
     
     [self makeDefaultPreference];
-    mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-    
-    [DMShortcutsHandler registrationShortcuts];
-    
     [self handleDockIconDisplayWithChange:nil];
+    [DMQuickStartPanelController showPanel];
+    
+    mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    [DMShortcutsHandler registrationShortcuts];
     
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
@@ -60,7 +61,7 @@
 
 -(void) handleDockIconDisplayWithChange:(id)change
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     NSInteger displayIcon = [[values valueForKey:@"showDockIcon"] integerValue];
     if (displayIcon == NSOnState) {
         ProcessSerialNumber psn = { 0, kCurrentProcess };
@@ -109,6 +110,7 @@
                           [NSNumber numberWithInteger:NSOnState],@"enableGrowl",
                           [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
                           [NSNumber numberWithInteger:NSOnState],@"usesMediaKey",
+                          [NSNumber numberWithInteger:NSOffState],@"filterAds",
                            nil];
     //[[NSUserDefaultsController sharedUserDefaultsController]
      //setInitialValues:defaultPreferences];

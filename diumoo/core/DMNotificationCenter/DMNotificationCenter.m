@@ -40,7 +40,7 @@
 
 -(void) notifyMusicWithCapsule:(DMPlayableCapsule*) capsule
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
