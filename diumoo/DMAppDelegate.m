@@ -32,8 +32,13 @@
                                             forKeyPath:@"displayAlbumCoverOnDock" 
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
-    
-    // handle dock icon
+}
+
+-(void) dealloc
+{
+    [center release];
+    [mediaKeyTap release];
+    [super dealloc];
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -154,7 +159,7 @@
     }
     else if ([key isEqualToString:keyTogglePanelShortcut])
     {
-        [center.mainPanel togglePanel:nil];
+        [center.diumooPanel togglePanel:nil];
     }
     else if([key isEqualToString:mediaKeyOn])
     {

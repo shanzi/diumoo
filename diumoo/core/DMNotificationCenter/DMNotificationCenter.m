@@ -7,15 +7,16 @@
 //
 
 #import "DMNotificationCenter.h"
-#import "DMPlayableCapsule.h"
-#import "DMPanelWindowController.h"
+
 
 @implementation DMNotificationCenter
 -(id) init
 {
     self = [super init];
     if (self) {
+        if(!NSClassFromString(@"NSUserNotification")) {
         [GrowlApplicationBridge setGrowlDelegate:self];
+        }
     }
     return self;
 }
@@ -23,13 +24,8 @@
 -(NSDictionary*) registrationDictionaryForGrowl
 {
     NSArray* array = [NSArray arrayWithObjects:@"Music",@"Account",nil];
-    NSDictionary* dict = nil;
-    dict = [NSDictionary dictionaryWithObjectsAndKeys:
-            array,
-            GROWL_NOTIFICATIONS_ALL,
-            array,
-            GROWL_NOTIFICATIONS_DEFAULT
-            , nil];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:array,GROWL_NOTIFICATIONS_ALL,
+                                                                    array,GROWL_NOTIFICATIONS_DEFAULT,nil];
     return dict;
 }
 
@@ -46,13 +42,28 @@
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
         
         NSData* data = [capsule.picture TIFFRepresentation];
-        [GrowlApplicationBridge notifyWithTitle:capsule.title
+        if(NSClassFromString(@"NSUserNotification"))
+        {
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+            [center setDelegate:self];
+            notification.hasActionButton = NO;
+            notification.title = capsule.title;
+            notification.informativeText = detail;
+            notification.soundName = nil;
+            [notification setDeliveryDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+            [center scheduleNotification: notification];
+            [center release];
+        }
+        else {
+        [GrowlApplicationBridge notifyWithTitle:capsule.title   
                                     description:detail
                                notificationName:@"Music"
                                        iconData:data
                                        priority:0
                                        isSticky:NO 
                                    clickContext:capsule.sid];
+        }
     }
     
     if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState)
@@ -76,7 +87,8 @@
     }
 }
 
-
-
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
+}
 
 @end

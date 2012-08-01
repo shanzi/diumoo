@@ -17,31 +17,26 @@
 
 
 @implementation DMControlCenter
-@synthesize playingCapsule,songToPlay,fetcher,waitPlaylist,channel,pausedOperationType,skipLock,notificationCenter;
-@synthesize mainPanel,recordHandler;
-@synthesize specialWaitList;
-
+@synthesize playingCapsule,diumooPanel;
 #pragma init & dealloc
 
 -(id) init
 {
-    self = [super init];
-    if (self) {
-        fetcher = [DMPlaylistFetcher new];
-        fetcher.delegate = self;
+    if (self = [super init]) {
+        fetcher = [[DMPlaylistFetcher alloc] init];
         notificationCenter = [[DMNotificationCenter alloc] init];
-        waitPlaylist = [NSMutableOrderedSet new];
-        skipLock = [NSLock new];
+        waitPlaylist = [[NSMutableOrderedSet alloc] init];
+        skipLock = [[NSLock alloc] init];
+        diumooPanel = [DMPanelWindowController sharedWindowController];
+        recordHandler = [DMPlayRecordHandler sharedRecordHandler];
+
+
+        fetcher.delegate = self;
+        diumooPanel.delegate = self;
+        recordHandler.delegate = self;
+        
         channel = @"1";
         
-        self.mainPanel = [DMPanelWindowController sharedWindowController];
-        [mainPanel setDelegate:self];
-        [mainPanel togglePanel:nil];
-
-        self.recordHandler = [DMPlayRecordHandler sharedRecordHandler];
-        [recordHandler setDelegate:self];
-        
-
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(playSpecialNotification:)
                                                     name:@"playspecial"
@@ -58,8 +53,6 @@
     [fetcher release];
     [notificationCenter release];
     [playingCapsule release];
-    [mainPanel close];
-    [mainPanel release];
     [recordHandler release];
     [super dealloc];
 }
@@ -80,7 +73,7 @@
 
 -(void) fireToPlayDefaultChannel
 {
-    [mainPanel performSelectorOnMainThread:@selector(playDefaultChannel)
+    [diumooPanel performSelectorOnMainThread:@selector(playDefaultChannel)
                                 withObject:nil
                              waitUntilDone:NO];
 }
@@ -111,7 +104,7 @@
             return;
         }
         else {
-            [mainPanel toggleSpecialWithDictionary:nil];
+            [diumooPanel toggleSpecialWithDictionary:nil];
         }
         
         
@@ -164,8 +157,8 @@
     {
         [playingCapsule play];
         [playingCapsule prepareCoverWithCallbackBlock:^(NSImage * image) {
-            [mainPanel setRated:playingCapsule.like];
-            [mainPanel setPlayingCapsule:playingCapsule];
+            [diumooPanel setRated:playingCapsule.like];
+            [diumooPanel setPlayingCapsule:playingCapsule];
             [notificationCenter notifyMusicWithCapsule:playingCapsule];
             [recordHandler addRecordAsyncWithCapsule:playingCapsule];
         }];
@@ -178,23 +171,23 @@
 
 -(void) playableCapsuleDidPlay:(id)c
 {
-    [mainPanel setPlaying:YES];
+    [diumooPanel setPlaying:YES];
 }
 
 -(void) playableCapsuleWillPause:(id)c
 {
-    [mainPanel setPlaying:NO];
+    [diumooPanel setPlaying:NO];
 }
 -(void) playableCapsuleDidPause:(id)c
 {
-    [mainPanel setPlaying:NO];
+    [diumooPanel setPlaying:NO];
 
     if([pausedOperationType isEqualToString:kPauseOperationTypeSkip])
     {
         // 跳过当前歌曲
-        if (self.songToPlay) {
-            [self startToPlay:self.songToPlay];
-            self.songToPlay = nil;
+        if (waitingCapsule) {
+            [self startToPlay:waitingCapsule];
+            waitingCapsule = nil;
         }
         else {
             [self startToPlay:nil];
@@ -226,7 +219,7 @@
 
 -(void) playableCapsuleDidEnd:(id)c
 {
-    [mainPanel setPlaying:NO];
+    [diumooPanel setPlaying:NO];
     
     if (c == playingCapsule) {
         if( playingCapsule.playState == PLAYING_AND_WILL_REPLAY)
@@ -265,7 +258,7 @@
         
          
         // 特殊播放模式下不缓冲
-        if (self.specialWaitList) {
+        if (specialWaitList) {
             return;
         }
         
@@ -319,7 +312,7 @@
         }
         else
         {
-            [mainPanel unlockUIWithError:YES];
+            [diumooPanel unlockUIWithError:YES];
         }
     }
 }
@@ -332,10 +325,10 @@
     
     if (startsong) {
         if (playingCapsule) {
-            self.songToPlay = startsong;
+            waitingCapsule = startsong;
             if ([skipLock tryLock]) {
-                self.pausedOperationType = kPauseOperationTypeSkip;
-                [self.playingCapsule pause];
+                pausedOperationType = kPauseOperationTypeSkip;
+                [playingCapsule pause];
             }
         }
         else {
@@ -380,7 +373,7 @@
                        startAttribute:nil];
     
     // 指定歌曲暂停后的operation
-    self.pausedOperationType = kPauseOperationTypeSkip;
+    pausedOperationType = kPauseOperationTypeSkip;
     
     // 暂停当前歌曲
     [playingCapsule pause];
@@ -397,8 +390,8 @@
                                  withType:kFetchPlaylistTypeUnrate
                                       sid:playingCapsule.sid
                            startAttribute:nil];
-        [mainPanel countRated:-1];
-        [mainPanel setRated:NO];
+        [diumooPanel countRated:-1];
+        [diumooPanel setRated:NO];
     }
     else {
         
@@ -408,8 +401,8 @@
                                       sid:playingCapsule.sid
                            startAttribute:nil];
         
-        [mainPanel countRated:1];
-        [mainPanel setRated:YES];
+        [diumooPanel countRated:1];
+        [diumooPanel setRated:YES];
     }
     // 在这里做些什么事情来更新 UI
     
@@ -429,7 +422,7 @@
                        startAttribute:nil];
     
     // 指定歌曲暂停后的operation
-    self.pausedOperationType = kPauseOperationTypeSkip;
+    pausedOperationType = kPauseOperationTypeSkip;
     
     // 暂停当前歌曲
     [playingCapsule pause];
@@ -437,7 +430,7 @@
 
 -(BOOL)channelChangedTo:(NSString *)ch
 {
-    if (self.channel == ch) {
+    if (channel == ch) {
         return YES;
     }
     
@@ -445,14 +438,14 @@
         return NO;
     };
     
-    self.channel = ch;
+    channel = ch;
     
     [waitPlaylist removeAllObjects];
     [fetcher clearPlaylist];
     
     if (playingCapsule) {
 
-        self.pausedOperationType = kPauseOperationTypeFetchNewPlaylist;
+        pausedOperationType = kPauseOperationTypeFetchNewPlaylist;
         
         [playingCapsule pause];
     }
@@ -471,14 +464,14 @@
 
 -(void)exitedSpecialMode
 {
-    self.specialWaitList = nil;
-    [mainPanel toggleSpecialWithDictionary:nil];
+    specialWaitList = nil;
+    [diumooPanel toggleSpecialWithDictionary:nil];
     [self skip];
 }
 
 -(BOOL)canBanSong
 {
-    NSString* c = self.channel;
+    NSString* c = channel;
     @try {
         NSInteger channel_id = [c integerValue];
         if (channel_id == 0 || channel_id == -3) {
@@ -570,10 +563,10 @@
 {
     if ([specialWaitList count]) {
         [specialWaitList removeAllObjects];
-        [mainPanel toggleSpecialWithDictionary:nil];
+        [diumooPanel toggleSpecialWithDictionary:nil];
     }
-    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,self.channel];
-    [fetcher fetchPlaylistFromChannel:self.channel
+    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
+    [fetcher fetchPlaylistFromChannel:channel
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
                        startAttribute:startattribute];
@@ -602,15 +595,15 @@
         if([list count]){
             NSMutableArray* array = nil;
             array = [NSMutableArray arrayWithArray:list];
-            self.specialWaitList = [array retain];
-            [mainPanel toggleSpecialWithDictionary:info];
+            specialWaitList = [array retain];
+            [diumooPanel toggleSpecialWithDictionary:info];
             
-            self.pausedOperationType = kPauseOperationTypePlaySpecial;
+            pausedOperationType = kPauseOperationTypePlaySpecial;
             [playingCapsule pause];
             
         }
         else {
-            self.specialWaitList = nil;
+            specialWaitList = nil;
             [skipLock unlock];
         }
     }];

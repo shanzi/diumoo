@@ -155,6 +155,7 @@ static DMPlayRecordHandler* recordHandler;
         
         NSManagedObject* song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
                                                               inManagedObjectContext:context];
+        DMLog(@"music location = %@",capsule.albumLocation);
         
         [song setValue:capsule.sid forKey:@"sid"];
         [song setValue:capsule.ssid forKey:@"ssid"];
@@ -163,7 +164,7 @@ static DMPlayRecordHandler* recordHandler;
         [song setValue:capsule.albumtitle forKey:@"albumtitle"];
         [song setValue:capsule.artist forKey:@"artist"];
         [song setValue:capsule.largePictureLocation forKey:@"picture"];
-        [song setValue:capsule.albumLocation forKey:@"album_location"];
+        [song setValue:[NSString stringWithString:capsule.albumLocation] forKey:@"url"];
         [song setValue:[NSNumber numberWithFloat:capsule.rating_avg]
                 forKey:@"rating_avg"];
         [song setValue:date forKey:@"date"];
