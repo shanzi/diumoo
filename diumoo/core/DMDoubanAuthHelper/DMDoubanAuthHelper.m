@@ -88,7 +88,7 @@ static DMDoubanAuthHelper* sharedHelper;
     NSMutableURLRequest* authRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:AUTH_STRING]];
     [authRequest setHTTPMethod:@"POST"];
     [authRequest setHTTPBody:authRequestBody];
-    [authRequest setTimeoutInterval:2.0];
+    [authRequest setTimeoutInterval:5.0];
     
     
     // 发出同步请求

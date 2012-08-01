@@ -49,6 +49,9 @@ typedef enum{
     IBOutlet NSTextField* usernameTextField;
     IBOutlet NSTextField* ratedCountTextField;
     
+    IBOutlet NSProgressIndicator* loadingIndicator;
+    IBOutlet NSTextField* indicateString;
+    
     BOOL _hasActivePanel;
 }
 
@@ -67,6 +70,7 @@ typedef enum{
 -(IBAction)specialAction:(id)sender;
 -(IBAction)shareAction:(id)sender;
 
+-(void) unlockUIWithError:(BOOL)has_err;
 -(void) setRated:(BOOL)rated;
 -(void) countRated:(NSInteger)count;
 -(void) setPlaying:(BOOL) playing;

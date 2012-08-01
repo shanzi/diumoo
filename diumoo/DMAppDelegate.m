@@ -7,24 +7,20 @@
 //
 
 #import "DMAppDelegate.h"
+#import "DMDoubanAuthHelper.h"
+#import "DMQuickStartPanelController.h"
 
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    //load preferences if first launch
-    if ([NSUserDefaultsController sharedUserDefaultsController] == nil) {
-        [self makeDefaultPreference];
-
-    }
     
-    //alloc everything
-    center = [[DMControlCenter alloc] init];
-    mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-
-    [DMShortcutsHandler registrationShortcuts];
-    
+    [self makeDefaultPreference];
     [self handleDockIconDisplayWithChange:nil];
+    [DMQuickStartPanelController showPanel];
+    
+    mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    [DMShortcutsHandler registrationShortcuts];
     
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
@@ -65,7 +61,7 @@
 
 -(void) handleDockIconDisplayWithChange:(id)change
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     NSInteger displayIcon = [[values valueForKey:@"showDockIcon"] integerValue];
     if (displayIcon == NSOnState) {
         ProcessSerialNumber psn = { 0, kCurrentProcess };
@@ -114,9 +110,11 @@
                           [NSNumber numberWithInteger:NSOnState],@"enableGrowl",
                           [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
                           [NSNumber numberWithInteger:NSOnState],@"usesMediaKey",
+                          [NSNumber numberWithInteger:NSOffState],@"filterAds",
                            nil];
-    [[NSUserDefaultsController sharedUserDefaultsController]
-     setInitialValues:defaultPreferences];
+    //[[NSUserDefaultsController sharedUserDefaultsController]
+     //setInitialValues:defaultPreferences];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
@@ -156,7 +154,7 @@
     }
     else if ([key isEqualToString:keyTogglePanelShortcut])
     {
-        [center.diumooPanel togglePanel:nil];
+        [center.mainPanel togglePanel:nil];
     }
     else if([key isEqualToString:mediaKeyOn])
     {

@@ -270,7 +270,7 @@
         }
         
         // 在这里执行一些缓冲歌曲的操作
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
         
         
@@ -309,10 +309,19 @@
 
 //----------------------------fetcher 的 delegate 部分 --------------------
 
--(void) fetchPlaylistError:(NSError *)err withComment:(NSString *)comment
+-(void) fetchPlaylistError:(NSError *)err withDictionary:(NSDictionary *)dict startAttribute:(NSString *)attr andErrorCount:(NSInteger)count
 {
-
-    DMLog(@"fetch error: %@",err);
+    if(playingCapsule == nil){
+        if (count < 5) {
+            [fetcher fetchPlaylistWithDictionary:dict
+                              withStartAttribute:attr
+                                   andErrorCount:count+1];
+        }
+        else
+        {
+            [mainPanel unlockUIWithError:YES];
+        }
+    }
 }
 
 

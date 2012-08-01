@@ -29,8 +29,9 @@
 -(void) awakeFromNib
 {
     
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    currentChannelID = [[values valueForKey:@"channel"] integerValue];
+
+    currentChannelID = [[[NSUserDefaults standardUserDefaults]
+                         valueForKey:@"channel"]integerValue];
     
     if (currentChannelID == 0 || currentChannelID == -3) {
         self.currentChannelMenuItem = [mainMenu itemWithTag:currentChannelID];
@@ -109,8 +110,7 @@
             NSURL* updateUrl = [NSURL URLWithString:UPDATE_URL];
             NSURLRequest* urlrequest = [NSURLRequest requestWithURL:updateUrl
                                                         cachePolicy:NSURLCacheStorageAllowed
-                                                    timeoutInterval:1.0];
-            
+                                                    timeoutInterval:3.0];
             NSURLResponse* response = NULL;
             NSError* error = NULL;
             NSData* data = [NSURLConnection sendSynchronousRequest:urlrequest
@@ -119,25 +119,28 @@
             
             
             if(error==NULL){
-                channelDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
+                NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
                 
                 if(error == NULL){
-                    public_list = [channelDict valueForKey:@"public"];
-                    dj_list = [channelDict valueForKey:@"dj"];
+                    public_list = [dict valueForKey:@"public"];
+                    dj_list = [dict valueForKey:@"dj"];
                     
-                    NSNumber* timestamp = [NSNumber numberWithDouble:
-                                           [NSDate timeIntervalSinceReferenceDate]];
-                    
-                    NSDictionary* writedic = [NSDictionary
-                                              dictionaryWithObjectsAndKeys: 
-                                              public_list,@"public",
-                                              dj_list,@"dj",
-                                              timestamp,@"timestamp",nil ];
-                    DMLog(@"写入电台列表");
-                    [writedic writeToFile:filepath atomically:YES];
-                    [self updateMenuItemsWithPublicList:public_list andDJList:dj_list];
-                    
-                    return;
+                    if ([public_list count] && [dj_list count]) {
+                        
+                        NSNumber* timestamp = [NSNumber numberWithDouble:
+                                               [NSDate timeIntervalSinceReferenceDate]];
+                        
+                        NSDictionary* writedic = [NSDictionary
+                                                  dictionaryWithObjectsAndKeys:
+                                                  public_list,@"public",
+                                                  dj_list,@"dj",
+                                                  timestamp,@"timestamp",nil ];
+                        DMLog(@"写入电台列表");
+                        [writedic writeToFile:filepath atomically:YES];
+                        [self updateMenuItemsWithPublicList:public_list andDJList:dj_list];
+                        
+                        return;
+                    }
                 }
             }
             //----------------------------------------------------------------------
@@ -205,8 +208,8 @@
     }
     
     NSArray* recentlyPlayedDJ = nil;
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    recentlyPlayedDJ = [values valueForKey:@"recentdj"];
+    
+    recentlyPlayedDJ = [[NSUserDefaults standardUserDefaults] valueForKey:@"recentdj"];
     
     if ([recentlyPlayedDJ count]>0) {
         [[djMenu itemWithTag:-13] setHidden:YES];
@@ -424,6 +427,7 @@
                         [arrayToSave addObject:dict];
                     }
                 }
+                
                 id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
                 [values setValue:arrayToSave forKey:@"recentdj"];
                 [arrayToSave autorelease];
@@ -509,6 +513,14 @@
         [itemPrivateChannel setAction:@selector(changeChannelAction:)];
     }
     
+}
+
+
+-(void) unlockChannelMenuButton
+{
+    [longMainButton setEnabled:YES];
+    [mainButton setEnabled:YES];
+    [subButton setEnabled:YES];
 }
 
 @end

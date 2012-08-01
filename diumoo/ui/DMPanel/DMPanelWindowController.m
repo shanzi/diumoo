@@ -48,7 +48,9 @@ DMPanelWindowController *sharedWindow;
     [panel setLevel:NSPopUpMenuWindowLevel];
     [panel setBackgroundColor:[NSColor whiteColor]];
     [panel setOpaque:NO];
-    [panel setAlphaValue:0.9];
+    [panel setAlphaValue:0.95];
+
+    [loadingIndicator startAnimation:nil];
 }
 
 - (void)windowDidLoad
@@ -173,6 +175,23 @@ DMPanelWindowController *sharedWindow;
     [self.delegate share:(SNS_CODE)[sender tag]];
 }
 
+-(void)unlockUIWithError:(BOOL)has_err
+{
+    [loadingIndicator stopAnimation:nil];
+    [loadingIndicator setHidden:YES];
+    [popupMenuController unlockChannelMenuButton];
+    
+    if(has_err){
+        [coverView setHidden:YES];
+        [indicateString setStringValue:@"发生网络错误，请尝试重启应用"];
+    }
+    else{
+        
+        [indicateString setHidden:YES];
+        [coverView setHidden:NO];
+    }
+}
+
 -(void) setRated:(BOOL)rated
 {
     if ([rateButton isEnabled]) {
@@ -209,6 +228,9 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setPlayingCapsule:(DMPlayableCapsule *)capsule
 {
+    if ([coverView isHidden]) {
+        [self unlockUIWithError:NO];
+    }
 
     [capsule prepareCoverWithCallbackBlock:^(NSImage *image) {
             [coverView setAlbumImage:image];
@@ -262,7 +284,7 @@ DMPanelWindowController *sharedWindow;
         NSString* artist = [info objectForKey:@"artist"];
         NSString* type = [info objectForKey:@"typestring"];
 
-        self.openURL = [DOUBAN_URL_PRIFIX stringByAppendingFormat:@"subject/%@/",[info objectForKey:@"aid"]];
+        self.openURL = [info objectForKey:@"album_location"];
         
         [popupMenuController enterSpecialPlayingModeWithTitle:title
                                                        artist:artist

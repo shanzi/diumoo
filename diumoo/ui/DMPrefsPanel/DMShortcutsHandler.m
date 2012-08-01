@@ -17,7 +17,7 @@
 
 +(void)registrationShortcuts
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     if ([[values valueForKey:@"usesMediaKey"] integerValue]!=NSOnState) {
         
         [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyPlayShortcut

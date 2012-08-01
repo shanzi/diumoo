@@ -12,6 +12,7 @@
 #import "EDStarRating.h"
 #import "CJSONDeserializer.h"
 #import "DMDetailViewController.h"
+#import "NSImage+AsyncLoadImage.h"
 
 #define DOUBAN_API_URL @"http://api.douban.com/music/subject/"
 
@@ -22,16 +23,12 @@
 @end
 
 @implementation DMDocumentWindowController
-@synthesize tabView,tabBar;
-@synthesize starRating,revertButton,albumCoverButton,songTitle,artist;
-@synthesize indicatorText,progressIndicator;
-@synthesize albumTitle,aid,lock;
 
 -(id)init
 {
     self = [super initWithWindowNibName:@"DMDocumentWindow"];
     if (self) {
-        self.lock = [[NSLock alloc] init];
+        lock = [[[NSLock alloc] init] retain];
     }
     return self;
 }
@@ -39,6 +36,9 @@
 -(void)dealloc
 {
     [lock release];
+    [albumLocation release];
+    [aid release];
+    [albumTitle release];
     [super dealloc];
 }
 
@@ -87,7 +87,7 @@
         [item release];
     }
 
-    self.tabBar.items = tabBarItems;
+    tabBar.items = tabBarItems;
 }
 
 -(void)setupWindowForDocument:(NSDocument *)doc
@@ -96,25 +96,32 @@
     NSDictionary* dict = [doc performSelector:@selector(baseSongInfo)];
     
     NSString* picture_url = [dict valueForKey:@"picture"];
-    NSURL * purl = [NSURL URLWithString:picture_url];
-    NSImage* image = [[NSImage alloc] initWithContentsOfURL:purl];
+    [NSImage AsyncLoadImageWithURLString:picture_url andCallBackBlock:^(NSImage *image) {
+        if (image) {
+            albumCoverButton.image = image;
+        }
+        else
+        {
+            albumCoverButton.image = [NSImage imageNamed:@"albumfail.png"];
+        }
+    }];
     
-    self.albumCoverButton.image = image;
-    self.artist.stringValue = [dict valueForKey:@"artist"];
-    self.songTitle.stringValue = [dict valueForKey:@"title"];
     
-    self.albumTitle = [dict valueForKey:@"albumtitle"]; 
-    self.aid = [dict valueForKey:@"aid"];
+    artist.stringValue = [dict valueForKey:@"artist"];
+    songTitle.stringValue = [dict valueForKey:@"title"];
+    
+    albumTitle = [[dict valueForKey:@"albumtitle"] copy];
+    aid = [[dict valueForKey:@"aid"] copy];
+    albumLocation = [[dict valueForKey:@"album_location"] copy];
     starRating.rating = [[dict valueForKey:@"rating_avg"] floatValue];
     [starRating setNeedsDisplay];
-    [image release];
 }
 
 
 -(NSString*) windowTitleForDocumentDisplayName:(NSString *)displayName
 {
 
-    return [NSString stringWithFormat:@"专辑:《%@》", self.albumTitle];
+    return [NSString stringWithFormat:@"专辑:《%@》", albumTitle];
 }
 
 
@@ -152,7 +159,7 @@
     [tabView selectTabViewItemAtIndex:tag];
     if (tag == 1) {
         if(![lock tryLock])return;
-        [self.progressIndicator startAnimation:nil];
+        [progressIndicator startAnimation:nil];
         NSBlockOperation* fetchDetailOperation = 
         [NSBlockOperation blockOperationWithBlock:^{
             NSString* apiurlString = [NSString stringWithFormat:@"%@%@?alt=json",
@@ -171,8 +178,8 @@
                                                              error:&error];
             
             if (error) {
-                self.indicatorText.stringValue = @"获取详细信息失败" ;
-                [self.progressIndicator stopAnimation:nil];
+                indicatorText.stringValue = @"获取详细信息失败" ;
+                [progressIndicator stopAnimation:nil];
                 [lock unlock];
             }
             else {
@@ -180,12 +187,12 @@
                                                                                          error:&error];
                 
                 if (error) {
-                    self.indicatorText.stringValue = @"解析信息失败（来自豆瓣音乐人的专辑无法获取详细信息）" ;
-                    [self.progressIndicator stopAnimation:nil];
+                    indicatorText.stringValue = @"解析信息失败（来自豆瓣音乐人的专辑无法获取详细信息）" ;
+                    [progressIndicator stopAnimation:nil];
                 }
                 else {
-                    self.indicatorText.stringValue = @"解析信息成功！" ;
-                    [self.progressIndicator stopAnimation:nil];
+                    indicatorText.stringValue = @"解析信息成功！" ;
+                    [progressIndicator stopAnimation:nil];
                     
                     [self displayDetailView:dict];
                 }
@@ -277,11 +284,18 @@
                               artisttitle,@"artist",
                               type,@"type",
                               typestring,@"typestring",
+                              albumLocation,@"album_location",
                               nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playspecial" 
                                                         object:self
                                                       userInfo:userinfo];
+}
+
+-(void)openAlbumLocation:(id)sender
+{
+    NSURL* albumurl = [NSURL URLWithString:albumLocation];
+    [[NSWorkspace sharedWorkspace] openURL:albumurl];
 }
 
 @end

@@ -70,6 +70,16 @@ static DMPlayRecordHandler* recordHandler;
 
 -(void)dealloc
 {
+    [context save:nil];
+    
+    NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
+    if([versions count]>50){
+        for (int i =0 ; i<([versions count] - 50); i++) {
+            NSFileVersion* version = [versions objectAtIndex:i];
+            [version removeAndReturnError:nil];
+        }
+    }
+    
     self.delegate = nil;
     [recordFileURL release];
     [context release];
@@ -89,7 +99,7 @@ static DMPlayRecordHandler* recordHandler;
     
     NSError *err = nil;
 
-    [coordinator addPersistentStoreWithType:NSBinaryStoreType
+    [coordinator addPersistentStoreWithType:NSSQLiteStoreType
                               configuration:nil 
                                         URL:[NSURL fileURLWithPath:datapath]
                                     options:nil
@@ -129,8 +139,11 @@ static DMPlayRecordHandler* recordHandler;
 
 -(void) addRecordWithCapsule:(DMPlayableCapsule *)capsule
 {
+    if (capsule.ssid == nil) {
+        return;
+    }
+    
     NSString* sid = capsule.sid;
-
     NSManagedObject* theSong = [self songWithSid:sid];
     
     if (theSong) {
@@ -150,19 +163,16 @@ static DMPlayRecordHandler* recordHandler;
         [song setValue:capsule.albumtitle forKey:@"albumtitle"];
         [song setValue:capsule.artist forKey:@"artist"];
         [song setValue:capsule.largePictureLocation forKey:@"picture"];
+        [song setValue:capsule.albumLocation forKey:@"album_location"];
         [song setValue:[NSNumber numberWithFloat:capsule.rating_avg]
                 forKey:@"rating_avg"];
         [song setValue:date forKey:@"date"];
         
         
-        NSError* err = nil;
-        [context save:&err];
-        if (err) {
-            DMLog(@"Context save with #Error# = %@",err);
-        }
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {
+        
         [NSFileVersion addVersionOfItemAtURL: self.recordFileURL
                            withContentsOfURL: self.recordFileURL
                                      options: 0
@@ -204,5 +214,6 @@ static DMPlayRecordHandler* recordHandler;
 {
     [self.delegate playSongWithSid:sid andSsid:ssid];
 }
+
 
 @end
