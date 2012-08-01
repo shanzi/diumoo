@@ -9,6 +9,7 @@
 #import "DMPrefsPanelDataProvider.h"
 #import "DMDoubanAuthHelper.h"
 #import "MASShortcutView+UserDefaults.h"
+#import "NSImage+AsyncLoadImage.h"
 
 
 
@@ -120,24 +121,27 @@
             [sender setEnabled:NO];
             [indicator setHidden:NO];
             [indicator startAnimation:nil];
-            NSBlockOperation* fetchCapcha = [NSBlockOperation blockOperationWithBlock:
-             ^{
-                 self.captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
-                 NSImage* image = [DMDoubanAuthHelper getNewCapchaImageWithCode:self.captcha_code];
-                 if (image == nil) {
-                     [sender setImage:nil];
-                     [sender setTitle:@"获取失败，请重试"];
-                 }
-                 else {
-                     [sender setImage:image];
-                     [sender setBordered:NO];
-                     [sender setTitle:@""];
-                 }
-                 [sender setEnabled:YES];
-                 [indicator stopAnimation:nil];
-                 [indicator setHidden:YES];
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                self.captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
+                NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:self.captcha_code];
+                
+                [NSImage AsyncLoadImageWithURLString:captcha_url andCallBackBlock:^(NSImage * image) {
+                    if (image == nil) {
+                        [sender setImage:nil];
+                        [sender setTitle:@"获取失败，请重试"];
+                        [sender setBordered:YES];
+                    }
+                    else {
+                        [sender setImage:image];
+                        [sender setBordered:NO];
+                        [sender setTitle:@""];
+                    }
+                    [sender setEnabled:YES];
+                    [indicator stopAnimation:nil];
+                    [indicator setHidden:YES];
+                }];
             }];
-            [[NSOperationQueue currentQueue] addOperation:fetchCapcha];
             break;
             
         case 1: // 登陆操作

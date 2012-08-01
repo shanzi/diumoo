@@ -6,7 +6,7 @@
 //  retainright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#define DOUBAN_URL_PRIFIX @"http://music.douban.com/"
+#define DOUBAN_URL_PRIFIX @"http://music.douban.com"
 #define TIMER_INTERVAL 0.1
 
 //  Playable State

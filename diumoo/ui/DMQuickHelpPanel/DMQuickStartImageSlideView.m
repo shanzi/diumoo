@@ -9,9 +9,8 @@
 #import "DMQuickStartImageSlideView.h"
 #import <Quartz/Quartz.h>
 
+
 @implementation DMQuickStartImageSlideView
-
-
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -19,12 +18,37 @@
     if (self) {
         // Initialization code here.
         currentImageIndex = 0;
+        viewLayer = [[[CALayer alloc] init] retain];
+        viewLayer.frame = frame;
+        
         rootLayer = [[[CALayer alloc] init] retain];
         rootLayer.frame = frame;
         rootLayer.anchorPoint = CGPointMake(0,0);
         rootLayer.position = rootLayer.anchorPoint;
+        
+        nextActionLayer = [[[CALayer alloc]init] retain];
+        backActionLayer = [[[CALayer alloc]init] retain];
+        nextActionLayer.frame = CGRectMake(0, 0, 48, 48);
+        backActionLayer.frame = nextActionLayer.frame;
+        
+        backActionLayer.position = CGPointMake(34, 200);
+        nextActionLayer.position = CGPointMake(560 - 34, 200);
+        
+        backActionLayer.zPosition = 1;
+        nextActionLayer.zPosition = 1;
+        
+        backActionLayer.contents = [NSImage imageNamed:@"arrowleft"];
+        nextActionLayer.contents = [NSImage imageNamed:@"arrowright"];
+        
+        backActionLayer.opacity = 0.4;
+        nextActionLayer.opacity = 0.8;
+        
+        [viewLayer addSublayer:rootLayer];
+        [viewLayer addSublayer:backActionLayer];
+        [viewLayer addSublayer:nextActionLayer];
+        
         [self setWantsLayer:YES];
-        [self setLayer:rootLayer];
+        [self setLayer:viewLayer];
     }
     
     return self;
@@ -110,6 +134,34 @@
     layer.position = CGPointMake(self.frame.size.width, 0);
     [CATransaction commit];
     currentImageIndex -= 1;
+}
+
+-(void) mouseDown:(NSEvent *)theEvent
+{
+    NSPoint point = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    CALayer* hitted = [viewLayer hitTest:point];
+    if( hitted == backActionLayer){
+        if ([self canBack]) {
+            [self back];
+        }
+    }
+    else if(hitted == nextActionLayer){
+        if ([self canNext]) {
+            [self next];
+        }
+        else{
+            [deleate performSelector:@selector(close)];
+        }
+    }
+    
+    if ([self canBack]) {
+        backActionLayer.opacity = 0.8;
+    }
+    else
+    {
+        backActionLayer.opacity = 0.4;
+    }
 }
 
 @end

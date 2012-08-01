@@ -172,6 +172,7 @@
         if([songDict objectForKey:@"ssid"] == nil){
             if([[[NSUserDefaults standardUserDefaults]
                  valueForKey:@"filterAds"] integerValue] == NSOnState){
+                [playlist removeObjectAtIndex:0];
                 return [self getOnePlayableCapsule];
             }
         }

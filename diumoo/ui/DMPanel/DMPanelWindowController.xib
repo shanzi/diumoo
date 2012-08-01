@@ -441,7 +441,7 @@
 						<object class="NSButton" id="224481640">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{220, 73}, {30, 30}}</string>
+							<string key="NSFrame">{{218, 73}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="128865575"/>
@@ -1948,7 +1948,7 @@
 			<string key="rate">{62, 35}</string>
 			<string key="redheart">{16, 16}</string>
 			<string key="settings">{16, 16}</string>
-			<string key="share">{64, 64}</string>
+			<string key="share">{32, 32}</string>
 			<string key="sina">{16, 16}</string>
 			<string key="skip">{63, 35}</string>
 			<string key="twitter">{16, 16}</string>

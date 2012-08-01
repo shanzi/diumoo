@@ -50,38 +50,16 @@
                   @"slide4",
                   nil];
     [slideView setImageNames:imageNames];
-    [backButton setEnabled:[slideView canBack]];
-    if (![slideView canNext]) {
-        [nextButton setTitle:@"完成"];
-    }
 }
 
--(void) navigation:(id)sender
+-(void) close
 {
-    if (sender == nextButton) {
-        if([slideView canNext]) {
-            [slideView next];
-            if (![slideView canNext]) {
-                [nextButton setTitle:@"完成"];
-            }
-        }
-        else{
-            id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-            [values setValue:[NSNumber numberWithInteger:CURRENT_QUICKSTART_VERSION]
-                      forKey:@"quickStartVersion"];
-            [self close];
-        }
-            
-    }
-    else{
-        if ([slideView canBack])
-            [slideView back];
-        if ([slideView canNext]) {
-            [nextButton setTitle:@"下一步"];
-        }
-    }
-    
-    [backButton setEnabled:[slideView canBack]];
+    [[NSUserDefaults standardUserDefaults]
+     setValue:[NSNumber numberWithInteger:CURRENT_QUICKSTART_VERSION]
+     forKey:@"quickStartVersion"];
+    [super close];
 }
+
+
 
 @end
