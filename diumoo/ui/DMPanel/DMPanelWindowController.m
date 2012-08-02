@@ -31,8 +31,7 @@ DMPanelWindowController *sharedWindow;
 
 -(id) init
 {
-    self = [super initWithWindowNibName:@"DMPanelWindowController"];
-    if(self){
+    if(self = [super initWithWindowNibName:@"DMPanelWindowController"]){
         self.menubarController = [[MenubarController alloc] init];
         [menubarController setAction:@selector(togglePanel:) withTarget:self];
         [self awakeFromNib];
@@ -68,7 +67,7 @@ DMPanelWindowController *sharedWindow;
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
-    DMLog(@"%@",helper);
+    DMLog(@"AccountStateChanged = %@",helper);
     if (helper.username) {
         [userIconButton setImage:[helper getUserIcon]];
         [usernameTextField setStringValue:helper.username];

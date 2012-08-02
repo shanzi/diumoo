@@ -127,7 +127,7 @@
 
 -(void) revert:(id)sender
 {
-    [self.document revertDocumentToSaved:nil];
+    [self.document browseDocumentVersions:sender];
 }
 
 
@@ -158,7 +158,8 @@
     NSInteger tag = [item tag];
     [tabView selectTabViewItemAtIndex:tag];
     if (tag == 1) {
-        if(![lock tryLock])return;
+        if(![lock tryLock])
+            return;
         [progressIndicator startAnimation:nil];
         NSBlockOperation* fetchDetailOperation = 
         [NSBlockOperation blockOperationWithBlock:^{
