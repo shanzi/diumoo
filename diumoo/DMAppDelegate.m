@@ -13,16 +13,13 @@
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
-{
-    
-    [self makeDefaultPreference];
-    [self handleDockIconDisplayWithChange:nil];
-    [DMQuickStartPanelController showPanel];
-    
+{    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"firstLaunch"] == nil) {
+        [self makeDefaultPreference];
+    }
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-    [DMShortcutsHandler registrationShortcuts];
     
-    [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
+    [DMShortcutsHandler registrationShortcuts];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"showDockIcon" 
@@ -32,13 +29,12 @@
                                             forKeyPath:@"displayAlbumCoverOnDock" 
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
-}
+    [DMQuickStartPanelController showPanel];
+        
+    [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
+    
+    [self handleDockIconDisplayWithChange:nil];
 
--(void) dealloc
-{
-    [center release];
-    [mediaKeyTap release];
-    [super dealloc];
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -89,6 +85,8 @@
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     [center stopForExit];
+    [center release];
+    [mediaKeyTap release];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -105,21 +103,22 @@
 
 -(void) makeDefaultPreference
 {
-    NSDictionary *defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithInteger:1],@"channel",
-                          [NSNumber numberWithFloat:1.0],@"volume",
-                          [NSNumber numberWithInteger:2],@"max_wait_playlist_count", 
-                          [NSNumber numberWithInteger:NSOnState],@"autoCheckUpdate",
-                          [NSNumber numberWithInteger:NSOnState],@"showDockIcon",
-                          [NSNumber numberWithInteger:NSOnState],@"displayAlbumCoverOnDock",
-                          [NSNumber numberWithInteger:NSOnState],@"enableGrowl",
-                          [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
-                          [NSNumber numberWithInteger:NSOnState],@"usesMediaKey",
-                          [NSNumber numberWithInteger:NSOffState],@"filterAds",
-                           nil];
-    //[[NSUserDefaultsController sharedUserDefaultsController]
-     //setInitialValues:defaultPreferences];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    
+    [preferences setValue:[NSNumber numberWithInteger:1] forKey:@"channel"];
+    [preferences setValue:[NSNumber numberWithFloat:1.0] forKey:@"volume"];
+    [preferences setValue:[NSNumber numberWithFloat:2] forKey:@"max_wait_playlist_count"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"autoCheckUpdate"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"showDockIcon"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"displayAlbumCoverOnDock"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"enableGrowl"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"enableEmulateITunes"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"usesMediaKey"];
+    [preferences setValue:[NSNumber numberWithInteger:NSOffState] forKey:@"filterAds"];
+    [preferences setValue:[NSNumber numberWithBool:NO] forKey:@"firstLaunch"];
+    
+    [preferences synchronize];
+    
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{

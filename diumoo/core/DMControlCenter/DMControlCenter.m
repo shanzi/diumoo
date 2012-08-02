@@ -81,10 +81,11 @@
 
 -(void) stopForExit
 {
-    [skipLock lock];
+    [skipLock tryLock];
     if (playingCapsule) {
         [playingCapsule synchronousStop];
     }
+    [notificationCenter clearNotifications];
 }
 
 -(void) startToPlay:(DMPlayableCapsule*)aSong
