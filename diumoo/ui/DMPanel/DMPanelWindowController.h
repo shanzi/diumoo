@@ -16,7 +16,6 @@ typedef enum{
     DOUBAN = 1,
     FANFOU = 2,
     SINA_WEIBO = 3,
-    
     TWITTER = 4,
     FACEBOOK = 5
 } SNS_CODE ;
