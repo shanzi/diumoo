@@ -60,11 +60,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-	<string>1034</string>
-=======
-	<string>965</string>
->>>>>>> 2c3421fe0d401c8b18bf073ea3ff42879664d580
+	<string>1035</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>

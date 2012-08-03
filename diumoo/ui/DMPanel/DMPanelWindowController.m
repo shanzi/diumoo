@@ -49,33 +49,6 @@ DMPanelWindowController *sharedWindow;
     return self;
 }
 
-<<<<<<< HEAD
-=======
--(void) awakeFromNib
-{
-    [super awakeFromNib];
-    NSWindow* panel = self.window;
-    
-    [panel setLevel:NSPopUpMenuWindowLevel];
-    [panel setBackgroundColor:[NSColor whiteColor]];
-    [panel setAlphaValue:0.95];
-
-    [loadingIndicator startAnimation:nil];
-}
-
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(accountStateChanged:)
-                                                 name:AccountStateChangedNotification
-                                               object:nil];
-    
-}
-
->>>>>>> 2c3421fe0d401c8b18bf073ea3ff42879664d580
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
