@@ -25,11 +25,8 @@
 @interface DMQuickStartPanelController : NSWindowController
 {
     IBOutlet DMQuickStartImageSlideView* slideView;
-    IBOutlet NSButton* nextButton;
-    IBOutlet NSButton* backButton;
 }
 
 +(void) showPanel;
 
--(IBAction)navigation:(id)sender;
 @end

@@ -10,9 +10,14 @@
 
 @interface DMQuickStartImageSlideView : NSView
 {
+    CALayer* viewLayer;
     CALayer* rootLayer;
+    CALayer* backActionLayer;
+    CALayer* nextActionLayer;
     NSArray* imageNamesQueue;
     NSInteger currentImageIndex;
+    
+    IBOutlet id deleate;
 }
 
 -(void) setImageNames:(NSArray*)array;

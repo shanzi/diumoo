@@ -169,7 +169,7 @@ static DMPlayRecordHandler* recordHandler;
                 forKey:@"rating_avg"];
         [song setValue:date forKey:@"date"];
         
-        
+        [context save:nil];
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {

@@ -91,7 +91,6 @@
 
         if (_sid) {
             DMPlayRecordHandler* sharedHandler = [DMPlayRecordHandler sharedRecordHandler];
-            //[[sharedHandler context] save:nil];
             NSManagedObject* object = [sharedHandler songWithSid:_sid];
             if (object) {
                 self.sid = [object valueForKey:@"sid"];
