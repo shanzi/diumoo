@@ -34,9 +34,9 @@
 
 -(NSDictionary*) registrationDictionaryForGrowl
 {
-    NSArray* array = [NSArray arrayWithObjects:@"Music",@"Account",nil];
-    return [NSDictionary dictionaryWithObjectsAndKeys:array,GROWL_NOTIFICATIONS_ALL,
-                                                                    array,GROWL_NOTIFICATIONS_DEFAULT,nil];
+    NSArray* array = @[@"Music",@"Account"];
+    return @{GROWL_NOTIFICATIONS_ALL: array,
+                                                                    GROWL_NOTIFICATIONS_DEFAULT: array};
 }
 
 -(void) growlNotificationWasClicked:(id)clickContext
@@ -77,11 +77,10 @@
     
     if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState)
     {
-        NSDictionary* postDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                @"Playing",@"Player State",
-                                                capsule.albumtitle,@"Album",
-                                                capsule.title,@"Name",
-                                                capsule.artist,@"Artist",nil];
+        NSDictionary* postDict = @{@"Player State": @"Playing",
+                                                @"Album": capsule.albumtitle,
+                                                @"Name": capsule.title,
+                                                @"Artist": capsule.artist};
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
                                                                        object:@"com.apple.iTunes.player"
                                                                      userInfo:postDict];

@@ -69,7 +69,7 @@
     firstLayer.frame = self.frame;
     firstLayer.anchorPoint = CGPointMake(0, 0);
     firstLayer.position = CGPointMake(0, 0);
-    firstLayer.contents = [NSImage imageNamed:[imageNamesQueue objectAtIndex:currentImageIndex]];
+    firstLayer.contents = [NSImage imageNamed:imageNamesQueue[currentImageIndex]];
     [rootLayer addSublayer:firstLayer];
 }
 
@@ -92,7 +92,7 @@
 
     
     if ([array count] > currentImageIndex) {
-        nextLayer = [array objectAtIndex:currentImageIndex];
+        nextLayer = array[currentImageIndex];
         
         [CATransaction begin];
         [CATransaction setAnimationDuration:1.0];
@@ -105,7 +105,7 @@
         nextLayer.frame = self.frame;
         nextLayer.anchorPoint = CGPointMake(0, 0);
         nextLayer.contents = [NSImage imageNamed:
-                              [imageNamesQueue objectAtIndex:currentImageIndex]];
+                              imageNamesQueue[currentImageIndex]];
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
         [CATransaction setCompletionBlock:^{
@@ -127,7 +127,7 @@
 -(void) back
 {
     NSArray* array = [rootLayer sublayers];
-    CALayer* layer = [array objectAtIndex:currentImageIndex];
+    CALayer* layer = array[currentImageIndex];
     
     [CATransaction begin];
     [CATransaction setAnimationDuration:1.0];

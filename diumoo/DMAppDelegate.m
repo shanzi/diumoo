@@ -44,7 +44,6 @@
     }
     else if(keyPath == @"displayAlbumCoverOnDock")
     {
-        DMLog(@"%@",change);
         id newvalue = [change valueForKey:@"new"];
         NSInteger new = NSOnState;
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
@@ -105,18 +104,18 @@
 {
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     
-    [preferences setValue:[NSNumber numberWithInteger:1] forKey:@"channel"];
-    [preferences setValue:[NSNumber numberWithFloat:1.0] forKey:@"volume"];
-    [preferences setValue:[NSNumber numberWithFloat:2] forKey:@"max_wait_playlist_count"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"autoCheckUpdate"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"showDockIcon"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"displayAlbumCoverOnDock"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"enableGrowl"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"enableEmulateITunes"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"usesMediaKey"];
-    [preferences setValue:[NSNumber numberWithInteger:NSOffState] forKey:@"filterAds"];
-    [preferences setValue:[NSNumber numberWithBool:NO] forKey:@"firstLaunch"];
-    
+    [preferences setValue:@1 forKey:@"channel"];
+    [preferences setValue:@1.0f forKey:@"volume"];
+    [preferences setValue:@2.0f forKey:@"max_wait_playlist_count"];
+    [preferences setValue:@(NSOnState) forKey:@"autoCheckUpdate"];
+    [preferences setValue:@(NSOnState) forKey:@"showDockIcon"];
+    [preferences setValue:@(NSOnState) forKey:@"displayAlbumCoverOnDock"];
+    [preferences setValue:@(NSOnState) forKey:@"enableGrowl"];
+    [preferences setValue:@(NSOnState) forKey:@"enableEmulateITunes"];
+    [preferences setValue:@(NSOnState) forKey:@"usesMediaKey"];
+    [preferences setValue:@(NSOffState) forKey:@"filterAds"];
+    [preferences setValue:@NO forKey:@"firstLaunch"];
+
     [preferences synchronize];
     
 }

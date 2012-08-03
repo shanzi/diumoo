@@ -123,12 +123,10 @@ else
         [[[NSString alloc] initWithData:[self.data subdataWithRange:theEndRange] encoding:NSUTF8StringEncoding] autorelease]
         ];
 
-    NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-        [NSNumber numberWithUnsignedInteger:theLine], @"line",
-        [NSNumber numberWithUnsignedInteger:theCharacter], @"character",
-        [NSNumber numberWithUnsignedInteger:self.scanLocation], @"location",
-        theSnippet, @"snippet",
-        NULL];
+    NSDictionary *theUserInfo = @{@"line": @(theLine),
+        @"character": @(theCharacter),
+        @"location": @(self.scanLocation),
+        @"snippet": theSnippet};
     return(theUserInfo);    
     }
 

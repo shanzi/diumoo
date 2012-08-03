@@ -127,7 +127,7 @@ static PLTabPreferenceControl* shared;
 
 - (void)selectPanelAtIndex:(NSInteger)index
 {
-   NSToolbarItem* item = [[toolbar items] objectAtIndex:index];
+   NSToolbarItem* item = [toolbar items][index];
     if (item) {
         [self switchPanel:item];
     }

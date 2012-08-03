@@ -25,33 +25,46 @@ typedef enum{
 }CapsulePlayState;
 
 @interface DMPlayableCapsule : NSObject
+{
+    NSString *aid;
+    NSString *sid;
+    NSString *ssid;
+    NSString *subtype;
+    NSString *title;
+    NSString *artist;
+    NSString *albumtitle;
+    NSString *pictureLocation;
+    
+    NSString* skipType;
+    
+    NSTimer *timer;
+    
+    float volume;
+}
 
 @property long loadState;
 @property CapsulePlayState playState;
-@property(nonatomic) float volume;
 
 @property BOOL like;
 @property float length;
 @property float rating_avg;
 
-@property(nonatomic,copy) NSString* aid;
-@property(nonatomic,copy) NSString* sid;
-@property(nonatomic,copy) NSString* ssid;
-@property(nonatomic,copy) NSString* subtype;
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* artist;
-@property(nonatomic,copy) NSString* albumtitle;
-@property(nonatomic,copy) NSString* albumLocation;
-@property(nonatomic,copy) NSString* musicLocation;
-@property(nonatomic,copy) NSString* pictureLocation;
-@property(nonatomic,copy) NSString* largePictureLocation;
+@property(nonatomic,copy,readonly) NSString* aid;
+@property(nonatomic,copy,readonly) NSString* sid;
+@property(nonatomic,copy,readonly) NSString* ssid;
+@property(nonatomic,copy,readonly) NSString* subtype;
+@property(nonatomic,copy,readonly) NSString* title;
+@property(nonatomic,copy,readonly) NSString* artist;
+@property(nonatomic,copy,readonly) NSString* albumtitle;
+@property(nonatomic,copy,readonly) NSString* albumLocation;
+@property(nonatomic,copy,readonly) NSString* musicLocation;
+@property(nonatomic,copy,readonly) NSString* pictureLocation;
+@property(nonatomic,copy,readonly) NSString* largePictureLocation;
 
 @property(assign) NSImage* picture;
-@property(retain,nonatomic) NSTimer* timer;
 @property(retain) id<DMPlayableCapsuleDelegate> delegate;
 
-@property(retain) QTMovie* movie;
-@property(retain) NSString* skipType;
+@property(assign) QTMovie* movie;
 
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;
 -(id) initWithDictionary:(NSDictionary*) dic;
@@ -64,7 +77,7 @@ typedef enum{
 -(void) pause;
 -(void) replay;
 
--(void) commitVolume:(float) volume;
+-(void) commitVolume:(float)targetVolume;
 
 -(void) prepareCoverWithCallbackBlock: (void (^)(NSImage*))block;
 

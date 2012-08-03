@@ -264,11 +264,11 @@ DMPanelWindowController *sharedWindow;
     
     if (info) {
         DMLog(@"play info : %@",info);
-        NSString* title = [info objectForKey:@"title"];
-        NSString* artist = [info objectForKey:@"artist"];
-        NSString* type = [info objectForKey:@"typestring"];
+        NSString* title = info[@"title"];
+        NSString* artist = info[@"artist"];
+        NSString* type = info[@"typestring"];
 
-        self.openURL = [info objectForKey:@"album_location"];
+        self.openURL = info[@"album_location"];
         
         [popupMenuController enterSpecialPlayingModeWithTitle:title
                                                        artist:artist

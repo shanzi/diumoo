@@ -33,7 +33,7 @@
         if (theName != NULL)
             {
             id theObject = NULL;
-            JSONConversionConverter theConverter = [self.convertersByName objectForKey:theName];
+            JSONConversionConverter theConverter = (self.convertersByName)[theName];
             if (theConverter)
                 {
                 theObject = theConverter(inObject);
@@ -79,7 +79,7 @@
     NSMutableDictionary *theConvertersByName = [[self.convertersByName mutableCopy] autorelease];
 
     inConverter = [[inConverter copy] autorelease];
-    [theConvertersByName setObject:inConverter forKey:inName];
+    theConvertersByName[inName] = inConverter;
     self.convertersByName = theConvertersByName;
     }
     

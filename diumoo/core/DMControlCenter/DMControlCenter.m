@@ -30,7 +30,6 @@
         diumooPanel = [DMPanelWindowController sharedWindowController];
         recordHandler = [DMPlayRecordHandler sharedRecordHandler];
 
-
         fetcher.delegate = self;
         diumooPanel.delegate = self;
         recordHandler.delegate = self;
@@ -61,10 +60,8 @@
 
 -(void) fireToPlay:(NSDictionary*)firstSong
 {
-    id sid = [firstSong objectForKey:@"sid"];
-    id ssid = [firstSong objectForKey:@"ssid"];
     NSString* startattribute =
-    [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
+    [NSString stringWithFormat:@"%@g%@g%@",firstSong[@"sid"],firstSong[@"ssid"],channel];
     [fetcher fetchPlaylistFromChannel:channel 
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
@@ -96,10 +93,9 @@
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
-
         if ([specialWaitList count]) {
             self.playingCapsule = nil;
-            NSDictionary* song = [specialWaitList objectAtIndex:0];
+            NSDictionary* song = specialWaitList[0];
             [self fireToPlay:song];
             [specialWaitList removeObject:song];
             return;
@@ -108,13 +104,11 @@
             [diumooPanel toggleSpecialWithDictionary:nil];
         }
         
-        
         if ([waitPlaylist count]>0) {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
             self.playingCapsule = [waitPlaylist objectAtIndex:0];
             [playingCapsule setDelegate:self];
             [waitPlaylist removeObject:playingCapsule];
-
             
             // 再从播放列表里抓取一个歌曲出来放到缓冲列表里
             id waitcapsule = [fetcher getOnePlayableCapsule];
@@ -125,7 +119,6 @@
             }
         }
         else{
-            
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
             self.playingCapsule = [fetcher getOnePlayableCapsule];
             [playingCapsule setDelegate:self];
@@ -157,7 +150,7 @@
     if(playingCapsule)
     {
         [playingCapsule play];
-        [playingCapsule prepareCoverWithCallbackBlock:^(NSImage * image) {
+        [playingCapsule prepareCoverWithCallbackBlock:^(NSImage *image) {
             [diumooPanel setRated:playingCapsule.like];
             [diumooPanel setPlayingCapsule:playingCapsule];
             [notificationCenter notifyMusicWithCapsule:playingCapsule];
@@ -242,22 +235,17 @@
     [skipLock unlock];
 }
 
--(void) playableCapsule:(id)c loadStateChanged:(long)state
+-(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
-    
-    if (state > QTMovieLoadStatePlayable) {
-        if (c == playingCapsule && 
-            playingCapsule.playState == WAIT_TO_PLAY)
+    if (state >= QTMovieLoadStatePlayable) {
+        
+        if ([capsule picture] == nil) {
+            [capsule prepareCoverWithCallbackBlock:nil];
+        }
+
+        if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0))
             [playingCapsule play];
         
-        if(state >= QTMovieLoadStateComplete)
-            
-            if ([c picture] == nil) {
-                [c prepareCoverWithCallbackBlock:nil];
-            }
-        
-        
-         
         // 特殊播放模式下不缓冲
         if (specialWaitList) {
             return;
@@ -287,14 +275,14 @@
         }
     }
     else if(state < 0){
-        if(c == playingCapsule)
+        if(capsule == playingCapsule)
         {
             // 当前歌曲加载失败
             // 做些事情
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
-            [waitPlaylist removeObject:c];
+            [waitPlaylist removeObject:capsule];
         }
     }
 }
@@ -509,24 +497,19 @@
     switch (code) {
         case DOUBAN:
             urlBase = @"http://shuo.douban.com/!service/share";
-            args = [NSDictionary dictionaryWithObjectsAndKeys:
-                    shareString,@"name",
-                    shareLink,@"href",
-                    imageLink,@"image",
-                    nil];
+            args = @{@"name": shareString,
+                    @"href": shareLink,
+                    @"image": imageLink};
             break;
         case FANFOU:
             urlBase = @"http://fanfou.com/sharer";
-            args = [NSDictionary dictionaryWithObjectsAndKeys:
-                    shareString,@"d",
-                    shareTitle,@"t",
-                    shareLink,@"u",
-                    nil];
+            args = @{@"d": shareString,
+                    @"t": shareTitle,
+                    @"u": shareLink};
             break;
         case SINA_WEIBO:
             urlBase = @"http://v.t.sina.com.cn/share/share.php";
-            args = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ %@",shareString,shareLink]
-                                               forKey:@"title"];
+            args = @{@"title": [NSString stringWithFormat:@"%@ %@",shareString,shareLink]};
             break;
         case TWITTER:
             if(YES){
@@ -538,16 +521,14 @@
                     return;
                 else{
                     urlBase = @"http://twitter.com/home";
-                    args = [NSDictionary dictionaryWithObject:content forKey:@"status"];
+                    args = @{@"status": content};
                 }
             }
             break;
         case FACEBOOK:
             urlBase = @"http://www.facebook.com/sharer.php";
-            args = [NSDictionary dictionaryWithObjectsAndKeys:
-                    shareString,@"t",
-                    shareLink,@"u",
-                    nil];
+            args = @{@"t": shareString,
+                    @"u": shareLink};
             break;
     }
     
@@ -578,8 +559,8 @@
 -(void) playSpecialNotification:(NSNotification*) n
 {
     DMLog(@"receive notification: %@",n.userInfo);
-    NSString* aid = [n.userInfo objectForKey:@"aid"];
-    NSString* type = [n.userInfo objectForKey:@"type"];
+    NSString* aid = (n.userInfo)[@"aid"];
+    NSString* type = (n.userInfo)[@"type"];
     if ([type isEqualToString:@"album"]) {
         [self playAlbumWithAid:aid withInfo:n.userInfo];
     }

@@ -165,7 +165,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
         {
         current += theLength;
         if (outValue)
-            *outValue = [NSString stringWithUTF8String:inString];
+            *outValue = @(inString);
         return(YES);
         }
     return(NO);
@@ -263,7 +263,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
                 {
                 if (outValue != NULL)
                     {
-                    *outValue = [NSNumber numberWithLongLong:[theString longLongValue]];
+                    *outValue = @([theString longLongValue]);
                     }
                 return(YES);
                 }
@@ -271,7 +271,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
                 {
                 if (outValue != NULL)
                     {
-                    *outValue = [NSNumber numberWithUnsignedLongLong:strtoull([theString UTF8String], NULL, 0)];
+                    *outValue = @(strtoull([theString UTF8String], NULL, 0));
                     }
                 return(YES);
                 }

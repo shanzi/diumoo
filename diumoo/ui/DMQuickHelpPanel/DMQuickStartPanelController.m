@@ -43,19 +43,17 @@
 -(void) awakeFromNib
 {
     NSArray* imageNames = nil;
-    imageNames = [NSArray arrayWithObjects:
-                  @"slide1",
+    imageNames = @[@"slide1",
                   @"slide2",
                   @"slide3",
-                  @"slide4",
-                  nil];
+                  @"slide4"];
     [slideView setImageNames:imageNames];
 }
 
 -(void) close
 {
     [[NSUserDefaults standardUserDefaults]
-     setValue:[NSNumber numberWithInteger:CURRENT_QUICKSTART_VERSION]
+     setValue:@CURRENT_QUICKSTART_VERSION
      forKey:@"quickStartVersion"];
     [super close];
 }

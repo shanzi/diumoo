@@ -10,15 +10,16 @@
 #define kTimerPulseTypePause @"kTimerPulseTypePause"
 #define KTimerPulseTypeVolumeChange @"kTimerPulseTypeVolumeChange"
 
+#import <math.h>
 #import "DMPlayableCapsule.h"
 
 @implementation DMPlayableCapsule
 
-@synthesize loadState,playState,volume;
+@synthesize loadState,playState;
 @synthesize like,length,rating_avg;
 @synthesize aid,sid,ssid,subtype,title,artist,albumtitle;
 @synthesize albumLocation,musicLocation,pictureLocation,largePictureLocation;
-@synthesize picture,movie,timer,delegate,skipType;
+@synthesize picture,movie,delegate;
 
 +(id)playableCapsuleWithDictionary:(NSDictionary *)dic
 {
@@ -28,7 +29,7 @@
 -(void)dealloc
 {
     [self invalidateMovie];
-    
+    [timer release];
     [super dealloc];
 }
 
@@ -36,26 +37,27 @@
 {
     self = [super init];
     if (self) {
+        loadState = QTMovieLoadStateError;
+
+        timer = [[NSTimer alloc] init];
+
+        aid = [dic valueForKey:@"aid"]; 
+        sid = [dic valueForKey:@"sid"];
+        ssid = [dic valueForKey:@"ssid"];
+        subtype = [dic valueForKey:@"subtype"];
+        title = [dic valueForKey:@"title"];
+        artist = [dic valueForKey:@"artist"];
+        albumtitle = [dic valueForKey:@"albumtitle"];
+        albumLocation = [NSString stringWithFormat:@"%@%@",DOUBAN_URL_PRIFIX,[dic valueForKey:@"album"]];
+        musicLocation = [dic valueForKey:@"url"];
+        pictureLocation = [dic valueForKey:@"picture"];
+        largePictureLocation = [pictureLocation stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"];
         
-        loadState = -1;
-        self.aid = [dic valueForKey:@"aid"]; 
-        self.sid = [dic valueForKey:@"sid"];
-        self.ssid = [dic valueForKey:@"ssid"];
-        self.subtype = [dic valueForKey:@"subtype"];
-        self.title = [dic valueForKey:@"title"];
-        self.artist = [dic valueForKey:@"artist"];
-        self.albumtitle = [dic valueForKey:@"albumtitle"];
-        self.albumLocation = [NSString stringWithFormat:@"%@%@",DOUBAN_URL_PRIFIX,[dic valueForKey:@"album"]];
-        self.musicLocation = [dic valueForKey:@"url"];
-        self.pictureLocation = [dic valueForKey:@"picture"];
-        self.largePictureLocation = [pictureLocation stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"];
+        like = [[dic valueForKey:@"like"] boolValue];
+        length = [[dic valueForKey:@"length"] floatValue] * 1000;
+        rating_avg = [[dic valueForKey:@"rating_avg"] floatValue];
         
-        self.like = [[dic valueForKey:@"like"] boolValue];
-        self.length = [[dic valueForKey:@"length"] floatValue] * 1000;
-        self.rating_avg = [[dic valueForKey:@"rating_avg"] floatValue];
-        
-        self.volume = [[[NSUserDefaults standardUserDefaults] valueForKey:@"volume"] floatValue];
-        
+        volume = [[[NSUserDefaults standardUserDefaults] valueForKey:@"volume"] floatValue];
     }
     return self;
 }
@@ -75,7 +77,7 @@
     if(loadState >= QTMovieLoadStatePlaythroughOK) 
         return YES;
     
-    self.playState = WAIT_TO_PLAY;
+    playState = WAIT_TO_PLAY;
     
     NSError* err = nil;
     QTMovie* m = [QTMovie movieWithURL:[NSURL URLWithString:musicLocation] error:&err];
@@ -83,7 +85,7 @@
     if(!err)
     {
         [self invalidateMovie];
-        self.movie = m;
+        movie = m;
 
         // 添加新的侦听
         [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -103,11 +105,10 @@
 {
     // 删除notification侦听
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    self.loadState = -1;
-    self.playState = WAIT_TO_PLAY;
+    loadState = -1;
+    playState = WAIT_TO_PLAY;
     [movie invalidate];
-    self.movie = nil;
+    [movie release];
 }
 
 -(void) movieRateDidChanged:(NSNotification* )n
@@ -127,7 +128,7 @@
 
 -(void) movieLoadStateDidChanged:(NSNotification*)n
 {
-    self.loadState = [[movie attributeForKey:QTMovieLoadStateAttribute] longValue];
+    loadState = [[movie attributeForKey:QTMovieLoadStateAttribute] longValue];
     [self.delegate playableCapsule:self loadStateChanged:loadState];
 }
 
@@ -135,30 +136,32 @@
 {
     if(loadState < QTMovieLoadStatePlayable)
         return;
+    
     if(playState == WAIT_TO_PLAY)
     {
-        self.playState = PLAYING;
-        [movie setVolume: self.volume];
+        playState = PLAYING;
+        [movie setVolume: volume];
     }
-    else self.playState = REPLAYING;
+    else
+        playState = REPLAYING;
     
-    if(movie && movie.rate < 0.1){
+    if(movie && movie.rate == 0.0){
         if(timer)
             [timer invalidate];
         
-        self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL
-                                             target:self
-                                           selector:@selector(timerPulse:)
-                                           userInfo:kTimerPulseTypePlay
-                                            repeats:YES] ;
+        timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL
+                                        target:self
+                                      selector:@selector(timerPulse:)
+                                      userInfo:kTimerPulseTypePlay
+                                       repeats:YES];
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
         [timer fire];
         
-        //if(movie.currentTime.timeValue < 100)
-            //[movie autoplay];
-        
         [movie autoplay];
+            
+        DMLog(@"rate after play called = %lf, volume = %lf",movie.rate,movie.volume);
+
     }
     else {
         [self.delegate playableCapsuleDidPlay:self];
@@ -167,22 +170,22 @@
 
 -(void) pause
 {
-    if(movie && movie.rate > 0.9){
-        if(timer) [timer invalidate];
-        if(movie.currentTime.timeValue < 100) [movie autoplay];
+    if(movie && movie.rate == 1.0){
+        if(timer)
+            [timer invalidate];
         
-        self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
+        timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
                                         target:self 
                                       selector:@selector(timerPulse:) 
                                       userInfo:kTimerPulseTypePause
                                        repeats:YES];
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        [delegate playableCapsuleWillPause:self];
+        [self.delegate playableCapsuleWillPause:self];
         [timer fire];
     }
     else
-        [delegate playableCapsuleDidPause:self];
+        [self.delegate playableCapsuleDidPause:self];
 }
 
 -(void) replay
@@ -196,20 +199,22 @@
 {
     CFRunLoopRemoveTimer(CFRunLoopGetMain(),(CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
     [timer invalidate];
-    self.timer = nil;
+    [timer release];
 }
 
 -(void) timerPulse:(NSTimer*)t
 {
     float delta =  volume - movie.volume;
+        
     if([timer userInfo] == kTimerPulseTypePlay)
     {
-        if(delta < 0.08 && -delta < 0.08) 
+        if(abs(delta) < 0.08)
         {
             [self invalidateTimer];
             movie.volume = volume;
         }
         else {
+            DMLog(@"time pulse delta = %lf - %lf",volume,movie.volume);
             movie.volume += delta>0?0.08:-0.08;
         }
     }
@@ -232,23 +237,17 @@
     }
 }
 
--(void) commitVolume:(float)v
+-(void) commitVolume:(float)targetVolume
 {
-    self.volume = v;
+    volume = targetVolume;
 
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    [values setValue:[NSNumber numberWithFloat:v] forKey:@"volume"];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:@(targetVolume)
+                                                                        forKey:@"volume"];
     
-    if(timer|| movie.rate < 0.1) return;
+    if(movie.rate == 0.0)
+        return;
     else{
-        self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
-                                        target:self 
-                                      selector:@selector(timerPulse:) 
-                                      userInfo:KTimerPulseTypeVolumeChange 
-                                       repeats:YES];
-        
-        CFRunLoopAddTimer(CFRunLoopGetMain(),(CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
-        [timer fire];
+        [movie setVolume:volume];
     }
 }
 
@@ -260,12 +259,10 @@
 
 -(void) prepareCoverWithCallbackBlock:(void (^)(NSImage*))block
 {
-
-    if (self.picture == nil) {
-        NSURL* url = [NSURL URLWithString:largePictureLocation];
-        NSURLRequest* request = [NSURLRequest requestWithURL:url
+    if (picture == nil) {
+        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:largePictureLocation]
                                                  cachePolicy:NSURLCacheStorageAllowed
-                                             timeoutInterval:2.0];
+                                             timeoutInterval:5.0];
         
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
@@ -278,7 +275,6 @@
                                        picture = [NSImage imageNamed:@"albumfail"];
                                        if(block)block(picture);
                                    }
-                                   
                                }];
     }
     else{
@@ -288,14 +284,21 @@
 
 -(void)synchronousStop
 {
-    if(movie.rate < 0.1) return;
-    if(timer){
-        [self invalidateTimer];
-    }
-    
-    while (movie.volume>0) {
-        movie.volume -= 0.1;
-        [NSThread sleepForTimeInterval:0.1];
+    if(movie.rate == 0.0)
+       return;
+    else {
+        if(timer){
+            [self invalidateTimer];
+            
+        }
+        
+        while (movie.volume>0) {
+            movie.volume -= 0.1;
+            [NSThread sleepForTimeInterval:0.1];
+        }
+        
+        [movie invalidate];
+        [movie release];
     }
 }
 
