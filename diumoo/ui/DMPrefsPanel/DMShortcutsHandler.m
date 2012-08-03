@@ -12,7 +12,6 @@
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcutView+UserDefaults.h"
 
-
 @implementation DMShortcutsHandler
 
 +(void)registrationShortcuts
