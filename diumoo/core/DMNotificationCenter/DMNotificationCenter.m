@@ -48,11 +48,6 @@
 {
     NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     
-    if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState)
-    {
-        [NSApp setApplicationIconImage:capsule.picture];
-    }
-    
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
@@ -91,11 +86,19 @@
                                                                        object:@"com.apple.iTunes.player"
                                                                      userInfo:postDict];
     }
+    
+    if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState)
+    {
+        [NSApp setApplicationIconImage:capsule.picture];
+    }
+
 }
 
 -(void) clearNotifications
 {
+    if([self respondsToSelector:@selector(removeAllDeliveredNotifications)]){
     [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+    }
 }
 
 //this method forced Notification Center present notification whatever the application is foreground

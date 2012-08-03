@@ -52,14 +52,15 @@ typedef enum{
     IBOutlet NSTextField* indicateString;
     
     BOOL _hasActivePanel;
+    MenubarController *menubarController;
 }
 
 @property(nonatomic,assign) IBOutlet DMCoverControlView* view;
-@property(nonatomic,retain) MenubarController* menubarController;
 
-@property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
 @property(copy) NSString* openURL;
 @property (nonatomic) BOOL hasActivePanel;
+
+@property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
 
 +(DMPanelWindowController*)sharedWindowController;
 

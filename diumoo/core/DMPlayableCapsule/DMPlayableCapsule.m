@@ -62,9 +62,6 @@
 
 -(BOOL) canLoad;
 {
-#ifdef DEBUG
-    NSLog(@"%@",musicLocation);
-#endif
     if(!movie){
         return [QTMovie canInitWithURL:[NSURL URLWithString:musicLocation]];
     }
@@ -146,19 +143,22 @@
     else self.playState = REPLAYING;
     
     if(movie && movie.rate < 0.1){
-        if(timer) [timer invalidate];
-        if(movie.currentTime.timeValue < 100) [movie autoplay];
+        if(timer)
+            [timer invalidate];
         
-        self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL 
-                                             target:self 
-                                           selector:@selector(timerPulse:) 
-                                           userInfo:kTimerPulseTypePlay 
+        self.timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL
+                                             target:self
+                                           selector:@selector(timerPulse:)
+                                           userInfo:kTimerPulseTypePlay
                                             repeats:YES] ;
-        
         CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
-        [movie autoplay];
         [timer fire];
+        
+        //if(movie.currentTime.timeValue < 100)
+            //[movie autoplay];
+        
+        [movie autoplay];
     }
     else {
         [self.delegate playableCapsuleDidPlay:self];

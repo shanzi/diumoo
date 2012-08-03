@@ -25,7 +25,6 @@ typedef enum{
 }CapsulePlayState;
 
 @interface DMPlayableCapsule : NSObject
-//{
 
 @property long loadState;
 @property CapsulePlayState playState;
@@ -34,7 +33,6 @@ typedef enum{
 @property BOOL like;
 @property float length;
 @property float rating_avg;
-
 
 @property(nonatomic,copy) NSString* aid;
 @property(nonatomic,copy) NSString* sid;
@@ -48,16 +46,12 @@ typedef enum{
 @property(nonatomic,copy) NSString* pictureLocation;
 @property(nonatomic,copy) NSString* largePictureLocation;
 
-
 @property(assign) NSImage* picture;
 @property(retain,nonatomic) NSTimer* timer;
 @property(retain) id<DMPlayableCapsuleDelegate> delegate;
 
 @property(retain) QTMovie* movie;
 @property(retain) NSString* skipType;
-
-//}
-
 
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;
 -(id) initWithDictionary:(NSDictionary*) dic;
