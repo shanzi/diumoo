@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <Growl/Growl.h>
-@class DMPlayableCapsule;
+#import "DMPlayableCapsule.h"
+#import "DMPanelWindowController.h"
 
-@interface DMNotificationCenter : NSObject<GrowlApplicationBridgeDelegate>
+@interface DMNotificationCenter : NSObject<GrowlApplicationBridgeDelegate,NSUserNotificationCenterDelegate>
 
 -(void) notifyMusicWithCapsule:(DMPlayableCapsule*) capsule;
+-(void) clearNotifications;
 
 @end

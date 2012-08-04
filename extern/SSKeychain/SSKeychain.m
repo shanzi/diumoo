@@ -52,8 +52,8 @@ CFTypeRef SSKeychainAccessibilityType = NULL;
 	[query setObject:(__bridge id)kCFBooleanTrue forKey:(__bridge id)kSecReturnAttributes];
     [query setObject:(__bridge id)kSecMatchLimitAll forKey:(__bridge id)kSecMatchLimit];
 #else
-    [query setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
-    [query setObject:(id)kSecMatchLimitAll forKey:(id)kSecMatchLimit];
+    query[(id)kSecReturnAttributes] = (id)kCFBooleanTrue;
+    query[(id)kSecMatchLimit] = (id)kSecMatchLimitAll;
 #endif
 	
 	CFTypeRef result = NULL;
@@ -117,8 +117,8 @@ CFTypeRef SSKeychainAccessibilityType = NULL;
 	[query setObject:(__bridge id)kSecMatchLimitOne forKey:(__bridge id)kSecMatchLimit];
 	status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
 #else
-	[query setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
-	[query setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
+	query[(id)kSecReturnData] = (id)kCFBooleanTrue;
+	query[(id)kSecMatchLimit] = (id)kSecMatchLimitOne;
 	status = SecItemCopyMatching((CFDictionaryRef)query, &result);
 #endif
 	
@@ -186,7 +186,7 @@ CFTypeRef SSKeychainAccessibilityType = NULL;
 #if __has_feature(objc_arc)
 		[query setObject:password forKey:(__bridge id)kSecValueData];
 #else
-		[query setObject:password forKey:(id)kSecValueData];
+		query[(id)kSecValueData] = password;
 #endif
 		
 #if __IPHONE_4_0 && TARGET_OS_IPHONE
@@ -237,14 +237,14 @@ CFTypeRef SSKeychainAccessibilityType = NULL;
 #if __has_feature(objc_arc)
     [dictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
 #else
-	[dictionary setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
+	dictionary[(id)kSecClass] = (id)kSecClassGenericPassword;
 #endif
 	
     if (service) {
 #if __has_feature(objc_arc)
 		[dictionary setObject:service forKey:(__bridge id)kSecAttrService];
 #else
-		[dictionary setObject:service forKey:(id)kSecAttrService];
+		dictionary[(id)kSecAttrService] = service;
 #endif
 	}
 	
@@ -252,7 +252,7 @@ CFTypeRef SSKeychainAccessibilityType = NULL;
 #if __has_feature(objc_arc)
 		[dictionary setObject:account forKey:(__bridge id)kSecAttrAccount];
 #else
-		[dictionary setObject:account forKey:(id)kSecAttrAccount];
+		dictionary[(id)kSecAttrAccount] = account;
 #endif
 	}
 	

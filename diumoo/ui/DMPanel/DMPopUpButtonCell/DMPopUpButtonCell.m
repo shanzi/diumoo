@@ -42,11 +42,9 @@
             NSMutableParagraphStyle* ps = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [ps setLineBreakMode:NSLineBreakByTruncatingTail];
             
-            stringHighligtAttribute = [[NSDictionary dictionaryWithObjectsAndKeys:
-                                       [NSColor selectedMenuItemTextColor],NSForegroundColorAttributeName,
-                                        ps, NSParagraphStyleAttributeName,
-                                       self.font,NSFontAttributeName,
-                                       nil] retain];
+            stringHighligtAttribute = [@{NSForegroundColorAttributeName: [NSColor selectedMenuItemTextColor],
+                                        NSParagraphStyleAttributeName: ps,
+                                       NSFontAttributeName: self.font} retain];
             [ps release];
             return stringHighligtAttribute;
         }
@@ -59,11 +57,9 @@
             NSMutableParagraphStyle* ps = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [ps setLineBreakMode:NSLineBreakByTruncatingTail];
             
-            stringAttribute = [[NSDictionary dictionaryWithObjectsAndKeys:
-                                [NSColor blackColor],NSForegroundColorAttributeName,
-                                ps, NSParagraphStyleAttributeName,
-                                self.font,NSFontAttributeName,
-                                nil] retain];
+            stringAttribute = [@{NSForegroundColorAttributeName: [NSColor blackColor],
+                                NSParagraphStyleAttributeName: ps,
+                                NSFontAttributeName: self.font} retain];
             [ps release];
             return stringAttribute;
         }

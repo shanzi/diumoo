@@ -15,9 +15,9 @@
         // Install status item into the menu bar
         NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:STATUS_ITEM_VIEW_WIDTH];
         _statusItemView = [[StatusItemView alloc] initWithStatusItem:statusItem] ;
-        _statusItemView.image = [NSImage imageNamed:@"status-icon.png"];
-        _statusItemView.mixedImage = [NSImage imageNamed:@"status-icon-mixed.png"];
-        _statusItemView.alternateImage = [NSImage imageNamed:@"status-icon-alt.png"];
+        _statusItemView.image = [NSImage imageNamed:@"status-icon"];
+        _statusItemView.mixedImage = [NSImage imageNamed:@"status-icon-mixed"];
+        _statusItemView.alternateImage = [NSImage imageNamed:@"status-icon-alt"];
     }
     return self;
 }

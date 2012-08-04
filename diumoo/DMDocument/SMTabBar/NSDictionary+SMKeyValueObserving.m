@@ -12,11 +12,11 @@
 @implementation NSDictionary (SMKeyValueObserving)
 
 - (NSUInteger)keyValueChangeKind  {
-	return [[self objectForKey:NSKeyValueChangeKindKey] unsignedIntegerValue];
+	return [self[NSKeyValueChangeKindKey] unsignedIntegerValue];
 }
 
 - (id)keyValueChangeNew {
-	id value = [self objectForKey:NSKeyValueChangeNewKey];
+	id value = self[NSKeyValueChangeNewKey];
     if ([value isEqual:[NSNull null]]) {
         return nil;
     }
@@ -24,7 +24,7 @@
 }
 
 - (id)keyValueChangeOld {
-	id value = [self objectForKey:NSKeyValueChangeOldKey];
+	id value = self[NSKeyValueChangeOldKey];
     if ([value isEqual:[NSNull null]]) {
         return nil;
     }
@@ -32,7 +32,7 @@
 }
 
 - (NSIndexSet *)keyValueChangeIndexes {
-	return [self objectForKey:NSKeyValueChangeIndexesKey];
+	return self[NSKeyValueChangeIndexesKey];
 }
 
 - (BOOL)keyValueChanged {

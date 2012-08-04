@@ -6,7 +6,6 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-
 #define kPauseOperationTypePass @"pass"
 #define kPauseOperationTypeSkip @"skip"
 #define kPauseOperationTypeFetchNewPlaylist @"newplaylist"
@@ -20,26 +19,29 @@
 #import "DMNotificationCenter.h"
 
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
-// {
+{
+    NSString *channel;
+    
+    DMPlayableCapsule *playingCapsule;
+    DMPlayableCapsule *waitingCapsule;
+    DMPlaylistFetcher *fetcher;
+    NSMutableOrderedSet *waitPlaylist;
+    
+    NSLock *skipLock;
+    
+    DMNotificationCenter *notificationCenter;
+    DMPanelWindowController *diumooPanel;
+    DMPlayRecordHandler *recordHandler;
+    
+    NSMutableArray *specialWaitList;
+    
+    NSString *pausedOperationType;
+    
+    NSAutoreleasePool *bufferingMusicPool;
+}
 
-@property(retain) NSString* channel;
-
-@property(retain) DMPlayableCapsule* playingCapsule;
-@property(retain) DMPlayableCapsule* songToPlay;
-
-@property(assign) DMPlaylistFetcher* fetcher;
-@property(assign) DMNotificationCenter* notificationCenter;
-@property(assign) NSMutableOrderedSet* waitPlaylist;
-@property(assign) NSString* pausedOperationType;
-@property(assign) NSLock* skipLock; // 用于在skip和bye的时候锁住线程，防止多余操作
-
-@property(assign) DMPanelWindowController* mainPanel;
-@property(assign) DMPlayRecordHandler* recordHandler;
-
-@property(retain) NSMutableArray* specialWaitList;
-
-
-// }
+@property (assign) DMPlayableCapsule *playingCapsule;
+@property (retain) DMPanelWindowController *diumooPanel;
 
 -(void) fireToPlayDefaultChannel;
 -(void) stopForExit;

@@ -49,8 +49,8 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     starRating.displayMode = EDStarRatingDisplayAccurate;
     starRating.editable = NO;
-    starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted.png"];
-    starRating.starImage = [NSImage imageNamed:@"star.png"];
+    starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted"];
+    starRating.starImage = [NSImage imageNamed:@"star"];
     [self buildTabButton];
     [self setupWindowForDocument:self.document];
     if ([self.document isInViewingMode]) {
@@ -67,7 +67,7 @@
 {
     NSMutableArray *tabBarItems = [NSMutableArray arrayWithCapacity:2];
     {
-        NSImage *image = [NSImage imageNamed:@"view_icon.png"];
+        NSImage *image = [NSImage imageNamed:@"view_icon"];
         [image setTemplate:YES];
         SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:0];
         item.toolTip = @"预览";
@@ -77,7 +77,7 @@
         [item release];
     }
     {
-        NSImage *image = [NSImage imageNamed:@"detail_icon.png"];
+        NSImage *image = [NSImage imageNamed:@"detail_icon"];
         [image setTemplate:YES];
         SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:1];
         item.toolTip = @"详细信息";
@@ -127,7 +127,7 @@
 
 -(void) revert:(id)sender
 {
-    [self.document revertDocumentToSaved:nil];
+    [self.document browseDocumentVersions:sender];
 }
 
 
@@ -158,7 +158,8 @@
     NSInteger tag = [item tag];
     [tabView selectTabViewItemAtIndex:tag];
     if (tag == 1) {
-        if(![lock tryLock])return;
+        if(![lock tryLock])
+            return;
         [progressIndicator startAnimation:nil];
         NSBlockOperation* fetchDetailOperation = 
         [NSBlockOperation blockOperationWithBlock:^{
@@ -209,10 +210,10 @@
     NSMutableArray* songs = [NSMutableArray array];
     
     
-    NSArray* attribtes = [dict objectForKey:@"db:attribute"];
+    NSArray* attribtes = dict[@"db:attribute"];
     
     for (NSDictionary* d in attribtes) {
-        NSString* name = [d objectForKey: @"@name"];
+        NSString* name = d[@"@name"];
         if (name==nil) {
             continue;
         }
@@ -220,39 +221,39 @@
             [songs addObject:[d valueForKey:@"$t"]];
         }
         else if ([name isEqualToString:@"discs"]) {
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"唱片数"];
+            dictOfDetail[@"唱片数"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"version"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"版本特性"];
+            dictOfDetail[@"版本特性"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"ean"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"条形码"];
+            dictOfDetail[@"条形码"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"pubdate"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"发行时间"];
+            dictOfDetail[@"发行时间"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"title"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"专辑名"];
+            dictOfDetail[@"专辑名"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"singer"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"艺术家"];
+            dictOfDetail[@"艺术家"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"publisher"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"出版者"];
+            dictOfDetail[@"出版者"] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"media"]){
-            [dictOfDetail setObject:[d valueForKey:@"$t"] forKey:@"介质"];
+            dictOfDetail[@"介质"] = [d valueForKey:@"$t"];
         }
     }
     
     NSDictionary* rating = [dict valueForKey:@"gd:rating"];
     NSString* rating_string = [NSString stringWithFormat:@"%@ (%@ 人评价)",
-                               [rating objectForKey:@"@average"],
-                               [rating objectForKey:@"@numRaters"]];
+                               rating[@"@average"],
+                               rating[@"@numRaters"]];
     
-    [dictOfDetail setObject:rating_string forKey:@"豆瓣评分"];
+    dictOfDetail[@"豆瓣评分"] = rating_string;
     
-    NSString* summary = [[dict objectForKey:@"summary"] objectForKey:@"$t"];
+    NSString* summary = dict[@"summary"][@"$t"];
     
     
     DMDetailViewController* detailViewController = 
@@ -278,14 +279,12 @@
     NSString* type = @"album";
     NSString* typestring = @"专辑";
     NSString* artisttitle = [@"艺术家 : " stringByAppendingString:[artist stringValue]];
-    NSDictionary* userinfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              aid ,@"aid",
-                              albumTitle,@"title",
-                              artisttitle,@"artist",
-                              type,@"type",
-                              typestring,@"typestring",
-                              albumLocation,@"album_location",
-                              nil];
+    NSDictionary* userinfo = @{@"aid": aid,
+                              @"title": albumTitle,
+                              @"artist": artisttitle,
+                              @"type": type,
+                              @"typestring": typestring,
+                              @"album_location": albumLocation};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playspecial" 
                                                         object:self

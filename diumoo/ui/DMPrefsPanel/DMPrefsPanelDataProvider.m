@@ -200,12 +200,10 @@
     
     [self lockLoginForm:YES];
     NSDictionary* authDict =
-    [NSDictionary dictionaryWithObjectsAndKeys:
-     em,kAuthAttributeUsername,
-     pw,kAuthAttributePassword,
-     captcha_solution,kAuthAttributeCaptchaSolution,
-     self.captcha_code , kAuthAttributeCaptchaCode,
-     nil];
+    @{kAuthAttributeUsername: em,
+     kAuthAttributePassword: pw,
+     kAuthAttributeCaptchaSolution: captcha_solution,
+     kAuthAttributeCaptchaCode: self.captcha_code};
     
     NSBlockOperation* loginOperation = 
     [NSBlockOperation blockOperationWithBlock:^{
@@ -297,10 +295,10 @@
 -(void) awakeFromNib
 {
     NSDictionary* dict = [[NSBundle mainBundle] infoDictionary];
-    [displayName setStringValue:[dict objectForKey:@"CFBundleDisplayName"]];
+    [displayName setStringValue:dict[@"CFBundleDisplayName"]];
     version.stringValue = [NSString stringWithFormat:@"%@.%@",
-                           [dict objectForKey:@"CFBundleShortVersionString"],
-                           [dict objectForKey:@"CFBundleVersion"]
+                           dict[@"CFBundleShortVersionString"],
+                           dict[@"CFBundleVersion"]
                            ];
     
     playShortcut.associatedUserDefaultsKey = keyPlayShortcut;

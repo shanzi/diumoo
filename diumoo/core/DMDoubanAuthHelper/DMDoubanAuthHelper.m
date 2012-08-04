@@ -208,10 +208,8 @@ static DMDoubanAuthHelper* sharedHelper;
             NSString* name = [anode getAttributeNamed:@"data-name"];
             
             if (cid && name) {
-                NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      cid , @"id",
-                                      name , @"real_name",
-                                      nil];
+                NSDictionary* dict = @{@"id": cid,
+                                      @"real_name": name};
                 [array addObject:dict];
             }
         }
@@ -244,18 +242,15 @@ static DMDoubanAuthHelper* sharedHelper;
                 HTMLNode* userfacenode=[[imgParser body] findChildOfClass:@"userface"];
                 if(userfacenode){
                     
-                    NSDictionary* play_record = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [total contents],@"played",
-                                                 [liked contents],@"liked",
-                                                 [banned contents],@"banned",nil];
+                    NSDictionary* play_record = @{@"played": [total contents],
+                                                 @"liked": [liked contents],
+                                                 @"banned": [banned contents]};
                     
-                    NSDictionary* user_info=[NSDictionary dictionaryWithObjectsAndKeys:
-                                             [user contents],@"name",
-                                             play_record,@"play_record",
-                                             userlink,@"url",
-                                             [userfacenode getAttributeNamed:@"src"],@"icon_url",
-                                             [self djCollectionFromBodyNode:bodynode],@"collected_chls",
-                                             nil];
+                    NSDictionary* user_info=@{@"name": [user contents],
+                                             @"play_record": play_record,
+                                             @"url": userlink,
+                                             @"icon_url": [userfacenode getAttributeNamed:@"src"],
+                                             @"collected_chls": [self djCollectionFromBodyNode:bodynode]};
                     [imgParser release];
                     [parser release];
                     return user_info ;
@@ -323,11 +318,9 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSString*) description
 {
-    NSDictionary* descriptDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  self.username,@"username",
-                                  self.userUrl,@"userUrl",
-                                  self.iconUrl, @"iconUrl"
-                                  , nil];
+    NSDictionary* descriptDict = @{@"username": self.username,
+                                  @"userUrl": self.userUrl,
+                                  @"iconUrl": self.iconUrl};
     return [NSString stringWithFormat:@"<DMDoubanAuthHelper:\n%@ >",descriptDict];
 }
 

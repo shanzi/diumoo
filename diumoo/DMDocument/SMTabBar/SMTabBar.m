@@ -68,7 +68,7 @@ static char SMTabBarObservationContext;
     // select a bar button
     
     NSUInteger itemIndex = [sender tag];
-    SMTabBarItem *tabBarItem = [self.items objectAtIndex:itemIndex];
+    SMTabBarItem *tabBarItem = (self.items)[itemIndex];
     if ([self.delegate respondsToSelector:@selector(tabBar:willSelectItem:)]) {
         [self.delegate tabBar:self willSelectItem:tabBarItem];
     }
@@ -159,7 +159,7 @@ static char SMTabBarObservationContext;
 
         // pre-select first button
         if (![self.items containsObject:self.selectedItem]) {
-            self.selectedItem = [self.items count] > 0 ? [self.items objectAtIndex:0] : nil;
+            self.selectedItem = [self.items count] > 0 ? (self.items)[0] : nil;
         }
     } else if ([keyPath isEqualToString:@"selectedItem"]) {
         // update button states if the corresponding item is selected

@@ -16,7 +16,7 @@
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {
-    IBOutlet DMControlCenter* center;
+    DMControlCenter* center;
     SPMediaKeyTap* mediaKeyTap;
 }
 

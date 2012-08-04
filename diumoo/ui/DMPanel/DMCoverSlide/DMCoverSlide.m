@@ -13,18 +13,17 @@
 
 -(id) init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         self.bounds = BOUNDS;
         self.masksToBounds = YES;
         
         // init
-        frontCover = [CALayer new];
-        frontFadeTransitionLayer = [CALayer new];
+        frontCover = [[CALayer alloc] init];
+        frontFadeTransitionLayer = [[CALayer alloc] init];
 
-        titleLayer = [CATextLayer new];
-        artistLayer = [CATextLayer new];
-        albumLayer = [CATextLayer new];
+        titleLayer = [[CATextLayer alloc] init];
+        artistLayer = [[CATextLayer alloc] init];
+        albumLayer = [[CATextLayer alloc] init];
         
         // anchor
         CGPoint anchor = CGPointMake(0, 0);

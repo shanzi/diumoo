@@ -127,14 +127,11 @@
                     
                     if ([public_list count] && [dj_list count]) {
                         
-                        NSNumber* timestamp = [NSNumber numberWithDouble:
-                                               [NSDate timeIntervalSinceReferenceDate]];
+                        NSNumber* timestamp = @([NSDate timeIntervalSinceReferenceDate]);
                         
-                        NSDictionary* writedic = [NSDictionary
-                                                  dictionaryWithObjectsAndKeys:
-                                                  public_list,@"public",
-                                                  dj_list,@"dj",
-                                                  timestamp,@"timestamp",nil ];
+                        NSDictionary* writedic = @{@"public": public_list,
+                                                  @"dj": dj_list,
+                                                  @"timestamp": timestamp};
                         DMLog(@"写入电台列表");
                         [writedic writeToFile:filepath atomically:YES];
                         [self updateMenuItemsWithPublicList:public_list andDJList:dj_list];
@@ -285,9 +282,8 @@
         }
     }
     
-    NSDictionary* formdic=[NSDictionary dictionaryWithObjectsAndKeys:
-                           cid,@"channel_id",
-                           ck,@"ck",nil];
+    NSDictionary* formdic=@{@"channel_id": cid,
+                           @"ck": ck};
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];
     [request setHTTPMethod:@"POST"];
@@ -356,7 +352,7 @@
 
 -(void) updateChannelMenuWithSender:(id)sender
 {
-    DMLog(@"ismain: %d,%@",[NSThread isMainThread],[NSThread currentThread]);
+    //DMLog(@"ismain: %d,%@",[NSThread isMainThread],[NSThread currentThread]);
     NSMenuItem* citem = currentChannelMenuItem;
     NSMenuItem* newItem = nil;
     
@@ -421,9 +417,8 @@
                 for (NSMenuItem* menuItem in newMenuArray) {
                     NSInteger ttag = [menuItem tag];
                     if(ttag > 1000000){
-                        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                              [NSNumber numberWithInteger:ttag],@"cid",
-                                              [menuItem title],@"title", nil];
+                        NSDictionary* dict = @{@"cid": @(ttag),
+                                              @"title": [menuItem title]};
                         [arrayToSave addObject:dict];
                     }
                 }
@@ -459,7 +454,7 @@
     
     
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    [values setValue:[NSNumber numberWithInteger:tag] forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
+    [values setValue:@(tag) forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
 
 }
 

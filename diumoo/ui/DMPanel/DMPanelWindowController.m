@@ -14,12 +14,8 @@
 
 DMPanelWindowController *sharedWindow;
 
-@interface DMPanelWindowController ()
-
-@end
-
 @implementation DMPanelWindowController
-@synthesize view,delegate,openURL,menubarController;
+@synthesize view,delegate,openURL;
 
 +(DMPanelWindowController*)sharedWindowController
 {
@@ -31,42 +27,32 @@ DMPanelWindowController *sharedWindow;
 
 -(id) init
 {
-    self = [super initWithWindowNibName:@"DMPanelWindowController"];
-    if(self){
-        self.menubarController = [[MenubarController alloc] init];
+    if(self = [super initWithWindowNibName:@"DMPanelWindowController"]){
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(accountStateChanged:)
+                                                     name:AccountStateChangedNotification
+                                                   object:nil];
+        
+        menubarController = [[MenubarController alloc] init];
         [menubarController setAction:@selector(togglePanel:) withTarget:self];
+        
+        [super awakeFromNib];
+        
+        [self.window setLevel:NSPopUpMenuWindowLevel];
+        [self.window setBackgroundColor:[NSColor whiteColor]];
+        [self.window setOpaque:NO];
+        [self.window setAlphaValue:0.98];
+        
+        [loadingIndicator startAnimation:nil];
     }
     return self;
-}
-
--(void) awakeFromNib
-{
-    [super awakeFromNib];
-    NSWindow* panel = self.window;
-    
-    [panel setLevel:NSPopUpMenuWindowLevel];
-    [panel setBackgroundColor:[NSColor whiteColor]];
-    [panel setAlphaValue:0.95];
-
-    [loadingIndicator startAnimation:nil];
-}
-
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(accountStateChanged:)
-                                                 name:AccountStateChangedNotification
-                                               object:nil];
-    
 }
 
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
-    DMLog(@"%@",helper);
+    DMLog(@"AccountStateChanged = %@",helper);
     if (helper.username) {
         [userIconButton setImage:[helper getUserIcon]];
         [usernameTextField setStringValue:helper.username];
@@ -278,11 +264,11 @@ DMPanelWindowController *sharedWindow;
     
     if (info) {
         DMLog(@"play info : %@",info);
-        NSString* title = [info objectForKey:@"title"];
-        NSString* artist = [info objectForKey:@"artist"];
-        NSString* type = [info objectForKey:@"typestring"];
+        NSString* title = info[@"title"];
+        NSString* artist = info[@"artist"];
+        NSString* type = info[@"typestring"];
 
-        self.openURL = [info objectForKey:@"album_location"];
+        self.openURL = info[@"album_location"];
         
         [popupMenuController enterSpecialPlayingModeWithTitle:title
                                                        artist:artist
@@ -342,7 +328,7 @@ DMPanelWindowController *sharedWindow;
 - (void)windowWillClose:(NSNotification *)notification
 {
     self.hasActivePanel = NO;
-    self.menubarController.hasActiveIcon = NO;
+    menubarController.hasActiveIcon = NO;
 }
 
 -(void) openPanel
@@ -375,8 +361,8 @@ DMPanelWindowController *sharedWindow;
 
 - (IBAction)togglePanel:(id)sender
 {
-    self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
-    self.hasActivePanel = self.menubarController.hasActiveIcon;
+    menubarController.hasActiveIcon = !menubarController.hasActiveIcon;
+    self.hasActivePanel = menubarController.hasActiveIcon;
 }
 
 

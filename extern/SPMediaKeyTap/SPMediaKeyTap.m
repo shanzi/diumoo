@@ -120,8 +120,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
 + (NSArray*)defaultMediaKeyUserBundleIdentifiers;
 {
-	return [NSArray arrayWithObjects:
-		[[NSBundle mainBundle] bundleIdentifier], // your app
+	return @[[[NSBundle mainBundle] bundleIdentifier], // your app
 		@"com.spotify.client",
 		@"com.apple.iTunes",
 		@"com.apple.QuickTimePlayerX",
@@ -140,9 +139,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 		@"fm.last.Last.fm",
 		@"com.beatport.BeatportPro",
 		@"com.Timenut.SongKey",
-		@"com.macromedia.fireworks", // the tap messes up their mouse input
-		nil
-	];
+		@"com.macromedia.fireworks"];
 }
 
 
@@ -267,7 +264,7 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 	
     ProcessSerialNumber mySerial, topSerial;
 	GetCurrentProcess(&mySerial);
-	[[_mediaKeyAppList objectAtIndex:0] getValue:&topSerial];
+	[_mediaKeyAppList[0] getValue:&topSerial];
 
 	Boolean same;
 	OSErr err = SameProcess(&mySerial, &topSerial, &same);
@@ -282,7 +279,7 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 		&psn,
 		kProcessDictionaryIncludeAllInformationMask
 	) autorelease];
-	NSString *bundleIdentifier = [processInfo objectForKey:(id)kCFBundleIdentifierKey];
+	NSString *bundleIdentifier = processInfo[(id)kCFBundleIdentifierKey];
     [processInfo release];
 
 	NSArray *whitelistIdentifiers = [[NSUserDefaults standardUserDefaults] arrayForKey:kMediaKeyUsingBundleIdentifiersDefaultsKey];

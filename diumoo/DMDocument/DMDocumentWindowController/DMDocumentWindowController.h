@@ -35,11 +35,6 @@
     NSLock *lock;
 }
 
-
-
-
-
-
 -(id) init;
 
 -(void)setupWindowForDocument:(NSDocument*) doc;

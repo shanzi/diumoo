@@ -26,8 +26,7 @@
     if (self) {
         // Initialization code here
         
-        baseInfoKeys = [[NSArray arrayWithObjects:
-                        @"专辑名",
+        baseInfoKeys = [@[@"专辑名",
                         @"艺术家",
                         @"豆瓣评分",
                         @"版本特性",
@@ -35,7 +34,7 @@
                         @"发行时间",
                         @"介质",
                         @"唱片数",
-                        @"条形码",nil]
+                        @"条形码"]
                         retain];
         
         self.baseInformationView = [self buildTableView];
@@ -152,18 +151,18 @@
             return [NSString stringWithFormat:@"%ld",row+1];
         }
         else {
-            return [songsArray objectAtIndex:row];
+            return songsArray[row];
         }
     }
     else {
         if ([tableColumn.identifier isEqualToString:kColumnKey]) {
  
-            return [baseInfoKeys objectAtIndex:row];
+            return baseInfoKeys[row];
 
         }
         else {
 
-            NSString* string = [baseInfoDict valueForKey:[baseInfoKeys objectAtIndex:row]];
+            NSString* string = [baseInfoDict valueForKey:baseInfoKeys[row]];
             if (string == nil) {
                 return  @"未知";
             }

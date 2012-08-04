@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        slide = [DMCoverSlide new];
+        slide = [[DMCoverSlide alloc] init];
         slide.anchorPoint = CGPointMake(0, 0);
         slide.position =slide.anchorPoint;
         

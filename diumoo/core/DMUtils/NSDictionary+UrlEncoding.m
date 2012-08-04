@@ -17,12 +17,7 @@ static NSString *toString(id object)
 static NSString *urlEncode(id object) 
 {
     NSString *string = toString(object);
-    NSString * encodedString = (NSString *)CFURLCreateStringByAddingPercentEscapes(
-                                                                                   NULL,
-                                                                                   (CFStringRef)string,
-                                                                                   NULL,
-                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                   kCFStringEncodingUTF8 );
+    NSString *encodedString = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)string,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
     return encodedString;
 }
 
@@ -33,7 +28,7 @@ static NSString *urlEncode(id object)
 {
     NSMutableArray *parts = [NSMutableArray array];
     for (id key in self) {
-        id value = [self objectForKey: key];
+        id value = self[key];
         NSString *part = [NSString stringWithFormat: @"%@=%@", urlEncode(key), urlEncode(value)];
         [parts addObject: part];
     }
@@ -44,7 +39,7 @@ static NSString *urlEncode(id object)
 {
     NSMutableArray* parts = [NSMutableArray array];
     for (id key in self) {
-        id value = [self objectForKey:key];
+        id value = self[key];
         NSString* part = [NSString stringWithFormat:@"%@:%@",key,value];
         [parts addObject:part];
     }

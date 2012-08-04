@@ -16,7 +16,6 @@ typedef enum{
     DOUBAN = 1,
     FANFOU = 2,
     SINA_WEIBO = 3,
-    
     TWITTER = 4,
     FACEBOOK = 5
 } SNS_CODE ;
@@ -53,14 +52,15 @@ typedef enum{
     IBOutlet NSTextField* indicateString;
     
     BOOL _hasActivePanel;
+    MenubarController *menubarController;
 }
 
 @property(nonatomic,assign) IBOutlet DMCoverControlView* view;
-@property(nonatomic,retain) MenubarController* menubarController;
 
-@property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
 @property(copy) NSString* openURL;
 @property (nonatomic) BOOL hasActivePanel;
+
+@property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
 
 +(DMPanelWindowController*)sharedWindowController;
 

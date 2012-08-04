@@ -38,7 +38,7 @@ static DMPlayRecordHandler* recordHandler;
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
                                                         NSUserDomainMask, YES);
     
-    NSString* pathToUserApplicationSupportFolder = [dirs objectAtIndex:0];
+    NSString* pathToUserApplicationSupportFolder = dirs[0];
     NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
                                         stringByAppendingPathComponent:@"diumoo"];
     
@@ -76,7 +76,7 @@ static DMPlayRecordHandler* recordHandler;
     NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
     if([versions count]>50){
         for (int i =0 ; i<([versions count] - 50); i++) {
-            NSFileVersion* version = [versions objectAtIndex:i];
+            NSFileVersion* version = versions[i];
             [version removeAndReturnError:nil];
         }
     }
@@ -90,9 +90,7 @@ static DMPlayRecordHandler* recordHandler;
 
 #pragma private methods
 -(NSManagedObjectContext*) makeContextWithPath:(NSString*) datapath
-{
-    DMLog(@"DMPlayerRecordDatabase Path = %@",datapath);
-    
+{    
     datapath = [datapath stringByAppendingPathComponent:@"dmdata.db"];
     
     NSManagedObjectModel* model = [NSManagedObjectModel mergedModelFromBundles:nil];
@@ -130,12 +128,12 @@ static DMPlayRecordHandler* recordHandler;
     [fetchRequset setPredicate:[NSPredicate predicateWithFormat:@"sid = %@",sid]];
     
     NSError* fetchErr = nil;
-    DMLog(@"%@",context);
+    //DMLog(@"%@",context);
     NSArray* results = [context executeFetchRequest:fetchRequset error:&fetchErr];
 
     if ([results count]>0) {
         // 找到了之前的记录
-        return [results objectAtIndex:0];
+        return results[0];
     }
     return nil;
 }
@@ -157,8 +155,7 @@ static DMPlayRecordHandler* recordHandler;
         NSDate* date = [NSDate date];
         
         NSManagedObject* song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
-                                                              inManagedObjectContext:context];
-        
+                                                              inManagedObjectContext:context];        
         [song setValue:capsule.sid forKey:@"sid"];
         [song setValue:capsule.ssid forKey:@"ssid"];
         [song setValue:capsule.aid forKey:@"aid"];
@@ -166,8 +163,8 @@ static DMPlayRecordHandler* recordHandler;
         [song setValue:capsule.albumtitle forKey:@"albumtitle"];
         [song setValue:capsule.artist forKey:@"artist"];
         [song setValue:capsule.largePictureLocation forKey:@"picture"];
-        [song setValue:capsule.albumLocation forKey:@"album_location"];
-        [song setValue:[NSNumber numberWithFloat:capsule.rating_avg]
+        [song setValue:[NSString stringWithString:capsule.albumLocation] forKey:@"url"];
+        [song setValue:@(capsule.rating_avg)
                 forKey:@"rating_avg"];
         [song setValue:date forKey:@"date"];
         

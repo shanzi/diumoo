@@ -35,7 +35,7 @@
             NSColor *color1 = [NSColor colorWithCalibratedWhite:0.7 alpha:0.0];
             NSColor *color2 = [NSColor colorWithCalibratedWhite:0.7 alpha:5.0];
             CGFloat loactions[] = {0.0f, 0.5f, 1.0f};
-            gradient = [[NSGradient alloc] initWithColors:[NSArray arrayWithObjects:color1, color2, color1, nil] atLocations:loactions colorSpace:[NSColorSpace genericGrayColorSpace]];
+            gradient = [[NSGradient alloc] initWithColors:@[color1, color2, color1] atLocations:loactions colorSpace:[NSColorSpace genericGrayColorSpace]];
         }
         [gradient drawInRect:frame angle:-90.0f];
         

@@ -68,8 +68,8 @@ static id kNSNO = NULL;
     {
     static dispatch_once_t sOnceToken = 0;
     dispatch_once(&sOnceToken, ^{
-        kNSYES = [NSNumber numberWithBool:YES];
-        kNSNO = [NSNumber numberWithBool:NO];
+        kNSYES = @YES;
+        kNSNO = @NO;
         });
     }
 
