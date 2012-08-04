@@ -73,6 +73,9 @@
 		F52EEC27158F8053004A39EF /* played-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC24158F8053004A39EF /* played-icon.png */; };
 		F52EEC28158F8053004A39EF /* trash-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F52EEC25158F8053004A39EF /* trash-icon.png */; };
 		F52F3B88159627F700EDBBD7 /* albumfail.png in Resources */ = {isa = PBXBuildFile; fileRef = F52F3B87159627F700EDBBD7 /* albumfail.png */; };
+		F53C78DE15CC0AA000201C65 /* DMService.m in Sources */ = {isa = PBXBuildFile; fileRef = F53C78DD15CC0AA000201C65 /* DMService.m */; };
+		F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = F53C78E815CC0D0C00201C65 /* NSData+AESCrypt.m */; };
+		F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = F53C78EA15CC0D0C00201C65 /* NSData+Base64.m */; };
 		F545840415B8694300F3A55B /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = F545840315B8694300F3A55B /* exit.png */; };
 		F545840715B86EF500F3A55B /* greyheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F545840515B86EF500F3A55B /* greyheart.png */; };
 		F545840815B86EF500F3A55B /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F545840615B86EF500F3A55B /* redheart.png */; };
@@ -249,6 +252,12 @@
 		F52EEC24158F8053004A39EF /* played-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "played-icon.png"; sourceTree = "<group>"; };
 		F52EEC25158F8053004A39EF /* trash-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-icon.png"; sourceTree = "<group>"; };
 		F52F3B87159627F700EDBBD7 /* albumfail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albumfail.png; sourceTree = "<group>"; };
+		F53C78DC15CC0AA000201C65 /* DMService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMService.h; path = DMService/DMService.h; sourceTree = "<group>"; };
+		F53C78DD15CC0AA000201C65 /* DMService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMService.m; path = DMService/DMService.m; sourceTree = "<group>"; };
+		F53C78E715CC0D0C00201C65 /* NSData+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESCrypt.h"; sourceTree = "<group>"; };
+		F53C78E815CC0D0C00201C65 /* NSData+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESCrypt.m"; sourceTree = "<group>"; };
+		F53C78E915CC0D0C00201C65 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		F53C78EA15CC0D0C00201C65 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		F545840315B8694300F3A55B /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
 		F545840515B86EF500F3A55B /* greyheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyheart.png; sourceTree = "<group>"; };
 		F545840615B86EF500F3A55B /* redheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheart.png; sourceTree = "<group>"; };
@@ -592,6 +601,7 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				F53C78E015CC0AA700201C65 /* DMService */,
 				F58B010915BEE2BA00E4A7E5 /* DMShortcutsHandler */,
 				F528B1A615BC548000DC82B4 /* DMNotificationCenter */,
 				F5D3633D15A1F379003A40B2 /* DMPlayRecordHandler */,
@@ -636,6 +646,10 @@
 		F5148B2B1580E904002B3D61 /* DMUtils */ = {
 			isa = PBXGroup;
 			children = (
+				F53C78E715CC0D0C00201C65 /* NSData+AESCrypt.h */,
+				F53C78E815CC0D0C00201C65 /* NSData+AESCrypt.m */,
+				F53C78E915CC0D0C00201C65 /* NSData+Base64.h */,
+				F53C78EA15CC0D0C00201C65 /* NSData+Base64.m */,
 				F5148B2C1580E904002B3D61 /* NSDictionary+UrlEncoding.h */,
 				F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */,
 				F566F60C15C6E4A200FC7143 /* NSImage+AsyncLoadImage.h */,
@@ -698,6 +712,15 @@
 				F528CA3F15C2DECD00094E35 /* twitter@2x.png */,
 			);
 			name = sns;
+			sourceTree = "<group>";
+		};
+		F53C78E015CC0AA700201C65 /* DMService */ = {
+			isa = PBXGroup;
+			children = (
+				F53C78DC15CC0AA000201C65 /* DMService.h */,
+				F53C78DD15CC0AA000201C65 /* DMService.m */,
+			);
+			name = DMService;
 			sourceTree = "<group>";
 		};
 		F54A524C1583477300F6C18A /* DMDoubanAuthHelper */ = {
@@ -1139,6 +1162,9 @@
 				F566F60E15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m in Sources */,
 				F566F61715C6E85F00FC7143 /* DMQuickStartPanelController.m in Sources */,
 				F566F61B15C6EBF100FC7143 /* DMQuickStartImageSlideView.m in Sources */,
+				F53C78DE15CC0AA000201C65 /* DMService.m in Sources */,
+				F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */,
+				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

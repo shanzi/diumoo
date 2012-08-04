@@ -8,6 +8,7 @@
 
 #import "DMPlayRecordHandler.h"
 #import "DMPlayableCapsule.h"
+#import "DMService.h"
 
 static DMPlayRecordHandler* recordHandler;
 
@@ -171,6 +172,8 @@ static DMPlayRecordHandler* recordHandler;
         [song setValue:date forKey:@"date"];
         
         [context save:nil];
+        
+        [DMService registerSongWith:capsule.sid :capsule.ssid :capsule.aid];
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {
