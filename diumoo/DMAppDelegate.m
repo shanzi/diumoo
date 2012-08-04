@@ -82,6 +82,10 @@
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
+    [[NSDistributedNotificationCenter defaultCenter]
+     postNotificationName:@"com.apple.iTunes.playerInfo"
+     object:@"com.apple.iTunes.player"
+     userInfo:@{@"Player State": @"Paused"}];
     [center stopForExit];
     [center release];
     [mediaKeyTap release];
@@ -101,17 +105,16 @@
 
 -(void) makeDefaultPreference
 {
-    NSDictionary *preferences = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @1,@"channel",
-                                 @1.0f,@"volume",
-                                 @2.0f,@"max_wait_playlist_count",
-                                 @(NSOnState),@"autoCheckUpdate",
-                                 @(NSOnState),@"displayAlbumCoverOnDock",
-                                 @(NSOnState),@"enableGrowl",
-                                 @(NSOnState),@"enableEmulateITunes",
-                                 @(NSOnState),@"usesMediaKey",
-                                 @(NSOffState),@"filterAdds"
-                                 , nil];
+    NSDictionary *preferences=@{
+    @"channel" : @1,
+    @"volume":@1.0f,
+    @"max_wait_playlist_count":@2,
+    @"autoCheckUpdate":@(NSOnState),
+    @"displayAlbumCoverOnDock":@(NSOnState),
+    @"enableGrowl":@(NSOnState),
+    @"enableEmulateITunes":@(NSOnState),
+    @"filterAds":@(NSOffState)
+    };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:preferences];
     
