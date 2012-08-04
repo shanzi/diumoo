@@ -208,12 +208,7 @@
     }
 
     pausedOperationType = kPauseOperationTypePass;
-    @try {
-        [skipLock unlock];
-    }
-    @catch (NSException *exception) {
-        DMLog(@"unlock with out locket");
-    }
+    [skipLock unlock];
 }
 
 -(void) playableCapsuleDidEnd:(id)c
@@ -284,6 +279,7 @@
         {
             // 当前歌曲加载失败
             // 做些事情
+            [self startToPlay:nil];
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
