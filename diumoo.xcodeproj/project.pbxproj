@@ -86,6 +86,8 @@
 		F566F61715C6E85F00FC7143 /* DMQuickStartPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F566F61515C6E85F00FC7143 /* DMQuickStartPanelController.m */; };
 		F566F61815C6E85F00FC7143 /* DMQuickStartPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F566F61615C6E85F00FC7143 /* DMQuickStartPanel.xib */; };
 		F566F61B15C6EBF100FC7143 /* DMQuickStartImageSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */; };
+		F56F57B715CD851000C35515 /* volume_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F56F57B515CD851000C35515 /* volume_back.png */; };
+		F56F57B815CD851000C35515 /* volume_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = F56F57B615CD851000C35515 /* volume_slider.png */; };
 		F5815F561590E397007EB0D3 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5815F551590E397007EB0D3 /* channels.plist */; };
 		F58653D515C82C5200352B4C /* slide1.png in Resources */ = {isa = PBXBuildFile; fileRef = F58653D115C82C5200352B4C /* slide1.png */; };
 		F58653D615C82C5200352B4C /* slide2.png in Resources */ = {isa = PBXBuildFile; fileRef = F58653D215C82C5200352B4C /* slide2.png */; };
@@ -272,6 +274,8 @@
 		F566F61615C6E85F00FC7143 /* DMQuickStartPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMQuickStartPanel.xib; path = DMQuickHelpPanel/DMQuickStartPanel.xib; sourceTree = "<group>"; };
 		F566F61915C6EBF100FC7143 /* DMQuickStartImageSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMQuickStartImageSlideView.h; path = DMQuickHelpPanel/DMQuickStartImageSlideView.h; sourceTree = "<group>"; };
 		F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMQuickStartImageSlideView.m; path = DMQuickHelpPanel/DMQuickStartImageSlideView.m; sourceTree = "<group>"; };
+		F56F57B515CD851000C35515 /* volume_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_back.png; sourceTree = "<group>"; };
+		F56F57B615CD851000C35515 /* volume_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_slider.png; sourceTree = "<group>"; };
 		F5815F551590E397007EB0D3 /* channels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channels.plist; sourceTree = "<group>"; };
 		F58653D115C82C5200352B4C /* slide1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slide1.png; path = slides/slide1.png; sourceTree = "<group>"; };
 		F58653D215C82C5200352B4C /* slide2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slide2.png; path = slides/slide2.png; sourceTree = "<group>"; };
@@ -744,6 +748,15 @@
 			name = DMQuickHelpPanel;
 			sourceTree = "<group>";
 		};
+		F56F57AE15CD757500C35515 /* volumeSlder */ = {
+			isa = PBXGroup;
+			children = (
+				F56F57B515CD851000C35515 /* volume_back.png */,
+				F56F57B615CD851000C35515 /* volume_slider.png */,
+			);
+			name = volumeSlder;
+			sourceTree = "<group>";
+		};
 		F58653D015C82C2C00352B4C /* slides */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,6 +811,7 @@
 		F5AACEF4159C9449003DA427 /* MainPanel */ = {
 			isa = PBXGroup;
 			children = (
+				F56F57AE15CD757500C35515 /* volumeSlder */,
 				F528CA3B15C2DB6400094E35 /* sns */,
 				F5237A0415C958A500D2A1F2 /* share.png */,
 				F5237A0515C958A500D2A1F2 /* share@2x.png */,
@@ -1078,6 +1092,8 @@
 				F5237A0715C958A500D2A1F2 /* share@2x.png in Resources */,
 				F5237A0F15C96DE800D2A1F2 /* arrowleft.png in Resources */,
 				F5237A1015C96DE800D2A1F2 /* arrowright.png in Resources */,
+				F56F57B715CD851000C35515 /* volume_back.png in Resources */,
+				F56F57B815CD851000C35515 /* volume_slider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
