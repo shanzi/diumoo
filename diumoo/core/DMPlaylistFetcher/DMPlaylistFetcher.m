@@ -161,14 +161,19 @@
 - (DMPlayableCapsule*)getOnePlayableCapsule
 {
     if([playlist count]>0){
+        
         NSDictionary *songDict = playlist[0];
+        
         if([playlist[0][@"subtype"] isEqual:@"T"]
            && ([[[NSUserDefaults standardUserDefaults] valueForKey:@"filterAds"] integerValue] == NSOnState)){
+            
             DMLog(@"filter Ads = %@",songDict);
+            
             [playlist removeObjectAtIndex:0];
             return [self getOnePlayableCapsule];
         }
         [playlist removeObjectAtIndex:0];
+        
         return [DMPlayableCapsule playableCapsuleWithDictionary:songDict];
     }
     else return nil;

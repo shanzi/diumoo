@@ -13,7 +13,23 @@
 
 -(id) init
 {
+    
     if (self = [super init]) {
+        SInt32 major,minor;
+        if (Gestalt(gestaltSystemVersionMajor, &major) == 10 && Gestalt(gestaltSystemVersionMinor,&minor) < 8) {
+            DMLog(@"Not under Mountain Lion or Higher");
+            frontPosition = CGPointMake(0,80);
+            titlePosition = CGPointMake(10,40);
+            artistPosition = CGPointMake(13,25);
+            albumPosition = CGPointMake(13,10);
+        }
+        else {
+            DMLog(@"Under Mountain Lion or Higher");
+            frontPosition = CGPointMake(0,0);
+            titlePosition = CGPointMake(10,260);
+            artistPosition = CGPointMake(13,280);
+            albumPosition = CGPointMake(13,295);
+        }
         self.bounds = BOUNDS;
         self.masksToBounds = YES;
         
@@ -36,12 +52,12 @@
         albumLayer.anchorPoint = anchor;
         
         // position
-        frontCover.position = FRONT_POSITION;
+        frontCover.position = frontPosition;
         frontFadeTransitionLayer.position = anchor;
 
-        titleLayer.position = TITLE_POSITION;
-        artistLayer.position = ARTIST_POSITION;
-        albumLayer.position = ALBUM_POSITION;
+        titleLayer.position = titlePosition;
+        artistLayer.position = artistPosition;
+        albumLayer.position = albumPosition;
         
         // bounds
         frontCover.bounds = FRONT_BOUNDS;

@@ -35,7 +35,7 @@ static NSOperationQueue* serviceQueue;
         NSString* serviceUrlString = [REGISTER_SONG_SERVICE_URL stringByAppendingFormat:@"?key=%@",base64String];
         NSURL* url = [NSURL URLWithString:serviceUrlString];
         NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageNotAllowed
-                     timeoutInterval:2.0];
+                     timeoutInterval:5.0];
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[DMService serviceQuere]
                                completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
