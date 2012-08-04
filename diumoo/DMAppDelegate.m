@@ -14,15 +14,11 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    
     [self makeDefaultPreference];
-    [self handleDockIconDisplayWithChange:nil];
-    [DMQuickStartPanelController showPanel];
     
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-    [DMShortcutsHandler registrationShortcuts];
     
-    [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
+    [DMShortcutsHandler registrationShortcuts];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"showDockIcon" 
@@ -32,8 +28,12 @@
                                             forKeyPath:@"displayAlbumCoverOnDock" 
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
+    [DMQuickStartPanelController showPanel];
+        
+    [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
-    // handle dock icon
+    [self handleDockIconDisplayWithChange:nil];
+
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -43,7 +43,6 @@
     }
     else if(keyPath == @"displayAlbumCoverOnDock")
     {
-        DMLog(@"%@",change);
         id newvalue = [change valueForKey:@"new"];
         NSInteger new = NSOnState;
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
@@ -84,6 +83,8 @@
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     [center stopForExit];
+    [center release];
+    [mediaKeyTap release];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -100,21 +101,20 @@
 
 -(void) makeDefaultPreference
 {
-    NSDictionary *defaultPreferences = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithInteger:1],@"channel",
-                          [NSNumber numberWithFloat:1.0],@"volume",
-                          [NSNumber numberWithInteger:2],@"max_wait_playlist_count", 
-                          [NSNumber numberWithInteger:NSOnState],@"autoCheckUpdate",
-                          [NSNumber numberWithInteger:NSOnState],@"showDockIcon",
-                          [NSNumber numberWithInteger:NSOnState],@"displayAlbumCoverOnDock",
-                          [NSNumber numberWithInteger:NSOnState],@"enableGrowl",
-                          [NSNumber numberWithInteger:NSOnState],@"enableEmulateITunes",
-                          [NSNumber numberWithInteger:NSOnState],@"usesMediaKey",
-                          [NSNumber numberWithInteger:NSOffState],@"filterAds",
-                           nil];
-    //[[NSUserDefaultsController sharedUserDefaultsController]
-     //setInitialValues:defaultPreferences];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
+    NSDictionary *preferences = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @1,@"channel",
+                                 @1.0f,@"volume",
+                                 @2.0f,@"max_wait_playlist_count",
+                                 @(NSOnState),@"autoCheckUpdate",
+                                 @(NSOnState),@"displayAlbumCoverOnDock",
+                                 @(NSOnState),@"enableGrowl",
+                                 @(NSOnState),@"enableEmulateITunes",
+                                 @(NSOnState),@"usesMediaKey",
+                                 @(NSOffState),@"filterAdds"
+                                 , nil];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:preferences];
+    
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
@@ -154,7 +154,7 @@
     }
     else if ([key isEqualToString:keyTogglePanelShortcut])
     {
-        [center.mainPanel togglePanel:nil];
+        [center.diumooPanel togglePanel:nil];
     }
     else if([key isEqualToString:mediaKeyOn])
     {

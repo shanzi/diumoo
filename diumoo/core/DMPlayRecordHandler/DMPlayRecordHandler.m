@@ -163,7 +163,7 @@ static DMPlayRecordHandler* recordHandler;
         [song setValue:capsule.albumtitle forKey:@"albumtitle"];
         [song setValue:capsule.artist forKey:@"artist"];
         [song setValue:capsule.largePictureLocation forKey:@"picture"];
-        [song setValue:[NSString stringWithString:capsule.albumLocation] forKey:@"url"];
+        [song setValue:capsule.albumLocation forKey:@"url"];
         [song setValue:@(capsule.rating_avg)
                 forKey:@"rating_avg"];
         [song setValue:date forKey:@"date"];

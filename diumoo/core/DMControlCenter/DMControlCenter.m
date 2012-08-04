@@ -208,7 +208,12 @@
     }
 
     pausedOperationType = kPauseOperationTypePass;
-    [skipLock unlock];
+    @try {
+        [skipLock unlock];
+    }
+    @catch (NSException *exception) {
+        DMLog(@"unlock with out locket");
+    }
 }
 
 -(void) playableCapsuleDidEnd:(id)c
