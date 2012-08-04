@@ -24,7 +24,7 @@
     id<DMPlaylistFetcherDeleate> delegate;
 }
 
-@property(retain) id<DMPlaylistFetcherDeleate> delegate;
+@property(assign) id<DMPlaylistFetcherDeleate> delegate;
 
 
 -(void) fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;
