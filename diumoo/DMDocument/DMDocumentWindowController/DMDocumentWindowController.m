@@ -127,7 +127,7 @@
 
 -(void) revert:(id)sender
 {
-    [self.document browseDocumentVersions:nil];
+    [self.document revertDocumentToSaved:nil];
 }
 
 
