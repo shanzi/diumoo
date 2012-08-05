@@ -32,18 +32,16 @@
     NSInteger bannedSongsCount;
 }
 
-@property(copy) NSString *username;
-@property(copy) NSString *userUrl;
-@property(copy) NSString *iconUrl;
-@property(retain) NSImage *icon;
-@property(retain) NSDictionary *userinfo;
+@property(copy,readonly) NSString *username;
+@property(copy,readonly) NSString *userUrl;
+@property(retain,readonly) NSImage *icon;
+@property(retain,readonly) NSDictionary *userinfo;
 @property NSInteger playedSongsCount;
 @property NSInteger likedSongsCount;
 @property NSInteger bannedSongsCount;
 
 +(DMDoubanAuthHelper*) sharedHelper;
 +(NSString*) getNewCaptchaCode; 
-+(NSImage*) getNewCapchaImageWithCode:(NSString*) code;
 
 -(NSError*) authWithDictionary:(NSDictionary*) dict;
 -(void) logoutAndCleanData;

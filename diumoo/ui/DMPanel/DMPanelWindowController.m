@@ -260,7 +260,6 @@ DMPanelWindowController *sharedWindow;
 
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 {
-    
     if (info) {
         DMLog(@"play info : %@",info);
         NSString* title = info[@"title"];

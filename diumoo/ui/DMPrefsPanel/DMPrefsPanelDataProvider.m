@@ -19,7 +19,6 @@
 
 - (void)showPreferences
 {
-
     tabcontroller = [[PLTabPreferenceControl alloc] initWithWindowNibName:@"DMPrefsPanel"];
     [tabcontroller showWindow:nil];
 }
@@ -108,19 +107,14 @@
     }
 }
 
-
-
-
 //------------------------------界面的action------------------------------
 -(void) loginAction:(id)sender
 {
-    NSInteger tag = [sender tag];
-    switch (tag) {
-            
+    switch ([sender tag]) {
         case 0: // 获取验证码
             [sender setEnabled:NO];
             [indicator setHidden:NO];
-            [indicator startAnimation:nil];
+            [indicator startAnimation:self];
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 self.captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
@@ -138,7 +132,7 @@
                         [sender setTitle:@""];
                     }
                     [sender setEnabled:YES];
-                    [indicator stopAnimation:nil];
+                    [indicator stopAnimation:self];
                     [indicator setHidden:YES];
                 }];
             }];
