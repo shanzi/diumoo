@@ -34,8 +34,7 @@
 -(NSDictionary*) registrationDictionaryForGrowl
 {
     NSArray* array = @[@"Music",@"Account"];
-    return @{GROWL_NOTIFICATIONS_ALL: array,
-                                                                    GROWL_NOTIFICATIONS_DEFAULT: array};
+    return @{GROWL_NOTIFICATIONS_ALL: array,GROWL_NOTIFICATIONS_DEFAULT: array};
 }
 
 -(void) growlNotificationWasClicked:(id)clickContext
@@ -46,23 +45,20 @@
 -(void) notifyMusicWithCapsule:(DMPlayableCapsule*) capsule
 {
     NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
-    
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
-        
         NSData* data = [capsule.picture TIFFRepresentation];
         if(NSClassFromString(@"NSUserNotification")) {
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
             [center setDelegate:self];
-            notification.hasActionButton = NO;
             notification.title = capsule.title;
             notification.informativeText = detail;
             notification.soundName = nil;
             [notification setDeliveryDate:[NSDate dateWithTimeIntervalSinceNow:0]];
             [center scheduleNotification: notification];
-            [center release];
+            [notification release];
         } else {
         [GrowlApplicationBridge notifyWithTitle:capsule.title   
                                     description:detail
@@ -73,7 +69,6 @@
                                    clickContext:capsule.sid];
         }
     }
-    
     if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState)
     {
         NSDictionary* postDict = @{@"Player State": @"Playing",
@@ -89,7 +84,6 @@
     {
         [NSApp setApplicationIconImage:capsule.picture];
     }
-
 }
 
 -(void) clearNotifications

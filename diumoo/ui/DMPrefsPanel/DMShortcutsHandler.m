@@ -18,7 +18,6 @@
 {
     NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     if ([[values valueForKey:@"usesMediaKey"] integerValue]!=NSOnState) {
-        
         [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyPlayShortcut
                                                        handler:^{
                                                            DMLog(@"play");
@@ -26,7 +25,6 @@
                                                             performSelector:@selector(keyShortcuts:)
                                                             withObject:keyPlayShortcut];
                                                        }];
-        
         [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keySkipShortcut
                                                        handler:^{
                                                            DMLog(@"rate");
@@ -34,16 +32,12 @@
                                                             performSelector:@selector(keyShortcuts:)
                                                             withObject:keySkipShortcut];
                                                        }];
-        [[NSApp delegate] 
-          performSelector:@selector(keyShortcuts:)
-          withObject:mediaKeyOff];
+        [[NSApp delegate] performSelector:@selector(keyShortcuts:) withObject:mediaKeyOff];
     }
     else {
         [MASShortcut unregisterGlobalShortcutWithUserDefaultsKey:keyPlayShortcut];
         [MASShortcut unregisterGlobalShortcutWithUserDefaultsKey:keySkipShortcut];
-        [[NSApp delegate] 
-         performSelector:@selector(keyShortcuts:)
-         withObject:mediaKeyOn];
+        [[NSApp delegate] performSelector:@selector(keyShortcuts:) withObject:mediaKeyOn];
     }
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyRateShortcut
                                                    handler:^{
@@ -71,10 +65,6 @@
                                                         withObject:keyShowPrefsPanel];
                                                    }];
     
-    
 }
-
-
-
 
 @end

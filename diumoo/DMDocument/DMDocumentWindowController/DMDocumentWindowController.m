@@ -17,9 +17,7 @@
 #define DOUBAN_API_URL @"http://api.douban.com/music/subject/"
 
 @interface DMDocumentWindowController ()
-
 -(void)buildTabButton;
-
 @end
 
 @implementation DMDocumentWindowController
@@ -127,7 +125,7 @@
 
 -(void) revert:(id)sender
 {
-    [self.document revertDocumentToSaved:nil];
+    [self.document browseDocumentVersions:nil];
 }
 
 

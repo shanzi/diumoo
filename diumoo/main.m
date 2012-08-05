@@ -11,11 +11,10 @@
 
 int main(int argc, char *argv[])
 {
-    NSAutoreleasePool* pool = [NSAutoreleasePool new];
-    [DMApp sharedApplication];
-    [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
-    [NSApp run];
-    [pool drain];
+    @autoreleasepool {
+        [DMApp sharedApplication];
+        [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
+        [NSApp run];
+    }
     return 0;
-
 }

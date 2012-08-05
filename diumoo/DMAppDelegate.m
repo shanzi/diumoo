@@ -48,7 +48,6 @@
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
             new = [newvalue integerValue];
         }
-        
         if (new == NSOnState) {
             [NSApp setApplicationIconImage:center.playingCapsule.picture];
         }
@@ -126,7 +125,6 @@
 
 -(void) keyShortcuts:(id)key
 {
-    DMLog(@"keyShortcuts = %@",key);
     if([key isEqualToString:keyPlayShortcut])
     {
         [center playOrPause];
