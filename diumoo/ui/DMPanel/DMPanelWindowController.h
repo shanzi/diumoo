@@ -76,6 +76,7 @@ typedef enum{
 -(void) setPlaying:(BOOL) playing;
 -(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
 -(void) playDefaultChannel;
+-(NSString*) switchToDefaultChannel;
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 - (IBAction)togglePanel:(id)sender;
 

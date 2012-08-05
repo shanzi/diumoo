@@ -68,11 +68,28 @@
                        startAttribute:startattribute];
 }
 
--(void) fireToPlayDefaultChannel
+-(void) fireToPlayDefault
 {
-    [diumooPanel performSelectorOnMainThread:@selector(playDefaultChannel)
-                                withObject:nil
-                             waitUntilDone:NO];
+    NSString* openedURLString = [NSApp performSelector:@selector(openedURLString)];
+    if (openedURLString == nil) {
+        [diumooPanel playDefaultChannel];
+    }
+    else{
+        channel = [diumooPanel switchToDefaultChannel];
+        NSString* prefix = @"dm://song?key=";
+        if([openedURLString hasPrefix:prefix])
+        {
+            NSString* start =  [openedURLString
+                                stringByReplacingOccurrencesOfString:prefix
+                                withString:@""];
+            [fetcher fetchPlaylistFromChannel:channel
+                                     withType:kFetchPlaylistTypeNew
+                                          sid:nil
+                               startAttribute:[start stringByAppendingString:channel]];
+        }
+        
+    }
+    
 }
 
 
@@ -560,10 +577,18 @@
 -(void) playSpecialNotification:(NSNotification*) n
 {
     DMLog(@"receive notification: %@",n.userInfo);
-    NSString* aid = (n.userInfo)[@"aid"];
+    
     NSString* type = (n.userInfo)[@"type"];
     if ([type isEqualToString:@"album"]) {
+        NSString* aid = (n.userInfo)[@"aid"];
         [self playAlbumWithAid:aid withInfo:n.userInfo];
+    }
+    else if([type isEqualToString:@"song"]){
+        NSString* start = (n.userInfo)[@"start"];
+        [fetcher fetchPlaylistFromChannel:channel
+                                 withType:kFetchPlaylistTypeNew
+                                      sid:nil
+                           startAttribute:[start stringByAppendingString:channel]];
     }
 }
 

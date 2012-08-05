@@ -230,33 +230,45 @@ DMPanelWindowController *sharedWindow;
     [[DMPlayRecordHandler sharedRecordHandler] open];
 }
 
--(void) playDefaultChannel
+-(NSMenuItem*) prepareCurrentMenuItem
 {
     if (popupMenuController.publicMenu == nil) {
         [popupMenuController updateChannelList];
     }
     
     NSMenuItem* currentItem=popupMenuController.currentChannelMenuItem;
-
+    
     
     if ([DMDoubanAuthHelper sharedHelper].username == nil) {
         [popupMenuController setPrivateChannelEnabled:NO];
         [rateButton setEnabled:NO];
         [banButton setEnabled:NO];
         if (currentItem && currentItem.tag <= 0) {
-            [self channelChangeActionWithSender:[popupMenuController.publicMenu 
-                                                 itemWithTag:1]];
-            return;
+            return [popupMenuController.publicMenu
+                                                 itemWithTag:1];
         }
     }
     
     if(currentItem){
-        [self channelChangeActionWithSender:currentItem];
+        return currentItem;
     }
     else {
-        [self channelChangeActionWithSender:[popupMenuController.publicMenu 
-                                             itemWithTag:1]];
+        return [popupMenuController.publicMenu
+                                itemWithTag:1];
     }
+}
+
+-(void) playDefaultChannel
+{
+    NSMenuItem* currentItem = [self prepareCurrentMenuItem];
+    [self channelChangeActionWithSender:currentItem];
+}
+
+-(NSString*) switchToDefaultChannel
+{
+    NSMenuItem* item = [self prepareCurrentMenuItem];
+    [popupMenuController updateChannelMenuWithSender:item];
+    return [NSString stringWithFormat:@"%ld",item.tag];
 }
 
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;

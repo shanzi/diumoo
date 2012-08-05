@@ -43,7 +43,7 @@
 @property (assign) DMPlayableCapsule *playingCapsule;
 @property (retain) DMPanelWindowController *diumooPanel;
 
--(void) fireToPlayDefaultChannel;
+-(void) fireToPlayDefault;
 -(void) stopForExit;
 
 @end

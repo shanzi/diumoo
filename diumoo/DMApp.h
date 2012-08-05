@@ -10,5 +10,10 @@
 #import "SPMediaKeyTap.h"
 
 @interface DMApp : NSApplication
+{
+    NSString* openedURLString;
+}
+
+-(NSString*) openedURLString;
 
 @end

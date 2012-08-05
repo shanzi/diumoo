@@ -88,6 +88,8 @@
 		F566F61B15C6EBF100FC7143 /* DMQuickStartImageSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */; };
 		F56F57B715CD851000C35515 /* volume_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F56F57B515CD851000C35515 /* volume_back.png */; };
 		F56F57B815CD851000C35515 /* volume_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = F56F57B615CD851000C35515 /* volume_slider.png */; };
+		F578A39315CEBFC300209C5B /* DMOpenURLWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F578A39115CEBFC300209C5B /* DMOpenURLWindow.xib */; };
+		F578A39615CEC0EC00209C5B /* DMOpenURLWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F578A39515CEC0EC00209C5B /* DMOpenURLWindowController.m */; };
 		F5815F561590E397007EB0D3 /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5815F551590E397007EB0D3 /* channels.plist */; };
 		F58653D515C82C5200352B4C /* slide1.png in Resources */ = {isa = PBXBuildFile; fileRef = F58653D115C82C5200352B4C /* slide1.png */; };
 		F58653D615C82C5200352B4C /* slide2.png in Resources */ = {isa = PBXBuildFile; fileRef = F58653D215C82C5200352B4C /* slide2.png */; };
@@ -276,6 +278,9 @@
 		F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMQuickStartImageSlideView.m; path = DMQuickHelpPanel/DMQuickStartImageSlideView.m; sourceTree = "<group>"; };
 		F56F57B515CD851000C35515 /* volume_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_back.png; sourceTree = "<group>"; };
 		F56F57B615CD851000C35515 /* volume_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_slider.png; sourceTree = "<group>"; };
+		F578A39115CEBFC300209C5B /* DMOpenURLWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMOpenURLWindow.xib; path = DMExtraWindowController/DMOpenURLWindow.xib; sourceTree = "<group>"; };
+		F578A39415CEC0EC00209C5B /* DMOpenURLWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMOpenURLWindowController.h; path = DMExtraWindowController/DMOpenURLWindowController.h; sourceTree = "<group>"; };
+		F578A39515CEC0EC00209C5B /* DMOpenURLWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMOpenURLWindowController.m; path = DMExtraWindowController/DMOpenURLWindowController.m; sourceTree = "<group>"; };
 		F5815F551590E397007EB0D3 /* channels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channels.plist; sourceTree = "<group>"; };
 		F58653D115C82C5200352B4C /* slide1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slide1.png; path = slides/slide1.png; sourceTree = "<group>"; };
 		F58653D215C82C5200352B4C /* slide2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slide2.png; path = slides/slide2.png; sourceTree = "<group>"; };
@@ -370,6 +375,7 @@
 		F501B3AC15877062001C6158 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F578A38B15CEBDA200209C5B /* DMExtraWindowController */,
 				F566F61015C6E7FA00FC7143 /* DMQuickHelpPanel */,
 				F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */,
 				F501B3AD15877062001C6158 /* DMPanel */,
@@ -757,6 +763,16 @@
 			name = volumeSlder;
 			sourceTree = "<group>";
 		};
+		F578A38B15CEBDA200209C5B /* DMExtraWindowController */ = {
+			isa = PBXGroup;
+			children = (
+				F578A39115CEBFC300209C5B /* DMOpenURLWindow.xib */,
+				F578A39415CEC0EC00209C5B /* DMOpenURLWindowController.h */,
+				F578A39515CEC0EC00209C5B /* DMOpenURLWindowController.m */,
+			);
+			name = DMExtraWindowController;
+			sourceTree = "<group>";
+		};
 		F58653D015C82C2C00352B4C /* slides */ = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1110,7 @@
 				F5237A1015C96DE800D2A1F2 /* arrowright.png in Resources */,
 				F56F57B715CD851000C35515 /* volume_back.png in Resources */,
 				F56F57B815CD851000C35515 /* volume_slider.png in Resources */,
+				F578A39315CEBFC300209C5B /* DMOpenURLWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1181,6 +1198,7 @@
 				F53C78DE15CC0AA000201C65 /* DMService.m in Sources */,
 				F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */,
 				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,
+				F578A39615CEC0EC00209C5B /* DMOpenURLWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
