@@ -10,43 +10,44 @@
 
 @implementation DMVolumeSlideCell
 
+-(void)awakeFromNib
+{
+    backImage = [[NSImage imageNamed:@"volume_back"] retain];
+    sliderImage = [[NSImage imageNamed:@"volume_slider"] retain];
+    
+    [backImage setFlipped:YES];
+    [sliderImage setFlipped:YES];
+    
+    sliderRect = NSMakeRect(0, 0, 32, 21);
+    sliderDrawingRect = NSMakeRect(0, 0, 32, 21);
+    backFrame = NSMakeRect(0, 0, 250, 21);
+    
+}
+-(NSRect)knobRectFlipped:(BOOL)flipped
+{
+    sliderDrawingRect.origin.x = (250 - 32*2 -10) * [self floatValue] + 21;
+    return sliderDrawingRect;
+}
+
 -(void) drawBarInside:(NSRect)aRect flipped:(BOOL)flipped
 {
-    NSBezierPath* bar = [NSBezierPath bezierPathWithRect:aRect];
-    [[NSColor colorWithGenericGamma22White:0.9 alpha:1.0] setFill];
-    [bar fill];
+    [backImage drawInRect:backFrame
+                 fromRect:backFrame
+                operation:NSCompositeSourceOver
+                 fraction:1.0];
 }
 
 -(void) drawKnob:(NSRect)knobRect
 {
-    CGFloat midY = NSMidY(knobRect);
-    CGFloat maxX = knobRect.origin.x + knobRect.size.width;
+    CGFloat midX = NSMidX(knobRect);
+    sliderDrawingRect.origin.x = midX - 16;
+    [sliderImage drawInRect:knobRect
+                   fromRect:sliderRect
+                  operation:NSCompositeSourceOver
+                   fraction:1.0];
     
-    NSRect knobR = NSMakeRect(0, 0, maxX, knobRect.size.height);
     
-    NSBezierPath* knob = [NSBezierPath bezierPathWithRect:knobR];
     
-    NSColor* color = [NSColor colorWithSRGBRed:0.4 green:0.8 blue:1.0 alpha:0.8];
-    [color setFill];
-    [knob fill];
-    
-    // 绘制声音图像
-    double rate = (self.floatValue - self.minValue)/self.maxValue;
-    NSImage* image =nil;
-    if (rate > 0.6) {
-        image = [NSImage imageNamed:@"sound_high"];
-    }
-    else if(rate > 0.1) {
-        image = [NSImage imageNamed:@"sound_low"];
-    }
-    else {
-        image = [NSImage imageNamed:@"sound_mute"];
-    }
-    
-    NSRect fromRect = NSMakeRect(0, 0, image.size.width, image.size.height);
-    NSRect toRect = NSMakeRect(5 , midY-8,
-                               16, 16);
-    [image drawInRect:toRect fromRect: fromRect operation:NSCompositeSourceOver fraction:1.0];
 }
 
 @end
