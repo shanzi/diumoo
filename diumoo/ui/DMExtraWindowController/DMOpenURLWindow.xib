@@ -54,7 +54,7 @@
 						<object class="NSTextField" id="143006949">
 							<reference key="NSNextResponder" ref="1048813479"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 28}, {40, 17}}</string>
+							<string key="NSFrame">{{17, 28}, {31, 17}}</string>
 							<reference key="NSSuperview" ref="1048813479"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="277253937"/>
@@ -98,11 +98,10 @@
 							<reference key="NSSuperview" ref="1048813479"/>
 							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
-							<int key="NSTag">1</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="939169464">
 								<int key="NSCellFlags">67108864</int>
-								<int key="NSCellFlags2">134217728</int>
+								<int key="NSCellFlags2">134250496</int>
 								<string key="NSContents">打开</string>
 								<reference key="NSSupport" ref="415086447"/>
 								<string key="NSCellIdentifier">_NS:9</string>
@@ -123,15 +122,14 @@
 						<object class="NSComboBox" id="277253937">
 							<reference key="NSNextResponder" ref="1048813479"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{55, 22}, {285, 26}}</string>
+							<string key="NSFrame">{{53, 22}, {287, 26}}</string>
 							<reference key="NSSuperview" ref="1048813479"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSComboBoxCell" key="NSCell" id="814076073">
 								<int key="NSCellFlags">342884416</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags2">306217984</int>
 								<string key="NSContents"/>
 								<object class="NSFont" key="NSSupport" id="260065031">
 									<string key="NSName">LucidaGrande</string>
@@ -242,7 +240,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="130065987">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">272629760</int>
-								<string key="NSContents">将连接地址粘贴到输入框中以打开，支持 diumoo Link (如 dm://xxxxx)和豆瓣分享连接(暂不支持短网址)。</string>
+								<string key="NSContents">将链接地址粘贴到输入框中以打开，支持 diumoo Link (如 dm://xxxxx)和豆瓣分享链接(暂不支持短网址)。</string>
 								<reference key="NSSupport" ref="415086447"/>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="860451959"/>
@@ -261,7 +259,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="834171668">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">打开 URL 连接并播放</string>
+								<string key="NSContents">打开 URL 链接并播放</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">STHeitiSC-Medium</string>
 									<double key="NSSize">14</double>
@@ -350,10 +348,10 @@
 						<reference key="object" ref="1048813479"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="143006949"/>
-							<reference ref="277253937"/>
 							<reference ref="562160086"/>
 							<reference ref="860451959"/>
 							<reference ref="282300376"/>
+							<reference ref="277253937"/>
 						</array>
 						<reference key="parent" ref="646504587"/>
 					</object>
@@ -455,20 +453,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DMOpenURLWindowController</string>
 					<string key="superclassName">NSWindowController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="performClose:">id</string>
-						<string key="urlOpenAction:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="performClose:">
-							<string key="name">performClose:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="urlOpenAction:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">urlOpenAction:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">urlOpenAction:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">urlOpenAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</dictionary>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">urlbox</string>
 						<string key="NS.object.0">NSComboBox</string>
