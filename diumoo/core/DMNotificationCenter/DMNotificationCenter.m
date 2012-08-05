@@ -26,7 +26,6 @@
 -(void) dealloc
 {
     [GrowlApplicationBridge setGrowlDelegate:nil];
-    
     [super dealloc];
 }
 
@@ -95,8 +94,8 @@
 
 -(void) clearNotifications
 {
-    if([self respondsToSelector:@selector(removeAllDeliveredNotifications)]){
-    [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+    if(NSClassFromString(@"NSUserNotification")){
+        [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
     }
 }
 

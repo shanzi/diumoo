@@ -52,7 +52,6 @@ DMPanelWindowController *sharedWindow;
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
-    DMLog(@"AccountStateChanged = %@",helper);
     if (helper.username) {
         [userIconButton setImage:[helper getUserIcon]];
         [usernameTextField setStringValue:helper.username];

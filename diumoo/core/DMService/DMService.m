@@ -44,7 +44,7 @@ static NSOperationQueue* serviceQueue;
                                    }
                                    else
                                    {
-                                       DMLog(@"register failed");
+                                       DMLog(@"register failed, error = %@",e);
                                    }
                                }];
     }

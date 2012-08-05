@@ -16,8 +16,10 @@ static NSString *toString(id object)
 
 static NSString *urlEncode(id object) 
 {
-    NSString *string = toString(object);
-    NSString *encodedString = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)string,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
+    NSString *inputString = toString(object);
+    CFStringRef string = CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)inputString,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
+    NSString *encodedString = (NSString *)string;
+    CFRelease(string);
     return encodedString;
 }
 
