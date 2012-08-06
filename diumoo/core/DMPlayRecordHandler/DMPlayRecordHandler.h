@@ -23,20 +23,15 @@
     NSManagedObjectContext *context;
     id<DMPlayRecordHandlerDelegate> delegate;
 }
-
-
 @property(nonatomic,copy) NSURL* recordFileURL;
 @property(nonatomic,retain) NSManagedObjectContext* context;
 @property(nonatomic,assign) id<DMPlayRecordHandlerDelegate> delegate;
 
 +(DMPlayRecordHandler*) sharedRecordHandler;
-
-
 -(NSManagedObject*) songWithSid:(NSString*) sid;
 -(void) addRecordWithCapsule:(DMPlayableCapsule*) capsule;
 -(void) addRecordAsyncWithCapsule:(DMPlayableCapsule*)capsule;
 -(void) open;
-
 -(void) removeCurrentVersion;
 -(void) playSongWith:(NSString*)sid andSsid:(NSString*) ssid;
 

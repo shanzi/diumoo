@@ -52,7 +52,6 @@ DMPanelWindowController *sharedWindow;
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
-    DMLog(@"AccountStateChanged = %@",helper);
     if (helper.username) {
         [userIconButton setImage:[helper getUserIcon]];
         [usernameTextField setStringValue:helper.username];
@@ -273,7 +272,6 @@ DMPanelWindowController *sharedWindow;
 
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 {
-    
     if (info) {
         DMLog(@"play info : %@",info);
         NSString* title = info[@"title"];

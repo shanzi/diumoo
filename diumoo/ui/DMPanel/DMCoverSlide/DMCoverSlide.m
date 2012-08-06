@@ -19,7 +19,6 @@
         Gestalt(gestaltSystemVersionMajor, &major);
         Gestalt(gestaltSystemVersionMinor,&minor);
         if (major == 10 && minor < 8) {
-            
             DMLog(@"Not under Mountain Lion or Higher");
             frontPosition = CGPointMake(0,80);
             titlePosition = CGPointMake(10,40);
@@ -74,7 +73,8 @@
         frontCover.contentsGravity = kCAGravityResizeAspectFill;
         frontFadeTransitionLayer.contentsGravity = kCAGravityResizeAspectFill;
         
-        frontCover.backgroundColor = CGColorCreateGenericGray(0.95, 1.0);
+        CGColorRef backgroundColor = CGColorCreateGenericGray(0.95, 1.0);
+        frontCover.backgroundColor = backgroundColor;
         
         // text
         CGFontRef helveticaConsensedBold = CGFontCreateWithFontName(( CFStringRef)@"Helvetica Neue Condensed Bold");
@@ -100,8 +100,10 @@
         
         CGFontRelease(helveticaConsensedBold);
         CGFontRelease(helveticaLight);
-        
-        
+        CGColorRelease(titleColor);
+        CGColorRelease(lighterColor);
+        CGColorRelease(backgroundColor);
+
         // opacity
         frontFadeTransitionLayer.opacity = 0;
 

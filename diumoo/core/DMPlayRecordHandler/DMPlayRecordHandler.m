@@ -13,11 +13,8 @@
 static DMPlayRecordHandler* recordHandler;
 
 @interface DMPlayableCapsule ()
-
 +(NSString*) pathToDataFileFolder;
-
 -(NSManagedObjectContext*) makeContextWithPath:(NSString*) datapath;
-
 @end
 
 @implementation DMPlayRecordHandler
@@ -32,28 +29,6 @@ static DMPlayRecordHandler* recordHandler;
     return recordHandler;
 }
 
-
-+(NSString*) pathToDataFileFolder
-{
-    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                                        NSUserDomainMask, YES);
-    
-    NSString* pathToUserApplicationSupportFolder = dirs[0];
-    NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
-                                        stringByAppendingPathComponent:@"diumoo"];
-    
-    NSFileManager* manager = [NSFileManager defaultManager];
-    if(![manager fileExistsAtPath:pathToDiumooDataFolder])
-    {
-        NSError* err = nil;
-        [manager createDirectoryAtPath:pathToDiumooDataFolder
-           withIntermediateDirectories:YES attributes:nil error:&err];
-        if (err) {
-            return nil;
-        }
-    }
-    return pathToDiumooDataFolder;
-}
 #pragma ---
 
 #pragma init and dealloc
@@ -61,10 +36,10 @@ static DMPlayRecordHandler* recordHandler;
 {
     self = [super init];
     if (self) {
-        NSString* pathToFolder = [DMPlayRecordHandler pathToDataFileFolder];
+        NSString* pathToFolder = [self pathToDataFileFolder];
         NSString* recordFilePath = [pathToFolder stringByAppendingPathComponent:@"record.dmsid"];
-        self.recordFileURL = [NSURL fileURLWithPath:recordFilePath];
-        self.context = [[self makeContextWithPath:pathToFolder] retain];
+        recordFileURL = [NSURL fileURLWithPath:recordFilePath];
+        context = [self makeContextWithPath:pathToFolder];
     }
     return self;
 }
@@ -72,7 +47,7 @@ static DMPlayRecordHandler* recordHandler;
 -(void)dealloc
 {
     [context save:nil];
-    
+
     NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
     if([versions count]>50){
         for (int i =0 ; i<([versions count] - 50); i++) {
@@ -217,5 +192,25 @@ static DMPlayRecordHandler* recordHandler;
     [self.delegate playSongWithSid:sid andSsid:ssid];
 }
 
+-(NSString*) pathToDataFileFolder
+{
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                                        NSUserDomainMask, YES);
+    
+    NSString* pathToUserApplicationSupportFolder = dirs[0];
+    NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
+                                        stringByAppendingPathComponent:@"diumoo"];
+    
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if(![manager fileExistsAtPath:pathToDiumooDataFolder]){
+        NSError* err = nil;
+        [manager createDirectoryAtPath:pathToDiumooDataFolder
+           withIntermediateDirectories:YES attributes:nil error:&err];
+        if (err) {
+            return nil;
+        }
+    }
+    return pathToDiumooDataFolder;
+}
 
 @end

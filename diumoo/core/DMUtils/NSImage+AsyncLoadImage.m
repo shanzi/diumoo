@@ -11,21 +11,19 @@
 @implementation NSImage (AsyncLoadImage)
 +(void)AsyncLoadImageWithURLString:(NSString*) urlstring andCallBackBlock:(void(^)(NSImage*))block
 {
-    NSURL* url = [NSURL URLWithString:urlstring];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlstring]
                                              cachePolicy:NSURLCacheStorageAllowed
                                          timeoutInterval:3.0];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue]
-                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               DMLog(@"Load image with error = %@",error);
                                
                                if (block) {
-                                   if (e==NULL) {
-                                       NSImage* image = [[NSImage alloc] initWithData:d];
-                                       block(image);
-                                   }
-                                   else{
-                                       block(nil);
-                                   }
+                                   //initWithData returns nil when data is empty.
+                                    block([[[NSImage alloc] initWithData:data] autorelease]);
                                }
                            }];
 }

@@ -48,7 +48,6 @@
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
             new = [newvalue integerValue];
         }
-        
         if (new == NSOnState) {
             [NSApp setApplicationIconImage:center.playingCapsule.picture];
         }
@@ -91,18 +90,6 @@
     [mediaKeyTap release];
 }
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
-{
-	if (flag) {
-		return NO;
-	}	
-    else
-	{
-        return YES;	
-	}
-    
-}
-
 -(void) makeDefaultPreference
 {
     NSDictionary *preferences=@{
@@ -141,7 +128,6 @@
 
 -(void) keyShortcuts:(id)key
 {
-    DMLog(@"%@",key);
     if([key isEqualToString:keyPlayShortcut])
     {
         [center playOrPause];

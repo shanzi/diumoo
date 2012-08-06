@@ -22,7 +22,7 @@ static DMDoubanAuthHelper* sharedHelper;
 @end
 
 @implementation DMDoubanAuthHelper
-@synthesize username,userUrl,iconUrl,icon,userinfo;
+@synthesize username,userUrl,icon,userinfo;
 @synthesize playedSongsCount,likedSongsCount,bannedSongsCount;
 
 
@@ -39,23 +39,16 @@ static DMDoubanAuthHelper* sharedHelper;
 
 +(NSString*) getNewCaptchaCode
 {    
-    NSError* codeerr = nil;
+    NSError* error = nil;
     NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
                                               encoding:NSASCIIStringEncoding 
-                                                 error:&codeerr];
-    if(codeerr == nil)
+                                                 error:&error];
+    if(error == nil)
     {
         return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     }
     
     return nil;
-}
-
-+(NSImage*) getNewCapchaImageWithCode:(NSString *)code
-{
-    NSImage* image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:
-                                                             [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:code]]];
-    return [image autorelease];
 }
 
 #pragma -
@@ -107,14 +100,14 @@ static DMDoubanAuthHelper* sharedHelper;
 }
 -(void) logoutAndCleanData
 {
-    self.username = nil;
-    self.userUrl = nil;
-    self.iconUrl = nil;
-    self.userinfo = nil;
-    self.icon = nil;
-    self.playedSongsCount = 0;
-    self.likedSongsCount = 0;
-    self.bannedSongsCount = 0;
+    username = nil;
+    userUrl = nil;
+    iconUrl = nil;
+    userinfo = nil;
+    icon = nil;
+    playedSongsCount = 0;
+    likedSongsCount = 0;
+    bannedSongsCount = 0;
     
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:AUTH_STRING]];
     
@@ -127,10 +120,10 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSImage*) getUserIcon
 {
-    if(self.username && self.userUrl)
+    if(username && userUrl)
     {
         if (icon==nil) {
-            self.icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.userUrl]] autorelease];
+            icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:userUrl]] autorelease];
         }
         return icon;
     }
@@ -143,17 +136,17 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(void) loginSuccessWithUserinfo:(NSDictionary*) info
 {
-    self.username = [info valueForKey:@"name"];
-    self.userUrl = [info valueForKey:@"url"];
-    self.userinfo = info;
+    username = [info valueForKey:@"name"];
+    userUrl = [info valueForKey:@"url"];
+    userinfo = info;
     
     NSDictionary* play_record = [info valueForKey:@"play_record"];
     
     if (play_record) {
         
-        self.playedSongsCount = [[play_record valueForKey:@"played"] integerValue];
-        self.likedSongsCount =  [[play_record valueForKey:@"liked"] integerValue];
-        self.bannedSongsCount = [[play_record valueForKey:@"banned"] integerValue];
+        playedSongsCount = [[play_record valueForKey:@"played"] integerValue];
+        likedSongsCount =  [[play_record valueForKey:@"liked"] integerValue];
+        bannedSongsCount = [[play_record valueForKey:@"banned"] integerValue];
         
     }
     
@@ -162,14 +155,14 @@ static DMDoubanAuthHelper* sharedHelper;
     if (_id) 
     {
         NSString* iconstring = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
-        self.iconUrl = iconstring;
+        iconUrl = iconstring;
     }
     else 
     {
-        self.iconUrl = [info valueForKey:@"icon_url"];
+        iconUrl = [info valueForKey:@"icon_url"];
     }
     
-    self.icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.iconUrl]] autorelease];
+    icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:iconUrl]] autorelease];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];
@@ -318,9 +311,9 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSString*) description
 {
-    NSDictionary* descriptDict = @{@"username": self.username,
-                                  @"userUrl": self.userUrl,
-                                  @"iconUrl": self.iconUrl};
+    NSDictionary* descriptDict = @{@"username": username,
+                                  @"userUrl": userUrl,
+                                  @"iconUrl": iconUrl};
     return [NSString stringWithFormat:@"<DMDoubanAuthHelper:\n%@ >",descriptDict];
 }
 

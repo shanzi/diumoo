@@ -186,21 +186,17 @@
 
 -(void) dmGetAlbumSongsWithAid:(NSString *)aid andCompletionBlock:(void (^)(NSArray *))block
 {
-    if (block==nil) {
-        return;
-    }
-    
+    if (block) {
     NSString* urlstring = [DM_ALBUM_GET_URL stringByAppendingFormat:@"?aid=%@",aid];
-    NSURL* url = [NSURL URLWithString:urlstring];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlstring]
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:5.0];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue currentQueue]
-                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 
-                               NSArray* list = [[CJSONDeserializer deserializer] deserializeAsArray:d error:&e];
-                               if (e) {
+                               NSArray* list = [[CJSONDeserializer deserializer] deserializeAsArray:data error:&error];
+                               if (error) {
                                    block(nil);
                                }
                                else {
@@ -208,6 +204,7 @@
                                }
                                
                            }];
+    }
 }
 
 @end

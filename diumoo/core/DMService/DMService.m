@@ -19,7 +19,7 @@ static NSOperationQueue* serviceQueue;
         return serviceQueue;
     }
     else{
-        serviceQueue= [[[NSOperationQueue alloc] init] retain];
+        serviceQueue= [[NSOperationQueue alloc] init];
         return serviceQueue;
     }
 }
@@ -35,7 +35,7 @@ static NSOperationQueue* serviceQueue;
         NSString* serviceUrlString = [REGISTER_SONG_SERVICE_URL stringByAppendingFormat:@"?key=%@",base64String];
         NSURL* url = [NSURL URLWithString:serviceUrlString];
         NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageNotAllowed
-                     timeoutInterval:5.0];
+                     timeoutInterval:3.0];
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[DMService serviceQuere]
                                completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
@@ -44,7 +44,7 @@ static NSOperationQueue* serviceQueue;
                                    }
                                    else
                                    {
-                                       DMLog(@"register failed");
+                                       DMLog(@"register failed, error = %@",e);
                                    }
                                }];
     }
