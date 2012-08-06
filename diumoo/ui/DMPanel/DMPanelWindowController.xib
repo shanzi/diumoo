@@ -715,7 +715,7 @@
 				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<int key="NSWindowAnimationBehavior">2</int>
-				<int key="NSWindowCollectionBehavior">66</int>
+				<int key="NSWindowCollectionBehavior">82</int>
 				<bool key="NSWindowIsRestorable">NO</bool>
 			</object>
 			<object class="NSMenu" id="575959324">
