@@ -41,7 +41,9 @@
     BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
     if (success) {
         [[self windowControllers]makeObjectsPerformSelector:@selector(setupWindowForDocument:) withObject:self];
+        DMLog(@"before remove version");
         [[DMPlayRecordHandler sharedRecordHandler] removeCurrentVersion];
+        DMLog(@"after remove version");
         [[DMPlayRecordHandler sharedRecordHandler] playSongWith:self.sid andSsid:self.ssid];
     }
     return YES;

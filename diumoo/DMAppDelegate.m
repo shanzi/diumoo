@@ -8,7 +8,6 @@
 
 #import "DMAppDelegate.h"
 #import "DMDoubanAuthHelper.h"
-#import "DMQuickStartPanelController.h"
 #import "DMService.h"
 
 
@@ -30,11 +29,11 @@
                                             forKeyPath:@"displayAlbumCoverOnDock" 
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
-    [DMQuickStartPanelController showPanel];
         
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
     [self handleDockIconDisplayWithChange:nil];
+    [DMService showVersionQuickStart];
 
 }
 

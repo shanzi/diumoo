@@ -228,6 +228,25 @@ static NSOperationQueue* serviceQueue;
     }
 }
 
++(void)showVersionQuickStart
+{
+    if ([[[NSUserDefaults standardUserDefaults]
+          objectForKey:@"quickStartVersion"]
+         integerValue]
+        <CURRENT_VERSION
+        )
+    {
+        NSString* title = @"";
+        NSString* msg = @"";
+        NSURL* url = [NSURL URLWithString:@""];
+        
+        if(NSRunAlertPanel(title, msg, @"查看详细", @"关闭", nil) == NSAlertDefaultReturn){
+            [[NSWorkspace sharedWorkspace] openURL:url];
+        }
+        [[NSUserDefaults standardUserDefaults]
+          setValue:@(CURRENT_VERSION) forKey:@"quickStartVersion"];
+    }
+}
 
 
 @end
