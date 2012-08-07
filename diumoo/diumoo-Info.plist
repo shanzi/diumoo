@@ -59,6 +59,19 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>diumoo Share Link</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dm</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1191</string>
 	<key>LSApplicationCategoryType</key>

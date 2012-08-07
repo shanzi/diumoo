@@ -74,7 +74,7 @@
 -(void) startPlayInBackground;
 {
     [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
-    [center fireToPlayDefaultChannel];
+    [center fireToPlayDefault];
 }
 
 
@@ -100,7 +100,10 @@
     @"displayAlbumCoverOnDock":@(NSOnState),
     @"enableGrowl":@(NSOnState),
     @"enableEmulateITunes":@(NSOnState),
-    @"filterAds":@(NSOffState)
+    @"usesMediaKey":@(NSOnState),
+    @"showDockIcon":@(NSOnState),
+    @"filterAds":@(NSOffState),
+    
     };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:preferences];
@@ -163,6 +166,7 @@
 {
     [PLTabPreferenceControl showPrefsAtIndex:0];
 }
+
 
 
 @end

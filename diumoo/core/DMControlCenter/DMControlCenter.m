@@ -18,8 +18,8 @@
 
 @implementation DMControlCenter
 @synthesize playingCapsule,diumooPanel;
-
 #pragma init & dealloc
+
 -(id) init
 {
     if (self = [super init]) {
@@ -60,19 +60,36 @@
 
 -(void) fireToPlay:(NSDictionary*)firstSong
 {
-    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",firstSong[@"sid"],firstSong[@"ssid"],channel];
-    
+    NSString* startattribute =
+    [NSString stringWithFormat:@"%@g%@g%@",firstSong[@"sid"],firstSong[@"ssid"],channel];
     [fetcher fetchPlaylistFromChannel:channel 
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
                        startAttribute:startattribute];
 }
 
--(void) fireToPlayDefaultChannel
+-(void) fireToPlayDefault
 {
-    [diumooPanel performSelectorOnMainThread:@selector(playDefaultChannel)
-                                  withObject:nil
-                               waitUntilDone:NO];
+    NSString* openedURLString = [NSApp performSelector:@selector(openedURLString)];
+    if (openedURLString == nil) {
+        [diumooPanel playDefaultChannel];
+    }
+    else{
+        channel = [diumooPanel switchToDefaultChannel];
+        NSString* prefix = @"dm://song?key=";
+        if([openedURLString hasPrefix:prefix])
+        {
+            NSString* start =  [openedURLString
+                                stringByReplacingOccurrencesOfString:prefix
+                                withString:@""];
+            [fetcher fetchPlaylistFromChannel:channel
+                                     withType:kFetchPlaylistTypeNew
+                                          sid:nil
+                               startAttribute:[start stringByAppendingString:channel]];
+        }
+        
+    }
+    
 }
 
 
@@ -86,7 +103,9 @@
 }
 
 -(void) startToPlay:(DMPlayableCapsule*)aSong
-{    
+{
+    DMLog(@"start to play : %@",aSong);
+    
     [self.playingCapsule invalidateMovie];
     
     if(aSong == nil){
@@ -94,18 +113,19 @@
         if ([specialWaitList count]) {
             self.playingCapsule = nil;
             NSDictionary* song = specialWaitList[0];
-            [specialWaitList removeObjectAtIndex:0];
             [self fireToPlay:song];
+            [specialWaitList removeObject:song];
             return;
         }
         else {
             [diumooPanel toggleSpecialWithDictionary:nil];
         }
+        
         if ([waitPlaylist count]>0) {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
-            playingCapsule = [waitPlaylist objectAtIndex:0];
-            [waitPlaylist removeObject:playingCapsule];
+            self.playingCapsule = [waitPlaylist objectAtIndex:0];
             [playingCapsule setDelegate:self];
+            [waitPlaylist removeObject:playingCapsule];
             
             // 再从播放列表里抓取一个歌曲出来放到缓冲列表里
             id waitcapsule = [fetcher getOnePlayableCapsule];
@@ -117,28 +137,26 @@
         }
         else{
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
-            playingCapsule = [fetcher getOnePlayableCapsule];
+            self.playingCapsule = [fetcher getOnePlayableCapsule];
+            [playingCapsule setDelegate:self];
+            
             
             // 没有获取到capsule，说明歌曲列表已经为空，那么新获取一个播放列表
-            if(playingCapsule == nil) {
+            if(playingCapsule == nil)
                 [fetcher fetchPlaylistFromChannel:channel 
                                                withType:kFetchPlaylistTypeNew 
                                                     sid:nil 
                                          startAttribute:nil];
-            }
-            else {
-                [playingCapsule setDelegate:self];
-            }
         }
     }
     else {
         // 指定了要播放的歌曲
         [aSong setDelegate:self];
-        playingCapsule = aSong;
+        self.playingCapsule = aSong;
         
         if(playingCapsule.loadState < 0 && ![playingCapsule createNewMovie]){
-            //歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
-            playingCapsule = nil;
+            // 歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
+            self.playingCapsule = nil;
             [fetcher fetchPlaylistFromChannel:channel 
                                      withType:kFetchPlaylistTypeNew 
                                           sid:nil 
@@ -559,10 +577,18 @@
 -(void) playSpecialNotification:(NSNotification*) n
 {
     DMLog(@"receive notification: %@",n.userInfo);
-    NSString* aid = (n.userInfo)[@"aid"];
+    
     NSString* type = (n.userInfo)[@"type"];
     if ([type isEqualToString:@"album"]) {
+        NSString* aid = (n.userInfo)[@"aid"];
         [self playAlbumWithAid:aid withInfo:n.userInfo];
+    }
+    else if([type isEqualToString:@"song"]){
+        NSString* start = (n.userInfo)[@"start"];
+        [fetcher fetchPlaylistFromChannel:channel
+                                 withType:kFetchPlaylistTypeNew
+                                      sid:nil
+                           startAttribute:[start stringByAppendingString:channel]];
     }
 }
 

@@ -10,6 +10,29 @@
 
 @implementation DMApp
 
+-(id) init
+{
+    self = [super init];
+    if(self)
+    {
+        NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+        LSSetDefaultHandlerForURLScheme((CFStringRef)@"dm", (CFStringRef)bundleID);
+        
+        [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                           andSelector:@selector(handleEvent:withReplyEvent:)
+                                                         forEventClass:kInternetEventClass
+                                                            andEventID:kAEGetURL];
+    }
+    return self;
+}
+
+
+- (void)handleEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
+    NSString* urlstring = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    openedURLString = [urlstring copy];
+}
+
 -(void) sendEvent:(NSEvent *)event
 {
     BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
@@ -20,5 +43,9 @@
     [super sendEvent:event];
 }
 
+-(NSString*) openedURLString
+{
+    return openedURLString;
+}
 
 @end
