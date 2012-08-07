@@ -9,6 +9,8 @@
 #import "DMAppDelegate.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMQuickStartPanelController.h"
+#import "DMService.h"
+
 
 @implementation DMAppDelegate
 
@@ -167,6 +169,15 @@
     [PLTabPreferenceControl showPrefsAtIndex:0];
 }
 
-
+-(void) importOrExport:(id)sender
+{
+    if ([sender tag] == 1) {
+        [DMService importRecordOperation];
+    }
+    else
+    {
+        [DMService exportRecordOperation];
+    }
+}
 
 @end

@@ -83,9 +83,6 @@
 		F555569915C04DB100894E8D /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F555569815C04DB100894E8D /* icon.icns */; };
 		F55A75991595FA230022574F /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = F55A75981595FA230022574F /* play.png */; };
 		F566F60E15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F566F60D15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m */; };
-		F566F61715C6E85F00FC7143 /* DMQuickStartPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F566F61515C6E85F00FC7143 /* DMQuickStartPanelController.m */; };
-		F566F61815C6E85F00FC7143 /* DMQuickStartPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F566F61615C6E85F00FC7143 /* DMQuickStartPanel.xib */; };
-		F566F61B15C6EBF100FC7143 /* DMQuickStartImageSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */; };
 		F56F57B715CD851000C35515 /* volume_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F56F57B515CD851000C35515 /* volume_back.png */; };
 		F56F57B815CD851000C35515 /* volume_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = F56F57B615CD851000C35515 /* volume_slider.png */; };
 		F578A39315CEBFC300209C5B /* DMOpenURLWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F578A39115CEBFC300209C5B /* DMOpenURLWindow.xib */; };
@@ -99,6 +96,10 @@
 		F5AACEEE159C93E4003DA427 /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AACEEB159C93E4003DA427 /* eye_icon.png */; };
 		F5AACEEF159C93E4003DA427 /* info_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AACEEC159C93E4003DA427 /* info_icon.png */; };
 		F5AACEF0159C93E4003DA427 /* share_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AACEED159C93E4003DA427 /* share_icon.png */; };
+		F5ABA90B15D0161B00860EF5 /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ABA90715D0161B00860EF5 /* export.png */; };
+		F5ABA90C15D0161B00860EF5 /* export@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ABA90815D0161B00860EF5 /* export@2x.png */; };
+		F5ABA90D15D0161B00860EF5 /* import.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ABA90915D0161B00860EF5 /* import.png */; };
+		F5ABA90E15D0161B00860EF5 /* import@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ABA90A15D0161B00860EF5 /* import@2x.png */; };
 		F5B9DC7B15BD995B004788A9 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5B9DC8115BDACC6004788A9 /* status-icon-mixed.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */; };
 		F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */; };
@@ -271,11 +272,6 @@
 		F55A75981595FA230022574F /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		F566F60C15C6E4A200FC7143 /* NSImage+AsyncLoadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+AsyncLoadImage.h"; sourceTree = "<group>"; };
 		F566F60D15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+AsyncLoadImage.m"; sourceTree = "<group>"; };
-		F566F61415C6E85F00FC7143 /* DMQuickStartPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMQuickStartPanelController.h; path = DMQuickHelpPanel/DMQuickStartPanelController.h; sourceTree = "<group>"; };
-		F566F61515C6E85F00FC7143 /* DMQuickStartPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMQuickStartPanelController.m; path = DMQuickHelpPanel/DMQuickStartPanelController.m; sourceTree = "<group>"; };
-		F566F61615C6E85F00FC7143 /* DMQuickStartPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMQuickStartPanel.xib; path = DMQuickHelpPanel/DMQuickStartPanel.xib; sourceTree = "<group>"; };
-		F566F61915C6EBF100FC7143 /* DMQuickStartImageSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMQuickStartImageSlideView.h; path = DMQuickHelpPanel/DMQuickStartImageSlideView.h; sourceTree = "<group>"; };
-		F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMQuickStartImageSlideView.m; path = DMQuickHelpPanel/DMQuickStartImageSlideView.m; sourceTree = "<group>"; };
 		F56F57B515CD851000C35515 /* volume_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_back.png; sourceTree = "<group>"; };
 		F56F57B615CD851000C35515 /* volume_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_slider.png; sourceTree = "<group>"; };
 		F578A39115CEBFC300209C5B /* DMOpenURLWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMOpenURLWindow.xib; path = DMExtraWindowController/DMOpenURLWindow.xib; sourceTree = "<group>"; };
@@ -291,6 +287,10 @@
 		F5AACEEB159C93E4003DA427 /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		F5AACEEC159C93E4003DA427 /* info_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_icon.png; sourceTree = "<group>"; };
 		F5AACEED159C93E4003DA427 /* share_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_icon.png; sourceTree = "<group>"; };
+		F5ABA90715D0161B00860EF5 /* export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = export.png; sourceTree = "<group>"; };
+		F5ABA90815D0161B00860EF5 /* export@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "export@2x.png"; sourceTree = "<group>"; };
+		F5ABA90915D0161B00860EF5 /* import.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = import.png; sourceTree = "<group>"; };
+		F5ABA90A15D0161B00860EF5 /* import@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "import@2x.png"; sourceTree = "<group>"; };
 		F5B9DC7A15BD995B004788A9 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-mixed.png"; sourceTree = "<group>"; };
 		F5BB89F2159744B80017E6FE /* DMVolumeSlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMVolumeSlideCell.h; path = DMVolumeSlideCell/DMVolumeSlideCell.h; sourceTree = "<group>"; };
@@ -376,7 +376,6 @@
 			isa = PBXGroup;
 			children = (
 				F578A38B15CEBDA200209C5B /* DMExtraWindowController */,
-				F566F61015C6E7FA00FC7143 /* DMQuickHelpPanel */,
 				F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */,
 				F501B3AD15877062001C6158 /* DMPanel */,
 			);
@@ -429,6 +428,7 @@
 				F5AACEF3159C9418003DA427 /* PreferencePanel */,
 				F5AACEF2159C9402003DA427 /* Volume */,
 				F5AACEF1159C93E9003DA427 /* DocumentTabItem */,
+				F5ABA90615D015F900860EF5 /* importExport */,
 				F5815F551590E397007EB0D3 /* channels.plist */,
 				F52F3B87159627F700EDBBD7 /* albumfail.png */,
 			);
@@ -742,18 +742,6 @@
 			name = DMDoubanAuthHelper;
 			sourceTree = "<group>";
 		};
-		F566F61015C6E7FA00FC7143 /* DMQuickHelpPanel */ = {
-			isa = PBXGroup;
-			children = (
-				F566F61415C6E85F00FC7143 /* DMQuickStartPanelController.h */,
-				F566F61515C6E85F00FC7143 /* DMQuickStartPanelController.m */,
-				F566F61915C6EBF100FC7143 /* DMQuickStartImageSlideView.h */,
-				F566F61A15C6EBF100FC7143 /* DMQuickStartImageSlideView.m */,
-				F566F61615C6E85F00FC7143 /* DMQuickStartPanel.xib */,
-			);
-			name = DMQuickHelpPanel;
-			sourceTree = "<group>";
-		};
 		F56F57AE15CD757500C35515 /* volumeSlder */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +831,17 @@
 				F501B3C715877A88001C6158 /* skip.png */,
 			);
 			name = MainPanel;
+			sourceTree = "<group>";
+		};
+		F5ABA90615D015F900860EF5 /* importExport */ = {
+			isa = PBXGroup;
+			children = (
+				F5ABA90715D0161B00860EF5 /* export.png */,
+				F5ABA90815D0161B00860EF5 /* export@2x.png */,
+				F5ABA90915D0161B00860EF5 /* import.png */,
+				F5ABA90A15D0161B00860EF5 /* import@2x.png */,
+			);
+			name = importExport;
 			sourceTree = "<group>";
 		};
 		F5BB89F01597447F0017E6FE /* DMVolumeSlideCell */ = {
@@ -1099,7 +1098,6 @@
 				F528CA4E15C2E12700094E35 /* sina.png in Resources */,
 				F528CA4F15C2E12700094E35 /* sina@2x.png in Resources */,
 				F528CA5115C2E16E00094E35 /* douban.png in Resources */,
-				F566F61815C6E85F00FC7143 /* DMQuickStartPanel.xib in Resources */,
 				F58653D515C82C5200352B4C /* slide1.png in Resources */,
 				F58653D615C82C5200352B4C /* slide2.png in Resources */,
 				F58653D715C82C5200352B4C /* slide3.png in Resources */,
@@ -1111,6 +1109,10 @@
 				F56F57B715CD851000C35515 /* volume_back.png in Resources */,
 				F56F57B815CD851000C35515 /* volume_slider.png in Resources */,
 				F578A39315CEBFC300209C5B /* DMOpenURLWindow.xib in Resources */,
+				F5ABA90B15D0161B00860EF5 /* export.png in Resources */,
+				F5ABA90C15D0161B00860EF5 /* export@2x.png in Resources */,
+				F5ABA90D15D0161B00860EF5 /* import.png in Resources */,
+				F5ABA90E15D0161B00860EF5 /* import@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,8 +1195,6 @@
 				F528B1AA15BC54B500DC82B4 /* DMNotificationCenter.m in Sources */,
 				F58B011415BEF28500E4A7E5 /* DMShortcutsHandler.m in Sources */,
 				F566F60E15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m in Sources */,
-				F566F61715C6E85F00FC7143 /* DMQuickStartPanelController.m in Sources */,
-				F566F61B15C6EBF100FC7143 /* DMQuickStartImageSlideView.m in Sources */,
 				F53C78DE15CC0AA000201C65 /* DMService.m in Sources */,
 				F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */,
 				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,

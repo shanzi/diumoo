@@ -160,6 +160,7 @@ DMPanelWindowController *sharedWindow;
 
 -(void)unlockUIWithError:(BOOL)has_err
 {
+    DMLog(@"unlock UI");
     [loadingIndicator stopAnimation:nil];
     [loadingIndicator setHidden:YES];
     [popupMenuController unlockChannelMenuButton];
@@ -169,9 +170,7 @@ DMPanelWindowController *sharedWindow;
         [indicateString setStringValue:@"发生网络错误，请尝试重启应用"];
     }
     else{
-        
         [indicateString setHidden:YES];
-        [coverView setHidden:NO];
     }
 }
 
@@ -211,7 +210,7 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setPlayingCapsule:(DMPlayableCapsule *)capsule
 {
-    if ([coverView isHidden]) {
+    if (![loadingIndicator isHidden]) {
         [self unlockUIWithError:NO];
     }
 
@@ -267,6 +266,12 @@ DMPanelWindowController *sharedWindow;
 {
     NSMenuItem* item = [self prepareCurrentMenuItem];
     [popupMenuController updateChannelMenuWithSender:item];
+    if ([item tag]==0 || [item tag] == -3) {
+        [banButton setEnabled:YES];
+    }
+    else{
+        [banButton setEnabled:NO];
+    }
     return [NSString stringWithFormat:@"%ld",item.tag];
 }
 

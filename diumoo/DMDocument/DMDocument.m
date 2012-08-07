@@ -9,6 +9,7 @@
 #import "DMDocument.h"
 #import "DMDocumentWindowController.h"
 #import "DMPlayRecordHandler.h"
+#import "DMService.h"
 
 @implementation DMDocument
 @synthesize baseSongInfo,aid,sid,ssid;
@@ -27,6 +28,7 @@
 
 -(void)makeWindowControllers
 {
+    if(sid == nil) return;
     if ([self.windowControllers count]==0) {
         DMDocumentWindowController* windowController = [[DMDocumentWindowController allocWithZone:[self zone]] init];
         [self addWindowController:[windowController autorelease]];
@@ -103,6 +105,18 @@
                 return YES;
             }
         }
+    }
+    else if([type isEqualToString:@"Play Record"])
+    {
+        if (NSAlertDefaultReturn
+            ==
+            NSRunAlertPanel(@"导入播放记录", @"您刚刚打开的一个diumoo播放记录文件，是否导入这些记录？",
+                            @"是", @"否", nil))
+        {
+            [DMService importRecordOperationWithFilePath:url];
+        }
+        
+        return YES;
     }
     
     *outError = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];

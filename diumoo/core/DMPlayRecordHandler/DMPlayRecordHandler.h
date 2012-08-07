@@ -31,8 +31,11 @@
 -(NSManagedObject*) songWithSid:(NSString*) sid;
 -(void) addRecordWithCapsule:(DMPlayableCapsule*) capsule;
 -(void) addRecordAsyncWithCapsule:(DMPlayableCapsule*)capsule;
+-(BOOL) addRecordWithDict:(NSDictionary*) dict;
 -(void) open;
+-(void) save;
 -(void) removeCurrentVersion;
 -(void) playSongWith:(NSString*)sid andSsid:(NSString*) ssid;
+-(NSArray*) allSongs;
 
 @end
