@@ -7,6 +7,7 @@
 //
 
 #import "DMApp.h"
+#import "DMService.h"
 
 @implementation DMApp
 
@@ -31,6 +32,7 @@
 {
     NSString* urlstring = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
     openedURLString = [urlstring copy];
+    [DMService openDiumooLink:openedURLString];
 }
 
 -(void) sendEvent:(NSEvent *)event

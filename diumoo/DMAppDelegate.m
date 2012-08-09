@@ -8,7 +8,8 @@
 
 #import "DMAppDelegate.h"
 #import "DMDoubanAuthHelper.h"
-#import "DMQuickStartPanelController.h"
+#import "DMService.h"
+
 
 @implementation DMAppDelegate
 
@@ -28,11 +29,11 @@
                                             forKeyPath:@"displayAlbumCoverOnDock" 
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
-    [DMQuickStartPanelController showPanel];
         
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
     [self handleDockIconDisplayWithChange:nil];
+    [DMService showVersionQuickStart];
 
 }
 
@@ -167,6 +168,15 @@
     [PLTabPreferenceControl showPrefsAtIndex:0];
 }
 
-
+-(void) importOrExport:(id)sender
+{
+    if ([sender tag] == 1) {
+        [DMService importRecordOperation];
+    }
+    else
+    {
+        [DMService exportRecordOperation];
+    }
+}
 
 @end

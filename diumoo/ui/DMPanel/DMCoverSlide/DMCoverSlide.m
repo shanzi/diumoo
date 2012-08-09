@@ -73,9 +73,6 @@
         frontCover.contentsGravity = kCAGravityResizeAspectFill;
         frontFadeTransitionLayer.contentsGravity = kCAGravityResizeAspectFill;
         
-        CGColorRef backgroundColor = CGColorCreateGenericGray(0.95, 1.0);
-        frontCover.backgroundColor = backgroundColor;
-        
         // text
         CGFontRef helveticaConsensedBold = CGFontCreateWithFontName(( CFStringRef)@"Helvetica Neue Condensed Bold");
         CGFontRef helveticaLight = CGFontCreateWithFontName((CFStringRef)@"Helvetica Neue Light");
@@ -102,7 +99,6 @@
         CGFontRelease(helveticaLight);
         CGColorRelease(titleColor);
         CGColorRelease(lighterColor);
-        CGColorRelease(backgroundColor);
 
         // opacity
         frontFadeTransitionLayer.opacity = 0;

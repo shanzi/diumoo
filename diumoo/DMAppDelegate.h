@@ -21,6 +21,7 @@
 }
 
 -(IBAction)showPreference:(id)sender;
+-(IBAction)importOrExport:(id)sender;
 -(void)keyShortcuts:(id) key;
 
 @end

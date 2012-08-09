@@ -8,25 +8,30 @@
 
 #import "DMControlCenter.h"
 #import "NSDictionary+UrlEncoding.h"
+#import "DMService.h"
 
-@interface DMControlCenter() 
+@interface DMControlCenter()
+{
+    PAUSE_OPERATION_TYPE pauseType;
+}
 //私有函数的
 -(void) startToPlay:(DMPlayableCapsule*)aSong;
+
 
 @end
 
 
 @implementation DMControlCenter
 @synthesize playingCapsule,diumooPanel;
-#pragma init & dealloc
 
+#pragma init & dealloc
 -(id) init
 {
     if (self = [super init]) {
+        canPlaySpecial = NO;
         fetcher = [[DMPlaylistFetcher alloc] init];
         notificationCenter = [[DMNotificationCenter alloc] init];
         waitPlaylist = [[NSMutableOrderedSet alloc] init];
-        skipLock = [[NSLock alloc] init];
         diumooPanel = [DMPanelWindowController sharedWindowController];
         recordHandler = [DMPlayRecordHandler sharedRecordHandler];
 
@@ -46,7 +51,6 @@
 
 -(void)dealloc
 {
-    [pausedOperationType release];
     [channel release];
     [waitPlaylist release];
     [fetcher release];
@@ -60,8 +64,8 @@
 
 -(void) fireToPlay:(NSDictionary*)firstSong
 {
-    NSString* startattribute =
-    [NSString stringWithFormat:@"%@g%@g%@",firstSong[@"sid"],firstSong[@"ssid"],channel];
+    NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",firstSong[@"sid"],firstSong[@"ssid"],channel];
+    
     [fetcher fetchPlaylistFromChannel:channel 
                              withType:kFetchPlaylistTypeNew 
                                   sid:nil 
@@ -70,32 +74,26 @@
 
 -(void) fireToPlayDefault
 {
+
     NSString* openedURLString = [NSApp performSelector:@selector(openedURLString)];
     if (openedURLString == nil) {
         [diumooPanel playDefaultChannel];
     }
     else{
+
         channel = [diumooPanel switchToDefaultChannel];
-        NSString* prefix = @"dm://song?key=";
-        if([openedURLString hasPrefix:prefix])
-        {
-            NSString* start =  [openedURLString
-                                stringByReplacingOccurrencesOfString:prefix
-                                withString:@""];
-            [fetcher fetchPlaylistFromChannel:channel
-                                     withType:kFetchPlaylistTypeNew
-                                          sid:nil
-                               startAttribute:[start stringByAppendingString:channel]];
-        }
+        canPlaySpecial = YES;
+        [DMService openDiumooLink:openedURLString];
         
     }
+    
     
 }
 
 
 -(void) stopForExit
 {
-    [skipLock tryLock];
+    pauseType = PAUSE_EXIT;
     if (playingCapsule) {
         [playingCapsule synchronousStop];
     }
@@ -104,8 +102,6 @@
 
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
-    DMLog(@"start to play : %@",aSong);
-    
     [self.playingCapsule invalidateMovie];
     
     if(aSong == nil){
@@ -113,19 +109,18 @@
         if ([specialWaitList count]) {
             self.playingCapsule = nil;
             NSDictionary* song = specialWaitList[0];
+            [specialWaitList removeObjectAtIndex:0];
             [self fireToPlay:song];
-            [specialWaitList removeObject:song];
             return;
         }
         else {
             [diumooPanel toggleSpecialWithDictionary:nil];
         }
-        
         if ([waitPlaylist count]>0) {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
-            self.playingCapsule = [waitPlaylist objectAtIndex:0];
-            [playingCapsule setDelegate:self];
+            playingCapsule = [waitPlaylist objectAtIndex:0];
             [waitPlaylist removeObject:playingCapsule];
+            [playingCapsule setDelegate:self];
             
             // 再从播放列表里抓取一个歌曲出来放到缓冲列表里
             id waitcapsule = [fetcher getOnePlayableCapsule];
@@ -137,26 +132,28 @@
         }
         else{
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
-            self.playingCapsule = [fetcher getOnePlayableCapsule];
-            [playingCapsule setDelegate:self];
-            
+            playingCapsule = [fetcher getOnePlayableCapsule];
             
             // 没有获取到capsule，说明歌曲列表已经为空，那么新获取一个播放列表
-            if(playingCapsule == nil)
+            if(playingCapsule == nil) {
                 [fetcher fetchPlaylistFromChannel:channel 
                                                withType:kFetchPlaylistTypeNew 
                                                     sid:nil 
                                          startAttribute:nil];
+            }
+            else {
+                [playingCapsule setDelegate:self];
+            }
         }
     }
     else {
         // 指定了要播放的歌曲
         [aSong setDelegate:self];
-        self.playingCapsule = aSong;
+        playingCapsule = aSong;
         
         if(playingCapsule.loadState < 0 && ![playingCapsule createNewMovie]){
-            // 歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
-            self.playingCapsule = nil;
+            //歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
+            playingCapsule = nil;
             [fetcher fetchPlaylistFromChannel:channel 
                                      withType:kFetchPlaylistTypeNew 
                                           sid:nil 
@@ -193,7 +190,7 @@
 {
     [diumooPanel setPlaying:NO];
 
-    if([pausedOperationType isEqualToString:kPauseOperationTypeSkip])
+    if(pauseType == PAUSE_SKIP)
     {
         // 跳过当前歌曲
         if (waitingCapsule) {
@@ -205,13 +202,13 @@
         }
 
     }
-    else if([pausedOperationType isEqualToString:kPauseOperationTypeFetchNewPlaylist])
+    else if(pauseType == PAUSE_NEW_PLAYLIST)
     {
         // channel 改变了，获取新的列表
         [self startToPlay:nil];
 
     }
-    else if([pausedOperationType isEqualTo:kPauseOperationTypePlaySpecial])
+    else if(pauseType == PAUSE_SPECIAL)
     {
         // 把当前歌曲加入到 wait list 里
         if (playingCapsule) {
@@ -223,9 +220,8 @@
         [self startToPlay:nil];
         
     }
-
-    pausedOperationType = kPauseOperationTypePass;
-    [skipLock unlock];
+    
+    pauseType = PAUSE_PASS;
 }
 
 -(void) playableCapsuleDidEnd:(id)c
@@ -249,7 +245,7 @@
     }
     // 歌曲播放结束时，无论如何都要解除lock
 
-    [skipLock unlock];
+    pauseType = PAUSE_PASS;
 }
 
 -(void) playableCapsule:(id)capsule loadStateChanged:(long)state
@@ -328,13 +324,11 @@
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
-    DMLog(@"fetch success:%@ %@",playingCapsule,startsong);
     
     if (startsong) {
         if (playingCapsule) {
             waitingCapsule = startsong;
-            if ([skipLock tryLock]) {
-                pausedOperationType = kPauseOperationTypeSkip;
+            if (OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) {
                 [playingCapsule pause];
             }
         }
@@ -361,7 +355,7 @@
     
     if (playingCapsule.movie.rate > 0) 
     {
-        if (![skipLock tryLock]) return;
+        if (pauseType) return;
         [playingCapsule pause];
     }
     else {
@@ -371,7 +365,7 @@
 
 -(void) skip
 {
-    if (![skipLock tryLock]) return;
+    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) return;
     
     // ping 豆瓣，将skip操作记录下来
     [fetcher fetchPlaylistFromChannel:channel 
@@ -380,7 +374,6 @@
                        startAttribute:nil];
     
     // 指定歌曲暂停后的operation
-    pausedOperationType = kPauseOperationTypeSkip;
     
     // 暂停当前歌曲
     [playingCapsule pause];
@@ -421,15 +414,13 @@
 
 -(void) ban
 {
-    if (![skipLock tryLock]) return;
+    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) return;
     
     [fetcher fetchPlaylistFromChannel:channel
                              withType:kFetchPlaylistTypeBye
                                   sid:playingCapsule.sid
                        startAttribute:nil];
     
-    // 指定歌曲暂停后的operation
-    pausedOperationType = kPauseOperationTypeSkip;
     
     // 暂停当前歌曲
     [playingCapsule pause];
@@ -441,24 +432,18 @@
         return YES;
     }
     
-    if (![skipLock tryLock]) {
-        return NO;
-    };
-    
+    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_NEW_PLAYLIST, (int32_t*)&pauseType)) return NO;
     channel = ch;
     
     [waitPlaylist removeAllObjects];
     [fetcher clearPlaylist];
     
     if (playingCapsule) {
-
-        pausedOperationType = kPauseOperationTypeFetchNewPlaylist;
-        
         [playingCapsule pause];
     }
     else {
+        pauseType = PAUSE_PASS;
         [self startToPlay:nil];
-        [skipLock unlock];
     }
     
     return YES;
@@ -576,7 +561,7 @@
 // ---------------------play special collection ----------------------
 -(void) playSpecialNotification:(NSNotification*) n
 {
-    DMLog(@"receive notification: %@",n.userInfo);
+    if (!canPlaySpecial)return;
     
     NSString* type = (n.userInfo)[@"type"];
     if ([type isEqualToString:@"album"]) {
@@ -595,8 +580,7 @@
 -(void) playAlbumWithAid:(NSString*) aid withInfo:(NSDictionary*) info;
 {
     DMLog(@"play album : %@",aid);
-    BOOL locked = [skipLock tryLock];
-    if(!locked) return;
+    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SPECIAL, (int32_t*)&pauseType)) return;
     
     [fetcher dmGetAlbumSongsWithAid:aid andCompletionBlock:^(NSArray *list) {
 
@@ -606,13 +590,12 @@
             specialWaitList = [array retain];
             [diumooPanel toggleSpecialWithDictionary:info];
             
-            pausedOperationType = kPauseOperationTypePlaySpecial;
             [playingCapsule pause];
             
         }
         else {
+            pauseType = PAUSE_PASS;
             specialWaitList = nil;
-            [skipLock unlock];
         }
     }];
 }

@@ -168,6 +168,44 @@ static DMPlayRecordHandler* recordHandler;
     [[NSOperationQueue currentQueue] addOperation:addrecord];
 }
 
+-(BOOL) addRecordWithDict:(NSDictionary *)dict
+{
+    NSString* sid = dict[@"sid"];
+    NSString* ssid = dict[@"ssid"];
+    NSString* aid = dict[@"aid"];
+    NSString* date = dict[@"date"];
+    NSString* picture = dict[@"picture"];
+    NSString* albumtitle = dict[@"albumtitle"];
+    NSString* rating_avg = dict[@"rating_avg"];
+    NSString* title = dict[@"title"];
+    NSString* url = dict[@"url"];
+    NSString* artist = dict[@"artist"];
+    
+    NSManagedObject* theSong = [self songWithSid:sid];
+    if (theSong) {
+        return YES;
+    }
+    else if (sid && ssid && aid && date && picture && albumtitle && rating_avg
+        && title && url && artist
+        )
+    {
+        NSManagedObject* song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
+                                                              inManagedObjectContext:context];
+        [song setValue:sid forKey:@"sid"];
+        [song setValue:ssid forKey:@"ssid"];
+        [song setValue:aid forKey:@"aid"];
+        [song setValue:title forKey:@"title"];
+        [song setValue:albumtitle forKey:@"albumtitle"];
+        [song setValue:artist forKey:@"artist"];
+        [song setValue:picture forKey:@"picture"];
+        [song setValue:url forKey:@"url"];
+        [song setValue:rating_avg forKey:@"rating_avg"];
+        [song setValue:date forKey:@"date"];
+        return YES;
+    }
+    return NO;
+}
+
 -(void) open
 {
     NSDocumentController* controller =[NSDocumentController sharedDocumentController];
@@ -211,6 +249,17 @@ static DMPlayRecordHandler* recordHandler;
         }
     }
     return pathToDiumooDataFolder;
+}
+
+-(void) save
+{
+    [context save:nil];
+}
+
+-(NSArray*)allSongs
+{
+    NSFetchRequest* fetchRequset = [NSFetchRequest fetchRequestWithEntityName:@"Song"];
+    return [context executeFetchRequest:fetchRequset error:nil];
 }
 
 @end

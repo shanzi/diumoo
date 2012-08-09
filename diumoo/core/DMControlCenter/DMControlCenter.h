@@ -18,6 +18,14 @@
 #import "DMPlayRecordHandler.h"
 #import "DMNotificationCenter.h"
 
+typedef enum{
+    PAUSE_PASS = 0,
+    PAUSE_SKIP,
+    PAUSE_NEW_PLAYLIST,
+    PAUSE_SPECIAL,
+    PAUSE_EXIT,
+} PAUSE_OPERATION_TYPE;
+
 @interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
 {
     NSString *channel;
@@ -27,17 +35,14 @@
     DMPlaylistFetcher *fetcher;
     NSMutableOrderedSet *waitPlaylist;
     
-    NSLock *skipLock;
-    
     DMNotificationCenter *notificationCenter;
     DMPanelWindowController *diumooPanel;
     DMPlayRecordHandler *recordHandler;
     
     NSMutableArray *specialWaitList;
-    
-    NSString *pausedOperationType;
-    
+
     NSAutoreleasePool *bufferingMusicPool;
+    BOOL canPlaySpecial;
 }
 
 @property (assign) DMPlayableCapsule *playingCapsule;
