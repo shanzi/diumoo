@@ -14,7 +14,6 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(void) loginSuccessWithUserinfo:(NSDictionary*) info;
 -(NSString*) stringEncodedForAuth:(NSDictionary*) dict;
--(NSArray*) djCollectionFromBodyNode:(HTMLNode*) body;
 -(NSDictionary*) tryParseHtmlForAuthWithData:(NSData*) data;
 -(void) loginSuccessWithUserinfo:(NSDictionary*) info;
 -(NSError*) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data;
@@ -22,7 +21,7 @@ static DMDoubanAuthHelper* sharedHelper;
 @end
 
 @implementation DMDoubanAuthHelper
-@synthesize username,userUrl,icon,userinfo;
+@synthesize username,icon,userinfo,promotion_chls,recent_chls;
 @synthesize playedSongsCount,likedSongsCount,bannedSongsCount;
 
 
@@ -59,7 +58,7 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     [username release];
     [userUrl release];
-    [iconUrl release];
+
     [icon release];
     [userinfo release];
     [super dealloc];
@@ -73,14 +72,22 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     NSString* authStringBody = [self stringEncodedForAuth:dict];
     
+    
+    NSMutableURLRequest* authRequest =nil;
     if(authStringBody)
+    {
         [self logoutAndCleanData];
+        NSData* authRequestBody = [authStringBody dataUsingEncoding:NSUTF8StringEncoding];
+        authRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:AUTH_STRING]];
+        [authRequest setHTTPMethod:@"POST"];
+        [authRequest setHTTPBody:authRequestBody];
+    }
+    else
+    {
+        authRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
+        [authRequest setHTTPMethod:@"GET"];
+    }
     
-    NSData* authRequestBody = [authStringBody dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSMutableURLRequest* authRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:AUTH_STRING]];
-    [authRequest setHTTPMethod:@"POST"];
-    [authRequest setHTTPBody:authRequestBody];
     [authRequest setTimeoutInterval:5.0];
     
     
@@ -102,7 +109,7 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     username = nil;
     userUrl = nil;
-    iconUrl = nil;
+
     userinfo = nil;
     icon = nil;
     playedSongsCount = 0;
@@ -120,22 +127,61 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSImage*) getUserIcon
 {
-    if(username && userUrl)
+    if(userinfo)
     {
-        if (icon==nil) {
-            icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:userUrl]] autorelease];
+        if (icon) {
+            return icon;
         }
-        return icon;
     }
-    return nil;
+    return [NSImage imageNamed:NSImageNameUser];
 }
 
 #pragma -
 
 #pragma private methods
 
+-(void) fetchPromotionAndRecentChannel
+{
+    NSURL* promotion_url = [NSURL URLWithString:PROMOTION_CHLS_URL];
+    NSURL* recent_url = [NSURL URLWithString:RECENT_CHLS_URL];
+    NSURLRequest* promotion_request = [NSURLRequest requestWithURL:promotion_url
+                                       cachePolicy:NSURLCacheStorageAllowed
+                                                   timeoutInterval:5.0
+                                       ];
+    NSURLRequest* recent_request = [NSURLRequest requestWithURL:recent_url
+                                                    cachePolicy:NSURLCacheStorageAllowed
+                                                timeoutInterval:5.0
+                                    ];
+    NSData* promotion_data = [NSURLConnection sendSynchronousRequest:promotion_request
+                                                   returningResponse:nil
+                                                               error:nil];
+    NSData* recent_data = [NSURLConnection sendSynchronousRequest:recent_request
+                                                returningResponse:nil
+                                                            error:nil];
+    
+    if (promotion_data) {
+        NSDictionary* dict = [[CJSONDeserializer deserializer]
+                              deserializeAsDictionary:promotion_data
+                              error:nil];
+        if (dict && dict[@"status"]) {
+            promotion_chls = dict[@"data"][@"chls"];
+        }
+    }
+    
+    if (recent_data) {
+        NSDictionary* dict = [[CJSONDeserializer deserializer]
+                              deserializeAsDictionary:recent_data
+                              error:nil];
+        if (dict && dict[@"status"]) {
+            recent_chls = dict[@"data"][@"chls"];
+        }
+    }
+}
+
 -(void) loginSuccessWithUserinfo:(NSDictionary*) info
 {
+    [self fetchPromotionAndRecentChannel];
+    
     username = [info valueForKey:@"name"];
     userUrl = [info valueForKey:@"url"];
     userinfo = info;
@@ -151,18 +197,19 @@ static DMDoubanAuthHelper* sharedHelper;
     }
     
     
+    
     NSString* _id = [info valueForKey:@"id"];
     if (_id) 
     {
         NSString* iconstring = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
-        iconUrl = iconstring;
+        icon = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:iconstring]];
     }
-    else 
+    else
     {
-        iconUrl = [info valueForKey:@"icon_url"];
+        icon = [NSImage imageNamed:NSImageNameUser];
     }
     
-    icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:iconUrl]] autorelease];
+    
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];
@@ -185,30 +232,23 @@ static DMDoubanAuthHelper* sharedHelper;
     return nil;
 }
 
--(NSArray*) djCollectionFromBodyNode:(HTMLNode*) body
+
+-(NSString*) user_id
 {
-    HTMLNode* ulnode = [[body findChildWithAttribute:@"id" 
-                                        matchingName:@"collection"
-                                        allowPartial:NO] findChildTag:@"ul"];
-    if (ulnode) {
-        NSArray* children = [ulnode children];
-        NSMutableArray* array = [NSMutableArray arrayWithCapacity:[children count]];
-        for (HTMLNode* node in children) {
-            
-            HTMLNode* anode = [node findChildOfClass:@"chl_name"];
-            
-            NSString* cid = [node getAttributeNamed:@"data-cid"];
-            NSString* name = [anode getAttributeNamed:@"data-name"];
-            
-            if (cid && name) {
-                NSDictionary* dict = @{@"id": cid,
-                                      @"real_name": name};
-                [array addObject:dict];
+    NSURL* url = [NSURL URLWithString:DOUBAN_FM_INDEX];
+    NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+    
+    
+    for (NSHTTPCookie* cookie in cookies) {
+        if ([[cookie name] isEqualToString:@"dbcl2"]) {
+            NSString* dbcl2 = [cookie value];
+            NSArray* array = [dbcl2 componentsSeparatedByString:@":"];
+            if ([array count]>1) {
+                NSString* _id = [array objectAtIndex:0];
+                return [_id stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             }
         }
-        return array;
     }
-    
     return nil;
 }
 
@@ -220,36 +260,28 @@ static DMDoubanAuthHelper* sharedHelper;
     {
         HTMLNode* bodynode=[parser body];
         
-        HTMLNode* total=[[bodynode findChildOfClass:@"stat-total"] findChildTag:@"i"];
-        HTMLNode* liked=[[bodynode findChildOfClass:@"stat-liked"] findChildTag:@"i"];
-        HTMLNode* banned=[[bodynode findChildOfClass:@"stat-banned"] findChildTag:@"i"];
-        HTMLNode* user=[[bodynode findChildOfClass:@"login-usr"] findChildTag:@"a"];
+        HTMLNode* total=[bodynode findChildWithAttribute:@"id" matchingName:@"rec_played" allowPartial:NO];
+        HTMLNode* liked=[bodynode findChildWithAttribute:@"id" matchingName:@"rec_liked" allowPartial:NO];
+        HTMLNode* banned=[bodynode findChildWithAttribute:@"id" matchingName:@"rec_banned" allowPartial:NO];
+        HTMLNode* user=[bodynode findChildWithAttribute:@"id" matchingName:@"user_name" allowPartial:NO];
+        NSString* user_id = [self user_id];
         
-        if(total && liked && banned && user){
-            NSString* userlink=[user getAttributeNamed:@"href"];
-            HTMLParser* imgParser=[[HTMLParser alloc] 
-                                   initWithContentsOfURL:[NSURL URLWithString:userlink]
-                                   error:&herr];
-            if(herr==nil){
-                
-                HTMLNode* userfacenode=[[imgParser body] findChildOfClass:@"userface"];
-                if(userfacenode){
-                    
-                    NSDictionary* play_record = @{@"played": [total contents],
-                                                 @"liked": [liked contents],
-                                                 @"banned": [banned contents]};
-                    
-                    NSDictionary* user_info=@{@"name": [user contents],
-                                             @"play_record": play_record,
-                                             @"url": userlink,
-                                             @"icon_url": [userfacenode getAttributeNamed:@"src"],
-                                             @"collected_chls": [self djCollectionFromBodyNode:bodynode]};
-                    [imgParser release];
-                    [parser release];
-                    return user_info ;
-                }
-            }
-            [imgParser release];
+        if(total && liked && banned && user && user_id){
+            NSString* userlink = [@"http://www.douban.com/people/" stringByAppendingString:user_id];
+            NSDictionary* play_record = @{
+            @"played": [total contents],
+            @"liked": [liked contents],
+            @"banned": [banned contents]};
+            
+            NSDictionary* user_info=@{
+            @"name": [user contents],
+            @"play_record": play_record,
+            @"url": userlink,
+            @"id":user_id,
+            };
+            
+            [parser release];
+            return user_info ;
         }
     }
     [parser release];
@@ -313,7 +345,7 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     NSDictionary* descriptDict = @{@"username": username,
                                   @"userUrl": userUrl,
-                                  @"iconUrl": iconUrl};
+                                  };
     return [NSString stringWithFormat:@"<DMDoubanAuthHelper:\n%@ >",descriptDict];
 }
 

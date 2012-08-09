@@ -145,7 +145,7 @@ static DMPlayRecordHandler* recordHandler;
         
         [context save:nil];
         
-        [DMService registerSongWith:capsule.sid :capsule.ssid :capsule.aid];
+        //[DMService registerSongWith:capsule.sid :capsule.ssid :capsule.aid];
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {

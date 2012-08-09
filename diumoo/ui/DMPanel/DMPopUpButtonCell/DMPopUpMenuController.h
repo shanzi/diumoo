@@ -14,10 +14,8 @@
     IBOutlet NSButton* longMainButton;
     IBOutlet NSButton* subButton;
     
-    IBOutlet NSMenuItem* djSaveItem;
-    
     IBOutlet NSMenu * mainMenu;
-    IBOutlet NSMenu * djMenu;
+    IBOutlet NSMenu * moreChannelMenu;
     IBOutlet NSMenu* exitSpecialMenu;
     
     IBOutlet NSMenu* shareMenu;
@@ -26,8 +24,7 @@
 @property(retain) IBOutlet id delegate;
 
 @property(retain) NSMenu* publicMenu;
-@property(retain) NSMenu* djExploreMenu;
-@property(retain) NSMenu* djCollectMenu;
+@property(retain) NSMenu* suggestMenu;
 
 @property NSInteger currentChannelID;
 @property(retain) id currentChannelMenuItem;
@@ -35,8 +32,6 @@
 @property BOOL specialMode;
 
 -(IBAction)popUpMenu:(id)sender;
-
--(IBAction)saveDJChannelAction:(id)sender;
 -(IBAction)changeChannelAction:(id)sender;
 -(void) updateChannelMenuWithSender:(id)sender;
 -(void) updateChannelList;

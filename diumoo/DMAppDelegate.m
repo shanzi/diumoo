@@ -31,10 +31,7 @@
                                                context:nil];
         
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
-    
     [self handleDockIconDisplayWithChange:nil];
-    [DMService showVersionQuickStart];
-
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -76,6 +73,7 @@
 {
     [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
     [center fireToPlayDefault];
+    [DMService showDMNotification];
 }
 
 

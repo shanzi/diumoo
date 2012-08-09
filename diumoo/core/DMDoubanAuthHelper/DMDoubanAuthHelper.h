@@ -12,6 +12,9 @@
 
 #define AccountStateChangedNotification @"accountstatechanged"
 #define AUTH_STRING @"http://douban.fm/j/login"
+#define DOUBAN_FM_INDEX @"http://douban.fm/"
+#define PROMOTION_CHLS_URL @"http://douban.fm/j/explore/promotion_chls"
+#define RECENT_CHLS_URL @"http://douban.fm/j/explore/recent_chls"
 
 
 #import <Foundation/Foundation.h>
@@ -23,7 +26,6 @@
 {   
     NSString *username;
     NSString *userUrl;
-    NSString *iconUrl;
     NSImage  *icon;
     NSDictionary *userinfo;
     
@@ -34,8 +36,10 @@
 
 @property(copy,readonly) NSString *username;
 @property(copy,readonly) NSString *userUrl;
-@property(retain,readonly) NSImage *icon;
-@property(retain,readonly) NSDictionary *userinfo;
+@property(readonly) NSImage *icon;
+@property(readonly) NSDictionary *userinfo;
+@property(readonly) NSArray * promotion_chls;
+@property(readonly) NSArray * recent_chls;
 @property NSInteger playedSongsCount;
 @property NSInteger likedSongsCount;
 @property NSInteger bannedSongsCount;
