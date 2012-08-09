@@ -29,7 +29,7 @@
 
 -(void) fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;
 
-- (void)fetchPlaylistWithDictionary:(NSDictionary *)dict withStartAttribute:(NSString *)startAttr  andErrorCount:(NSInteger)count;
+-(void) fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr andErrorCount:(NSInteger)count;
 -(DMPlayableCapsule*) getOnePlayableCapsule;
 -(void) clearPlaylist;
 

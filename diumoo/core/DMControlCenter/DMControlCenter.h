@@ -48,7 +48,15 @@ typedef enum{
 @property (assign) DMPlayableCapsule *playingCapsule;
 @property (retain) DMPanelWindowController *diumooPanel;
 
+//self methods
 -(void) fireToPlayDefault;
 -(void) stopForExit;
+
+//methods in DMPlayableCapsuleDelegate
+-(void) playableCapsule:(id)capsule loadStateChanged:(long) state;
+-(void) playableCapsuleDidPlay:(id)capsule;
+-(void) playableCapsuleWillPause:(id)capsule;
+-(void) playableCapsuleDidPause:(id)capsule;
+-(void) playableCapsuleDidEnd:(id)capsule;
 
 @end

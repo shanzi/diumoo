@@ -33,6 +33,7 @@
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
     [self handleDockIconDisplayWithChange:nil];
+    
     [DMService showVersionQuickStart];
 
 }

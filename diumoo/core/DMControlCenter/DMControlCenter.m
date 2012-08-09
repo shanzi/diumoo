@@ -102,15 +102,14 @@
 
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
-    [self.playingCapsule invalidateMovie];
+    [playingCapsule invalidateMovie];
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
         if ([specialWaitList count]) {
-            self.playingCapsule = nil;
-            NSDictionary* song = specialWaitList[0];
+            playingCapsule = nil;
+            [self fireToPlay:specialWaitList[0]];
             [specialWaitList removeObjectAtIndex:0];
-            [self fireToPlay:song];
             return;
         }
         else {
@@ -319,8 +318,6 @@
         }
     }
 }
-
-
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {

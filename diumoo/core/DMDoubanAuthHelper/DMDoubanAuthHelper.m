@@ -16,7 +16,6 @@ static DMDoubanAuthHelper* sharedHelper;
 -(NSString*) stringEncodedForAuth:(NSDictionary*) dict;
 -(NSArray*) djCollectionFromBodyNode:(HTMLNode*) body;
 -(NSDictionary*) tryParseHtmlForAuthWithData:(NSData*) data;
--(void) loginSuccessWithUserinfo:(NSDictionary*) info;
 -(NSError*) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data;
 
 @end
@@ -122,9 +121,6 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     if(username && userUrl)
     {
-        if (icon==nil) {
-            icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:userUrl]] autorelease];
-        }
         return icon;
     }
     return nil;
@@ -140,26 +136,19 @@ static DMDoubanAuthHelper* sharedHelper;
     userUrl = [info valueForKey:@"url"];
     userinfo = info;
     
-    NSDictionary* play_record = [info valueForKey:@"play_record"];
+    DMLog(@"userURL = %@",userUrl);
+    
+    NSDictionary *play_record = [info valueForKey:@"play_record"];
     
     if (play_record) {
-        
         playedSongsCount = [[play_record valueForKey:@"played"] integerValue];
         likedSongsCount =  [[play_record valueForKey:@"liked"] integerValue];
         bannedSongsCount = [[play_record valueForKey:@"banned"] integerValue];
-        
     }
     
-    
-    NSString* _id = [info valueForKey:@"id"];
-    if (_id) 
-    {
-        NSString* iconstring = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
-        iconUrl = iconstring;
-    }
-    else 
-    {
-        iconUrl = [info valueForKey:@"icon_url"];
+    NSString *_id = [info valueForKey:@"id"];
+    if (_id) {
+        iconUrl = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
     }
     
     icon = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:iconUrl]] autorelease];
@@ -219,38 +208,50 @@ static DMDoubanAuthHelper* sharedHelper;
     if(herr == nil)
     {
         HTMLNode* bodynode=[parser body];
+        HTMLNode *spans = nil;
+        HTMLNode *total = nil;
+        HTMLNode *liked = nil;
+        HTMLNode *banned = nil;
+        HTMLNode *user = nil;
         
-        HTMLNode* total=[[bodynode findChildOfClass:@"stat-total"] findChildTag:@"i"];
-        HTMLNode* liked=[[bodynode findChildOfClass:@"stat-liked"] findChildTag:@"i"];
-        HTMLNode* banned=[[bodynode findChildOfClass:@"stat-banned"] findChildTag:@"i"];
-        HTMLNode* user=[[bodynode findChildOfClass:@"login-usr"] findChildTag:@"a"];
+        NSArray *spanNode = [bodynode findChildTags:@"span"];
+
+        for (spans in spanNode){
+            if ([[spans getAttributeNamed:@"id"] isEqualToString:@"rec_played"]) {
+                total=spans;
+            }
+            if ([[spans getAttributeNamed:@"id"] isEqualToString:@"rec_liked"]) {
+                liked=spans;
+            }
+            if ([[spans getAttributeNamed:@"id"] isEqualToString:@"rec_banned"]) {
+                banned=spans;
+            }
+            if ([[spans getAttributeNamed:@"id"] isEqualToString:@"user_name"]) {
+                user=spans;
+            }
+        }
+        
+        DMLog(@"total = %@, liked = %@, banned = %@, user = %@",[total contents],[liked contents],[banned contents],[user contents]);
         
         if(total && liked && banned && user){
-            NSString* userlink=[user getAttributeNamed:@"href"];
-            HTMLParser* imgParser=[[HTMLParser alloc] 
-                                   initWithContentsOfURL:[NSURL URLWithString:userlink]
-                                   error:&herr];
-            if(herr==nil){
-                
-                HTMLNode* userfacenode=[[imgParser body] findChildOfClass:@"userface"];
-                if(userfacenode){
-                    
-                    NSDictionary* play_record = @{@"played": [total contents],
-                                                 @"liked": [liked contents],
-                                                 @"banned": [banned contents]};
-                    
-                    NSDictionary* user_info=@{@"name": [user contents],
-                                             @"play_record": play_record,
-                                             @"url": userlink,
-                                             @"icon_url": [userfacenode getAttributeNamed:@"src"],
-                                             @"collected_chls": [self djCollectionFromBodyNode:bodynode]};
-                    [imgParser release];
-                    [parser release];
-                    return user_info ;
+            // prase cookie to get user id
+            NSString *userid = nil;
+            for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+                if ([[cookie name] isEqualToString:@"dbcl2"]) {
+                    userid = [[[[cookie value]componentsSeparatedByString:@":"] objectAtIndex:0] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                 }
             }
-            [imgParser release];
-        }
+            NSDictionary* play_record = @{@"played": [total contents],
+                                           @"liked": [liked contents],
+                                          @"banned": [banned contents]};
+                    
+            NSDictionary* user_info=@{@"name": [user contents],
+                               @"play_record": play_record,
+                                        @"id": userid,
+                                       @"url": [@"http://www.douban.com/people/" stringByAppendingString:userid]};
+            [parser release];
+            return user_info ;
+            }
     }
     [parser release];
     return nil;
@@ -264,33 +265,27 @@ static DMDoubanAuthHelper* sharedHelper;
     NSDictionary* obj = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
     
     if(jerr){
-        
         // 返回的内容不能解析成json，尝试解析HTML获得用户登陆信息
         NSDictionary* info = [self tryParseHtmlForAuthWithData:data];
         if (info) {
-            
             // 登陆成功，此时无需重新记录cookie
             [self loginSuccessWithUserinfo:info];
         }
         else {
-            
             // 登陆失败
             return [NSError errorWithDomain:@"DM Auth Error" code:-1 userInfo:nil];
         }
     }
     else {
-        
         // json解析成功
-        
         if([[obj valueForKey:@"r"] intValue] == 0){
-            
             // 登陆成功
             // 将cookie记录下来
             NSArray *cookies = [NSHTTPCookie 
                                 cookiesWithResponseHeaderFields:
                                 [response  performSelector:@selector(allHeaderFields)]
                                 forURL:[response URL]] ;
-            
+            DMLog(@"cookie = %@",cookies);
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies
                                                                forURL:[response URL]
                                                       mainDocumentURL:nil];
@@ -308,14 +303,4 @@ static DMDoubanAuthHelper* sharedHelper;
 }
 
 #pragma -
-
--(NSString*) description
-{
-    NSDictionary* descriptDict = @{@"username": username,
-                                  @"userUrl": userUrl,
-                                  @"iconUrl": iconUrl};
-    return [NSString stringWithFormat:@"<DMDoubanAuthHelper:\n%@ >",descriptDict];
-}
-
-
 @end

@@ -62,7 +62,7 @@
 
 #pragma -
 
-- (void)fetchPlaylistWithDictionary:(NSDictionary *)dict withStartAttribute:(NSString *)startAttr  andErrorCount:(NSInteger)errcount
+- (void)fetchPlaylistWithDictionary:(NSDictionary *)dict withStartAttribute:(NSString *)startAttr andErrorCount:(NSInteger)errcount
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
