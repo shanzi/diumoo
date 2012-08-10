@@ -53,7 +53,7 @@ DMPanelWindowController *sharedWindow;
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
     if (helper.username) {
-        [userIconButton setImage:[helper getUserIcon]];
+        [userIconButton setImage:helper.icon];
         [usernameTextField setStringValue:helper.username];
         
         NSString* ratedCountString= [NSString stringWithFormat:@"♥ %ld",helper.likedSongsCount];

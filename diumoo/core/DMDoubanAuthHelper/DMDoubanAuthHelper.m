@@ -42,12 +42,10 @@ static DMDoubanAuthHelper* sharedHelper;
     NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
                                               encoding:NSASCIIStringEncoding 
                                                  error:&error];
-    if(error == nil)
-    {
-        return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    }
+    if(error)
+        return nil;
     
-    return nil;
+    return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
 }
 
 #pragma -
@@ -84,17 +82,17 @@ static DMDoubanAuthHelper* sharedHelper;
     
     
     // 发出同步请求
-    NSURLResponse* response;
+    NSURLResponse* response = nil;
     NSError* error = nil;
     NSData* data = [NSURLConnection sendSynchronousRequest:authRequest
                                          returningResponse:&response
                                                      error:&error];
     
-    if(!error){
-        return [self connectionResponseHandlerWithResponse:response andData:data];
+    if(error){
+        return nil;
     }
     
-    return error;
+    return [self connectionResponseHandlerWithResponse:response andData:data];
     
 }
 -(void) logoutAndCleanData
@@ -117,15 +115,6 @@ static DMDoubanAuthHelper* sharedHelper;
                                                         object:self];
 }
 
--(NSImage*) getUserIcon
-{
-    if(username && userUrl)
-    {
-        return icon;
-    }
-    return nil;
-}
-
 #pragma -
 
 #pragma private methods
@@ -135,9 +124,7 @@ static DMDoubanAuthHelper* sharedHelper;
     username = [info valueForKey:@"name"];
     userUrl = [info valueForKey:@"url"];
     userinfo = info;
-    
-    DMLog(@"userURL = %@",userUrl);
-    
+        
     NSDictionary *play_record = [info valueForKey:@"play_record"];
     
     if (play_record) {
@@ -161,7 +148,6 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     // 检查参数是否正确，正确的话，返回预处理过的stringbody
     // 否则返回 nil
-    
     NSString *name = [dict valueForKey:kAuthAttributeUsername];
     NSString *password = [dict valueForKey:kAuthAttributePassword];
     NSString *captcha = [dict valueForKey:kAuthAttributeCaptchaSolution];

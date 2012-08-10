@@ -34,7 +34,7 @@
 
 @property(copy,readonly) NSString *username;
 @property(copy,readonly) NSString *userUrl;
-@property(retain,readonly) NSImage *icon;
+@property(assign,readonly) NSImage *icon;
 @property(retain,readonly) NSDictionary *userinfo;
 @property NSInteger playedSongsCount;
 @property NSInteger likedSongsCount;
