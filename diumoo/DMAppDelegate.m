@@ -83,10 +83,9 @@
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
-    [[NSDistributedNotificationCenter defaultCenter]
-     postNotificationName:@"com.apple.iTunes.playerInfo"
-     object:@"com.apple.iTunes.player"
-     userInfo:@{@"Player State": @"Paused"}];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
+                                                                   object:@"com.apple.iTunes.player"
+                                                                 userInfo:@{@"Player State": @"Paused"}];
     [center stopForExit];
     [center release];
     [mediaKeyTap release];

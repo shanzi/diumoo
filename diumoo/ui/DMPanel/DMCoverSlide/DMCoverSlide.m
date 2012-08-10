@@ -19,14 +19,12 @@
         Gestalt(gestaltSystemVersionMajor, &major);
         Gestalt(gestaltSystemVersionMinor,&minor);
         if (major == 10 && minor < 8) {
-            DMLog(@"Not under Mountain Lion or Higher");
             frontPosition = CGPointMake(0,80);
             titlePosition = CGPointMake(10,40);
             artistPosition = CGPointMake(13,25);
             albumPosition = CGPointMake(13,10);
         }
         else {
-            DMLog(@"Under Mountain Lion or Higher");
             frontPosition = CGPointMake(0,0);
             titlePosition = CGPointMake(10,260);
             artistPosition = CGPointMake(13,280);

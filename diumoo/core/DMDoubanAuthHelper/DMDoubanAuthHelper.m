@@ -32,8 +32,7 @@ static DMDoubanAuthHelper* sharedHelper;
     NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
                                               encoding:NSASCIIStringEncoding 
                                                  error:&error];
-    if(error == nil)
-    {
+    if(error == nil){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
         return nil;
     }
@@ -63,7 +62,6 @@ static DMDoubanAuthHelper* sharedHelper;
 {
     NSString* authStringBody = [self stringEncodedForAuth:dict];
     
-    
     NSMutableURLRequest* authRequest =nil;
     if(authStringBody)
     {
@@ -78,7 +76,7 @@ static DMDoubanAuthHelper* sharedHelper;
         authRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
         [authRequest setHTTPMethod:@"GET"];
     }
-    
+
     [authRequest setTimeoutInterval:5.0];
     
     
@@ -89,18 +87,18 @@ static DMDoubanAuthHelper* sharedHelper;
                                          returningResponse:&response
                                                      error:&error];
     
-    if(!error){
-        return [self connectionResponseHandlerWithResponse:response andData:data];
+    if(error){
+        [DMErrorLog logErrorWith:self method:_cmd andError:error];
+        return nil;
     }
     
-    return error;
+    return [self connectionResponseHandlerWithResponse:response andData:data];
     
 }
 -(void) logoutAndCleanData
 {
     username = nil;
     userUrl = nil;
-
     userinfo = nil;
     icon = nil;
     playedSongsCount = 0;
@@ -287,26 +285,22 @@ static DMDoubanAuthHelper* sharedHelper;
     NSDictionary* obj = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
     
     if(jerr){
-        
         // 返回的内容不能解析成json，尝试解析HTML获得用户登陆信息
         NSDictionary* info = [self tryParseHtmlForAuthWithData:data];
         if (info) {
-            
             // 登陆成功，此时无需重新记录cookie
             [self loginSuccessWithUserinfo:info];
         }
         else {
-            
             // 登陆失败
-            return [NSError errorWithDomain:@"DM Auth Error" code:-1 userInfo:nil];
+            NSError *error = [NSError errorWithDomain:@"DM Auth Error" code:-1 userInfo:nil];
+            [DMErrorLog logErrorWith:self method:_cmd andError:error];
+            return error;
         }
     }
     else {
-        
         // json解析成功
-        
         if([[obj valueForKey:@"r"] intValue] == 0){
-            
             // 登陆成功
             // 将cookie记录下来
             NSArray *cookies = [NSHTTPCookie 
@@ -323,22 +317,15 @@ static DMDoubanAuthHelper* sharedHelper;
         }
         else {
             // 登陆失败
-            return [NSError errorWithDomain:@"DM Auth Error" code:-2 
-                                   userInfo:[obj valueForKey:@"err_msg"]];
+            NSError *error = [NSError errorWithDomain:@"DM Auth Error" code:-2
+                                             userInfo:[obj valueForKey:@"err_msg"]];
+            [DMErrorLog logErrorWith:self method:_cmd andError:error];
+            return error;
         }
     }
     return nil;
 }
 
 #pragma -
-
--(NSString*) description
-{
-    NSDictionary* descriptDict = @{@"username": username,
-                                  @"userUrl": userUrl,
-                                  };
-    return [NSString stringWithFormat:@"<DMDoubanAuthHelper:\n%@ >",descriptDict];
-}
-
 
 @end
