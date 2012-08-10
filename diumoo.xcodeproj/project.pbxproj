@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE809815D4A632001A3BEC /* DMErrorLog.m */; };
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
 		F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3BB1587708F001C6158 /* DMPanelWindowController.m */; };
@@ -153,6 +154,8 @@
 
 /* Begin PBXFileReference section */
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		3FBE809715D4A632001A3BEC /* DMErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMErrorLog.h; path = DMErrorLog/DMErrorLog.h; sourceTree = "<group>"; };
+		3FBE809815D4A632001A3BEC /* DMErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMErrorLog.m; path = DMErrorLog/DMErrorLog.m; sourceTree = "<group>"; };
 		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
 		F501B3B015877062001C6158 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
 		F501B3B215877062001C6158 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
@@ -367,6 +370,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FBE809515D4A615001A3BEC /* DMErrorLog */ = {
+			isa = PBXGroup;
+			children = (
+				3FBE809715D4A632001A3BEC /* DMErrorLog.h */,
+				3FBE809815D4A632001A3BEC /* DMErrorLog.m */,
+			);
+			name = DMErrorLog;
+			sourceTree = "<group>";
+		};
 		F501B3AC15877062001C6158 /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,6 +617,7 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3FBE809515D4A615001A3BEC /* DMErrorLog */,
 				F53C78E015CC0AA700201C65 /* DMService */,
 				F58B010915BEE2BA00E4A7E5 /* DMShortcutsHandler */,
 				F528B1A615BC548000DC82B4 /* DMNotificationCenter */,
@@ -1181,6 +1194,7 @@
 				F53C78DE15CC0AA000201C65 /* DMService.m in Sources */,
 				F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */,
 				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,
+				3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

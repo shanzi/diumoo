@@ -15,6 +15,9 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
+    //redictor NSLog() to diumoo folder
+    [self redirectConsoleLogToDocumentFolder];
+    
     [self makeDefaultPreference];
     
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
@@ -176,5 +179,18 @@
         [DMService exportRecordOperation];
     }
 }
+
+- (void) redirectConsoleLogToDocumentFolder
+{
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                                        NSUserDomainMask, YES);
+    NSString* pathToUserApplicationSupportFolder = dirs[0];
+    NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
+                                        stringByAppendingPathComponent:@"diumoo"];
+    
+    NSString *logPath = [pathToDiumooDataFolder stringByAppendingPathComponent:@"error.log"];
+    freopen([logPath fileSystemRepresentation],"a+",stderr);
+}
+
 
 @end

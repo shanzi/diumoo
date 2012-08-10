@@ -7,18 +7,9 @@
 //
 
 #import "DMDoubanAuthHelper.h"
+#import "DMErrorLog.h"
 
 static DMDoubanAuthHelper* sharedHelper;
-
-@interface DMDoubanAuthHelper()
-
--(void) loginSuccessWithUserinfo:(NSDictionary*) info;
--(NSString*) stringEncodedForAuth:(NSDictionary*) dict;
--(NSDictionary*) tryParseHtmlForAuthWithData:(NSData*) data;
--(void) loginSuccessWithUserinfo:(NSDictionary*) info;
--(NSError*) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data;
-
-@end
 
 @implementation DMDoubanAuthHelper
 @synthesize username,icon,userinfo,promotion_chls,recent_chls;
@@ -29,8 +20,7 @@ static DMDoubanAuthHelper* sharedHelper;
 
 +(DMDoubanAuthHelper*) sharedHelper
 {
-    if(sharedHelper == nil) 
-    {
+    if(sharedHelper == nil) {
         sharedHelper = [[DMDoubanAuthHelper alloc] init];
     }
     return sharedHelper;
@@ -44,10 +34,11 @@ static DMDoubanAuthHelper* sharedHelper;
                                                  error:&error];
     if(error == nil)
     {
-        return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        [DMErrorLog logErrorWith:self method:_cmd andError:error];
+        return nil;
     }
     
-    return nil;
+    return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
 }
 
 #pragma -
