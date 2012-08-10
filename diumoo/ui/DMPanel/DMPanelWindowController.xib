@@ -92,44 +92,71 @@
 					</object>
 					<object class="NSMenuItem" id="844184346">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">DJ 兆赫</string>
+						<string key="NSTitle">更多电台兆赫</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
 						<int key="NSTag">1000000</int>
 					</object>
+					<object class="NSMenuItem" id="338263040">
+						<reference key="NSMenu" ref="1066845941"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+					</object>
+					<object class="NSMenuItem" id="530597">
+						<reference key="NSMenu" ref="1066845941"/>
+						<string key="NSTitle">搜索电台和音乐</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+					</object>
 				</array>
 			</object>
 			<object class="NSMenu" id="1040400039">
 				<string key="NSTitle"/>
 				<array class="NSMutableArray" key="NSMenuItems">
-					<object class="NSMenuItem" id="129935465">
+					<object class="NSMenuItem" id="80343497">
 						<reference key="NSMenu" ref="1040400039"/>
-						<string key="NSTitle">收藏此兆赫</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="972873596"/>
-						<reference key="NSMixedImage" ref="261628404"/>
-						<int key="NSTag">-10</int>
-					</object>
-					<object class="NSMenuItem" id="93583029">
-						<reference key="NSMenu" ref="1040400039"/>
-						<string key="NSTitle">我的收藏</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="972873596"/>
-						<reference key="NSMixedImage" ref="261628404"/>
-						<int key="NSTag">-11</int>
-					</object>
-					<object class="NSMenuItem" id="332348797">
-						<reference key="NSMenu" ref="1040400039"/>
-						<string key="NSTitle">更多 DJ 兆赫</string>
+						<string key="NSTitle">diumoo 兆赫推荐</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
 						<int key="NSTag">-12</int>
+					</object>
+					<object class="NSMenuItem" id="857148528">
+						<reference key="NSMenu" ref="1040400039"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+					</object>
+					<object class="NSMenuItem" id="431723989">
+						<reference key="NSMenu" ref="1040400039"/>
+						<string key="NSTitle">试试这些</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+					</object>
+					<object class="NSMenuItem" id="304921685">
+						<reference key="NSMenu" ref="1040400039"/>
+						<string key="NSTitle">无</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+						<int key="NSTag">-14</int>
 					</object>
 					<object class="NSMenuItem" id="56317852">
 						<reference key="NSMenu" ref="1040400039"/>
@@ -444,7 +471,7 @@
 							<string key="NSFrame">{{218, 74}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="621326240"/>
+							<reference key="NSNextKeyView" ref="128865575"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">-1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -525,7 +552,7 @@
 							<string key="NSFrame">{{0, 404}, {250, 21}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="532174922"/>
+							<reference key="NSNextKeyView" ref="621326240"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">4</int>
 							<bool key="NSEnabled">YES</bool>
@@ -629,7 +656,7 @@
 							<string key="NSFrame">{{-1, 36}, {251, 38}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="128865575"/>
+							<reference key="NSNextKeyView" ref="532174922"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -1026,6 +1053,14 @@
 					<int key="connectionID">3886</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">controlAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="530597"/>
+					</object>
+					<int key="connectionID">3897</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">mainMenu</string>
 						<reference key="source" ref="706784540"/>
@@ -1035,35 +1070,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">djMenu</string>
-						<reference key="source" ref="706784540"/>
-						<reference key="destination" ref="1040400039"/>
-					</object>
-					<int key="connectionID">1987</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="706784540"/>
 						<reference key="destination" ref="1001"/>
 					</object>
 					<int key="connectionID">2230</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">saveDJChannelAction:</string>
-						<reference key="source" ref="706784540"/>
-						<reference key="destination" ref="129935465"/>
-					</object>
-					<int key="connectionID">2232</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">djSaveItem</string>
-						<reference key="source" ref="706784540"/>
-						<reference key="destination" ref="129935465"/>
-					</object>
-					<int key="connectionID">2235</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1155,6 +1166,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">moreChannelMenu</string>
+						<reference key="source" ref="706784540"/>
+						<reference key="destination" ref="1040400039"/>
+					</object>
+					<int key="connectionID">3892</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="577421203"/>
 						<reference key="destination" ref="1001"/>
@@ -1211,7 +1230,9 @@
 							<reference ref="384224020"/>
 							<reference ref="1004387813"/>
 							<reference ref="296955902"/>
+							<reference ref="338263040"/>
 							<reference ref="844184346"/>
+							<reference ref="530597"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Main Menu</string>
@@ -1220,34 +1241,21 @@
 						<int key="objectID">1850</int>
 						<reference key="object" ref="1040400039"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="93583029"/>
-							<reference ref="332348797"/>
-							<reference ref="129935465"/>
 							<reference ref="56317852"/>
 							<reference ref="484477828"/>
 							<reference ref="709900022"/>
+							<reference ref="431723989"/>
+							<reference ref="857148528"/>
+							<reference ref="80343497"/>
+							<reference ref="304921685"/>
 						</array>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1856</int>
-						<reference key="object" ref="93583029"/>
-						<reference key="parent" ref="1040400039"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1858</int>
-						<reference key="object" ref="332348797"/>
-						<reference key="parent" ref="1040400039"/>
+						<string key="objectName">moreChannelMenu</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1983</int>
 						<reference key="object" ref="706784540"/>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">2227</int>
-						<reference key="object" ref="129935465"/>
-						<reference key="parent" ref="1040400039"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1445</int>
@@ -1628,6 +1636,36 @@
 						<reference key="object" ref="922397559"/>
 						<reference key="parent" ref="224481640"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3887</int>
+						<reference key="object" ref="431723989"/>
+						<reference key="parent" ref="1040400039"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3888</int>
+						<reference key="object" ref="857148528"/>
+						<reference key="parent" ref="1040400039"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3890</int>
+						<reference key="object" ref="80343497"/>
+						<reference key="parent" ref="1040400039"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3893</int>
+						<reference key="object" ref="304921685"/>
+						<reference key="parent" ref="1040400039"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3894</int>
+						<reference key="object" ref="338263040"/>
+						<reference key="parent" ref="1066845941"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3896</int>
+						<reference key="object" ref="530597"/>
+						<reference key="parent" ref="1066845941"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1640,11 +1678,8 @@
 				<string key="1444.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1445.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1850.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="1856.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="1858.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1983.CustomClassName">DMPopUpMenuController</string>
 				<string key="1983.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="2227.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3731.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3732.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3733.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1704,12 +1739,18 @@
 				<string key="3882.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3883.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3884.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3887.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3888.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3890.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3893.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3894.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3896.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3886</int>
+			<int key="maxID">3897</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1849,7 +1890,6 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="changeChannelAction:">id</string>
 						<string key="popUpMenu:">id</string>
-						<string key="saveDJChannelAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="changeChannelAction:">
@@ -1860,19 +1900,14 @@
 							<string key="name">popUpMenu:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="saveDJChannelAction:">
-							<string key="name">saveDJChannelAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="delegate">id</string>
-						<string key="djMenu">NSMenu</string>
-						<string key="djSaveItem">NSMenuItem</string>
 						<string key="exitSpecialMenu">NSMenu</string>
 						<string key="longMainButton">NSButton</string>
 						<string key="mainButton">NSButton</string>
 						<string key="mainMenu">NSMenu</string>
+						<string key="moreChannelMenu">NSMenu</string>
 						<string key="shareMenu">NSMenu</string>
 						<string key="subButton">NSButton</string>
 					</dictionary>
@@ -1880,14 +1915,6 @@
 						<object class="IBToOneOutletInfo" key="delegate">
 							<string key="name">delegate</string>
 							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="djMenu">
-							<string key="name">djMenu</string>
-							<string key="candidateClassName">NSMenu</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="djSaveItem">
-							<string key="name">djSaveItem</string>
-							<string key="candidateClassName">NSMenuItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="exitSpecialMenu">
 							<string key="name">exitSpecialMenu</string>
@@ -1903,6 +1930,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="mainMenu">
 							<string key="name">mainMenu</string>
+							<string key="candidateClassName">NSMenu</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="moreChannelMenu">
+							<string key="name">moreChannelMenu</string>
 							<string key="candidateClassName">NSMenu</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="shareMenu">

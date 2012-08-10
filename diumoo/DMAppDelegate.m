@@ -15,9 +15,6 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    //this function will be activate in FINAL release only
-    //[self redirectConsoleLogToDocumentFolder];
-        
     [self makeDefaultPreference];
     
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
@@ -34,11 +31,7 @@
                                                context:nil];
         
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
-    
     [self handleDockIconDisplayWithChange:nil];
-    
-    [DMService showVersionQuickStart];
-
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -80,6 +73,7 @@
 {
     [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
     [center fireToPlayDefault];
+    [DMService showDMNotification];
 }
 
 
@@ -181,19 +175,6 @@
     {
         [DMService exportRecordOperation];
     }
-}
-
-//output NSLog() to a file
-- (void) redirectConsoleLogToDocumentFolder
-{
-    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                                        NSUserDomainMask, YES);
-    NSString* pathToUserApplicationSupportFolder = dirs[0];
-    NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
-                                        stringByAppendingPathComponent:@"diumoo"];
-
-    NSString *logPath = [pathToDiumooDataFolder stringByAppendingPathComponent:@"error.log"];
-    freopen([logPath fileSystemRepresentation],"a+",stderr);
 }
 
 @end

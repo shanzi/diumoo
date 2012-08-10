@@ -132,6 +132,9 @@ DMPanelWindowController *sharedWindow;
         case 7:
             [PLTabPreferenceControl showPrefsAtIndex:0];
             break;
+        case 8:
+            // 搜索音乐和兆赫
+            break;
     }
 }
 
