@@ -44,15 +44,6 @@ static DMDoubanAuthHelper* sharedHelper;
 
 #pragma dealloc
 
--(void) dealloc
-{
-    [username release];
-    [userUrl release];
-
-    [icon release];
-    [userinfo release];
-    [super dealloc];
-}
 
 #pragma -
 
@@ -233,7 +224,7 @@ static DMDoubanAuthHelper* sharedHelper;
             NSString* dbcl2 = [cookie value];
             NSArray* array = [dbcl2 componentsSeparatedByString:@":"];
             if ([array count]>1) {
-                NSString* _id = [array objectAtIndex:0];
+                NSString* _id = array[0];
                 return [_id stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             }
         }
@@ -269,11 +260,9 @@ static DMDoubanAuthHelper* sharedHelper;
             @"id":user_id,
             };
             
-            [parser release];
             return user_info ;
         }
     }
-    [parser release];
     return nil;
 }
 

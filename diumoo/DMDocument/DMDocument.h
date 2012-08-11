@@ -19,4 +19,6 @@
     NSDictionary *baseSongInfo;
 }
 
+@property (readonly) NSDictionary *baseSongInfo;
+
 @end

@@ -23,9 +23,9 @@
     if (!gradient) {
         NSColor *color1 = [NSColor colorWithCalibratedRed:0.851 green:0.851 blue:0.851 alpha:1.];
         NSColor *color2 = [NSColor colorWithCalibratedRed:0.700 green:0.700 blue:0.700 alpha:1.];
-        gradient = [[[NSGradient alloc] initWithStartingColor:color1 
-                                                             endingColor:color2] retain];
-        borderColor = [[NSColor colorWithDeviceWhite:0.2 alpha:1.0f] retain]; //[NSColor colorWithCalibratedRed:0.333 green:0.333 blue:0.333 alpha:1.];
+        gradient = [[NSGradient alloc] initWithStartingColor:color1 
+                                                             endingColor:color2];
+        borderColor = [NSColor colorWithDeviceWhite:0.2 alpha:1.0f]; //[NSColor colorWithCalibratedRed:0.333 green:0.333 blue:0.333 alpha:1.];
     }
     
     [gradient drawInRect:self.bounds angle:90.0];

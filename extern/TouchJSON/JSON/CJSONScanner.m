@@ -79,18 +79,11 @@ static id kNSNO = NULL;
     if ((self = [super init]) != NULL)
         {
         strictEscapeCodes = NO;
-        nullObject = [[NSNull null] retain];
+        nullObject = [NSNull null];
         }
     return(self);
     }
 
-- (void)dealloc
-    {
-    [nullObject release];
-    nullObject = NULL;
-    //
-    [super dealloc];
-    }
 
 #pragma mark -
 
@@ -123,7 +116,6 @@ static id kNSNO = NULL;
             theString = [[NSString alloc] initWithData:theData encoding:self.allowedEncoding];
             }
         theData = [theString dataUsingEncoding:NSUTF8StringEncoding];
-        [theString release];
         }
 
     if (theData)
@@ -252,7 +244,6 @@ static id kNSNO = NULL;
                 {
                 *outError = [self error:kJSONScannerErrorCode_DictionaryKeyScanFailed description:@"Could not scan dictionary. Failed to scan a key."];
                 }
-            [theDictionary release];
             return(NO);
             }
 
@@ -265,7 +256,6 @@ static id kNSNO = NULL;
                 {
                 *outError = [self error:kJSONScannerErrorCode_DictionaryKeyNotTerminated description:@"Could not scan dictionary. Key was not terminated with a ':' character."];
                 }
-            [theDictionary release];
             return(NO);
             }
 
@@ -277,7 +267,6 @@ static id kNSNO = NULL;
                 {
                 *outError = [self error:kJSONScannerErrorCode_DictionaryValueScanFailed description:@"Could not scan dictionary. Failed to scan a value."];
                 }
-            [theDictionary release];
             return(NO);
             }
 
@@ -300,7 +289,6 @@ static id kNSNO = NULL;
                     {
                     *outError = [self error:kJSONScannerErrorCode_DictionaryKeyValuePairNoDelimiter description:@"Could not scan dictionary close delimiter."];
                     }
-                [theDictionary release];
                 return(NO);
                 }
             break;
@@ -320,7 +308,6 @@ static id kNSNO = NULL;
             {
             *outError = [self error:kJSONScannerErrorCode_DictionaryNotTerminated description:@"Could not scan dictionary. Dictionary not terminated by a '}' character."];
             }
-        [theDictionary release];
         return(NO);
         }
 
@@ -328,17 +315,15 @@ static id kNSNO = NULL;
         {
         if (self.options & kJSONScannerOptions_MutableContainers)
             {
-            *outDictionary = [theDictionary autorelease];
+            *outDictionary = theDictionary;
             }
         else
             {
-            *outDictionary = [[theDictionary copy] autorelease];
-            [theDictionary release];
+            *outDictionary = [theDictionary copy];
             }
         }
     else
         {
-        [theDictionary release];
         }
 
     return(YES);
@@ -377,7 +362,6 @@ static id kNSNO = NULL;
                 [theUserInfo addEntriesFromDictionary:self.userInfoForScanLocation];
                 *outError = [NSError errorWithDomain:kJSONScannerErrorDomain code:kJSONScannerErrorCode_ArrayValueScanFailed userInfo:theUserInfo];
                 }
-            [theArray release];
             return(NO);
             }
             
@@ -389,7 +373,6 @@ static id kNSNO = NULL;
                     {
                     *outError = [self error:kJSONScannerErrorCode_ArrayValueIsNull description:@"Could not scan array. Value is NULL."];
                     }
-                [theArray release];
                 return(NO);
                 }
             }
@@ -409,7 +392,6 @@ static id kNSNO = NULL;
                     {
                     *outError = [self error:kJSONScannerErrorCode_ArrayNotTerminated description:@"Could not scan array. Array not terminated by a ']' character."];
                     }
-                [theArray release];
                 return(NO);
                 }
             
@@ -427,7 +409,6 @@ static id kNSNO = NULL;
             {
             *outError = [self error:kJSONScannerErrorCode_ArrayNotTerminated description:@"Could not scan array. Array not terminated by a ']' character."];
             }
-        [theArray release];
         return(NO);
         }
 
@@ -435,17 +416,15 @@ static id kNSNO = NULL;
         {
         if (self.options & kJSONScannerOptions_MutableContainers)
             {
-            *outArray = [theArray autorelease];
+            *outArray = theArray;
             }
         else
             {
-            *outArray = [[theArray copy] autorelease];
-            [theArray release];
+            *outArray = [theArray copy];
             }
         }
     else
         {
-        [theArray release];
         }
     return(YES);
     }
@@ -465,7 +444,6 @@ static id kNSNO = NULL;
             {
             *outError = [self error:kJSONScannerErrorCode_StringNotStartedWithBackslash description:@"Could not scan string constant. String not started by a '\"' character."];
             }
-        [theString release];
         return(NO);
         }
 
@@ -515,7 +493,6 @@ static id kNSNO = NULL;
                                 {
                                 *outError = [self error:kJSONScannerErrorCode_StringUnicodeNotDecoded description:@"Could not scan string constant. Unicode character could not be decoded."];
                                 }
-                            [theString release];
                             return(NO);
                             }
                         theCharacter |= (theDigit << theShift);
@@ -531,7 +508,6 @@ static id kNSNO = NULL;
                             {
                             *outError = [self error:kJSONScannerErrorCode_StringUnknownEscapeCode description:@"Could not scan string constant. Unknown escape code."];
                             }
-                        [theString release];
                         return(NO);
                         }
                     }
@@ -545,7 +521,6 @@ static id kNSNO = NULL;
                 {
                 *outError = [self error:kJSONScannerErrorCode_StringNotTerminated description:@"Could not scan string constant. No terminating double quote character."];
                 }
-            [theString release];
             return(NO);
             }
         }
@@ -554,17 +529,15 @@ static id kNSNO = NULL;
         {
         if (self.options & kJSONScannerOptions_MutableLeaves)
             {
-            *outStringConstant = [theString autorelease];
+            *outStringConstant = theString;
             }
         else
             {
-            *outStringConstant = [[theString copy] autorelease];
-            [theString release];
+            *outStringConstant = [theString copy];
             }
         }
     else
         {
-        [theString release];
         }
 
     return(YES);
@@ -617,7 +590,7 @@ static id kNSNO = NULL;
 
     if (outValue)
         {
-        *outValue = [[[NSString alloc] initWithBytes:current length:P - current encoding:NSUTF8StringEncoding] autorelease];
+        *outValue = [[NSString alloc] initWithBytes:current length:P - current encoding:NSUTF8StringEncoding];
         }
         
     current = P;

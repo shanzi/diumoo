@@ -44,9 +44,6 @@
 - (void)dealloc
 {
     self.delegate = nil;
-    [playlist release];
-    [playedSongs release];
-    [super dealloc];
 }
 
 #pragma -

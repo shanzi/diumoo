@@ -76,10 +76,10 @@ static NSOperationQueue* serviceQueue;
     DMLog(@"clean start %@",start);
     NSArray* startComponents = [start componentsSeparatedByString:@"g"];
     if ([startComponents count]>2) {
-        if ([[startComponents objectAtIndex:1] length] == 4) {
+        if ([startComponents[1] length] == 4) {
             return [NSString stringWithFormat:@"%@g%@g",
-                    [startComponents objectAtIndex:0],
-                    [startComponents objectAtIndex:1]
+                    startComponents[0],
+                    startComponents[1]
                     ];
         }
     }
@@ -144,7 +144,7 @@ static NSOperationQueue* serviceQueue;
     [openpanel setTitle:@"导入播放记录"];
     [openpanel setPrompt:@"导入"];
     if ([openpanel runModal] == NSOKButton) {
-        NSURL* url = [[openpanel URLs] objectAtIndex:0];
+        NSURL* url = [openpanel URLs][0];
         [DMService importRecordOperationWithFilePath:url];
         
     }
@@ -244,7 +244,7 @@ static NSOperationQueue* serviceQueue;
                              valueForKey:@"notificationID"]integerValue];
     
     NSDictionary* bundleinfo = [[NSBundle mainBundle] infoDictionary];
-    NSString* version=[bundleinfo objectForKey:@"CFBundleVersion"];
+    NSString* version=bundleinfo[@"CFBundleVersion"];
     
     NSString* urlstring = [NSString stringWithFormat:@"%@?f=%d&v=%@&d=%ld",
                            NOTIFICATION_URL,CURRENT_APP_TYPE,version,current_id];

@@ -26,7 +26,6 @@
 -(void) dealloc
 {
     [GrowlApplicationBridge setGrowlDelegate:nil];
-    [super dealloc];
 }
 
 #pragma ---
@@ -58,7 +57,6 @@
             notification.soundName = nil;
             [notification setDeliveryDate:[NSDate dateWithTimeIntervalSinceNow:0]];
             [center scheduleNotification: notification];
-            [notification release];
         } else {
         [GrowlApplicationBridge notifyWithTitle:capsule.title   
                                     description:detail

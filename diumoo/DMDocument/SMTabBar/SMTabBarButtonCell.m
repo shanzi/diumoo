@@ -77,7 +77,6 @@
         [path fill];
     
         [[NSGraphicsContext currentContext] restoreGraphicsState];
-        [shadow release];
     }
 }
 

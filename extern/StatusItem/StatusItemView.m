@@ -21,7 +21,7 @@
     self = [super initWithFrame:itemRect];
     
     if (self != nil) {
-        _statusItem = [statusItem retain];
+        _statusItem = statusItem;
         _statusItem.view = self;
     }
     return self;

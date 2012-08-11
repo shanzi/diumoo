@@ -12,8 +12,8 @@
 
 -(void)awakeFromNib
 {
-    backImage = [[NSImage imageNamed:@"volume_back"] retain];
-    sliderImage = [[NSImage imageNamed:@"volume_slider"] retain];
+    backImage = [NSImage imageNamed:@"volume_back"];
+    sliderImage = [NSImage imageNamed:@"volume_slider"];
     
     [backImage setFlipped:YES];
     [sliderImage setFlipped:YES];

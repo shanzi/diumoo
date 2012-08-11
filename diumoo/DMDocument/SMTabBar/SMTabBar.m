@@ -59,7 +59,6 @@ static char SMTabBarObservationContext;
         [button unbind:@"keyEquivalent"];
         [button unbind:@"keyEquivalentModifierMask"];
     }
-    [super dealloc];
 }
 
 #pragma mark - Actions
@@ -149,7 +148,6 @@ static char SMTabBarObservationContext;
             [button bind:@"keyEquivalentModifierMask" toObject:item withKeyPath:@"keyEquivalentModifierMask" options:nil];
             
             [newBarButtons addObject:button];
-            [button release];
             itemIndex++;
         }
         self.barButtons = newBarButtons;

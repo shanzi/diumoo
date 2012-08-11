@@ -23,7 +23,7 @@
                                
                                if (block) {
                                    //initWithData returns nil when data is empty.
-                                    block([[[NSImage alloc] initWithData:data] autorelease]);
+                                    block([[NSImage alloc] initWithData:data]);
                                }
                            }];
 }

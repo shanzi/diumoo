@@ -39,24 +39,22 @@ static NSData *kTrue = NULL;
 
 + (void)initialize
     {
-    NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
-
-    if (self == [CJSONSerializer class])
-        {
-        if (kNULL == NULL)
-            kNULL = [[NSData alloc] initWithBytesNoCopy:(void *)"null" length:4 freeWhenDone:NO];
-        if (kFalse == NULL)
-            kFalse = [[NSData alloc] initWithBytesNoCopy:(void *)"false" length:5 freeWhenDone:NO];
-        if (kTrue == NULL)
-            kTrue = [[NSData alloc] initWithBytesNoCopy:(void *)"true" length:4 freeWhenDone:NO];
-
-        [thePool drain];
+        @autoreleasepool {
+            if (self == [CJSONSerializer class])
+            {
+                if (kNULL == NULL)
+                    kNULL = [[NSData alloc] initWithBytesNoCopy:(void *)"null" length:4 freeWhenDone:NO];
+                if (kFalse == NULL)
+                    kFalse = [[NSData alloc] initWithBytesNoCopy:(void *)"false" length:5 freeWhenDone:NO];
+                if (kTrue == NULL)
+                    kTrue = [[NSData alloc] initWithBytesNoCopy:(void *)"true" length:4 freeWhenDone:NO];
+            }
         }
     }
 
 + (CJSONSerializer *)serializer
     {
-    return([[[self alloc] init] autorelease]);
+    return([[self alloc] init]);
     }
     
 - (BOOL)isValidJSONObject:(id)inObject
@@ -121,7 +119,7 @@ static NSData *kTrue = NULL;
         }
     else if ([inObject isKindOfClass:[NSData class]])
         {
-        NSString *theString = [[[NSString alloc] initWithData:inObject encoding:NSUTF8StringEncoding] autorelease];
+        NSString *theString = [[NSString alloc] initWithData:inObject encoding:NSUTF8StringEncoding];
         theResult = [self serializeString:theString error:outError];
         }
     else if ([inObject respondsToSelector:@selector(JSONDataRepresentation)])

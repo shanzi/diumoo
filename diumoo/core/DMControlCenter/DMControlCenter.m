@@ -49,16 +49,6 @@
     return self;
 }
 
--(void)dealloc
-{
-    [channel release];
-    [waitPlaylist release];
-    [fetcher release];
-    [notificationCenter release];
-    [playingCapsule release];
-    [recordHandler release];
-    [super dealloc];
-}
 
 #pragma -
 
@@ -584,7 +574,7 @@
         if([list count]){
             NSMutableArray* array = nil;
             array = [NSMutableArray arrayWithArray:list];
-            specialWaitList = [array retain];
+            specialWaitList = array;
             [diumooPanel toggleSpecialWithDictionary:info];
             
             [playingCapsule pause];

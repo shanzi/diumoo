@@ -12,10 +12,10 @@
 
 - (id)initWithStatusItem:(NSStatusItem *)statusItem;
 
-@property (nonatomic, retain, readonly) NSStatusItem *statusItem;
-@property (nonatomic, retain) NSImage *image;
-@property (nonatomic, retain) NSImage *mixedImage;
-@property (nonatomic, retain) NSImage *alternateImage;
+@property (nonatomic, strong, readonly) NSStatusItem *statusItem;
+@property (nonatomic, strong) NSImage *image;
+@property (nonatomic, strong) NSImage *mixedImage;
+@property (nonatomic, strong) NSImage *alternateImage;
 @property (nonatomic, setter = setHighlighted:) BOOL isHighlighted;
 @property (nonatomic, setter = setMixed:) BOOL isMixed;
 @property (nonatomic, readonly) NSRect globalRect;

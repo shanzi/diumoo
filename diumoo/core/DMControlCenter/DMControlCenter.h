@@ -30,7 +30,7 @@ typedef enum{
 {
     NSString *channel;
     
-    DMPlayableCapsule *playingCapsule;
+    DMPlayableCapsule *__strong playingCapsule;
     DMPlayableCapsule *waitingCapsule;
     DMPlaylistFetcher *fetcher;
     NSMutableOrderedSet *waitPlaylist;
@@ -41,12 +41,11 @@ typedef enum{
     
     NSMutableArray *specialWaitList;
 
-    NSAutoreleasePool *bufferingMusicPool;
     BOOL canPlaySpecial;
 }
 
-@property (assign) DMPlayableCapsule *playingCapsule;
-@property (retain) DMPanelWindowController *diumooPanel;
+@property (strong) DMPlayableCapsule *playingCapsule;
+@property (strong) DMPanelWindowController *diumooPanel;
 
 //self methods
 -(void) fireToPlayDefault;

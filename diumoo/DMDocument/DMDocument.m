@@ -12,6 +12,7 @@
 #import "DMService.h"
 
 @implementation DMDocument
+@synthesize baseSongInfo;
 
 - (id)init
 {
@@ -28,8 +29,8 @@
         return;
     
     if ([self.windowControllers count]==0) {
-        DMDocumentWindowController* windowController = [[DMDocumentWindowController allocWithZone:[self zone]] init];
-        [self addWindowController:[windowController autorelease]];
+        DMDocumentWindowController* windowController = [[DMDocumentWindowController allocWithZone:nil] init];
+        [self addWindowController:windowController];
     }
 }
 

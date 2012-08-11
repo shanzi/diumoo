@@ -23,11 +23,6 @@
     [tabcontroller showWindow:nil];
 }
 
-- (void)dealloc
-{
-    [tabcontroller release];
-    [super dealloc];
-}
 
 - (int)countOfPreferencePanels
 {
@@ -111,6 +106,7 @@
 -(void) loginAction:(id)sender
 {
     switch ([sender tag]) {
+        {
         case 0: // 获取验证码
             [sender setEnabled:NO];
             [indicator setHidden:NO];
@@ -136,16 +132,16 @@
                     [indicator setHidden:YES];
                 }];
             }];
-            break;
+            break;}
             
-        case 1: // 登陆操作
+        {case 1: // 登陆操作
             [self loginOperationAction];
-            break;
-        case 2:
+            break;}
+        {case 2:
             [self resetLoginForm];
-            break;
-        default:
-            break;
+            break;}
+        {default:
+            break;}
     }
 }
 

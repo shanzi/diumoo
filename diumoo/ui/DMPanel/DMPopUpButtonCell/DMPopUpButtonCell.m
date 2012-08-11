@@ -12,12 +12,6 @@
 
 @implementation DMPopUpButtonCell
 
--(void) dealloc
-{
-    [stringAttribute release];
-    [stringHighligtAttribute release];
-    [super dealloc];
-}
 
 -(void) drawTitleWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
@@ -29,7 +23,6 @@
                                    NSMidY(cellFrame) - stringSize.height/2, 
                                    cellFrame.size.width - 40, stringSize.height);
     [string drawInRect:stringRect];
-    [string release];
 }
 
 -(NSDictionary*) stringAttribute
@@ -42,10 +35,9 @@
             NSMutableParagraphStyle* ps = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [ps setLineBreakMode:NSLineBreakByTruncatingTail];
             
-            stringHighligtAttribute = [@{NSForegroundColorAttributeName: [NSColor selectedMenuItemTextColor],
+            stringHighligtAttribute = @{NSForegroundColorAttributeName: [NSColor selectedMenuItemTextColor],
                                         NSParagraphStyleAttributeName: ps,
-                                       NSFontAttributeName: self.font} retain];
-            [ps release];
+                                       NSFontAttributeName: self.font};
             return stringHighligtAttribute;
         }
     }
@@ -57,10 +49,9 @@
             NSMutableParagraphStyle* ps = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [ps setLineBreakMode:NSLineBreakByTruncatingTail];
             
-            stringAttribute = [@{NSForegroundColorAttributeName: [NSColor blackColor],
+            stringAttribute = @{NSForegroundColorAttributeName: [NSColor blackColor],
                                 NSParagraphStyleAttributeName: ps,
-                                NSFontAttributeName: self.font} retain];
-            [ps release];
+                                NSFontAttributeName: self.font};
             return stringAttribute;
         }
     }
@@ -95,7 +86,6 @@
         [rect stroke];
         [tri stroke];
     }
-    [tri release];
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView

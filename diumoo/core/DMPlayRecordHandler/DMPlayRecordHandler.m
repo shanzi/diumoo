@@ -57,9 +57,6 @@ static DMPlayRecordHandler* recordHandler;
     }
     
     self.delegate = nil;
-    [recordFileURL release];
-    [context release];
-    [super dealloc];
 }
 #pragma ---
 
@@ -89,9 +86,8 @@ static DMPlayRecordHandler* recordHandler;
     
     [context setPersistentStoreCoordinator:coordinator];
     
-    [coordinator release];
     
-    return  [context autorelease];
+    return  context;
 }
 #pragma ---
 

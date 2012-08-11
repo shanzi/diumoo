@@ -187,7 +187,6 @@
             if (tag == currentChannelID) {
                 self.currentChannelMenuItem = item;
             }
-            [item autorelease];
         }
     }
     else{
@@ -214,7 +213,6 @@
             if (tag == currentChannelID) {
                 self.currentChannelMenuItem = item;
             }
-            [item autorelease];
         }
         
         if (displayedCount) [[moreChannelMenu itemWithTag:-13] setHidden:YES];
@@ -239,7 +237,6 @@
                                     action:nil
                                     keyEquivalent:@""] ;
             [menu addItem:cateitem];
-            [cateitem autorelease];
             
             NSArray* channelsArray = [dic valueForKey:@"channels"];
             for (NSDictionary* channel in channelsArray) {
@@ -256,11 +253,10 @@
                 if (tag == currentChannelID) {
                     self.currentChannelMenuItem = item;
                 }
-                [item autorelease];
             }
         }
     }
-    return [menu autorelease];
+    return menu;
 }
 
 
@@ -341,7 +337,6 @@
                 
                 id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
                 [values setValue:arrayToSave forKey:@"recentdj"];
-                [arrayToSave autorelease];
             }
         }
         else if(tag >0 )

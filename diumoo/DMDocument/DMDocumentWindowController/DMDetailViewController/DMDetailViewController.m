@@ -26,7 +26,7 @@
     if (self) {
         // Initialization code here
         
-        baseInfoKeys = [@[@"专辑名",
+        baseInfoKeys = @[@"专辑名",
                         @"艺术家",
                         @"豆瓣评分",
                         @"版本特性",
@@ -34,8 +34,7 @@
                         @"发行时间",
                         @"介质",
                         @"唱片数",
-                        @"条形码"]
-                        retain];
+                        @"条形码"];
         
         self.baseInformationView = [self buildTableView];
         self.songsView = [self buildTableView];
@@ -53,8 +52,8 @@
         }
         
         
-        baseInfoDict = [info retain];
-        songsArray = [songs retain];
+        baseInfoDict = info;
+        songsArray = songs;
         
         JUInspectorView* infoInspector = [[JUInspectorView alloc] init];
         infoInspector.name = @"专辑信息";
@@ -79,10 +78,6 @@
         [self addInspectorView:summaryInspector expanded:NO];
         [self addInspectorView:songsInspector expanded:YES];
         
-        [infoInspector release];
-        [summaryInspector release];
-        [songsInspector release];
-        [scrollView release];
     }
     return self;
 }
@@ -98,25 +93,10 @@
     [tableview setDelegate:self];
     [tableview setDataSource:self];
     
-    [column1 release];
-    [column2 release];
-    return [tableview autorelease];
+    return tableview;
 }
 
 
--(void) dealloc
-{
-
-    [baseInformationView release];
-    [summaryView release];
-    [songsView release];
-    
-    [baseInfoDict release];
-    [songsArray release];
-    [baseInfoKeys release];
-    
-    [super dealloc];
-}
 
 -(BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {

@@ -61,10 +61,10 @@ typedef enum{
 @property(nonatomic,copy,readonly) NSString* pictureLocation;
 @property(nonatomic,copy,readonly) NSString* largePictureLocation;
 
-@property(assign) NSImage* picture;
-@property(retain) id<DMPlayableCapsuleDelegate> delegate;
+@property NSImage* picture;
+@property id<DMPlayableCapsuleDelegate> delegate;
 
-@property(assign) QTMovie* movie;
+@property QTMovie* movie;
 
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;
 -(id) initWithDictionary:(NSDictionary*) dic;

@@ -23,14 +23,12 @@
 
 +(id)playableCapsuleWithDictionary:(NSDictionary *)dic
 {
-    return [[[DMPlayableCapsule alloc] initWithDictionary:dic] autorelease];
+    return [[DMPlayableCapsule alloc] initWithDictionary:dic];
 }
 
 -(void)dealloc
 {
     [self invalidateMovie];
-    [timer release];
-    [super dealloc];
 }
 
 -(id)initWithDictionary:(NSDictionary *)dic
@@ -108,7 +106,6 @@
     loadState = -1;
     playState = WAIT_TO_PLAY;
     [movie invalidate];
-    [movie release];
 }
 
 -(void) movieRateDidChanged:(NSNotification* )n
@@ -154,7 +151,7 @@
                                       selector:@selector(timerPulse:)
                                       userInfo:kTimerPulseTypePlay
                                        repeats:YES];
-        CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
+        CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
         [timer fire];
         
@@ -180,7 +177,7 @@
                                       userInfo:kTimerPulseTypePause
                                        repeats:YES];
         
-        CFRunLoopAddTimer(CFRunLoopGetMain(), (CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
+        CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         [self.delegate playableCapsuleWillPause:self];
         [timer fire];
     }
@@ -197,9 +194,8 @@
 
 -(void) invalidateTimer
 {
-    CFRunLoopRemoveTimer(CFRunLoopGetMain(),(CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
+    CFRunLoopRemoveTimer(CFRunLoopGetMain(),(__bridge CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
     [timer invalidate];
-    [timer release];
 }
 
 -(void) timerPulse:(NSTimer*)t
@@ -298,7 +294,6 @@
         }
         
         [movie invalidate];
-        [movie release];
     }
 }
 

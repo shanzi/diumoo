@@ -70,16 +70,14 @@ static NSCharacterSet *sDoubleCharacters = NULL;
     {
     if (sDoubleCharacters == NULL)
         {
-        sDoubleCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789eE-+."] retain];
+        sDoubleCharacters = [NSCharacterSet characterSetWithCharactersInString:@"0123456789eE-+."];
         }
     }
 
 - (void)dealloc
     {
-    [data release];
     data = NULL;
     //
-    [super dealloc];
     }
 
 - (NSUInteger)scanLocation
@@ -101,8 +99,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
     {
     if (data != inData)
         {
-        [data release];
-        data = [inData retain];
+        data = inData;
         }
 
     if (data)
@@ -198,7 +195,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
 
     if (outValue)
         {
-        *outValue = [[[NSString alloc] initWithBytes:current length:P - current encoding:NSUTF8StringEncoding] autorelease];
+        *outValue = [[NSString alloc] initWithBytes:current length:P - current encoding:NSUTF8StringEncoding];
         }
 
     current = P;
@@ -217,7 +214,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
 
     if (outValue)
         {
-        *outValue = [[[NSString alloc] initWithBytes:current length:theResult - (char *)current encoding:NSUTF8StringEncoding] autorelease];
+        *outValue = [[NSString alloc] initWithBytes:current length:theResult - (char *)current encoding:NSUTF8StringEncoding];
         }
 
     current = (u_int8_t *)theResult;
@@ -238,7 +235,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
 
     if (outValue)
         {
-        *outValue = [[[NSString alloc] initWithBytes:current length:P - current encoding:NSUTF8StringEncoding] autorelease];
+        *outValue = [[NSString alloc] initWithBytes:current length:P - current encoding:NSUTF8StringEncoding];
         }
 
     current = P;
@@ -339,7 +336,7 @@ static NSCharacterSet *sDoubleCharacters = NULL;
 - (NSString *)remainingString
     {
     NSData *theRemainingData = [NSData dataWithBytes:current length:end - current];
-    NSString *theString = [[[NSString alloc] initWithData:theRemainingData encoding:NSUTF8StringEncoding] autorelease];
+    NSString *theString = [[NSString alloc] initWithData:theRemainingData encoding:NSUTF8StringEncoding];
     return(theString);
     }
 

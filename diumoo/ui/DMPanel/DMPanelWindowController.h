@@ -55,12 +55,12 @@ typedef enum{
     MenubarController *menubarController;
 }
 
-@property(nonatomic,assign) IBOutlet DMCoverControlView* view;
+@property(nonatomic,strong) IBOutlet DMCoverControlView* view;
 
 @property(copy) NSString* openURL;
 @property (nonatomic) BOOL hasActivePanel;
 
-@property(retain) IBOutlet id<DMPanelWindowDelegate> delegate;
+@property(strong) IBOutlet id<DMPanelWindowDelegate> delegate;
 
 +(DMPanelWindowController*)sharedWindowController;
 

@@ -10,7 +10,7 @@
 }
 
 @property (nonatomic) BOOL hasActiveIcon;
-@property (nonatomic, assign, readonly) StatusItemView *statusItemView;
+@property (nonatomic, readonly) StatusItemView *statusItemView;
 
 - (NSStatusItem *)statusItem;
 -(void) setMixed:(BOOL) mixed;

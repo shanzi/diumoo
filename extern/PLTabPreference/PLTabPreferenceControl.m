@@ -50,10 +50,6 @@ static PLTabPreferenceControl* shared;
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)windowDidLoad
 {
@@ -152,7 +148,6 @@ static PLTabPreferenceControl* shared;
             }
             [array addObject:identify];
         }
-        [prefIdentifyAry release];
         prefIdentifyAry = [[NSArray alloc] initWithArray:array];
         return prefIdentifyAry;
     }
@@ -186,7 +181,7 @@ static PLTabPreferenceControl* shared;
 	[item setAction:@selector(switchPanel:)];
 	[item setAutovalidates:NO];
     
-	return [item autorelease];
+	return item;
 }
 
 

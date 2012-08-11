@@ -48,7 +48,6 @@
     AH_RELEASE(starHighlightedImage);
     AH_RELEASE(backgrounColor);
     AH_RELEASE(backgroundImage);
-    [super dealloc];
 }
 #pragma mark -
 #pragma mark Setters

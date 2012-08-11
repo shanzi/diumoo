@@ -13,16 +13,6 @@
 @synthesize tests;
 @synthesize convertersByName;
 
-- (void)dealloc
-    {
-    [tests release];
-    tests = NULL;
-    //
-    [convertersByName release];
-    convertersByName = NULL;
-    //
-    [super dealloc];
-    }
 
 - (NSData *)serializeObject:(id)inObject error:(NSError **)outError
     {
@@ -69,16 +59,16 @@
 
 - (void)addTest:(JSONConversionTest)inTest
     {
-    inTest = [[inTest copy] autorelease];
+    inTest = [inTest copy];
     NSSet *theTests = [self.tests setByAddingObject:inTest];
     self.tests = theTests;
     }
     
 - (void)addConverter:(JSONConversionConverter)inConverter forName:(NSString *)inName
     {
-    NSMutableDictionary *theConvertersByName = [[self.convertersByName mutableCopy] autorelease];
+    NSMutableDictionary *theConvertersByName = [self.convertersByName mutableCopy];
 
-    inConverter = [[inConverter copy] autorelease];
+    inConverter = [inConverter copy];
     theConvertersByName[inName] = inConverter;
     self.convertersByName = theConvertersByName;
     }

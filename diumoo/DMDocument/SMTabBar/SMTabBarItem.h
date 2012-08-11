@@ -11,7 +11,7 @@
 @interface SMTabBarItem : NSObject
 
 @property (nonatomic) BOOL enabled;
-@property (nonatomic, retain) NSImage *image;
+@property (nonatomic, strong) NSImage *image;
 @property (nonatomic, copy) NSString *toolTip;
 @property (nonatomic, copy) NSString *keyEquivalent;
 @property (nonatomic) NSUInteger keyEquivalentModifierMask;

@@ -16,10 +16,10 @@
     @private
     NSToolbar *toolbar;
     NSArray* prefIdentifyAry;
-    id<PLTabPreferenceDelegate> delegate;
+    id<PLTabPreferenceDelegate> __strong delegate;
 }
 
-@property(nonatomic,assign) IBOutlet id<PLTabPreferenceDelegate> delegate;
+@property(nonatomic,strong) IBOutlet id<PLTabPreferenceDelegate> delegate;
 
 +(PLTabPreferenceControl*) sharedPreferenceController;
 +(void) showPrefsAtIndex:(NSInteger) index;

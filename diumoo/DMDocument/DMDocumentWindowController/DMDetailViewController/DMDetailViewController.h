@@ -16,9 +16,9 @@
     NSArray* songsArray;
 }
 
-@property(nonatomic,retain) NSTableView* baseInformationView;
-@property(nonatomic,retain) NSTextView* summaryView;
-@property(nonatomic,retain) NSTableView* songsView;
+@property(nonatomic,strong) NSTableView* baseInformationView;
+@property(nonatomic,strong) NSTextView* summaryView;
+@property(nonatomic,strong) NSTableView* songsView;
 
 
 -(id) initWithBaseInformation:(NSDictionary*) info summary:(NSString*) summary andSongs:(NSArray*)songs;

@@ -75,10 +75,10 @@ typedef NSUInteger EDStarRatingDisplayMode;
 
 @interface EDStarRating : NSControl
 
-@property (nonatomic,assign) NSColor *backgrounColor;
-@property (nonatomic,assign) NSImage *backgroundImage;
-@property (nonatomic,retain) NSImage *starHighlightedImage;
-@property (nonatomic,retain) NSImage *starImage;
+@property (nonatomic,strong) NSColor *backgrounColor;
+@property (nonatomic,strong) NSImage *backgroundImage;
+@property (nonatomic,strong) NSImage *starHighlightedImage;
+@property (nonatomic,strong) NSImage *starImage;
 @property (nonatomic) NSInteger maxRating;
 @property (nonatomic) float rating;
 @property (nonatomic) CGFloat horizontalMargin;

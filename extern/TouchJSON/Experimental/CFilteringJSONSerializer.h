@@ -16,8 +16,8 @@ typedef id (^JSONConversionConverter)(id inObject); // TODO replace with value t
 	NSDictionary *convertersByName;
 }
 
-@property (readwrite, nonatomic, retain) NSSet *tests;
-@property (readwrite, nonatomic, retain) NSDictionary *convertersByName;
+@property (readwrite, nonatomic, strong) NSSet *tests;
+@property (readwrite, nonatomic, strong) NSDictionary *convertersByName;
 
 - (void)addTest:(JSONConversionTest)inTest;
 - (void)addConverter:(JSONConversionConverter)inConverter forName:(NSString *)inName;

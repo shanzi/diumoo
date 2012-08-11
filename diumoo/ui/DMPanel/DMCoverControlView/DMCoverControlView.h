@@ -13,7 +13,7 @@
 {
     DMCoverSlide* slide;
 }
-@property(assign,readonly)DMCoverSlide* slide;
+@property(readonly)DMCoverSlide* slide;
 
 -(void) setPlayingInfo:(NSString*) musictitle 
                       :(NSString*) artist 

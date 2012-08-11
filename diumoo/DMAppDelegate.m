@@ -88,8 +88,6 @@
                                                                    object:@"com.apple.iTunes.player"
                                                                  userInfo:@{@"Player State": @"Paused"}];
     [center stopForExit];
-    [center release];
-    [mediaKeyTap release];
 }
 
 -(void) makeDefaultPreference

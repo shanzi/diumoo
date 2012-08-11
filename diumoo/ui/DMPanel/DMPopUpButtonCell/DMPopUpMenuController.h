@@ -21,13 +21,13 @@
     IBOutlet NSMenu* shareMenu;
 }
 
-@property(retain) IBOutlet id delegate;
+@property(strong) IBOutlet id delegate;
 
-@property(retain) NSMenu* publicMenu;
-@property(retain) NSMenu* suggestMenu;
+@property(strong) NSMenu* publicMenu;
+@property(strong) NSMenu* suggestMenu;
 
 @property NSInteger currentChannelID;
-@property(retain) id currentChannelMenuItem;
+@property(strong) id currentChannelMenuItem;
 
 @property BOOL specialMode;
 

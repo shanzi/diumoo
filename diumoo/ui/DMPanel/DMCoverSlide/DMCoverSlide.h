@@ -28,7 +28,7 @@
     CATextLayer* artistLayer;
     CATextLayer* albumLayer;
 }
-@property(assign,readonly) CALayer* frontCover;
+@property(readonly) CALayer* frontCover;
 
 
 -(void) setTitle:(NSString*) title artist:(NSString*)artist andAlbum:(NSString*) album;

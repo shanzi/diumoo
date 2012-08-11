@@ -26,24 +26,17 @@
 {
     self = [super initWithWindowNibName:@"DMDocumentWindow"];
     if (self) {
-        lock = [[[NSLock alloc] init] retain];
+        lock = [[NSLock alloc] init];
     }
     return self;
 }
 
--(void)dealloc
-{
-    [lock release];
-    [albumLocation release];
-    [aid release];
-    [albumTitle release];
-    [super dealloc];
-}
 
 - (void)windowDidLoad
 {
     [super windowDidLoad];
     
+    DMLog(@"load");
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     starRating.displayMode = EDStarRatingDisplayAccurate;
     starRating.editable = NO;
@@ -72,7 +65,6 @@
         item.keyEquivalent = @"1";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
-        [item release];
     }
     {
         NSImage *image = [NSImage imageNamed:@"detail_icon"];
@@ -82,7 +74,6 @@
         item.keyEquivalent = @"2";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
-        [item release];
     }
 
     tabBar.items = tabBarItems;

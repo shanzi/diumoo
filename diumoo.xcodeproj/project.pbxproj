@@ -26,8 +26,8 @@
 		F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AD61580E6AD002B3D61 /* DMApp.m */; };
 		F5148B051580E707002B3D61 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADB1580E707002B3D61 /* HTMLNode.m */; };
 		F5148B061580E707002B3D61 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADD1580E707002B3D61 /* HTMLParser.m */; };
-		F5148B0A1580E707002B3D61 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AE41580E707002B3D61 /* NSObject+SPInvocationGrabbing.m */; };
-		F5148B0B1580E707002B3D61 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AE61580E707002B3D61 /* SPMediaKeyTap.m */; };
+		F5148B0A1580E707002B3D61 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AE41580E707002B3D61 /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5148B0B1580E707002B3D61 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AE61580E707002B3D61 /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5148B0D1580E707002B3D61 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F5148AE91580E707002B3D61 /* LICENSE */; };
 		F5148B0E1580E707002B3D61 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AEB1580E707002B3D61 /* SSKeychain.m */; };
 		F5148B0F1580E707002B3D61 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AEE1580E707002B3D61 /* CDataScanner.m */; };
@@ -110,10 +110,10 @@
 		F5D3632015A1F0EF003A40B2 /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D3630415A1F0EF003A40B2 /* DMDocumentWindow.xib */; };
 		F5D3632115A1F0EF003A40B2 /* DMDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */; };
 		F5D3632215A1F0EF003A40B2 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630915A1F0EF003A40B2 /* EDStarRating.m */; };
-		F5D3632315A1F0EF003A40B2 /* JUInspectorBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630C15A1F0EF003A40B2 /* JUInspectorBaseView.m */; };
-		F5D3632415A1F0EF003A40B2 /* JUInspectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630E15A1F0EF003A40B2 /* JUInspectorView.m */; };
-		F5D3632515A1F0EF003A40B2 /* JUInspectorViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631015A1F0EF003A40B2 /* JUInspectorViewContainer.m */; };
-		F5D3632615A1F0EF003A40B2 /* JUInspectorViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631215A1F0EF003A40B2 /* JUInspectorViewHeader.m */; };
+		F5D3632315A1F0EF003A40B2 /* JUInspectorBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630C15A1F0EF003A40B2 /* JUInspectorBaseView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5D3632415A1F0EF003A40B2 /* JUInspectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630E15A1F0EF003A40B2 /* JUInspectorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5D3632515A1F0EF003A40B2 /* JUInspectorViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631015A1F0EF003A40B2 /* JUInspectorViewContainer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5D3632615A1F0EF003A40B2 /* JUInspectorViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631215A1F0EF003A40B2 /* JUInspectorViewHeader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5D3632715A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631515A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m */; };
 		F5D3632815A1F0EF003A40B2 /* SMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631715A1F0EF003A40B2 /* SMBar.m */; };
 		F5D3632915A1F0EF003A40B2 /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631915A1F0EF003A40B2 /* SMTabBar.m */; };
@@ -1280,13 +1280,14 @@
 		F5148AD01580E58E002B3D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
 				);
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1302,13 +1303,14 @@
 		F5148AD11580E58E002B3D61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
 				);
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
