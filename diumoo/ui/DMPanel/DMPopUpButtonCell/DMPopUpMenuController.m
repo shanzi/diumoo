@@ -152,17 +152,10 @@
         [[mainMenu itemWithTag:1000000]setSubmenu:moreChannelMenu];
     }
     
-    DMDoubanAuthHelper* dmah = [DMDoubanAuthHelper sharedHelper];
-    if (dmah.username) {
-        
-    }
-    else 
-    {
-    }
     
     NSArray* oldRecentDJ = [moreChannelMenu itemArray];
     for (NSMenuItem* item in oldRecentDJ) {
-        if ([item tag]>1000000) {
+        if ([item tag]>0 && item.state != NSOnState) {
             [moreChannelMenu removeItem:item];
         }
     }
@@ -174,7 +167,9 @@
         NSMenuItem* pemptyItem = [moreChannelMenu itemWithTag:-14];
         NSInteger index = [moreChannelMenu indexOfItem:pemptyItem];
         [pemptyItem setHidden:YES];
+        
         for (NSDictionary* channel in promotions) {
+            NSLog(@"channel %@",channel);
             NSInteger tag = [[channel valueForKey:@"id"] integerValue];
             NSString* title = [channel valueForKey:@"name"];
             NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:title 
@@ -408,11 +403,12 @@
     NSMenuItem* itemPrivateChannel = [mainMenu itemWithTag:0];
     
     if (enable == NO) {
-        itemPrivateChannel.action = nil;
-        itemHeartChannel.action = nil;
-        if (itemHeartChannel.state != NSOffState || itemHeartChannel.state != NSOffState) {
+
+        if (itemHeartChannel.state != NSOffState || itemPrivateChannel.state != NSOffState) {
             [self changeChannelAction:[publicMenu itemWithTag:1]];
         }
+        itemPrivateChannel.action = nil;
+        itemHeartChannel.action = nil;
     }
     else {
         [itemHeartChannel setAction:@selector(changeChannelAction:)];

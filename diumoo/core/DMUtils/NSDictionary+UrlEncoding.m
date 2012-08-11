@@ -31,7 +31,9 @@ static NSString *urlEncode(id object)
     NSMutableArray *parts = [NSMutableArray array];
     for (id key in self) {
         id value = self[key];
-        NSString *part = [NSString stringWithFormat: @"%@=%@", urlEncode(key), urlEncode(value)];
+        NSString* encodedkey = urlEncode(key);
+        NSString* encodedValue = urlEncode(value);
+        NSString *part = [NSString stringWithFormat: @"%@=%@", encodedkey, encodedValue];
         [parts addObject: part];
     }
     return [parts componentsJoinedByString: @"&"];

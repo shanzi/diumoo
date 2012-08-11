@@ -16,10 +16,10 @@
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
     //redictor NSLog() to diumoo folder
-    #ifndef DEBUG
+#ifndef DEBUG
     [self redirectConsoleLogToDocumentFolder];
-    #endif
-    
+#endif
+    DMLog(@"start");
     [self makeDefaultPreference];
     
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
