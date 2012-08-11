@@ -34,6 +34,7 @@
                                                context:nil];
         
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
+    
     [self handleDockIconDisplayWithChange:nil];
 }
 

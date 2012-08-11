@@ -125,6 +125,7 @@
 
 -(void) revert:(id)sender
 {
+    DMLog(@"%@",self.document);
     [self.document revertDocumentToSaved:nil];
 }
 

@@ -11,14 +11,12 @@
 
 
 @interface DMDocument : NSDocument <NSWindowDelegate>
-
-
-@property(nonatomic,assign)NSDictionary* baseSongInfo;
-
-@property(nonatomic,copy) NSString* sid;
-@property(nonatomic,copy) NSString* ssid;
-@property(nonatomic,copy) NSString* aid;
-
-
+{
+    NSString *sid;
+    NSString *ssid;
+    NSString *aid;
+    
+    NSDictionary *baseSongInfo;
+}
 
 @end

@@ -12,14 +12,10 @@
 #import "DMService.h"
 
 @implementation DMDocument
-@synthesize baseSongInfo,aid,sid,ssid;
-
-
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         // Add your subclass-specific initialization here.
     }
     return self;
@@ -28,13 +24,26 @@
 
 -(void)makeWindowControllers
 {
-    if(sid == nil) return;
+    if(sid == nil)
+        return;
+    
     if ([self.windowControllers count]==0) {
         DMDocumentWindowController* windowController = [[DMDocumentWindowController allocWithZone:[self zone]] init];
         [self addWindowController:[windowController autorelease]];
     }
 }
 
+-(void)revertDocumentToSaved:(id)sender
+{
+    SInt32 osVersion;
+    Gestalt(gestaltSystemVersionMinor,&osVersion);
+    if (osVersion < 8) {
+        [super revertDocumentToSaved:nil];
+    }
+    else {
+        [super browseDocumentVersions:self];
+    }
+}
 
 -(BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 {
@@ -44,7 +53,7 @@
         DMLog(@"before remove version");
         [[DMPlayRecordHandler sharedRecordHandler] removeCurrentVersion];
         DMLog(@"after remove version");
-        [[DMPlayRecordHandler sharedRecordHandler] playSongWith:self.sid andSsid:self.ssid];
+        [[DMPlayRecordHandler sharedRecordHandler] playSongWith:sid andSsid:ssid];
     }
     return YES;
 }
@@ -80,30 +89,28 @@
     if ([type isEqualToString:@"shortcut"]) {
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
         if (dict) {
-            self.sid = [dict valueForKey:@"sid"];
-            self.ssid = [dict valueForKey:@"ssid"];
-            self.aid = [dict valueForKey:@"aid"];
-            self.baseSongInfo = dict;
+            sid = [dict valueForKey:@"sid"];
+            ssid = [dict valueForKey:@"ssid"];
+            aid = [dict valueForKey:@"aid"];
+            baseSongInfo = dict;
             if (sid) {
                 return YES;
             }
         }
     }
     else if([type isEqualToString:@"_private_record"]) {
-
         NSString* _sid = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-
         if (_sid) {
             DMPlayRecordHandler* sharedHandler = [DMPlayRecordHandler sharedRecordHandler];
             NSManagedObject* object = [sharedHandler songWithSid:_sid];
             if (object) {
-                self.sid = [object valueForKey:@"sid"];
-                self.ssid = [object valueForKey:@"ssid"];
-                self.aid = [object valueForKey:@"aid"];
+                sid = [object valueForKey:@"sid"];
+                ssid = [object valueForKey:@"ssid"];
+                aid = [object valueForKey:@"aid"];
                 
                 NSArray* keyarray = [[[object entity] attributesByName] allKeys];
                 NSDictionary*  infodict = [object dictionaryWithValuesForKeys:keyarray];
-                self.baseSongInfo = infodict;
+                baseSongInfo = infodict;
                 return YES;
             }
         }
@@ -121,7 +128,9 @@
         return YES;
     }
     
-    *outError = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
+    if (outError != nil) {
+        *outError = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
+    }
     
     return NO;
 }

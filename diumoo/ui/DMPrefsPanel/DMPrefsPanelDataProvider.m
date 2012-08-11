@@ -115,11 +115,11 @@
             [sender setEnabled:NO];
             [indicator setHidden:NO];
             [indicator startAnimation:self];
+            captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
+                    
+            NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                self.captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
-                NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:self.captcha_code];
-                
                 [NSImage AsyncLoadImageWithURLString:captcha_url andCallBackBlock:^(NSImage * image) {
                     if (image == nil) {
                         [sender setImage:nil];

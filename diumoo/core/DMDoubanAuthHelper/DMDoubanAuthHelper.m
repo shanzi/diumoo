@@ -32,9 +32,9 @@ static DMDoubanAuthHelper* sharedHelper;
     NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
                                               encoding:NSASCIIStringEncoding 
                                                  error:&error];
-    if(error == nil){
+    if(error != nil){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
-        return nil;
+        return @"";//prevent crash
     }
     
     return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
