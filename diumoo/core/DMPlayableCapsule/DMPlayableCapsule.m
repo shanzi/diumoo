@@ -33,8 +33,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)dic
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         loadState = QTMovieLoadStateError;
 
         timer = [[NSTimer alloc] init];
@@ -58,16 +57,6 @@
         volume = [[[NSUserDefaults standardUserDefaults] valueForKey:@"volume"] floatValue];
     }
     return self;
-}
-
--(BOOL) canLoad;
-{
-    if(!movie){
-        return [QTMovie canInitWithURL:[NSURL URLWithString:musicLocation]];
-    }
-    else {
-        return loadState >0;
-    }
 }
 
 -(BOOL) createNewMovie
@@ -280,6 +269,7 @@
 
 -(void)synchronousStop
 {
+    DMLog(@"%@ movie.rate = %lf",NSStringFromSelector(_cmd),movie.rate);
     if(movie.rate == 0.0)
        return;
     else {

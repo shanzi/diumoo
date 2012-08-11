@@ -18,7 +18,7 @@ static NSString *urlEncode(id object)
 {
     NSString *inputString = toString(object);
     CFStringRef string = CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)inputString,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
-    NSString *encodedString = (__bridge NSString *)string;
+    NSString *encodedString = [(__bridge NSString *)string copy];
     CFRelease(string);
     return encodedString;
 }

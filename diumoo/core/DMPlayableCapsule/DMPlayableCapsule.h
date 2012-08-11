@@ -69,7 +69,6 @@ typedef enum{
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;
 -(id) initWithDictionary:(NSDictionary*) dic;
 
--(BOOL) canLoad;
 -(BOOL) createNewMovie;
 -(void) invalidateMovie;
 
