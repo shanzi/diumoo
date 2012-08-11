@@ -45,6 +45,7 @@ DMPanelWindowController *sharedWindow;
         [self.window setAlphaValue:0.98];
         
         [loadingIndicator startAnimation:nil];
+        
     }
     return self;
 }
