@@ -87,19 +87,8 @@
 -(BOOL) readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError **)outError
 {
     DMLog(@"read from url %@, type : %@",url.path,type);
-    if ([type isEqualToString:@"shortcut"]) {
-        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
-        if (dict) {
-            sid = [dict valueForKey:@"sid"];
-            ssid = [dict valueForKey:@"ssid"];
-            aid = [dict valueForKey:@"aid"];
-            baseSongInfo = dict;
-            if (sid) {
-                return YES;
-            }
-        }
-    }
-    else if([type isEqualToString:@"_private_record"]) {
+    
+    if([type isEqualToString:@"_private_record"]) {
         NSString* _sid = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
         if (_sid) {
             DMPlayRecordHandler* sharedHandler = [DMPlayRecordHandler sharedRecordHandler];
@@ -112,6 +101,18 @@
                 NSArray* keyarray = [[[object entity] attributesByName] allKeys];
                 NSDictionary*  infodict = [object dictionaryWithValuesForKeys:keyarray];
                 baseSongInfo = infodict;
+                return YES;
+            }
+        }
+    }
+    else if ([type isEqualToString:@"shortcut"]) {
+        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
+        if (dict) {
+            sid = [dict valueForKey:@"sid"];
+            ssid = [dict valueForKey:@"ssid"];
+            aid = [dict valueForKey:@"aid"];
+            baseSongInfo = dict;
+            if (sid) {
                 return YES;
             }
         }

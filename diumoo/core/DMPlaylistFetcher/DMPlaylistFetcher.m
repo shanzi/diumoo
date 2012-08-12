@@ -8,7 +8,7 @@
 
 #define PLAYLIST_FETCH_URL_BASE @"http://douban.fm/j/mine/playlist"
 #define DOUBAN_FM_ORIGIN_URL @".douban.fm"
-#define DM_ALBUM_GET_URL @"http://127.0.0.1:8000/album/"
+#define DOUBAN_ALBUM_GET_URL @"http://douban.fm/j/app/radio/people"
 
 
 #import "DMPlaylistFetcher.h"
@@ -178,30 +178,57 @@
 
 -(void) clearPlaylist
 {
+    DMLog(@"clear playlist");
     [playlist removeAllObjects];
 }
 
--(void) dmGetAlbumSongsWithAid:(NSString *)aid andCompletionBlock:(void (^)(NSArray *))block
+-(void)fetchPlaylistForAlbum:(NSString *)album callback:(void (^)(BOOL))callback
 {
-    if (block) {
-    NSString* urlstring = [DM_ALBUM_GET_URL stringByAppendingFormat:@"?aid=%@",aid];
-    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlstring]
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                         timeoutInterval:5.0];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue currentQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSInteger expire = (NSInteger) time(0) +1000 *60 * 5 * 30;
 
-                               NSArray* list = [[CJSONDeserializer deserializer] deserializeAsArray:data error:&error];
-                               if (error) {
-                                   block(nil);
+    NSDictionary* fetchdict = @{
+    @"type" : @"n",
+    @"context": [NSString stringWithFormat:@"channel:0|subject_id:%@",album],
+    @"channel":@"0",
+    @"app_name":@"radio_ipad",
+    @"version": @"1",
+    @"expire" : @(expire)
+    };
+    NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
+                           DOUBAN_ALBUM_GET_URL,
+                           [fetchdict urlEncodedString]];
+    NSURL* url = [NSURL URLWithString:urlstring];
+    DMLog(@"%@",urlstring);
+    NSURLRequest* request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLCacheStorageAllowed
+                                         timeoutInterval:10.0
+                             ];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+
+                               if (d) {
+                                   NSDictionary* dictalbum =[[CJSONDeserializer deserializer]
+                                                        deserializeAsDictionary:d
+                                                        error:nil];
+                                   NSArray* songarray = dictalbum[@"song"];
+
+                                   if ([songarray count]) {
+                                       NSMutableArray* albumsongs = [NSMutableArray arrayWithCapacity:[songarray count]];
+                                       for (NSDictionary* song in songarray) {
+                                           if ([song[@"aid"] isEqualToString:album]) {
+                                               [albumsongs addObject:song];
+                                           }
+                                       }
+                                       
+                                       if ([albumsongs count]) {
+                                           playlist = albumsongs;
+                                           callback(YES);
+                                       }
+                                       else callback(NO);
+                                   }
                                }
-                               else {
-                                   block(list);
-                               }
-                               
                            }];
-    }
 }
 
 @end

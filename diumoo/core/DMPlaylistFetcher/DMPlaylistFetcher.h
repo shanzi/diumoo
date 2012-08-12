@@ -32,8 +32,7 @@
 -(void) fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr andErrorCount:(NSInteger)count;
 -(DMPlayableCapsule*) getOnePlayableCapsule;
 -(void) clearPlaylist;
-
--(void) dmGetAlbumSongsWithAid:(NSString*)aid andCompletionBlock:(void(^)(NSArray* list)) block;
+-(void) fetchPlaylistForAlbum:(NSString*)cid callback:(void(^)(BOOL success))callback;
 
 
 @end

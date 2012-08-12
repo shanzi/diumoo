@@ -42,7 +42,6 @@ DMPanelWindowController *sharedWindow;
         [self.window setLevel:NSPopUpMenuWindowLevel];
         [self.window setBackgroundColor:[NSColor whiteColor]];
         [self.window setOpaque:NO];
-        [self.window setAlphaValue:0.98];
         
         [loadingIndicator startAnimation:nil];
         

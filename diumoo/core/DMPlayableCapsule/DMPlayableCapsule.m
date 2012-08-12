@@ -196,6 +196,7 @@
 {
     CFRunLoopRemoveTimer(CFRunLoopGetMain(),(__bridge CFRunLoopTimerRef) timer, kCFRunLoopCommonModes);
     [timer invalidate];
+    timer = nil;
 }
 
 -(void) timerPulse:(NSTimer*)t
@@ -223,6 +224,7 @@
         }
     }
     else {
+        DMLog(@"%f",delta);
         if (delta < 0.1 && -delta < 0.1) {
             [self invalidateTimer];
             movie.volume = volume;
@@ -235,6 +237,7 @@
 
 -(void) commitVolume:(float)targetVolume
 {
+    DMLog(@"commit volume");
     volume = targetVolume;
 
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:@(targetVolume)
@@ -243,7 +246,17 @@
     if(movie.rate == 0.0)
         return;
     else{
-        [movie setVolume:volume];
+        if(timer) return;
+        
+        timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL
+                                        target:self
+                                      selector:@selector(timerPulse:)
+                                      userInfo:KTimerPulseTypeVolumeChange
+                                       repeats:YES];
+        
+        CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
+        [self.delegate playableCapsuleWillPause:self];
+        [timer fire];
     }
 }
 
