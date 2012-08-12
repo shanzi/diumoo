@@ -101,7 +101,7 @@
     
     albumTitle = [[dict valueForKey:@"albumtitle"] copy];
     aid = [[dict valueForKey:@"aid"] copy];
-    albumLocation = [[dict valueForKey:@"album_location"] copy];
+    albumLocation = [[dict valueForKey:@"url"] copy];
     starRating.rating = [[dict valueForKey:@"rating_avg"] floatValue];
     [starRating setNeedsDisplay];
 }
@@ -153,9 +153,10 @@
         [progressIndicator startAnimation:nil];
         NSBlockOperation* fetchDetailOperation = 
         [NSBlockOperation blockOperationWithBlock:^{
+            
             NSString* apiurlString = [NSString stringWithFormat:@"%@%@?alt=json",
-                                      DOUBAN_API_URL,
-                                      [self.document performSelector:@selector(aid)]];
+                                      DOUBAN_API_URL,aid
+                                      ];
             NSURL* url = [NSURL URLWithString:apiurlString];
             NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:2.0];
             
@@ -283,6 +284,7 @@
 
 -(void)openAlbumLocation:(id)sender
 {
+
     NSURL* albumurl = [NSURL URLWithString:albumLocation];
     [[NSWorkspace sharedWorkspace] openURL:albumurl];
 }

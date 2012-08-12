@@ -151,6 +151,7 @@
 					</object>
 					<object class="NSMenuItem" id="304921685">
 						<reference key="NSMenu" ref="1040400039"/>
+						<int key="NSIndent">1</int>
 						<string key="NSTitle">无</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -681,7 +682,6 @@
 							<string key="NSFrame">{{225, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">6</int>
 							<bool key="NSEnabled">YES</bool>

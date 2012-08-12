@@ -93,6 +93,7 @@
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
     [playingCapsule invalidateMovie];
+    DMLog(@"start to play");
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
@@ -123,6 +124,8 @@
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
             playingCapsule = [fetcher getOnePlayableCapsule];
             
+            DMLog(@"playing Capsule: %@",playingCapsule);
+            
             // 没有获取到capsule，说明歌曲列表已经为空，那么新获取一个播放列表
             if(playingCapsule == nil) {
                 [fetcher fetchPlaylistFromChannel:channel 
@@ -132,6 +135,7 @@
             }
             else {
                 [playingCapsule setDelegate:self];
+                [playingCapsule createNewMovie];
             }
         }
     }
@@ -139,15 +143,16 @@
         // 指定了要播放的歌曲
         [aSong setDelegate:self];
         playingCapsule = aSong;
-        
         if(playingCapsule.loadState < 0 && ![playingCapsule createNewMovie]){
+            DMLog(@"歌曲加载失败");
             //歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
             playingCapsule = nil;
-            [fetcher fetchPlaylistFromChannel:channel 
-                                     withType:kFetchPlaylistTypeNew 
-                                          sid:nil 
+            [fetcher fetchPlaylistFromChannel:channel
+                                     withType:kFetchPlaylistTypeNew
+                                          sid:nil
                                startAttribute:[aSong startAttributeWithChannel:channel]];
         }
+
     }
     
     if(playingCapsule)
@@ -182,6 +187,7 @@
     if(pauseType == PAUSE_SKIP)
     {
         // 跳过当前歌曲
+        DMLog(@">>>> skip");
         if (waitingCapsule) {
             [self startToPlay:waitingCapsule];
             waitingCapsule = nil;
@@ -239,6 +245,7 @@
 
 -(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
+    DMLog(@"%ld",state);
     if (state >= QTMovieLoadStatePlayable) {
         
         if ([capsule picture] == nil) {
@@ -314,8 +321,9 @@
     
     if (startsong) {
         if (playingCapsule) {
-            waitingCapsule = startsong;
+            
             if (OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) {
+                waitingCapsule = startsong;
                 [playingCapsule pause];
             }
         }
@@ -328,7 +336,7 @@
         DMPlayableCapsule* c = [fetcher getOnePlayableCapsule];
         [self startToPlay:c];
     }
-
+    canPlaySpecial = YES;
 }
 
 //-------------------------------------------------------------------------
@@ -339,7 +347,7 @@
 
 -(void) playOrPause
 {
-    
+    DMLog(@"pause type : %d",pauseType);
     if (playingCapsule.movie.rate > 0) 
     {
         if (pauseType) return;
@@ -548,12 +556,24 @@
 // ---------------------play special collection ----------------------
 -(void) playSpecialNotification:(NSNotification*) n
 {
+    DMLog(@"%d",canPlaySpecial);
     if (!canPlaySpecial)return;
     
     NSString* type = (n.userInfo)[@"type"];
     if ([type isEqualToString:@"album"]) {
+        DMLog(@"fetch album");
         NSString* aid = (n.userInfo)[@"aid"];
-        [self playAlbumWithAid:aid withInfo:n.userInfo];
+        [fetcher fetchPlaylistForAlbum:aid callback:^(BOOL success) {
+            if (success) {
+                [waitPlaylist removeAllObjects];
+                waitingCapsule = nil;
+                [self skip];
+            }
+            else
+            {
+                NSRunAlertPanel(@"播放专辑失败", @"很遗憾，尝试播放您指定的专辑失败。", @"知道了", nil, nil);
+            }
+        }];
     }
     else if([type isEqualToString:@"song"]){
         NSString* start = (n.userInfo)[@"start"];
@@ -569,22 +589,22 @@
     DMLog(@"play album : %@",aid);
     if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SPECIAL, (int32_t*)&pauseType)) return;
     
-    [fetcher dmGetAlbumSongsWithAid:aid andCompletionBlock:^(NSArray *list) {
-
-        if([list count]){
-            NSMutableArray* array = nil;
-            array = [NSMutableArray arrayWithArray:list];
-            specialWaitList = array;
-            [diumooPanel toggleSpecialWithDictionary:info];
-            
-            [playingCapsule pause];
-            
-        }
-        else {
-            pauseType = PAUSE_PASS;
-            specialWaitList = nil;
-        }
-    }];
+//    [fetcher dmGetAlbumSongsWithAid:aid andCompletionBlock:^(NSArray *list) {
+//
+//        if([list count]){
+//            NSMutableArray* array = nil;
+//            array = [NSMutableArray arrayWithArray:list];
+//            specialWaitList = array;
+//            [diumooPanel toggleSpecialWithDictionary:info];
+//            
+//            [playingCapsule pause];
+//            
+//        }
+//        else {
+//            pauseType = PAUSE_PASS;
+//            specialWaitList = nil;
+//        }
+//    }];
 }
 //--------------------------------------------------------------------
 @end
