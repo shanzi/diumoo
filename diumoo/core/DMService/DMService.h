@@ -20,8 +20,8 @@
 @interface DMService : NSObject
 
 //+(void)registerSongWith:(NSString*)sid :(NSString*)ssid :(NSString*)aid;
-+(NSString*)cleanStartAttribute:(NSString*)start;
-+(BOOL)openDiumooLink:(NSString*)url;
++(NSString*) cleanStartAttribute:(NSString*)start;
++(BOOL) openDiumooLink:(NSString*)url;
 +(void) importRecordOperation;
 +(void) importRecordOperationWithFilePath:(NSURL*)fp;
 +(void) exportRecordOperation;

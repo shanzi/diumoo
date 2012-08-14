@@ -153,16 +153,12 @@ static NSOperationQueue* serviceQueue;
 +(void)importRecordOperationWithFilePath:(NSURL *)fp
 {
     [DMService performOnServiceQueue:^{
-        
-        
-        NSArray* array= nil;
-        array = [NSArray arrayWithContentsOfURL:fp];
+        NSArray *array = [NSArray arrayWithContentsOfURL:fp];
         if (array) {
             NSInteger errorcount=0;
             NSInteger finished = 0;
-            DMPlayRecordHandler * handler = [DMPlayRecordHandler sharedRecordHandler];
-            for (NSDictionary* song in array) {
-                
+            DMPlayRecordHandler *handler = [DMPlayRecordHandler sharedRecordHandler];
+            for (NSDictionary *song in array) {
                 if(![handler addRecordWithDict:song]){
                     errorcount += 1;
                 }
@@ -191,7 +187,6 @@ static NSOperationQueue* serviceQueue;
 
 +(void) exportRecordOperation
 {
-    
     NSSavePanel* savepanel = [NSSavePanel savePanel];
     [savepanel setAllowedFileTypes:@[@"dmrecord"]];
     [savepanel setTitle:@"导出播放记录"];
@@ -199,13 +194,11 @@ static NSOperationQueue* serviceQueue;
     if ([savepanel runModal] == NSOKButton) {
         NSURL* url = [savepanel URL];
         [DMService performOnMainQueue:^{
-            
             NSArray* songs = [[DMPlayRecordHandler sharedRecordHandler] allSongs];
             if (songs) {
                 NSInteger count = [songs count] + 10;
                 NSInteger finished = 0;
                 NSMutableArray* outarray = [[NSMutableArray alloc] initWithCapacity:count];
-                
                 for (NSManagedObject* song in songs) {
                     [outarray addObject:
                      @{
@@ -269,8 +262,6 @@ static NSOperationQueue* serviceQueue;
                  NSString* referenceURL = dict[@"url"];
                  NSInteger _id = [dict[@"id"] integerValue];
                  BOOL force_open = [dict[@"can_cancel"] boolValue];
-                 
-                 
                  
                  [[NSUserDefaults standardUserDefaults]
                   setValue:@(_id) forKey:@"notificationID"

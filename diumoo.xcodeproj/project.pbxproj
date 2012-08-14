@@ -52,7 +52,6 @@
 		F515C16115B6F07500210826 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F515C15F15B6F07500210826 /* StatusItemView.m */; };
 		F515C16515B6FAA000210826 /* status-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = F515C16315B6FAA000210826 /* status-icon-alt.png */; };
 		F515C16615B6FAA000210826 /* status-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F515C16415B6FAA000210826 /* status-icon.png */; };
-		F515C17415B7131000210826 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = F515C17315B7131000210826 /* DMPanel.m */; };
 		F517B91215C1760200097815 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F517B91115C1760200097815 /* settings.png */; };
 		F517B91415C1771000097815 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5237A0615C958A500D2A1F2 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = F5237A0415C958A500D2A1F2 /* share.png */; };
@@ -235,8 +234,6 @@
 		F515C15F15B6F07500210826 /* StatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemView.m; sourceTree = "<group>"; };
 		F515C16315B6FAA000210826 /* status-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-alt.png"; sourceTree = "<group>"; };
 		F515C16415B6FAA000210826 /* status-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon.png"; sourceTree = "<group>"; };
-		F515C17215B7130F00210826 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
-		F515C17315B7131000210826 /* DMPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanel.m; sourceTree = "<group>"; };
 		F517B91115C1760200097815 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F5237A0415C958A500D2A1F2 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		F5237A0515C958A500D2A1F2 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
@@ -395,8 +392,6 @@
 				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
 				F501B3B115877062001C6158 /* DMCoverSlide */,
-				F515C17215B7130F00210826 /* DMPanel.h */,
-				F515C17315B7131000210826 /* DMPanel.m */,
 				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
 				F501B3BB1587708F001C6158 /* DMPanelWindowController.m */,
 				F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */,
@@ -1183,7 +1178,6 @@
 				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
 				F515C16015B6F07500210826 /* MenubarController.m in Sources */,
 				F515C16115B6F07500210826 /* StatusItemView.m in Sources */,
-				F515C17415B7131000210826 /* DMPanel.m in Sources */,
 				F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */,
 				F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */,
 				F5DFF1A315BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m in Sources */,

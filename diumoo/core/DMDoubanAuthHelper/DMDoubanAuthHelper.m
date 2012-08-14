@@ -96,14 +96,10 @@ static DMDoubanAuthHelper* sharedHelper;
     likedSongsCount = 0;
     bannedSongsCount = 0;
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
-
     
     for (NSHTTPCookie* cookie in cookies) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
-    
-    cookies =[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
-
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];

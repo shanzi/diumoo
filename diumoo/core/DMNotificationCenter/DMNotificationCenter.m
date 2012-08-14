@@ -17,7 +17,10 @@
 {
     if (self = [super init]) {
         if(!NSClassFromString(@"NSUserNotification")) {
-        [GrowlApplicationBridge setGrowlDelegate:self];
+            [GrowlApplicationBridge setGrowlDelegate:self];
+        }
+        else{
+            [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
         }
     }
     return self;
@@ -26,6 +29,7 @@
 -(void) dealloc
 {
     [GrowlApplicationBridge setGrowlDelegate:nil];
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:nil];
 }
 
 #pragma ---
@@ -47,18 +51,16 @@
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
-        NSData* data = [capsule.picture TIFFRepresentation];
         if(NSClassFromString(@"NSUserNotification")) {
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-            [center setDelegate:self];
             notification.title = capsule.title;
             notification.informativeText = detail;
             notification.soundName = nil;
-            [notification setDeliveryDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-            [center scheduleNotification: notification];
+            [center deliverNotification: notification];
         } else {
-        [GrowlApplicationBridge notifyWithTitle:capsule.title   
+        NSData* data = [capsule.picture TIFFRepresentation];
+        [GrowlApplicationBridge notifyWithTitle:capsule.title
                                     description:detail
                                notificationName:@"Music"
                                        iconData:data
@@ -67,8 +69,7 @@
                                    clickContext:capsule.sid];
         }
     }
-    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState)
-    {
+    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
         NSDictionary* postDict = @{@"Player State": @"Playing",
                                                 @"Album": capsule.albumtitle,
                                                 @"Name": capsule.title,
@@ -78,8 +79,7 @@
                                                                      userInfo:postDict];
     }
     
-    if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState)
-    {
+    if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
         [NSApp setApplicationIconImage:capsule.picture];
     }
 }

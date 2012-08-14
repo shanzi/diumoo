@@ -20,14 +20,12 @@
     if ([[values valueForKey:@"usesMediaKey"] integerValue]!=NSOnState) {
         [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyPlayShortcut
                                                        handler:^{
-                                                           DMLog(@"play");
                                                            [[NSApp delegate] 
                                                             performSelector:@selector(keyShortcuts:)
                                                             withObject:keyPlayShortcut];
                                                        }];
         [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keySkipShortcut
                                                        handler:^{
-                                                           DMLog(@"rate");
                                                            [[NSApp delegate] 
                                                             performSelector:@selector(keyShortcuts:)
                                                             withObject:keySkipShortcut];
