@@ -226,9 +226,7 @@
 
 -(void) commitVolume:(float)targetVolume
 {
-    DMLog(@"commit volume");
     volume = targetVolume;
-
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:@(targetVolume)
                                                                         forKey:@"volume"];
     
@@ -244,7 +242,7 @@
                                        repeats:YES];
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        [self.delegate playableCapsuleWillPause:self];
+        //[self.delegate playableCapsuleWillPause:self];
         [timer fire];
     }
 }

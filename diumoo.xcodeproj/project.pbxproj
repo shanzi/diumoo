@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F8A956415D9FEE500701895 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A956315D9FEE500701895 /* DMPanel.m */; };
 		3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE809815D4A632001A3BEC /* DMErrorLog.m */; };
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
@@ -153,6 +154,8 @@
 
 /* Begin PBXFileReference section */
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		3F8A956215D9FEE500701895 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
+		3F8A956315D9FEE500701895 /* DMPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanel.m; sourceTree = "<group>"; };
 		3FBE809715D4A632001A3BEC /* DMErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMErrorLog.h; path = DMErrorLog/DMErrorLog.h; sourceTree = "<group>"; };
 		3FBE809815D4A632001A3BEC /* DMErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMErrorLog.m; path = DMErrorLog/DMErrorLog.m; sourceTree = "<group>"; };
 		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
 				F501B3BB1587708F001C6158 /* DMPanelWindowController.m */,
 				F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */,
+				3F8A956215D9FEE500701895 /* DMPanel.h */,
+				3F8A956315D9FEE500701895 /* DMPanel.m */,
 			);
 			path = DMPanel;
 			sourceTree = "<group>";
@@ -1189,6 +1194,7 @@
 				F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */,
 				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,
 				3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */,
+				3F8A956415D9FEE500701895 /* DMPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
