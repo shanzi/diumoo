@@ -200,7 +200,6 @@
             movie.volume = volume;
         }
         else {
-            DMLog(@"time pulse delta = %lf - %lf",volume,movie.volume);
             movie.volume += delta>0?0.08:-0.08;
         }
     }
@@ -213,7 +212,6 @@
         }
     }
     else {
-        DMLog(@"%f",delta);
         if (delta < 0.1 && -delta < 0.1) {
             [self invalidateTimer];
             movie.volume = volume;

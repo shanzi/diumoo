@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "NSData+AESCrypt.h"
 #import "NSData+Base64.h"
+#import "DMErrorLog.h"
 
 
 #define CURRENT_VERSION 1

@@ -9,19 +9,19 @@
 #import "DMAppDelegate.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMService.h"
+#import "DMErrorLog.h"
 
 
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
-{
-    //redictor NSLog() to diumoo folder
-#ifndef DEBUG
-    [self redirectConsoleLogToDocumentFolder];
-#endif
-    DMLog(@"start");
+{    
     [self makeDefaultPreference];
     
+    [DMErrorLog sharedErrorLog];
+    
+    [self redirectConsoleLogToDocumentFolder];
+
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMShortcutsHandler registrationShortcuts];
@@ -30,8 +30,14 @@
                                             forKeyPath:@"showDockIcon" 
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
+    
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"displayAlbumCoverOnDock" 
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"enableLogFile"
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
         
@@ -58,6 +64,9 @@
         else {
             [NSApp setApplicationIconImage:nil];
         }
+    }
+    else if (keyPath == @"enableLogFile"){
+        [self redirectConsoleLogToDocumentFolder];
     }
 }
 
@@ -95,22 +104,20 @@
 
 -(void) makeDefaultPreference
 {
-    NSDictionary *preferences=@{
-    @"channel" : @1,
-    @"volume":@1.0f,
-    @"max_wait_playlist_count":@2,
-    @"autoCheckUpdate":@(NSOnState),
-    @"displayAlbumCoverOnDock":@(NSOnState),
-    @"enableGrowl":@(NSOnState),
-    @"enableEmulateITunes":@(NSOnState),
-    @"usesMediaKey":@(NSOnState),
-    @"showDockIcon":@(NSOnState),
-    @"filterAds":@(NSOffState),
-    
-    };
+    NSDictionary *preferences=@{@"channel" : @1,
+                                  @"volume": @1.0f,
+                 @"max_wait_playlist_count": @1,
+                         @"autoCheckUpdate": @(NSOnState),
+                 @"displayAlbumCoverOnDock": @(NSOnState),
+                             @"enableGrowl": @(NSOnState),
+                     @"enableEmulateITunes": @(NSOnState),
+                            @"usesMediaKey": @(NSOnState),
+                            @"showDockIcon": @(NSOnState),
+                               @"filterAds": @(NSOffState),
+                               @"enableLog": @(NSOnState),
+                           @"enableLogFile": @(NSOnState),};
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:preferences];
-    
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
@@ -131,36 +138,28 @@
 
 -(void) keyShortcuts:(id)key
 {
-    if([key isEqualToString:keyPlayShortcut])
-    {
+    if([key isEqualToString:keyPlayShortcut]) {
         [center playOrPause];
     }
-    else if ([key isEqualToString:keySkipShortcut]) 
-    {
+    else if ([key isEqualToString:keySkipShortcut]) {
         [center skip];
     }
-    else if ([key isEqualToString:keyRateShortcut])
-    {
+    else if ([key isEqualToString:keyRateShortcut]) {
         [center rateOrUnrate];
     }
-    else if ([key isEqualToString:keyBanShortcut])
-    {
+    else if ([key isEqualToString:keyBanShortcut]) {
         [center ban];
     }
-    else if ([key isEqualToString:keyTogglePanelShortcut])
-    {
+    else if ([key isEqualToString:keyTogglePanelShortcut]) {
         [center.diumooPanel togglePanel:nil];
     }
-    else if([key isEqualToString:mediaKeyOn])
-    {
+    else if([key isEqualToString:mediaKeyOn]) {
         [mediaKeyTap startWatchingMediaKeys];
     }
-    else if([key isEqualToString:mediaKeyOff])
-    {
+    else if([key isEqualToString:mediaKeyOff]) {
         [mediaKeyTap stopWatchingMediaKeys];
     }
-    else 
-    {
+    else {
         [self showPreference:nil];
     }
 }
@@ -183,15 +182,19 @@
 
 - (void) redirectConsoleLogToDocumentFolder
 {
-    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                                        NSUserDomainMask, YES);
-    NSString* pathToUserApplicationSupportFolder = dirs[0];
-    NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
-                                        stringByAppendingPathComponent:@"diumoo"];
-    
-    NSString *logPath = [pathToDiumooDataFolder stringByAppendingPathComponent:@"error.log"];
-    freopen([logPath fileSystemRepresentation],"a+",stderr);
+    NSInteger currentValue = [[[NSUserDefaults standardUserDefaults] valueForKey:@"enableLogFile"] integerValue];
+    if (currentValue == NSOnState) {
+        NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                                            NSUserDomainMask, YES);
+        NSString* pathToUserApplicationSupportFolder = dirs[0];
+        NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
+                                            stringByAppendingPathComponent:@"diumoo"];
+        
+        NSString *logPath = [pathToDiumooDataFolder stringByAppendingPathComponent:@"error.log"];
+        freopen([logPath fileSystemRepresentation],"a+",stderr);
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setInteger:NSOffState forKey:@"enableFileLog"];
+    }
 }
-
-
 @end

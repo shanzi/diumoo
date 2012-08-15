@@ -28,13 +28,13 @@ static DMDoubanAuthHelper* sharedHelper;
 
 +(NSString*) getNewCaptchaCode
 {    
-    NSError* error = nil;
+    NSError* error;
     NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
                                               encoding:NSASCIIStringEncoding 
                                                  error:&error];
     if(error != nil){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
-        return @"";//prevent crash
+        return @"";
     }
     
     return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
@@ -107,11 +107,9 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSImage*) getUserIcon
 {
-    if(userinfo)
+    if(userinfo && icon)
     {
-        if (icon) {
-            return icon;
-        }
+        return icon;
     }
     return [NSImage imageNamed:NSImageNameUser];
 }

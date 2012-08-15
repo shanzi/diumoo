@@ -21,10 +21,10 @@
 
 @interface DMPlaylistFetcher : NSObject
 {
-    id<DMPlaylistFetcherDeleate> __strong delegate;
+    id<DMPlaylistFetcherDeleate> delegate;
 }
 
-@property(strong) id<DMPlaylistFetcherDeleate> delegate;
+@property id<DMPlaylistFetcherDeleate> delegate;
 
 
 -(void) fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;

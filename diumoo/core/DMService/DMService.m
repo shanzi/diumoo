@@ -27,13 +27,10 @@ static NSOperationQueue* serviceQueue;
 
 +(NSOperationQueue*) serviceQueue
 {
-    if (serviceQueue) {
-        return serviceQueue;
-    }
-    else{
+    if (serviceQueue == nil) {
         serviceQueue= [[NSOperationQueue alloc] init];
-        return serviceQueue;
     }
+    return serviceQueue;
 }
 
 +(void)performOnServiceQueue:(void(^)(void))block
@@ -48,7 +45,7 @@ static NSOperationQueue* serviceQueue;
 
 +(NSString*) cleanStartAttribute:(NSString*)start
 {
-    DMLog(@"clean start %@",start);
+    [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"clean start = %@",start]];
     NSArray* startComponents = [start componentsSeparatedByString:@"g"];
     if ([startComponents count]>2) {
         if ([startComponents[1] length] == 4) {
@@ -63,8 +60,8 @@ static NSOperationQueue* serviceQueue;
 
 +(BOOL)openDiumooLink:(NSString *)string
 {
-    NSString* start = nil;
-    NSString* type = nil;
+    NSString* start;
+    NSString* type;
     
     if ([string hasPrefix:DM_SONG_PREFIX]) {
         start = [string stringByReplacingOccurrencesOfString:DM_SONG_PREFIX
@@ -92,11 +89,8 @@ static NSOperationQueue* serviceQueue;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playspecial"
                                                             object:nil
-                                                          userInfo:@{
-         @"type" : @"song",
-         @"start" : start
-         }
-         ];
+                                                          userInfo:@{@"type" : @"song",
+                                                                    @"start" : start}];
         
         return YES;
     }

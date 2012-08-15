@@ -289,10 +289,10 @@
 						<object class="NSButton" id="144613420">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{0, 435}, {65, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="243441216"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="784427520">
@@ -322,10 +322,10 @@
 						<object class="NSButton" id="243441216">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{63, 435}, {63, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="15871923"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -352,10 +352,10 @@
 						<object class="NSButton" id="15871923">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{128, 435}, {62, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="615778314"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -382,10 +382,10 @@
 						<object class="NSButton" id="615778314">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{190, 436}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="930623499"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">3</int>
 							<bool key="NSEnabled">YES</bool>
@@ -474,10 +474,10 @@
 						<object class="NSButton" id="224481640">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{218, 74}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="778091912"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">-1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -585,10 +585,10 @@
 						<object class="NSButton" id="247675433">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{5, 7}, {24, 24}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="690881450"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">5</int>
 							<bool key="NSEnabled">YES</bool>
@@ -692,10 +692,10 @@
 						<object class="NSButton" id="1014064253">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">292</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{225, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">6</int>
 							<bool key="NSEnabled">YES</bool>
@@ -722,10 +722,10 @@
 						<object class="NSButton" id="1073221650">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">292</int>
+							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{205, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="1014064253"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">7</int>
 							<bool key="NSEnabled">YES</bool>
@@ -754,6 +754,7 @@
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="144613420"/>
+					<bool key="NSViewIsLayerTreeHost">YES</bool>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -1715,6 +1716,13 @@
 				<string key="3760.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3797.CustomClassName">DMButton</string>
 				<string key="3797.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<real value="5" key="3797.IBViewIntegration.shadowBlurRadius"/>
+				<object class="NSColor" key="3797.IBViewIntegration.shadowColor">
+					<int key="NSColorSpace">2</int>
+					<bytes key="NSRGB">MC4xMjU0OTAyMDM1IDAuNzIxNTY4NjQ0IDAuOTQxMTc2NTMzNwA</bytes>
+				</object>
+				<real value="0.0" key="3797.IBViewIntegration.shadowOffsetHeight"/>
+				<real value="0.0" key="3797.IBViewIntegration.shadowOffsetWidth"/>
 				<string key="3798.CustomClassName">DMButton</string>
 				<string key="3798.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3799.CustomClassName">DMButton</string>
@@ -1784,14 +1792,6 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">DMControlButton</string>
-					<string key="superclassName">NSButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/DMControlButton.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">DMCoverControlView</string>
 					<string key="superclassName">NSButton</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1840,16 +1840,16 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="banButton">NSButton</string>
+						<string key="banButton">DMButton</string>
 						<string key="coverView">DMCoverControlView</string>
 						<string key="delegate">id</string>
 						<string key="indicateString">NSTextField</string>
 						<string key="loadingIndicator">NSProgressIndicator</string>
-						<string key="playPauseButton">DMControlButton</string>
+						<string key="playPauseButton">DMButton</string>
 						<string key="popupMenuController">DMPopUpMenuController</string>
-						<string key="rateButton">NSButton</string>
+						<string key="rateButton">DMButton</string>
 						<string key="ratedCountTextField">NSTextField</string>
-						<string key="skipButton">NSButton</string>
+						<string key="skipButton">DMButton</string>
 						<string key="userIconButton">NSButton</string>
 						<string key="usernameTextField">NSTextField</string>
 						<string key="view">DMCoverControlView</string>
@@ -1857,7 +1857,7 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="banButton">
 							<string key="name">banButton</string>
-							<string key="candidateClassName">NSButton</string>
+							<string key="candidateClassName">DMButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="coverView">
 							<string key="name">coverView</string>
@@ -1877,7 +1877,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="playPauseButton">
 							<string key="name">playPauseButton</string>
-							<string key="candidateClassName">DMControlButton</string>
+							<string key="candidateClassName">DMButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="popupMenuController">
 							<string key="name">popupMenuController</string>
@@ -1885,7 +1885,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="rateButton">
 							<string key="name">rateButton</string>
-							<string key="candidateClassName">NSButton</string>
+							<string key="candidateClassName">DMButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="ratedCountTextField">
 							<string key="name">ratedCountTextField</string>
@@ -1893,7 +1893,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="skipButton">
 							<string key="name">skipButton</string>
-							<string key="candidateClassName">NSButton</string>
+							<string key="candidateClassName">DMButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="userIconButton">
 							<string key="name">userIconButton</string>
