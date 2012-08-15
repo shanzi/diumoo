@@ -10,6 +10,7 @@
 #import "DMDoubanAuthHelper.h"
 #import "DMService.h"
 #import "DMErrorLog.h"
+#import "MASShortcut.h"
 
 
 @implementation DMAppDelegate
@@ -25,21 +26,6 @@
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMShortcutsHandler registrationShortcuts];
-    
-    [[NSUserDefaults standardUserDefaults] addObserver:self
-                                            forKeyPath:@"showDockIcon" 
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                                               context:nil];
-    
-    [[NSUserDefaults standardUserDefaults] addObserver:self
-                                            forKeyPath:@"displayAlbumCoverOnDock" 
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                                               context:nil];
-    
-    [[NSUserDefaults standardUserDefaults] addObserver:self
-                                            forKeyPath:@"enableLogFile"
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                                               context:nil];
         
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
@@ -116,8 +102,27 @@
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
                            @"enableLogFile": @(NSOnState),};
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults registerDefaults:preferences];
     
-    [[NSUserDefaults standardUserDefaults] registerDefaults:preferences];
+    if ([defaults valueForKey:@"shortcutDidRegistered"]==nil) {
+        [defaults setValue:[[MASShortcut
+                             shortcutWithKeyCode:43
+                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keyRateShortcut];
+        [defaults setValue:[[MASShortcut
+                             shortcutWithKeyCode:47
+                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keyBanShortcut];
+        [defaults setValue:[[MASShortcut
+                            shortcutWithKeyCode:44
+                            modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keyTogglePanelShortcut];
+        [defaults setValue:@(YES) forKey:@"shortcutDidRegister"];
+    }
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{

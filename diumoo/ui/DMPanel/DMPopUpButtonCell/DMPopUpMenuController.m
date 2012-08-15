@@ -280,72 +280,51 @@
         newItem = sender;
         [longMainButton setTitle:[sender title]];
         [longMainButton setHidden:NO];
-
+        
     }
-    else {
-        
-        if (tag > 1000000)
-        {
-            NSMenuItem* moreChannelMenuItem = [mainMenu itemWithTag:1000000];
-            [mainButton setTitle:moreChannelMenuItem.title];
-            [subButton setTitle:[sender title]];
-            
-            
-            
-            // -------------------------- 处理兆赫的菜单和记录 --------------------------
-
-            newItem = [moreChannelMenu itemWithTag:tag]; //先检查当前的兆赫是不是已经在最近播放的列表里了
-            if(newItem == nil){
-                // 当前的dj兆赫还没被加入到最近播放列表，现在加入它
-                newItem = [sender copy];
-                
-                // 先获取到当前dj菜单下所有item，检查item的数量是否超过了要求，超过了的话，就删掉一些
-                NSArray* menuarray = [moreChannelMenu itemArray]; 
-                if ([menuarray count]>20) {
-                    NSMenuItem* itemToRemove = [menuarray lastObject];
-                    if ([itemToRemove tag] > 1000000) {
-                        [moreChannelMenu removeItem:itemToRemove];
-                    }
-                }
-                
-                
-                // 把“空”字样那个菜单项隐藏掉
-                NSMenuItem* itemToHide = [moreChannelMenu itemWithTag:-13];
-                [itemToHide setHidden:YES];
-                
-                // 计算将新item插入的index
-                NSInteger indexToInsert = [moreChannelMenu indexOfItem:itemToHide] +1;
-                [newItem setIndentationLevel:1];
-                [moreChannelMenu insertItem:newItem atIndex:indexToInsert];
-                
-                // 现在将新的最近播放列表保存到用户偏好里
-                NSArray* newMenuArray = [moreChannelMenu itemArray];
-                NSMutableArray* arrayToSave = [[NSMutableArray alloc] init];
-                for (NSMenuItem* menuItem in newMenuArray) {
-                    NSInteger ttag = [menuItem tag];
-                    if(ttag > 1000000){
-                        NSDictionary* dict = @{@"cid": @(ttag),
-                                              @"title": [menuItem title]};
-                        [arrayToSave addObject:dict];
-                    }
-                }
-                
-                id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-                [values setValue:arrayToSave forKey:@"recentdj"];
-            }
-        }
-        else if(tag >0 )
-        {
-            newItem = sender;
-            NSMenuItem* publicMenuItem = [mainMenu itemWithTag:1];
-            [mainButton setTitle:publicMenuItem.title];
-            [subButton setTitle:[newItem title]];
-            
-        }
-        
+    else if( [publicMenu itemWithTag:tag] != nil){
+        newItem = sender;
+        NSMenuItem* publicMenuItem = [mainMenu itemWithTag:1];
+        [mainButton setTitle:publicMenuItem.title];
+        [subButton setTitle:[newItem title]];
         [longMainButton setHidden:YES];
     }
-
+    else{
+        NSMenuItem* moreChannelMenuItem = [mainMenu itemWithTag:1000000];
+        [mainButton setTitle:moreChannelMenuItem.title];
+        [subButton setTitle:[sender title]];
+        
+        // -------------------------- 处理兆赫的菜单和记录 --------------------------
+        
+        newItem = [moreChannelMenu itemWithTag:tag]; //先检查当前的兆赫是不是已经在最近播放的列表里了
+        
+        
+        if(newItem == nil){
+            // 当前的dj兆赫还没被加入到最近播放列表，现在加入它
+            newItem = [sender copy];
+            
+            // 先获取到当前dj菜单下所有item，检查item的数量是否超过了要求，超过了的话，就删掉一些
+            NSArray* menuarray = [moreChannelMenu itemArray];
+            if ([menuarray count]>20) {
+                NSMenuItem* itemToRemove = [menuarray lastObject];
+                if ([itemToRemove tag] > 1000000) {
+                    [moreChannelMenu removeItem:itemToRemove];
+                }
+            }
+            
+            
+            // 把“空”字样那个菜单项隐藏掉
+            NSMenuItem* itemToHide = [moreChannelMenu itemWithTag:-13];
+            [itemToHide setHidden:YES];
+            
+            // 计算将新item插入的index
+            NSInteger indexToInsert = [moreChannelMenu indexOfItem:itemToHide] +1;
+            [newItem setIndentationLevel:1];
+            [moreChannelMenu insertItem:newItem atIndex:indexToInsert];
+        }
+        [longMainButton setHidden:YES];
+    }
+    
     [newItem setState:NSOnState];
     NSMenuItem* pitem = [newItem parentItem];
     while (pitem!=nil) {
@@ -361,7 +340,7 @@
     
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     [values setValue:@(tag) forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
-
+    
 }
 
 -(void) enterSpecialPlayingModeWithTitle:(NSString *)title artist:(NSString*)artist andTypeString:(NSString*) type
@@ -423,6 +402,23 @@
     [longMainButton setEnabled:YES];
     [mainButton setEnabled:YES];
     [subButton setEnabled:YES];
+}
+
+-(void) invokeChannelWith:(NSInteger)cid andTitle:(NSString *)title
+{
+    NSMenuItem* item = [publicMenu itemWithTag:cid];
+    if (item == nil) {
+        item = [moreChannelMenu itemWithTag:cid];
+        if (item == nil) {
+            item = [[NSMenuItem alloc] initWithTitle:title action:@selector(changeChannelAction:)
+                                       keyEquivalent:@""];
+            item.tag = cid;
+            
+            [item setTarget:self];
+            
+        }
+    }
+    [self changeChannelAction:item];
 }
 
 @end

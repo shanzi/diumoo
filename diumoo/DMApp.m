@@ -19,7 +19,7 @@
     if(self)
     {
         NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
-        LSSetDefaultHandlerForURLScheme((CFStringRef)@"dm", (__bridge CFStringRef)bundleID);
+        LSSetDefaultHandlerForURLScheme((CFStringRef)@"diumoo", (__bridge CFStringRef)bundleID);
         
         [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
                                                            andSelector:@selector(handleEvent:withReplyEvent:)

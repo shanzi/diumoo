@@ -560,7 +560,14 @@
     if (!canPlaySpecial)return;
     
     NSString* type = (n.userInfo)[@"type"];
-    if ([type isEqualToString:@"album"]) {
+    if([type isEqualToString:@"song"]){
+        NSString* start = (n.userInfo)[@"start"];
+        [fetcher fetchPlaylistFromChannel:channel
+                                 withType:kFetchPlaylistTypeNew
+                                      sid:nil
+                           startAttribute:[start stringByAppendingString:channel]];
+    }
+    else if ([type isEqualToString:@"album"]) {
         DMLog(@"fetch album");
         NSString* aid = (n.userInfo)[@"aid"];
         [fetcher fetchPlaylistForAlbum:aid callback:^(BOOL success) {
@@ -575,12 +582,10 @@
             }
         }];
     }
-    else if([type isEqualToString:@"song"]){
-        NSString* start = (n.userInfo)[@"start"];
-        [fetcher fetchPlaylistFromChannel:channel
-                                 withType:kFetchPlaylistTypeNew
-                                      sid:nil
-                           startAttribute:[start stringByAppendingString:channel]];
+    else if([type isEqualToString:@"channel"]){
+        NSInteger cid = [n.userInfo[@"cid"] integerValue];
+        NSString *title = n.userInfo[@"title"];
+        [diumooPanel invokeChannelWithCid:cid andTitle:title];
     }
 }
 
