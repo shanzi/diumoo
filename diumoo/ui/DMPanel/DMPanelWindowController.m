@@ -37,15 +37,21 @@ DMPanelWindowController *sharedWindow;
         menubarController = [[MenubarController alloc] init];
         [menubarController setAction:@selector(togglePanel:) withTarget:self];
         
-        [super awakeFromNib];
-        [self.window setLevel:NSPopUpMenuWindowLevel];
-        [self.window setBackgroundColor:[NSColor whiteColor]];
-        [self.window setOpaque:NO];
+        [self awakeFromNib];
+        
         
         [loadingIndicator startAnimation:nil];
         
     }
     return self;
+}
+
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    [self.window setLevel:NSPopUpMenuWindowLevel];
+    [self.window setBackgroundColor:[NSColor whiteColor]];
+    [self.window setOpaque:NO];
 }
 
 -(void) accountStateChanged:(NSNotification*)n

@@ -46,31 +46,6 @@ static NSOperationQueue* serviceQueue;
     [[NSOperationQueue mainQueue] addOperationWithBlock:block];
 }
 
-//+(void)registerSongWith:(NSString *)sid :(NSString *)ssid :(NSString *)aid
-//{
-//    if (sid && ssid && aid) {
-//        NSString* registerString = [NSString stringWithFormat:@"sid=%@&ssid=%@&aid=%@",sid,ssid,aid];
-//        NSData* stringData = [registerString dataUsingEncoding:NSUTF8StringEncoding];
-//        NSData* crypted = [stringData AES256EncryptWithKey:SERVICE_KEY];
-//        NSString* base64String = [crypted base64EncodedString];
-//        NSString* serviceUrlString = [REGISTER_SONG_SERVICE_URL stringByAppendingFormat:@"?key=%@",base64String];
-//        NSURL* url = [NSURL URLWithString:serviceUrlString];
-//        NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageNotAllowed
-//                                             timeoutInterval:3.0];
-//        [NSURLConnection sendAsynchronousRequest:request
-//                                           queue:[DMService serviceQueue]
-//                               completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
-//                                   if (e == NULL) {
-//                                       DMLog(@"register success");
-//                                   }
-//                                   else
-//                                   {
-//                                       DMLog(@"register failed, error = %@",e);
-//                                   }
-//                               }];
-//    }
-//}
-
 +(NSString*) cleanStartAttribute:(NSString*)start
 {
     DMLog(@"clean start %@",start);

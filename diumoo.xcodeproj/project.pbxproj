@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F50FC4415DB4981000E5147 /* DMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F50FC4315DB4981000E5147 /* DMButton.m */; };
 		3F8A956415D9FEE500701895 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A956315D9FEE500701895 /* DMPanel.m */; };
 		3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE809815D4A632001A3BEC /* DMErrorLog.m */; };
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
@@ -154,6 +155,8 @@
 
 /* Begin PBXFileReference section */
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		3F50FC4215DB4981000E5147 /* DMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMButton.h; sourceTree = "<group>"; };
+		3F50FC4315DB4981000E5147 /* DMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMButton.m; sourceTree = "<group>"; };
 		3F8A956215D9FEE500701895 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
 		3F8A956315D9FEE500701895 /* DMPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanel.m; sourceTree = "<group>"; };
 		3FBE809715D4A632001A3BEC /* DMErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMErrorLog.h; path = DMErrorLog/DMErrorLog.h; sourceTree = "<group>"; };
@@ -370,6 +373,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F50FC4115DB4981000E5147 /* DMButton */ = {
+			isa = PBXGroup;
+			children = (
+				3F50FC4215DB4981000E5147 /* DMButton.h */,
+				3F50FC4315DB4981000E5147 /* DMButton.m */,
+			);
+			path = DMButton;
+			sourceTree = "<group>";
+		};
 		3FBE809515D4A615001A3BEC /* DMErrorLog */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +403,7 @@
 		F501B3AD15877062001C6158 /* DMPanel */ = {
 			isa = PBXGroup;
 			children = (
+				3F50FC4115DB4981000E5147 /* DMButton */,
 				F5BB89F01597447F0017E6FE /* DMVolumeSlideCell */,
 				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
@@ -1195,6 +1208,7 @@
 				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,
 				3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */,
 				3F8A956415D9FEE500701895 /* DMPanel.m in Sources */,
+				3F50FC4415DB4981000E5147 /* DMButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
