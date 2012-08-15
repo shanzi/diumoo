@@ -293,6 +293,7 @@
 							<string key="NSFrame">{{0, 435}, {65, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="784427520">
@@ -306,8 +307,8 @@
 								</object>
 								<string key="NSCellIdentifier">_NS:22</string>
 								<reference key="NSControlView" ref="144613420"/>
-								<int key="NSButtonFlags">138690560</int>
-								<int key="NSButtonFlags2">34</int>
+								<int key="NSButtonFlags">-2042347520</int>
+								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">play</string>
@@ -326,6 +327,7 @@
 							<string key="NSFrame">{{63, 435}, {63, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -336,8 +338,8 @@
 								<reference key="NSSupport" ref="347555876"/>
 								<string key="NSCellIdentifier">_NS:22</string>
 								<reference key="NSControlView" ref="243441216"/>
-								<int key="NSButtonFlags">138690560</int>
-								<int key="NSButtonFlags2">34</int>
+								<int key="NSButtonFlags">-2042347520</int>
+								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">skip</string>
@@ -356,6 +358,7 @@
 							<string key="NSFrame">{{128, 435}, {62, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -366,8 +369,8 @@
 								<reference key="NSSupport" ref="347555876"/>
 								<string key="NSCellIdentifier">_NS:22</string>
 								<reference key="NSControlView" ref="15871923"/>
-								<int key="NSButtonFlags">138690560</int>
-								<int key="NSButtonFlags2">34</int>
+								<int key="NSButtonFlags">-2042347520</int>
+								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">rate</string>
@@ -386,6 +389,7 @@
 							<string key="NSFrame">{{190, 436}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">3</int>
 							<bool key="NSEnabled">YES</bool>
@@ -396,8 +400,8 @@
 								<reference key="NSSupport" ref="347555876"/>
 								<string key="NSCellIdentifier">_NS:22</string>
 								<reference key="NSControlView" ref="615778314"/>
-								<int key="NSButtonFlags">138690560</int>
-								<int key="NSButtonFlags2">34</int>
+								<int key="NSButtonFlags">-2042347520</int>
+								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ban</string>
@@ -478,6 +482,7 @@
 							<string key="NSFrame">{{218, 74}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">-1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -589,6 +594,7 @@
 							<string key="NSFrame">{{5, 7}, {24, 24}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">5</int>
 							<bool key="NSEnabled">YES</bool>
@@ -696,6 +702,7 @@
 							<string key="NSFrame">{{225, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">6</int>
 							<bool key="NSEnabled">YES</bool>
@@ -726,6 +733,7 @@
 							<string key="NSFrame">{{205, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">7</int>
 							<bool key="NSEnabled">YES</bool>
@@ -1714,7 +1722,6 @@
 				<string key="3759.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="3759.NSWindowTemplate.visibleAtLaunch"/>
 				<string key="3760.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="3797.CustomClassName">DMButton</string>
 				<string key="3797.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<real value="5" key="3797.IBViewIntegration.shadowBlurRadius"/>
 				<object class="NSColor" key="3797.IBViewIntegration.shadowColor">

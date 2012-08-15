@@ -21,18 +21,20 @@
         if (major == 10 && minor < 8) {
             frontPosition = CGPointMake(0,80);
             titlePosition = CGPointMake(10,40);
-            artistPosition = CGPointMake(13,25);
-            albumPosition = CGPointMake(13,10);
+            artistPosition = CGPointMake(13,22);
+            albumPosition = CGPointMake(13,4);
         }
         else {
             frontPosition = CGPointMake(0,0);
             titlePosition = CGPointMake(10,260);
-            artistPosition = CGPointMake(13,280);
-            albumPosition = CGPointMake(13,295);
+            artistPosition = CGPointMake(13,283);
+            albumPosition = CGPointMake(13,301);
         }
         self.bounds = BOUNDS;
         self.masksToBounds = YES;
         
+        CGFloat currentScale = [NSScreen mainScreen].backingScaleFactor;
+                
         // init
         frontCover = [[CALayer alloc] init];
         frontFadeTransitionLayer = [[CALayer alloc] init];
@@ -40,6 +42,12 @@
         titleLayer = [[CATextLayer alloc] init];
         artistLayer = [[CATextLayer alloc] init];
         albumLayer = [[CATextLayer alloc] init];
+        
+        frontCover.contentsScale = currentScale;
+        frontFadeTransitionLayer.contentsScale = currentScale;
+        titleLayer.contentsScale = currentScale;
+        artistLayer.contentsScale = currentScale;
+        albumLayer.contentsScale = currentScale;
         
         // anchor
         CGPoint anchor = CGPointMake(0, 0);
