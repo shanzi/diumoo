@@ -13,7 +13,6 @@
 
 -(id) init
 {
-    
     if (self = [super init]) {
         SInt32 major,minor;
         Gestalt(gestaltSystemVersionMajor, &major);
@@ -42,6 +41,13 @@
         titleLayer = [[CATextLayer alloc] init];
         artistLayer = [[CATextLayer alloc] init];
         albumLayer = [[CATextLayer alloc] init];
+        
+        frontCover.delegate = self;
+        frontFadeTransitionLayer.delegate = self;
+        
+        titleLayer.delegate = self;
+        artistLayer.delegate = self;
+        albumLayer.delegate = self;
         
         frontCover.contentsScale = currentScale;
         frontFadeTransitionLayer.contentsScale = currentScale;
@@ -160,5 +166,10 @@
     [CATransaction commit];
 }
 
+- (BOOL)layer:(CALayer *)layer shouldInheritContentsScale:(CGFloat)newScale
+   fromWindow:(NSWindow *)window
+{
+    return YES;
+}
 
 @end
