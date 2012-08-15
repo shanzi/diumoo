@@ -278,6 +278,11 @@ DMPanelWindowController *sharedWindow;
     return [NSString stringWithFormat:@"%ld",item.tag];
 }
 
+-(void)invokeChannelWithCid:(NSInteger)cid andTitle:(NSString *)title
+{
+    [popupMenuController invokeChannelWith:cid andTitle:title];
+}
+
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 {
     if (info) {

@@ -11,8 +11,10 @@
 #import "NSData+AESCrypt.h"
 #import "CJSONDeserializer.h"
 
-#define DM_SONG_PREFIX @"dm://song?key="
-#define DOUBAN_SHARE_PREFIX @"http://douban.fm/?start="
+#define DM_SONG_PREFIX @"diumoo://song?key="
+#define DM_ALBUM_PREFIX @"diumoo://album?key="
+#define DM_CHANNEL_PREFIX @"diumoo://channel?key="
+
 #define NOTIFICATION_URL @"http://diumoo-notification.herokuapp.com/notification"
 //#define NOTIFICATION_URL @"http://diumoo-notification.hero/notification"
 
@@ -89,38 +91,51 @@ static NSOperationQueue* serviceQueue;
 +(BOOL)openDiumooLink:(NSString *)string
 {
     NSString* start = nil;
-    NSString* type = nil;
+    NSDictionary* userinfo = nil;
     
     if ([string hasPrefix:DM_SONG_PREFIX]) {
         start = [string stringByReplacingOccurrencesOfString:DM_SONG_PREFIX
                                                   withString:@""];
         start = [self cleanStartAttribute:start];
         if (start != nil) {
-            type = @"song";
+            userinfo = @{ @"type" : @"song",@"start" : start };
         }
         
     }
-    else if([string hasPrefix:DOUBAN_SHARE_PREFIX])
+    else if([string hasPrefix:DM_ALBUM_PREFIX])
     {
-        start = [string stringByReplacingOccurrencesOfString:DOUBAN_SHARE_PREFIX
+        start = [string stringByReplacingOccurrencesOfString:DM_ALBUM_PREFIX
                                                   withString:@""];
-        NSArray* components = [start componentsSeparatedByString:@"&"];
-        if ([components count]) {
-            start =[self cleanStartAttribute:start];
-            if (start) {
-                type = @"song";
+        
+        if (start) {
+            userinfo = @{ @"type" : @"album",@"aid": start};
+        }
+    }
+    else if([string hasPrefix:DM_CHANNEL_PREFIX])
+    {
+        start = [string stringByReplacingOccurrencesOfString:DM_CHANNEL_PREFIX withString:@""];
+        start = [start stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSArray* componets = [start componentsSeparatedByString:@"|"];
+        if ([componets count] == 2) {
+            NSInteger cid = [[componets objectAtIndex:0] integerValue];
+            NSString* ctitle = [componets objectAtIndex:1];
+            @try {
+                if (cid > 0 && [ctitle length]) {
+                    userinfo = @{ @"type" : @"channel",@"cid":@(cid),@"title":ctitle};
+                }
+            }
+            @catch (NSException *exception) {
+                
             }
         }
     }
     
-    if (type != nil) {
+    if (userinfo != nil) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playspecial"
                                                             object:nil
-                                                          userInfo:@{
-         @"type" : @"song",
-         @"start" : start
-         }
+                                                          userInfo:userinfo
          ];
         
         return YES;
@@ -128,7 +143,7 @@ static NSOperationQueue* serviceQueue;
     else
     {
         NSRunCriticalAlertPanel(@"打开URL失败",
-                                @"打开URL失败，您输入了非法的URL地址。目前仅支持 diumoo Link 和豆瓣分享连接(暂不支持短网址)。",
+                                @"打开URL失败，您输入了非法的URL地址。。",
                                 @"知道了", nil, nil);
         return NO;
     }

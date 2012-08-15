@@ -64,6 +64,7 @@
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
     
+    NSLog(@"fetch playlist with url : %@",urlString);
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -139,13 +140,17 @@
     if (type == kFetchPlaylistTypeEnd && [playlist count]==0) {
         type = kFetchPlaylistTypeNew;
     }
-    if(sid && ![type isEqualToString:kFetchPlaylistTypeNew]) {
+    else if(sid==nil) {
+        type = kFetchPlaylistTypeNew;
+    }
+    else
+    {
         [playedSongs setValue:type forKey:sid];
     }
     
     NSDictionary* fetchDictionary = @{@"type": type,
                                      @"channel": channel,
-                                     @"sid": (sid?sid:@""),
+                                     @"sid": ((sid!=nil)?sid:@""),
                                      @"h": [playedSongs hString],
                                      @"r": [self randomString],
                                      @"from": @"mainsite"};
