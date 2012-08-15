@@ -16,8 +16,8 @@
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {
-    DMControlCenter* center;
-    SPMediaKeyTap* mediaKeyTap;
+    DMControlCenter *center;
+    SPMediaKeyTap *mediaKeyTap;
 }
 
 -(IBAction)showPreference:(id)sender;

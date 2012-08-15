@@ -44,8 +44,8 @@ typedef enum{
     BOOL canPlaySpecial;
 }
 
-@property (strong) DMPlayableCapsule *playingCapsule;
-@property (strong) DMPanelWindowController *diumooPanel;
+@property DMPlayableCapsule *playingCapsule;
+@property DMPanelWindowController *diumooPanel;
 
 //self methods
 -(void) fireToPlayDefault;

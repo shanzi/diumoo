@@ -9,13 +9,9 @@
 #import "DMPlayRecordHandler.h"
 #import "DMPlayableCapsule.h"
 #import "DMService.h"
+#import "DMErrorLog.h"
 
 static DMPlayRecordHandler* recordHandler;
-
-@interface DMPlayableCapsule ()
-+(NSString*) pathToDataFileFolder;
--(NSManagedObjectContext*) makeContextWithPath:(NSString*) datapath;
-@end
 
 @implementation DMPlayRecordHandler
 @synthesize recordFileURL,context,delegate;
@@ -34,8 +30,7 @@ static DMPlayRecordHandler* recordHandler;
 #pragma init and dealloc
 -(id) init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         NSString* pathToFolder = [self pathToDataFileFolder];
         NSString* recordFilePath = [pathToFolder stringByAppendingPathComponent:@"record.dmsid"];
         recordFileURL = [NSURL fileURLWithPath:recordFilePath];
@@ -47,7 +42,6 @@ static DMPlayRecordHandler* recordHandler;
 -(void)dealloc
 {
     [context save:nil];
-
     NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
     if([versions count]>50){
         for (int i =0 ; i<([versions count] - 50); i++) {
@@ -55,7 +49,6 @@ static DMPlayRecordHandler* recordHandler;
             [version removeAndReturnError:nil];
         }
     }
-    
     self.delegate = nil;
 }
 #pragma ---
@@ -70,22 +63,21 @@ static DMPlayRecordHandler* recordHandler;
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc]
                    initWithManagedObjectModel:model];
     
-    NSError *err = nil;
+    NSError *error;
 
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType
                               configuration:nil 
                                         URL:[NSURL fileURLWithPath:datapath]
                                     options:nil
-                                      error:&err];
-    if (err) {
-        DMLog(@"Load RecordDatabase with #Error# = %@",err);
+                                      error:&error];
+    if (error) {
+        [DMErrorLog logErrorWith:self method:_cmd andError:error];
     }
     
     context = [[NSManagedObjectContext alloc] initWithConcurrencyType:
                 NSPrivateQueueConcurrencyType];
     
     [context setPersistentStoreCoordinator:coordinator];
-    
     
     return  context;
 }
@@ -140,8 +132,6 @@ static DMPlayRecordHandler* recordHandler;
         [song setValue:date forKey:@"date"];
         
         [context save:nil];
-        
-        //[DMService registerSongWith:capsule.sid :capsule.ssid :capsule.aid];
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {

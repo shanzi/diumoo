@@ -13,7 +13,6 @@
 
 -(id) init
 {
-    
     if (self = [super init]) {
         SInt32 major,minor;
         Gestalt(gestaltSystemVersionMajor, &major);
@@ -21,18 +20,20 @@
         if (major == 10 && minor < 8) {
             frontPosition = CGPointMake(0,80);
             titlePosition = CGPointMake(10,40);
-            artistPosition = CGPointMake(13,25);
-            albumPosition = CGPointMake(13,10);
+            artistPosition = CGPointMake(13,22);
+            albumPosition = CGPointMake(13,4);
         }
         else {
             frontPosition = CGPointMake(0,0);
             titlePosition = CGPointMake(10,260);
-            artistPosition = CGPointMake(13,280);
-            albumPosition = CGPointMake(13,295);
+            artistPosition = CGPointMake(13,283);
+            albumPosition = CGPointMake(13,301);
         }
         self.bounds = BOUNDS;
         self.masksToBounds = YES;
         
+        CGFloat currentScale = [NSScreen mainScreen].backingScaleFactor;
+                
         // init
         frontCover = [[CALayer alloc] init];
         frontFadeTransitionLayer = [[CALayer alloc] init];
@@ -40,6 +41,19 @@
         titleLayer = [[CATextLayer alloc] init];
         artistLayer = [[CATextLayer alloc] init];
         albumLayer = [[CATextLayer alloc] init];
+        
+        frontCover.delegate = self;
+        frontFadeTransitionLayer.delegate = self;
+        
+        titleLayer.delegate = self;
+        artistLayer.delegate = self;
+        albumLayer.delegate = self;
+        
+        frontCover.contentsScale = currentScale;
+        frontFadeTransitionLayer.contentsScale = currentScale;
+        titleLayer.contentsScale = currentScale;
+        artistLayer.contentsScale = currentScale;
+        albumLayer.contentsScale = currentScale;
         
         // anchor
         CGPoint anchor = CGPointMake(0, 0);
@@ -72,7 +86,7 @@
         frontFadeTransitionLayer.contentsGravity = kCAGravityResizeAspectFill;
         
         // text
-        CGFontRef helveticaConsensedBold = CGFontCreateWithFontName(( CFStringRef)@"Helvetica Neue Condensed Bold");
+        CGFontRef helveticaConsensedBold = CGFontCreateWithFontName((CFStringRef)@"Helvetica Neue Condensed Bold");
         CGFontRef helveticaLight = CGFontCreateWithFontName((CFStringRef)@"Helvetica Neue Light");
         CGColorRef titleColor = CGColorCreateGenericRGB(0.2, 0.5, 1.0, 1.0);
         CGColorRef lighterColor = CGColorCreateGenericGray(0.2, 1.0);
@@ -152,5 +166,10 @@
     [CATransaction commit];
 }
 
+- (BOOL)layer:(CALayer *)layer shouldInheritContentsScale:(CGFloat)newScale
+   fromWindow:(NSWindow *)window
+{
+    return YES;
+}
 
 @end

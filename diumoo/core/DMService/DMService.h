@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "NSData+AESCrypt.h"
 #import "NSData+Base64.h"
+#import "DMErrorLog.h"
 
 
 #define CURRENT_VERSION 1
@@ -19,9 +20,8 @@
 
 @interface DMService : NSObject
 
-//+(void)registerSongWith:(NSString*)sid :(NSString*)ssid :(NSString*)aid;
-+(NSString*)cleanStartAttribute:(NSString*)start;
-+(BOOL)openDiumooLink:(NSString*)url;
++(NSString*) cleanStartAttribute:(NSString*)start;
++(BOOL) openDiumooLink:(NSString*)url;
 +(void) importRecordOperation;
 +(void) importRecordOperationWithFilePath:(NSURL*)fp;
 +(void) exportRecordOperation;

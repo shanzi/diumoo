@@ -11,6 +11,8 @@
 
 @implementation DMApp
 
+@synthesize openedURLString;
+
 -(id) init
 {
     self = [super init];
@@ -43,11 +45,6 @@
         [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:event];
     }
     [super sendEvent:event];
-}
-
--(NSString*) openedURLString
-{
-    return openedURLString;
 }
 
 @end

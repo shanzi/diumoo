@@ -2,17 +2,17 @@
 //  DMPanel.m
 //  diumoo
 //
-//  Created by Shanzi on 12-7-18.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by AnakinGWY on 12-8-14.
+//
 //
 
 #import "DMPanel.h"
 
 @implementation DMPanel
 
--(BOOL) canBecomeKeyWindow
+- (BOOL)canBecomeKeyWindow;
 {
-    return YES;
+    return YES; // Allow Search field to become the first responder
 }
 
 @end

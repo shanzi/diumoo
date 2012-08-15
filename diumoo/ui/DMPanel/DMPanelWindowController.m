@@ -37,16 +37,21 @@ DMPanelWindowController *sharedWindow;
         menubarController = [[MenubarController alloc] init];
         [menubarController setAction:@selector(togglePanel:) withTarget:self];
         
-        [super awakeFromNib];
+        [self awakeFromNib];
         
-        [self.window setLevel:NSPopUpMenuWindowLevel];
-        [self.window setBackgroundColor:[NSColor whiteColor]];
-        [self.window setOpaque:NO];
         
         [loadingIndicator startAnimation:nil];
         
     }
     return self;
+}
+
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    [self.window setLevel:NSPopUpMenuWindowLevel];
+    [self.window setBackgroundColor:[NSColor whiteColor]];
+    [self.window setOpaque:NO];
 }
 
 -(void) accountStateChanged:(NSNotification*)n
@@ -373,13 +378,13 @@ DMPanelWindowController *sharedWindow;
     
     [NSApp activateIgnoringOtherApps:NO];
     [panel setFrame:panelRect display:YES];
-    [panel makeKeyAndOrderFront:panel];
+    [panel makeKeyAndOrderFront:nil];
 }
 
 -(void) closePanel
 {
     NSWindow *panel = [self window];
-    [panel orderOut:nil];
+    [panel orderOut:self];
 }
 
 - (IBAction)togglePanel:(id)sender
@@ -387,6 +392,5 @@ DMPanelWindowController *sharedWindow;
     menubarController.hasActiveIcon = !menubarController.hasActiveIcon;
     self.hasActivePanel = menubarController.hasActiveIcon;
 }
-
 
 @end

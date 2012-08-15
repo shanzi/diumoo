@@ -11,9 +11,9 @@
 
 @interface DMApp : NSApplication
 {
-    NSString* openedURLString;
+    NSString *openedURLString;
 }
 
--(NSString*) openedURLString;
+@property (copy) NSString *openedURLString;
 
 @end

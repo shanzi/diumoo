@@ -11,6 +11,7 @@
 #import "DMPlayableCapsule.h"
 #import "DMPopUpMenuController.h"
 #import "MenubarController.h"
+#import "DMButton.h"
 
 typedef enum{
     DOUBAN = 1,
@@ -39,10 +40,10 @@ typedef enum{
     IBOutlet DMCoverControlView* coverView;
     IBOutlet DMPopUpMenuController* popupMenuController;
     
-    IBOutlet NSButton* playPauseButton;
-    IBOutlet NSButton* skipButton;
-    IBOutlet NSButton* rateButton;
-    IBOutlet NSButton* banButton;
+    IBOutlet DMButton* playPauseButton;
+    IBOutlet DMButton* skipButton;
+    IBOutlet DMButton* rateButton;
+    IBOutlet DMButton* banButton;
     
     IBOutlet NSButton* userIconButton;
     IBOutlet NSTextField* usernameTextField;

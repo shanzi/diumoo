@@ -93,7 +93,7 @@
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
     [playingCapsule invalidateMovie];
-    DMLog(@"start to play");
+    [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"start to play %@",aSong]];
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲

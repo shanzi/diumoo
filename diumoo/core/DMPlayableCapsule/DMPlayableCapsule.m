@@ -33,8 +33,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)dic
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         loadState = QTMovieLoadStateError;
 
         timer = [[NSTimer alloc] init];
@@ -58,16 +57,6 @@
         volume = [[[NSUserDefaults standardUserDefaults] valueForKey:@"volume"] floatValue];
     }
     return self;
-}
-
--(BOOL) canLoad;
-{
-    if(!movie){
-        return [QTMovie canInitWithURL:[NSURL URLWithString:musicLocation]];
-    }
-    else {
-        return loadState >0;
-    }
 }
 
 -(BOOL) createNewMovie
@@ -211,7 +200,6 @@
             movie.volume = volume;
         }
         else {
-            DMLog(@"time pulse delta = %lf - %lf",volume,movie.volume);
             movie.volume += delta>0?0.08:-0.08;
         }
     }
@@ -224,7 +212,6 @@
         }
     }
     else {
-        DMLog(@"%f",delta);
         if (delta < 0.1 && -delta < 0.1) {
             [self invalidateTimer];
             movie.volume = volume;
@@ -237,9 +224,7 @@
 
 -(void) commitVolume:(float)targetVolume
 {
-    DMLog(@"commit volume");
     volume = targetVolume;
-
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:@(targetVolume)
                                                                         forKey:@"volume"];
     
@@ -255,7 +240,7 @@
                                        repeats:YES];
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        [self.delegate playableCapsuleWillPause:self];
+        //[self.delegate playableCapsuleWillPause:self];
         [timer fire];
     }
 }
@@ -293,6 +278,7 @@
 
 -(void)synchronousStop
 {
+    DMLog(@"%@ movie.rate = %lf",NSStringFromSelector(_cmd),movie.rate);
     if(movie.rate == 0.0)
        return;
     else {

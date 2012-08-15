@@ -28,13 +28,13 @@ static DMDoubanAuthHelper* sharedHelper;
 
 +(NSString*) getNewCaptchaCode
 {    
-    NSError* error = nil;
+    NSError* error;
     NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
                                               encoding:NSASCIIStringEncoding 
                                                  error:&error];
     if(error != nil){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
-        return @"";//prevent crash
+        return @"";
     }
     
     return [code stringByReplacingOccurrencesOfString:@"\"" withString:@""];
@@ -96,14 +96,10 @@ static DMDoubanAuthHelper* sharedHelper;
     likedSongsCount = 0;
     bannedSongsCount = 0;
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
-
     
     for (NSHTTPCookie* cookie in cookies) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
-    
-    cookies =[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
-
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];
@@ -111,11 +107,9 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSImage*) getUserIcon
 {
-    if(userinfo)
+    if(userinfo && icon)
     {
-        if (icon) {
-            return icon;
-        }
+        return icon;
     }
     return [NSImage imageNamed:NSImageNameUser];
 }

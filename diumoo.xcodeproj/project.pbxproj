@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F50FC4415DB4981000E5147 /* DMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F50FC4315DB4981000E5147 /* DMButton.m */; };
+		3F8A956415D9FEE500701895 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A956315D9FEE500701895 /* DMPanel.m */; };
 		3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE809815D4A632001A3BEC /* DMErrorLog.m */; };
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
@@ -52,7 +54,6 @@
 		F515C16115B6F07500210826 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F515C15F15B6F07500210826 /* StatusItemView.m */; };
 		F515C16515B6FAA000210826 /* status-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = F515C16315B6FAA000210826 /* status-icon-alt.png */; };
 		F515C16615B6FAA000210826 /* status-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F515C16415B6FAA000210826 /* status-icon.png */; };
-		F515C17415B7131000210826 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = F515C17315B7131000210826 /* DMPanel.m */; };
 		F517B91215C1760200097815 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F517B91115C1760200097815 /* settings.png */; };
 		F517B91415C1771000097815 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5237A0615C958A500D2A1F2 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = F5237A0415C958A500D2A1F2 /* share.png */; };
@@ -154,6 +155,10 @@
 
 /* Begin PBXFileReference section */
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		3F50FC4215DB4981000E5147 /* DMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMButton.h; sourceTree = "<group>"; };
+		3F50FC4315DB4981000E5147 /* DMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMButton.m; sourceTree = "<group>"; };
+		3F8A956215D9FEE500701895 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
+		3F8A956315D9FEE500701895 /* DMPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanel.m; sourceTree = "<group>"; };
 		3FBE809715D4A632001A3BEC /* DMErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMErrorLog.h; path = DMErrorLog/DMErrorLog.h; sourceTree = "<group>"; };
 		3FBE809815D4A632001A3BEC /* DMErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMErrorLog.m; path = DMErrorLog/DMErrorLog.m; sourceTree = "<group>"; };
 		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
@@ -235,8 +240,6 @@
 		F515C15F15B6F07500210826 /* StatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemView.m; sourceTree = "<group>"; };
 		F515C16315B6FAA000210826 /* status-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-alt.png"; sourceTree = "<group>"; };
 		F515C16415B6FAA000210826 /* status-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon.png"; sourceTree = "<group>"; };
-		F515C17215B7130F00210826 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
-		F515C17315B7131000210826 /* DMPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanel.m; sourceTree = "<group>"; };
 		F517B91115C1760200097815 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F5237A0415C958A500D2A1F2 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		F5237A0515C958A500D2A1F2 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
@@ -370,6 +373,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F50FC4115DB4981000E5147 /* DMButton */ = {
+			isa = PBXGroup;
+			children = (
+				3F50FC4215DB4981000E5147 /* DMButton.h */,
+				3F50FC4315DB4981000E5147 /* DMButton.m */,
+			);
+			path = DMButton;
+			sourceTree = "<group>";
+		};
 		3FBE809515D4A615001A3BEC /* DMErrorLog */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,15 +403,16 @@
 		F501B3AD15877062001C6158 /* DMPanel */ = {
 			isa = PBXGroup;
 			children = (
+				3F50FC4115DB4981000E5147 /* DMButton */,
 				F5BB89F01597447F0017E6FE /* DMVolumeSlideCell */,
 				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
 				F501B3B115877062001C6158 /* DMCoverSlide */,
-				F515C17215B7130F00210826 /* DMPanel.h */,
-				F515C17315B7131000210826 /* DMPanel.m */,
 				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
 				F501B3BB1587708F001C6158 /* DMPanelWindowController.m */,
 				F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */,
+				3F8A956215D9FEE500701895 /* DMPanel.h */,
+				3F8A956315D9FEE500701895 /* DMPanel.m */,
 			);
 			path = DMPanel;
 			sourceTree = "<group>";
@@ -1183,7 +1196,6 @@
 				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
 				F515C16015B6F07500210826 /* MenubarController.m in Sources */,
 				F515C16115B6F07500210826 /* StatusItemView.m in Sources */,
-				F515C17415B7131000210826 /* DMPanel.m in Sources */,
 				F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */,
 				F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */,
 				F5DFF1A315BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m in Sources */,
@@ -1195,6 +1207,8 @@
 				F53C78EB15CC0D0C00201C65 /* NSData+AESCrypt.m in Sources */,
 				F53C78EC15CC0D0C00201C65 /* NSData+Base64.m in Sources */,
 				3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */,
+				3F8A956415D9FEE500701895 /* DMPanel.m in Sources */,
+				3F50FC4415DB4981000E5147 /* DMButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

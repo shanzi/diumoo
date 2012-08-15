@@ -29,13 +29,10 @@ static NSOperationQueue* serviceQueue;
 
 +(NSOperationQueue*) serviceQueue
 {
-    if (serviceQueue) {
-        return serviceQueue;
-    }
-    else{
+    if (serviceQueue == nil) {
         serviceQueue= [[NSOperationQueue alloc] init];
-        return serviceQueue;
     }
+    return serviceQueue;
 }
 
 +(void)performOnServiceQueue:(void(^)(void))block
@@ -48,34 +45,9 @@ static NSOperationQueue* serviceQueue;
     [[NSOperationQueue mainQueue] addOperationWithBlock:block];
 }
 
-//+(void)registerSongWith:(NSString *)sid :(NSString *)ssid :(NSString *)aid
-//{
-//    if (sid && ssid && aid) {
-//        NSString* registerString = [NSString stringWithFormat:@"sid=%@&ssid=%@&aid=%@",sid,ssid,aid];
-//        NSData* stringData = [registerString dataUsingEncoding:NSUTF8StringEncoding];
-//        NSData* crypted = [stringData AES256EncryptWithKey:SERVICE_KEY];
-//        NSString* base64String = [crypted base64EncodedString];
-//        NSString* serviceUrlString = [REGISTER_SONG_SERVICE_URL stringByAppendingFormat:@"?key=%@",base64String];
-//        NSURL* url = [NSURL URLWithString:serviceUrlString];
-//        NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageNotAllowed
-//                                             timeoutInterval:3.0];
-//        [NSURLConnection sendAsynchronousRequest:request
-//                                           queue:[DMService serviceQueue]
-//                               completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
-//                                   if (e == NULL) {
-//                                       DMLog(@"register success");
-//                                   }
-//                                   else
-//                                   {
-//                                       DMLog(@"register failed, error = %@",e);
-//                                   }
-//                               }];
-//    }
-//}
-
 +(NSString*) cleanStartAttribute:(NSString*)start
 {
-    DMLog(@"clean start %@",start);
+    [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"clean start = %@",start]];
     NSArray* startComponents = [start componentsSeparatedByString:@"g"];
     if ([startComponents count]>2) {
         if ([startComponents[1] length] == 4) {
@@ -90,8 +62,8 @@ static NSOperationQueue* serviceQueue;
 
 +(BOOL)openDiumooLink:(NSString *)string
 {
-    NSString* start = nil;
-    NSDictionary* userinfo = nil;
+    NSString* start;
+    NSDictionary* userinfo;
     
     if ([string hasPrefix:DM_SONG_PREFIX]) {
         start = [string stringByReplacingOccurrencesOfString:DM_SONG_PREFIX
@@ -168,16 +140,12 @@ static NSOperationQueue* serviceQueue;
 +(void)importRecordOperationWithFilePath:(NSURL *)fp
 {
     [DMService performOnServiceQueue:^{
-        
-        
-        NSArray* array= nil;
-        array = [NSArray arrayWithContentsOfURL:fp];
+        NSArray *array = [NSArray arrayWithContentsOfURL:fp];
         if (array) {
             NSInteger errorcount=0;
             NSInteger finished = 0;
-            DMPlayRecordHandler * handler = [DMPlayRecordHandler sharedRecordHandler];
-            for (NSDictionary* song in array) {
-                
+            DMPlayRecordHandler *handler = [DMPlayRecordHandler sharedRecordHandler];
+            for (NSDictionary *song in array) {
                 if(![handler addRecordWithDict:song]){
                     errorcount += 1;
                 }
@@ -206,7 +174,6 @@ static NSOperationQueue* serviceQueue;
 
 +(void) exportRecordOperation
 {
-    
     NSSavePanel* savepanel = [NSSavePanel savePanel];
     [savepanel setAllowedFileTypes:@[@"dmrecord"]];
     [savepanel setTitle:@"导出播放记录"];
@@ -214,13 +181,11 @@ static NSOperationQueue* serviceQueue;
     if ([savepanel runModal] == NSOKButton) {
         NSURL* url = [savepanel URL];
         [DMService performOnMainQueue:^{
-            
             NSArray* songs = [[DMPlayRecordHandler sharedRecordHandler] allSongs];
             if (songs) {
                 NSInteger count = [songs count] + 10;
                 NSInteger finished = 0;
                 NSMutableArray* outarray = [[NSMutableArray alloc] initWithCapacity:count];
-                
                 for (NSManagedObject* song in songs) {
                     [outarray addObject:
                      @{
@@ -284,8 +249,6 @@ static NSOperationQueue* serviceQueue;
                  NSString* referenceURL = dict[@"url"];
                  NSInteger _id = [dict[@"id"] integerValue];
                  BOOL force_open = [dict[@"can_cancel"] boolValue];
-                 
-                 
                  
                  [[NSUserDefaults standardUserDefaults]
                   setValue:@(_id) forKey:@"notificationID"

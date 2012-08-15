@@ -21,11 +21,11 @@
 {
     NSURL *recordFileURL;
     NSManagedObjectContext *context;
-    id<DMPlayRecordHandlerDelegate> __strong delegate;
+    id<DMPlayRecordHandlerDelegate> delegate;
 }
 @property(nonatomic,copy) NSURL* recordFileURL;
-@property(nonatomic,strong) NSManagedObjectContext* context;
-@property(nonatomic,strong) id<DMPlayRecordHandlerDelegate> delegate;
+@property(nonatomic) NSManagedObjectContext* context;
+@property(nonatomic) id<DMPlayRecordHandlerDelegate> delegate;
 
 +(DMPlayRecordHandler*) sharedRecordHandler;
 -(NSManagedObject*) songWithSid:(NSString*) sid;
