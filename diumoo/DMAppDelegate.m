@@ -26,7 +26,22 @@
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMShortcutsHandler registrationShortcuts];
-        
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"showDockIcon"
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"displayAlbumCoverOnDock"
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"enableLogFile"
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
     [self handleDockIconDisplayWithChange:nil];

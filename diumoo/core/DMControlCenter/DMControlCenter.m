@@ -123,9 +123,7 @@
         else{
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
             playingCapsule = [fetcher getOnePlayableCapsule];
-            
-            DMLog(@"playing Capsule: %@",playingCapsule);
-            
+                        
             // 没有获取到capsule，说明歌曲列表已经为空，那么新获取一个播放列表
             if(playingCapsule == nil) {
                 [fetcher fetchPlaylistFromChannel:channel 
