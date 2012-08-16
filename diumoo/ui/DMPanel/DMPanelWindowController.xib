@@ -324,7 +324,7 @@
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{63, 435}, {63, 37}}</string>
+							<string key="NSFrame">{{62, 434}, {63, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -355,7 +355,7 @@
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{128, 435}, {62, 37}}</string>
+							<string key="NSFrame">{{124, 434}, {62, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -386,7 +386,7 @@
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{190, 436}, {60, 37}}</string>
+							<string key="NSFrame">{{184, 434}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -1760,6 +1760,7 @@
 				<string key="3847.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3848.CustomClassName">DMPopUpButtonCell</string>
 				<string key="3848.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3857.CustomClassName">DMButton</string>
 				<string key="3857.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3858.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3863.CustomClassName">DMButton</string>
@@ -2016,7 +2017,7 @@
 			<string key="NSUser">{32, 32}</string>
 			<string key="ban">{60, 35}</string>
 			<string key="douban">{16, 16}</string>
-			<string key="exit">{16, 15}</string>
+			<string key="exit">{14, 14}</string>
 			<string key="facebook">{16, 16}</string>
 			<string key="fanfou">{16, 16}</string>
 			<string key="greyheart">{16, 16}</string>
@@ -2026,7 +2027,7 @@
 			<string key="settings">{16, 16}</string>
 			<string key="share">{32, 32}</string>
 			<string key="sina">{16, 16}</string>
-			<string key="skip">{63, 35}</string>
+			<string key="skip">{65, 35}</string>
 			<string key="twitter">{16, 16}</string>
 		</dictionary>
 	</data>
