@@ -187,11 +187,11 @@ DMPanelWindowController *sharedWindow;
     if ([rateButton isEnabled]) {
         if (rated){
             [menubarController setMixed:YES];
-            [rateButton setImage:[NSImage imageNamed:@"rate_red.png"]];
+            [rateButton setImage:[NSImage imageNamed:@"rate_red"]];
         }
         else {
             [menubarController setMixed:NO];
-            [rateButton setImage:[NSImage imageNamed:@"rate.png"]];
+            [rateButton setImage:[NSImage imageNamed:@"rate"]];
         }
     }
 }
@@ -209,10 +209,10 @@ DMPanelWindowController *sharedWindow;
 -(void) setPlaying:(BOOL)playing
 {
     if (playing) {
-        [playPauseButton setImage:[NSImage imageNamed:@"pause.png"]];
+        [playPauseButton setImage:[NSImage imageNamed:@"pause"]];
     }
     else {
-        [playPauseButton setImage:[NSImage imageNamed:@"play.png"]];
+        [playPauseButton setImage:[NSImage imageNamed:@"play"]];
     }
 }
 

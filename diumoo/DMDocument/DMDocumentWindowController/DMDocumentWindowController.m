@@ -91,7 +91,7 @@
         }
         else
         {
-            albumCoverButton.image = [NSImage imageNamed:@"albumfail.png"];
+            albumCoverButton.image = [NSImage imageNamed:@"albumfail"];
         }
     }];
     
