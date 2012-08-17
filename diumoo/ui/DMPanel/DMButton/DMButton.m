@@ -25,18 +25,22 @@
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-    NSString *name = [[self image] name];
-    NSImage *mouseoverImage = [NSImage imageNamed:[name stringByAppendingString:@"_mouseover"]];
-    if (mouseoverImage != nil) {
-        [self setImage:mouseoverImage];
+    if ([self isEnabled]) {
+        NSString *name = [[self image] name];
+        NSImage *mouseoverImage = [NSImage imageNamed:[name stringByAppendingString:@"_mouseover"]];
+        if (mouseoverImage != nil) {
+            [self setImage:mouseoverImage];
+        }
     }
 }
 - (void)mouseExited:(NSEvent *)theEvent
 {
-    NSString *name = [[self image] name];
-    NSImage *normalImage = [NSImage imageNamed:[name stringByReplacingOccurrencesOfString:@"_mouseover" withString:@""]];
-    if (normalImage != nil) {
-        [self setImage:normalImage];
+    if ([self isEnabled]) {
+        NSString *name = [[self image] name];
+        NSImage *normalImage = [NSImage imageNamed:[name stringByReplacingOccurrencesOfString:@"_mouseover" withString:@""]];
+        if (normalImage != nil) {
+            [self setImage:normalImage];
+        }
     }
 }
 

@@ -290,10 +290,9 @@
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{13, 434}, {39, 38}}</string>
+							<string key="NSFrame">{{5, 434}, {58, 35}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="784427520">
@@ -327,7 +326,6 @@
 							<string key="NSFrame">{{62, 434}, {63, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -338,7 +336,7 @@
 								<reference key="NSSupport" ref="347555876"/>
 								<string key="NSCellIdentifier">_NS:22</string>
 								<reference key="NSControlView" ref="243441216"/>
-								<int key="NSButtonFlags">138690560</int>
+								<int key="NSButtonFlags">-2042347520</int>
 								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
@@ -358,7 +356,6 @@
 							<string key="NSFrame">{{124, 434}, {62, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -386,10 +383,9 @@
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{184, 434}, {60, 37}}</string>
+							<string key="NSFrame">{{184, 435}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">3</int>
 							<bool key="NSEnabled">YES</bool>
@@ -482,7 +478,6 @@
 							<string key="NSFrame">{{218, 74}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">-1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -594,7 +589,6 @@
 							<string key="NSFrame">{{5, 7}, {24, 24}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">5</int>
 							<bool key="NSEnabled">YES</bool>
@@ -702,7 +696,6 @@
 							<string key="NSFrame">{{225, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">6</int>
 							<bool key="NSEnabled">YES</bool>
@@ -733,7 +726,6 @@
 							<string key="NSFrame">{{205, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">7</int>
 							<bool key="NSEnabled">YES</bool>
@@ -1392,8 +1384,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="144613420"/>
 							<reference ref="243441216"/>
-							<reference ref="15871923"/>
-							<reference ref="615778314"/>
 							<reference ref="532174922"/>
 							<reference ref="690881450"/>
 							<reference ref="247675433"/>
@@ -1407,6 +1397,8 @@
 							<reference ref="70510016"/>
 							<reference ref="224481640"/>
 							<reference ref="930623499"/>
+							<reference ref="15871923"/>
+							<reference ref="615778314"/>
 						</array>
 						<reference key="parent" ref="577421203"/>
 					</object>
@@ -2027,7 +2019,7 @@
 			<string key="settings">{16, 16}</string>
 			<string key="share">{32, 32}</string>
 			<string key="sina">{16, 16}</string>
-			<string key="skip">{65, 35}</string>
+			<string key="skip">{63, 35}</string>
 			<string key="twitter">{16, 16}</string>
 		</dictionary>
 	</data>

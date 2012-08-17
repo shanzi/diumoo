@@ -73,7 +73,6 @@ DMPanelWindowController *sharedWindow;
         [popupMenuController setPrivateChannelEnabled:YES];
     }
     else {
-        
         [userIconButton setImage:[NSImage imageNamed:NSImageNameUser]];
         [ratedCountTextField setStringValue:@""];
         [usernameTextField setStringValue:@""];
@@ -82,6 +81,7 @@ DMPanelWindowController *sharedWindow;
         
         [popupMenuController setPrivateChannelEnabled:NO];
         
+        [rateButton setImage:[NSImage imageNamed:@"rate"]];
         [rateButton setEnabled:NO];
         [banButton setEnabled:NO];
     }
