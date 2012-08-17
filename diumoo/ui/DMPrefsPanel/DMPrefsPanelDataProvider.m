@@ -239,6 +239,7 @@
         NSString* bannedString = [NSString stringWithFormat:@"%ld",sh.bannedSongsCount];
         
         [usernameTextField setStringValue:sh.username];
+        
         [userIconButton setImage:[sh getUserIcon]];
         
         [playrecordButton setLabel:playedString forSegment:0];

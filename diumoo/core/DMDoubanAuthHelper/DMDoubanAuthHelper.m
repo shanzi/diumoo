@@ -107,8 +107,7 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSImage*) getUserIcon
 {
-    if(userinfo && icon)
-    {
+    if(userinfo && icon) {
         return icon;
     }
     return [NSImage imageNamed:NSImageNameUser];
@@ -167,23 +166,19 @@ static DMDoubanAuthHelper* sharedHelper;
     NSDictionary* play_record = [info valueForKey:@"play_record"];
     
     if (play_record) {
-        
         playedSongsCount = [[play_record valueForKey:@"played"] integerValue];
         likedSongsCount =  [[play_record valueForKey:@"liked"] integerValue];
         bannedSongsCount = [[play_record valueForKey:@"banned"] integerValue];
-        
     }
     
     
     
     NSString* _id = [info valueForKey:@"id"];
-    if (_id) 
-    {
+    if (_id) {
         NSString* iconstring = [NSString stringWithFormat: @"http://img3.douban.com/icon/u%@.jpg",_id];
         icon = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:iconstring]];
     }
-    else
-    {
+    else {
         icon = [NSImage imageNamed:NSImageNameUser];
     }
     

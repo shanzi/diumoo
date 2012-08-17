@@ -1229,7 +1229,7 @@
 					<object class="NSTextField" id="172767866">
 						<reference key="NSNextResponder" ref="262340404"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{83, 132}, {137, 22}}</string>
+						<string key="NSFrame">{{119, 140}, {137, 22}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="891505527"/>
@@ -1257,7 +1257,7 @@
 					<object class="NSSegmentedControl" id="891505527">
 						<reference key="NSNextResponder" ref="262340404"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{19, 98}, {265, 24}}</string>
+						<string key="NSFrame">{{19, 87}, {265, 24}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="201608325"/>
@@ -1305,7 +1305,7 @@
 					<object class="NSTextField" id="201608325">
 						<reference key="NSNextResponder" ref="262340404"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{116, 48}, {69, 17}}</string>
+						<string key="NSFrame">{{116, 49}, {69, 17}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="685305213"/>
@@ -1334,7 +1334,7 @@
 					<object class="NSButton" id="685305213">
 						<reference key="NSNextResponder" ref="262340404"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{118, 12}, {66, 32}}</string>
+						<string key="NSFrame">{{118, 13}, {66, 32}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -1359,7 +1359,7 @@
 					<object class="NSButton" id="730831091">
 						<reference key="NSNextResponder" ref="262340404"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{113, 169}, {74, 74}}</string>
+						<string key="NSFrame">{{46, 127}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="172767866"/>
@@ -1382,7 +1382,7 @@
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{301, 275}</string>
+				<string key="NSFrameSize">{301, 195}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="730831091"/>
@@ -2170,8 +2170,8 @@
 							<reference ref="685305213"/>
 							<reference ref="201608325"/>
 							<reference ref="891505527"/>
-							<reference ref="730831091"/>
 							<reference ref="172767866"/>
+							<reference ref="730831091"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Account Info View</string>
@@ -3058,10 +3058,10 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NSSwitch">{15, 15}</string>
-			<string key="heart-icon">{16, 16}</string>
+			<string key="heart-icon">{20, 18}</string>
 			<string key="icon">{512, 512}</string>
 			<string key="played-icon">{16, 16}</string>
-			<string key="trash-icon">{16, 16}</string>
+			<string key="trash-icon">{13, 14}</string>
 		</dictionary>
 	</data>
 </archive>
