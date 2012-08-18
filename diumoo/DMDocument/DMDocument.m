@@ -27,7 +27,6 @@
 {
     if(sid == nil)
         return;
-    
     if ([self.windowControllers count]==0) {
         DMDocumentWindowController* windowController = [[DMDocumentWindowController allocWithZone:nil] init];
         [self addWindowController:windowController];
@@ -36,13 +35,10 @@
 
 -(void)revertDocumentToSaved:(id)sender
 {
-    SInt32 osVersion;
-    Gestalt(gestaltSystemVersionMinor,&osVersion);
-    if (osVersion < 8) {
-        [super revertDocumentToSaved:nil];
-    }
-    else {
+    if ([self respondsToSelector:@selector(browseDocumentVersions:)]) {
         [super browseDocumentVersions:self];
+    } else {
+        [super revertDocumentToSaved:self];
     }
 }
 
@@ -58,7 +54,6 @@
     }
     return YES;
 }
-
 
 +(BOOL) autosavesInPlace
 {

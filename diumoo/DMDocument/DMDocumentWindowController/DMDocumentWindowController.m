@@ -13,6 +13,8 @@
 #import "CJSONDeserializer.h"
 #import "DMDetailViewController.h"
 #import "NSImage+AsyncLoadImage.h"
+#import "DMErrorLog.h"
+#import <dispatch/dispatch.h>
 
 #define DOUBAN_API_URL @"http://api.douban.com/music/subject/"
 
@@ -36,8 +38,6 @@
 {
     [super windowDidLoad];
     
-    DMLog(@"load");
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     starRating.displayMode = EDStarRatingDisplayAccurate;
     starRating.editable = NO;
     starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted"];
@@ -116,7 +116,6 @@
 
 -(void) revert:(id)sender
 {
-    DMLog(@"%@",self.document);
     [self.document revertDocumentToSaved:nil];
 }
 
@@ -146,52 +145,57 @@
 - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item
 {
     NSInteger tag = [item tag];
+    
     [tabView selectTabViewItemAtIndex:tag];
     if (tag == 1) {
         if(![lock tryLock])
             return;
-        [progressIndicator startAnimation:nil];
-        NSBlockOperation* fetchDetailOperation = 
-        [NSBlockOperation blockOperationWithBlock:^{
-            
+        [progressIndicator startAnimation:self];
+        
+        dispatch_queue_t viewQueue = dispatch_queue_create("DMtabview.Detail", NULL);
+        dispatch_queue_t high = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
+        dispatch_set_target_queue(viewQueue, high);
+        
+        dispatch_async(viewQueue, ^{
             NSString* apiurlString = [NSString stringWithFormat:@"%@%@?alt=json",
                                       DOUBAN_API_URL,aid
                                       ];
             NSURL* url = [NSURL URLWithString:apiurlString];
-            NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:2.0];
+            NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:5.0];
             
-            
-            
-            NSError* error = nil;
-            NSURLResponse* response = nil;
+            NSError* dataerror;
+            NSURLResponse* response;
             
             NSData* data = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&response 
-                                                             error:&error];
-            
-            if (error) {
-                indicatorText.stringValue = @"获取详细信息失败" ;
-                [progressIndicator stopAnimation:nil];
-                [lock unlock];
-            }
-            else {
-                NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data
-                                                                                         error:&error];
-                
-                if (error) {
-                    indicatorText.stringValue = @"解析信息失败（来自豆瓣音乐人的专辑无法获取详细信息）" ;
-                    [progressIndicator stopAnimation:nil];
+                                                             error:&dataerror];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (dataerror) {
+                    [DMErrorLog logErrorWith:self method:_cmd andError:dataerror];
+                    indicatorText.stringValue = @"获取详细信息失败" ;
+                    [progressIndicator stopAnimation:self];
+                    [lock unlock];
                 }
                 else {
-                    indicatorText.stringValue = @"解析信息成功！" ;
-                    [progressIndicator stopAnimation:nil];
-                    
-                    [self displayDetailView:dict];
+                    NSError *jsonError;
+                    NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data
+                                                                                             error:&jsonError];
+                    if (jsonError) {
+                        indicatorText.stringValue = @"解析信息失败（来自豆瓣音乐人的专辑无法获取详细信息）" ;
+                        [progressIndicator stopAnimation:nil];
+                    }
+                    else {
+                        indicatorText.stringValue = @"解析信息成功！" ;
+                        [progressIndicator stopAnimation:self];
+                        
+                        [self displayDetailView:dict];
+                    }
+                    [lock unlock];
                 }
-            }
-        }];
-        
-        [[NSOperationQueue currentQueue] addOperation:fetchDetailOperation];
+            });
+        });
+        dispatch_release(viewQueue);
+        dispatch_release(high);
     }
 }
 

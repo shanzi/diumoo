@@ -119,7 +119,7 @@
 }
 
 -(void) play
-{
+{    
     if(loadState < QTMovieLoadStatePlayable)
         return;
     
@@ -131,9 +131,12 @@
     else
         playState = REPLAYING;
     
+    [movie stop];
+
     if(movie && movie.rate == 0.0){
         if(timer)
             [timer invalidate];
+
         
         timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL
                                         target:self
@@ -143,15 +146,12 @@
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         
         [timer fire];
-        
-        [movie autoplay];
-            
-        DMLog(@"rate after play called = %lf, volume = %lf",movie.rate,movie.volume);
-
+                
     }
     else {
         [self.delegate playableCapsuleDidPlay:self];
     }
+    [movie autoplay];
 }
 
 -(void) pause
@@ -240,7 +240,6 @@
                                        repeats:YES];
         
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        //[self.delegate playableCapsuleWillPause:self];
         [timer fire];
     }
 }

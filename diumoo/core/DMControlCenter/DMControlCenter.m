@@ -243,7 +243,7 @@
 
 -(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
-    DMLog(@"%ld",state);
+    NSLog(@"%@ load state = %ld",capsule,state);
     if (state >= QTMovieLoadStatePlayable) {
         
         if ([capsule picture] == nil) {
@@ -263,15 +263,13 @@
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
         
         
-        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
+        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT && state == QTMovieLoadStateComplete) {
             DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
             if(waitsong==nil){
-                
                 [fetcher fetchPlaylistFromChannel:channel
                                          withType:kFetchPlaylistTypePlaying
                                               sid:playingCapsule.sid
                                    startAttribute:nil];
-                
             }
             else{
                 [waitsong setDelegate:self];

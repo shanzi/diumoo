@@ -113,6 +113,11 @@
     return NO;
 }
 
+-(BOOL) tabView:(NSTabView *)tableView shouldSelectTabViewItem:(NSTabViewItem*)tabViewItem
+{
+    return YES;
+}
+
 -(NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
 {
     if (tableView==songsView) {
