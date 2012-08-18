@@ -28,6 +28,8 @@
 
 
 -(void) fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr;
+-(void) fetchMusicianMusicsWithMusicianId:(NSString*) musician_id callback:(void(^)(BOOL success))callback;
+-(void) fetchSoundtrackWithSoundtrackId:(NSString*) soundtrack_id callback:(void(^)(BOOL success))callback;
 
 -(void) fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr andErrorCount:(NSInteger)count;
 -(DMPlayableCapsule*) getOnePlayableCapsule;

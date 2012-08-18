@@ -135,6 +135,7 @@
     }];
 }
 
+
 - (void)fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr
 {
     if (type == kFetchPlaylistTypeEnd && [playlist count]==0) {
@@ -158,6 +159,80 @@
     [self fetchPlaylistWithDictionary:fetchDictionary
                    withStartAttribute:startAttr
                         andErrorCount:0];
+}
+
+-(void) sendRequestForURL:(NSString*) urlstring callback:(void(^)(NSArray* list))block
+{
+    NSURL* url = [NSURL URLWithString:urlstring];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLCacheStorageAllowed
+                                         timeoutInterval:10.0
+                             ];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+                               
+                               if (d) {
+                                   NSDictionary* dictalbum =[[CJSONDeserializer deserializer]
+                                                             deserializeAsDictionary:d
+                                                             error:nil];
+                                   NSArray* songarray = dictalbum[@"song"];
+                                   if (block) {
+                                       block(songarray);
+                                   }
+                               }
+                           }];
+}
+
+-(void)fetchMusicianMusicsWithMusicianId:(NSString *)musician_id callback:(void(^)(BOOL success))callback
+{
+    NSDictionary* dict = @{
+    @"type":kFetchPlaylistTypeNew,
+    @"channel":@(0),
+    @"r":[self randomString],
+    @"from":@"mainsite",
+    @"context":[@"context=channel:0|musician_id:" stringByAppendingString:musician_id]
+    };
+    NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
+                           PLAYLIST_FETCH_URL_BASE,[dict urlEncodedString]
+                           ];
+    [self sendRequestForURL:urlstring callback:^(NSArray *list) {
+        if (list) {
+            [playlist removeAllObjects];
+            [playlist addObjectsFromArray:list];
+            callback(YES);
+        }
+        else
+        {
+            callback(NO);
+        }
+    }];
+}
+
+-(void) fetchSoundtrackWithSoundtrackId:(NSString *)soundtrack_id callback:(void (^)(BOOL))callback
+{
+    NSDictionary* dict = @{
+    @"type":kFetchPlaylistTypeNew,
+    @"channel":@(10),
+    @"r":[self randomString],
+    @"from":@"mainsite",
+    @"context":[@"context=channel:10|subject_id:" stringByAppendingString:soundtrack_id]
+    };
+    NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
+                           PLAYLIST_FETCH_URL_BASE,
+                           [dict urlEncodedString]
+                           ];
+    [self sendRequestForURL:urlstring callback:^(NSArray *list) {
+        if (list) {
+            [playlist removeAllObjects];
+            [playlist addObjectsFromArray:list];
+            callback(YES);
+        }
+        else{
+            callback(NO);
+        }
+    }];
 }
 
 - (DMPlayableCapsule*)getOnePlayableCapsule
@@ -202,38 +277,24 @@
     NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
                            DOUBAN_ALBUM_GET_URL,
                            [fetchdict urlEncodedString]];
-    NSURL* url = [NSURL URLWithString:urlstring];
-    DMLog(@"%@",urlstring);
-    NSURLRequest* request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLCacheStorageAllowed
-                                         timeoutInterval:10.0
-                             ];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
-
-                               if (d) {
-                                   NSDictionary* dictalbum =[[CJSONDeserializer deserializer]
-                                                        deserializeAsDictionary:d
-                                                        error:nil];
-                                   NSArray* songarray = dictalbum[@"song"];
-
-                                   if ([songarray count]) {
-                                       NSMutableArray* albumsongs = [NSMutableArray arrayWithCapacity:[songarray count]];
-                                       for (NSDictionary* song in songarray) {
-                                           if ([song[@"aid"] isEqualToString:album]) {
-                                               [albumsongs addObject:song];
-                                           }
-                                       }
-                                       
-                                       if ([albumsongs count]) {
-                                           playlist = albumsongs;
-                                           callback(YES);
-                                       }
-                                       else callback(NO);
-                                   }
-                               }
-                           }];
+    
+    
+    [self sendRequestForURL:urlstring callback:^(NSArray *songarray) {
+        if ([songarray count]) {
+            NSMutableArray* albumsongs = [NSMutableArray arrayWithCapacity:[songarray count]];
+            for (NSDictionary* song in songarray) {
+                if ([song[@"aid"] isEqualToString:album]) {
+                    [albumsongs addObject:song];
+                }
+            }
+            
+            if ([albumsongs count]) {
+                playlist = albumsongs;
+                callback(YES);
+            }
+            else callback(NO);
+        }
+    }];
 }
 
 @end

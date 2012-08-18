@@ -578,10 +578,40 @@
             }
         }];
     }
+    else if([type isEqualToString:@"musician"])
+    {
+        NSString* musician_id = n.userInfo[@"musician_id"];
+        [fetcher fetchMusicianMusicsWithMusicianId:musician_id
+                                          callback:^(BOOL success) {
+                                              if (success) {
+                                                  [waitPlaylist removeAllObjects];
+                                                  waitingCapsule = nil;
+                                                  [self skip];
+                                                  [diumooPanel invokeChannelWithCid:0
+                                                                           andTitle:@"私人兆和"
+                                                                            andPlay:NO];
+                                              }
+                                          }];
+    }
+    else if([type isEqualToString:@"soundtrack"])
+    {
+        NSString* soundtrack = n.userInfo[@"soundtrack_id"];
+        [fetcher fetchSoundtrackWithSoundtrackId:soundtrack
+                                        callback:^(BOOL success) {
+                                            if (success) {
+                                                [waitPlaylist removeAllObjects];
+                                                waitingCapsule = nil;
+                                                [self skip];
+                                                [diumooPanel invokeChannelWithCid:10
+                                                                         andTitle:@"电影原声"
+                                                                          andPlay:NO];
+                                            }
+                                        }];
+    }
     else if([type isEqualToString:@"channel"]){
         NSInteger cid = [n.userInfo[@"cid"] integerValue];
         NSString *title = n.userInfo[@"title"];
-        [diumooPanel invokeChannelWithCid:cid andTitle:title];
+        [diumooPanel invokeChannelWithCid:cid andTitle:title andPlay:YES];
     }
 }
 

@@ -13,6 +13,8 @@
 
 #define DM_SONG_PREFIX @"diumoo://song?key="
 #define DM_ALBUM_PREFIX @"diumoo://album?key="
+#define DM_MUSICIAN_PREFIX @"diumoo://musician?key="
+#define DM_SOUNDTRACK_PREFIX @"diumoo://soundtrack?key="
 #define DM_CHANNEL_PREFIX @"diumoo://channel?key="
 
 #define NOTIFICATION_URL @"http://diumoo-notification.herokuapp.com/notification"
@@ -83,6 +85,22 @@ static NSOperationQueue* serviceQueue;
             userinfo = @{ @"type" : @"album",@"aid": start};
         }
     }
+    else if ([string hasPrefix:DM_MUSICIAN_PREFIX])
+    {
+        start = [string stringByReplacingOccurrencesOfString:DM_MUSICIAN_PREFIX
+                                                  withString:@""];
+        if (start) {
+            userinfo = @{@"type":@"musician",@"musician_id":start};
+        }
+    }
+    else if([string hasPrefix:DM_SOUNDTRACK_PREFIX])
+    {
+        start = [string stringByReplacingOccurrencesOfString:DM_SOUNDTRACK_PREFIX
+                                                  withString:@""];
+        if (start) {
+            userinfo = @{@"type":@"soundtrack",@"soundtrack_id":start};
+        }
+    }
     else if([string hasPrefix:DM_CHANNEL_PREFIX])
     {
         start = [string stringByReplacingOccurrencesOfString:DM_CHANNEL_PREFIX withString:@""];
@@ -115,7 +133,7 @@ static NSOperationQueue* serviceQueue;
     else
     {
         NSRunCriticalAlertPanel(@"打开URL失败",
-                                @"打开URL失败，您输入了非法的URL地址。。",
+                                @"未能成功打开您指定的URL，可能是您试图播放的专辑、音乐家或电影原声不可用。",
                                 @"知道了", nil, nil);
         return NO;
     }

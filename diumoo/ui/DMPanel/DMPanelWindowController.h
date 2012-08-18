@@ -79,7 +79,7 @@ typedef enum{
 -(void) playDefaultChannel;
 
 -(NSString*) switchToDefaultChannel;
--(void) invokeChannelWithCid:(NSInteger) cid andTitle:(NSString*) title;
+-(void) invokeChannelWithCid:(NSInteger) cid andTitle:(NSString*) title andPlay:(BOOL)immediately;
 
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 - (IBAction)togglePanel:(id)sender;

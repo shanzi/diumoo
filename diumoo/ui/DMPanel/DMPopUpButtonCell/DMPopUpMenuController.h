@@ -41,6 +41,6 @@
 -(void) setPrivateChannelEnabled:(BOOL) enable;
 -(void) unlockChannelMenuButton;
 
--(void) invokeChannelWith:(NSInteger) cid andTitle:(NSString*) title;
+-(void) invokeChannelWith:(NSInteger) cid andTitle:(NSString*) title andPlay:(BOOL)playImmediately;
 
 @end

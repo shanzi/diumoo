@@ -404,21 +404,35 @@
     [subButton setEnabled:YES];
 }
 
--(void) invokeChannelWith:(NSInteger)cid andTitle:(NSString *)title
+-(void) invokeChannelWith:(NSInteger)cid andTitle:(NSString *)title andPlay:(BOOL)playImmediately
 {
-    NSMenuItem* item = [publicMenu itemWithTag:cid];
-    if (item == nil) {
-        item = [moreChannelMenu itemWithTag:cid];
+    NSMenuItem* item =nil;
+    if (cid == 0) {
+        item = [mainMenu itemWithTag:0];
+    }
+    else{
+        item = [publicMenu itemWithTag:cid];
         if (item == nil) {
-            item = [[NSMenuItem alloc] initWithTitle:title action:@selector(changeChannelAction:)
-                                       keyEquivalent:@""];
-            item.tag = cid;
-            
-            [item setTarget:self];
-            
+            item = [moreChannelMenu itemWithTag:cid];
+            if (item == nil) {
+                item = [[NSMenuItem alloc] initWithTitle:title action:@selector(changeChannelAction:)
+                                           keyEquivalent:@""];
+                item.tag = cid;
+                
+                [item setTarget:self];
+                
+            }
         }
     }
-    [self changeChannelAction:item];
+    
+    
+    if (playImmediately) {
+        [self changeChannelAction:item];
+    }
+    else{
+        [self updateChannelMenuWithSender:item];
+    }
+    
 }
 
 @end

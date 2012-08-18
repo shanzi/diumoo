@@ -84,12 +84,12 @@
 			<string>diumoo Share Link</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>dm</string>
+				<string>diumoo</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1516</string>
+	<string>1528</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>

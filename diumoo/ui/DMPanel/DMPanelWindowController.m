@@ -283,9 +283,9 @@ DMPanelWindowController *sharedWindow;
     return [NSString stringWithFormat:@"%ld",item.tag];
 }
 
--(void)invokeChannelWithCid:(NSInteger)cid andTitle:(NSString *)title
+-(void)invokeChannelWithCid:(NSInteger)cid andTitle:(NSString *)title andPlay:(BOOL)immediately
 {
-    [popupMenuController invokeChannelWith:cid andTitle:title];
+    [popupMenuController invokeChannelWith:cid andTitle:title andPlay:immediately];
 }
 
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
