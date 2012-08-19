@@ -289,7 +289,7 @@
 						<object class="NSButton" id="144613420">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{5, 435}, {57, 35}}</string>
+							<string key="NSFrame">{{5, 435}, {60, 35}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="243441216"/>
@@ -337,7 +337,7 @@
 								<reference key="NSSupport" ref="347555876"/>
 								<string key="NSCellIdentifier">_NS:22</string>
 								<reference key="NSControlView" ref="243441216"/>
-								<int key="NSButtonFlags">-2042347520</int>
+								<int key="NSButtonFlags">138690560</int>
 								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
@@ -1398,9 +1398,9 @@
 							<reference ref="224481640"/>
 							<reference ref="930623499"/>
 							<reference ref="15871923"/>
-							<reference ref="615778314"/>
 							<reference ref="144613420"/>
 							<reference ref="243441216"/>
+							<reference ref="615778314"/>
 						</array>
 						<reference key="parent" ref="577421203"/>
 					</object>
