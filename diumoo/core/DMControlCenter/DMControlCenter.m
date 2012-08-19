@@ -40,6 +40,7 @@
         recordHandler.delegate = self;
         
         channel = @"1";
+        pauseType = PAUSE_PASS;
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(playSpecialNotification:)
@@ -74,7 +75,6 @@
         channel = [diumooPanel switchToDefaultChannel];
         canPlaySpecial = YES;
         [DMService openDiumooLink:openedURLString];
-        
     }
     
     
@@ -164,7 +164,7 @@
         }];
     }
         
-        
+    pauseType = PAUSE_PASS;
 }
 
 //------------------PlayableCapsule 的 delegate 函数部分-----------------------
@@ -172,6 +172,7 @@
 -(void) playableCapsuleDidPlay:(id)c
 {
     [diumooPanel setPlaying:YES];
+    pauseType = PAUSE_PASS;
 }
 
 -(void) playableCapsuleWillPause:(id)c
@@ -359,15 +360,15 @@
     if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) return;
     
     // ping 豆瓣，将skip操作记录下来
-    [fetcher fetchPlaylistFromChannel:channel 
+    [fetcher fetchPlaylistFromChannel:channel
                              withType:kFetchPlaylistTypeSkip
                                   sid:playingCapsule.sid
                        startAttribute:nil];
     
-    // 指定歌曲暂停后的operation
     
     // 暂停当前歌曲
     [playingCapsule pause];
+    
 }
 
 -(void)rateOrUnrate
@@ -575,6 +576,7 @@
             else
             {
                 NSRunAlertPanel(@"播放专辑失败", @"很遗憾，尝试播放您指定的专辑失败。", @"知道了", nil, nil);
+                [diumooPanel playDefaultChannel];
             }
         }];
     }
@@ -588,7 +590,7 @@
                                                   waitingCapsule = nil;
                                                   [self skip];
                                                   [diumooPanel invokeChannelWithCid:0
-                                                                           andTitle:@"私人兆和"
+                                                                           andTitle:@"私人兆赫"
                                                                             andPlay:NO];
                                               }
                                           }];
