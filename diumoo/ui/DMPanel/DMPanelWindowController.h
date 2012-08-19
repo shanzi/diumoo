@@ -17,8 +17,9 @@ typedef enum{
     DOUBAN = 1,
     FANFOU = 2,
     SINA_WEIBO = 3,
-    TWITTER = 4,
-    FACEBOOK = 5
+    RENREN = 4,
+    TWITTER = 5,
+    FACEBOOK = 6
 } SNS_CODE ;
 
 @protocol DMPanelWindowDelegate <NSObject>
