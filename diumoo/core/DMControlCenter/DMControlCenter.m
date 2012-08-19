@@ -588,7 +588,7 @@
                                                   waitingCapsule = nil;
                                                   [self skip];
                                                   [diumooPanel invokeChannelWithCid:0
-                                                                           andTitle:@"私人兆和"
+                                                                           andTitle:@"私人兆赫"
                                                                             andPlay:NO];
                                               }
                                           }];
