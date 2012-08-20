@@ -18,6 +18,7 @@
 		3F01022A15DE9DA10076D6C8 /* status-icon-mixed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01022915DE9DA10076D6C8 /* status-icon-mixed@2x.png */; };
 		3F01022C15DE9DA70076D6C8 /* status-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01022B15DE9DA70076D6C8 /* status-icon@2x.png */; };
 		3F32D55015DBFF9200C62A5E /* albumfail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F32D54F15DBFF9200C62A5E /* albumfail@2x.png */; };
+		3F3F2B5315E1E029007D75B5 /* diumooLink.safariextz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3F3F2B4E15E1DF91007D75B5 /* diumooLink.safariextz */; };
 		3F50FC4415DB4981000E5147 /* DMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F50FC4315DB4981000E5147 /* DMButton.m */; };
 		3F8A956415D9FEE500701895 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A956315D9FEE500701895 /* DMPanel.m */; };
 		3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE809815D4A632001A3BEC /* DMErrorLog.m */; };
@@ -158,6 +159,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3F3F2B5215E1E019007D75B5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3F3F2B5315E1E029007D75B5 /* diumooLink.safariextz in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5148B5415810758002B3D61 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +194,7 @@
 		3F01022915DE9DA10076D6C8 /* status-icon-mixed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-mixed@2x.png"; sourceTree = "<group>"; };
 		3F01022B15DE9DA70076D6C8 /* status-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon@2x.png"; sourceTree = "<group>"; };
 		3F32D54F15DBFF9200C62A5E /* albumfail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "albumfail@2x.png"; sourceTree = "<group>"; };
+		3F3F2B4E15E1DF91007D75B5 /* diumooLink.safariextz */ = {isa = PBXFileReference; lastKnownFileType = file; name = diumooLink.safariextz; path = BrowserPlugins/diumooLink.safariextz; sourceTree = "<group>"; };
 		3F50FC4215DB4981000E5147 /* DMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMButton.h; sourceTree = "<group>"; };
 		3F50FC4315DB4981000E5147 /* DMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMButton.m; sourceTree = "<group>"; };
 		3F8A956215D9FEE500701895 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
@@ -407,6 +419,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F3F2B5015E1DF9D007D75B5 /* BrowserPlugins */ = {
+			isa = PBXGroup;
+			children = (
+				3F3F2B4E15E1DF91007D75B5 /* diumooLink.safariextz */,
+			);
+			name = BrowserPlugins;
+			sourceTree = "<group>";
+		};
 		3F50FC4115DB4981000E5147 /* DMButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +550,7 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				3F3F2B5015E1DF9D007D75B5 /* BrowserPlugins */,
 				F5D362FD15A1F0EF003A40B2 /* DMDocument */,
 				F501B3AC15877062001C6158 /* ui */,
 				F5148B1F1580E904002B3D61 /* core */,
@@ -1038,6 +1059,7 @@
 				F5148AAC1580E58D002B3D61 /* Resources */,
 				F5148B5415810758002B3D61 /* CopyFiles */,
 				17FE6B001584AD5900EA34EA /* ShellScript */,
+				3F3F2B5215E1E019007D75B5 /* CopyFiles */,
 			);
 			buildRules = (
 			);

@@ -71,15 +71,11 @@
         [diumooPanel playDefaultChannel];
     }
     else{
-
         channel = [diumooPanel switchToDefaultChannel];
         canPlaySpecial = YES;
         [DMService openDiumooLink:openedURLString];
     }
-    
-    
 }
-
 
 -(void) stopForExit
 {

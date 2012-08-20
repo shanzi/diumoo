@@ -44,6 +44,9 @@
         case INFO_PANEL_ID:
             return @"关于";
             break;
+        case DMLINK_PANEL_ID:
+            return @"Diumoo Link";
+            break;
         default:
             return @"";
             break;
@@ -65,6 +68,8 @@
         case INFO_PANEL_ID:
             return [NSImage imageNamed:NSImageNameInfo];
             break;
+        case DMLINK_PANEL_ID:
+            return [NSImage imageNamed:NSImageNameNetwork];
         default:
             return nil;
             break;
@@ -85,6 +90,9 @@
             break;
         case INFO_PANEL_ID:
             return info;
+            break;
+        case DMLINK_PANEL_ID:
+            return diumooLink;
             break;
         default:
             return nil;
@@ -306,5 +314,29 @@
         [skipShortcut setEnabled:NO];
     }
 }
+
+-(IBAction)installBrowserPlugins:(id)sender
+{
+    NSString *currentBundlePath = [[NSBundle mainBundle] bundlePath];
+    switch ([sender tag]) {
+        case 0:
+            if ([[NSWorkspace sharedWorkspace] openFile:[currentBundlePath stringByAppendingString:@"/Contents/PlugIns/diumooLink.safariextz"]]!= YES) {
+                NSRunAlertPanel(@"安装浏览器插件失败", @"浏览器无法打开插件，可能是没有安装 Safari。", @"知道了", nil, nil);
+            }
+            break;
+        case 1:
+            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Chrome 插件~~~", @"知道了", nil, nil);
+            break;
+        case 2:
+            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 FireFox 插件~~~", @"知道了", nil, nil);
+            break;
+        case 3:
+            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Opera 插件~~~", @"知道了", nil, nil);
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end
