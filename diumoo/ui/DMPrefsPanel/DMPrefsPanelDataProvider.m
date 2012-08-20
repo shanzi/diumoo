@@ -328,7 +328,7 @@
             NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Chrome 插件~~~", @"知道了", nil, nil);
             break;
         case 2:
-            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 FireFox 插件~~~", @"知道了", nil, nil);
+            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Firefox 插件~~~", @"知道了", nil, nil);
             break;
         case 3:
             NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Opera 插件~~~", @"知道了", nil, nil);

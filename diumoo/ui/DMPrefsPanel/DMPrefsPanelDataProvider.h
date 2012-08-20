@@ -60,8 +60,13 @@
     IBOutlet MASShortcutView *showPrefsPanel;
     
     //------ DiumooLink outlet ---------
-    IBOutlet NSTextField *diumooLinkText;
+    IBOutlet NSTextField *diumooLinkTitle;
+    IBOutlet NSTextField *diumooLinkDescription;
+    IBOutlet NSBox *installOptions;
     IBOutlet NSButton *installSafariPlugin;
+    IBOutlet NSButton *installChromePlugin;
+    IBOutlet NSButton *installFireFoxPlugin;
+    IBOutlet NSButton *installOperaPlugin;
     
     //------ info outlet ---------------
     IBOutlet NSTextField *displayName;

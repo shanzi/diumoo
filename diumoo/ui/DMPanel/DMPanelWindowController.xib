@@ -289,7 +289,7 @@
 						<object class="NSButton" id="144613420">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{5, 433.5}, {60, 37}}</string>
+							<string key="NSFrame">{{5, 434}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="243441216"/>
@@ -808,6 +808,19 @@
 						<reference key="NSMixedImage" ref="261628404"/>
 						<int key="NSTag">3</int>
 					</object>
+					<object class="NSMenuItem" id="453554915">
+						<reference key="NSMenu" ref="575959324"/>
+						<string key="NSTitle">人人</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">renren</string>
+						</object>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+						<int key="NSTag">4</int>
+					</object>
 					<object class="NSMenuItem" id="1064744967">
 						<reference key="NSMenu" ref="575959324"/>
 						<bool key="NSIsDisabled">YES</bool>
@@ -829,7 +842,7 @@
 						</object>
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
-						<int key="NSTag">4</int>
+						<int key="NSTag">5</int>
 					</object>
 					<object class="NSMenuItem" id="1056998052">
 						<reference key="NSMenu" ref="575959324"/>
@@ -842,7 +855,7 @@
 						</object>
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
-						<int key="NSTag">5</int>
+						<int key="NSTag">6</int>
 					</object>
 				</array>
 			</object>
@@ -1080,6 +1093,14 @@
 						<reference key="destination" ref="530597"/>
 					</object>
 					<int key="connectionID">3897</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">shareAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="453554915"/>
+					</object>
+					<int key="connectionID">3899</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1593,8 +1614,10 @@
 							<reference ref="1054668642"/>
 							<reference ref="1056998052"/>
 							<reference ref="1064744967"/>
+							<reference ref="453554915"/>
 						</array>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Share Menu</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3869</int>
@@ -1686,6 +1709,11 @@
 						<int key="objectID">3896</int>
 						<reference key="object" ref="530597"/>
 						<reference key="parent" ref="1066845941"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3898</int>
+						<reference key="object" ref="453554915"/>
+						<reference key="parent" ref="575959324"/>
 					</object>
 				</array>
 			</object>
@@ -1779,12 +1807,13 @@
 				<string key="3893.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3894.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3896.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3898.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3897</int>
+			<int key="maxID">3899</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2019,6 +2048,7 @@
 			<string key="play">{60, 37}</string>
 			<string key="rate">{62, 35}</string>
 			<string key="redheart">{16, 16}</string>
+			<string key="renren">{16, 16}</string>
 			<string key="settings">{16, 16}</string>
 			<string key="share">{32, 32}</string>
 			<string key="sina">{16, 16}</string>

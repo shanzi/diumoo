@@ -473,11 +473,12 @@
     }
     
     NSString* shareTitle = playingCapsule.title;
-    NSString* shareString = [NSString stringWithFormat:@"%@ - %@ <%@>",
+    NSString* shareString = [NSString stringWithFormat:@"#nowplaying %@ - %@ <%@>",
                              shareTitle,
                              playingCapsule.artist,
                              playingCapsule.albumtitle
                              ];
+    
     NSString* shareAttribute = [playingCapsule startAttributeWithChannel:channel];
     NSString* shareLink = [NSString stringWithFormat:@"http://douban.fm/?start=%@&cid=%@",shareAttribute,channel];
     
@@ -502,9 +503,21 @@
             urlBase = @"http://v.t.sina.com.cn/share/share.php";
             args = @{@"title": [NSString stringWithFormat:@"%@ %@",shareString,shareLink]};
             break;
+            
+        case RENREN:
+            urlBase = @"http://widget.renren.com/dialog/share";
+            args = @{
+            @"title":shareTitle,
+            @"srcUrl":shareLink,
+            @"resourceUrl":shareLink,
+            @"pic":imageLink,
+            @"description":shareString
+            };
+            break;
+            
         case TWITTER:
             if(YES){
-                NSString* content =[NSString stringWithFormat:@"%@ %@",shareString,shareLink];
+                NSString* content =[NSString stringWithFormat:@"%@ (diumoo link: %@)",shareString,shareLink];
                 NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
                 [pb setData:[content dataUsingEncoding:NSUTF8StringEncoding]
                     forType:NSStringPboardType];
