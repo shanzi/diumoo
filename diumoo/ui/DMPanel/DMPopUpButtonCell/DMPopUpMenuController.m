@@ -338,8 +338,7 @@
     self.currentChannelMenuItem = newItem;
     
     
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    [values setValue:@(tag) forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
+    [[NSUserDefaults standardUserDefaults] setValue:@(currentChannelID) forKey:@"channel"]; // 把当前的兆赫记录到偏好设置里
     
 }
 
@@ -431,6 +430,7 @@
     }
     else{
         [self updateChannelMenuWithSender:item];
+        [[NSUserDefaults standardUserDefaults] setValue:@(cid) forKey:@"channel"];
     }
     
 }

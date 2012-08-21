@@ -20,8 +20,11 @@
     [self makeDefaultPreference];
     
     [DMErrorLog sharedErrorLog];
-    
+#ifndef DEBUG
     [self redirectConsoleLogToDocumentFolder];
+#endif
+    
+    
 
     mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     

@@ -26,4 +26,5 @@
 +(void) importRecordOperationWithFilePath:(NSURL*)fp;
 +(void) exportRecordOperation;
 +(void) showDMNotification;
++(void) shareLinkWithDictionary:(NSDictionary*) dict callback:(void(^)(NSString* url)) block;
 @end
