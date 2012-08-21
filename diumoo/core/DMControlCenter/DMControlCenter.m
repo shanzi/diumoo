@@ -240,9 +240,7 @@
 
 -(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
-    NSLog(@"%@ load state = %ld",capsule,state);
     if (state >= QTMovieLoadStatePlayable) {
-        
         if ([capsule picture] == nil) {
             [capsule prepareCoverWithCallbackBlock:nil];
         }
@@ -302,8 +300,7 @@
                               withStartAttribute:attr
                                    andErrorCount:count+1];
         }
-        else
-        {
+        else {
             [diumooPanel unlockUIWithError:YES];
         }
     }
@@ -311,10 +308,8 @@
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
-    
     if (startsong) {
         if (playingCapsule) {
-            
             if (OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) {
                 waitingCapsule = startsong;
                 [playingCapsule pause];
@@ -326,8 +321,8 @@
     }
     else if (playingCapsule == nil) 
     {
-        DMPlayableCapsule* c = [fetcher getOnePlayableCapsule];
-        [self startToPlay:c];
+        DMPlayableCapsule *capsule = [fetcher getOnePlayableCapsule];
+        [self startToPlay:capsule];
     }
     canPlaySpecial = YES;
 }
@@ -483,8 +478,8 @@
     NSString* shareLink = [NSString stringWithFormat:@"http://douban.fm/?start=%@&cid=%@",shareAttribute,channel];
     
     NSString* imageLink = playingCapsule.pictureLocation;
-    NSDictionary* args = nil;
-    NSString* urlBase = nil;
+    NSDictionary* args;
+    NSString* urlBase;
     
     switch (code) {
         case DOUBAN:
