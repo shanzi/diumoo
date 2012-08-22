@@ -144,14 +144,16 @@
                                       userInfo:kTimerPulseTypePlay
                                        repeats:YES];
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        
+        movie.volume = 0;
+        [movie play];
         [timer fire];
                 
     }
     else {
+        [movie autoplay];
         [self.delegate playableCapsuleDidPlay:self];
     }
-    [movie autoplay];
+    
 }
 
 -(void) pause

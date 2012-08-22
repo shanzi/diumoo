@@ -141,13 +141,14 @@
 -(void) updateMenuItemsWithPublicList:(NSArray*) publiclist andSuggestList:(NSArray*) suggestlist
 {
 
+    NSInteger maxPublicChannelId = 0;
     if (publiclist) {
-        self.publicMenu = [self buildMenuWithChannelListArray:publiclist];
+        self.publicMenu = [self buildMenuWithChannelListArray:publiclist maxChannelID:&maxPublicChannelId];
         [[mainMenu itemWithTag:1] setSubmenu:publicMenu];
     }
     if (suggestlist)
     {
-        self.suggestMenu = [self buildMenuWithChannelListArray:suggestlist];
+        self.suggestMenu = [self buildMenuWithChannelListArray:suggestlist maxChannelID:NULL];
         [[moreChannelMenu itemWithTag:-12] setSubmenu:suggestMenu];
         [[mainMenu itemWithTag:1000000]setSubmenu:moreChannelMenu];
     }
@@ -194,7 +195,7 @@
         for (NSDictionary* channel in promotions) {
             
             NSInteger tag = [[channel valueForKey:@"id"] integerValue];
-            if (tag < 1000000) continue;
+            if (tag < maxPublicChannelId) continue;
             
             NSString* title = [channel valueForKey:@"name"];
             NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:title
@@ -217,7 +218,7 @@
     }
 }
 
--(NSMenu*) buildMenuWithChannelListArray:(NSArray*)array
+-(NSMenu*) buildMenuWithChannelListArray:(NSArray*)array maxChannelID:(NSInteger*) maxid
 {
     NSMenu* menu = [[NSMenu alloc] init];
     for (NSDictionary* dic in array) {
@@ -245,6 +246,9 @@
                 [item setIndentationLevel:1];
                 [item setTarget:self];
                 [menu addItem:item];
+                if (maxid!=NULL && (*maxid) < tag) {
+                    (*maxid) = tag;
+                }
                 if (tag == currentChannelID) {
                     self.currentChannelMenuItem = item;
                 }
