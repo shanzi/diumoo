@@ -71,11 +71,15 @@
         [diumooPanel playDefaultChannel];
     }
     else{
+
         channel = [diumooPanel switchToDefaultChannel];
         canPlaySpecial = YES;
         [DMService openDiumooLink:openedURLString];
     }
+    
+    
 }
+
 
 -(void) stopForExit
 {
@@ -240,7 +244,9 @@
 
 -(void) playableCapsule:(id)capsule loadStateChanged:(long)state
 {
+    NSLog(@"%@ load state = %ld",capsule,state);
     if (state >= QTMovieLoadStatePlayable) {
+        
         if ([capsule picture] == nil) {
             [capsule prepareCoverWithCallbackBlock:nil];
         }
@@ -300,7 +306,8 @@
                               withStartAttribute:attr
                                    andErrorCount:count+1];
         }
-        else {
+        else
+        {
             [diumooPanel unlockUIWithError:YES];
         }
     }
@@ -308,8 +315,10 @@
 
 -(void) fetchPlaylistSuccessWithStartSong:(id)startsong
 {
+    
     if (startsong) {
         if (playingCapsule) {
+            
             if (OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) {
                 waitingCapsule = startsong;
                 [playingCapsule pause];
@@ -321,8 +330,8 @@
     }
     else if (playingCapsule == nil) 
     {
-        DMPlayableCapsule *capsule = [fetcher getOnePlayableCapsule];
-        [self startToPlay:capsule];
+        DMPlayableCapsule* c = [fetcher getOnePlayableCapsule];
+        [self startToPlay:c];
     }
     canPlaySpecial = YES;
 }
@@ -461,25 +470,50 @@
     }
 }
 
--(void)share:(SNS_CODE)code
+-(void) share:(SNS_CODE)code
 {
-    if (playingCapsule == nil) {
+    if (playingCapsule == nil || playingCapsule.ssid == nil) {
         return;
     }
-    
-    NSString* shareTitle = playingCapsule.title;
-    NSString* shareString = [NSString stringWithFormat:@"#nowplaying %@ - %@ <%@>",
-                             shareTitle,
-                             playingCapsule.artist,
-                             playingCapsule.albumtitle
-                             ];
+    NSDictionary* sharedict=@{
+    @"t" : playingCapsule.title ,
+    @"a" : playingCapsule.albumtitle ,
+    @"r" : playingCapsule.artist,
+    @"s" : [NSString stringWithFormat:@"%lx",[playingCapsule.sid integerValue]],
+    @"ss" : playingCapsule.ssid,
+    @"i": playingCapsule.largePictureLocation
+    };
     
     NSString* shareAttribute = [playingCapsule startAttributeWithChannel:channel];
-    NSString* shareLink = [NSString stringWithFormat:@"http://douban.fm/?start=%@&cid=%@",shareAttribute,channel];
     
-    NSString* imageLink = playingCapsule.pictureLocation;
-    NSDictionary* args;
-    NSString* urlBase;
+    
+    [DMService shareLinkWithDictionary:sharedict
+                              callback:^(NSString *url) {
+                                  if (url == nil) {
+                                      url = [NSString stringWithFormat:@"http://douban.fm/?start=%@&cid=%@",shareAttribute,channel];
+                                  }
+                                  [self share:code
+                                    shareLink:url
+                                    sharedict:sharedict];
+    }];
+}
+
+-(void)share:(SNS_CODE)code shareLink:(NSString*) shareLink sharedict:(NSDictionary*) dict
+{
+    
+    
+    NSString* shareTitle = dict[@"t"];
+    NSString* shareString = [NSString stringWithFormat:@"#nowplaying %@ - %@ <%@>",
+                             shareTitle,
+                             dict[@"r"],
+                             dict[@"a"]
+                             ];
+    
+   
+    
+    NSString* imageLink = dict[@"i"];
+    NSDictionary* args = nil;
+    NSString* urlBase = nil;
     
     switch (code) {
         case DOUBAN:

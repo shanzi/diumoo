@@ -9,6 +9,7 @@
 #import "DMService.h"
 #import "DMPlayRecordHandler.h"
 #import "NSData+AESCrypt.h"
+#import "NSDictionary+UrlEncoding.h"
 #import "CJSONDeserializer.h"
 
 #define DM_SONG_PREFIX @"diumoo://song?key="
@@ -19,6 +20,7 @@
 
 #define NOTIFICATION_URL @"http://diumoo-notification.herokuapp.com/notification"
 //#define NOTIFICATION_URL @"http://diumoo-notification.hero/notification"
+#define GET_SHARE_LINK_URL @"http://127.0.0.1:8000/"
 
 #define APP_TYPE_PRO 1
 #define APP_TYPE_LITE (1<<1)
@@ -299,6 +301,39 @@ static NSOperationQueue* serviceQueue;
              
          }
      }];
+}
+
++(void)shareLinkWithDictionary:(NSDictionary *)dict callback:(void (^)(NSString *))block
+{
+    
+    NSString* urlencoded = [dict urlEncodedString];
+    NSData* urldata = [urlencoded dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* crypted = [urldata AES256EncryptWithKey:SERVICE_KEY];
+    NSString* base64 = [crypted base64EncodedString];
+    
+
+    NSDictionary* keydict = @{ @"key" : base64 ,@"sid":dict[@"s"]};
+    NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
+                           GET_SHARE_LINK_URL,[keydict urlEncodedString]];
+    NSURL* url = [NSURL URLWithString:urlstring];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url
+                               cachePolicy:NSURLCacheStorageAllowed
+                           timeoutInterval:2.0];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[DMService serviceQueue]
+                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
+                               DMLog(@"%@",e);
+                               if (e==NULL) {
+                                   NSString* string = [NSString stringWithCString:[d bytes]
+                                                                         encoding:NSASCIIStringEncoding];
+                                   block(string);
+                               }
+                               else
+                               {
+                                   block(nil);
+                               }
+                           }];
 }
 
 @end
