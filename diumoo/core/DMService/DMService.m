@@ -52,8 +52,9 @@ static NSOperationQueue* serviceQueue;
 +(NSString*) cleanStartAttribute:(NSString*)start
 {
     [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"clean start = %@",start]];
+    
     NSArray* startComponents = [start componentsSeparatedByString:@"g"];
-    if ([startComponents count]>2) {
+    if ([startComponents count]>=2) {
         if ([startComponents[1] length] == 4) {
             return [NSString stringWithFormat:@"%@g%@g",
                     startComponents[0],
@@ -72,7 +73,7 @@ static NSOperationQueue* serviceQueue;
     if ([string hasPrefix:DM_SONG_PREFIX]) {
         start = [string stringByReplacingOccurrencesOfString:DM_SONG_PREFIX
                                                   withString:@""];
-        start = [self cleanStartAttribute:start];
+        start = [DMService cleanStartAttribute:start];
         if (start != nil) {
             userinfo = @{ @"type" : @"song",@"start" : start };
         }
@@ -327,12 +328,14 @@ static NSOperationQueue* serviceQueue;
                                if (e==NULL) {
                                    NSString* string = [NSString stringWithCString:[d bytes]
                                                                          encoding:NSASCIIStringEncoding];
-                                   block(string);
+                                   if([string length]){
+                                       block(string);
+                                       return;
+                                   }
                                }
-                               else
-                               {
-                                   block(nil);
-                               }
+
+                               block(nil);
+                               
                            }];
 }
 
