@@ -68,7 +68,7 @@ static DMDoubanAuthHelper* sharedHelper;
         [authRequest setHTTPMethod:@"GET"];
     }
 
-    [authRequest setTimeoutInterval:5.0];
+    [authRequest setTimeoutInterval:20.0];
     
     
     // 发出同步请求
@@ -123,11 +123,11 @@ static DMDoubanAuthHelper* sharedHelper;
     NSURL* recent_url = [NSURL URLWithString:RECENT_CHLS_URL];
     NSURLRequest* promotion_request = [NSURLRequest requestWithURL:promotion_url
                                        cachePolicy:NSURLCacheStorageAllowed
-                                                   timeoutInterval:5.0
+                                                   timeoutInterval:10.0
                                        ];
     NSURLRequest* recent_request = [NSURLRequest requestWithURL:recent_url
                                                     cachePolicy:NSURLCacheStorageAllowed
-                                                timeoutInterval:5.0
+                                                timeoutInterval:10.0
                                     ];
     NSData* promotion_data = [NSURLConnection sendSynchronousRequest:promotion_request
                                                    returningResponse:nil
@@ -292,7 +292,7 @@ static DMDoubanAuthHelper* sharedHelper;
             
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies
                                                                forURL:[response URL]
-                                                      mainDocumentURL:[response URL]];
+                                                      mainDocumentURL:nil];
             
             
             [self loginSuccessWithUserinfo:[obj valueForKey:@"user_info"]];
@@ -301,7 +301,7 @@ static DMDoubanAuthHelper* sharedHelper;
             // 登陆失败
             NSError *error = [NSError errorWithDomain:@"DM Auth Error" code:-2
                                              userInfo:[obj valueForKey:@"err_msg"]];
-            [DMErrorLog logErrorWith:self method:_cmd andError:error];
+            //[DMErrorLog logErrorWith:self method:_cmd andError:error];
             return error;
         }
     }

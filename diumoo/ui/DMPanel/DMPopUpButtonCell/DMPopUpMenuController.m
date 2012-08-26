@@ -9,8 +9,7 @@
 #import "DMPopUpMenuController.h"
 #import "DMDoubanAuthHelper.h"
 
-#define UPDATE_URL @"http://diumoo-notification.herokuapp.com/fmchannel/"
-#define DJ_EXPLORER_URL @"http://douban.fm/j/explore/"
+#define UPDATE_URL @"http://channel.diumoo.net/channels/"
 
 #define kDMCollectChannel @"collect_channel"
 #define kDMUncollectChannel @"uncollect_channel"
@@ -141,14 +140,17 @@
 -(void) updateMenuItemsWithPublicList:(NSArray*) publiclist andSuggestList:(NSArray*) suggestlist
 {
 
-    NSInteger maxPublicChannelId = 0;
     if (publiclist) {
-        self.publicMenu = [self buildMenuWithChannelListArray:publiclist maxChannelID:&maxPublicChannelId];
+        self.publicMenu = [self buildMenuWithChannelListArray:publiclist];
         [[mainMenu itemWithTag:1] setSubmenu:publicMenu];
+        
+        if ([currentChannelMenuItem tag]>0) {
+            [currentChannelMenuItem setState:NSOnState];
+        }
     }
     if (suggestlist)
     {
-        self.suggestMenu = [self buildMenuWithChannelListArray:suggestlist maxChannelID:NULL];
+        self.suggestMenu = [self buildMenuWithChannelListArray:suggestlist];
         [[moreChannelMenu itemWithTag:-12] setSubmenu:suggestMenu];
         [[mainMenu itemWithTag:1000000]setSubmenu:moreChannelMenu];
     }
@@ -192,10 +194,9 @@
     if ([recents count]>0) {
         
         NSInteger displayedCount = 0;
-        for (NSDictionary* channel in promotions) {
+        for (NSDictionary* channel in recents) {
             
             NSInteger tag = [[channel valueForKey:@"id"] integerValue];
-            if (tag < maxPublicChannelId) continue;
             
             NSString* title = [channel valueForKey:@"name"];
             NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:title
@@ -218,7 +219,7 @@
     }
 }
 
--(NSMenu*) buildMenuWithChannelListArray:(NSArray*)array maxChannelID:(NSInteger*) maxid
+-(NSMenu*) buildMenuWithChannelListArray:(NSArray*)array
 {
     NSMenu* menu = [[NSMenu alloc] init];
     for (NSDictionary* dic in array) {
@@ -241,14 +242,12 @@
                                     action:@selector(changeChannelAction:)
                                     keyEquivalent:@""];
                 
-                NSInteger tag = [[channel valueForKey:@"channel_id"] integerValue];
+                NSInteger tag = [[channel valueForKey:@"id"] integerValue];
                 [item setTag:tag];
                 [item setIndentationLevel:1];
                 [item setTarget:self];
                 [menu addItem:item];
-                if (maxid!=NULL && (*maxid) < tag) {
-                    (*maxid) = tag;
-                }
+                
                 if (tag == currentChannelID) {
                     self.currentChannelMenuItem = item;
                 }
@@ -286,8 +285,7 @@
         [longMainButton setHidden:NO];
         
     }
-    else if( [publicMenu itemWithTag:tag] != nil){
-        newItem = sender;
+    else if((newItem = [publicMenu itemWithTag:tag]) != nil){
         NSMenuItem* publicMenuItem = [mainMenu itemWithTag:1];
         [mainButton setTitle:publicMenuItem.title];
         [subButton setTitle:[newItem title]];
