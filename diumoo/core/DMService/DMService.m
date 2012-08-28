@@ -18,8 +18,7 @@
 #define DM_SOUNDTRACK_PREFIX @"diumoo://soundtrack?key="
 #define DM_CHANNEL_PREFIX @"diumoo://channel?key="
 
-#define NOTIFICATION_URL @"http://diumoo-notification.herokuapp.com/notification"
-//#define NOTIFICATION_URL @"http://diumoo-notification.hero/notification"
+#define NOTIFICATION_URL @"http://channel.diumoo.net/notification"
 #define GET_SHARE_LINK_URL @"http://127.0.0.1:8000/"
 
 #define APP_TYPE_PRO 1
@@ -337,6 +336,11 @@ static NSOperationQueue* serviceQueue;
                                block(nil);
                                
                            }];
+}
+
++(void)registerSong:(NSString*) sid :(NSString*) ssid
+{
+    
 }
 
 @end

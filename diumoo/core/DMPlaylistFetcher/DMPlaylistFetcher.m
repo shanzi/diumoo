@@ -194,6 +194,9 @@
     @"from":@"mainsite",
     @"context":[@"context=channel:0|musician_id:" stringByAppendingString:musician_id]
     };
+    
+    
+    
     NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
                            PLAYLIST_FETCH_URL_BASE,[dict urlEncodedString]
                            ];
@@ -274,6 +277,7 @@
     @"version": @"1",
     @"expire" : @(expire)
     };
+    
     NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
                            DOUBAN_ALBUM_GET_URL,
                            [fetchdict urlEncodedString]];

@@ -612,7 +612,7 @@
             }
             else
             {
-                NSRunAlertPanel(@"播放专辑失败", @"很遗憾，尝试播放您指定的专辑失败。", @"知道了", nil, nil);
+                NSRunCriticalAlertPanel(@"播放专辑失败", @"很遗憾，尝试播放您指定的专辑失败。", @"知道了", nil, nil);
                 [diumooPanel playDefaultChannel];
             }
         }];
