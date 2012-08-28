@@ -26,7 +26,7 @@
     
     
 
-    mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    //mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMShortcutsHandler registrationShortcuts];
     
