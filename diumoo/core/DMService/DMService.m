@@ -19,7 +19,7 @@
 #define DM_CHANNEL_PREFIX @"diumoo://channel?key="
 
 #define NOTIFICATION_URL @"http://channel.diumoo.net/notification"
-#define GET_SHARE_LINK_URL @"http://127.0.0.1:8000/"
+#define GET_SHARE_LINK_URL @"http://share.diumoo.net/"
 
 #define APP_TYPE_PRO 1
 #define APP_TYPE_LITE (1<<1)
@@ -316,6 +316,9 @@ static NSOperationQueue* serviceQueue;
     NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
                            GET_SHARE_LINK_URL,[keydict urlEncodedString]];
     NSURL* url = [NSURL URLWithString:urlstring];
+    
+    NSLog(@"%@",urlstring);
+    
     NSURLRequest* request = [NSURLRequest requestWithURL:url
                                cachePolicy:NSURLCacheStorageAllowed
                            timeoutInterval:2.0];
@@ -323,8 +326,8 @@ static NSOperationQueue* serviceQueue;
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[DMService serviceQueue]
                            completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
-                               DMLog(@"%@",e);
-                               if (e==NULL) {
+                               DMLog(@"status code: %ld",[(NSHTTPURLResponse*)r statusCode]);
+                               if ([(NSHTTPURLResponse*)r statusCode] == 200) {
                                    NSString* string = [NSString stringWithCString:[d bytes]
                                                                          encoding:NSASCIIStringEncoding];
                                    if([string length]){
