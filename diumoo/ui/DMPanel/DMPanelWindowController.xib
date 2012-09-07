@@ -111,11 +111,12 @@
 					</object>
 					<object class="NSMenuItem" id="530597">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">浏览更多电台和音乐</string>
+						<string key="NSTitle">浏览所有支持的兆赫</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
+						<int key="NSTag">8</int>
 					</object>
 				</array>
 			</object>

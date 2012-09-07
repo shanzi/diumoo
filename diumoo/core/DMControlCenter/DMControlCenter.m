@@ -529,7 +529,7 @@
             break;
         case SINA_WEIBO:
             urlBase = @"http://v.t.sina.com.cn/share/share.php";
-            args = @{@"title": [NSString stringWithFormat:@"%@ (link %@)",shareString,shareLink]};
+            args = @{@"title": [NSString stringWithFormat:@"%@ (link: %@ )",shareString,shareLink]};
             break;
             
         case RENREN:
@@ -545,7 +545,7 @@
             
         case TWITTER:
             if(YES){
-                NSString* content =[NSString stringWithFormat:@"%@ (link: %@)",shareString,shareLink];
+                NSString* content =[NSString stringWithFormat:@"%@ (link: %@ )",shareString,shareLink];
                 NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
                 [pb setData:[content dataUsingEncoding:NSUTF8StringEncoding]
                     forType:NSStringPboardType];
