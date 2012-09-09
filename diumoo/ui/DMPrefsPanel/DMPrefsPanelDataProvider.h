@@ -31,7 +31,7 @@
     IBOutlet NSView *account;
     IBOutlet NSView *keybindings;
     IBOutlet NSView *info;
-    IBOutlet NSView *diumooLink;
+    IBOutlet NSView *diumoohelper;
     //----------------------------------
     
     //------- login view outlet --------

@@ -46,7 +46,7 @@
             return @"关于";
             break;
         case DMLINK_PANEL_ID:
-            return @"Diumoo Link";
+            return @"diumoo Helper";
             break;
         default:
             return @"";
@@ -93,7 +93,7 @@
             return info;
             break;
         case DMLINK_PANEL_ID:
-            return diumooLink;
+            return diumoohelper;
             break;
         default:
             return nil;
@@ -316,12 +316,9 @@
 
 -(IBAction)installBrowserPlugins:(id)sender
 {
-    NSString *currentBundlePath = [[NSBundle mainBundle] bundlePath];
     switch ([sender tag]) {
         case 0:
-            if ([[NSWorkspace sharedWorkspace] openFile:[currentBundlePath stringByAppendingString:@"/Contents/PlugIns/diumooLink.safariextz"]]!= YES) {
-                NSRunAlertPanel(@"安装浏览器插件失败", @"浏览器无法打开插件，可能是没有安装 Safari。", @"知道了", nil, nil);
-            }
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions"]];
             break;
         case 1:
             NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Chrome 插件~~~", @"知道了", nil, nil);

@@ -176,7 +176,7 @@
         [center ban];
     }
     else if ([key isEqualToString:keyTogglePanelShortcut]) {
-        [center.diumooPanel togglePanel:nil];
+        [center.diumooPanel togglePanel:self];
     }
     else if([key isEqualToString:mediaKeyOn]) {
         [mediaKeyTap startWatchingMediaKeys];
