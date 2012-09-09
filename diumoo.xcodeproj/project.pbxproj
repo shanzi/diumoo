@@ -18,6 +18,7 @@
 		3F01022A15DE9DA10076D6C8 /* status-icon-mixed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01022915DE9DA10076D6C8 /* status-icon-mixed@2x.png */; };
 		3F01022C15DE9DA70076D6C8 /* status-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01022B15DE9DA70076D6C8 /* status-icon@2x.png */; };
 		3F32D55015DBFF9200C62A5E /* albumfail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F32D54F15DBFF9200C62A5E /* albumfail@2x.png */; };
+		3F49D6F615FCE88E00E2F52C /* InstantMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F49D6F515FCE88E00E2F52C /* InstantMessage.framework */; };
 		3F50FC4415DB4981000E5147 /* DMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F50FC4315DB4981000E5147 /* DMButton.m */; };
 		3F8A956415D9FEE500701895 /* DMPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A956315D9FEE500701895 /* DMPanel.m */; };
 		3FBE809915D4A632001A3BEC /* DMErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE809815D4A632001A3BEC /* DMErrorLog.m */; };
@@ -195,6 +196,7 @@
 		3F01022B15DE9DA70076D6C8 /* status-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon@2x.png"; sourceTree = "<group>"; };
 		3F32D54F15DBFF9200C62A5E /* albumfail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "albumfail@2x.png"; sourceTree = "<group>"; };
 		3F412CA615ED3ED500421009 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diumoo.entitlements; sourceTree = "<group>"; };
+		3F49D6F515FCE88E00E2F52C /* InstantMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantMessage.framework; path = System/Library/Frameworks/InstantMessage.framework; sourceTree = SDKROOT; };
 		3F50FC4215DB4981000E5147 /* DMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMButton.h; sourceTree = "<group>"; };
 		3F50FC4315DB4981000E5147 /* DMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMButton.m; sourceTree = "<group>"; };
 		3F8A956215D9FEE500701895 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F49D6F615FCE88E00E2F52C /* InstantMessage.framework in Frameworks */,
 				F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */,
 				F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */,
 				F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */,
@@ -500,6 +503,7 @@
 		F5148AA31580E58D002B3D61 = {
 			isa = PBXGroup;
 			children = (
+				3F49D6F515FCE88E00E2F52C /* InstantMessage.framework */,
 				F5148AB81580E58D002B3D61 /* diumoo */,
 				F5148AD81580E707002B3D61 /* extern */,
 				F501B3C215877A88001C6158 /* resources */,
