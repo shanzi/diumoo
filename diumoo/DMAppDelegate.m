@@ -24,10 +24,6 @@
     [self redirectConsoleLogToDocumentFolder];
 #endif
     
-    
-
-    //mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-    
     [DMShortcutsHandler registrationShortcuts];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -103,6 +99,7 @@
                                                                    object:@"com.apple.iTunes.player"
                                                                  userInfo:@{@"Player State": @"Paused"}];*/
     [NSApp setApplicationIconImage:nil];
+    [[DMPlayRecordHandler sharedRecordHandler] removeVersionsToLimit];
     [center stopForExit];
 }
 
@@ -111,11 +108,10 @@
     NSDictionary *preferences=@{@"channel" : @1,
                                   @"volume": @1.0f,
                  @"max_wait_playlist_count": @1,
+                            @"versionsLimit":@200,
                          @"autoCheckUpdate": @(NSOnState),
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
-                     @"enableEmulateITunes": @(NSOnState),
-                            @"usesMediaKey": @(NSOnState),
                             @"showDockIcon": @(NSOnState),
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
@@ -143,21 +139,6 @@
     }
 }
 
--(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
-    
-    int keyCode = (([event data1] & 0xFFFF0000) >> 16);
-    int keyFlags = ([event data1] & 0x0000FFFF);
-    int keyState = (((keyFlags & 0xFF00) >> 8)) ==0xA;
-    if(keyState==0)
-        switch (keyCode) {
-            case NX_KEYTYPE_PLAY:
-                [center playOrPause];
-                break;
-            case NX_KEYTYPE_FAST:
-                [center skip];
-                break;
-        }
-}
 
 -(void) keyShortcuts:(id)key
 {
@@ -174,16 +155,7 @@
         [center ban];
     }
     else if ([key isEqualToString:keyTogglePanelShortcut]) {
-        [center.diumooPanel togglePanel:nil];
-    }
-    else if([key isEqualToString:mediaKeyOn]) {
-        [mediaKeyTap startWatchingMediaKeys];
-    }
-    else if([key isEqualToString:mediaKeyOff]) {
-        [mediaKeyTap stopWatchingMediaKeys];
-    }
-    else {
-        [self showPreference:nil];
+        [center.diumooPanel togglePanel:self];
     }
 }
 

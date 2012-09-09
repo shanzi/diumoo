@@ -39,18 +39,6 @@ static DMPlayRecordHandler* recordHandler;
     return self;
 }
 
--(void)dealloc
-{
-    [context save:nil];
-    NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
-    if([versions count]>50){
-        for (int i =0 ; i<([versions count] - 50); i++) {
-            NSFileVersion* version = versions[i];
-            [version removeAndReturnError:nil];
-        }
-    }
-    self.delegate = nil;
-}
 #pragma ---
 
 #pragma private methods
@@ -247,6 +235,24 @@ static DMPlayRecordHandler* recordHandler;
 {
     NSFetchRequest* fetchRequset = [NSFetchRequest fetchRequestWithEntityName:@"Song"];
     return [context executeFetchRequest:fetchRequset error:nil];
+}
+
+-(void) removeVersionsToLimit{
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {
+        
+        [NSFileVersion addVersionOfItemAtURL: self.recordFileURL
+                           withContentsOfURL: self.recordFileURL
+                                     options: 0
+                                       error: nil];
+        
+        NSInteger limit = [[[NSUserDefaults standardUserDefaults] valueForKey:@"versionsLimit"] integerValue];
+        NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
+        for (NSInteger i = ([versions count] - 1); i > limit; i--) {
+            [[versions objectAtIndex:i] removeAndReturnError:nil];
+        }
+    }
+    [context save:nil];
 }
 
 @end

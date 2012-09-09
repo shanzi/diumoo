@@ -132,13 +132,13 @@ DMPanelWindowController *sharedWindow;
             [PLTabPreferenceControl showPrefsAtIndex:ACCOUNT_PANEL_ID];
             break;
         case 6:
-            [self togglePanel:nil];
+            [self togglePanel:self];
             [[NSApplication sharedApplication] terminate:nil];
         case 7:
             [PLTabPreferenceControl showPrefsAtIndex:0];
             break;
         case 8:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/channels.html"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/channels"]];
             break;
     }
 }
@@ -389,6 +389,8 @@ DMPanelWindowController *sharedWindow;
 
 - (IBAction)togglePanel:(id)sender
 {
+    if (sender == nil && menubarController.hasActiveIcon) return;
+    
     menubarController.hasActiveIcon = !menubarController.hasActiveIcon;
     self.hasActivePanel = menubarController.hasActiveIcon;
 }

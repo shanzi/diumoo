@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPMediaKeyTap.h"
 #import "DMControlCenter.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
@@ -17,11 +16,10 @@
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {
     DMControlCenter *center;
-    SPMediaKeyTap *mediaKeyTap;
 }
 
 -(IBAction)showPreference:(id)sender;
 -(IBAction)importOrExport:(id)sender;
--(void)keyShortcuts:(id) key;
+//-(void)keyShortcuts:(id) key;
 
 @end
