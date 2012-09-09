@@ -138,7 +138,7 @@ DMPanelWindowController *sharedWindow;
             [PLTabPreferenceControl showPrefsAtIndex:0];
             break;
         case 8:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/channels.html"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/channels"]];
             break;
     }
 }

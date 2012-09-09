@@ -103,6 +103,7 @@
                                                                    object:@"com.apple.iTunes.player"
                                                                  userInfo:@{@"Player State": @"Paused"}];
     [NSApp setApplicationIconImage:nil];
+    [[DMPlayRecordHandler sharedRecordHandler] removeVersionsToLimit];
     [center stopForExit];
 }
 
@@ -111,6 +112,7 @@
     NSDictionary *preferences=@{@"channel" : @1,
                                   @"volume": @1.0f,
                  @"max_wait_playlist_count": @1,
+                            @"versionsLimit":@200,
                          @"autoCheckUpdate": @(NSOnState),
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),

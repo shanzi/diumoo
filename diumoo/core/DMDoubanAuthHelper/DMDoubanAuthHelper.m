@@ -262,7 +262,6 @@ static DMDoubanAuthHelper* sharedHelper;
 
 -(NSError*) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data
 {
-    
     NSError* jerr = nil;
     NSDictionary* obj = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
     
@@ -291,7 +290,7 @@ static DMDoubanAuthHelper* sharedHelper;
                                 forURL:[response URL]] ;
             
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies
-                                                               forURL:[response URL]
+                                                               forURL:[NSURL URLWithString:DOUBAN_FM_INDEX]
                                                       mainDocumentURL:nil];
             
             

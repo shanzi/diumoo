@@ -37,5 +37,6 @@
 -(void) removeCurrentVersion;
 -(void) playSongWith:(NSString*)sid andSsid:(NSString*) ssid;
 -(NSArray*) allSongs;
+-(void) removeVersionsToLimit;
 
 @end

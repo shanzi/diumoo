@@ -20,6 +20,10 @@
 
 @interface DMService : NSObject
 
++(NSOperationQueue*) serviceQueue;
+
++(void)performOnServiceQueue:(void(^)(void))block;
++(void)performOnMainQueue:(void(^)(void))block;
 +(NSString*) cleanStartAttribute:(NSString*)start;
 +(BOOL) openDiumooLink:(NSString*)url;
 +(void) importRecordOperation;

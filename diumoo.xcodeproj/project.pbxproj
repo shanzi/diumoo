@@ -390,6 +390,7 @@
 		F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTabPreferenceControl.m; sourceTree = "<group>"; };
 		F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPrefsPanelDataProvider.h; sourceTree = "<group>"; };
 		F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPrefsPanelDataProvider.m; sourceTree = "<group>"; };
+		F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diumoo.entitlements; sourceTree = "<group>"; };
 		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -534,6 +535,7 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */,
 				F5D362FD15A1F0EF003A40B2 /* DMDocument */,
 				F501B3AC15877062001C6158 /* ui */,
 				F5148B1F1580E904002B3D61 /* core */,
@@ -1340,6 +1342,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1354,6 +1358,7 @@
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1363,6 +1368,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1377,6 +1384,7 @@
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

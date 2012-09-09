@@ -51,4 +51,5 @@
 -(void) logoutAndCleanData;
 -(NSImage*) getUserIcon;
 
+
 @end

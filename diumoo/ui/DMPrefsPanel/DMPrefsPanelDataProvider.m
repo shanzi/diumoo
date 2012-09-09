@@ -10,6 +10,7 @@
 #import "DMDoubanAuthHelper.h"
 #import "MASShortcutView+UserDefaults.h"
 #import "NSImage+AsyncLoadImage.h"
+#import "DMService.h"
 
 
 
@@ -115,8 +116,7 @@
                     
             NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [NSImage AsyncLoadImageWithURLString:captcha_url andCallBackBlock:^(NSImage * image) {
+            [NSImage AsyncLoadImageWithURLString:captcha_url andCallBackBlock:^(NSImage * image) {
                     if (image == nil) {
                         [sender setImage:nil];
                         [sender setTitle:@"获取失败，请重试"];
@@ -130,7 +130,6 @@
                     [sender setEnabled:YES];
                     [indicator stopAnimation:self];
                     [indicator setHidden:YES];
-                }];
             }];
             break;}
             
@@ -195,8 +194,7 @@
      kAuthAttributeCaptchaSolution: captcha_solution,
      kAuthAttributeCaptchaCode: self.captcha_code};
     
-    NSBlockOperation* loginOperation = 
-    [NSBlockOperation blockOperationWithBlock:^{
+    [DMService performOnServiceQueue:^{
         NSError* error = NULL;
         error = [[DMDoubanAuthHelper sharedHelper] authWithDictionary:authDict];
         
@@ -215,11 +213,12 @@
             
         }
         else {
-            [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
+            [DMService performOnMainQueue:^{
+                [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
+            }];
         }
-        
+
     }];
-    [[NSOperationQueue mainQueue] addOperation:loginOperation];
 }
 
 -(void) logoutAction:(id)sender
