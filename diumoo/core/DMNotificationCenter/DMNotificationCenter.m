@@ -8,7 +8,6 @@
 
 #import "DMNotificationCenter.h"
 
-
 @implementation DMNotificationCenter
 
 #pragma init and dealloc
@@ -69,7 +68,7 @@
                                    clickContext:capsule.sid];
         }
     }
-    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
+    /*if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
         NSDictionary* postDict = @{@"Player State": @"Playing",
                                                 @"Album": capsule.albumtitle,
                                                 @"Name": capsule.title,
@@ -77,7 +76,7 @@
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
                                                                        object:@"com.apple.iTunes.player"
                                                                      userInfo:postDict];
-    }
+    }*/
     
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
         [NSApp setApplicationIconImage:capsule.picture];
@@ -92,7 +91,13 @@
 }
 
 //this method forced Notification Center present notification whatever the application is foreground
-- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
+}
+
+-(BOOL) hasNetworkClientEntitlement
+{
     return YES;
 }
 
