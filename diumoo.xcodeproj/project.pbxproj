@@ -160,6 +160,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3F3F2B5215E1E019007D75B5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5148B5415810758002B3D61 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,6 +194,7 @@
 		3F01022915DE9DA10076D6C8 /* status-icon-mixed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-mixed@2x.png"; sourceTree = "<group>"; };
 		3F01022B15DE9DA70076D6C8 /* status-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon@2x.png"; sourceTree = "<group>"; };
 		3F32D54F15DBFF9200C62A5E /* albumfail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "albumfail@2x.png"; sourceTree = "<group>"; };
+		3F412CA615ED3ED500421009 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diumoo.entitlements; sourceTree = "<group>"; };
 		3F50FC4215DB4981000E5147 /* DMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMButton.h; sourceTree = "<group>"; };
 		3F50FC4315DB4981000E5147 /* DMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMButton.m; sourceTree = "<group>"; };
 		3F8A956215D9FEE500701895 /* DMPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanel.h; sourceTree = "<group>"; };
@@ -1046,6 +1056,7 @@
 				F5148AAC1580E58D002B3D61 /* Resources */,
 				F5148B5415810758002B3D61 /* CopyFiles */,
 				17FE6B001584AD5900EA34EA /* ShellScript */,
+				3F3F2B5215E1E019007D75B5 /* CopyFiles */,
 			);
 			buildRules = (
 			);

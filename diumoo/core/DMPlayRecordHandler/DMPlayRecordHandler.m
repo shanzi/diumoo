@@ -60,6 +60,7 @@ static DMPlayRecordHandler* recordHandler;
                                       error:&error];
     if (error) {
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
+        [[NSFileManager defaultManager] removeItemAtPath:datapath error:nil];
     }
     
     context = [[NSManagedObjectContext alloc] initWithConcurrencyType:
