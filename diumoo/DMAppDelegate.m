@@ -232,4 +232,25 @@
         [[NSUserDefaults standardUserDefaults] setInteger:NSOffState forKey:@"enableFileLog"];
     }
 }
+
+-(void)showHelp:(id)sender
+{
+    switch ([sender tag]) {
+        case 0:
+            [[NSWorkspace sharedWorkspace] openURL:
+             [NSURL URLWithString:@"http://diumoo.net/usage"]
+             ];
+            break;
+        case 1:
+            [[NSWorkspace sharedWorkspace] openURL:
+             [NSURL URLWithString:@"http://diumoo.net/extensions"]
+             ];
+            break;
+        case 2:
+            [[NSWorkspace sharedWorkspace] openURL:
+             [NSURL URLWithString:@"http://diumoo.net/report"]];            
+            break;
+    }
+}
+
 @end

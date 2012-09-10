@@ -22,6 +22,7 @@
 
 -(IBAction)showPreference:(id)sender;
 -(IBAction)importOrExport:(id)sender;
+-(IBAction)showHelp:(id)sender;
 -(void)keyShortcuts:(id) key;
 
 @end
