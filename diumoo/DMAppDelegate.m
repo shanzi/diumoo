@@ -117,7 +117,7 @@
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
-                            @"usesMediaKey": @(NSOnState),
+                            //@"usesMediaKey": @(NSOnState),
                             @"showDockIcon": @(NSOnState),
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
@@ -126,6 +126,16 @@
     [defaults registerDefaults:preferences];
     
     if ([defaults valueForKey:@"shortcutDidRegistered"]==nil) {
+        [defaults setValue:[[MASShortcut
+                             shortcutWithKeyCode:41
+                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keyPlayShortcut];
+        [defaults setValue:[[MASShortcut
+                             shortcutWithKeyCode:39
+                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keySkipShortcut];
         [defaults setValue:[[MASShortcut
                              shortcutWithKeyCode:43
                              modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]

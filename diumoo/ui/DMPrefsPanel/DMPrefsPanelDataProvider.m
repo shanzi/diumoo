@@ -277,18 +277,6 @@
 }
 // ----------------------- 快捷键控制 ----------------------------
 
--(void) changePlayControlShortcutMode:(id)sender
-{
-    if ([sender state] == NSOnState) {
-        [playShortcut setEnabled:NO];
-        [skipShortcut setEnabled:NO];
-    }
-    else {
-        [playShortcut setEnabled:YES];
-        [skipShortcut setEnabled:YES];
-    }
-    [DMShortcutsHandler registrationShortcuts];
-}
 
 -(void) awakeFromNib
 {
@@ -327,7 +315,7 @@
             NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Firefox 插件~~~", @"知道了", nil, nil);
             break;
         case 3:
-            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Opera 插件~~~", @"知道了", nil, nil);
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/firefox.html"]];
             break;
         default:
             break;

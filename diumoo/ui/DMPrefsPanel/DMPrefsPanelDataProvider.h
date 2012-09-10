@@ -78,7 +78,6 @@
 -(IBAction)loginAction:(id)sender;
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;
--(IBAction)changePlayControlShortcutMode:(id)sender;
 -(IBAction)installBrowserPlugins:(id)sender;
 
 @end
