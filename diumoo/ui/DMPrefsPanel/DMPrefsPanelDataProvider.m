@@ -118,8 +118,7 @@
         {
         case 0: // 获取验证码
             [sender setEnabled:NO];
-            [indicator setHidden:NO];
-            [indicator startAnimation:self];
+            [indicator startAnimation:nil];
             captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
                     
             NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
@@ -136,8 +135,7 @@
                         [sender setTitle:@""];
                     }
                     [sender setEnabled:YES];
-                    [indicator stopAnimation:self];
-                    [indicator setHidden:YES];
+                    [indicator stopAnimation:nil];
             }];
             break;}
             
@@ -196,6 +194,7 @@
     }
     
     [self lockLoginForm:YES];
+    [loginIndicator startAnimation:nil];
     NSDictionary* authDict =
     @{kAuthAttributeUsername: em,
      kAuthAttributePassword: pw,
@@ -207,6 +206,8 @@
         error = [[DMDoubanAuthHelper sharedHelper] authWithDictionary:authDict];
         
         [self lockLoginForm:NO];
+        [loginIndicator stopAnimation:nil];
+        
         if (error) {
             if ([error code] == -2 && error.userInfo) {
                 NSString* err_msg = [NSString stringWithFormat:@"%@",error.userInfo];
@@ -225,6 +226,8 @@
                 [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
             }];
         }
+        
+        
 
     }];
 }

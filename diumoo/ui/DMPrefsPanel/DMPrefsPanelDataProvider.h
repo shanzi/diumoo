@@ -36,6 +36,7 @@
     
     //------- login view outlet --------
     IBOutlet NSProgressIndicator *indicator;
+    IBOutlet NSProgressIndicator *loginIndicator;
     IBOutlet NSButton *captchaButton;
     IBOutlet NSButton *submitButton;
     IBOutlet NSButton *resetButton;
