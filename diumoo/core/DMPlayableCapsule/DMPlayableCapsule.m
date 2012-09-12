@@ -126,13 +126,11 @@
     if(playState == WAIT_TO_PLAY)
     {
         playState = PLAYING;
-        [movie setVolume: volume];
+        [self.movie setVolume: volume];
     }
     else
         playState = REPLAYING;
     
-    [movie stop];
-
     if(movie && movie.rate == 0.0){
         if(timer)
             [timer invalidate];
@@ -144,8 +142,7 @@
                                       userInfo:kTimerPulseTypePlay
                                        repeats:YES];
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        movie.volume = 0;
-        [movie play];
+        [movie autoplay];
         [timer fire];
                 
     }
@@ -288,11 +285,10 @@
             
         }
         
-        while (movie.volume>0) {
-            movie.volume -= 0.1;
+        while (self.movie.volume>0) {
+            self.movie.volume -= 0.1;
             [NSThread sleepForTimeInterval:0.1];
         }
-        
         [movie invalidate];
     }
 }

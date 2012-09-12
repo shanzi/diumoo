@@ -63,11 +63,7 @@
     //------ DiumooLink outlet ---------
     IBOutlet NSTextField *diumooLinkTitle;
     IBOutlet NSTextField *diumooLinkDescription;
-    IBOutlet NSBox *installOptions;
-    IBOutlet NSButton *installSafariPlugin;
-    IBOutlet NSButton *installChromePlugin;
-    IBOutlet NSButton *installFireFoxPlugin;
-    IBOutlet NSButton *installOperaPlugin;
+    IBOutlet NSButton *installPligins;
     
     //------ info outlet ---------------
     IBOutlet NSTextField *displayName;
