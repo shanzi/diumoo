@@ -163,6 +163,7 @@
 		F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */; };
 		F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */; };
 		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
+		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
 		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -410,6 +411,7 @@
 		F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTabPreferenceControl.m; sourceTree = "<group>"; };
 		F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPrefsPanelDataProvider.h; sourceTree = "<group>"; };
 		F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPrefsPanelDataProvider.m; sourceTree = "<group>"; };
+		F5F7EF101600EE850007D2DB /* record.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = record.icns; sourceTree = "<group>"; };
 		F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diumoo.entitlements; sourceTree = "<group>"; };
 		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -499,6 +501,7 @@
 			children = (
 				F5D20EB115E7E79D00CD255C /* channels.plist */,
 				F555569815C04DB100894E8D /* icon.icns */,
+				F5F7EF101600EE850007D2DB /* record.icns */,
 				F598DFD915FCDEE500F8C469 /* diumooHelper */,
 				F515C16215B6FA5800210826 /* StatusItem */,
 				F5D3633C15A1F202003A40B2 /* Document */,
@@ -1194,6 +1197,7 @@
 				F598DFE315FCEBC200F8C469 /* detail_icon@2x.png in Resources */,
 				F598DFE515FCEF8400F8C469 /* star@2x.png in Resources */,
 				F598DFE715FCEF9500F8C469 /* starhighlighted@2x.png in Resources */,
+				F5F7EF111600EE850007D2DB /* record.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
