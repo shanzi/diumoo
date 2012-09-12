@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "SPMediaKeyTap.h"
+
 
 @interface DMApp : NSApplication
 {

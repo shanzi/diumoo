@@ -155,21 +155,6 @@
     }
 }
 
--(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event{
-    
-    int keyCode = (([event data1] & 0xFFFF0000) >> 16);
-    int keyFlags = ([event data1] & 0x0000FFFF);
-    int keyState = (((keyFlags & 0xFF00) >> 8)) ==0xA;
-    if(keyState==0)
-        switch (keyCode) {
-            case NX_KEYTYPE_PLAY:
-                [center playOrPause];
-                break;
-            case NX_KEYTYPE_FAST:
-                [center skip];
-                break;
-        }
-}
 
 -(void) keyShortcuts:(id)key
 {
@@ -188,13 +173,7 @@
     else if ([key isEqualToString:keyTogglePanelShortcut]) {
         [center.diumooPanel togglePanel:self];
     }
-    else if([key isEqualToString:mediaKeyOn]) {
-        [mediaKeyTap startWatchingMediaKeys];
-    }
-    else if([key isEqualToString:mediaKeyOff]) {
-        [mediaKeyTap stopWatchingMediaKeys];
-    }
-    else {
+    else if ([key isEqualToString:keyShowPrefsPanel]) {
         [self showPreference:nil];
     }
 }

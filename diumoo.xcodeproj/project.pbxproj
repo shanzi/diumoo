@@ -56,10 +56,6 @@
 		F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AD61580E6AD002B3D61 /* DMApp.m */; };
 		F5148B051580E707002B3D61 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADB1580E707002B3D61 /* HTMLNode.m */; };
 		F5148B061580E707002B3D61 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADD1580E707002B3D61 /* HTMLParser.m */; };
-		F5148B0A1580E707002B3D61 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AE41580E707002B3D61 /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F5148B0B1580E707002B3D61 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AE61580E707002B3D61 /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F5148B0D1580E707002B3D61 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F5148AE91580E707002B3D61 /* LICENSE */; };
-		F5148B0E1580E707002B3D61 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AEB1580E707002B3D61 /* SSKeychain.m */; };
 		F5148B0F1580E707002B3D61 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AEE1580E707002B3D61 /* CDataScanner.m */; };
 		F5148B101580E707002B3D61 /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AF11580E707002B3D61 /* CFilteringJSONSerializer.m */; };
 		F5148B111580E707002B3D61 /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AF31580E707002B3D61 /* CJSONDeserializer_BlocksExtensions.m */; };
@@ -259,13 +255,6 @@
 		F5148ADB1580E707002B3D61 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		F5148ADC1580E707002B3D61 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		F5148ADD1580E707002B3D61 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
-		F5148AE31580E707002B3D61 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SPInvocationGrabbing.h"; path = "SPInvocationGrabbing/NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
-		F5148AE41580E707002B3D61 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SPInvocationGrabbing.m"; path = "SPInvocationGrabbing/NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
-		F5148AE51580E707002B3D61 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
-		F5148AE61580E707002B3D61 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
-		F5148AE91580E707002B3D61 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		F5148AEA1580E707002B3D61 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
-		F5148AEB1580E707002B3D61 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		F5148AED1580E707002B3D61 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		F5148AEE1580E707002B3D61 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		F5148AF01580E707002B3D61 /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -603,8 +592,6 @@
 				F5D3630A15A1F0EF003A40B2 /* JUInspectorView */,
 				F5D3631315A1F0EF003A40B2 /* SMTabBar */,
 				F5148AD91580E707002B3D61 /* HTMLParser */,
-				F5148ADE1580E707002B3D61 /* SPMediaKeyTap */,
-				F5148AE81580E707002B3D61 /* SSKeychain */,
 				F5148AEC1580E707002B3D61 /* TouchJSON */,
 			);
 			path = extern;
@@ -619,27 +606,6 @@
 				F5148ADD1580E707002B3D61 /* HTMLParser.m */,
 			);
 			path = HTMLParser;
-			sourceTree = "<group>";
-		};
-		F5148ADE1580E707002B3D61 /* SPMediaKeyTap */ = {
-			isa = PBXGroup;
-			children = (
-				F5148AE31580E707002B3D61 /* NSObject+SPInvocationGrabbing.h */,
-				F5148AE41580E707002B3D61 /* NSObject+SPInvocationGrabbing.m */,
-				F5148AE51580E707002B3D61 /* SPMediaKeyTap.h */,
-				F5148AE61580E707002B3D61 /* SPMediaKeyTap.m */,
-			);
-			path = SPMediaKeyTap;
-			sourceTree = "<group>";
-		};
-		F5148AE81580E707002B3D61 /* SSKeychain */ = {
-			isa = PBXGroup;
-			children = (
-				F5148AE91580E707002B3D61 /* LICENSE */,
-				F5148AEA1580E707002B3D61 /* SSKeychain.h */,
-				F5148AEB1580E707002B3D61 /* SSKeychain.m */,
-			);
-			path = SSKeychain;
 			sourceTree = "<group>";
 		};
 		F5148AEC1580E707002B3D61 /* TouchJSON */ = {
@@ -1141,7 +1107,6 @@
 				F5148ABD1580E58D002B3D61 /* InfoPlist.strings in Resources */,
 				F5148AC31580E58D002B3D61 /* Credits.rtf in Resources */,
 				F5148ACC1580E58E002B3D61 /* MainMenu.xib in Resources */,
-				F5148B0D1580E707002B3D61 /* LICENSE in Resources */,
 				F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */,
 				F501B3C815877A88001C6158 /* ban.png in Resources */,
 				F501B3C915877A88001C6158 /* pause.png in Resources */,
@@ -1261,9 +1226,6 @@
 				F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */,
 				F5148B051580E707002B3D61 /* HTMLNode.m in Sources */,
 				F5148B061580E707002B3D61 /* HTMLParser.m in Sources */,
-				F5148B0A1580E707002B3D61 /* NSObject+SPInvocationGrabbing.m in Sources */,
-				F5148B0B1580E707002B3D61 /* SPMediaKeyTap.m in Sources */,
-				F5148B0E1580E707002B3D61 /* SSKeychain.m in Sources */,
 				F5148B0F1580E707002B3D61 /* CDataScanner.m in Sources */,
 				F5148B101580E707002B3D61 /* CFilteringJSONSerializer.m in Sources */,
 				F5148B111580E707002B3D61 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
