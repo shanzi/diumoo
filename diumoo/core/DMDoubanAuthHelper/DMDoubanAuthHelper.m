@@ -95,6 +95,9 @@ static DMDoubanAuthHelper* sharedHelper;
     playedSongsCount = 0;
     likedSongsCount = 0;
     bannedSongsCount = 0;
+    promotion_chls = nil;
+    recent_chls = nil;
+    
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
     
     for (NSHTTPCookie* cookie in cookies) {

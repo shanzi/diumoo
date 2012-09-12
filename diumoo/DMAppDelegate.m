@@ -25,8 +25,6 @@
 #endif
     
     
-
-    //mediaKeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMShortcutsHandler registrationShortcuts];
     

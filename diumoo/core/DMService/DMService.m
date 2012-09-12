@@ -341,9 +341,25 @@ static NSOperationQueue* serviceQueue;
                            }];
 }
 
-+(void)registerSong:(NSString*) sid :(NSString*) ssid
++(NSString*) pathToDataFileFolder
 {
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                                        NSUserDomainMask, YES);
     
+    NSString* pathToUserApplicationSupportFolder = dirs[0];
+    NSString* pathToDiumooDataFolder = [pathToUserApplicationSupportFolder
+                                        stringByAppendingPathComponent:@"diumoo"];
+    
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if(![manager fileExistsAtPath:pathToDiumooDataFolder]){
+        NSError* err = nil;
+        [manager createDirectoryAtPath:pathToDiumooDataFolder
+           withIntermediateDirectories:YES attributes:nil error:&err];
+        if (err) {
+            return nil;
+        }
+    }
+    return pathToDiumooDataFolder;
 }
 
 @end

@@ -11,53 +11,51 @@
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcutView+UserDefaults.h"
 
-
 @implementation DMShortcutsHandler
 
 +(void)registrationShortcuts
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    if ([[values valueForKey:@"usesMediaKey"] integerValue]==NSOnState) {
-        
-        [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyPlayShortcut
-                                                       handler:^{
-                                                           DMLog(@"play");
-                                                       }];
-        
-        [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keySkipShortcut
-                                                       handler:^{
-                                                           DMLog(@"skip");
-                                                       }];
-        
-        [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyRateShortcut
-                                                       handler:^{
-                                                           DMLog(@"rate");
-                                                       }];
-        
-        [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyBanShortcut
-                                                       handler:^{
-                                                           DMLog(@"ban");
-                                                       }];
-        
-    }
-    else {
-        [MASShortcut unregisterGlobalShortcutWithUserDefaultsKey:keyPlayShortcut];
-        [MASShortcut unregisterGlobalShortcutWithUserDefaultsKey:keyRateShortcut];
-        [MASShortcut unregisterGlobalShortcutWithUserDefaultsKey:keySkipShortcut];
-        [MASShortcut unregisterGlobalShortcutWithUserDefaultsKey:keyBanShortcut];
-    }
     
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyPlayShortcut
+                                                   handler:^{
+                                                       [[NSApp delegate]
+                                                        performSelector:@selector(keyShortcuts:)
+                                                        withObject:keyPlayShortcut];
+                                                   }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keySkipShortcut
+                                                   handler:^{
+                                                       [[NSApp delegate]
+                                                        performSelector:@selector(keyShortcuts:)
+                                                        withObject:keySkipShortcut];
+                                                   }];
+    
+
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyRateShortcut
+                                                   handler:^{
+                                                       [[NSApp delegate] 
+                                                        performSelector:@selector(keyShortcuts:)
+                                                        withObject:keyRateShortcut];
+                                                   }];
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyBanShortcut
+                                                   handler:^{
+                                                       [[NSApp delegate] 
+                                                        performSelector:@selector(keyShortcuts:)
+                                                        withObject:keyBanShortcut];
+                                                   }];
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyTogglePanelShortcut
                                                    handler:^{
-                                                       DMLog(@"toggle panel");
+                                                       [[NSApp delegate] 
+                                                        performSelector:@selector(keyShortcuts:)
+                                                        withObject:keyTogglePanelShortcut];
                                                    }];
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:keyShowPrefsPanel
                                                    handler:^{
-                                                       DMLog(@"prefs ");
+                                                       [[NSApp delegate] 
+                                                        performSelector:@selector(keyShortcuts:)
+                                                        withObject:keyShowPrefsPanel];
                                                    }];
+    
 }
-
-
-
 
 @end

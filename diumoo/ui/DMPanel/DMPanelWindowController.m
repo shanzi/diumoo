@@ -134,6 +134,7 @@ DMPanelWindowController *sharedWindow;
         case 6:
             [self togglePanel:self];
             [[NSApplication sharedApplication] terminate:nil];
+            break;
         case 7:
             [PLTabPreferenceControl showPrefsAtIndex:0];
             break;

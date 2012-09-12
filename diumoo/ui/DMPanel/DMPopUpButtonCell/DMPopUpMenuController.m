@@ -8,6 +8,7 @@
 
 #import "DMPopUpMenuController.h"
 #import "DMDoubanAuthHelper.h"
+#import "DMService.h"
 
 #define UPDATE_URL @"http://channel.diumoo.net/channels/"
 
@@ -81,54 +82,64 @@
 
 -(void) updateChannelList
 {
-    NSString* filepath = [[NSBundle mainBundle] pathForResource:@"channels" ofType:@"plist"];
+ 
+    NSString* libraryPath = [DMService pathToDataFileFolder];
+    NSString* defaultFilepath =[[NSBundle mainBundle] pathForResource:@"channels" ofType:@"plist"];
+    NSString* filepath = nil;
+    NSDictionary* channelDict =nil;
     
-    NSDictionary* channelDict = [NSDictionary dictionaryWithContentsOfFile:filepath];
+    if (libraryPath) {
+        filepath = [libraryPath stringByAppendingPathComponent:@"channels.plist"];
+        channelDict = [NSDictionary dictionaryWithContentsOfFile:filepath];
+    }
+    
+    if (channelDict == nil) {
+        channelDict = [NSDictionary dictionaryWithContentsOfFile:defaultFilepath];
+    }
     
     NSArray* public_list = nil;
     NSArray* suggest_list = nil;
     
-    if (channelDict != nil) {
-        double timestamp = [[channelDict valueForKey:@"timestamp"] doubleValue];
-        if(([NSDate timeIntervalSinceReferenceDate] - timestamp) > 3600 * 24 * 3){
-            DMLog(@"获取新的列表");
-            // -------------------------获取新的列表--------------------------
-            NSURL* updateUrl = [NSURL URLWithString:UPDATE_URL];
-            NSURLRequest* urlrequest = [NSURLRequest requestWithURL:updateUrl
-                                                        cachePolicy:NSURLCacheStorageAllowed
-                                                    timeoutInterval:3.0];
-            NSURLResponse* response = NULL;
-            NSError* error = NULL;
-            NSData* data = [NSURLConnection sendSynchronousRequest:urlrequest
-                                                 returningResponse:&response
-                                                             error:&error];
+    
+    double timestamp = [[channelDict valueForKey:@"timestamp"] doubleValue];
+    if(([NSDate timeIntervalSinceReferenceDate] - timestamp) > 3600 * 24 * 3){
+        DMLog(@"获取新的列表");
+        // -------------------------获取新的列表--------------------------
+        NSURL* updateUrl = [NSURL URLWithString:UPDATE_URL];
+        NSURLRequest* urlrequest = [NSURLRequest requestWithURL:updateUrl
+                                                    cachePolicy:NSURLCacheStorageAllowed
+                                                timeoutInterval:3.0];
+        NSURLResponse* response = NULL;
+        NSError* error = NULL;
+        NSData* data = [NSURLConnection sendSynchronousRequest:urlrequest
+                                             returningResponse:&response
+                                                         error:&error];
+        
+        
+        if(error==NULL){
+            NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
             
-            
-            if(error==NULL){
-                NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
+            if(error == NULL){
+                public_list = [dict valueForKey:@"public"];
+                suggest_list = [dict valueForKey:@"suggest"];
                 
-                if(error == NULL){
-                    public_list = [dict valueForKey:@"public"];
-                    suggest_list = [dict valueForKey:@"suggest"];
+                if (filepath && [public_list count] && [suggest_list count]) {
                     
-                    if ([public_list count] && [suggest_list count]) {
-                        
-                        NSNumber* timestamp = @([NSDate timeIntervalSinceReferenceDate]);
-                        
-                        NSDictionary* writedic = @{@"public": public_list,
-                                                  @"suggest": suggest_list,
-                                                  @"timestamp": timestamp};
-                        DMLog(@"写入电台列表");
-                        [writedic writeToFile:filepath atomically:YES];
-                        [self updateMenuItemsWithPublicList:public_list andSuggestList:suggest_list];
-                        
-                        return;
-                    }
+                    NSNumber* timestamp = @([NSDate timeIntervalSinceReferenceDate]);
+                    
+                    NSDictionary* writedic = @{@"public": public_list,
+                    @"suggest": suggest_list,
+                    @"timestamp": timestamp};
+                    DMLog(@"写入电台列表");
+                    [writedic writeToFile:filepath atomically:YES];
+                    [self updateMenuItemsWithPublicList:public_list andSuggestList:suggest_list];
+                    
+                    return;
                 }
             }
-            //----------------------------------------------------------------------
-            
         }
+        //----------------------------------------------------------------------
+        
     }
     
     
@@ -172,7 +183,7 @@
         [pemptyItem setHidden:YES];
         
         for (NSDictionary* channel in promotions) {
-            NSLog(@"channel %@",channel);
+            
             NSInteger tag = [[channel valueForKey:@"id"] integerValue];
             NSString* title = [channel valueForKey:@"name"];
             NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:title 

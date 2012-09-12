@@ -15,6 +15,7 @@
 #define keyShowPrefsPanel  @"showPrefsPanel"
 #define keyTogglePanelShortcut  @"togglePanelShortcut"
 
+
 @interface DMShortcutsHandler : NSObject
 
 +(void) registrationShortcuts;
