@@ -131,6 +131,7 @@
     else
         playState = REPLAYING;
     
+    
     if(movie && movie.rate == 0.0){
         if(timer)
             [timer invalidate];
@@ -190,10 +191,10 @@
 -(void) timerPulse:(NSTimer*)t
 {
     float delta =  volume - movie.volume;
-        
+
     if([timer userInfo] == kTimerPulseTypePlay)
     {
-        if(abs(delta) < 0.08)
+        if(fabsf(delta) < 0.08)
         {
             [self invalidateTimer];
             movie.volume = volume;
@@ -211,7 +212,7 @@
         }
     }
     else {
-        if (delta < 0.1 && -delta < 0.1) {
+        if (fabsf(delta) < 0.1) {
             [self invalidateTimer];
             movie.volume = volume;
         }
