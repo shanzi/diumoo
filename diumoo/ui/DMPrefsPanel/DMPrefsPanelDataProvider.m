@@ -312,10 +312,10 @@
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions"]];
             break;
         case 1:
-            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Chrome 插件~~~", @"知道了", nil, nil);
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://chrome.google.com/webstore/detail/bhcipoegncngbamefblmbehlppibdgfe"]];
             break;
         case 2:
-            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Firefox 插件~~~", @"知道了", nil, nil);
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/diumoo/diumoohelper/downloads"]];
             break;
         case 3:
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/firefox.html"]];
