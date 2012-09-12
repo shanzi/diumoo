@@ -24,6 +24,8 @@
     [self redirectConsoleLogToDocumentFolder];
 #endif
     
+    
+    
     [DMShortcutsHandler registrationShortcuts];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -112,6 +114,8 @@
                          @"autoCheckUpdate": @(NSOnState),
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
+                     @"enableEmulateITunes": @(NSOnState),
+                            //@"usesMediaKey": @(NSOnState),
                             @"showDockIcon": @(NSOnState),
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
@@ -120,6 +124,16 @@
     [defaults registerDefaults:preferences];
     
     if ([defaults valueForKey:@"shortcutDidRegistered"]==nil) {
+        [defaults setValue:[[MASShortcut
+                             shortcutWithKeyCode:41
+                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keyPlayShortcut];
+        [defaults setValue:[[MASShortcut
+                             shortcutWithKeyCode:39
+                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+                            data]
+                    forKey:keySkipShortcut];
         [defaults setValue:[[MASShortcut
                              shortcutWithKeyCode:43
                              modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
@@ -157,6 +171,9 @@
     else if ([key isEqualToString:keyTogglePanelShortcut]) {
         [center.diumooPanel togglePanel:self];
     }
+    else if ([key isEqualToString:keyShowPrefsPanel]) {
+        [self showPreference:nil];
+    }
 }
 
 -(void) showPreference:(id)sender
@@ -192,4 +209,25 @@
         [[NSUserDefaults standardUserDefaults] setInteger:NSOffState forKey:@"enableFileLog"];
     }
 }
+
+-(void)showHelp:(id)sender
+{
+    switch ([sender tag]) {
+        case 0:
+            [[NSWorkspace sharedWorkspace] openURL:
+             [NSURL URLWithString:@"http://diumoo.net/usage"]
+             ];
+            break;
+        case 1:
+            [[NSWorkspace sharedWorkspace] openURL:
+             [NSURL URLWithString:@"http://diumoo.net/extensions"]
+             ];
+            break;
+        case 2:
+            [[NSWorkspace sharedWorkspace] openURL:
+             [NSURL URLWithString:@"http://diumoo.net/report"]];            
+            break;
+    }
+}
+
 @end

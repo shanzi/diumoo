@@ -118,8 +118,7 @@
         {
         case 0: // 获取验证码
             [sender setEnabled:NO];
-            [indicator setHidden:NO];
-            [indicator startAnimation:self];
+            [indicator startAnimation:nil];
             captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
                     
             NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
@@ -136,8 +135,7 @@
                         [sender setTitle:@""];
                     }
                     [sender setEnabled:YES];
-                    [indicator stopAnimation:self];
-                    [indicator setHidden:YES];
+                    [indicator stopAnimation:nil];
             }];
             break;}
             
@@ -196,6 +194,7 @@
     }
     
     [self lockLoginForm:YES];
+    [loginIndicator startAnimation:nil];
     NSDictionary* authDict =
     @{kAuthAttributeUsername: em,
      kAuthAttributePassword: pw,
@@ -207,6 +206,8 @@
         error = [[DMDoubanAuthHelper sharedHelper] authWithDictionary:authDict];
         
         [self lockLoginForm:NO];
+        [loginIndicator stopAnimation:nil];
+        
         if (error) {
             if ([error code] == -2 && error.userInfo) {
                 NSString* err_msg = [NSString stringWithFormat:@"%@",error.userInfo];
@@ -225,6 +226,8 @@
                 [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
             }];
         }
+        
+        
 
     }];
 }
@@ -277,18 +280,6 @@
 }
 // ----------------------- 快捷键控制 ----------------------------
 
--(void) changePlayControlShortcutMode:(id)sender
-{
-    if ([sender state] == NSOnState) {
-        [playShortcut setEnabled:NO];
-        [skipShortcut setEnabled:NO];
-    }
-    else {
-        [playShortcut setEnabled:YES];
-        [skipShortcut setEnabled:YES];
-    }
-    [DMShortcutsHandler registrationShortcuts];
-}
 
 -(void) awakeFromNib
 {
@@ -306,11 +297,32 @@
     showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
     togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
     
+
+    if ([[[NSUserDefaults standardUserDefaults]
+          valueForKey:@"usesMediaKey"] integerValue] == NSOnState) {
+        [playShortcut setEnabled:NO];
+        [skipShortcut setEnabled:NO];
+    }
 }
 
 -(IBAction)installBrowserPlugins:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions"]];
+    switch ([sender tag]) {
+        case 0:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions"]];
+            break;
+        case 1:
+            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Chrome 插件~~~", @"知道了", nil, nil);
+            break;
+        case 2:
+            NSRunAlertPanel(@"安装浏览器插件失败", @"该版本还木有加入 Firefox 插件~~~", @"知道了", nil, nil);
+            break;
+        case 3:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/firefox.html"]];
+            break;
+        default:
+            break;
+    }
 }
 
 

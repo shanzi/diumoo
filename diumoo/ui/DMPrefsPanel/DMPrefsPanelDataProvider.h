@@ -36,6 +36,7 @@
     
     //------- login view outlet --------
     IBOutlet NSProgressIndicator *indicator;
+    IBOutlet NSProgressIndicator *loginIndicator;
     IBOutlet NSButton *captchaButton;
     IBOutlet NSButton *submitButton;
     IBOutlet NSButton *resetButton;
@@ -74,7 +75,6 @@
 -(IBAction)loginAction:(id)sender;
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;
--(IBAction)changePlayControlShortcutMode:(id)sender;
 -(IBAction)installBrowserPlugins:(id)sender;
 
 @end

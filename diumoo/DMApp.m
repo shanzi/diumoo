@@ -37,14 +37,5 @@
     [DMService openDiumooLink:openedURLString];
 }
 
--(void) sendEvent:(NSEvent *)event
-{
-    BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
-    if(shouldHandleMediaKeyEventLocally && [event type] == NSSystemDefined && [event subtype] == 8 )
-    {
-        [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:event];
-    }
-    [super sendEvent:event];
-}
 
 @end

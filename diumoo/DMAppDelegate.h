@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DMControlCenter.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
@@ -20,6 +21,7 @@
 
 -(IBAction)showPreference:(id)sender;
 -(IBAction)importOrExport:(id)sender;
-//-(void)keyShortcuts:(id) key;
+-(IBAction)showHelp:(id)sender;
+-(void)keyShortcuts:(id) key;
 
 @end

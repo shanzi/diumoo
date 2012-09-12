@@ -503,7 +503,7 @@
     
     
     NSString* shareTitle = dict[@"t"];
-    NSString* shareString = [NSString stringWithFormat:@"#nowplaying %@ - %@ <%@>",
+    NSString* shareString = [NSString stringWithFormat:@"#nowplaying #diumoo %@ - %@ <%@>",
                              shareTitle,
                              dict[@"r"],
                              dict[@"a"]
@@ -529,7 +529,7 @@
             break;
         case SINA_WEIBO:
             urlBase = @"http://v.t.sina.com.cn/share/share.php";
-            args = @{@"title": [NSString stringWithFormat:@"%@ (link: %@ )",shareString,shareLink]};
+            args = @{@"title": [NSString stringWithFormat:@"%@ ( %@ )",shareString,shareLink]};
             break;
             
         case RENREN:
@@ -545,7 +545,7 @@
             
         case TWITTER:
             if(YES){
-                NSString* content =[NSString stringWithFormat:@"%@ (link: %@ )",shareString,shareLink];
+                NSString* content =[NSString stringWithFormat:@"%@ ( %@ )",shareString,shareLink];
                 NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
                 [pb setData:[content dataUsingEncoding:NSUTF8StringEncoding]
                     forType:NSStringPboardType];
