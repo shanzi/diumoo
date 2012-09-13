@@ -24,7 +24,7 @@
 #define APP_TYPE_PRO 1
 #define APP_TYPE_LITE (1<<1)
 #define APP_TYPE_TEST (1<<2)
-#define CURRENT_APP_TYPE APP_TYPE_TEST
+#define CURRENT_APP_TYPE APP_TYPE_PRO
 
 static NSOperationQueue* serviceQueue;
 
