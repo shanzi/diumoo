@@ -20,11 +20,10 @@
     [self makeDefaultPreference];
     
     [DMErrorLog sharedErrorLog];
-#ifndef DEBUG
-    [self redirectConsoleLogToDocumentFolder];
-#endif
     
-    
+    #ifndef DEBUG
+        [self redirectConsoleLogToDocumentFolder];
+    #endif
     
     [DMShortcutsHandler registrationShortcuts];
     
@@ -92,8 +91,6 @@
     [center fireToPlayDefault];
     [DMService showDMNotification];
 }
-
-
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {

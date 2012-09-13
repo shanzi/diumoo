@@ -277,7 +277,6 @@
 
 -(void) updateChannelMenuWithSender:(id)sender
 {
-    //DMLog(@"ismain: %d,%@",[NSThread isMainThread],[NSThread currentThread]);
     NSMenuItem* citem = currentChannelMenuItem;
     NSMenuItem* newItem = nil;
     
@@ -289,7 +288,7 @@
     
     NSInteger tag = [sender tag];
     
-    
+    [CATransaction begin];
     if (tag <1) {
         newItem = sender;
         [longMainButton setTitle:[sender title]];
@@ -325,7 +324,6 @@
                 }
             }
             
-            
             // 把“空”字样那个菜单项隐藏掉
             NSMenuItem* itemToHide = [moreChannelMenu itemWithTag:-13];
             [itemToHide setHidden:YES];
@@ -337,6 +335,7 @@
         }
         [longMainButton setHidden:YES];
     }
+    [CATransaction commit];
     
     [newItem setState:NSOnState];
     NSMenuItem* pitem = [newItem parentItem];
@@ -378,7 +377,9 @@
 -(void) exitSepecialPlayingMode
 {
     if (self.currentChannelID < 1) {
+        [CATransaction begin];
         [longMainButton setTitle:[currentChannelMenuItem title]];
+        [CATransaction commit];
     }
     else {
         [longMainButton setHidden:YES];
