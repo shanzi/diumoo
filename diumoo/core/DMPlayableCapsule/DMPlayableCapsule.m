@@ -225,8 +225,8 @@
 -(void) commitVolume:(float)targetVolume
 {
     volume = targetVolume;
-    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:@(targetVolume)
-                                                                        forKey:@"volume"];
+    [[NSUserDefaults standardUserDefaults] setValue:@(targetVolume)
+                                                forKey:@"volume"];
     
     if(movie.rate == 0.0)
         return;
