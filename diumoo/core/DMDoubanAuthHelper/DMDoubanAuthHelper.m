@@ -12,7 +12,7 @@
 static DMDoubanAuthHelper* sharedHelper;
 
 @implementation DMDoubanAuthHelper
-@synthesize username,icon,userinfo,promotion_chls,recent_chls;
+@synthesize username,icon,userinfo,promotion_chls,recent_chls,userUrl;
 @synthesize playedSongsCount,likedSongsCount,bannedSongsCount;
 
 
