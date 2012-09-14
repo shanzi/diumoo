@@ -315,10 +315,10 @@
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://chrome.google.com/webstore/detail/bhcipoegncngbamefblmbehlppibdgfe"]];
             break;
         case 2:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/diumoo/diumoohelper/downloads"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/downloads.html"]];
             break;
         case 3:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/firefox.html"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/downloads.html"]];
             break;
         default:
             break;
