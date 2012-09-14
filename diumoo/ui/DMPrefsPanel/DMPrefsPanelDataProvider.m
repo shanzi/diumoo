@@ -226,9 +226,6 @@
                 [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
             }];
         }
-        
-        
-
     }];
 }
 

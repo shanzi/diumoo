@@ -293,8 +293,6 @@ static NSOperationQueue* serviceQueue;
                           NSURL* url = [NSURL URLWithString:referenceURL];
                           [[NSWorkspace sharedWorkspace] openURL:url];
                       }
-                      
-                      
                   }];
                  
              }

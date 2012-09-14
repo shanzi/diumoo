@@ -15,7 +15,7 @@
 DMPanelWindowController *sharedWindow;
 
 @implementation DMPanelWindowController
-@synthesize view,delegate,openURL;
+@synthesize coreView,delegate,openURL;
 
 +(DMPanelWindowController*)sharedWindowController
 {
@@ -57,7 +57,9 @@ DMPanelWindowController *sharedWindow;
 -(void) accountStateChanged:(NSNotification*)n
 {
     DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
+    [CATransaction begin];
     if (helper.username) {
+
         [userIconButton setImage:helper.icon];
         [usernameTextField setStringValue:helper.username];
         
@@ -86,6 +88,7 @@ DMPanelWindowController *sharedWindow;
         [banButton setEnabled:NO];
     }
     [popupMenuController updateChannelList];
+    [CATransaction commit];
 }
 
 

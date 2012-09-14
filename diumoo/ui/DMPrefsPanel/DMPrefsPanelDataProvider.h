@@ -64,11 +64,15 @@
     //------ DiumooLink outlet ---------
     IBOutlet NSTextField *diumooLinkTitle;
     IBOutlet NSTextField *diumooLinkDescription;
-    IBOutlet NSButton *installPligins;
+    IBOutlet NSButton *installSafriPligin;
+    IBOutlet NSButton *installFirefoxPlugin;
+    IBOutlet NSButton *installChromePlugin;
+    IBOutlet NSButton *viewDetails;
     
     //------ info outlet ---------------
     IBOutlet NSTextField *displayName;
     IBOutlet NSTextField *version;
+    IBOutlet NSTextField *developer;
 }
 
 @property(copy) NSString *captcha_code;
