@@ -221,11 +221,6 @@ static DMPlayRecordHandler* recordHandler;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {
         
-        [NSFileVersion addVersionOfItemAtURL: self.recordFileURL
-                           withContentsOfURL: self.recordFileURL
-                                     options: 0
-                                       error: nil];
-        
         NSInteger limit = [[[NSUserDefaults standardUserDefaults] valueForKey:@"versionsLimit"] integerValue];
         NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
         for (NSInteger i = ([versions count] - 1); i > limit; i--) {
