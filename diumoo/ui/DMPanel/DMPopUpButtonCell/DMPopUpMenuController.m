@@ -143,8 +143,13 @@
     }
     
     
-    public_list = [channelDict valueForKey:@"public"];
+    public_list = [channelDict valueForKey:NSLocalizedString(@"LOCALIZED_PUBLIC_LIST_NAME", @"public")];
     suggest_list = [channelDict valueForKey:@"suggest"];
+    
+    if (public_list ==nil) {
+        public_list = [channelDict valueForKey: @"public"];
+    }
+    
     [self updateMenuItemsWithPublicList:public_list andSuggestList:suggest_list];
 }
 
@@ -239,7 +244,6 @@
             if ([menu numberOfItems] > 0) {
                 [menu addItem:[NSMenuItem separatorItem]];
             }
-            
             NSMenuItem* cateitem = [[NSMenuItem alloc]
                                     initWithTitle:[dic valueForKey:@"cate"] 
                                     action:nil
