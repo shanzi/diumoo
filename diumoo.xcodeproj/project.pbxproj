@@ -41,7 +41,6 @@
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
 		F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3BB1587708F001C6158 /* DMPanelWindowController.m */; };
-		F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */; };
 		F501B3C815877A88001C6158 /* ban.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C315877A88001C6158 /* ban.png */; };
 		F501B3C915877A88001C6158 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C415877A88001C6158 /* pause.png */; };
 		F501B3CA15877A88001C6158 /* rate.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C515877A88001C6158 /* rate.png */; };
@@ -113,6 +112,10 @@
 		F577112915E1097500FF6FAB /* volume_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112815E1097500FF6FAB /* volume_back@2x.png */; };
 		F577112D15E11E6900FF6FAB /* renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112B15E11E6900FF6FAB /* renren@2x.png */; };
 		F577112F15E11EC500FF6FAB /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112E15E11EC500FF6FAB /* renren.png */; };
+		F595995C1606369100FA3C3E /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F595995E1606369100FA3C3E /* DMDocumentWindow.xib */; };
+		F5959960160636AC00FA3C3E /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */; };
+		F5959963160636BC00FA3C3E /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959965160636BC00FA3C3E /* DMPanelWindowController.xib */; };
+		F595996E1606401600FA3C3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F59599701606401600FA3C3E /* Localizable.strings */; };
 		F598DFD215FCDEE100F8C469 /* chrome.png in Resources */ = {isa = PBXBuildFile; fileRef = F598DFCC15FCDEE100F8C469 /* chrome.png */; };
 		F598DFD315FCDEE100F8C469 /* chrome_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F598DFCD15FCDEE100F8C469 /* chrome_2x.png */; };
 		F598DFD415FCDEE100F8C469 /* firefox.png in Resources */ = {isa = PBXBuildFile; fileRef = F598DFCE15FCDEE100F8C469 /* firefox.png */; };
@@ -134,7 +137,6 @@
 		F5D20EB215E7E79D00CD255C /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5D20EB115E7E79D00CD255C /* channels.plist */; };
 		F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D362FF15A1F0EF003A40B2 /* DMDocument.m */; };
 		F5D3631F15A1F0EF003A40B2 /* DMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630315A1F0EF003A40B2 /* DMDetailViewController.m */; };
-		F5D3632015A1F0EF003A40B2 /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D3630415A1F0EF003A40B2 /* DMDocumentWindow.xib */; };
 		F5D3632115A1F0EF003A40B2 /* DMDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */; };
 		F5D3632215A1F0EF003A40B2 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630915A1F0EF003A40B2 /* EDStarRating.m */; };
 		F5D3632315A1F0EF003A40B2 /* JUInspectorBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630C15A1F0EF003A40B2 /* JUInspectorBaseView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -160,7 +162,6 @@
 		F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */; };
 		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
 		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
-		F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */; };
 		F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */; };
 		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
 		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
@@ -231,7 +232,6 @@
 		F501B3B315877062001C6158 /* DMCoverSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverSlide.m; sourceTree = "<group>"; };
 		F501B3BA1587708F001C6158 /* DMPanelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPanelWindowController.h; sourceTree = "<group>"; };
 		F501B3BB1587708F001C6158 /* DMPanelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPanelWindowController.m; sourceTree = "<group>"; };
-		F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMPanelWindowController.xib; sourceTree = "<group>"; };
 		F501B3C315877A88001C6158 /* ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban.png; sourceTree = "<group>"; };
 		F501B3C415877A88001C6158 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		F501B3C515877A88001C6158 /* rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate.png; sourceTree = "<group>"; };
@@ -337,6 +337,17 @@
 		F577112815E1097500FF6FAB /* volume_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_back@2x.png"; sourceTree = "<group>"; };
 		F577112B15E11E6900FF6FAB /* renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "renren@2x.png"; sourceTree = "<group>"; };
 		F577112E15E11EC500FF6FAB /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
+		F595995D1606369100FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMDocumentWindow.xib; sourceTree = "<group>"; };
+		F5959961160636AC00FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMPrefsPanel.xib; sourceTree = "<group>"; };
+		F5959964160636BC00FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMPanelWindowController.xib; sourceTree = "<group>"; };
+		F5959966160637D300FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		F5959967160637D300FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F5959968160637D300FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
+		F5959969160637D300FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMPrefsPanel.xib"; sourceTree = "<group>"; };
+		F595996A160637D300FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMDocumentWindow.xib"; sourceTree = "<group>"; };
+		F595996B160637D300FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMPanelWindowController.xib"; sourceTree = "<group>"; };
+		F595996F1606401600FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F59599711606401C00FA3C3E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F598DFCC15FCDEE100F8C469 /* chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chrome.png; sourceTree = "<group>"; };
 		F598DFCD15FCDEE100F8C469 /* chrome_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chrome_2x.png; sourceTree = "<group>"; };
 		F598DFCE15FCDEE100F8C469 /* firefox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firefox.png; sourceTree = "<group>"; };
@@ -361,7 +372,6 @@
 		F5D362FF15A1F0EF003A40B2 /* DMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDocument.m; sourceTree = "<group>"; };
 		F5D3630215A1F0EF003A40B2 /* DMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDetailViewController.h; sourceTree = "<group>"; };
 		F5D3630315A1F0EF003A40B2 /* DMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDetailViewController.m; sourceTree = "<group>"; };
-		F5D3630415A1F0EF003A40B2 /* DMDocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMDocumentWindow.xib; sourceTree = "<group>"; };
 		F5D3630515A1F0EF003A40B2 /* DMDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDocumentWindowController.h; sourceTree = "<group>"; };
 		F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDocumentWindowController.m; sourceTree = "<group>"; };
 		F5D3630815A1F0EF003A40B2 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
@@ -406,7 +416,6 @@
 		F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPopUpButtonCell.m; sourceTree = "<group>"; };
 		F5ECCBED158CC85600512F6A /* DMPopUpMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpMenuController.h; sourceTree = "<group>"; };
 		F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPopUpMenuController.m; sourceTree = "<group>"; };
-		F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMPrefsPanel.xib; sourceTree = "<group>"; };
 		F5ECCBFF158CE39500512F6A /* PLTabPreferenceControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTabPreferenceControl.h; sourceTree = "<group>"; };
 		F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTabPreferenceControl.m; sourceTree = "<group>"; };
 		F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPrefsPanelDataProvider.h; sourceTree = "<group>"; };
@@ -471,7 +480,7 @@
 				F501B3B115877062001C6158 /* DMCoverSlide */,
 				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
 				F501B3BB1587708F001C6158 /* DMPanelWindowController.m */,
-				F501B3BC1587708F001C6158 /* DMPanelWindowController.xib */,
+				F5959965160636BC00FA3C3E /* DMPanelWindowController.xib */,
 				3F8A956215D9FEE500701895 /* DMPanel.h */,
 				3F8A956315D9FEE500701895 /* DMPanel.m */,
 			);
@@ -582,6 +591,7 @@
 				F5148ABE1580E58D002B3D61 /* main.m */,
 				F5148AC01580E58D002B3D61 /* diumoo-Prefix.pch */,
 				F5148AC11580E58D002B3D61 /* Credits.rtf */,
+				F59599701606401600FA3C3E /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -909,7 +919,7 @@
 			isa = PBXGroup;
 			children = (
 				F5D3630115A1F0EF003A40B2 /* DMDetailViewController */,
-				F5D3630415A1F0EF003A40B2 /* DMDocumentWindow.xib */,
+				F595995E1606369100FA3C3E /* DMDocumentWindow.xib */,
 				F5D3630515A1F0EF003A40B2 /* DMDocumentWindowController.h */,
 				F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */,
 			);
@@ -1035,7 +1045,7 @@
 			isa = PBXGroup;
 			children = (
 				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
-				F5ECCBF7158CDF2800512F6A /* DMPrefsPanel.xib */,
+				F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */,
 				F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */,
 				F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */,
 			);
@@ -1090,6 +1100,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = F5148AA31580E58D002B3D61;
 			productRefGroup = F5148AAF1580E58D002B3D61 /* Products */;
@@ -1109,13 +1120,13 @@
 				F5148ABD1580E58D002B3D61 /* InfoPlist.strings in Resources */,
 				F5148AC31580E58D002B3D61 /* Credits.rtf in Resources */,
 				F5148ACC1580E58E002B3D61 /* MainMenu.xib in Resources */,
-				F501B3BE1587708F001C6158 /* DMPanelWindowController.xib in Resources */,
+				F5959963160636BC00FA3C3E /* DMPanelWindowController.xib in Resources */,
 				F501B3C815877A88001C6158 /* ban.png in Resources */,
 				F501B3C915877A88001C6158 /* pause.png in Resources */,
 				F501B3CA15877A88001C6158 /* rate.png in Resources */,
 				F501B3CB15877A88001C6158 /* rate_red.png in Resources */,
 				F501B3CC15877A88001C6158 /* skip.png in Resources */,
-				F5ECCBF9158CDF2800512F6A /* DMPrefsPanel.xib in Resources */,
+				F5959960160636AC00FA3C3E /* DMPrefsPanel.xib in Resources */,
 				F52EEC26158F8053004A39EF /* heart-icon.png in Resources */,
 				F52EEC27158F8053004A39EF /* played-icon.png in Resources */,
 				F52EEC28158F8053004A39EF /* trash-icon.png in Resources */,
@@ -1123,7 +1134,7 @@
 				F52F3B88159627F700EDBBD7 /* albumfail.png in Resources */,
 				F5AACEEE159C93E4003DA427 /* eye_icon.png in Resources */,
 				F5AACEEF159C93E4003DA427 /* info_icon.png in Resources */,
-				F5D3632015A1F0EF003A40B2 /* DMDocumentWindow.xib in Resources */,
+				F595995C1606369100FA3C3E /* DMDocumentWindow.xib in Resources */,
 				F5D3633115A1F1EA003A40B2 /* view_icon.png in Resources */,
 				F5D3633315A1F1F2003A40B2 /* detail_icon.png in Resources */,
 				F5D3633915A1F1FF003A40B2 /* star.png in Resources */,
@@ -1198,6 +1209,7 @@
 				F598DFE515FCEF8400F8C469 /* star@2x.png in Resources */,
 				F598DFE715FCEF9500F8C469 /* starhighlighted@2x.png in Resources */,
 				F5F7EF111600EE850007D2DB /* record.icns in Resources */,
+				F595996E1606401600FA3C3E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1292,6 +1304,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F5148ABC1580E58D002B3D61 /* en */,
+				F5959967160637D300FA3C3E /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1300,6 +1313,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F5148AC21580E58D002B3D61 /* en */,
+				F5959968160637D300FA3C3E /* zh-Hans */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -1308,8 +1322,45 @@
 			isa = PBXVariantGroup;
 			children = (
 				F5148ACB1580E58E002B3D61 /* en */,
+				F5959966160637D300FA3C3E /* zh-Hans */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F595995E1606369100FA3C3E /* DMDocumentWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F595995D1606369100FA3C3E /* en */,
+				F595996A160637D300FA3C3E /* zh-Hans */,
+			);
+			name = DMDocumentWindow.xib;
+			sourceTree = "<group>";
+		};
+		F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5959961160636AC00FA3C3E /* en */,
+				F5959969160637D300FA3C3E /* zh-Hans */,
+			);
+			name = DMPrefsPanel.xib;
+			sourceTree = "<group>";
+		};
+		F5959965160636BC00FA3C3E /* DMPanelWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5959964160636BC00FA3C3E /* en */,
+				F595996B160637D300FA3C3E /* zh-Hans */,
+			);
+			name = DMPanelWindowController.xib;
+			sourceTree = "<group>";
+		};
+		F59599701606401600FA3C3E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F595996F1606401600FA3C3E /* en */,
+				F59599711606401C00FA3C3E /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1367,7 +1418,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1393,7 +1443,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (

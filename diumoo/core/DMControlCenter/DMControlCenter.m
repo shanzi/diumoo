@@ -612,7 +612,10 @@
             }
             else
             {
-                NSRunCriticalAlertPanel(@"播放专辑失败", @"很遗憾，尝试播放您指定的专辑失败。", @"知道了", nil, nil);
+                NSRunCriticalAlertPanel(
+                                        NSLocalizedString(@"PLAY_ALBUM_FAILED", nil),
+                                        NSLocalizedString(@"PLAY_ALBUM_FAILED_DETAIL", nil),
+                                        @"OK", nil, nil);
                 [diumooPanel playDefaultChannel];
             }
         }];
@@ -627,7 +630,7 @@
                                                   waitingCapsule = nil;
                                                   [self skip];
                                                   [diumooPanel invokeChannelWithCid:0
-                                                                           andTitle:@"私人兆赫"
+                                                                           andTitle:NSLocalizedString(@"PRIVATE_MHZ", nil)
                                                                             andPlay:NO];
                                               }
                                           }];
@@ -642,7 +645,7 @@
                                                 waitingCapsule = nil;
                                                 [self skip];
                                                 [diumooPanel invokeChannelWithCid:10
-                                                                         andTitle:@"电影原声"
+                                                                         andTitle:NSLocalizedString(@"SOUNDTRACK_MHZ",nil)
                                                                           andPlay:NO];
                                             }
                                         }];
