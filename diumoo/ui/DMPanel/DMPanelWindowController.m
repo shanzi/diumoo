@@ -96,6 +96,7 @@ DMPanelWindowController *sharedWindow;
 {
     NSInteger tag = [sender tag];
     NSString* channel = [NSString stringWithFormat:@"%ld",tag];
+    [CATransaction begin];
     if ([self.delegate channelChangedTo:channel]) {
         
         if (tag == 0 || tag == -3) {
@@ -106,9 +107,9 @@ DMPanelWindowController *sharedWindow;
         else {
             [banButton setEnabled:NO];
         }
-        
         [popupMenuController updateChannelMenuWithSender:sender];
     }
+    [CATransaction commit];
 }
 
 
