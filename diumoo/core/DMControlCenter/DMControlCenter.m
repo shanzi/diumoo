@@ -248,7 +248,9 @@
     if (state >= QTMovieLoadStatePlayable) {
         
         if ([capsule picture] == nil) {
-            [capsule prepareCoverWithCallbackBlock:nil];
+            [capsule prepareCoverWithCallbackBlock:^(NSImage *image){
+                [capsule setPicture:image];
+            }];
         }
 
         if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0))

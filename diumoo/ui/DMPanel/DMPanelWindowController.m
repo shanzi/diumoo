@@ -46,6 +46,16 @@ DMPanelWindowController *sharedWindow;
     return self;
 }
 
+-(void)windowDidLoad {
+    // Make the window visible on all Spaces
+    if([[self window] respondsToSelector: @selector(setCollectionBehavior:)]) {
+        [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+    }
+    else if([[self window] respondsToSelector: @selector(canBeVisibleOnAllSpaces)]) {
+        [[self window] canBeVisibleOnAllSpaces]; // AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER_BUT_DEPRECATED
+    }
+}
+
 -(void) awakeFromNib
 {
     [super awakeFromNib];
@@ -249,21 +259,25 @@ DMPanelWindowController *sharedWindow;
     
     NSMenuItem* currentItem=popupMenuController.currentChannelMenuItem;
     
-    
+    [CATransaction begin];
     if ([DMDoubanAuthHelper sharedHelper].username == nil) {
         [popupMenuController setPrivateChannelEnabled:NO];
         [rateButton setEnabled:NO];
         [banButton setEnabled:NO];
         if (currentItem && currentItem.tag <= 0) {
+            [CATransaction commit];
             return [popupMenuController.publicMenu
                                                  itemWithTag:1];
+            
         }
     }
     
     if(currentItem){
+        [CATransaction commit];
         return currentItem;
     }
     else {
+        [CATransaction commit];
         return [popupMenuController.publicMenu
                                 itemWithTag:1];
     }

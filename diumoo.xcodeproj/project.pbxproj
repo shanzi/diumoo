@@ -577,9 +577,9 @@
 				179AFA331583916200968BAD /* debugLog.h */,
 				F5148AD51580E6AD002B3D61 /* DMApp.h */,
 				F5148AD61580E6AD002B3D61 /* DMApp.m */,
+				F5148ABE1580E58D002B3D61 /* main.m */,
 				F5148ABA1580E58D002B3D61 /* diumoo-Info.plist */,
 				F5148ABB1580E58D002B3D61 /* InfoPlist.strings */,
-				F5148ABE1580E58D002B3D61 /* main.m */,
 				F5148AC01580E58D002B3D61 /* diumoo-Prefix.pch */,
 				F5148AC11580E58D002B3D61 /* Credits.rtf */,
 			);
@@ -1385,6 +1385,7 @@
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1412,6 +1413,7 @@
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

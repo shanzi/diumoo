@@ -34,11 +34,9 @@ typedef enum{
     NSString *artist;
     NSString *albumtitle;
     NSString *pictureLocation;
-    
-    NSString* skipType;
-    
+    NSString *skipType;
     NSTimer *timer;
-    
+    NSImage *picture;
     float volume;
 }
 
@@ -61,7 +59,8 @@ typedef enum{
 @property(nonatomic,copy,readonly) NSString* pictureLocation;
 @property(nonatomic,copy,readonly) NSString* largePictureLocation;
 
-@property NSImage* picture;
+@property NSImage *picture;
+
 @property id<DMPlayableCapsuleDelegate> delegate;
 
 @property QTMovie* movie;
