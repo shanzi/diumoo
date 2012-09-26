@@ -68,15 +68,15 @@
                                    clickContext:capsule.sid];
         }
     }
-    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
-        NSDictionary* postDict = @{@"Player State": @"Playing",
-                                                @"Album": capsule.albumtitle,
-                                                @"Name": capsule.title,
-                                                @"Artist": capsule.artist};
-        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
-                                                                       object:@"com.apple.iTunes.player"
-                                                                     userInfo:postDict];
-    }
+//    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
+//        NSDictionary* postDict = @{@"Player State": @"Playing",
+//                                                @"Album": capsule.albumtitle,
+//                                                @"Name": capsule.title,
+//                                                @"Artist": capsule.artist};
+//        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
+//                                                                       object:@"com.apple.iTunes.player"
+//                                                                     userInfo:postDict];
+//    }
     
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
         [NSApp setApplicationIconImage:capsule.picture];

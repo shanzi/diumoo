@@ -134,7 +134,6 @@
 		F5B9DC7B15BD995B004788A9 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5B9DC8115BDACC6004788A9 /* status-icon-mixed.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */; };
 		F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */; };
-		F5D20EB215E7E79D00CD255C /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5D20EB115E7E79D00CD255C /* channels.plist */; };
 		F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D362FF15A1F0EF003A40B2 /* DMDocument.m */; };
 		F5D3631F15A1F0EF003A40B2 /* DMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630315A1F0EF003A40B2 /* DMDetailViewController.m */; };
 		F5D3632115A1F0EF003A40B2 /* DMDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */; };
@@ -367,7 +366,6 @@
 		F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-mixed.png"; sourceTree = "<group>"; };
 		F5BB89F2159744B80017E6FE /* DMVolumeSlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMVolumeSlideCell.h; path = DMVolumeSlideCell/DMVolumeSlideCell.h; sourceTree = "<group>"; };
 		F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMVolumeSlideCell.m; path = DMVolumeSlideCell/DMVolumeSlideCell.m; sourceTree = "<group>"; };
-		F5D20EB115E7E79D00CD255C /* channels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channels.plist; sourceTree = "<group>"; };
 		F5D362FE15A1F0EF003A40B2 /* DMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDocument.h; sourceTree = "<group>"; };
 		F5D362FF15A1F0EF003A40B2 /* DMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDocument.m; sourceTree = "<group>"; };
 		F5D3630215A1F0EF003A40B2 /* DMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDetailViewController.h; sourceTree = "<group>"; };
@@ -508,7 +506,6 @@
 		F501B3C215877A88001C6158 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				F5D20EB115E7E79D00CD255C /* channels.plist */,
 				F555569815C04DB100894E8D /* icon.icns */,
 				F5F7EF101600EE850007D2DB /* record.icns */,
 				F598DFD915FCDEE500F8C469 /* diumooHelper */,
@@ -1194,7 +1191,6 @@
 				F577112915E1097500FF6FAB /* volume_back@2x.png in Resources */,
 				F577112D15E11E6900FF6FAB /* renren@2x.png in Resources */,
 				F577112F15E11EC500FF6FAB /* renren.png in Resources */,
-				F5D20EB215E7E79D00CD255C /* channels.plist in Resources */,
 				F598DFD215FCDEE100F8C469 /* chrome.png in Resources */,
 				F598DFD315FCDEE100F8C469 /* chrome_2x.png in Resources */,
 				F598DFD415FCDEE100F8C469 /* firefox.png in Resources */,

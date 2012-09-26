@@ -99,6 +99,7 @@
     
     NSArray* public_list = nil;
     NSArray* suggest_list = nil;
+    NSArray* en_public_list = nil;
     
     
     double timestamp = [[channelDict valueForKey:@"timestamp"] doubleValue];
@@ -121,13 +122,16 @@
             
             if(error == NULL){
                 public_list = [dict valueForKey:@"public"];
+                en_public_list = [dict valueForKey:@"en_public"];
                 suggest_list = [dict valueForKey:@"suggest"];
                 
-                if (filepath && [public_list count] && [suggest_list count]) {
+                if (filepath && [public_list count] && [suggest_list count] && [en_public_list count]) {
                     
                     NSNumber* timestamp = @([NSDate timeIntervalSinceReferenceDate]);
                     
-                    NSDictionary* writedic = @{@"public": public_list,
+                    NSDictionary* writedic = @{
+                    @"public": public_list,
+                    @"en_public": en_public_list,
                     @"suggest": suggest_list,
                     @"timestamp": timestamp};
                     DMLog(@"写入电台列表");
