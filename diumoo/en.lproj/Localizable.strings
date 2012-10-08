@@ -68,3 +68,58 @@
 
 /* 发生网络错误，请尝试重启应用  */
 "NETWORK_ERROR_INDICADTE_STRING"="Network Error";
+
+/* 专辑:《%@》 */
+"ALBUM_DOCUMENT_TITLE" = "Album : %@";
+
+/* 专辑名 */
+"DETAIL_ALBUM" = "Album Title";
+
+/* 唱片数 */
+"DETAIL_DISCS" = "Discs";
+
+/* 豆瓣评分 */
+"DETAIL_DOUBAN_RATING" = "Rating";
+
+/* 条形码 */
+"DETAIL_EAN" = "Ean";
+
+/* 介质 */
+"DETAIL_MEDIA" = "Media";
+
+/* 发行时间 */
+"DETAIL_PUBDATE" = "Pub-date";
+
+/* 出版者 */
+"DETAIL_PUBLISHER" = "Publisher";
+
+/* %@ (%@ 人评价) */
+"DETAIL_RATES" = "%@ (%@ ratings)";
+
+/* 歌手 */
+"DETAIL_SINGER" = "Artist";
+
+/* 版本特性 */
+"DETAIL_VERSION" = "Version";
+
+/* 获取详细信息失败 */
+"GET_DETAIL_FAILED" = "Get album detail failed.";
+
+/* 解析信息失败 */
+"PARSE_DETAIL_FAILED" = "Parse album detail failed.";
+
+/* 解析信息成功！ */
+"PARSE_DETAIL_SUCCESS" = "Get detail success.";
+
+/* 简介 */
+"DETAIL_ABSTRACT" = "Abstract";
+
+/* 专辑信息 */
+"DETAIL_ALBUM_INFO" = "Album Info";
+
+/* 曲目 */
+"DETAIL_SONGS" = "songs";
+
+/* 未知 */
+"DETAIL_UNKNOWN" = "unknown";
+
