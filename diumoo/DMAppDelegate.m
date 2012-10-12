@@ -146,7 +146,7 @@
                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
                             data]
                     forKey:keyTogglePanelShortcut];
-        [defaults setValue:@(YES) forKey:@"shortcutDidRegister"];
+        [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
     }
 }
 
