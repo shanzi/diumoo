@@ -11,6 +11,7 @@
 #import "DMPlayRecordHandler.h"
 #import "StatusItemView.h"
 #import "DMPrefsPanelDataProvider.h"
+#import "DMSearchPanelController.h"
 
 DMPanelWindowController *sharedWindow;
 
@@ -143,6 +144,9 @@ DMPanelWindowController *sharedWindow;
             break;
         case 8:
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/channels"]];
+            break;
+        case 9:
+            [[DMSearchPanelController sharedSearchPanel] showWindow:nil];
             break;
     }
 }

@@ -528,7 +528,7 @@
 						<object class="NSTextField" id="179548798">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">-2147483380</int>
-							<string key="NSFrame">{{133, 9}, {69, 17}}</string>
+							<string key="NSFrame">{{133, 9}, {51, 17}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1073221650"/>
@@ -556,6 +556,35 @@
 										<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 									</object>
 								</object>
+							</object>
+						</object>
+						<object class="NSButton" id="925075985">
+							<reference key="NSNextResponder" ref="631853183"/>
+							<int key="NSvFlags">292</int>
+							<string key="NSFrame">{{184, 9}, {18, 18}}</string>
+							<reference key="NSSuperview" ref="631853183"/>
+							<reference key="NSWindow"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
+							<string key="NSReuseIdentifierKey">_NS:22</string>
+							<int key="NSTag">9</int>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="356188564">
+								<int key="NSCellFlags">-2080374784</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="347555876"/>
+								<string key="NSCellIdentifier">_NS:22</string>
+								<reference key="NSControlView" ref="925075985"/>
+								<int key="NSButtonFlags">138690560</int>
+								<int key="NSButtonFlags2">34</int>
+								<object class="NSCustomResource" key="NSNormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">search</string>
+								</object>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">400</int>
+								<int key="NSPeriodicInterval">75</int>
 							</object>
 						</object>
 						<object class="NSSlider" id="930623499">
@@ -1103,6 +1132,14 @@
 					<int key="connectionID">3899</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">controlAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="925075985"/>
+					</object>
+					<int key="connectionID">3902</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">mainMenu</string>
 						<reference key="source" ref="706784540"/>
@@ -1423,6 +1460,7 @@
 							<reference ref="144613420"/>
 							<reference ref="243441216"/>
 							<reference ref="615778314"/>
+							<reference ref="925075985"/>
 						</array>
 						<reference key="parent" ref="577421203"/>
 					</object>
@@ -1715,6 +1753,19 @@
 						<reference key="object" ref="453554915"/>
 						<reference key="parent" ref="575959324"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3900</int>
+						<reference key="object" ref="925075985"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="356188564"/>
+						</array>
+						<reference key="parent" ref="631853183"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3901</int>
+						<reference key="object" ref="356188564"/>
+						<reference key="parent" ref="925075985"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1808,12 +1859,15 @@
 				<string key="3894.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3896.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3898.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3900.CustomClassName">DMButton</string>
+				<string key="3900.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3901.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3899</int>
+			<int key="maxID">3902</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2049,6 +2103,7 @@
 			<string key="rate">{62, 35}</string>
 			<string key="redheart">{16, 16}</string>
 			<string key="renren">{16, 16}</string>
+			<string key="search">{16, 16}</string>
 			<string key="settings">{16, 16}</string>
 			<string key="share">{32, 32}</string>
 			<string key="sina">{16, 16}</string>
