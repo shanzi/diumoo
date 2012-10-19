@@ -112,7 +112,6 @@
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
-                            //@"usesMediaKey": @(NSOnState),
                             @"showDockIcon": @(NSOnState),
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
@@ -146,7 +145,7 @@
                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
                             data]
                     forKey:keyTogglePanelShortcut];
-        [defaults setValue:@(YES) forKey:@"shortcutDidRegister"];
+        [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
     }
 }
 

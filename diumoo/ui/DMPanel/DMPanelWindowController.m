@@ -48,12 +48,7 @@ DMPanelWindowController *sharedWindow;
 
 -(void)windowDidLoad {
     // Make the window visible on all Spaces
-    if([[self window] respondsToSelector: @selector(setCollectionBehavior:)]) {
-        [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
-    }
-    else if([[self window] respondsToSelector: @selector(canBeVisibleOnAllSpaces)]) {
-        [[self window] canBeVisibleOnAllSpaces]; // AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER_BUT_DEPRECATED
-    }
+    [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
 }
 
 -(void) awakeFromNib

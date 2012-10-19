@@ -14,6 +14,8 @@
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
 
+#import <IOKit/pwr_mgt/IOPMLib.h>
+
 #import "DMPlayableCapsuleDelegate.h"
 
 typedef enum{
@@ -38,6 +40,8 @@ typedef enum{
     NSTimer *timer;
     NSImage *picture;
     float volume;
+    
+    IOPMAssertionID idleSleepAssertionID;
 }
 
 @property long loadState;

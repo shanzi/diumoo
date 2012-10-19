@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
 		3F01021515DE99940076D6C8 /* ban_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021315DE99940076D6C8 /* ban_mouseover@2x.png */; };
@@ -190,6 +191,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
 		3F01021215DE99940076D6C8 /* ban_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_mouseover.png; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */,
 				F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */,
 				F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */,
 				F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */,
@@ -515,6 +518,7 @@
 		F5148AA31580E58D002B3D61 = {
 			isa = PBXGroup;
 			children = (
+				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
 				F5148AB81580E58D002B3D61 /* diumoo */,
 				F5148AD81580E707002B3D61 /* extern */,
 				F501B3C215877A88001C6158 /* resources */,

@@ -17,7 +17,6 @@
 //私有函数的
 -(void) startToPlay:(DMPlayableCapsule*)aSong;
 
-
 @end
 
 
@@ -242,11 +241,10 @@
     pauseType = PAUSE_PASS;
 }
 
--(void) playableCapsule:(id)capsule loadStateChanged:(long)state
+-(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long)state
 {
-    NSLog(@"%@ load state = %ld",capsule,state);
-    if (state >= QTMovieLoadStatePlayable) {
-        
+    NSLog(@"Capsule %@ state changed to %ld",capsule,state);
+    if (state >= QTMovieLoadStatePlayable && state < QTMovieLoadStateComplete) {
         if ([capsule picture] == nil) {
             [capsule prepareCoverWithCallbackBlock:^(NSImage *image){
                 [capsule setPicture:image];
@@ -255,12 +253,8 @@
 
         if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0))
             [playingCapsule play];
-        
-        // 特殊播放模式下不缓冲
-        if (specialWaitList) {
-            return;
-        }
-        
+    }
+    else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
         // 在这里执行一些缓冲歌曲的操作
         NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
@@ -281,13 +275,15 @@
             }
             
         }
+
     }
-    else if(state < 0){
-        if(capsule == playingCapsule)
+    else if(state < QTMovieLoadStateLoaded){
+        NSLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",capsule,state,capsule.playState);
+        if(capsule == playingCapsule && capsule.playState == PLAYING)
         {
             // 当前歌曲加载失败
             // 做些事情
-            [self startToPlay:nil];
+            [self startToPlay:waitingCapsule];
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
@@ -679,4 +675,5 @@
 //    }];
 }
 //--------------------------------------------------------------------
+
 @end

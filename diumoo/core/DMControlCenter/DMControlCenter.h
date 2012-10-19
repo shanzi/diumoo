@@ -52,7 +52,7 @@ typedef enum{
 -(void) stopForExit;
 
 //methods in DMPlayableCapsuleDelegate
--(void) playableCapsule:(id)capsule loadStateChanged:(long) state;
+-(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long) state;
 -(void) playableCapsuleDidPlay:(id)capsule;
 -(void) playableCapsuleWillPause:(id)capsule;
 -(void) playableCapsuleDidPause:(id)capsule;

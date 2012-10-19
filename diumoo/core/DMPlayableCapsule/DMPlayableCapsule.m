@@ -123,6 +123,7 @@
     if(loadState < QTMovieLoadStatePlayable)
         return;
     
+    
     if(playState == WAIT_TO_PLAY)
     {
         playState = PLAYING;
@@ -131,7 +132,8 @@
     else
         playState = REPLAYING;
     
-    
+    CFStringRef reasonForActivity= CFSTR("Diumoo playing");
+
     if(movie && movie.rate == 0.0){
         if(timer)
             [timer invalidate];
@@ -145,10 +147,17 @@
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         [movie autoplay];
         [timer fire];
-                
+
+        IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
+                                    kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
+        if (success == kIOReturnSuccess) {
+            NSLog(@"Prevent idle sleep\n");
+        }
     }
     else {
         [movie autoplay];
+        IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep,
+                                    kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
         [self.delegate playableCapsuleDidPlay:self];
     }
     
@@ -169,9 +178,17 @@
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         [self.delegate playableCapsuleWillPause:self];
         [timer fire];
+        
+        IOPMAssertionRelease(idleSleepAssertionID);
+        idleSleepAssertionID = 0;
+        NSLog(@"Enable Sleep\n");
     }
-    else
+    else{
         [self.delegate playableCapsuleDidPause:self];
+        IOPMAssertionRelease(idleSleepAssertionID);
+        idleSleepAssertionID = 0;
+        NSLog(@"Enable Sleep\n");
+    }
 }
 
 -(void) replay
