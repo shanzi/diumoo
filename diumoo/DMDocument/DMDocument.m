@@ -116,8 +116,10 @@
     {
         if (NSAlertDefaultReturn
             ==
-            NSRunAlertPanel(@"导入播放记录", @"您刚刚打开的一个diumoo播放记录文件，是否导入这些记录？",
-                            @"是", @"否", nil))
+            NSRunAlertPanel(NSLocalizedString(@"IMPORT_PLAY_RECORD", nil),
+                            NSLocalizedString(@"IMPORT_PLAY_RECORD_DETAIL", nil),
+                            //@"您刚刚打开的一个diumoo播放记录文件，是否导入这些记录？",
+                            NSLocalizedString(@"YES", nil), NSLocalizedString(@"NO", nil), nil))
         {
             [DMService importRecordOperationWithFilePath:url];
         }
@@ -126,7 +128,7 @@
     }
     
     if (outError != nil) {
-        *outError = [NSError errorWithDomain:@"打开文件失败" code:-1 userInfo:nil];
+        *outError = [NSError errorWithDomain:NSLocalizedString(@"OPEN_FILE_FAILED", nil) code:-1 userInfo:nil];
     }
     
     return NO;

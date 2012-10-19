@@ -26,15 +26,16 @@
     if (self) {
         // Initialization code here
         
-        baseInfoKeys = @[@"专辑名",
-                        @"艺术家",
-                        @"豆瓣评分",
-                        @"版本特性",
-                        @"出版者",
-                        @"发行时间",
-                        @"介质",
-                        @"唱片数",
-                        @"条形码"];
+        baseInfoKeys = @[
+        NSLocalizedString(@"DETAIL_ALBUM",@"专辑名"),
+        NSLocalizedString(@"DETAIL_SINGER",@"艺术家"),
+        NSLocalizedString(@"DETAIL_DOUBAN_RATING",@"豆瓣评分"),
+        NSLocalizedString(@"DETAIL_VERSION",@"版本特性"),
+        NSLocalizedString(@"DETAIL_PUBLISHER",@"出版者"),
+        NSLocalizedString(@"DETAIL_PUBDATE", @"发行时间"),
+        NSLocalizedString(@"DETAIL_MEDIA", @"介质"),
+        NSLocalizedString(@"DETAIL_DISCS", @"唱片数"),
+        NSLocalizedString(@"DETAIL_EAN", @"条形码")];
         
         self.baseInformationView = [self buildTableView];
         self.songsView = [self buildTableView];
@@ -48,7 +49,7 @@
             self.summaryView.string = summary;
         }
         else {
-            self.summaryView.string = @"(无)";
+            self.summaryView.string = NSLocalizedString(@"DETAIL_UNKNOWN", nil);
         }
         
         
@@ -56,7 +57,7 @@
         songsArray = songs;
         
         JUInspectorView* infoInspector = [[JUInspectorView alloc] init];
-        infoInspector.name = @"专辑信息";
+        infoInspector.name = NSLocalizedString(@"DETAIL_ALBUM_INFO",  @"专辑信息");
         infoInspector.body = baseInformationView;
         
         JUInspectorView* summaryInspector = [[JUInspectorView alloc] init];
@@ -67,11 +68,11 @@
         [scrollView setHasVerticalScroller:YES];
         [scrollView setAutohidesScrollers:YES];
         
-        summaryInspector.name = @"简介";
+        summaryInspector.name = NSLocalizedString(@"DETAIL_ABSTRACT", @"简介");
         summaryInspector.body = scrollView;
         
         JUInspectorView* songsInspector = [[JUInspectorView alloc] init];
-        songsInspector.name = @"曲目";
+        songsInspector.name = NSLocalizedString(@"DETAIL_SONGS", @"曲目");
         songsInspector.body = songsView;
         
         [self addInspectorView:infoInspector expanded:YES];
@@ -149,7 +150,7 @@
 
             NSString* string = [baseInfoDict valueForKey:baseInfoKeys[row]];
             if (string == nil) {
-                return  @"未知";
+                return  NSLocalizedString(@"DETAIL_UNKNOWN",@"未知");
             }
             else {
                 return string;

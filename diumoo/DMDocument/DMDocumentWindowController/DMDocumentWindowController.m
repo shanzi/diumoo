@@ -110,7 +110,7 @@
 -(NSString*) windowTitleForDocumentDisplayName:(NSString *)displayName
 {
 
-    return [NSString stringWithFormat:@"专辑:《%@》", albumTitle];
+    return [NSString stringWithFormat:NSLocalizedString(@"ALBUM_DOCUMENT_TITLE",  @"专辑:《%@》"), albumTitle];
 }
 
 
@@ -172,7 +172,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (dataerror) {
                     [DMErrorLog logErrorWith:self method:_cmd andError:dataerror];
-                    indicatorText.stringValue = @"获取详细信息失败" ;
+                    indicatorText.stringValue = NSLocalizedString(@"GET_DETAIL_FAILED",@"获取详细信息失败") ;
                     [progressIndicator stopAnimation:self];
                     [lock unlock];
                 }
@@ -181,11 +181,11 @@
                     NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data
                                                                                              error:&jsonError];
                     if (jsonError) {
-                        indicatorText.stringValue = @"解析信息失败（来自豆瓣音乐人的专辑无法获取详细信息）" ;
+                        indicatorText.stringValue = NSLocalizedString(@"PARSE_DETAIL_FAILED",@"解析信息失败") ;
                         [progressIndicator stopAnimation:nil];
                     }
                     else {
-                        indicatorText.stringValue = @"解析信息成功！" ;
+                        indicatorText.stringValue = NSLocalizedString(@"PARSE_DETAIL_SUCCESS",@"解析信息成功！") ;
                         [progressIndicator stopAnimation:self];
                         
                         [self displayDetailView:dict];
@@ -216,37 +216,37 @@
             [songs addObject:[d valueForKey:@"$t"]];
         }
         else if ([name isEqualToString:@"discs"]) {
-            dictOfDetail[@"唱片数"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_DISCS",@"唱片数")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"version"]){
-            dictOfDetail[@"版本特性"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_VERSION",@"版本特性")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"ean"]){
-            dictOfDetail[@"条形码"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_EAN",@"条形码")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"pubdate"]){
-            dictOfDetail[@"发行时间"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_PUBDATE",@"发行时间")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"title"]){
-            dictOfDetail[@"专辑名"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_ALBUM",@"专辑名")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"singer"]){
-            dictOfDetail[@"艺术家"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_SINGER", @"歌手")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"publisher"]){
-            dictOfDetail[@"出版者"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_PUBLISHER", @"出版者")] = [d valueForKey:@"$t"];
         }
         else if([name isEqualToString:@"media"]){
-            dictOfDetail[@"介质"] = [d valueForKey:@"$t"];
+            dictOfDetail[NSLocalizedString(@"DETAIL_MEDIA", @"介质")] = [d valueForKey:@"$t"];
         }
     }
     
     NSDictionary* rating = [dict valueForKey:@"gd:rating"];
-    NSString* rating_string = [NSString stringWithFormat:@"%@ (%@ 人评价)",
+    NSString* rating_string = [NSString stringWithFormat: NSLocalizedString(@"DETAIL_RATES", @"%@ (%@ 人评价)"),
                                rating[@"@average"],
                                rating[@"@numRaters"]];
     
-    dictOfDetail[@"豆瓣评分"] = rating_string;
+    dictOfDetail[NSLocalizedString(@"DETAIL_DOUBAN_RATING",@"豆瓣评分")] = rating_string;
     
     NSString* summary = dict[@"summary"][@"$t"];
     

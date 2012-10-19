@@ -134,9 +134,11 @@ static NSOperationQueue* serviceQueue;
     }
     else
     {
-        NSRunCriticalAlertPanel(@"打开URL失败",
-                                @"未能成功打开您指定的URL，可能是您试图播放的专辑、音乐家或电影原声不可用。",
-                                @"知道了", nil, nil);
+        NSRunCriticalAlertPanel(NSLocalizedString(@"OPEN_URL_FAILED", nil), //@"打开URL失败",
+                                NSLocalizedString(@"OPEN_URL_FAILED_DETAIL",
+                                                  @"未能成功打开您指定的URL，可能是您试图播放的专辑、音乐家或电影原声不可用。"),
+                                @"OK",
+                                nil, nil);
         return NO;
     }
 }
@@ -148,8 +150,8 @@ static NSOperationQueue* serviceQueue;
     [openpanel setCanChooseDirectories:NO];
     [openpanel setAllowsMultipleSelection:NO];
     [openpanel setAllowedFileTypes:@[@"dmrecord"]];
-    [openpanel setTitle:@"导入播放记录"];
-    [openpanel setPrompt:@"导入"];
+    [openpanel setTitle:NSLocalizedString(@"IMPORT_PLAY_RECORD",@"导入播放记录")];
+    [openpanel setPrompt:NSLocalizedString(@"IMPORT", nil)];
     if ([openpanel runModal] == NSOKButton) {
         NSURL* url = [openpanel URLs][0];
         [DMService importRecordOperationWithFilePath:url];
@@ -173,10 +175,11 @@ static NSOperationQueue* serviceQueue;
             }
             if (finished> 0) {
                 [handler save];
-                NSString* summary = [NSString stringWithFormat:@"成功导入了 %ld 个歌曲记录，失败 %ld 个。",
+                NSString* summary = [NSString stringWithFormat:
+                                     NSLocalizedString(@"SUCCESS_IMPORT_DETAIL", @"成功导入了 %ld 个歌曲记录，失败 %ld 个。"),
                                      finished,errorcount];
                 [DMService performOnMainQueue:^{
-                    NSRunInformationalAlertPanel(@"导出播放记录结束", summary, @"OK", nil, nil);
+                    NSRunInformationalAlertPanel(NSLocalizedString(@"SUCCESS_IMPORT",nil), summary, @"OK", nil, nil);
                 }];
                 
                 return;
@@ -184,9 +187,10 @@ static NSOperationQueue* serviceQueue;
         }
         
         [DMService performOnMainQueue:^{
-            NSRunCriticalAlertPanel(@"导入失败",
-                                    @"导入播放记录失败，您试图导入的文件类型不正确或者文件已损坏。",
-                                    @"知道了", nil, nil);
+            NSRunCriticalAlertPanel(NSLocalizedString(@"IMPORT_FAILED",@"导入失败"),
+                                    NSLocalizedString(@"IMPORT_FAILED_DETAIL", 
+                                                      @"导入播放记录失败，您试图导入的文件类型不正确或者文件已损坏。"),
+                                    @"OK", nil, nil);
         }];
         
     }];
@@ -196,8 +200,8 @@ static NSOperationQueue* serviceQueue;
 {
     NSSavePanel* savepanel = [NSSavePanel savePanel];
     [savepanel setAllowedFileTypes:@[@"dmrecord"]];
-    [savepanel setTitle:@"导出播放记录"];
-    [savepanel setPrompt:@"导出"];
+    [savepanel setTitle:NSLocalizedString(@"EXPORT_PLAY_RECORD", nil)];
+    [savepanel setPrompt:NSLocalizedString(@"EXPORT", nil)];
     if ([savepanel runModal] == NSOKButton) {
         NSURL* url = [savepanel URL];
         [DMService performOnMainQueue:^{
@@ -225,9 +229,12 @@ static NSOperationQueue* serviceQueue;
                 }
                 [outarray writeToURL:url atomically:YES];
                 
-                NSString* summary = [NSString stringWithFormat:@"成功导出 %ld 首歌曲的播放记录。",finished];
+                NSString* summary = [NSString stringWithFormat:
+                                     NSLocalizedString(@"SUCCESS_EXPORT_DETAIL",@"成功导出 %ld 首歌曲的播放记录。")
+                                     ,finished];
                 [DMService performOnMainQueue:^{
-                    NSRunInformationalAlertPanel(@"导出歌曲记录结束", summary, @"OK", nil, nil);
+                    NSRunInformationalAlertPanel(NSLocalizedString(@"SUCCESS_EXPORT", nil),
+                                                 summary, @"OK", nil, nil);
                 }];
                 
                 
@@ -280,13 +287,13 @@ static NSOperationQueue* serviceQueue;
                       
                       if (force_open && referenceURL) {
                           rvalue = NSRunInformationalAlertPanel(title, content,
-                                                                @"查看详细", nil,
+                                                                NSLocalizedString(@"SHOW_DETAIL", @"查看详细"), nil,
                                                                 nil);
                       }
                       else
                       {
                           rvalue = NSRunInformationalAlertPanel(title, content,
-                                                                @"查看详细", @"关闭", nil);
+                                                                NSLocalizedString(@"SHOW_DETAIL", @"查看详细"), @"OK", nil);
                       }
                       
                       if(rvalue == NSAlertDefaultReturn){

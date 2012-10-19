@@ -1,0 +1,125 @@
+/* No comment provided by engineer. */
+"PLAY_ALBUM_FAILED" = "Play Album Failed";
+
+/* No comment provided by engineer. */
+"PLAY_ALBUM_FAILED_DETAIL" = "The album you request to play is invalid.";
+
+/* No comment provided by engineer. */
+"PRIVATE_MHZ" = "Private MHz";
+
+/* No comment provided by engineer. */
+"SOUNDTRACK_MHZ" = "Soundtrack";
+
+/* No comment provided by engineer. */
+"EXPORT" = "Export";
+
+/* No comment provided by engineer. */
+"EXPORT_PLAY_RECORD" = "Export Play Record";
+
+/* No comment provided by engineer. */
+"IMPORT" = "Import";
+
+/* 导入失败 */
+"IMPORT_FAILED" = "Import Failed";
+
+/* 导入播放记录失败，您试图导入的文件类型不正确或者文件已损坏。 */
+"IMPORT_FAILED_DETAIL" = "The play record file is broken or invalid.";
+
+/* 导入播放记录 */
+"IMPORT_PLAY_RECORD" = "Import Play Record";
+
+/* No comment provided by engineer. */
+"OPEN_URL_FAILED" = "Open URL Failed";
+
+/* 未能成功打开您指定的URL，可能是您试图播放的专辑、音乐家或电影原声不可用。 */
+"OPEN_URL_FAILED_DETAIL" = "Failed to open URL, It seems that the album , songs of artist or soundtrack you request to play is invalid.";
+
+/* 查看详细 */
+"SHOW_DETAIL" = "Show Detail";
+
+/* No comment provided by engineer. */
+"SUCCESS_EXPORT" = "Export Success";
+
+/* 成功导出 %ld 首歌曲的播放记录。 */
+"SUCCESS_EXPORT_DETAIL" = "Success to export a play record of %ld songs.";
+
+/* No comment provided by engineer. */
+"SUCCESS_IMPORT" = "Import Success";
+
+/* 成功导入了 %ld 个歌曲记录，失败 %ld 个。 */
+"SUCCESS_IMPORT_DETAIL" = "Success to import a play record of %ld songs with %ld failed.";
+
+/* No comment provided by engineer. */
+"IMPORT_PLAY_RECORD" = "Import Play Record";
+
+/* No comment provided by engineer. */
+"IMPORT_PLAY_RECORD_DETAIL" = "You had just opened a diumoo play record file, import the record now?";
+/* No comment provided by engineer. */
+"NO" = "No";
+
+/* No comment provided by engineer. */
+"OPEN_FILE_FAILED" = "Failed to open File";
+
+/* No comment provided by engineer. */
+"YES" = "Yes";
+
+/* public */
+"LOCALIZED_PUBLIC_LIST_NAME" = "en_public";
+
+/* 发生网络错误，请尝试重启应用  */
+"NETWORK_ERROR_INDICADTE_STRING"="Network Error";
+
+/* 专辑:《%@》 */
+"ALBUM_DOCUMENT_TITLE" = "Album : %@";
+
+/* 专辑名 */
+"DETAIL_ALBUM" = "Album Title";
+
+/* 唱片数 */
+"DETAIL_DISCS" = "Discs";
+
+/* 豆瓣评分 */
+"DETAIL_DOUBAN_RATING" = "Rating";
+
+/* 条形码 */
+"DETAIL_EAN" = "Ean";
+
+/* 介质 */
+"DETAIL_MEDIA" = "Media";
+
+/* 发行时间 */
+"DETAIL_PUBDATE" = "Pub-date";
+
+/* 出版者 */
+"DETAIL_PUBLISHER" = "Publisher";
+
+/* %@ (%@ 人评价) */
+"DETAIL_RATES" = "%@ (%@ ratings)";
+
+/* 歌手 */
+"DETAIL_SINGER" = "Artist";
+
+/* 版本特性 */
+"DETAIL_VERSION" = "Version";
+
+/* 获取详细信息失败 */
+"GET_DETAIL_FAILED" = "Get album detail failed.";
+
+/* 解析信息失败 */
+"PARSE_DETAIL_FAILED" = "Parse album detail failed.";
+
+/* 解析信息成功！ */
+"PARSE_DETAIL_SUCCESS" = "Get detail success.";
+
+/* 简介 */
+"DETAIL_ABSTRACT" = "Abstract";
+
+/* 专辑信息 */
+"DETAIL_ALBUM_INFO" = "Album Info";
+
+/* 曲目 */
+"DETAIL_SONGS" = "songs";
+
+/* 未知 */
+"DETAIL_UNKNOWN" = "unknown";
+

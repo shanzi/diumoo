@@ -185,7 +185,7 @@ DMPanelWindowController *sharedWindow;
     
     if(has_err){
         [coverView setHidden:YES];
-        [indicateString setStringValue:@"发生网络错误，请尝试重启应用"];
+        [indicateString setStringValue:NSLocalizedString(@"NETWORK_ERROR_INDICADTE_STRING", @"发生网络错误，请尝试重启应用")];
     }
     else{
         [indicateString setHidden:YES];

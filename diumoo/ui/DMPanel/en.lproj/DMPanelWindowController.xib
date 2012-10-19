@@ -53,7 +53,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="296955902">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">红心兆赫</string>
+						<string key="NSTitle">Red Heart MHz</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage">
@@ -72,7 +72,7 @@
 					</object>
 					<object class="NSMenuItem" id="384224020">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">私人兆赫</string>
+						<string key="NSTitle">Private MHz</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="972873596">
@@ -83,7 +83,7 @@
 					</object>
 					<object class="NSMenuItem" id="1004387813">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">公共兆赫</string>
+						<string key="NSTitle">Public MHz</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -92,7 +92,7 @@
 					</object>
 					<object class="NSMenuItem" id="844184346">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">更多电台兆赫</string>
+						<string key="NSTitle">More Channels</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -111,7 +111,7 @@
 					</object>
 					<object class="NSMenuItem" id="530597">
 						<reference key="NSMenu" ref="1066845941"/>
-						<string key="NSTitle">浏览所有支持的兆赫</string>
+						<string key="NSTitle">Explore all supported Channels</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -125,7 +125,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="80343497">
 						<reference key="NSMenu" ref="1040400039"/>
-						<string key="NSTitle">兆赫精选</string>
+						<string key="NSTitle">Suggected Channels</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -144,7 +144,7 @@
 					</object>
 					<object class="NSMenuItem" id="431723989">
 						<reference key="NSMenu" ref="1040400039"/>
-						<string key="NSTitle">试试这些</string>
+						<string key="NSTitle">Try These</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -153,7 +153,7 @@
 					<object class="NSMenuItem" id="304921685">
 						<reference key="NSMenu" ref="1040400039"/>
 						<int key="NSIndent">1</int>
-						<string key="NSTitle">无</string>
+						<string key="NSTitle">None</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -172,7 +172,7 @@
 					</object>
 					<object class="NSMenuItem" id="484477828">
 						<reference key="NSMenu" ref="1040400039"/>
-						<string key="NSTitle">最近播放</string>
+						<string key="NSTitle">Lately Played</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -181,7 +181,7 @@
 					<object class="NSMenuItem" id="709900022">
 						<reference key="NSMenu" ref="1040400039"/>
 						<int key="NSIndent">1</int>
-						<string key="NSTitle">无</string>
+						<string key="NSTitle">None</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="972873596"/>
@@ -446,7 +446,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="859537395">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">138413056</int>
-								<string key="NSContents">加载中...</string>
+								<string key="NSContents">Loading...</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">STHeitiSC-Light</string>
 									<double key="NSSize">13</double>
@@ -772,7 +772,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="612050442">
 						<reference key="NSMenu" ref="575959324"/>
-						<string key="NSTitle">豆瓣</string>
+						<string key="NSTitle">douban</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
@@ -785,7 +785,7 @@
 					</object>
 					<object class="NSMenuItem" id="1000164531">
 						<reference key="NSMenu" ref="575959324"/>
-						<string key="NSTitle">饭否</string>
+						<string key="NSTitle">fanfou</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
@@ -798,7 +798,7 @@
 					</object>
 					<object class="NSMenuItem" id="274311653">
 						<reference key="NSMenu" ref="575959324"/>
-						<string key="NSTitle">新浪微博</string>
+						<string key="NSTitle">weibo</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
@@ -811,7 +811,7 @@
 					</object>
 					<object class="NSMenuItem" id="453554915">
 						<reference key="NSMenu" ref="575959324"/>
-						<string key="NSTitle">人人</string>
+						<string key="NSTitle">renren</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
@@ -1876,6 +1876,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="banButton">DMButton</string>
+						<string key="coreView">DMCoverControlView</string>
 						<string key="coverView">DMCoverControlView</string>
 						<string key="delegate">id</string>
 						<string key="indicateString">NSTextField</string>
@@ -1887,12 +1888,15 @@
 						<string key="skipButton">DMButton</string>
 						<string key="userIconButton">NSButton</string>
 						<string key="usernameTextField">NSTextField</string>
-						<string key="view">DMCoverControlView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="banButton">
 							<string key="name">banButton</string>
 							<string key="candidateClassName">DMButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coreView">
+							<string key="name">coreView</string>
+							<string key="candidateClassName">DMCoverControlView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="coverView">
 							<string key="name">coverView</string>
@@ -1937,10 +1941,6 @@
 						<object class="IBToOneOutletInfo" key="usernameTextField">
 							<string key="name">usernameTextField</string>
 							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="view">
-							<string key="name">view</string>
-							<string key="candidateClassName">DMCoverControlView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

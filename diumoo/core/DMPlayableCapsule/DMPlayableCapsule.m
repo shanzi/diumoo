@@ -103,7 +103,7 @@
     if (movie.rate > 0) {
         [self.delegate playableCapsuleDidPlay:self];
     }
-    else if (
+    else if ((movie.duration.timeValue>100) &&
         (movie.duration.timeValue - movie.currentTime.timeValue) < 100) {
         [self.delegate playableCapsuleDidEnd:self];
     }
