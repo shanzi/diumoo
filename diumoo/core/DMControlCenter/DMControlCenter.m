@@ -9,6 +9,7 @@
 #import "DMControlCenter.h"
 #import "NSDictionary+UrlEncoding.h"
 #import "DMService.h"
+#import "DMSearchPanelController.h"
 
 @interface DMControlCenter()
 {
@@ -161,7 +162,9 @@
             [diumooPanel setPlayingCapsule:playingCapsule];
             [notificationCenter notifyMusicWithCapsule:playingCapsule];
             [recordHandler addRecordAsyncWithCapsule:playingCapsule];
+            [DMSearchPanelController rearrage];
         }];
+        
     }
         
     pauseType = PAUSE_PASS;
@@ -655,29 +658,6 @@
         NSString *title = n.userInfo[@"title"];
         [diumooPanel invokeChannelWithCid:cid andTitle:title andPlay:YES];
     }
-}
-
--(void) playAlbumWithAid:(NSString*) aid withInfo:(NSDictionary*) info;
-{
-    DMLog(@"play album : %@",aid);
-    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SPECIAL, (int32_t*)&pauseType)) return;
-    
-//    [fetcher dmGetAlbumSongsWithAid:aid andCompletionBlock:^(NSArray *list) {
-//
-//        if([list count]){
-//            NSMutableArray* array = nil;
-//            array = [NSMutableArray arrayWithArray:list];
-//            specialWaitList = array;
-//            [diumooPanel toggleSpecialWithDictionary:info];
-//            
-//            [playingCapsule pause];
-//            
-//        }
-//        else {
-//            pauseType = PAUSE_PASS;
-//            specialWaitList = nil;
-//        }
-//    }];
 }
 //--------------------------------------------------------------------
 @end

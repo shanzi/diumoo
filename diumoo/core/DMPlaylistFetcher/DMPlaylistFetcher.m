@@ -18,6 +18,7 @@
 {
     NSMutableArray *playlist;
     NSMutableDictionary *playedSongs;
+    NSOrderedSet* searchResults;
 }
 
 - (NSString*)randomString;

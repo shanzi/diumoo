@@ -9,9 +9,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DMSearchPanelController : NSWindowController
-@property(nonatomic) NSArray* searchResults;
+@property(readonly) NSManagedObjectContext* contextObject;
+@property(readonly) NSArray* sortDescriptors;
 
 +(DMSearchPanelController*) sharedSearchPanel;
--(IBAction)search:(id)sender;
++(void) rearrage;
 
 @end

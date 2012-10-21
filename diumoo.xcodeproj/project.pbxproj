@@ -135,6 +135,7 @@
 		F5AACEEF159C93E4003DA427 /* info_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AACEEC159C93E4003DA427 /* info_icon.png */; };
 		F5ADFAF71629C5A400FFC23D /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ADFAF51629C5A400FFC23D /* search.png */; };
 		F5ADFAF81629C5A400FFC23D /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ADFAF61629C5A400FFC23D /* search@2x.png */; };
+		F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AF817D163429BB006F15F0 /* DMSearchItemView.m */; };
 		F5B9DC7B15BD995B004788A9 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5B9DC8115BDACC6004788A9 /* status-icon-mixed.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */; };
 		F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */; };
@@ -371,6 +372,8 @@
 		F5AACEEC159C93E4003DA427 /* info_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_icon.png; sourceTree = "<group>"; };
 		F5ADFAF51629C5A400FFC23D /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		F5ADFAF61629C5A400FFC23D /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		F5AF817C163429BB006F15F0 /* DMSearchItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMSearchItemView.h; path = DMSearchPanel/DMSearchItemView.h; sourceTree = "<group>"; };
+		F5AF817D163429BB006F15F0 /* DMSearchItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMSearchItemView.m; path = DMSearchPanel/DMSearchItemView.m; sourceTree = "<group>"; };
 		F5B9DC7A15BD995B004788A9 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-mixed.png"; sourceTree = "<group>"; };
 		F5BB89F2159744B80017E6FE /* DMVolumeSlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMVolumeSlideCell.h; path = DMVolumeSlideCell/DMVolumeSlideCell.h; sourceTree = "<group>"; };
@@ -534,6 +537,8 @@
 				F50A0A6416247A8800664316 /* DMSearchPanelController.h */,
 				F50A0A6516247A8800664316 /* DMSearchPanelController.m */,
 				F50A0A6616247A8800664316 /* DMSearchPanelController.xib */,
+				F5AF817C163429BB006F15F0 /* DMSearchItemView.h */,
+				F5AF817D163429BB006F15F0 /* DMSearchItemView.m */,
 			);
 			name = DMSearchPanel;
 			sourceTree = "<group>";
@@ -1316,6 +1321,7 @@
 				3F50FC4415DB4981000E5147 /* DMButton.m in Sources */,
 				F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */,
 				F50A0A6816247A8800664316 /* DMSearchPanelController.m in Sources */,
+				F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
