@@ -50,13 +50,16 @@
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
-        if(NSClassFromString(@"NSUserNotification")) {
+        if([[values valueForKey:@"usesGrowlUnderML"] integerValue]!= NSOnState
+           && NSClassFromString(@"NSUserNotification")) {
+            
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
             notification.title = capsule.title;
             notification.informativeText = detail;
             notification.soundName = nil;
             [center deliverNotification: notification];
+            
         } else {
         NSData* data = [capsule.picture TIFFRepresentation];
         [GrowlApplicationBridge notifyWithTitle:capsule.title
