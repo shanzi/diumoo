@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
 		3F01021515DE99940076D6C8 /* ban_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021315DE99940076D6C8 /* ban_mouseover@2x.png */; };
@@ -190,6 +191,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
 		3F01021215DE99940076D6C8 /* ban_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_mouseover.png; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */,
 				F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */,
 				F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */,
 				F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */,
@@ -540,6 +543,7 @@
 		F5148AB11580E58D002B3D61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
 				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
 				F5B9DC7A15BD995B004788A9 /* Growl.framework */,
 				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
@@ -583,9 +587,9 @@
 				179AFA331583916200968BAD /* debugLog.h */,
 				F5148AD51580E6AD002B3D61 /* DMApp.h */,
 				F5148AD61580E6AD002B3D61 /* DMApp.m */,
+				F5148ABE1580E58D002B3D61 /* main.m */,
 				F5148ABA1580E58D002B3D61 /* diumoo-Info.plist */,
 				F5148ABB1580E58D002B3D61 /* InfoPlist.strings */,
-				F5148ABE1580E58D002B3D61 /* main.m */,
 				F5148AC01580E58D002B3D61 /* diumoo-Prefix.pch */,
 				F5148AC11580E58D002B3D61 /* Credits.rtf */,
 				F59599701606401600FA3C3E /* Localizable.strings */,
@@ -1417,6 +1421,7 @@
 				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
@@ -1431,6 +1436,7 @@
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1443,6 +1449,7 @@
 				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
@@ -1457,6 +1464,7 @@
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

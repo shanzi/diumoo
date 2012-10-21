@@ -47,9 +47,7 @@
     BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
     if (success) {
         [[self windowControllers]makeObjectsPerformSelector:@selector(setupWindowForDocument:) withObject:self];
-        DMLog(@"before remove version");
         [[DMPlayRecordHandler sharedRecordHandler] removeCurrentVersion];
-        DMLog(@"after remove version");
         [[DMPlayRecordHandler sharedRecordHandler] playSongWith:sid andSsid:ssid];
     }
     return YES;
@@ -70,19 +68,14 @@
     return NO;
 }
 
-
-
 -(NSData*) dataOfType:(NSString *)typeName error:(NSError **)outError
 {
     NSData* data = [[baseSongInfo descriptionWithLocale:nil] dataUsingEncoding:NSUTF8StringEncoding];
     return  data;
 }
 
-
 -(BOOL) readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError **)outError
-{
-    DMLog(@"read from url %@, type : %@",url.path,type);
-    
+{    
     if([type isEqualToString:@"_private_record"]) {
         NSString* _sid = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
         if (_sid) {

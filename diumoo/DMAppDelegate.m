@@ -112,7 +112,6 @@
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
-                            //@"usesMediaKey": @(NSOnState),
                             @"showDockIcon": @(NSOnState),
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
@@ -200,6 +199,7 @@
                                             stringByAppendingPathComponent:@"diumoo"];
         
         NSString *logPath = [pathToDiumooDataFolder stringByAppendingPathComponent:@"error.log"];
+        remove([logPath fileSystemRepresentation]);
         freopen([logPath fileSystemRepresentation],"a+",stderr);
     }
     else {
