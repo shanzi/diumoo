@@ -61,14 +61,16 @@
             [center deliverNotification: notification];
             
         } else {
-        NSData* data = [capsule.picture TIFFRepresentation];
-        [GrowlApplicationBridge notifyWithTitle:capsule.title
-                                    description:detail
-                               notificationName:@"Music"
-                                       iconData:data
-                                       priority:0
-                                       isSticky:NO 
-                                   clickContext:capsule.sid];
+            
+            NSData* data = [capsule.picture TIFFRepresentation];
+            
+            [GrowlApplicationBridge notifyWithTitle:capsule.title
+                                        description:detail
+                                   notificationName:@"Music"
+                                           iconData:data
+                                           priority:0
+                                           isSticky:NO
+                                       clickContext:capsule.sid];
         }
     }
 //    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
