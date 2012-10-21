@@ -283,6 +283,7 @@
         {
             // 当前歌曲加载失败
             // 做些事情
+            [waitingCapsule createNewMovie];
             [self startToPlay:waitingCapsule];
         }
         else {

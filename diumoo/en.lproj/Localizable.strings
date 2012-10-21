@@ -32,28 +32,28 @@
 "OPEN_URL_FAILED" = "Open URL Failed";
 
 /* 未能成功打开您指定的URL，可能是您试图播放的专辑、音乐家或电影原声不可用。 */
-"OPEN_URL_FAILED_DETAIL" = "Failed to open URL, It seems that the album , songs of artist or soundtrack you request to play is invalid.";
+"OPEN_URL_FAILED_DETAIL" = "Failed to open URL. It seems that the album, songs of artist or soundtrack you request to play is invalid.";
 
 /* 查看详细 */
-"SHOW_DETAIL" = "Show Detail";
+"SHOW_DETAIL" = "Show Details";
 
 /* No comment provided by engineer. */
 "SUCCESS_EXPORT" = "Export Success";
 
 /* 成功导出 %ld 首歌曲的播放记录。 */
-"SUCCESS_EXPORT_DETAIL" = "Success to export a play record of %ld songs.";
+"SUCCESS_EXPORT_DETAIL" = "Success to export play record of %ld songs.";
 
 /* No comment provided by engineer. */
 "SUCCESS_IMPORT" = "Import Success";
 
 /* 成功导入了 %ld 个歌曲记录，失败 %ld 个。 */
-"SUCCESS_IMPORT_DETAIL" = "Success to import a play record of %ld songs with %ld failed.";
+"SUCCESS_IMPORT_DETAIL" = "Success to import play record of %ld songs with %ld failed.";
 
 /* No comment provided by engineer. */
 "IMPORT_PLAY_RECORD" = "Import Play Record";
 
 /* No comment provided by engineer. */
-"IMPORT_PLAY_RECORD_DETAIL" = "You had just opened a diumoo play record file, import the record now?";
+"IMPORT_PLAY_RECORD_DETAIL" = "You have just opened a diumoo play record file, import it now?";
 /* No comment provided by engineer. */
 "NO" = "No";
 

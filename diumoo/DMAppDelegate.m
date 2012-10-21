@@ -199,6 +199,7 @@
                                             stringByAppendingPathComponent:@"diumoo"];
         
         NSString *logPath = [pathToDiumooDataFolder stringByAppendingPathComponent:@"error.log"];
+        remove([logPath fileSystemRepresentation]);
         freopen([logPath fileSystemRepresentation],"a+",stderr);
     }
     else {

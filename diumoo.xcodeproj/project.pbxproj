@@ -524,7 +524,6 @@
 		F5148AA31580E58D002B3D61 = {
 			isa = PBXGroup;
 			children = (
-				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
 				F5148AB81580E58D002B3D61 /* diumoo */,
 				F5148AD81580E707002B3D61 /* extern */,
 				F501B3C215877A88001C6158 /* resources */,
@@ -544,6 +543,7 @@
 		F5148AB11580E58D002B3D61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
 				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
 				F5B9DC7A15BD995B004788A9 /* Growl.framework */,
 				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
