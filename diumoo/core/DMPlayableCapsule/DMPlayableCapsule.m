@@ -123,6 +123,7 @@
     if(loadState < QTMovieLoadStatePlayable)
         return;
     
+    
     if(playState == WAIT_TO_PLAY)
     {
         playState = PLAYING;
@@ -131,7 +132,8 @@
     else
         playState = REPLAYING;
     
-    
+    CFStringRef reasonForActivity= CFSTR("Diumoo playing");
+
     if(movie && movie.rate == 0.0){
         if(timer)
             [timer invalidate];
@@ -145,10 +147,17 @@
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         [movie autoplay];
         [timer fire];
-                
+
+        IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
+                                    kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
+        if (success == kIOReturnSuccess) {
+            NSLog(@"Prevent idle sleep\n");
+        }
     }
     else {
         [movie autoplay];
+        IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep,
+                                    kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
         [self.delegate playableCapsuleDidPlay:self];
     }
     
@@ -169,9 +178,17 @@
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
         [self.delegate playableCapsuleWillPause:self];
         [timer fire];
+        
+        IOPMAssertionRelease(idleSleepAssertionID);
+        idleSleepAssertionID = 0;
+        NSLog(@"Enable Sleep\n");
     }
-    else
+    else{
         [self.delegate playableCapsuleDidPause:self];
+        IOPMAssertionRelease(idleSleepAssertionID);
+        idleSleepAssertionID = 0;
+        NSLog(@"Enable Sleep\n");
+    }
 }
 
 -(void) replay
@@ -246,13 +263,15 @@
 
 -(NSString*) startAttributeWithChannel:(NSString *)channel
 {
-    if(ssid==nil) return  nil;
-    else return [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
+    if(ssid==nil)
+        return nil;
+    else
+        return [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
 }
 
 -(void) prepareCoverWithCallbackBlock:(void (^)(NSImage*))block
 {
-    if (picture == nil) {
+    if (picture == nil && block) {
         NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:largePictureLocation]
                                                  cachePolicy:NSURLCacheStorageAllowed
                                              timeoutInterval:5.0];
@@ -262,29 +281,25 @@
                                completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
                                    picture = [[NSImage alloc] initWithData:d];
                                    if (picture) {
-                                       if(block) block(picture);
+                                       block(picture);
                                    }
                                    else {
                                        picture = [NSImage imageNamed:@"albumfail"];
-                                       if(block)block(picture);
+                                       block(picture);
                                    }
                                }];
     }
-    else{
-        if(block) block(picture);
-    }
+    else if (block)
+        block(picture);
 }
 
 -(void)synchronousStop
 {
-    DMLog(@"%@ movie.rate = %lf",NSStringFromSelector(_cmd),movie.rate);
     if(movie.rate == 0.0)
        return;
     else {
-        if(timer){
+        if(timer)
             [self invalidateTimer];
-            
-        }
         
         while (self.movie.volume>0) {
             self.movie.volume -= 0.1;

@@ -25,6 +25,10 @@
         NSError *error;
         NSData *imageData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
+        if (error) {
+            [DMErrorLog logErrorWith:self method:_cmd andError:error];
+        }
+        
         if (block) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 block([[NSImage alloc] initWithData:imageData]);

@@ -14,6 +14,8 @@
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
 
+#import <IOKit/pwr_mgt/IOPMLib.h>
+
 #import "DMPlayableCapsuleDelegate.h"
 
 typedef enum{
@@ -34,12 +36,12 @@ typedef enum{
     NSString *artist;
     NSString *albumtitle;
     NSString *pictureLocation;
-    
-    NSString* skipType;
-    
+    NSString *skipType;
     NSTimer *timer;
-    
+    NSImage *picture;
     float volume;
+    
+    IOPMAssertionID idleSleepAssertionID;
 }
 
 @property long loadState;
@@ -61,7 +63,8 @@ typedef enum{
 @property(nonatomic,copy,readonly) NSString* pictureLocation;
 @property(nonatomic,copy,readonly) NSString* largePictureLocation;
 
-@property NSImage* picture;
+@property NSImage *picture;
+
 @property id<DMPlayableCapsuleDelegate> delegate;
 
 @property QTMovie* movie;

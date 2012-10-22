@@ -47,6 +47,11 @@ DMPanelWindowController *sharedWindow;
     return self;
 }
 
+-(void)windowDidLoad {
+    // Make the window visible on all Spaces
+    [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+}
+
 -(void) awakeFromNib
 {
     [super awakeFromNib];
@@ -97,6 +102,7 @@ DMPanelWindowController *sharedWindow;
 {
     NSInteger tag = [sender tag];
     NSString* channel = [NSString stringWithFormat:@"%ld",tag];
+    [CATransaction begin];
     if ([self.delegate channelChangedTo:channel]) {
         
         if (tag == 0 || tag == -3) {
@@ -107,9 +113,9 @@ DMPanelWindowController *sharedWindow;
         else {
             [banButton setEnabled:NO];
         }
-        
         [popupMenuController updateChannelMenuWithSender:sender];
     }
+    [CATransaction commit];
 }
 
 
@@ -252,21 +258,25 @@ DMPanelWindowController *sharedWindow;
     
     NSMenuItem* currentItem=popupMenuController.currentChannelMenuItem;
     
-    
+    [CATransaction begin];
     if ([DMDoubanAuthHelper sharedHelper].username == nil) {
         [popupMenuController setPrivateChannelEnabled:NO];
         [rateButton setEnabled:NO];
         [banButton setEnabled:NO];
         if (currentItem && currentItem.tag <= 0) {
+            [CATransaction commit];
             return [popupMenuController.publicMenu
                                                  itemWithTag:1];
+            
         }
     }
     
     if(currentItem){
+        [CATransaction commit];
         return currentItem;
     }
     else {
+        [CATransaction commit];
         return [popupMenuController.publicMenu
                                 itemWithTag:1];
     }
