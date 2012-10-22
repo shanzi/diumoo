@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		174C2C131635A6F00048E11F /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 174C2C121635A6F00048E11F /* MASShortcut+Monitoring.m */; };
 		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
@@ -198,6 +199,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		174C2C111635A6F00048E11F /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
+		174C2C121635A6F00048E11F /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
 		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
@@ -1043,6 +1046,8 @@
 		F5DFF19515BADEEB00ED3DAA /* MASShortcut */ = {
 			isa = PBXGroup;
 			children = (
+				174C2C111635A6F00048E11F /* MASShortcut+Monitoring.h */,
+				174C2C121635A6F00048E11F /* MASShortcut+Monitoring.m */,
 				F5DFF19715BADEEB00ED3DAA /* MASShortcut+UserDefaults.h */,
 				F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */,
 				F5DFF19915BADEEB00ED3DAA /* MASShortcut.h */,
@@ -1334,6 +1339,7 @@
 				F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */,
 				F50A0A6816247A8800664316 /* DMSearchPanelController.m in Sources */,
 				F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */,
+				174C2C131635A6F00048E11F /* MASShortcut+Monitoring.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
