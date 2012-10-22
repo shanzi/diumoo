@@ -95,6 +95,7 @@
 							<string key="NSFrame">{{13, 8}, {276, 22}}</string>
 							<reference key="NSSuperview" ref="770637055"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSearchFieldCell" key="NSCell" id="363021606">
@@ -262,30 +263,6 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">298</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSButton" id="342638601">
-						<reference key="NSNextResponder" ref="653903738"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrameSize">{310, 80}</string>
-						<reference key="NSSuperview" ref="653903738"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="564619701"/>
-						<string key="NSReuseIdentifierKey">_NS:22</string>
-						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="811669330">
-							<int key="NSCellFlags">-2080374784</int>
-							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents"/>
-							<reference key="NSSupport" ref="128754016"/>
-							<string key="NSCellIdentifier">_NS:22</string>
-							<reference key="NSControlView" ref="342638601"/>
-							<int key="NSButtonFlags">-2041823232</int>
-							<int key="NSButtonFlags2">162</int>
-							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
-							<int key="NSPeriodicDelay">400</int>
-							<int key="NSPeriodicInterval">75</int>
-						</object>
-					</object>
 					<object class="NSTextField" id="21752741">
 						<reference key="NSNextResponder" ref="653903738"/>
 						<int key="NSvFlags">268</int>
@@ -344,6 +321,7 @@
 						<string key="NSFrame">{{82, 6}, {211, 17}}</string>
 						<reference key="NSSuperview" ref="653903738"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="159884303">
@@ -440,7 +418,7 @@
 				<string key="NSFrameSize">{310, 80}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="342638601"/>
+				<reference key="NSNextKeyView" ref="564619701"/>
 			</object>
 			<object class="NSUserDefaultsController" id="836920508">
 				<bool key="NSSharedInstance">YES</bool>
@@ -642,42 +620,6 @@
 					</object>
 					<int key="connectionID">266</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">sortDescriptors: self.sortDescriptors</string>
-						<reference key="source" ref="203620653"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="203620653"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">sortDescriptors: self.sortDescriptors</string>
-							<string key="NSBinding">sortDescriptors</string>
-							<string key="NSKeyPath">self.sortDescriptors</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">298</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden: self.selected</string>
-						<reference key="source" ref="342638601"/>
-						<reference key="destination" ref="809535497"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="342638601"/>
-							<reference key="NSDestination" ref="809535497"/>
-							<string key="NSLabel">hidden: self.selected</string>
-							<string key="NSBinding">hidden</string>
-							<string key="NSKeyPath">self.selected</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">283</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -738,7 +680,6 @@
 							<reference ref="564619701"/>
 							<reference ref="808578632"/>
 							<reference ref="814169570"/>
-							<reference ref="342638601"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Song View</string>
@@ -883,19 +824,6 @@
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Search Array Controller</string>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">278</int>
-						<reference key="object" ref="342638601"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="811669330"/>
-						</array>
-						<reference key="parent" ref="653903738"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">279</int>
-						<reference key="object" ref="811669330"/>
-						<reference key="parent" ref="342638601"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -917,9 +845,6 @@
 				<string key="198.CustomClassName">DMSearchCollectionViewItem</string>
 				<string key="198.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="253.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="278.CustomClassName">DMSearchItemSelectButton</string>
-				<string key="278.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="279.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -990,6 +915,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DMSearchPanelController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSCollectionViewItem</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="imageView">NSImageView</string>
+						<string key="textField">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="imageView">
+							<string key="name">imageView</string>
+							<string key="candidateClassName">NSImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="textField">
+							<string key="name">textField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSCollectionViewItem.h</string>
 					</object>
 				</object>
 			</array>

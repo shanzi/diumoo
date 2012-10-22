@@ -528,7 +528,7 @@
 						<object class="NSTextField" id="179548798">
 							<reference key="NSNextResponder" ref="631853183"/>
 							<int key="NSvFlags">-2147483380</int>
-							<string key="NSFrame">{{133, 9}, {49, 17}}</string>
+							<string key="NSFrame">{{127, 9}, {49, 17}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="809436892"/>
@@ -698,6 +698,7 @@
 							<string key="NSFrame">{{225, 9}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">6</int>

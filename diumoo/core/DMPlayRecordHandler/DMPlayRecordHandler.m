@@ -90,24 +90,24 @@ static DMPlayRecordHandler* recordHandler;
     return nil;
 }
 
--(void) addRecordWithCapsule:(DMPlayableCapsule *)capsule
+-(NSManagedObject*) addRecordWithCapsule:(DMPlayableCapsule *)capsule
 {
     if (capsule.ssid == nil) {
-        return;
+        return nil;
     }
     
     NSString* sid = capsule.sid;
-    NSManagedObject* theSong = [self songWithSid:sid];
+    NSManagedObject* song = [self songWithSid:sid];
     
-    if (theSong) {
-        [theSong setValue:[NSDate date] forKey:@"date"];
+    if (song) {
+        [song setValue:[NSDate date] forKey:@"date"];
     }
     else {
         // 没有找到之前的记录
         NSDate* date = [NSDate date];
         
-        NSManagedObject* song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
-                                                              inManagedObjectContext:context];        
+        song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
+                                                              inManagedObjectContext:context];
         [song setValue:capsule.sid forKey:@"sid"];
         [song setValue:capsule.ssid forKey:@"ssid"];
         [song setValue:capsule.aid forKey:@"aid"];
@@ -133,14 +133,7 @@ static DMPlayRecordHandler* recordHandler;
     
     [sid writeToURL:self.recordFileURL atomically:YES encoding:NSASCIIStringEncoding error:nil];
     
-}
-
--(void) addRecordAsyncWithCapsule:(DMPlayableCapsule *)capsule
-{
-    NSBlockOperation* addrecord = [NSBlockOperation blockOperationWithBlock:^{
-        [self addRecordWithCapsule:capsule]; 
-    }];
-    [[NSOperationQueue currentQueue] addOperation:addrecord];
+    return song;
 }
 
 -(BOOL) addRecordWithDict:(NSDictionary *)dict
@@ -164,8 +157,9 @@ static DMPlayRecordHandler* recordHandler;
         && title && url && artist
         )
     {
-        NSManagedObject* song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
-                                                              inManagedObjectContext:context];
+        NSManagedObject* song = [NSEntityDescription
+                                 insertNewObjectForEntityForName:@"Song"
+                                        inManagedObjectContext:context];
         [song setValue:sid forKey:@"sid"];
         [song setValue:ssid forKey:@"ssid"];
         [song setValue:aid forKey:@"aid"];

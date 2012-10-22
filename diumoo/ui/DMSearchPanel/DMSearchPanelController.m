@@ -20,7 +20,6 @@ static DMSearchPanelController* sharedSearchPanel;
 @end
 
 @implementation DMSearchPanelController
-@synthesize sortDescriptors=_sortDescriptors;
 
 
 
@@ -28,9 +27,6 @@ static DMSearchPanelController* sharedSearchPanel;
 {
     self = [super initWithWindowNibName:@"DMSearchPanelController"];
     if (self) {
-        _sortDescriptors = @[
-        [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]
-        ];
     }
     
     return self;
@@ -40,6 +36,9 @@ static DMSearchPanelController* sharedSearchPanel;
 {
     [super windowDidLoad];
     [self.window setLevel: NSModalPanelWindowLevel];
+    [arrayController setValue:@[
+     [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]
+     ] forKey:@"sortDescriptors"];
 }
 
 +(DMSearchPanelController*) sharedSearchPanel
@@ -51,21 +50,9 @@ static DMSearchPanelController* sharedSearchPanel;
     }
 }
 
-+(void) rearrage
-{
-    if (sharedSearchPanel) {
-        [sharedSearchPanel rearrageObjects];
-    }
-}
-
 -(NSManagedObjectContext*) contextObject
 {
     return [DMPlayRecordHandler sharedRecordHandler].context;
-}
-
--(void) rearrageObjects
-{
-    if(self.window.isVisible)[arrayController rearrangeObjects];
 }
 
 @end

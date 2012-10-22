@@ -161,8 +161,8 @@
             [diumooPanel setRated:playingCapsule.like];
             [diumooPanel setPlayingCapsule:playingCapsule];
             [notificationCenter notifyMusicWithCapsule:playingCapsule];
-            [recordHandler addRecordAsyncWithCapsule:playingCapsule];
-            [DMSearchPanelController rearrage];
+            
+            [recordHandler addRecordWithCapsule:playingCapsule];
         }];
         
     }

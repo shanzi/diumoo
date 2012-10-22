@@ -10,9 +10,7 @@
 
 @interface DMSearchPanelController : NSWindowController
 @property(readonly) NSManagedObjectContext* contextObject;
-@property(readonly) NSArray* sortDescriptors;
 
 +(DMSearchPanelController*) sharedSearchPanel;
-+(void) rearrage;
 
 @end
