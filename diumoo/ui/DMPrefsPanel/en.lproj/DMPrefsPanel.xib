@@ -65,6 +65,7 @@
 					<string key="NSFrameSize">{480, 270}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
@@ -77,7 +78,7 @@
 					<object class="NSButton" id="555049156">
 						<reference key="NSNextResponder" ref="551940014"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{152, 201}, {272, 18}}</string>
+						<string key="NSFrame">{{155, 201}, {296, 18}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="66129201"/>
@@ -86,7 +87,7 @@
 						<object class="NSButtonCell" key="NSCell" id="746885219">
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Uses Growl though under Mountain Lion</string>
+							<string key="NSContents">Uses Growl notification under Mountain Lion</string>
 							<object class="NSFont" key="NSSupport" id="813262529">
 								<string key="NSName">STHeitiSC-Light</string>
 								<double key="NSSize">13</double>
@@ -219,7 +220,7 @@
 					<object class="NSButton" id="802830324">
 						<reference key="NSNextResponder" ref="551940014"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{340, 136}, {101, 18}}</string>
+						<string key="NSFrame">{{340, 136}, {74, 18}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="938762014"/>
@@ -228,7 +229,7 @@
 						<object class="NSButtonCell" key="NSCell" id="652054895">
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">268435456</int>
-							<string key="NSContents">Mask off ads</string>
+							<string key="NSContents">Skip Ads</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="802830324"/>
@@ -407,7 +408,7 @@
 					<object class="NSButton" id="869029425">
 						<reference key="NSNextResponder" ref="551940014"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{137, 261}, {224, 18}}</string>
+						<string key="NSFrame">{{137, 261}, {212, 18}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="678296499"/>
@@ -416,7 +417,7 @@
 						<object class="NSButtonCell" key="NSCell" id="215090965">
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Show album cover as Dock icon</string>
+							<string key="NSContents">Use album cover as Dock icon</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="869029425"/>
@@ -434,7 +435,7 @@
 					<object class="NSButton" id="331161288">
 						<reference key="NSNextResponder" ref="551940014"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{137, 326}, {145, 18}}</string>
+						<string key="NSFrame">{{137, 326}, {254, 18}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="940056598"/>
@@ -443,7 +444,7 @@
 						<object class="NSButtonCell" key="NSCell" id="738227629">
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Auto check update</string>
+							<string key="NSContents">Enable Automatically Update Check</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="331161288"/>
@@ -461,7 +462,7 @@
 					<object class="NSButton" id="60267416">
 						<reference key="NSNextResponder" ref="551940014"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{137, 286}, {320, 18}}</string>
+						<string key="NSFrame">{{137, 286}, {330, 18}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="869029425"/>
@@ -470,7 +471,7 @@
 						<object class="NSButtonCell" key="NSCell" id="484059174">
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Show icon on Dock (Hidding icon needs restart)</string>
+							<string key="NSContents">Show icon on Dock (Hidding icon requires restart)</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="60267416"/>
@@ -518,12 +519,13 @@
 						<string key="NSFrame">{{136, 20}, {254, 34}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1505</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="616801897">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">The more songs is allowed to display,  the slower the Time Machine launches.</string>
+							<string key="NSContents">The more songs Time Machine display,  the slower the it launches.</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="1042582998"/>
@@ -543,7 +545,7 @@
 					<object class="NSTextField" id="938762014">
 						<reference key="NSNextResponder" ref="551940014"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{136, 96}, {275, 34}}</string>
+						<string key="NSFrame">{{136, 96}, {303, 34}}</string>
 						<reference key="NSSuperview" ref="551940014"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="202950010"/>
@@ -552,7 +554,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="1016879703">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">More buffering songs may lead to heavier CPU &amp; RAM occupation.</string>
+							<string key="NSContents">Buffering more songs may use more CPU &amp; RAM</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="938762014"/>
@@ -790,7 +792,7 @@
 					<object class="NSTextField" id="1025584648">
 						<reference key="NSNextResponder" ref="337387524"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{140, 265}, {235, 40}}</string>
+						<string key="NSFrame">{{140, 254}, {235, 51}}</string>
 						<reference key="NSSuperview" ref="337387524"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="255368434"/>
@@ -800,7 +802,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="347644787">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">272629760</int>
-							<string key="NSContents">Login with your douban account  to enable Red Heart &amp; Private MHz</string>
+							<string key="NSContents">Login with your douban account  to enable Red Heart &amp; Private MHz and more.</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="1025584648"/>
@@ -838,16 +840,17 @@
 					<object class="NSButton" id="424870091">
 						<reference key="NSNextResponder" ref="337387524"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{208, 30}, {74, 32}}</string>
+						<string key="NSFrame">{{208, 30}, {75, 32}}</string>
 						<reference key="NSSuperview" ref="337387524"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSTag">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="439605522">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">reset</string>
+							<string key="NSContents">Clear</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="424870091"/>
@@ -863,7 +866,7 @@
 					<object class="NSButton" id="244044316">
 						<reference key="NSNextResponder" ref="337387524"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{137, 30}, {71, 32}}</string>
+						<string key="NSFrame">{{136, 30}, {74, 32}}</string>
 						<reference key="NSSuperview" ref="337387524"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="424870091"/>
@@ -873,7 +876,7 @@
 						<object class="NSButtonCell" key="NSCell" id="894451955">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">submit</string>
+							<string key="NSContents">Login</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="244044316"/>
@@ -1083,7 +1086,7 @@
 					<object class="NSTextField" id="806413174">
 						<reference key="NSNextResponder" ref="250788553"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{39, 146}, {30, 17}}</string>
+						<string key="NSFrame">{{39, 146}, {46, 17}}</string>
 						<reference key="NSSuperview" ref="250788553"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="306282778"/>
@@ -1092,7 +1095,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="1047539570">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">其他</string>
+							<string key="NSContents">Others</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="806413174"/>
@@ -1129,7 +1132,7 @@
 					<object class="NSTextField" id="695587214">
 						<reference key="NSNextResponder" ref="250788553"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{39, 294}, {56, 17}}</string>
+						<string key="NSFrame">{{39, 294}, {80, 17}}</string>
 						<reference key="NSSuperview" ref="250788553"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="284631418"/>
@@ -1138,7 +1141,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="684022608">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">播放控制</string>
+							<string key="NSContents">Play Control</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="695587214"/>
@@ -1160,7 +1163,7 @@
 					<object class="NSTextField" id="775279460">
 						<reference key="NSNextResponder" ref="250788553"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{38, 94}, {112, 17}}</string>
+						<string key="NSFrame">{{38, 94}, {116, 17}}</string>
 						<reference key="NSSuperview" ref="250788553"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="792940594"/>
@@ -1169,7 +1172,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="539968266">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">显示偏好设置</string>
+							<string key="NSContents">Show Preferences</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="775279460"/>
@@ -1191,7 +1194,7 @@
 					<object class="NSTextField" id="843785725">
 						<reference key="NSNextResponder" ref="250788553"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{38, 115}, {112, 17}}</string>
+						<string key="NSFrame">{{38, 115}, {146, 17}}</string>
 						<reference key="NSSuperview" ref="250788553"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="400299848"/>
@@ -1200,7 +1203,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="784062766">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">显示/隐藏主面板</string>
+							<string key="NSContents">Show/Hide Main Panel</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="843785725"/>
@@ -1255,13 +1258,14 @@
 						<string key="NSFrame">{{38, 36}, {299, 34}}</string>
 						<reference key="NSSuperview" ref="250788553"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{250, 750}</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="404255499">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">272629760</int>
-							<string key="NSContents">快捷键必须包含 Ctrl 或 Command 键，且不能与系统快捷键冲突</string>
+							<string key="NSContents">Shortcuts must contain Ctrl &amp; Command, and does not allow to conflict with system shortcuts.</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="446994636"/>
@@ -1287,7 +1291,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="169070684">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">不再播放</string>
+							<string key="NSContents">Trash</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="365940968"/>
@@ -1308,7 +1312,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="1000444120">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">红心</string>
+							<string key="NSContents">Like</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="169351341"/>
@@ -1329,7 +1333,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="942579357">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">切歌</string>
+							<string key="NSContents">Skip</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="845491349"/>
@@ -1350,7 +1354,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="222110893">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">播放暂停</string>
+							<string key="NSContents">Paly/Pause</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="1004965080"/>
@@ -1450,7 +1454,7 @@
 					<object class="NSTextField" id="201608325">
 						<reference key="NSNextResponder" ref="262340404"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{76, 48}, {148, 17}}</string>
+						<string key="NSFrame">{{114, 48}, {72, 17}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="685305213"/>
@@ -1458,8 +1462,8 @@
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="737081548">
 							<int key="NSCellFlags">68157504</int>
-							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Account has logged in</string>
+							<int key="NSCellFlags2">138413056</int>
+							<string key="NSContents">Logged In</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:1505</string>
 							<reference key="NSControlView" ref="201608325"/>
@@ -1482,6 +1486,7 @@
 						<string key="NSFrame">{{108, 12}, {85, 32}}</string>
 						<reference key="NSSuperview" ref="262340404"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="288833385">
@@ -1543,6 +1548,7 @@
 						<string key="NSFrame">{{81, 20}, {206, 17}}</string>
 						<reference key="NSSuperview" ref="529991824"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="230601355">
@@ -1824,6 +1830,7 @@
 						<string key="NSFrame">{{28, 20}, {384, 17}}</string>
 						<reference key="NSSuperview" ref="844657698"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="896945021">
@@ -1873,7 +1880,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="1015271139">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">4456448</int>
-							<string key="NSContents">diumoo Helper is a webbrowser extension providing a better experience for you to listen to songs of an artist or soundtrack  of a movie direct in diumoo at the same time you exploring music.douban.com</string>
+							<string key="NSContents">diumoo Helper is a browser extension that provides a better experience for you to listen to songs of an artist or soundtrack  of a movie directly in diumoo while you  are exploring music.douban.com</string>
 							<reference key="NSSupport" ref="813262529"/>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="755805159"/>

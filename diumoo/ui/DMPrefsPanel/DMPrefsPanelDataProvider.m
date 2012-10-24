@@ -262,7 +262,10 @@
 
 -(id) generalView
 {
-    [forceGrowl setEnabled:[GrowlApplicationBridge isGrowlRunning]];
+    if ([GrowlApplicationBridge isGrowlRunning] == false) {
+        [forceGrowl setState:NSOffState];
+        [forceGrowl setEnabled:[GrowlApplicationBridge isGrowlRunning]];
+    }
     return general;
 }
 
