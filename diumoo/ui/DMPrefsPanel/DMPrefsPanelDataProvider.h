@@ -35,6 +35,9 @@
     IBOutlet NSView *diumoohelper;
     //----------------------------------
     
+    //------- General view outlet ------
+    IBOutlet NSButton *forceGrowl;
+    
     //------- login view outlet --------
     IBOutlet NSProgressIndicator *indicator;
     IBOutlet NSProgressIndicator *loginIndicator;

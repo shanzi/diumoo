@@ -12,6 +12,8 @@
 #import "NSImage+AsyncLoadImage.h"
 #import "DMService.h"
 
+#import <Growl/Growl.h>
+
 
 
 @implementation DMPrefsPanelDataProvider
@@ -81,7 +83,7 @@
 {
     switch (index) {
         case GENERAL_PANEL_ID:
-            return general;
+            return [self generalView];
             break;
         case ACCOUNT_PANEL_ID:
             return [self accountView];
@@ -256,6 +258,12 @@
         return account;
     }
     else return login;
+}
+
+-(id) generalView
+{
+    [forceGrowl setEnabled:[GrowlApplicationBridge isGrowlRunning]];
+    return general;
 }
 
 -(void)showPlayRecord:(id)sender
