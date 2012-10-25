@@ -243,21 +243,14 @@
 {
     volume = targetVolume;
     [[NSUserDefaults standardUserDefaults] setValue:@(targetVolume)
-                                                forKey:@"volume"];
+                                             forKey:@"volume"];
     
     if(movie.rate == 0.0)
         return;
     else{
         if(timer) return;
+        movie.volume = volume;
         
-        timer = [NSTimer timerWithTimeInterval:TIMER_INTERVAL
-                                        target:self
-                                      selector:@selector(timerPulse:)
-                                      userInfo:KTimerPulseTypeVolumeChange
-                                       repeats:YES];
-        
-        CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        [timer fire];
     }
 }
 
