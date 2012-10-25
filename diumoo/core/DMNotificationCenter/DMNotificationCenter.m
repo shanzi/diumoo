@@ -15,10 +15,8 @@
 -(id) init
 {
     if (self = [super init]) {
-        if(!NSClassFromString(@"NSUserNotification")) {
-            [GrowlApplicationBridge setGrowlDelegate:self];
-        }
-        else{
+        [GrowlApplicationBridge setGrowlDelegate:self];
+        if (NSClassFromString(@"NSUserNotification")) {
             [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
         }
     }
@@ -33,7 +31,7 @@
 
 #pragma ---
 
--(NSDictionary*) registrationDictionaryForGrowl
+-(NSDictionary*)registrationDictionaryForGrowl
 {
     NSArray* array = @[@"Music",@"Account"];
     return @{GROWL_NOTIFICATIONS_ALL: array,GROWL_NOTIFICATIONS_DEFAULT: array};
@@ -47,19 +45,17 @@
 -(void) notifyMusicWithCapsule:(DMPlayableCapsule*) capsule
 {
     NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
+    
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
-        if([[values valueForKey:@"usesGrowlUnderML"] integerValue]!= NSOnState
-           && NSClassFromString(@"NSUserNotification")) {
-            
+        if([[values valueForKey:@"usesGrowlUnderML"] integerValue] ==  NSOffState && NSClassFromString(@"NSUserNotification")) {
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
             notification.title = capsule.title;
             notification.informativeText = detail;
             notification.soundName = nil;
             [center deliverNotification: notification];
-            
         } else {
             
             NSData* data = [capsule.picture TIFFRepresentation];
@@ -73,15 +69,6 @@
                                        clickContext:capsule.sid];
         }
     }
-//    if([[values valueForKey:@"enableEmulateITunes"] integerValue]==NSOnState){
-//        NSDictionary* postDict = @{@"Player State": @"Playing",
-//                                                @"Album": capsule.albumtitle,
-//                                                @"Name": capsule.title,
-//                                                @"Artist": capsule.artist};
-//        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
-//                                                                       object:@"com.apple.iTunes.player"
-//                                                                     userInfo:postDict];
-//    }
     
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
         [NSApp setApplicationIconImage:capsule.picture];

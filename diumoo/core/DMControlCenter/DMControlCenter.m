@@ -509,12 +509,8 @@
     
     NSString* shareTitle = dict[@"t"];
     NSString* shareString = [NSString stringWithFormat:@"#nowplaying #diumoo %@ - %@ <%@>",
-                             shareTitle,
-                             dict[@"r"],
-                             dict[@"a"]
-                             ];
+                             shareTitle,dict[@"r"],dict[@"a"]];
    
-    
     NSString* imageLink = dict[@"i"];
     NSDictionary* args = nil;
     NSString* urlBase = nil;
