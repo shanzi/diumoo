@@ -147,6 +147,7 @@
                     forKey:keyTogglePanelShortcut];
         [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
     }
+    
 }
 
 
