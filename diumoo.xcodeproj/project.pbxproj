@@ -484,9 +484,9 @@
 		F501B3AC15877062001C6158 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				F50A0A581624768500664316 /* DMSearchPanel */,
-				F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */,
 				F501B3AD15877062001C6158 /* DMPanel */,
+				F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */,
+				F50A0A581624768500664316 /* DMSearchPanel */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -575,15 +575,15 @@
 		F5148AB11580E58D002B3D61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
-				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
-				F5B9DC7A15BD995B004788A9 /* Growl.framework */,
-				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
-				F5148B4D1580EE68002B3D61 /* QTKit.framework */,
-				F5148B4B1580EE4D002B3D61 /* Security.framework */,
 				F5148B491580EE1F002B3D61 /* Carbon.framework */,
 				F5148AB21580E58D002B3D61 /* Cocoa.framework */,
+				F5B9DC7A15BD995B004788A9 /* Growl.framework */,
+				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
+				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
 				F5148AB41580E58D002B3D61 /* Other Frameworks */,
+				F5148B4D1580EE68002B3D61 /* QTKit.framework */,
+				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
+				F5148B4B1580EE4D002B3D61 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -601,14 +601,12 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
-				F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */,
-				F5D362FD15A1F0EF003A40B2 /* DMDocument */,
-				F501B3AC15877062001C6158 /* ui */,
-				F5148B1F1580E904002B3D61 /* core */,
 				F5148AD21580E5F4002B3D61 /* DMAppDelegate.h */,
 				F5148AD31580E5F4002B3D61 /* DMAppDelegate.m */,
-				F5148ACA1580E58E002B3D61 /* MainMenu.xib */,
+				F5148B1F1580E904002B3D61 /* core */,
+				F5D362FD15A1F0EF003A40B2 /* DMDocument */,
 				F5148AB91580E58D002B3D61 /* Supporting Files */,
+				F501B3AC15877062001C6158 /* ui */,
 			);
 			path = diumoo;
 			sourceTree = "<group>";
@@ -616,6 +614,8 @@
 		F5148AB91580E58D002B3D61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */,
+				F5148ACA1580E58E002B3D61 /* MainMenu.xib */,
 				179AFA331583916200968BAD /* debugLog.h */,
 				F5148AD51580E6AD002B3D61 /* DMApp.h */,
 				F5148AD61580E6AD002B3D61 /* DMApp.m */,
@@ -709,15 +709,15 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				F5E2D0F316005D2400389463 /* DMShortcutsHandler */,
-				3FBE809515D4A615001A3BEC /* DMErrorLog */,
-				F53C78E015CC0AA700201C65 /* DMService */,
-				F528B1A615BC548000DC82B4 /* DMNotificationCenter */,
-				F5D3633D15A1F379003A40B2 /* DMPlayRecordHandler */,
-				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
 				F5148B201580E904002B3D61 /* DMControlCenter */,
+				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
+				3FBE809515D4A615001A3BEC /* DMErrorLog */,
+				F528B1A615BC548000DC82B4 /* DMNotificationCenter */,
 				F5148B231580E904002B3D61 /* DMPlayableCapsule */,
 				F5148B271580E904002B3D61 /* DMPlaylistFetcher */,
+				F5D3633D15A1F379003A40B2 /* DMPlayRecordHandler */,
+				F53C78E015CC0AA700201C65 /* DMService */,
+				F5E2D0F316005D2400389463 /* DMShortcutsHandler */,
 				F5148B2B1580E904002B3D61 /* DMUtils */,
 			);
 			path = core;

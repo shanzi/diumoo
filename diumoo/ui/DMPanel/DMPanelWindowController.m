@@ -182,7 +182,6 @@ DMPanelWindowController *sharedWindow;
 
 -(void)unlockUIWithError:(BOOL)has_err
 {
-    DMLog(@"unlock UI");
     [loadingIndicator stopAnimation:nil];
     [loadingIndicator setHidden:YES];
     [popupMenuController unlockChannelMenuButton];

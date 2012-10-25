@@ -64,9 +64,7 @@
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
-    
-    NSLog(@"fetch playlist with url : %@",urlString);
-    
+        
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                             timeoutInterval:5.0];
@@ -247,9 +245,6 @@
         
         if([playlist[0][@"subtype"] isEqual:@"T"]
            && ([[[NSUserDefaults standardUserDefaults] valueForKey:@"filterAds"] integerValue] == NSOnState)){
-            
-            DMLog(@"filter Ads = %@",songDict);
-            
             [playlist removeObjectAtIndex:0];
             return [self getOnePlayableCapsule];
         }
@@ -262,7 +257,6 @@
 
 -(void) clearPlaylist
 {
-    DMLog(@"clear playlist");
     [playlist removeAllObjects];
 }
 

@@ -255,7 +255,6 @@ static NSOperationQueue* serviceQueue;
     
     NSString* urlstring = [NSString stringWithFormat:@"%@?f=%d&v=%@&d=%ld",
                            NOTIFICATION_URL,CURRENT_APP_TYPE,version,current_id];
-    NSLog(@"%@",urlstring);
     NSURL* url = [NSURL URLWithString:urlstring];
     NSURLRequest* request = nil;
     request = [NSURLRequest requestWithURL:url

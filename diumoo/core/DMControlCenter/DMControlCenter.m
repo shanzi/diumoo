@@ -246,7 +246,7 @@
 
 -(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long)state
 {
-    NSLog(@"Capsule %@ state changed to %ld",capsule,state);
+    NSLog(@"Capsule %@ state changed to %ld, playingCapsule? %d; rate = %lf",capsule,state,(capsule == playingCapsule),capsule.movie.rate);
     if (state >= QTMovieLoadStatePlayable && state < QTMovieLoadStateComplete) {
         if ([capsule picture] == nil) {
             [capsule prepareCoverWithCallbackBlock:^(NSImage *image){
@@ -254,14 +254,20 @@
             }];
         }
 
-        if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0))
+        if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0)){
+            NSLog(@"Capsule %@ not playing.",capsule);
             [playingCapsule play];
+        }
+        
+        if ((state == QTMovieLoadStatePlayable) && (capsule == playingCapsule) && (playingCapsule.movie.rate == 1.0)) {
+            NSLog(@"Capsule %@ break while playing.",capsule);
+            [self startToPlay:waitingCapsule];
+        }
     }
     else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
         // 在这里执行一些缓冲歌曲的操作
         NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
-        
         
         if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT && state == QTMovieLoadStateComplete) {
             DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
@@ -276,9 +282,7 @@
                 if([waitsong createNewMovie])
                     [waitPlaylist addObject:waitsong];
             }
-            
         }
-
     }
     else if(state < QTMovieLoadStateLoaded){
         NSLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",capsule,state,capsule.playState);
@@ -286,7 +290,6 @@
         {
             // 当前歌曲加载失败
             // 做些事情
-            [waitingCapsule createNewMovie];
             [self startToPlay:waitingCapsule];
         }
         else {
