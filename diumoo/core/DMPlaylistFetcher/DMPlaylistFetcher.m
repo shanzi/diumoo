@@ -69,7 +69,7 @@
     
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                            timeoutInterval:5.0];
+                                            timeoutInterval:10.0];
 
     
     //----------------------------处理start属性-------------------------
