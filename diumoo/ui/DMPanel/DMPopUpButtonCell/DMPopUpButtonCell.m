@@ -23,6 +23,7 @@
                                    NSMidY(cellFrame) - stringSize.height/2, 
                                    cellFrame.size.width - 40, stringSize.height);
     [string drawInRect:stringRect];
+    
 }
 
 -(NSDictionary*) stringAttribute

@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">2843</string>
+			<string key="NS.object.0">2844</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSButton</string>
@@ -1805,13 +1805,6 @@
 				<string key="3760.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3797.CustomClassName">DMButton</string>
 				<string key="3797.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<real value="5" key="3797.IBViewIntegration.shadowBlurRadius"/>
-				<object class="NSColor" key="3797.IBViewIntegration.shadowColor">
-					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MC4xMjU0OTAyMDM1IDAuNzIxNTY4NjQ0IDAuOTQxMTc2NTMzNwA</bytes>
-				</object>
-				<real value="0.0" key="3797.IBViewIntegration.shadowOffsetHeight"/>
-				<real value="0.0" key="3797.IBViewIntegration.shadowOffsetWidth"/>
 				<string key="3798.CustomClassName">DMButton</string>
 				<string key="3798.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3799.CustomClassName">DMButton</string>
