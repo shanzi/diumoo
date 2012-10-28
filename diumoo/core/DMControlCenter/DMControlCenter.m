@@ -216,6 +216,13 @@
         [self startToPlay:nil];
         
     }
+    else if(pauseType==PAUSE_PAUSE)
+    {
+        DMLog(@"User Paused");
+    }
+    else{
+        [self skip];
+    }
     
     pauseType = PAUSE_PASS;
 }
@@ -350,6 +357,7 @@
     if (playingCapsule.movie.rate > 0) 
     {
         if (pauseType) return;
+        pauseType=PAUSE_PAUSE;
         [playingCapsule pause];
     }
     else {
