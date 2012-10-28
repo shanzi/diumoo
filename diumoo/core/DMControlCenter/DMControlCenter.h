@@ -20,6 +20,7 @@
 
 typedef enum{
     PAUSE_PASS = 0,
+    PAUSE_PAUSE,
     PAUSE_SKIP,
     PAUSE_NEW_PLAYLIST,
     PAUSE_SPECIAL,

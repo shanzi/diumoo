@@ -148,8 +148,11 @@
         [movie autoplay];
         [timer fire];
 
-        IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
+        IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
                                     kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
+        if (success == kIOReturnSuccess) {
+            NSLog(@"Prevent idle sleep\n");
+        }
     }
     else {
         [movie autoplay];
@@ -178,11 +181,13 @@
         
         IOPMAssertionRelease(idleSleepAssertionID);
         idleSleepAssertionID = 0;
+        NSLog(@"Enable Sleep\n");
     }
     else{
         [self.delegate playableCapsuleDidPause:self];
         IOPMAssertionRelease(idleSleepAssertionID);
         idleSleepAssertionID = 0;
+        NSLog(@"Enable Sleep\n");
     }
 }
 
@@ -238,14 +243,14 @@
 {
     volume = targetVolume;
     [[NSUserDefaults standardUserDefaults] setValue:@(targetVolume)
-                                                forKey:@"volume"];
+                                             forKey:@"volume"];
     
     if(movie.rate == 0.0)
         return;
     else{
         if(timer) return;
-        
         movie.volume = volume;
+        
     }
 }
 

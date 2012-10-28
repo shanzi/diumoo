@@ -67,7 +67,7 @@
 "LOCALIZED_PUBLIC_LIST_NAME" = "en_public";
 
 /* 发生网络错误，请尝试重启应用  */
-"NETWORK_ERROR_INDICADTE_STRING"="Network Error";
+"NETWORK_ERROR_INDICADTE_STRING"="Request Timeout";
 
 /* 专辑:《%@》 */
 "ALBUM_DOCUMENT_TITLE" = "Album : %@";
