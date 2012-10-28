@@ -48,7 +48,6 @@
 		F501B3CB15877A88001C6158 /* rate_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C615877A88001C6158 /* rate_red.png */; };
 		F501B3CC15877A88001C6158 /* skip.png in Resources */ = {isa = PBXBuildFile; fileRef = F501B3C715877A88001C6158 /* skip.png */; };
 		F50A0A6816247A8800664316 /* DMSearchPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50A0A6516247A8800664316 /* DMSearchPanelController.m */; };
-		F50A0A6916247A8800664316 /* DMSearchPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50A0A6616247A8800664316 /* DMSearchPanelController.xib */; };
 		F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148AB21580E58D002B3D61 /* Cocoa.framework */; };
 		F5148ABD1580E58D002B3D61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5148ABB1580E58D002B3D61 /* InfoPlist.strings */; };
 		F5148ABF1580E58D002B3D61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ABE1580E58D002B3D61 /* main.m */; };
@@ -161,6 +160,7 @@
 		F5D3633A15A1F1FF003A40B2 /* starhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D3633615A1F1FF003A40B2 /* starhighlighted.png */; };
 		F5D3633B15A1F1FF003A40B2 /* time_machine.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D3633715A1F1FF003A40B2 /* time_machine.png */; };
 		F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */; };
+		F5D473BA163D747D00EE35B9 /* DMSearchPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D473BC163D747D00EE35B9 /* DMSearchPanelController.xib */; };
 		F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */; };
 		F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */; };
 		F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */; };
@@ -247,7 +247,6 @@
 		F501B3C715877A88001C6158 /* skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skip.png; sourceTree = "<group>"; };
 		F50A0A6416247A8800664316 /* DMSearchPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMSearchPanelController.h; path = DMSearchPanel/DMSearchPanelController.h; sourceTree = "<group>"; };
 		F50A0A6516247A8800664316 /* DMSearchPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMSearchPanelController.m; path = DMSearchPanel/DMSearchPanelController.m; sourceTree = "<group>"; };
-		F50A0A6616247A8800664316 /* DMSearchPanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMSearchPanelController.xib; path = DMSearchPanel/DMSearchPanelController.xib; sourceTree = "<group>"; };
 		F5148AAE1580E58D002B3D61 /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5148AB21580E58D002B3D61 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5148AB51580E58D002B3D61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -417,6 +416,8 @@
 		F5D3633715A1F1FF003A40B2 /* time_machine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_machine.png; sourceTree = "<group>"; };
 		F5D3633E15A1F3AF003A40B2 /* DMPlayRecordHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPlayRecordHandler.h; path = DMPlayRecordHandler/DMPlayRecordHandler.h; sourceTree = "<group>"; };
 		F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPlayRecordHandler.m; path = DMPlayRecordHandler/DMPlayRecordHandler.m; sourceTree = "<group>"; };
+		F5D473BB163D747D00EE35B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMSearchPanelController.xib; sourceTree = "<group>"; };
+		F5D473BE163D74A100EE35B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMSearchPanelController.xib"; sourceTree = "<group>"; };
 		F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F5DFF19715BADEEB00ED3DAA /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
 		F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
@@ -543,7 +544,7 @@
 			children = (
 				F50A0A6416247A8800664316 /* DMSearchPanelController.h */,
 				F50A0A6516247A8800664316 /* DMSearchPanelController.m */,
-				F50A0A6616247A8800664316 /* DMSearchPanelController.xib */,
+				F5D473BC163D747D00EE35B9 /* DMSearchPanelController.xib */,
 				F5AF817C163429BB006F15F0 /* DMSearchItemView.h */,
 				F5AF817D163429BB006F15F0 /* DMSearchItemView.m */,
 			);
@@ -1243,7 +1244,7 @@
 				F598DFE715FCEF9500F8C469 /* starhighlighted@2x.png in Resources */,
 				F5F7EF111600EE850007D2DB /* record.icns in Resources */,
 				F595996E1606401600FA3C3E /* Localizable.strings in Resources */,
-				F50A0A6916247A8800664316 /* DMSearchPanelController.xib in Resources */,
+				F5D473BA163D747D00EE35B9 /* DMSearchPanelController.xib in Resources */,
 				F5ADFAF71629C5A400FFC23D /* search.png in Resources */,
 				F5ADFAF81629C5A400FFC23D /* search@2x.png in Resources */,
 				F5BDCA181635A18C0073B689 /* search_mouseover.png in Resources */,
@@ -1401,6 +1402,16 @@
 				F59599711606401C00FA3C3E /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F5D473BC163D747D00EE35B9 /* DMSearchPanelController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5D473BB163D747D00EE35B9 /* en */,
+				F5D473BE163D74A100EE35B9 /* zh-Hans */,
+			);
+			name = DMSearchPanelController.xib;
+			path = DMSearchPanel;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
