@@ -58,7 +58,7 @@ end
 def resign(identity)
    if File.exists?($newPackage)
       puts("Resigning with identity " + identity)
-      system("codesign", "-f", "-s", identity, "--entitlements", File.join($newPackage, $entitlementPath), $newPackage)
+      system("codesign","-d", "-f", "-s", identity, "--entitlements", File.join($newPackage, $entitlementPath), $newPackage)
       
       #system("codesign", "-dvvvv", "--entitlements", ":-", $newPackage)
       if system("codesign", "-v", $newPackage)

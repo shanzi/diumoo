@@ -108,7 +108,6 @@
                                   @"volume": @1.0f,
                  @"max_wait_playlist_count": @1,
                             @"versionsLimit":@100,
-                         @"autoCheckUpdate": @(NSOnState),
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
