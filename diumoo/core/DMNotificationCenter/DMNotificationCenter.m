@@ -56,8 +56,7 @@
             notification.informativeText = detail;
             notification.soundName = nil;
             [center deliverNotification: notification];
-        } else {
-            
+        } else {            
             NSData* data = [capsule.picture TIFFRepresentation];
             
             [GrowlApplicationBridge notifyWithTitle:capsule.title
