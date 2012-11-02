@@ -48,8 +48,13 @@ DMPanelWindowController *sharedWindow;
 }
 
 -(void)windowDidLoad {
+    SInt32 minor;
+    Gestalt(gestaltSystemVersionMinor,&minor);
     // Make the window visible on all Spaces
-    [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+    if (minor >= 8)
+        [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+    else
+        [[self window] setCollectionBehavior:NSWindowCollectionBehaviorMoveToActiveSpace];
 }
 
 -(void) awakeFromNib
