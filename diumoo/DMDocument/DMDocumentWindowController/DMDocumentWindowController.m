@@ -61,7 +61,7 @@
         NSImage *image = [NSImage imageNamed:@"view_icon"];
         [image setTemplate:YES];
         SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:0];
-        item.toolTip = @"预览";
+        item.toolTip = NSLocalizedString(@"PREVIEW",@"预览");
         item.keyEquivalent = @"1";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
@@ -70,7 +70,7 @@
         NSImage *image = [NSImage imageNamed:@"detail_icon"];
         [image setTemplate:YES];
         SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:1];
-        item.toolTip = @"详细信息";
+        item.toolTip = NSLocalizedString(@"DETAIL",@"详细信息");
         item.keyEquivalent = @"2";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
