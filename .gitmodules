@@ -1,3 +1,3 @@
 [submodule "extern/MASShortcut"]
 	path = extern/MASShortcut
-	url = git://github.com/shpakovski/MASShortcut.git
+url=git://github.com/yuner/MASShortcut.git
