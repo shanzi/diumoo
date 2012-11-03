@@ -124,4 +124,36 @@
 /* 未知 */
 "DETAIL_UNKNOWN" = "未知";
 
+/* 验证码不能为空 */
+"CAPTCHA_MUST_NOT_BE_EMPTY" = "验证码不能为空";
+
+/* 邮箱不能为空 */
+"EMAIL_MUST_NOT_BE_EMPTY" = "电子邮件不能为空";
+
+/* 获取失败，请重试 */
+"FETCH_CAPTCHA_FAILED" = "获取失败，请重试";
+
+/* 登陆失败！ */
+"LOGIN_FAILED" = "登陆失败!";
+
+/* 密码不能为空 */
+"PASSWORD_MUST_NOT_BE_EMPTY" = "密码不能为空";
+
+/* 关于 */
+"PREF_ABOUT" = "关于";
+
+/* 账户 */
+"PREF_ACCOUNT" = "账号";
+
+/* 通用 */
+"PREF_GENERAL" = "通用";
+
+/* 快捷键 */
+"PREF_SHORTCUTS" = "快捷键";
+
+/* 详细信息 */
+"DETAIL" = "详细信息";
+
+/* 预览 */
+"PREVIEW" = "预览";
 

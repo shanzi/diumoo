@@ -123,3 +123,36 @@
 /* 未知 */
 "DETAIL_UNKNOWN" = "unknown";
 
+/* 验证码不能为空 */
+"CAPTCHA_MUST_NOT_BE_EMPTY" = "Captcha must not be empty";
+
+/* 邮箱不能为空 */
+"EMAIL_MUST_NOT_BE_EMPTY" = "Email must not be empty";
+
+/* 获取失败，请重试 */
+"FETCH_CAPTCHA_FAILED" = "Failed to fetch Captcha image";
+
+/* 登陆失败！ */
+"LOGIN_FAILED" = "Failed to login";
+
+/* 密码不能为空 */
+"PASSWORD_MUST_NOT_BE_EMPTY" = "Password must not be empty";
+
+/* 关于 */
+"PREF_ABOUT" = "About";
+
+/* 账户 */
+"PREF_ACCOUNT" = "Account";
+
+/* 通用 */
+"PREF_GENERAL" = "General";
+
+/* 快捷键 */
+"PREF_SHORTCUTS" = "Shortcuts";
+
+/* 详细信息 */
+"DETAIL" = "Detail";
+
+/* 预览 */
+"PREVIEW" = "Preview";
+

@@ -34,16 +34,16 @@
 {
     switch (index) {
         case GENERAL_PANEL_ID:
-            return @"通用";
+            return NSLocalizedString(@"PREF_GENERAL",@"通用");
             break;
         case ACCOUNT_PANEL_ID:
-            return @"账户";
+            return NSLocalizedString(@"PREF_ACCOUNT",@"账户");
             break;
         case KEYBINDINGS_PANNEL_ID:
-            return @"快捷键";
+            return NSLocalizedString(@"PREF_SHORTCUTS",@"快捷键");
             break;
         case INFO_PANEL_ID:
-            return @"关于";
+            return NSLocalizedString(@"PREF_ABOUT",@"关于");
             break;
         case DMLINK_PANEL_ID:
             return @"diumoo Helper";
@@ -126,7 +126,7 @@
             [NSImage AsyncLoadImageWithURLString:captcha_url andCallBackBlock:^(NSImage * image) {
                     if (image == nil) {
                         [sender setImage:nil];
-                        [sender setTitle:@"获取失败，请重试"];
+                        [sender setTitle:NSLocalizedString(@"FETCH_CAPTCHA_FAILED",@"获取失败，请重试")];
                         [sender setBordered:YES];
                     }
                     else {
@@ -175,13 +175,13 @@
     
     NSString* errorstring = nil;
     if (!(em && [em length])) {
-        errorstring = @"邮箱不能为空";
+        errorstring = NSLocalizedString(@"EMAIL_MUST_NOT_BE_EMPTY",@"邮箱不能为空");
     }
     else if(!(pw && [pw length])) {
-        errorstring = @"密码不能为空";
+        errorstring = NSLocalizedString(@"PASSWORD_MUST_NOT_BE_EMPTY",@"密码不能为空");
     }
     else if(!(captcha_solution && [captcha_solution length])){
-        errorstring = @"验证码不能为空";
+        errorstring = NSLocalizedString(@"CAPTCHA_MUST_NOT_BE_EMPTY",@"验证码不能为空");
     }
 
     if (errorstring) {
@@ -214,7 +214,7 @@
                 [errorLabel setStringValue:err_msg];
             }
             else {
-                [errorLabel setStringValue:@"登陆失败！"];
+                [errorLabel setStringValue:NSLocalizedString(@"LOGIN_FAILED",@"登陆失败！")];
             }
             [errorLabel setHidden:NO];
             [captcha setStringValue:@""];
