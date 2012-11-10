@@ -129,16 +129,16 @@
                     
                     NSNumber* timestamp = @([NSDate timeIntervalSinceReferenceDate]);
                     
-                    NSDictionary* writedic = @{
+                    channelDict = @{
                     @"public": public_list,
                     @"en_public": en_public_list,
                     @"suggest": suggest_list,
                     @"timestamp": timestamp};
-                    DMLog(@"写入电台列表");
-                    [writedic writeToFile:filepath atomically:YES];
-                    [self updateMenuItemsWithPublicList:public_list andSuggestList:suggest_list];
                     
-                    return;
+                    DMLog(@"写入电台列表");
+                    
+                    [channelDict writeToFile:filepath atomically:YES];
+                    
                 }
             }
         }
