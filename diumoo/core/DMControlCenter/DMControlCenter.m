@@ -458,7 +458,9 @@
 
 -(void) volumeChange:(float)volume
 {
-    [playingCapsule commitVolume:(volume>1.0?1.0:volume)];
+    volume = (volume>1.0?1.0:volume);
+    volume = (volume<0.0?0.0:volume);
+    [playingCapsule commitVolume:volume];
 }
 
 -(void)exitedSpecialMode
