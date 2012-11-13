@@ -269,6 +269,7 @@
         if ((state == QTMovieLoadStatePlayable) && (capsule == playingCapsule) && (playingCapsule.movie.rate == 1.0)) {
             NSLog(@"Capsule %@ break while playing.",capsule);
             [self startToPlay:waitingCapsule];
+            waitingCapsule=nil;
         }
     }
     else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
@@ -298,6 +299,7 @@
             // 当前歌曲加载失败
             // 做些事情
             [self startToPlay:waitingCapsule];
+            waitingCapsule = nil;
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
@@ -456,7 +458,7 @@
 
 -(void) volumeChange:(float)volume
 {
-    [playingCapsule commitVolume:volume];
+    [playingCapsule commitVolume:(volume>1.0?1.0:volume)];
 }
 
 -(void)exitedSpecialMode

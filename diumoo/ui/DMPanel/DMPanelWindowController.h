@@ -84,6 +84,6 @@ typedef enum{
 
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 - (IBAction)togglePanel:(id)sender;
-
+-(void) mouseScroll:(NSEvent*) event;
 
 @end

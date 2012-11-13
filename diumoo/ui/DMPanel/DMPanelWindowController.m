@@ -417,4 +417,13 @@ DMPanelWindowController *sharedWindow;
     self.hasActivePanel = menubarController.hasActiveIcon;
 }
 
+-(void) mouseScroll:(NSEvent *)event
+{
+    DMLog(@"scroll %@",event);
+    float delta = [event deltaY]/100.0;
+    float volume = [[[NSUserDefaults standardUserDefaults]
+                     valueForKey:@"volume"]floatValue]+delta;
+    [self.delegate volumeChange:volume];
+}
+
 @end
