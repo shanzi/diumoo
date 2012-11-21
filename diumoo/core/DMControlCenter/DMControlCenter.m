@@ -542,7 +542,10 @@
             break;
         case SINA_WEIBO:
             urlBase = @"http://v.t.sina.com.cn/share/share.php";
-            args = @{@"title": [NSString stringWithFormat:@"%@ ( %@ )",shareString,shareLink]};
+            args = @{@"title": [NSString stringWithFormat:@"%@ ( %@ )",
+                                [NSString stringWithFormat:@"#nowplaying# #diumoo# %@ - %@ <%@>",
+                                 shareTitle,dict[@"r"],dict[@"a"]],
+                                shareLink]};
             break;
             
         case RENREN:
