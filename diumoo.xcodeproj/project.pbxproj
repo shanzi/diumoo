@@ -115,6 +115,10 @@
 		F577112915E1097500FF6FAB /* volume_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112815E1097500FF6FAB /* volume_back@2x.png */; };
 		F577112D15E11E6900FF6FAB /* renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112B15E11E6900FF6FAB /* renren@2x.png */; };
 		F577112F15E11EC500FF6FAB /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112E15E11EC500FF6FAB /* renren.png */; };
+		F58C35111699AB3900BC588B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F58C35061699AB3900BC588B /* LICENSE */; };
+		F58C35121699AB3900BC588B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F58C35071699AB3900BC588B /* README.md */; };
+		F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */; };
+		F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */; };
 		F595995C1606369100FA3C3E /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F595995E1606369100FA3C3E /* DMDocumentWindow.xib */; };
 		F5959960160636AC00FA3C3E /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */; };
 		F5959963160636BC00FA3C3E /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959965160636BC00FA3C3E /* DMPanelWindowController.xib */; };
@@ -340,6 +344,12 @@
 		F577112815E1097500FF6FAB /* volume_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_back@2x.png"; sourceTree = "<group>"; };
 		F577112B15E11E6900FF6FAB /* renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "renren@2x.png"; sourceTree = "<group>"; };
 		F577112E15E11EC500FF6FAB /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
+		F58C35061699AB3900BC588B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F58C35071699AB3900BC588B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F58C350C1699AB3900BC588B /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		F58C350E1699AB3900BC588B /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		F595995D1606369100FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMDocumentWindow.xib; sourceTree = "<group>"; };
 		F5959961160636AC00FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMPrefsPanel.xib; sourceTree = "<group>"; };
 		F5959964160636BC00FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMPanelWindowController.xib; sourceTree = "<group>"; };
@@ -624,6 +634,7 @@
 		F5148AD81580E707002B3D61 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				F58C35051699AB3900BC588B /* SPMediaKeyTap */,
 				F5DFF19515BADEEB00ED3DAA /* MASShortcut */,
 				F515C15B15B6F07500210826 /* StatusItem */,
 				F5D3630715A1F0EF003A40B2 /* EDStarRating */,
@@ -838,6 +849,27 @@
 				F56F57B615CD851000C35515 /* volume_slider.png */,
 			);
 			name = volumeSlder;
+			sourceTree = "<group>";
+		};
+		F58C35051699AB3900BC588B /* SPMediaKeyTap */ = {
+			isa = PBXGroup;
+			children = (
+				F58C35061699AB3900BC588B /* LICENSE */,
+				F58C35071699AB3900BC588B /* README.md */,
+				F58C35081699AB3900BC588B /* SPInvocationGrabbing */,
+				F58C350E1699AB3900BC588B /* SPMediaKeyTap.h */,
+				F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */,
+			);
+			path = SPMediaKeyTap;
+			sourceTree = "<group>";
+		};
+		F58C35081699AB3900BC588B /* SPInvocationGrabbing */ = {
+			isa = PBXGroup;
+			children = (
+				F58C350C1699AB3900BC588B /* NSObject+SPInvocationGrabbing.h */,
+				F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */,
+			);
+			path = SPInvocationGrabbing;
 			sourceTree = "<group>";
 		};
 		F598DFD915FCDEE500F8C469 /* diumooHelper */ = {
@@ -1243,6 +1275,8 @@
 				F5BDCA181635A18C0073B689 /* search_mouseover.png in Resources */,
 				F5BDCA191635A18C0073B689 /* search_mouseover@2x.png in Resources */,
 				F5729B34164F566500B9C6BA /* channels.plist in Resources */,
+				F58C35111699AB3900BC588B /* LICENSE in Resources */,
+				F58C35121699AB3900BC588B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,6 +1363,8 @@
 				F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */,
 				F50A0A6816247A8800664316 /* DMSearchPanelController.m in Sources */,
 				F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */,
+				F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */,
+				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,7 +1499,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1490,9 +1525,9 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -16,7 +16,9 @@
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
-{    
+{
+    mediakeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    
     [self makeDefaultPreference];
     
     [DMErrorLog sharedErrorLog];
@@ -39,6 +41,11 @@
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"enableLogFile"
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"useMediaKey"
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
 
@@ -68,6 +75,13 @@
     }
     else if (keyPath == @"enableLogFile"){
         [self redirectConsoleLogToDocumentFolder];
+    }
+    else if(keyPath == @"useMediaKey"){
+        id newvalue = [change valueForKey:@"new"];
+        if ([newvalue respondsToSelector:@selector(integerValue)]) {
+            if([newvalue integerValue] == NSOffState)
+                [mediakeyTap stopWatchingMediaKeys];
+        }
     }
 }
 
@@ -114,7 +128,8 @@
                             @"showDockIcon": @(NSOnState),
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
-                           @"enableLogFile": @(NSOnState),};
+                           @"enableLogFile": @(NSOnState),
+                             @"useMediaKey": @(NSOnState)};
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:preferences];
     
@@ -145,6 +160,10 @@
                             data]
                     forKey:keyTogglePanelShortcut];
         [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
+    }
+    
+    if ([defaults valueForKey:@"useMediaKey"]) {
+        [mediakeyTap startWatchingMediaKeys];
     }
     
 }
@@ -226,5 +245,33 @@
             break;
     }
 }
+
+-(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
+{
+	NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
+	// here be dragons...
+	int keyCode = (([event data1] & 0xFFFF0000) >> 16);
+	int keyFlags = ([event data1] & 0x0000FFFF);
+	BOOL keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA;
+	
+	if (keyIsPressed) {
+        
+		switch (keyCode) {
+			case NX_KEYTYPE_PLAY:
+				[center playOrPause];
+				break;
+				
+			case NX_KEYTYPE_NEXT:
+				[center skip];
+				break;
+				
+			case NX_KEYTYPE_PREVIOUS:
+				[center rateOrUnrate];
+				break;
+                
+		}
+	}
+}
+
 
 @end

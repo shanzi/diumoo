@@ -13,10 +13,12 @@
 #import "DMPanelWindowController.h"
 #import "PLTabPreferenceControl.h"
 #import "DMShortcutsHandler.h"
+#import "SPMediaKeyTap.h"
 
 @interface DMAppDelegate : NSObject<NSApplicationDelegate>
 {
     DMControlCenter *center;
+    SPMediaKeyTap* mediakeyTap;
 }
 
 -(IBAction)showPreference:(id)sender;
