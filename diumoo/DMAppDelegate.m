@@ -112,6 +112,9 @@
                                                                    object:@"com.apple.iTunes.player"
                                                                  userInfo:@{@"Player State": @"Paused"}];*/
     [NSApp setApplicationIconImage:nil];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
+                                                                   object:@"com.apple.iTunes.player"
+                                                                 userInfo:@{@"Player State":@"Paused"}];
     [[DMPlayRecordHandler sharedRecordHandler] removeVersionsToLimit];
     [center stopForExit];
 }
@@ -129,7 +132,8 @@
                                @"filterAds": @(NSOffState),
                                @"enableLog": @(NSOnState),
                            @"enableLogFile": @(NSOnState),
-                             @"useMediaKey": @(NSOnState)};
+                             @"useMediaKey": @(NSOnState),
+                   @"useGlobalNotification":@(NSOnState)};
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:preferences];
     
