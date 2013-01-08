@@ -13,6 +13,8 @@
 #import <math.h>
 #import "DMPlayableCapsule.h"
 
+static NSInteger errorcount=0;
+
 @implementation DMPlayableCapsule
 
 @synthesize loadState,playState;
@@ -85,6 +87,13 @@
                                                    object:movie];
         return YES;
     }
+    else{
+        errorcount += 1;
+        if (errorcount>20) {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 

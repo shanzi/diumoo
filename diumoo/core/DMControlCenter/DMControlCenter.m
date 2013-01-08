@@ -145,10 +145,10 @@
             DMLog(@"歌曲加载失败");
             //歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
             playingCapsule = nil;
-            [fetcher fetchPlaylistFromChannel:channel
-                                     withType:kFetchPlaylistTypeNew
-                                          sid:nil
-                               startAttribute:[aSong startAttributeWithChannel:channel]];
+//            [fetcher fetchPlaylistFromChannel:channel
+//                                     withType:kFetchPlaylistTypeNew
+//                                          sid:nil
+//                               startAttribute:[aSong startAttributeWithChannel:channel]];
         }
 
     }
