@@ -80,6 +80,7 @@ static DMDoubanAuthHelper* sharedHelper;
     
     if(error){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
+        [self logoutAndCleanData];
         return nil;
     }
     
@@ -98,10 +99,11 @@ static DMDoubanAuthHelper* sharedHelper;
     promotion_chls = nil;
     recent_chls = nil;
     
-    NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:DOUBAN_FM_INDEX]];
+    NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
     for (NSHTTPCookie* cookie in cookies) {
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        if([cookie.domain isEqualToString:@".douban.fm"])
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 

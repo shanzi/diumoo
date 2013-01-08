@@ -69,6 +69,19 @@
         }
     }
     
+    if([[values valueForKey:@"useGlobalNotification"] integerValue]==NSOnState){
+        NSDictionary* userInfo = @{
+        @"Player State" : @"Playing",
+        @"Store URL":capsule.albumLocation,
+        @"Album":capsule.albumtitle,
+        @"Name":capsule.title,
+        @"Artist":capsule.artist
+        };
+        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
+                                                                       object:@"com.apple.iTunes.player"
+                                                                     userInfo:userInfo];
+    }
+    
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
         [NSApp setApplicationIconImage:capsule.picture];
     }
