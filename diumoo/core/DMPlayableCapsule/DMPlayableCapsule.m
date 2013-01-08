@@ -13,6 +13,8 @@
 #import <math.h>
 #import "DMPlayableCapsule.h"
 
+static NSInteger errorcount=0;
+
 @implementation DMPlayableCapsule
 
 @synthesize loadState,playState;
@@ -85,6 +87,13 @@
                                                    object:movie];
         return YES;
     }
+    else{
+        errorcount += 1;
+        if (errorcount>20) {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
@@ -209,7 +218,7 @@
 {
     float delta =  volume - movie.volume;
 
-    if([timer userInfo] == kTimerPulseTypePlay)
+    if([[timer userInfo] isEqual: kTimerPulseTypePlay])
     {
         if(fabsf(delta) < 0.08)
         {
@@ -220,7 +229,7 @@
             movie.volume += delta>0?0.08:-0.08;
         }
     }
-    else if([timer userInfo] == kTimerPulseTypePause)
+    else if([[timer userInfo] isEqual: kTimerPulseTypePause])
     {
         if(movie.volume > 0.0 && movie.rate > 0) movie.volume -= 0.08;
         else {

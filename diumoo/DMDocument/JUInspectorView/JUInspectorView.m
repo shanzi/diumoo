@@ -152,12 +152,12 @@
 - (NSComparisonResult)compare:(JUInspectorView *)otherView
 {
     if(otherView.index > index)
-        return NSGreaterThanComparison;
+        return NSOrderedDescending;
     
     if(otherView.index < index)
-        return NSLessThanComparison;
+        return NSOrderedAscending;
     
-    return NSEqualToComparison;
+    return NSOrderedSame;
 }
 
 #pragma mark - JUInspectorViewHeaderDelegate

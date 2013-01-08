@@ -56,10 +56,10 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (keyPath == @"showDockIcon") {
+    if ([keyPath isEqual: @"showDockIcon"]) {
         [self handleDockIconDisplayWithChange:change];
     }
-    else if(keyPath == @"displayAlbumCoverOnDock")
+    else if([keyPath isEqual: @"displayAlbumCoverOnDock"])
     {
         id newvalue = [change valueForKey:@"new"];
         NSInteger new = NSOnState;
@@ -73,10 +73,10 @@
             [NSApp setApplicationIconImage:nil];
         }
     }
-    else if (keyPath == @"enableLogFile"){
+    else if ([keyPath isEqual: @"enableLogFile"]){
         [self redirectConsoleLogToDocumentFolder];
     }
-    else if(keyPath == @"useMediaKey"){
+    else if([keyPath isEqual: @"useMediaKey"]){
         id newvalue = [change valueForKey:@"new"];
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
             if([newvalue integerValue] == NSOffState)

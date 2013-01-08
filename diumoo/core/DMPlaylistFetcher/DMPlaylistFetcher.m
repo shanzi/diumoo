@@ -137,7 +137,7 @@
 
 - (void)fetchPlaylistFromChannel:(NSString*)channel withType:(NSString*)type sid:(NSString*)sid startAttribute:(NSString*)startAttr
 {
-    if (type == kFetchPlaylistTypeEnd && [playlist count]==0) {
+    if ([type isEqual: kFetchPlaylistTypeEnd] && [playlist count]==0) {
         type = kFetchPlaylistTypeNew;
     }
     else if(sid==nil) {

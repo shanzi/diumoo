@@ -1,7 +1,7 @@
 //
-//  NSData+Base64.m
+//  Base64.m
 //
-//  Version 1.0.2
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 12/01/2012.
 //  Copyright (C) 2012 Charcoal Design
@@ -32,19 +32,26 @@
 
 #import "NSData+Base64.h"
 
+
+#import <Availability.h>
+#if !__has_feature(objc_arc)
+#error This library requires automatic reference counting
+#endif
+
+
 @implementation NSData (Base64)
 
 + (NSData *)dataWithBase64EncodedString:(NSString *)string
 {
     const char lookup[] =
     {
-        99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 
-        99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 
-        99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 62, 99, 99, 99, 63, 
-        52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 99, 99, 99, 99, 99, 99, 
-        99,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 
-        15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 99, 99, 99, 99, 99, 
-        99, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 
+        99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+        99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+        99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 62, 99, 99, 99, 63,
+        52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 99, 99, 99, 99, 99, 99,
+        99,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14,
+        15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 99, 99, 99, 99, 99,
+        99, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
         41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 99, 99, 99, 99, 99
     };
     
@@ -55,7 +62,7 @@
     long long maxOutputLength = (inputLength / 4 + 1) * 3;
     NSMutableData *outputData = [NSMutableData dataWithLength:maxOutputLength];
     unsigned char *outputBytes = (unsigned char *)[outputData mutableBytes];
-
+    
     int accumulator = 0;
     long long outputLength = 0;
     unsigned char accumulated[] = {0, 0, 0, 0};
@@ -67,8 +74,8 @@
             accumulated[accumulator] = decoded;
             if (accumulator == 3)
             {
-                outputBytes[outputLength++] = (accumulated[0] << 2) | (accumulated[1] >> 4);  
-                outputBytes[outputLength++] = (accumulated[1] << 4) | (accumulated[2] >> 2);  
+                outputBytes[outputLength++] = (accumulated[0] << 2) | (accumulated[1] >> 4);
+                outputBytes[outputLength++] = (accumulated[1] << 4) | (accumulated[2] >> 2);
                 outputBytes[outputLength++] = (accumulated[2] << 6) | accumulated[3];
             }
             accumulator = (accumulator + 1) % 4;
@@ -134,20 +141,62 @@
         outputBytes[outputLength++] = '=';
     }
     
-    //truncate data to match actual output length
-    outputBytes = realloc(outputBytes, outputLength);
-    NSString *result = [[NSString alloc] initWithBytesNoCopy:outputBytes length:outputLength encoding:NSASCIIStringEncoding freeWhenDone:YES];
-
-#if !__has_feature(objc_arc)
-    [result autorelease];
-#endif
-    
-    return (outputLength >= 4)? result: nil;
+    if (outputLength >= 4)
+    {
+        //truncate data to match actual output length
+        outputBytes = realloc(outputBytes, outputLength);
+        return [[NSString alloc] initWithBytesNoCopy:outputBytes
+                                              length:outputLength
+                                            encoding:NSASCIIStringEncoding
+                                        freeWhenDone:YES];
+    }
+    else if (outputBytes)
+    {
+        free(outputBytes);
+    }
+    return nil;
 }
 
 - (NSString *)base64EncodedString
 {
     return [self base64EncodedStringWithWrapWidth:0];
+}
+
+@end
+
+
+@implementation NSString (Base64)
+
++ (NSString *)stringWithBase64EncodedString:(NSString *)string
+{
+    NSData *data = [NSData dataWithBase64EncodedString:string];
+    if (data)
+    {
+        return [[self alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
+
+- (NSString *)base64EncodedStringWithWrapWidth:(NSUInteger)wrapWidth
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    return [data base64EncodedStringWithWrapWidth:wrapWidth];
+}
+
+- (NSString *)base64EncodedString
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    return [data base64EncodedString];
+}
+
+- (NSString *)base64DecodedString
+{
+    return [NSString stringWithBase64EncodedString:self];
+}
+
+- (NSData *)base64DecodedData
+{
+    return [NSData dataWithBase64EncodedString:self];
 }
 
 @end
