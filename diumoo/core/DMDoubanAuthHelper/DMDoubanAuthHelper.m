@@ -80,6 +80,7 @@ static DMDoubanAuthHelper* sharedHelper;
     
     if(error){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
+        [self logoutAndCleanData];
         return nil;
     }
     

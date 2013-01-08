@@ -266,10 +266,12 @@
 				break;
 				
 			case NX_KEYTYPE_NEXT:
+            case NX_KEYTYPE_FAST:
 				[center skip];
 				break;
 				
 			case NX_KEYTYPE_PREVIOUS:
+            case NX_KEYTYPE_REWIND:
 				[center rateOrUnrate];
 				break;
                 
