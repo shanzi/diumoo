@@ -253,6 +253,7 @@
 
 -(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long)state
 {
+    
     NSLog(@"Capsule %@ state changed to %ld, playingCapsule? %d; rate = %lf",capsule,state,(capsule == playingCapsule),capsule.movie.rate);
     if (state >= QTMovieLoadStatePlayable && state < QTMovieLoadStateComplete) {
         if ([capsule picture] == nil) {
@@ -273,6 +274,9 @@
         }
     }
     else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
+        float datasize = [capsule.movie.movieAttributes[QTMovieDataSizeAttribute] floatValue];
+        float duration = capsule.movie.duration.timeValue/capsule.movie.duration.timeScale;
+        DMLog(@"<%@> load complate, datasize: %lf , duration: %lf , bitrate: %lf",capsule.title,datasize,duration,datasize/duration);
         // 在这里执行一些缓冲歌曲的操作
         NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
