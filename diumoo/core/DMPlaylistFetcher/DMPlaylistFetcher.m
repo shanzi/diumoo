@@ -64,6 +64,8 @@
 {
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
+    
+    DMLog(@"fetch url : %@",urlString);
         
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -153,7 +155,10 @@
                                      @"sid": ((sid!=nil)?sid:@""),
                                      @"h": [playedSongs hString],
                                      @"r": [self randomString],
-                                     @"from": @"mainsite"};
+                                     @"from": @"mainsite",
+                                     @"kbps":@(64)
+                    
+    };
     
     [self fetchPlaylistWithDictionary:fetchDictionary
                    withStartAttribute:startAttr
@@ -271,6 +276,7 @@
     @"app_name":@"radio_ipad",
     @"version": @"1",
     @"expire" : @(expire)
+
     };
     
     NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
