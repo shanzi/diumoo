@@ -276,7 +276,7 @@
         }
     }
     else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
-        float datasize = [capsule.movie.movieAttributes[QTMovieDataSizeAttribute] floatValue]/1000*8;
+        float datasize = [capsule.movie.movieAttributes[QTMovieDataSizeAttribute] floatValue]/1024*8;
         float duration = capsule.movie.duration.timeValue/capsule.movie.duration.timeScale;
         
         DMLog(@"<%@> load complate, datasize: %lf , duration: %lf , bitrate: %lf",capsule.title,datasize,duration,datasize/duration);
