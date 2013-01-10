@@ -266,6 +266,16 @@
         [forceGrowl setState:NSOffState];
         [forceGrowl setEnabled:[GrowlApplicationBridge isGrowlRunning]];
     }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *quality = [defaults valueForKey:@"musicQuality"];
+    
+    if ([quality isEqualToNumber: [NSNumber numberWithInt:64]])
+        [muiscQuality selectItemAtIndex:0];
+    else if ([quality isEqualToNumber: [NSNumber numberWithInt:128]])
+        [muiscQuality selectItemAtIndex:1];
+    else
+        [muiscQuality selectItemAtIndex:2];
+    
     return general;
 }
 
@@ -333,5 +343,24 @@
     }
 }
 
+-(IBAction)musicQuality:(id)sender
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger selected = [sender indexOfSelectedItem];
+    
+    if (selected == 0)
+        [defaults setInteger:64 forKey:@"musicQuality"];
+    else if (selected == 1)
+        [defaults setInteger:128 forKey:@"musicQuality"];
+    else
+        [defaults setInteger:192 forKey:@"musicQuality"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"diumooQualityChanged" object:nil];
+}
+
+-(IBAction)donation:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/"]];
+}
 
 @end

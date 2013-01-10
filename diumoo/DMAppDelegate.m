@@ -56,10 +56,10 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqual: @"showDockIcon"]) {
+    if ([keyPath isEqualToString: @"showDockIcon"]) {
         [self handleDockIconDisplayWithChange:change];
     }
-    else if([keyPath isEqual: @"displayAlbumCoverOnDock"])
+    else if([keyPath isEqualToString: @"displayAlbumCoverOnDock"])
     {
         id newvalue = [change valueForKey:@"new"];
         NSInteger new = NSOnState;
@@ -73,10 +73,10 @@
             [NSApp setApplicationIconImage:nil];
         }
     }
-    else if ([keyPath isEqual: @"enableLogFile"]){
+    else if ([keyPath isEqualToString: @"enableLogFile"]){
         [self redirectConsoleLogToDocumentFolder];
     }
-    else if([keyPath isEqual: @"useMediaKey"]){
+    else if([keyPath isEqualToString: @"useMediaKey"]){
         id newvalue = [change valueForKey:@"new"];
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
             if([newvalue integerValue] == NSOffState)
@@ -124,7 +124,7 @@
     NSDictionary *preferences=@{@"channel" : @1,
                                   @"volume": @1.0f,
                  @"max_wait_playlist_count": @1,
-                            @"versionsLimit":@100,
+                           @"versionsLimit": @100,
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
@@ -133,7 +133,9 @@
                                @"enableLog": @(NSOnState),
                            @"enableLogFile": @(NSOnState),
                              @"useMediaKey": @(NSOnState),
-                   @"useGlobalNotification":@(NSOnState)};
+                   @"useGlobalNotification": @(NSOnState),
+                            @"musicQuality": @(64)
+    };
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:preferences];
     

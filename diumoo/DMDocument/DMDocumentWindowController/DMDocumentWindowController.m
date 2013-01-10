@@ -270,7 +270,6 @@
 
 -(void) playAlbum:(id)sender
 {
-    DMLog(@"post play album signal");
     NSString* type = @"album";
     NSString* typestring = @"专辑";
     NSString* artisttitle = [@"艺术家 : " stringByAppendingString:[artist stringValue]];

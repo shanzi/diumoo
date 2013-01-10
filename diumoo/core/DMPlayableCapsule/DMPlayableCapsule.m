@@ -157,11 +157,8 @@ static NSInteger errorcount=0;
         [movie autoplay];
         [timer fire];
 
-        IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
+        IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
                                     kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
-        if (success == kIOReturnSuccess) {
-            NSLog(@"Prevent idle sleep\n");
-        }
     }
     else {
         [movie autoplay];
@@ -190,13 +187,11 @@ static NSInteger errorcount=0;
         
         IOPMAssertionRelease(idleSleepAssertionID);
         idleSleepAssertionID = 0;
-        NSLog(@"Enable Sleep\n");
     }
     else{
         [self.delegate playableCapsuleDidPause:self];
         IOPMAssertionRelease(idleSleepAssertionID);
         idleSleepAssertionID = 0;
-        NSLog(@"Enable Sleep\n");
     }
 }
 

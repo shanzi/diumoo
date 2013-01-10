@@ -37,6 +37,7 @@
     
     //------- General view outlet ------
     IBOutlet NSButton *forceGrowl;
+    IBOutlet NSPopUpButton *muiscQuality;
     
     //------- login view outlet --------
     IBOutlet NSProgressIndicator *indicator;
@@ -84,5 +85,9 @@
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;
 -(IBAction)installBrowserPlugins:(id)sender;
+-(IBAction)musicQuality:(id)sender;
+-(IBAction)donation:(id)sender;
 
 @end
+
+

@@ -150,14 +150,16 @@
         [playedSongs setValue:type forKey:sid];
     }
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *quality = [defaults valueForKey:@"musicQuality"];
+    
     NSDictionary* fetchDictionary = @{@"type": type,
                                      @"channel": channel,
                                      @"sid": ((sid!=nil)?sid:@""),
                                      @"h": [playedSongs hString],
                                      @"r": [self randomString],
                                      @"from": @"mainsite",
-                                     @"kbps":@(64)
-                    
+                                     @"kbps": quality
     };
     
     [self fetchPlaylistWithDictionary:fetchDictionary

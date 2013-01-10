@@ -320,9 +320,7 @@ static NSOperationQueue* serviceQueue;
     NSString* urlstring = [NSString stringWithFormat:@"%@?%@",
                            GET_SHARE_LINK_URL,[keydict urlEncodedString]];
     NSURL* url = [NSURL URLWithString:urlstring];
-    
-    NSLog(@"%@",urlstring);
-    
+        
     NSURLRequest* request = [NSURLRequest requestWithURL:url
                                cachePolicy:NSURLCacheStorageAllowed
                            timeoutInterval:2.0];

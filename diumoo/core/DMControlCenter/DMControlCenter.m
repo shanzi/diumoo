@@ -46,6 +46,11 @@
                                                 selector:@selector(playSpecialNotification:)
                                                     name:@"playspecial"
                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(qualityChanged)
+                                                    name:@"diumooQualityChanged"
+                                                  object:nil];
     }
     return self;
 }
@@ -188,7 +193,6 @@
     if(pauseType == PAUSE_SKIP)
     {
         // 跳过当前歌曲
-        DMLog(@">>>> skip");
         if (waitingCapsule) {
             [self startToPlay:waitingCapsule];
             waitingCapsule = nil;
@@ -254,7 +258,7 @@
 -(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long)state
 {
     
-    NSLog(@"Capsule %@ state changed to %ld, playingCapsule? %d; rate = %lf",capsule,state,(capsule == playingCapsule),capsule.movie.rate);
+    //NSLog(@"Capsule %@ state changed to %ld, playingCapsule? %d; rate = %lf",capsule,state,(capsule == playingCapsule),capsule.movie.rate);
     if (state >= QTMovieLoadStatePlayable && state < QTMovieLoadStateComplete) {
         if ([capsule picture] == nil) {
             [capsule prepareCoverWithCallbackBlock:^(NSImage *image){
@@ -263,12 +267,10 @@
         }
 
         if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0)){
-            NSLog(@"Capsule %@ not playing.",capsule);
             [playingCapsule play];
         }
         
         if ((state == QTMovieLoadStatePlayable) && (capsule == playingCapsule) && (playingCapsule.movie.rate == 1.0)) {
-            NSLog(@"Capsule %@ break while playing.",capsule);
             [self startToPlay:waitingCapsule];
             waitingCapsule=nil;
         }
@@ -299,7 +301,7 @@
         }
     }
     else if(state < QTMovieLoadStateLoaded){
-        NSLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",capsule,state,capsule.playState);
+        DMLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",capsule,state,capsule.playState);
         if(capsule == playingCapsule && capsule.playState == PLAYING)
         {
             // 当前歌曲加载失败
@@ -364,8 +366,7 @@
 
 -(void) playOrPause
 {
-    DMLog(@"pause type : %d",pauseType);
-    if (playingCapsule.movie.rate > 0) 
+    if (playingCapsule.movie.rate > 0)
     {
         if (pauseType) return;
         pauseType=PAUSE_PAUSE;
@@ -612,7 +613,6 @@
 // ---------------------play special collection ----------------------
 -(void) playSpecialNotification:(NSNotification*) n
 {
-    DMLog(@"%d",canPlaySpecial);
     if (!canPlaySpecial)return;
     
     NSString* type = (n.userInfo)[@"type"];
@@ -624,7 +624,6 @@
                            startAttribute:[start stringByAppendingString:channel]];
     }
     else if ([type isEqualToString:@"album"]) {
-        DMLog(@"fetch album");
         NSString* aid = (n.userInfo)[@"aid"];
         [fetcher fetchPlaylistForAlbum:aid callback:^(BOOL success) {
             if (success) {
@@ -679,5 +678,22 @@
     }
 }
 //--------------------------------------------------------------------
+
+-(void)qualityChanged
+{
+    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_NEW_PLAYLIST, (int32_t*)&pauseType))
+        return;
+    
+    [waitPlaylist removeAllObjects];
+    [fetcher clearPlaylist];
+    
+    if (playingCapsule) {
+        [playingCapsule pause];
+    }
+    else {
+        pauseType = PAUSE_PASS;
+        [self startToPlay:nil];
+    }
+}
 
 @end

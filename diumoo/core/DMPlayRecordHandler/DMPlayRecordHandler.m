@@ -80,7 +80,6 @@ static DMPlayRecordHandler* recordHandler;
     [fetchRequset setPredicate:[NSPredicate predicateWithFormat:@"sid = %@",sid]];
     
     NSError* fetchErr = nil;
-    //DMLog(@"%@",context);
     NSArray* results = [context executeFetchRequest:fetchRequset error:&fetchErr];
 
     if ([results count]>0) {

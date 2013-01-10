@@ -313,7 +313,6 @@ DMPanelWindowController *sharedWindow;
 -(void) toggleSpecialWithDictionary:(NSDictionary *)info;
 {
     if (info) {
-        DMLog(@"play info : %@",info);
         NSString* title = info[@"title"];
         NSString* artist = info[@"artist"];
         NSString* type = info[@"typestring"];
@@ -419,7 +418,6 @@ DMPanelWindowController *sharedWindow;
 
 -(void) mouseScroll:(NSEvent *)event
 {
-    DMLog(@"scroll %@",event);
     float delta = [event deltaY]/100.0;
     float volume = [[[NSUserDefaults standardUserDefaults]
                      valueForKey:@"volume"]floatValue]+delta;
