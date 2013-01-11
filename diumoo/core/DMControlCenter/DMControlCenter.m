@@ -276,10 +276,10 @@
         }
     }
     else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
-        float datasize = [capsule.movie.movieAttributes[QTMovieDataSizeAttribute] floatValue]/1000*8;
+        /*float datasize = [capsule.movie.movieAttributes[QTMovieDataSizeAttribute] floatValue]/1000*8;
         float duration = capsule.movie.duration.timeValue/capsule.movie.duration.timeScale;
         
-        DMLog(@"<%@> load complate, datasize: %lf , duration: %lf , bitrate: %lf",capsule.title,datasize,duration,datasize/duration);
+        DMLog(@"<%@> load complate, datasize: %lf , duration: %lf , bitrate: %lf",capsule.title,datasize,duration,datasize/duration);*/
         
         // 在这里执行一些缓冲歌曲的操作
         NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
