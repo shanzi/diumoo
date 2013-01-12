@@ -15,7 +15,6 @@
 #define kDMCollectChannel @"collect_channel"
 #define kDMUncollectChannel @"uncollect_channel"
 
-#import "CJSONDeserializer.h"
 #import "NSDictionary+UrlEncoding.h"
 
 @implementation DMPopUpMenuController
@@ -117,7 +116,7 @@
         
         
         if(error==NULL){
-            NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             
             if(error == NULL){
                 public_list = [dict valueForKey:@"public"];

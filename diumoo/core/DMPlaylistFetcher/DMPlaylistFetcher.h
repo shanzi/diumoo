@@ -17,7 +17,6 @@
 #import <Foundation/Foundation.h>
 #import "DMPlayableCapsule.h"
 #import "DMPlaylistFetcherDeleate.h"
-#import "CJSONDeserializer.h"
 
 @interface DMPlaylistFetcher : NSObject
 {

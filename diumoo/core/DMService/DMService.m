@@ -10,7 +10,6 @@
 #import "DMPlayRecordHandler.h"
 #import "NSData+AESCrypt.h"
 #import "NSDictionary+UrlEncoding.h"
-#import "CJSONDeserializer.h"
 
 #define DM_SONG_PREFIX @"diumoo://song?key="
 #define DM_ALBUM_PREFIX @"diumoo://album?key="
@@ -266,7 +265,7 @@ static NSOperationQueue* serviceQueue;
                            completionHandler:^(NSURLResponse *r, NSData *d, NSError *e)
      {
          if (e==NULL) {
-             NSDictionary * dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:d error:&e];
+             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:d options:NSJSONReadingMutableContainers error:&e];
              if (e==NULL) {
                  if([dict[@"nomsg"] boolValue]) return;
                  

@@ -93,7 +93,7 @@
          }
          else {
              NSError* jerr = nil;
-             id jresponse = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
+             id jresponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jerr];
              
              if(jerr){
                  [delegate fetchPlaylistError:jerr withDictionary:dict
@@ -180,9 +180,9 @@
                            completionHandler:^(NSURLResponse *r, NSData *d, NSError *e) {
                                
                                if (d) {
-                                   NSDictionary* dictalbum =[[CJSONDeserializer deserializer]
-                                                             deserializeAsDictionary:d
-                                                             error:nil];
+                                  
+                                   NSDictionary *dictalbum = [NSJSONSerialization JSONObjectWithData:d options:NSJSONReadingMutableContainers error:nil];
+                                   
                                    NSArray* songarray = dictalbum[@"song"];
                                    if (block) {
                                        block(songarray);

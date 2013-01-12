@@ -142,18 +142,15 @@ static DMDoubanAuthHelper* sharedHelper;
                                                             error:nil];
     
     if (promotion_data) {
-        NSDictionary* dict = [[CJSONDeserializer deserializer]
-                              deserializeAsDictionary:promotion_data
-                              error:nil];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:promotion_data options:NSJSONReadingMutableContainers error:nil];
         if (dict && dict[@"status"]) {
             promotion_chls = dict[@"data"][@"chls"];
         }
     }
     
     if (recent_data) {
-        NSDictionary* dict = [[CJSONDeserializer deserializer]
-                              deserializeAsDictionary:recent_data
-                              error:nil];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:recent_data options:NSJSONReadingMutableContainers error:nil];
+
         if (dict && dict[@"status"]) {
             recent_chls = dict[@"data"][@"chls"];
         }
@@ -268,8 +265,9 @@ static DMDoubanAuthHelper* sharedHelper;
 -(NSError*) connectionResponseHandlerWithResponse:(NSURLResponse*) response andData:(NSData*) data
 {
     NSError* jerr = nil;
-    NSDictionary* obj = [[CJSONDeserializer deserializer] deserialize:data error:&jerr];
     
+    NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jerr];
+
     if(jerr){
         // 返回的内容不能解析成json，尝试解析HTML获得用户登陆信息
         NSDictionary* info = [self tryParseHtmlForAuthWithData:data];

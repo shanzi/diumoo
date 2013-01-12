@@ -10,7 +10,6 @@
 #import "SMTabBar.h"
 #import "SMTabBarItem.h"
 #import "EDStarRating.h"
-#import "CJSONDeserializer.h"
 #import "DMDetailViewController.h"
 #import "NSImage+AsyncLoadImage.h"
 #import "DMErrorLog.h"
@@ -178,8 +177,8 @@
                 }
                 else {
                     NSError *jsonError;
-                    NSDictionary* dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data
-                                                                                             error:&jsonError];
+                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+                    
                     if (jsonError) {
                         indicatorText.stringValue = NSLocalizedString(@"PARSE_DETAIL_FAILED",@"解析信息失败") ;
                         [progressIndicator stopAnimation:nil];
