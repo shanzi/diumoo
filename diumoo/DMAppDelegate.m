@@ -48,6 +48,11 @@
                                             forKeyPath:@"useMediaKey"
                                                options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                                context:nil];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"musicQuality"
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:nil];
 
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
@@ -82,6 +87,9 @@
             if([newvalue integerValue] == NSOffState)
                 [mediakeyTap stopWatchingMediaKeys];
         }
+    }
+    else if([keyPath isEqualToString:@"musicQuality"]){
+        [center qualityChanged];
     }
 }
 

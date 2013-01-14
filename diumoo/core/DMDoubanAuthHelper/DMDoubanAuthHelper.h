@@ -31,6 +31,8 @@
     NSInteger playedSongsCount;
     NSInteger likedSongsCount;
     NSInteger bannedSongsCount;
+    
+    BOOL isPro;
 }
 
 @property(copy,readonly) NSString *username;

@@ -99,12 +99,18 @@ static DMDoubanAuthHelper* sharedHelper;
     promotion_chls = nil;
     recent_chls = nil;
     
+    
+    
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
     for (NSHTTPCookie* cookie in cookies) {
         if([cookie.domain isEqualToString:@".douban.fm"])
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isPro"];
+    [[NSUserDefaults standardUserDefaults] setInteger:64 forKey:@"musicQuality"];
+    
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 
                                                         object:self];
@@ -164,6 +170,7 @@ static DMDoubanAuthHelper* sharedHelper;
     username = [info valueForKey:@"name"];
     userUrl = [info valueForKey:@"url"];
     userinfo = info;
+    isPro = [[info valueForKey:@"is_pro"] boolValue];
     
     NSDictionary* play_record = [info valueForKey:@"play_record"];
     
@@ -182,6 +189,11 @@ static DMDoubanAuthHelper* sharedHelper;
     }
     else {
         icon = [NSImage imageNamed:NSImageNameUser];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:isPro forKey:@"isPro"];
+    if (!isPro) {
+        [[NSUserDefaults standardUserDefaults] setInteger:64 forKey:@"musicQuality"];
     }
     
     
@@ -233,26 +245,41 @@ static DMDoubanAuthHelper* sharedHelper;
     HTMLParser* parser = [[HTMLParser alloc] initWithData:data error:&herr];
     if(herr == nil)
     {
+        BOOL is_pro=NO;
         HTMLNode* bodynode=[parser body];
         
         HTMLNode* total=[bodynode findChildWithAttribute:@"id" matchingName:@"rec_played" allowPartial:NO];
         HTMLNode* liked=[bodynode findChildWithAttribute:@"id" matchingName:@"rec_liked" allowPartial:NO];
         HTMLNode* banned=[bodynode findChildWithAttribute:@"id" matchingName:@"rec_banned" allowPartial:NO];
         HTMLNode* user=[bodynode findChildWithAttribute:@"id" matchingName:@"user_name" allowPartial:NO];
+        HTMLNode* pro_icon=[bodynode findChildOfClass:@"pro_icon"];
+ 
         NSString* user_id = [self user_id];
         
+        
         if(total && liked && banned && user && user_id){
+            if (pro_icon) is_pro=YES;
             NSString* userlink = [@"http://www.douban.com/people/" stringByAppendingString:user_id];
+            NSString* name = [user contents];
+            NSRegularExpression* whitespace = [NSRegularExpression
+                                               regularExpressionWithPattern:@"(^\\s+|\\s+$)"
+                                               options:NSRegularExpressionCaseInsensitive
+                                               error:nil];
+            name = [whitespace stringByReplacingMatchesInString:name
+                                                 options:0
+                                                   range:NSMakeRange(0, [name length])
+                                            withTemplate:@""];
             NSDictionary* play_record = @{
             @"played": [total contents],
             @"liked": [liked contents],
             @"banned": [banned contents]};
             
             NSDictionary* user_info=@{
-            @"name": [user contents],
+            @"name": name ,
             @"play_record": play_record,
             @"url": userlink,
             @"id":user_id,
+            @"is_pro":@(is_pro),
             };
             
             return user_info ;
@@ -303,7 +330,9 @@ static DMDoubanAuthHelper* sharedHelper;
             // 登陆失败
             NSError *error = [NSError errorWithDomain:@"DM Auth Error" code:-2
                                              userInfo:[obj valueForKey:@"err_msg"]];
-            //[DMErrorLog logErrorWith:self method:_cmd andError:error];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isPro"];
+            [[NSUserDefaults standardUserDefaults] setInteger:64 forKey:@"musicQuality"];
+
             return error;
         }
     }

@@ -343,20 +343,6 @@
     }
 }
 
--(IBAction)musicQuality:(id)sender
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger selected = [sender indexOfSelectedItem];
-    
-    if (selected == 0)
-        [defaults setInteger:64 forKey:@"musicQuality"];
-    else if (selected == 1)
-        [defaults setInteger:128 forKey:@"musicQuality"];
-    else
-        [defaults setInteger:192 forKey:@"musicQuality"];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"diumooQualityChanged" object:nil];
-}
 
 -(IBAction)donation:(id)sender
 {

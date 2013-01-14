@@ -51,6 +51,7 @@ typedef enum{
 //self methods
 -(void) fireToPlayDefault;
 -(void) stopForExit;
+-(void)qualityChanged;
 
 //methods in DMPlayableCapsuleDelegate
 -(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long) state;

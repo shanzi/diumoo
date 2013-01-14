@@ -51,6 +51,7 @@
                                                 selector:@selector(qualityChanged)
                                                     name:@"diumooQualityChanged"
                                                   object:nil];
+        
     }
     return self;
 }
@@ -667,10 +668,6 @@
     
     if (playingCapsule) {
         [playingCapsule pause];
-    }
-    else {
-        pauseType = PAUSE_PASS;
-        [self startToPlay:nil];
     }
 }
 

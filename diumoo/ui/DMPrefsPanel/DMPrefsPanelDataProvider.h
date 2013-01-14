@@ -85,7 +85,6 @@
 -(IBAction)logoutAction:(id)sender;
 -(IBAction)showPlayRecord:(id)sender;
 -(IBAction)installBrowserPlugins:(id)sender;
--(IBAction)musicQuality:(id)sender;
 -(IBAction)donation:(id)sender;
 
 @end
