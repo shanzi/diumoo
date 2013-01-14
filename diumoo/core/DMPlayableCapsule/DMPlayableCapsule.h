@@ -12,10 +12,8 @@
 //  Playable State
 
 #import <Foundation/Foundation.h>
-#import <QTKit/QTKit.h>
-
 #import <IOKit/pwr_mgt/IOPMLib.h>
-
+#import <AVFoundation/AVFoundation.h>
 #import "DMPlayableCapsuleDelegate.h"
 
 typedef enum{
@@ -40,16 +38,18 @@ typedef enum{
     NSTimer *timer;
     NSImage *picture;
     float volume;
+    float duration;
     
     IOPMAssertionID idleSleepAssertionID;
 }
 
-@property long loadState;
 @property CapsulePlayState playState;
 
 @property BOOL like;
 @property float length;
 @property float rating_avg;
+
+@property (nonatomic,assign) double currentTime;
 
 @property(nonatomic,copy,readonly) NSString* aid;
 @property(nonatomic,copy,readonly) NSString* sid;
@@ -67,12 +67,12 @@ typedef enum{
 
 @property id<DMPlayableCapsuleDelegate> delegate;
 
-@property QTMovie* movie;
+@property AVPlayer* music;
 
 +(id) playableCapsuleWithDictionary:(NSDictionary*)dic;
 -(id) initWithDictionary:(NSDictionary*) dic;
 
--(BOOL) createNewMovie;
+-(void) createNewMovie;
 -(void) invalidateMovie;
 
 -(void) play;

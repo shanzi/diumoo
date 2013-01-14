@@ -97,7 +97,6 @@
 
 -(void) startToPlay:(DMPlayableCapsule*)aSong
 {
-    [playingCapsule invalidateMovie];
     [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"start to play %@",aSong]];
     
     if(aSong == nil){
@@ -121,8 +120,8 @@
             id waitcapsule = [fetcher getOnePlayableCapsule];
             if(waitcapsule){
                 [waitcapsule setDelegate:self];
-                if([waitcapsule createNewMovie])
-                    [waitPlaylist addObject:waitcapsule];
+                [waitcapsule createNewMovie];
+                [waitPlaylist addObject:waitcapsule];
             }
         }
         else{
@@ -146,16 +145,7 @@
         // 指定了要播放的歌曲
         [aSong setDelegate:self];
         playingCapsule = aSong;
-        if(playingCapsule.loadState < 0 && ![playingCapsule createNewMovie]){
-            DMLog(@"歌曲加载失败");
-            //歌曲加载失败，且重新加载也失败，尝试获取此歌曲的连接
-            playingCapsule = nil;
-//            [fetcher fetchPlaylistFromChannel:channel
-//                                     withType:kFetchPlaylistTypeNew
-//                                          sid:nil
-//                               startAttribute:[aSong startAttributeWithChannel:channel]];
-        }
-
+        [playingCapsule createNewMovie];
     }
     
     if(playingCapsule)
@@ -257,35 +247,22 @@
 
 -(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long)state
 {
-    
-    //NSLog(@"Capsule %@ state changed to %ld, playingCapsule? %d; rate = %lf",capsule,state,(capsule == playingCapsule),capsule.movie.rate);
-    if (state >= QTMovieLoadStatePlayable && state < QTMovieLoadStateComplete) {
+    if (state == AVPlayerStatusReadyToPlay) {
         if ([capsule picture] == nil) {
             [capsule prepareCoverWithCallbackBlock:^(NSImage *image){
                 [capsule setPicture:image];
             }];
         }
 
-        if (capsule == playingCapsule && (playingCapsule.movie.rate == 0.0)){
+        if (capsule == playingCapsule && (playingCapsule.music.rate == 0.f)){
             [playingCapsule play];
         }
         
-        if ((state == QTMovieLoadStatePlayable) && (capsule == playingCapsule) && (playingCapsule.movie.rate == 1.0)) {
-            [self startToPlay:waitingCapsule];
-            waitingCapsule=nil;
-        }
-    }
-    else if (state == QTMovieLoadStateComplete && specialWaitList == nil){
-        /*float datasize = [capsule.movie.movieAttributes[QTMovieDataSizeAttribute] floatValue]/1000*8;
-        float duration = capsule.movie.duration.timeValue/capsule.movie.duration.timeScale;
-        
-        DMLog(@"<%@> load complate, datasize: %lf , duration: %lf , bitrate: %lf",capsule.title,datasize,duration,datasize/duration);*/
-        
         // 在这里执行一些缓冲歌曲的操作
-        NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
+        /*NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
         
-        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT && state == QTMovieLoadStateComplete) {
+        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
             DMPlayableCapsule* waitsong = [fetcher getOnePlayableCapsule];
             if(waitsong==nil){
                 [fetcher fetchPlaylistFromChannel:channel
@@ -295,14 +272,14 @@
             }
             else{
                 [waitsong setDelegate:self];
-                if([waitsong createNewMovie])
-                    [waitPlaylist addObject:waitsong];
+                [waitsong createNewMovie];
+                [waitPlaylist addObject:waitsong];
             }
-        }
+        }*/
     }
-    else if(state < QTMovieLoadStateLoaded){
+    else {
         DMLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",capsule,state,capsule.playState);
-        if(capsule == playingCapsule && capsule.playState == PLAYING)
+        /*if(capsule == playingCapsule && capsule.playState == PLAYING)
         {
             // 当前歌曲加载失败
             // 做些事情
@@ -312,7 +289,7 @@
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
             [waitPlaylist removeObject:capsule];
-        }
+        }*/
     }
 }
 
@@ -366,7 +343,7 @@
 
 -(void) playOrPause
 {
-    if (playingCapsule.movie.rate > 0)
+    if (playingCapsule.music.rate > 0.f)
     {
         if (pauseType) return;
         pauseType=PAUSE_PAUSE;
@@ -379,7 +356,8 @@
 
 -(void) skip
 {
-    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) return;
+    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType))
+        return;
     
     // ping 豆瓣，将skip操作记录下来
     [fetcher fetchPlaylistFromChannel:channel

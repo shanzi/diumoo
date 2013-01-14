@@ -13,15 +13,19 @@
 #import <math.h>
 #import "DMPlayableCapsule.h"
 
-static NSInteger errorcount=0;
+@interface DMPlayableCapsule()
+
+-(double) getDuration;
+
+@end
 
 @implementation DMPlayableCapsule
 
-@synthesize loadState,playState;
+@synthesize playState,currentTime;
 @synthesize like,length,rating_avg;
 @synthesize aid,sid,ssid,subtype,title,artist,albumtitle;
 @synthesize albumLocation,musicLocation,pictureLocation,largePictureLocation;
-@synthesize picture,movie,delegate;
+@synthesize picture,music,delegate;
 
 +(id)playableCapsuleWithDictionary:(NSDictionary *)dic
 {
@@ -36,8 +40,8 @@ static NSInteger errorcount=0;
 -(id)initWithDictionary:(NSDictionary *)dic
 {
     if (self = [super init]) {
-        loadState = QTMovieLoadStateError;
-
+        
+        duration = 0.f;
         timer = [[NSTimer alloc] init];
 
         aid = [dic valueForKey:@"aid"]; 
@@ -61,89 +65,74 @@ static NSInteger errorcount=0;
     return self;
 }
 
--(BOOL) createNewMovie
+-(void) createNewMovie
 {
-    if(loadState >= QTMovieLoadStatePlaythroughOK) 
-        return YES;
+    if(music.status == AVPlayerStatusReadyToPlay)
+        return;
     
     playState = WAIT_TO_PLAY;
     
-    NSError* err = nil;
-    QTMovie* m = [QTMovie movieWithURL:[NSURL URLWithString:musicLocation] error:&err];
+    music = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:musicLocation]];
+        
+    [music addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionNew context:nil];
+    [music addObserver:self forKeyPath:@"currentItem.status" options:NSKeyValueObservingOptionNew context:nil];
     
-    if(!err)
-    {
-        [self invalidateMovie];
-        movie = m;
-
-        // 添加新的侦听
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(movieRateDidChanged:) 
-                                                     name:QTMovieRateDidChangeNotification 
-                                                   object:movie];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(movieLoadStateDidChanged:) 
-                                                     name:QTMovieLoadStateDidChangeNotification
-                                                   object:movie];
-        return YES;
-    }
-    else{
-        errorcount += 1;
-        if (errorcount>20) {
-            return YES;
-        }
-    }
+    music.muted = true;
+    [music play];
     
-    return NO;
+    return;
 }
 
 -(void) invalidateMovie
 {
-    // 删除notification侦听
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    loadState = -1;
     playState = WAIT_TO_PLAY;
-    [movie invalidate];
+    [music pause];
+    [music removeObserver:self forKeyPath:@"rate"];
+    [music removeObserver:self forKeyPath:@"currentItem.status"];
+    music = nil;
 }
 
--(void) movieRateDidChanged:(NSNotification* )n
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    
-    if (movie.rate > 0) {
-        [self.delegate playableCapsuleDidPlay:self];
+    if ([keyPath isEqualToString:@"currentItem.status"]) {
+        [self.delegate playableCapsule:self loadStateChanged:music.currentItem.status];
     }
-    else if ((movie.duration.timeValue>100) &&
-        (movie.duration.timeValue - movie.currentTime.timeValue) < 100) {
-        [self.delegate playableCapsuleDidEnd:self];
+    if ([keyPath isEqualToString:@"rate"]) {
+        float rate = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
+        
+        if (music.muted == false) {
+            DMLog(@"duration = %f,currentTime = %f",[self getDuration],self.currentTime);
+            if (rate == 1.f) {
+                [self.delegate playableCapsuleDidPlay:self];
+            }
+            else if (([self getDuration] >10) && ([self getDuration] - self.currentTime) < 5) {
+                [self.delegate playableCapsuleDidEnd:self];
+            }
+            else {
+                [self.delegate playableCapsuleDidPause:self];
+            }
+        }
     }
-    else {
-        [self.delegate playableCapsuleDidPause:self];
-    }
-}
-
--(void) movieLoadStateDidChanged:(NSNotification*)n
-{
-    loadState = [[movie attributeForKey:QTMovieLoadStateAttribute] longValue];
-    [self.delegate playableCapsule:self loadStateChanged:loadState];
 }
 
 -(void) play
-{    
-    if(loadState < QTMovieLoadStatePlayable)
+{
+    if(music.status != AVPlayerStatusFailed)
         return;
     
     
     if(playState == WAIT_TO_PLAY)
     {
         playState = PLAYING;
-        [self.movie setVolume: volume];
+        music.volume = volume;
+        self.currentTime = 0.f;
     }
     else
         playState = REPLAYING;
     
     CFStringRef reasonForActivity= CFSTR("Diumoo playing");
 
-    if(movie && movie.rate == 0.0){
+    if(music.rate == 0.f){
         if(timer)
             [timer invalidate];
 
@@ -154,14 +143,14 @@ static NSInteger errorcount=0;
                                       userInfo:kTimerPulseTypePlay
                                        repeats:YES];
         CFRunLoopAddTimer(CFRunLoopGetMain(), (__bridge CFRunLoopTimerRef)timer, kCFRunLoopCommonModes);
-        [movie autoplay];
+        [music play];
         [timer fire];
 
         IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
                                     kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
     }
     else {
-        [movie autoplay];
+        [music play];
         IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep,
                                     kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
         [self.delegate playableCapsuleDidPlay:self];
@@ -171,7 +160,7 @@ static NSInteger errorcount=0;
 
 -(void) pause
 {
-    if(movie && movie.rate == 1.0){
+    if(music.rate == 1.f){
         if(timer)
             [timer invalidate];
         
@@ -197,8 +186,8 @@ static NSInteger errorcount=0;
 
 -(void) replay
 {
-    [movie stop];
-    [movie gotoBeginning];
+    [music pause];
+    self.currentTime = 0.f;
     [self play];
 }
 
@@ -211,34 +200,35 @@ static NSInteger errorcount=0;
 
 -(void) timerPulse:(NSTimer*)t
 {
-    float delta =  volume - movie.volume;
+    float delta =  volume - music.volume;
 
     if([[timer userInfo] isEqual: kTimerPulseTypePlay])
     {
         if(fabsf(delta) < 0.08)
         {
             [self invalidateTimer];
-            movie.volume = volume;
+            music.volume = volume;
         }
         else {
-            movie.volume += delta>0?0.08:-0.08;
+            music.volume += delta>0?0.08:-0.08;
         }
     }
     else if([[timer userInfo] isEqual: kTimerPulseTypePause])
     {
-        if(movie.volume > 0.0 && movie.rate > 0) movie.volume -= 0.08;
+        if(music.volume > 0.0 && music.rate > 0.f)
+            music.volume -= 0.08;
         else {
             [self invalidateTimer];
-            [movie stop];
+            [music pause];
         }
     }
     else {
         if (fabsf(delta) < 0.1) {
             [self invalidateTimer];
-            movie.volume = volume;
+            music.volume = volume;
         }
         else {
-            movie.volume += delta>0?0.08:-0.08;
+            music.volume += delta>0?0.08:-0.08;
         }
     }
 }
@@ -249,11 +239,11 @@ static NSInteger errorcount=0;
     [[NSUserDefaults standardUserDefaults] setValue:@(targetVolume)
                                              forKey:@"volume"];
     
-    if(movie.rate == 0.0)
+    if(music.rate == 0.f)
         return;
     else{
         if(timer) return;
-        movie.volume = volume;
+        music.volume = volume;
         
     }
 }
@@ -292,18 +282,34 @@ static NSInteger errorcount=0;
 
 -(void)synchronousStop
 {
-    if(movie.rate == 0.0)
+    if(music.rate == 0.f)
        return;
     else {
         if(timer)
             [self invalidateTimer];
         
-        while (self.movie.volume>0) {
-            self.movie.volume -= 0.1;
+        while (music.volume>0) {
+            self.music.volume -= 0.1;
             [NSThread sleepForTimeInterval:0.1];
         }
-        [movie invalidate];
     }
 }
+
+- (double)getDuration
+{
+    DMLog(@"currentItem status = %ld",music.currentItem.status);
+    return CMTimeGetSeconds(music.currentItem.asset.duration);
+}
+
+- (double)currentTime
+{
+	return CMTimeGetSeconds([[self music] currentTime]);
+}
+
+- (void)setCurrentTime:(double)time
+{
+	[[self music] seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+}
+
 
 @end

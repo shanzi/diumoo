@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175773FB16A38FB100F6E4C7 /* CoreMedia.framework */; };
+		1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1758595C16A313CA00AAAFBE /* AVFoundation.framework */; };
 		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
@@ -63,7 +65,6 @@
 		F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */; };
 		F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B491580EE1F002B3D61 /* Carbon.framework */; };
 		F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4B1580EE4D002B3D61 /* Security.framework */; };
-		F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4D1580EE68002B3D61 /* QTKit.framework */; };
 		F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4F1580EE92002B3D61 /* QuartzCore.framework */; };
 		F515C16015B6F07500210826 /* MenubarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F515C15D15B6F07500210826 /* MenubarController.m */; };
 		F515C16115B6F07500210826 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F515C15F15B6F07500210826 /* StatusItemView.m */; };
@@ -184,7 +185,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		175773FB16A38FB100F6E4C7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1758595C16A313CA00AAAFBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		178B499216A30B5D00EB642D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
 		3F01021215DE99940076D6C8 /* ban_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_mouseover.png; sourceTree = "<group>"; };
@@ -264,7 +268,6 @@
 		F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
 		F5148B491580EE1F002B3D61 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		F5148B4B1580EE4D002B3D61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		F5148B4D1580EE68002B3D61 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F5148B4F1580EE92002B3D61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F515C15C15B6F07500210826 /* MenubarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenubarController.h; sourceTree = "<group>"; };
 		F515C15D15B6F07500210826 /* MenubarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenubarController.m; sourceTree = "<group>"; };
@@ -419,10 +422,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */,
+				1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */,
 				177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */,
 				F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */,
 				F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */,
-				F5148B4E1580EE68002B3D61 /* QTKit.framework in Frameworks */,
 				F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */,
 				F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */,
 				F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */,
@@ -546,11 +550,13 @@
 		F5148AB11580E58D002B3D61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				175773FB16A38FB100F6E4C7 /* CoreMedia.framework */,
+				1758595C16A313CA00AAAFBE /* AVFoundation.framework */,
+				178B499216A30B5D00EB642D /* AudioToolbox.framework */,
 				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
 				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
 				F5B9DC7A15BD995B004788A9 /* Growl.framework */,
 				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
-				F5148B4D1580EE68002B3D61 /* QTKit.framework */,
 				F5148B4B1580EE4D002B3D61 /* Security.framework */,
 				F5148B491580EE1F002B3D61 /* Carbon.framework */,
 				F5148AB21580E58D002B3D61 /* Cocoa.framework */,

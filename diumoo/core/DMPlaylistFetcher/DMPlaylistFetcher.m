@@ -65,7 +65,7 @@
     NSString* urlString =  [PLAYLIST_FETCH_URL_BASE stringByAppendingFormat:@"?%@", 
                             [dict urlEncodedString]];
     
-    DMLog(@"fetch url : %@",urlString);
+    //DMLog(@"fetch url : %@",urlString);
         
     NSURLRequest* urlrequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
