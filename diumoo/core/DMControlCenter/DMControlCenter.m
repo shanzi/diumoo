@@ -46,12 +46,6 @@
                                                 selector:@selector(playSpecialNotification:)
                                                     name:@"playspecial"
                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter]addObserver:self
-                                                selector:@selector(qualityChanged)
-                                                    name:@"diumooQualityChanged"
-                                                  object:nil];
-        
     }
     return self;
 }
@@ -660,13 +654,13 @@
 
 -(void)qualityChanged
 {
-    if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_NEW_PLAYLIST, (int32_t*)&pauseType))
-        return;
-    
-    [waitPlaylist removeAllObjects];
-    [fetcher clearPlaylist];
-    
     if (playingCapsule) {
+        if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_NEW_PLAYLIST, (int32_t*)&pauseType))
+            return;
+        
+        [waitPlaylist removeAllObjects];
+        [fetcher clearPlaylist];
+        
         [playingCapsule pause];
     }
 }

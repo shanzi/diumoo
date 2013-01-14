@@ -116,9 +116,6 @@
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
-    /*[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
-                                                                   object:@"com.apple.iTunes.player"
-                                                                 userInfo:@{@"Player State": @"Paused"}];*/
     [NSApp setApplicationIconImage:nil];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
                                                                    object:@"com.apple.iTunes.player"

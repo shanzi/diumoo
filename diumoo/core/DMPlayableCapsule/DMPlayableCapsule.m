@@ -40,10 +40,9 @@
 -(id)initWithDictionary:(NSDictionary *)dic
 {
     if (self = [super init]) {
-        
         duration = 0.f;
         timer = [[NSTimer alloc] init];
-
+        
         aid = [dic valueForKey:@"aid"]; 
         sid = [dic valueForKey:@"sid"];
         ssid = [dic valueForKey:@"ssid"];
@@ -95,8 +94,6 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    DMLog(@"player = %@,duration = %f,currentTime = %f,volume = %f,rate = %f,keyPath = %@",music,[self getDuration],self.currentTime,music.volume,music.rate,keyPath);
-
     if ([keyPath isEqualToString:@"currentItem.status"]) {
         [self.delegate playableCapsule:self loadStateChanged:music.currentItem.status];
     }
@@ -120,7 +117,6 @@
 {
     if(music.status == AVPlayerStatusUnknown)
         return;
-    
     
     if(playState == WAIT_TO_PLAY)
     {
@@ -151,7 +147,6 @@
                                     kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
     }
     else {
-        [music play];
         IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep,
                                     kIOPMAssertionLevelOn, reasonForActivity, &idleSleepAssertionID);
         [self.delegate playableCapsuleDidPlay:self];
