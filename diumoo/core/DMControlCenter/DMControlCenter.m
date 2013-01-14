@@ -254,7 +254,7 @@
             }];
         }
 
-        if (capsule == playingCapsule && (playingCapsule.music.volume == 0.f)){
+        if (capsule == playingCapsule && (playingCapsule.playState != PLAYING)){
             [playingCapsule play];
         }
         

@@ -70,15 +70,16 @@
     if(music.status == AVPlayerStatusReadyToPlay)
         return;
     
+    [self invalidateMovie];
+    
     playState = WAIT_TO_PLAY;
     
     music = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:musicLocation]];
         
-    [music addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionNew context:nil];
-    [music addObserver:self forKeyPath:@"currentItem.status" options:NSKeyValueObservingOptionNew context:nil];
+    [music addObserver:self forKeyPath:@"rate" options:0 context:nil];
+    [music addObserver:self forKeyPath:@"currentItem.status" options:0 context:nil];
     
-    music.volume = 0.f;
-    [music play];
+    music.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     
     return;
 }
@@ -94,18 +95,18 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    DMLog(@"player = %@,duration = %f,currentTime = %f,volume = %f,rate = %f,keyPath = %@",music,[self getDuration],self.currentTime,music.volume,music.rate,keyPath);
+
     if ([keyPath isEqualToString:@"currentItem.status"]) {
         [self.delegate playableCapsule:self loadStateChanged:music.currentItem.status];
     }
+    
     if ([keyPath isEqualToString:@"rate"]) {
-        float rate = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
-                
-        if (music.volume != 0.f) {
-            DMLog(@"duration = %f,currentTime = %f",[self getDuration],self.currentTime);
-            if (rate == 1.f) {
+        if (self.playState == PLAYING) {
+            if (music.rate == 1.f) {
                 [self.delegate playableCapsuleDidPlay:self];
             }
-            else if (([self getDuration] >10) && ([self getDuration] - self.currentTime) < 5) {
+            else if (([self getDuration] >30) && ([self getDuration] - self.currentTime) < 1) {
                 [self.delegate playableCapsuleDidEnd:self];
             }
             else {
@@ -126,7 +127,6 @@
         [music pause];
         playState = PLAYING;
         music.volume = volume;
-        self.currentTime = 0.f;
     }
     else
         playState = REPLAYING;
@@ -298,7 +298,6 @@
 
 - (double)getDuration
 {
-    DMLog(@"currentItem status = %ld",music.currentItem.status);
     return CMTimeGetSeconds(music.currentItem.asset.duration);
 }
 
