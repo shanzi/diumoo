@@ -254,12 +254,12 @@
             }];
         }
 
-        if (capsule == playingCapsule && (playingCapsule.music.rate == 0.f)){
+        if (capsule == playingCapsule && (playingCapsule.music.volume == 0.f)){
             [playingCapsule play];
         }
         
         // 在这里执行一些缓冲歌曲的操作
-        /*NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
         NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
         
         if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
@@ -275,7 +275,7 @@
                 [waitsong createNewMovie];
                 [waitPlaylist addObject:waitsong];
             }
-        }*/
+        }
     }
     else {
         DMLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",capsule,state,capsule.playState);

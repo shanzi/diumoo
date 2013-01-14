@@ -77,7 +77,7 @@
     [music addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionNew context:nil];
     [music addObserver:self forKeyPath:@"currentItem.status" options:NSKeyValueObservingOptionNew context:nil];
     
-    music.muted = true;
+    music.volume = 0.f;
     [music play];
     
     return;
@@ -99,8 +99,8 @@
     }
     if ([keyPath isEqualToString:@"rate"]) {
         float rate = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
-        
-        if (music.muted == false) {
+                
+        if (music.volume != 0.f) {
             DMLog(@"duration = %f,currentTime = %f",[self getDuration],self.currentTime);
             if (rate == 1.f) {
                 [self.delegate playableCapsuleDidPlay:self];
@@ -117,12 +117,13 @@
 
 -(void) play
 {
-    if(music.status != AVPlayerStatusFailed)
+    if(music.status == AVPlayerStatusUnknown)
         return;
     
     
     if(playState == WAIT_TO_PLAY)
     {
+        [music pause];
         playState = PLAYING;
         music.volume = volume;
         self.currentTime = 0.f;
