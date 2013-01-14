@@ -48,6 +48,7 @@ typedef enum{
 @property BOOL like;
 @property float length;
 @property float rating_avg;
+@property (nonatomic) float duration;
 
 @property (nonatomic,assign) double currentTime;
 

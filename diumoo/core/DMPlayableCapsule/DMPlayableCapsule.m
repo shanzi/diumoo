@@ -13,16 +13,10 @@
 #import <math.h>
 #import "DMPlayableCapsule.h"
 
-@interface DMPlayableCapsule()
-
--(double) getDuration;
-
-@end
-
 @implementation DMPlayableCapsule
 
 @synthesize playState,currentTime;
-@synthesize like,length,rating_avg;
+@synthesize like,length,rating_avg,duration;
 @synthesize aid,sid,ssid,subtype,title,artist,albumtitle;
 @synthesize albumLocation,musicLocation,pictureLocation,largePictureLocation;
 @synthesize picture,music,delegate;
@@ -103,7 +97,7 @@
             if (music.rate == 1.f) {
                 [self.delegate playableCapsuleDidPlay:self];
             }
-            else if (([self getDuration] >30) && ([self getDuration] - self.currentTime) < 1) {
+            else if ((self.duration >30) && (self.duration - self.currentTime) < 1) {
                 [self.delegate playableCapsuleDidEnd:self];
             }
             else {
@@ -291,7 +285,7 @@
     }
 }
 
-- (double)getDuration
+- (float)duration
 {
     return CMTimeGetSeconds(music.currentItem.asset.duration);
 }
