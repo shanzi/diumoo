@@ -20,10 +20,18 @@
 #define NOTIFICATION_URL @"http://channel.diumoo.net/notification"
 #define GET_SHARE_LINK_URL @"http://share.diumoo.net/"
 
-#define APP_TYPE_PRO 1
-#define APP_TYPE_LITE (1<<1)
-#define APP_TYPE_TEST (1<<2)
-#define CURRENT_APP_TYPE APP_TYPE_PRO
+#define APP_TYPE_STANDALONE (1<<2)
+#define APP_TYPE_MAS (1<<3)
+#define APP_TYPE_TEST (1<<4)
+
+#ifdef DEBUG
+    #define CURRENT_APP_TYPE APP_TYPE_TEST
+#elif STAND_ALONE
+    #define CURRENT_APP_TYPE APP_TYPE_STANDALONE
+#else MAS
+    #define CURRENT_APP_TYPE APP_TYPE_MAS
+#endif
+
 
 static NSOperationQueue* serviceQueue;
 
