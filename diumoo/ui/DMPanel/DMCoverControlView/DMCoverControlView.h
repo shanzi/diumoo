@@ -8,10 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DMCoverSlide.h"
+#import "DMBitrateControlLayer.h"
 
 @interface DMCoverControlView : NSButton
 {
+    CALayer* mainLayer;
     DMCoverSlide* slide;
+    DMBitrateControlLayer* bitratelayer;
 }
 @property(readonly)DMCoverSlide* slide;
 

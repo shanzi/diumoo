@@ -139,6 +139,13 @@
 		F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */; };
 		F5BDCA181635A18C0073B689 /* search_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BDCA161635A18C0073B689 /* search_mouseover.png */; };
 		F5BDCA191635A18C0073B689 /* search_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BDCA171635A18C0073B689 /* search_mouseover@2x.png */; };
+		F5D25DC916A998E800ED70CC /* 64kbps.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D25DC316A998E800ED70CC /* 64kbps.png */; };
+		F5D25DCA16A998E800ED70CC /* 64kbps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D25DC416A998E800ED70CC /* 64kbps@2x.png */; };
+		F5D25DCB16A998E800ED70CC /* 128kbps.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D25DC516A998E800ED70CC /* 128kbps.png */; };
+		F5D25DCC16A998E800ED70CC /* 128kbps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D25DC616A998E800ED70CC /* 128kbps@2x.png */; };
+		F5D25DCD16A998E800ED70CC /* 192kbps.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D25DC716A998E800ED70CC /* 192kbps.png */; };
+		F5D25DCE16A998E800ED70CC /* 192kbps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D25DC816A998E800ED70CC /* 192kbps@2x.png */; };
+		F5D25DD216A999A700ED70CC /* DMBitrateControlLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D25DD116A999A700ED70CC /* DMBitrateControlLayer.m */; };
 		F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D362FF15A1F0EF003A40B2 /* DMDocument.m */; };
 		F5D3631F15A1F0EF003A40B2 /* DMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630315A1F0EF003A40B2 /* DMDetailViewController.m */; };
 		F5D3632115A1F0EF003A40B2 /* DMDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */; };
@@ -361,6 +368,14 @@
 		F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMVolumeSlideCell.m; path = DMVolumeSlideCell/DMVolumeSlideCell.m; sourceTree = "<group>"; };
 		F5BDCA161635A18C0073B689 /* search_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_mouseover.png; sourceTree = "<group>"; };
 		F5BDCA171635A18C0073B689 /* search_mouseover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_mouseover@2x.png"; sourceTree = "<group>"; };
+		F5D25DC316A998E800ED70CC /* 64kbps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64kbps.png; sourceTree = "<group>"; };
+		F5D25DC416A998E800ED70CC /* 64kbps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "64kbps@2x.png"; sourceTree = "<group>"; };
+		F5D25DC516A998E800ED70CC /* 128kbps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128kbps.png; sourceTree = "<group>"; };
+		F5D25DC616A998E800ED70CC /* 128kbps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "128kbps@2x.png"; sourceTree = "<group>"; };
+		F5D25DC716A998E800ED70CC /* 192kbps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 192kbps.png; sourceTree = "<group>"; };
+		F5D25DC816A998E800ED70CC /* 192kbps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "192kbps@2x.png"; sourceTree = "<group>"; };
+		F5D25DD016A999A700ED70CC /* DMBitrateControlLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMBitrateControlLayer.h; sourceTree = "<group>"; };
+		F5D25DD116A999A700ED70CC /* DMBitrateControlLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMBitrateControlLayer.m; sourceTree = "<group>"; };
 		F5D362FE15A1F0EF003A40B2 /* DMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDocument.h; sourceTree = "<group>"; };
 		F5D362FF15A1F0EF003A40B2 /* DMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDocument.m; sourceTree = "<group>"; };
 		F5D3630215A1F0EF003A40B2 /* DMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDetailViewController.h; sourceTree = "<group>"; };
@@ -474,6 +489,7 @@
 				3F50FC4115DB4981000E5147 /* DMButton */,
 				F5BB89F01597447F0017E6FE /* DMVolumeSlideCell */,
 				F5ECCBE9158CC71600512F6A /* DMPopUpButtonCell */,
+				F5D25DCF16A999A700ED70CC /* DMBitrateControlLayer */,
 				F501B3AE15877062001C6158 /* DMCoverControlView */,
 				F501B3B115877062001C6158 /* DMCoverSlide */,
 				F501B3BA1587708F001C6158 /* DMPanelWindowController.h */,
@@ -836,6 +852,7 @@
 		F5AACEF4159C9449003DA427 /* MainPanel */ = {
 			isa = PBXGroup;
 			children = (
+				F5D25DC216A998D600ED70CC /* bitrate */,
 				F5BA9A9C16A6A7940007AB52 /* pro_icon.png */,
 				F5BA9A9D16A6A7940007AB52 /* pro_icon@2x.png */,
 				F5BDCA161635A18C0073B689 /* search_mouseover.png */,
@@ -891,6 +908,28 @@
 				F5BB89F3159744B80017E6FE /* DMVolumeSlideCell.m */,
 			);
 			name = DMVolumeSlideCell;
+			sourceTree = "<group>";
+		};
+		F5D25DC216A998D600ED70CC /* bitrate */ = {
+			isa = PBXGroup;
+			children = (
+				F5D25DC316A998E800ED70CC /* 64kbps.png */,
+				F5D25DC416A998E800ED70CC /* 64kbps@2x.png */,
+				F5D25DC516A998E800ED70CC /* 128kbps.png */,
+				F5D25DC616A998E800ED70CC /* 128kbps@2x.png */,
+				F5D25DC716A998E800ED70CC /* 192kbps.png */,
+				F5D25DC816A998E800ED70CC /* 192kbps@2x.png */,
+			);
+			name = bitrate;
+			sourceTree = "<group>";
+		};
+		F5D25DCF16A999A700ED70CC /* DMBitrateControlLayer */ = {
+			isa = PBXGroup;
+			children = (
+				F5D25DD016A999A700ED70CC /* DMBitrateControlLayer.h */,
+				F5D25DD116A999A700ED70CC /* DMBitrateControlLayer.m */,
+			);
+			path = DMBitrateControlLayer;
 			sourceTree = "<group>";
 		};
 		F5D362FD15A1F0EF003A40B2 /* DMDocument */ = {
@@ -1206,6 +1245,12 @@
 				F58C35121699AB3900BC588B /* README.md in Resources */,
 				F5BA9A9E16A6A7940007AB52 /* pro_icon.png in Resources */,
 				F5BA9A9F16A6A7940007AB52 /* pro_icon@2x.png in Resources */,
+				F5D25DC916A998E800ED70CC /* 64kbps.png in Resources */,
+				F5D25DCA16A998E800ED70CC /* 64kbps@2x.png in Resources */,
+				F5D25DCB16A998E800ED70CC /* 128kbps.png in Resources */,
+				F5D25DCC16A998E800ED70CC /* 128kbps@2x.png in Resources */,
+				F5D25DCD16A998E800ED70CC /* 192kbps.png in Resources */,
+				F5D25DCE16A998E800ED70CC /* 192kbps@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,6 +1329,7 @@
 				F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */,
 				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
 				177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */,
+				F5D25DD216A999A700ED70CC /* DMBitrateControlLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
