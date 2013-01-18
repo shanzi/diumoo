@@ -67,6 +67,6 @@ typedef enum{
 -(void)qualityChanged;
 
 //methods in DMPlayableItemDelegate
--(void)playableItem:(id)item loadStateChanged:(long)state;
+-(void)playableItem:(DMPlayableItem *)item loadStateChanged:(long)state;
 
 @end

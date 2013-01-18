@@ -27,7 +27,6 @@
 - (void)pause;
 - (void)replay;
 - (void)invalidateTimer;
-- (void)synchronousStop;
 
 @end
 
@@ -66,6 +65,10 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma -
 
@@ -97,7 +100,13 @@
 {
     pauseType = PAUSE_EXIT;
     if (musicPlayer.rate != 0.f) {
-        [self synchronousStop];
+        if (timer != nil) {
+            [self invalidateTimer];
+        }
+        while (musicPlayer.volume > 0) {
+            musicPlayer.volume -= 0.1;
+            [NSThread sleepForTimeInterval:0.1];
+        }
     }
     [musicPlayer removeObserver:self forKeyPath:@"rate"];
     [notificationCenter clearNotifications];
@@ -105,12 +114,11 @@
 
 -(void) startToPlay:(DMPlayableItem*)aSong
 {
-    [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"start to play %@",aSong]];
+    [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"start to play %@",aSong.musicInfo[@"title"]]];
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
-        if ([specialWaitList count]) {
-            playingItem = nil;
+        if ([specialWaitList count] > 0) {
             [self fireToPlay:specialWaitList[0]];
             [specialWaitList removeObjectAtIndex:0];
             return;
@@ -118,18 +126,12 @@
         else {
             [diumooPanel toggleSpecialWithDictionary:nil];
         }
-        if ([waitPlaylist count]>0) {
+
+        if ([waitPlaylist count] > 0) {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
             playingItem = [waitPlaylist objectAtIndex:0];
+            playingItem.delegate = self;
             [waitPlaylist removeObject:playingItem];
-            [playingItem setDelegate:self];
-            
-            // 再从播放列表里抓取一个歌曲出来放到缓冲列表里
-            waitingItem = [fetcher getOnePlayableItem];
-            if(waitingItem != nil){
-                [waitingItem setDelegate:self];
-                [waitPlaylist addObject:waitingItem];
-            }
         }
         else{
             // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
@@ -143,18 +145,19 @@
                                          startAttribute:nil];
             }
             else {
-                [playingItem setDelegate:self];
+                playingItem.delegate = self;
             }
         }
     }
     else {
         // 指定了要播放的歌曲
-        [aSong setDelegate:self];
+        aSong.delegate = self;
         playingItem = aSong;
     }
     
     if(playingItem)
     {
+        [musicPlayer replaceCurrentItemWithPlayerItem:playingItem];
         [self play];
         [playingItem prepareCoverWithCallbackBlock:^(NSImage *image) {
             [diumooPanel setRated:playingItem.like];
@@ -164,7 +167,6 @@
         }];
         
     }
-        
     pauseType = PAUSE_PASS;
 }
 
@@ -183,13 +185,15 @@
 -(void) playableItemDidPause:(id)item
 {
     [diumooPanel setPlaying:NO];
+    if (timer != nil) {
+        [timer invalidate];
+    }
 
     if(pauseType == PAUSE_SKIP)
     {
         // 跳过当前歌曲
-        if (waitingItem) {
+        if (waitingItem != nil) {
             [self startToPlay:waitingItem];
-            waitingItem = nil;
         }
         else {
             [self startToPlay:nil];
@@ -218,16 +222,17 @@
     {
         DMLog(@"User Paused");
     }
-    else{
-        [self skip];
-    }
-    
+        
     pauseType = PAUSE_PASS;
 }
 
 -(void) playableItemDidEnd:(id)item
 {
     [diumooPanel setPlaying:NO];
+    
+    if (timer != nil) {
+        [timer invalidate];
+    }
     
     if (item == playingItem) {
         if( playingItem.playState == PLAYING_AND_WILL_REPLAY)
@@ -248,16 +253,16 @@
     pauseType = PAUSE_PASS;
 }
 
-- (void)playableItem:(id)item loadStateChanged:(long)state
+- (void)playableItem:(DMPlayableItem *)item loadStateChanged:(long)state
 {
-    if (state == AVPlayerStatusReadyToPlay) {
-        if ([item cover] == nil) {
+    [DMErrorLog logStateWith:item.musicInfo[@"title"] fromMethod:_cmd andString:[NSString stringWithFormat:@"load status changed to %ld",state]];
+    if (state == AVPlayerItemStatusReadyToPlay) {
+        if (item.cover == nil) {
             [item prepareCoverWithCallbackBlock:^(NSImage *image){
-                [item setCover:image];
+                item.cover = image;
             }];
         }
-
-        if (item == playingItem && (playingItem.playState != PLAYING)){
+        if (item == playingItem && (item.playState != PLAYING)){
             [musicPlayer play];
         }
         
@@ -272,11 +277,10 @@
                                          withType:kFetchPlaylistTypePlaying
                                               sid:playingItem.musicInfo[@"sid"]
                                    startAttribute:nil];
+                waitsong = [fetcher getOnePlayableItem];
             }
-            else{
-                [waitsong setDelegate:self];
-                [waitPlaylist addObject:waitsong];
-            }
+            waitsong.delegate = self;
+            [waitPlaylist addObject:waitsong];
         }
     }
     else if (state == AVPlayerItemStatusFailed){
@@ -286,7 +290,6 @@
             // 当前歌曲加载失败
             // 做些事情
             [self startToPlay:waitingItem];
-            waitingItem = nil;
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
@@ -493,7 +496,7 @@
     @"i": playingItem.musicInfo[@"largePictureLocation"]
     };
     
-    NSString* shareAttribute = [playingItem startAttributeWithChannel:channel];
+    NSString* shareAttribute = [playingItem shareAttributeWithChannel:channel];
     
     
     [DMService shareLinkWithDictionary:sharedict
@@ -685,9 +688,7 @@
         [musicPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
         musicPlayer.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     }
-    else {
-        [musicPlayer replaceCurrentItemWithPlayerItem:playingItem];
-    }
+    
     if (musicPlayer.currentItem.status == AVPlayerItemStatusFailed) {
         return;
     }
@@ -750,23 +751,6 @@
     [musicPlayer pause];
     [self setCurrentTime:0.f];
     [musicPlayer play];
-}
-
-- (void)synchronousStop
-{
-    if (musicPlayer.rate == 0.f) {
-        return;
-    }
-    else {
-        if (timer != nil) {
-            [self invalidateTimer];
-        }
-        while (musicPlayer.volume > 0) {
-            musicPlayer.volume -= 0.1;
-            [NSThread sleepForTimeInterval:0.1];
-        }
-        [playingItem invalidateItem];
-    }
 }
 
 -(void) invalidateTimer

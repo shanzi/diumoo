@@ -45,6 +45,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    self.delegate = nil;
+    [self invalidateItem];
+}
+
 -(void) invalidateItem
 {
     playState = WAIT_TO_PLAY;
@@ -54,11 +60,12 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"status"]) {
+        DMLog(@"%@ status changed to %ld",musicInfo[@"title"],self.status);
         [self.delegate playableItem:self loadStateChanged:self.status];
     }
 }
 
--(NSString*) startAttributeWithChannel:(NSString *)channel
+-(NSString*) shareAttributeWithChannel:(NSString *)channel
 {
     if(musicInfo[@"ssid"] == nil)
         return nil;

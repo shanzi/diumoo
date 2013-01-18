@@ -20,9 +20,10 @@ typedef enum{
     REPLAYED
 }ItemPlayState;
 
+@class DMPlayableItem;
 @protocol DMPlayableItemDelegate <NSObject>
 
--(void) playableItem:(id)item loadStateChanged:(long)state;
+-(void) playableItem:(DMPlayableItem *)item loadStateChanged:(long)state;
 
 @end
 
@@ -36,8 +37,9 @@ typedef enum{
     BOOL like;
 }
 
-@property (readonly) float duration;
 @property BOOL like;
+
+@property (readonly) float duration;
 @property (readonly) NSDictionary *musicInfo;
 @property (retain) NSImage *cover;
 @property ItemPlayState playState;
@@ -50,6 +52,8 @@ typedef enum{
 
 -(void) prepareCoverWithCallbackBlock: (void (^)(NSImage*))block;
 
--(NSString*) startAttributeWithChannel:(NSString*)channel;
+-(NSString*) shareAttributeWithChannel:(NSString*)channel;
 
 @end
+
+
