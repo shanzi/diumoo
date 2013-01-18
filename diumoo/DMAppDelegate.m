@@ -72,7 +72,7 @@
             new = [newvalue integerValue];
         }
         if (new == NSOnState) {
-            [NSApp setApplicationIconImage:center.playingCapsule.picture];
+            [NSApp setApplicationIconImage:center.playingItem.cover];
         }
         else {
             [NSApp setApplicationIconImage:nil];

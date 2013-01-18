@@ -11,12 +11,24 @@
 #define kPauseOperationTypeFetchNewPlaylist @"newplaylist"
 #define kPauseOperationTypePlaySpecial @"special"
 
+#define kTimerPulseTypePlay @"kTimerPulseTypePlay"
+#define kTimerPulseTypePause @"kTimerPulseTypePause"
+#define KTimerPulseTypeVolumeChange @"kTimerPulseTypeVolumeChange"
+
 #import <Foundation/Foundation.h>
-#import "DMPlayableCapsule.h"
+#import <AVFoundation/AVFoundation.h>
+#import <IOKit/pwr_mgt/IOPMLib.h>
+
+#import "DMPlayableItem.h"
 #import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
 #import "DMNotificationCenter.h"
+#import "NSDictionary+UrlEncoding.h"
+#import "DMService.h"
+#import "DMSearchPanelController.h"
+
+
 
 typedef enum{
     PAUSE_PASS = 0,
@@ -27,12 +39,12 @@ typedef enum{
     PAUSE_EXIT,
 } PAUSE_OPERATION_TYPE;
 
-@interface DMControlCenter : NSObject<DMPlayableCapsuleDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
+@interface DMControlCenter : NSObject<DMPlayableItemDelegate,DMPlaylistFetcherDeleate,DMPanelWindowDelegate,DMPlayRecordHandlerDelegate>
 {
     NSString *channel;
     
-    DMPlayableCapsule *__strong playingCapsule;
-    DMPlayableCapsule *waitingCapsule;
+    DMPlayableItem *__strong playingItem;
+    DMPlayableItem *__strong waitingItem;
     DMPlaylistFetcher *fetcher;
     NSMutableOrderedSet *waitPlaylist;
     
@@ -45,7 +57,8 @@ typedef enum{
     BOOL canPlaySpecial;
 }
 
-@property DMPlayableCapsule *playingCapsule;
+@property (strong) DMPlayableItem *playingItem;
+@property (strong) DMPlayableItem *waitingItem;
 @property DMPanelWindowController *diumooPanel;
 
 //self methods
@@ -53,11 +66,7 @@ typedef enum{
 -(void) stopForExit;
 -(void)qualityChanged;
 
-//methods in DMPlayableCapsuleDelegate
--(void) playableCapsule:(DMPlayableCapsule *)capsule loadStateChanged:(long) state;
--(void) playableCapsuleDidPlay:(id)capsule;
--(void) playableCapsuleWillPause:(id)capsule;
--(void) playableCapsuleDidPause:(id)capsule;
--(void) playableCapsuleDidEnd:(id)capsule;
+//methods in DMPlayableItemDelegate
+-(void)playableItem:(id)item loadStateChanged:(long)state;
 
 @end

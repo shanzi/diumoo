@@ -234,18 +234,18 @@ DMPanelWindowController *sharedWindow;
     }
 }
 
--(void) setPlayingCapsule:(DMPlayableCapsule *)capsule
+-(void) setPlayingItem:(DMPlayableItem *)item
 {
     if (![loadingIndicator isHidden]) {
         [self unlockUIWithError:NO];
     }
 
-    [capsule prepareCoverWithCallbackBlock:^(NSImage *image) {
+    [item prepareCoverWithCallbackBlock:^(NSImage *image) {
             [coverView setAlbumImage:image];
     }];
 
     
-    [coverView setPlayingInfo:capsule.title :capsule.artist :capsule.albumtitle];
+    [coverView setPlayingInfo:item.musicInfo[@"title"] :item.musicInfo[@"artist"] :item.musicInfo[@"albumtitle"]];
 }
 
 -(void) showAlbumWindow:(id)sender

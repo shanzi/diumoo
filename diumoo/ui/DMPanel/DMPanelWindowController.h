@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DMCoverControlView.h"
-#import "DMPlayableCapsule.h"
+#import "DMPlayableItem.h"
 #import "DMPopUpMenuController.h"
 #import "MenubarController.h"
 #import "DMButton.h"
@@ -76,7 +76,7 @@ typedef enum{
 -(void) setRated:(BOOL)rated;
 -(void) countRated:(NSInteger)count;
 -(void) setPlaying:(BOOL) playing;
--(void) setPlayingCapsule:(DMPlayableCapsule*) capsule;
+-(void) setPlayingItem:(DMPlayableItem*) item;
 -(void) playDefaultChannel;
 
 -(NSString*) switchToDefaultChannel;

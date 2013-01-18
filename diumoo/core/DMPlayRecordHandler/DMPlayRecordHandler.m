@@ -7,7 +7,7 @@
 //
 
 #import "DMPlayRecordHandler.h"
-#import "DMPlayableCapsule.h"
+#import "DMPlayableItem.h"
 #import "DMService.h"
 #import "DMErrorLog.h"
 
@@ -89,14 +89,13 @@ static DMPlayRecordHandler* recordHandler;
     return nil;
 }
 
--(NSManagedObject*) addRecordWithCapsule:(DMPlayableCapsule *)capsule
+-(NSManagedObject*) addRecordWithItem:(DMPlayableItem *)item
 {
-    if (capsule.ssid == nil) {
+    if (item.musicInfo[@"ssid"] == nil) {
         return nil;
     }
     
-    NSString* sid = capsule.sid;
-    NSManagedObject* song = [self songWithSid:sid];
+    NSManagedObject* song = [self songWithSid:item.musicInfo[@"sid"]];
     
     if (song) {
         [song setValue:[NSDate date] forKey:@"date"];
@@ -107,16 +106,15 @@ static DMPlayRecordHandler* recordHandler;
         
         song = [NSEntityDescription insertNewObjectForEntityForName:@"Song"
                                                               inManagedObjectContext:context];
-        [song setValue:capsule.sid forKey:@"sid"];
-        [song setValue:capsule.ssid forKey:@"ssid"];
-        [song setValue:capsule.aid forKey:@"aid"];
-        [song setValue:capsule.title forKey:@"title"];
-        [song setValue:capsule.albumtitle forKey:@"albumtitle"];
-        [song setValue:capsule.artist forKey:@"artist"];
-        [song setValue:capsule.largePictureLocation forKey:@"picture"];
-        [song setValue:capsule.albumLocation forKey:@"url"];
-        [song setValue:@(capsule.rating_avg)
-                forKey:@"rating_avg"];
+        [song setValue:item.musicInfo[@"sid"] forKey:@"sid"];
+        [song setValue:item.musicInfo[@"ssid"] forKey:@"ssid"];
+        [song setValue:item.musicInfo[@"aid"] forKey:@"aid"];
+        [song setValue:item.musicInfo[@"title"] forKey:@"title"];
+        [song setValue:item.musicInfo[@"albumtitle"] forKey:@"albumtitle"];
+        [song setValue:item.musicInfo[@"artist"] forKey:@"artist"];
+        [song setValue:item.musicInfo[@"largePictureLocation"] forKey:@"picture"];
+        [song setValue:item.musicInfo[@"albumLocation"] forKey:@"url"];
+        [song setValue:@([item.musicInfo[@"rating_avg"] floatValue]) forKey:@"rating_avg"];
         [song setValue:date forKey:@"date"];
         
         [context save:nil];
@@ -130,7 +128,7 @@ static DMPlayRecordHandler* recordHandler;
                                        error: nil];
     }
     
-    [sid writeToURL:self.recordFileURL atomically:YES encoding:NSASCIIStringEncoding error:nil];
+    [item.musicInfo[@"sid"] writeToURL:self.recordFileURL atomically:YES encoding:NSASCIIStringEncoding error:nil];
     
     return song;
 }

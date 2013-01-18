@@ -115,7 +115,7 @@
                              
                              playlist = [NSMutableArray arrayWithArray:[jresponse valueForKey:@"song"]];
                              [delegate fetchPlaylistSuccessWithStartSong:
-                             [DMPlayableCapsule playableCapsuleWithDictionary:playlist[0]]];
+                             [DMPlayableItem playableItemWithDictionary:playlist[0]]];
                              [playlist removeObjectAtIndex:0];
                          }
                          else {
@@ -244,20 +244,19 @@
     }];
 }
 
-- (DMPlayableCapsule*)getOnePlayableCapsule
+- (DMPlayableItem*)getOnePlayableItem
 {
     if([playlist count]>0){
-        
         NSDictionary *songDict = playlist[0];
         
         if([playlist[0][@"subtype"] isEqual:@"T"]
            && ([[[NSUserDefaults standardUserDefaults] valueForKey:@"filterAds"] integerValue] == NSOnState)){
             [playlist removeObjectAtIndex:0];
-            return [self getOnePlayableCapsule];
+            return [self getOnePlayableItem];
         }
         [playlist removeObjectAtIndex:0];
         
-        return [DMPlayableCapsule playableCapsuleWithDictionary:songDict];
+        return [DMPlayableItem playableItemWithDictionary:songDict];
     }
     else return nil;
 }

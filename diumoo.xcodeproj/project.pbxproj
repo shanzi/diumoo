@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175773FB16A38FB100F6E4C7 /* CoreMedia.framework */; };
 		1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1758595C16A313CA00AAAFBE /* AVFoundation.framework */; };
+		177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 177DE82016A8D6E9009D9117 /* DMPlayableItem.m */; };
 		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
@@ -60,7 +61,6 @@
 		F5148B051580E707002B3D61 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADB1580E707002B3D61 /* HTMLNode.m */; };
 		F5148B061580E707002B3D61 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADD1580E707002B3D61 /* HTMLParser.m */; };
 		F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B221580E904002B3D61 /* DMControlCenter.m */; };
-		F5148B2F1580E904002B3D61 /* DMPlayableCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B251580E904002B3D61 /* DMPlayableCapsule.m */; };
 		F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */; };
 		F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */; };
 		F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B491580EE1F002B3D61 /* Carbon.framework */; };
@@ -189,6 +189,8 @@
 /* Begin PBXFileReference section */
 		175773FB16A38FB100F6E4C7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		1758595C16A313CA00AAAFBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		177DE81F16A8D6E9009D9117 /* DMPlayableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlayableItem.h; sourceTree = "<group>"; };
+		177DE82016A8D6E9009D9117 /* DMPlayableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPlayableItem.m; sourceTree = "<group>"; };
 		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		178B499216A30B5D00EB642D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
@@ -260,9 +262,6 @@
 		F5148ADD1580E707002B3D61 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		F5148B211580E904002B3D61 /* DMControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMControlCenter.h; sourceTree = "<group>"; };
 		F5148B221580E904002B3D61 /* DMControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMControlCenter.m; sourceTree = "<group>"; };
-		F5148B241580E904002B3D61 /* DMPlayableCapsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlayableCapsule.h; sourceTree = "<group>"; };
-		F5148B251580E904002B3D61 /* DMPlayableCapsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPlayableCapsule.m; sourceTree = "<group>"; };
-		F5148B261580E904002B3D61 /* DMPlayableCapsuleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlayableCapsuleDelegate.h; sourceTree = "<group>"; };
 		F5148B281580E904002B3D61 /* DMPlaylistFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlaylistFetcher.h; sourceTree = "<group>"; };
 		F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPlaylistFetcher.m; sourceTree = "<group>"; };
 		F5148B2A1580E904002B3D61 /* DMPlaylistFetcherDeleate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlaylistFetcherDeleate.h; sourceTree = "<group>"; };
@@ -645,7 +644,7 @@
 				F5D3633D15A1F379003A40B2 /* DMPlayRecordHandler */,
 				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
 				F5148B201580E904002B3D61 /* DMControlCenter */,
-				F5148B231580E904002B3D61 /* DMPlayableCapsule */,
+				F5148B231580E904002B3D61 /* DMPlayableItem */,
 				F5148B271580E904002B3D61 /* DMPlaylistFetcher */,
 				F5148B2B1580E904002B3D61 /* DMUtils */,
 			);
@@ -661,13 +660,13 @@
 			path = DMControlCenter;
 			sourceTree = "<group>";
 		};
-		F5148B231580E904002B3D61 /* DMPlayableCapsule */ = {
+		F5148B231580E904002B3D61 /* DMPlayableItem */ = {
 			isa = PBXGroup;
 			children = (
-				F5148B241580E904002B3D61 /* DMPlayableCapsule.h */,
-				F5148B251580E904002B3D61 /* DMPlayableCapsule.m */,
-				F5148B261580E904002B3D61 /* DMPlayableCapsuleDelegate.h */,
+				177DE81F16A8D6E9009D9117 /* DMPlayableItem.h */,
+				177DE82016A8D6E9009D9117 /* DMPlayableItem.m */,
 			);
+			name = DMPlayableItem;
 			path = DMPlayableCapsule;
 			sourceTree = "<group>";
 		};
@@ -1239,7 +1238,6 @@
 				F5148B051580E707002B3D61 /* HTMLNode.m in Sources */,
 				F5148B061580E707002B3D61 /* HTMLParser.m in Sources */,
 				F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */,
-				F5148B2F1580E904002B3D61 /* DMPlayableCapsule.m in Sources */,
 				F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
@@ -1285,6 +1283,7 @@
 				F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */,
 				F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */,
 				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
+				177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@
 -(void) playSongWithSid:(NSString*)sid andSsid:(NSString*)ssid;
 @end
 
-@class DMPlayableCapsule;
+@class DMPlayableItem;
 
 @interface DMPlayRecordHandler : NSObject
 {
@@ -29,7 +29,7 @@
 
 +(DMPlayRecordHandler*) sharedRecordHandler;
 -(NSManagedObject*) songWithSid:(NSString*) sid;
--(NSManagedObject*) addRecordWithCapsule:(DMPlayableCapsule*) capsule;
+-(NSManagedObject*) addRecordWithItem:(DMPlayableItem*) item;
 -(BOOL) addRecordWithDict:(NSDictionary*) dict;
 -(void) open;
 -(void) save;

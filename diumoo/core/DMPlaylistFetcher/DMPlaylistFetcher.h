@@ -15,7 +15,7 @@
 #define kFetchPlaylistTypeBye @"b"
 
 #import <Foundation/Foundation.h>
-#import "DMPlayableCapsule.h"
+#import "DMPlayableItem.h"
 #import "DMPlaylistFetcherDeleate.h"
 
 @interface DMPlaylistFetcher : NSObject
@@ -31,7 +31,7 @@
 -(void) fetchSoundtrackWithSoundtrackId:(NSString*) soundtrack_id callback:(void(^)(BOOL success))callback;
 
 -(void) fetchPlaylistWithDictionary:(NSDictionary*)dict withStartAttribute:(NSString*)startAttr andErrorCount:(NSInteger)count;
--(DMPlayableCapsule*) getOnePlayableCapsule;
+-(DMPlayableItem*) getOnePlayableItem;
 -(void) clearPlaylist;
 -(void) fetchPlaylistForAlbum:(NSString*)cid callback:(void(^)(BOOL success))callback;
 

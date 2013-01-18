@@ -42,40 +42,40 @@
     [[DMPanelWindowController sharedWindowController] togglePanel:nil];
 }
 
--(void) notifyMusicWithCapsule:(DMPlayableCapsule*) capsule
+-(void) notifyMusicWithItem:(DMPlayableItem *)item
 {
     NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
     
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
-        NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",capsule.artist,capsule.albumtitle];
+        NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",item.musicInfo[@"artist"],item.musicInfo[@"albumtitle"]];
         if([[values valueForKey:@"usesGrowlUnderML"] integerValue] ==  NSOffState && NSClassFromString(@"NSUserNotification")) {
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-            notification.title = capsule.title;
+            notification.title = item.musicInfo[@"title"];
             notification.informativeText = detail;
             notification.soundName = nil;
             [center deliverNotification: notification];
         } else {            
-            NSData* data = [capsule.picture TIFFRepresentation];
+            NSData* data = [item.cover TIFFRepresentation];
             
-            [GrowlApplicationBridge notifyWithTitle:capsule.title
+            [GrowlApplicationBridge notifyWithTitle:item.musicInfo[@"title"]
                                         description:detail
                                    notificationName:@"Music"
                                            iconData:data
                                            priority:0
                                            isSticky:NO
-                                       clickContext:capsule.sid];
+                                       clickContext:item.musicInfo[@"sid"]];
         }
     }
     
     if([[values valueForKey:@"useGlobalNotification"] integerValue]==NSOnState){
         NSDictionary* userInfo = @{
         @"Player State" : @"Playing",
-        @"Store URL":capsule.albumLocation,
-        @"Album":capsule.albumtitle,
-        @"Name":capsule.title,
-        @"Artist":capsule.artist
+        @"Store URL":item.musicInfo[@"albumLocation"],
+        @"Album":item.musicInfo[@"albumtitle"],
+        @"Name":item.musicInfo[@"title"],
+        @"Artist":item.musicInfo[@"artist"]
         };
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
                                                                        object:@"com.apple.iTunes.player"
@@ -83,7 +83,7 @@
     }
     
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
-        [NSApp setApplicationIconImage:capsule.picture];
+        [NSApp setApplicationIconImage:item.cover];
     }
 }
 
