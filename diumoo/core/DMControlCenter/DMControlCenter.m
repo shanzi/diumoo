@@ -323,7 +323,7 @@
         if (playingItem) {
             if (OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_SKIP, (int32_t*)&pauseType)) {
                 waitingItem = startsong;
-                [musicPlayer pause];
+                [self pause];
             }
         }
         else {
@@ -419,7 +419,7 @@
     
     
     // 暂停当前歌曲
-    [musicPlayer pause];
+    [self pause];
 }
 
 -(BOOL)channelChangedTo:(NSString *)ch
@@ -435,7 +435,7 @@
     [fetcher clearPlaylist];
     
     if (musicPlayer.rate != 0.f) {
-        [musicPlayer pause];
+        [self pause];
     }
     else {
         pauseType = PAUSE_PASS;
@@ -675,8 +675,9 @@
         
         [waitPlaylist removeAllObjects];
         [fetcher clearPlaylist];
+        [self pause];
+        [notificationCenter notifyBitrate];
         
-        [musicPlayer pause];
     }
 }
 

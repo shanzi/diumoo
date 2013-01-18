@@ -192,10 +192,12 @@ static DMDoubanAuthHelper* sharedHelper;
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:isPro forKey:@"isPro"];
-    if (!isPro) {
+    if (!isPro) 
         [[NSUserDefaults standardUserDefaults] setInteger:64 forKey:@"musicQuality"];
-    }
-    
+    else
+        [[NSUserDefaults standardUserDefaults] setValue:
+         [[NSUserDefaults standardUserDefaults] valueForKey:@"pro_musicQuality"]
+                                                 forKey:@"musicQuality"];
     
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AccountStateChangedNotification 

@@ -81,8 +81,10 @@
     if(bitrate) {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         if ([defaults boolForKey:@"isPro"]) {
-            [defaults setInteger:bitrate
-                          forKey:@"musicQuality"];
+            if ([defaults integerForKey:@"musicQuality"]!=bitrate) {
+                [defaults setInteger:bitrate
+                              forKey:@"musicQuality"];
+            }
         }
         else{
             NSInteger re = NSRunInformationalAlertPanel(NSLocalizedString(@"PRO_NEED_BUY_TITLE", nil),

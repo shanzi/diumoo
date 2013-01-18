@@ -162,3 +162,9 @@
 /* 豆瓣FM PRO 说明 */
 "PRO_NEED_BUY" = "You can only play music of higher bitrate after paid for douban FM Pro. This service is provided by douban and has no relationship with diumoo.\n\nDo you want to know more?" ;
 
+/* 音乐比特率改变 */
+"BITRATE_CHANGED" = "Bitrate of Music Changed";
+
+/* 音乐比特率改变到 */
+"BITRATE_CHANGED_TO_VALUE" = "Current bitrate of music is ";
+

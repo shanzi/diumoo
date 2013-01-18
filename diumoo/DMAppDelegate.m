@@ -89,6 +89,14 @@
         }
     }
     else if([keyPath isEqualToString:@"musicQuality"]){
+        id newvalue = [change valueForKey:@"new"];
+        if ([newvalue respondsToSelector:@selector(integerValue)]) {
+            NSInteger bitrate;
+            if ((bitrate=[newvalue integerValue])>64) {
+                [[NSUserDefaults standardUserDefaults] setInteger:bitrate
+                                                           forKey:@"pro_musicQuality"];
+            }
+        }
         [center qualityChanged];
     }
 }
@@ -139,7 +147,8 @@
                            @"enableLogFile": @(NSOnState),
                              @"useMediaKey": @(NSOnState),
                    @"useGlobalNotification": @(NSOnState),
-                            @"musicQuality": @(64)
+                            @"musicQuality": @(64),
+                        @"pro_musicQuality": @(192)
     };
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:preferences];

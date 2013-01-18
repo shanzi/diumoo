@@ -33,7 +33,7 @@
 
 -(NSDictionary*)registrationDictionaryForGrowl
 {
-    NSArray* array = @[@"Music",@"Account"];
+    NSArray* array = @[@"Music",@"Account",@"Bitrate"];
     return @{GROWL_NOTIFICATIONS_ALL: array,GROWL_NOTIFICATIONS_DEFAULT: array};
 }
 
@@ -85,6 +85,38 @@
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){
         [NSApp setApplicationIconImage:item.cover];
     }
+}
+
+-(void) notifyBitrate
+{
+    NSLog(@"Bitrate changed Notification");
+    NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
+    
+    if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
+    {
+        NSString* title = NSLocalizedString(@"BITRATE_CHANGED", nil);
+        NSString* detail = [NSLocalizedString(@"BITRATE_CHANGED_TO_VALUE", nil)
+                            stringByAppendingFormat:@"%@ Kbps",[values valueForKey:@"musicQuality"]];
+        
+        if([[values valueForKey:@"usesGrowlUnderML"] integerValue] ==  NSOffState && NSClassFromString(@"NSUserNotification")) {
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+            notification.title = title;
+            notification.informativeText = detail;
+            notification.soundName = nil;
+            [center deliverNotification: notification];
+        } else {
+            
+            [GrowlApplicationBridge notifyWithTitle:title
+                                        description:detail
+                                   notificationName:@"Bitrate"
+                                           iconData:[[NSImage imageNamed:@"icon"] TIFFRepresentation]
+                                           priority:0
+                                           isSticky:NO
+                                       clickContext:nil];
+        }
+    }
+
 }
 
 -(void) clearNotifications

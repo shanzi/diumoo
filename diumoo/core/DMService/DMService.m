@@ -26,9 +26,9 @@
 
 #ifdef DEBUG
     #define CURRENT_APP_TYPE APP_TYPE_TEST
-#elif STAND_ALONE
+#elif STAND_ALONEj
     #define CURRENT_APP_TYPE APP_TYPE_STANDALONE
-#else MAS
+#else
     #define CURRENT_APP_TYPE APP_TYPE_MAS
 #endif
 

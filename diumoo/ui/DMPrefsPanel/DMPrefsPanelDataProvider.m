@@ -234,6 +234,7 @@
 -(void) logoutAction:(id)sender
 {
     [[DMDoubanAuthHelper sharedHelper] logoutAndCleanData];
+    [self resetLoginForm];
     [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
 }
 

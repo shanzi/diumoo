@@ -162,3 +162,9 @@
 
 /* 豆瓣FM PRO 说明 */
 "PRO_NEED_BUY" = "您只有在豆瓣购买了豆瓣FM Pro 的用户才能收听更高音质的音乐。\n\n豆瓣FM Pro 服务由豆瓣官方提供，与 diumoo 无直接联系。\n\n您想要打开豆瓣FM Pro的购买页面么？";
+
+/* 音乐比特率改变 */
+"BITRATE_CHANGED" = "音乐比特率改变";
+
+/* 音乐比特率改变到 */
+"BITRATE_CHANGED_TO_VALUE" = "当前音乐的比特率为:";

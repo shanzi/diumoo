@@ -17,6 +17,7 @@
 }
 
 -(void) notifyMusicWithItem:(DMPlayableItem*) item;
+-(void) notifyBitrate;
 -(void) clearNotifications;
 
 @end
