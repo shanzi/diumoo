@@ -79,9 +79,23 @@
         else if(point.x < 17+72*3) bitrate = 192;
     }
     if(bitrate) {
-        [[NSUserDefaults standardUserDefaults]
-         setInteger:bitrate
-         forKey:@"musicQuality"];
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults boolForKey:@"isPro"]) {
+            [defaults setInteger:bitrate
+                          forKey:@"musicQuality"];
+        }
+        else{
+            NSInteger re = NSRunInformationalAlertPanel(NSLocalizedString(@"PRO_NEED_BUY_TITLE", nil),
+                            NSLocalizedString(@"PRO_NEED_BUY", nil),
+                            NSLocalizedString(@"YES", nil),
+                            NSLocalizedString(@"NO", nil),
+                            nil);
+            if (re==NSAlertDefaultReturn) {
+                [[NSWorkspace sharedWorkspace] openURL:
+                 [NSURL URLWithString:@"http://douban.fm/upgrade"]];
+            }
+        }
+
         return YES;
     }
     return NO;

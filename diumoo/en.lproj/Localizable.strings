@@ -156,3 +156,9 @@
 /* 预览 */
 "PREVIEW" = "Preview";
 
+/* 豆瓣FM PRO */
+"PRO_NEED_BUY_TITLE"  = "Douban FM Pro";
+
+/* 豆瓣FM PRO 说明 */
+"PRO_NEED_BUY" = "You can only play music of higher bitrate after paid for douban FM Pro. This service is provided by douban and has no relationship with diumoo.\n\nDo you want to know more?" ;
+
