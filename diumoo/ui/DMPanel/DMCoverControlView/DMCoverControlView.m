@@ -15,6 +15,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        Gestalt(gestaltSystemVersionMajor, &major);
+        Gestalt(gestaltSystemVersionMinor,&minor);
         
         mainLayer = [[CALayer alloc] init];
         
@@ -28,7 +30,13 @@
         [mainLayer addSublayer:slide];
         
         bitratelayer = [[DMBitrateControlLayer alloc] init];
-        bitratelayer.position = CGPointMake(0, frame.size.height);
+        
+        if (minor < 8) {
+            bitratelayer.position = CGPointMake(0, frame.size.height);
+        }
+        else {
+            bitratelayer.position = CGPointMake(0, -50);
+        }
         
         [mainLayer addSublayer:bitratelayer];
         
@@ -52,14 +60,23 @@
 -(void) mouseEntered:(NSEvent *)event
 {
     [slide setOpacity:0.6];
-    bitratelayer.position = CGPointMake(0, self.frame.size.height-30);
-    
+    if (minor < 8) {
+        bitratelayer.position = CGPointMake(0, self.frame.size.height-30);
+    }
+    else {
+        bitratelayer.position = CGPointMake(0, -20);
+    }    
 }
 
 -(void) mouseExited:(NSEvent *)event
 {
     [slide setOpacity:1.0];
-    bitratelayer.position = CGPointMake(0, self.frame.size.height);
+    if (minor < 8) {
+        bitratelayer.position = CGPointMake(0, self.frame.size.height);
+    }
+    else {
+        bitratelayer.position = CGPointMake(0, -50);
+    }
 }
 
 -(void) mouseDown:(NSEvent *)theEvent
