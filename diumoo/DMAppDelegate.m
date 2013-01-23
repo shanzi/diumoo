@@ -31,29 +31,31 @@
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"showDockIcon"
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               options:(NSKeyValueObservingOptionNew)
                                                context:nil];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"displayAlbumCoverOnDock"
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               options:(NSKeyValueObservingOptionNew)
                                                context:nil];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"enableLogFile"
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               options:(NSKeyValueObservingOptionNew)
                                                context:nil];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"useMediaKey"
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               options:(NSKeyValueObservingOptionNew)
                                                context:nil];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"musicQuality"
-                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               options:(NSKeyValueObservingOptionNew)
                                                context:nil];
 
+    
+    
     [self performSelectorInBackground:@selector(startPlayInBackground) withObject:nil];
     
     [self handleDockIconDisplayWithChange:nil];

@@ -61,6 +61,7 @@
                                                 selector:@selector(playSpecialNotification:)
                                                     name:@"playspecial"
                                                   object:nil];
+
     }
     return self;
 }
@@ -158,6 +159,7 @@
     if(playingItem)
     {
         [musicPlayer replaceCurrentItemWithPlayerItem:playingItem];
+        
         [self play];
         [playingItem prepareCoverWithCallbackBlock:^(NSImage *image) {
             [diumooPanel setRated:playingItem.like];
@@ -455,6 +457,7 @@
     }
     else {
         musicPlayer.volume = volume;
+        playerVolume = volume;
     }
 }
 
@@ -695,6 +698,7 @@
     }
     
     if (playingItem.playState == WAIT_TO_PLAY) {
+        NSLog(@"player volume : %f",playerVolume);
         playingItem.playState = PLAYING;
         musicPlayer.volume = playerVolume;
     }

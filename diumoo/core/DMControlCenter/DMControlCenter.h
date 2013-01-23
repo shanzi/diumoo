@@ -65,6 +65,7 @@ typedef enum{
 -(void) fireToPlayDefault;
 -(void) stopForExit;
 -(void)qualityChanged;
+-(void) volumeChange:(float)volume;
 
 //methods in DMPlayableItemDelegate
 -(void)playableItem:(DMPlayableItem *)item loadStateChanged:(long)state;

@@ -83,7 +83,10 @@
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   cover = [[NSImage alloc] initWithData:data];
+                                   if (error || data==nil)
+                                       cover = [NSImage imageNamed:@"albumfail"];
+                                   else
+                                       cover = [[NSImage alloc] initWithData:data];
                                    block(cover);
                                 }];
     }

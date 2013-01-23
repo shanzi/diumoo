@@ -49,7 +49,7 @@
     if ([[values valueForKey:@"enableGrowl"] integerValue] == NSOnState)
     {
         NSString* detail = [NSString stringWithFormat:@"%@ - <%@>",item.musicInfo[@"artist"],item.musicInfo[@"albumtitle"]];
-        if([[values valueForKey:@"usesGrowlUnderML"] integerValue] ==  NSOffState && NSClassFromString(@"NSUserNotification")) {
+        if([[values valueForKey:@"usesGrowlUnderML"] integerValue] !=  NSOnState && NSClassFromString(@"NSUserNotification")) {
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
             notification.title = item.musicInfo[@"title"];
