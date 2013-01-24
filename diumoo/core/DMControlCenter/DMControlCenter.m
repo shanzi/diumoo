@@ -274,15 +274,10 @@
         
         if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
             DMPlayableItem* waitsong = [fetcher getOnePlayableItem];
-            if(waitsong==nil){
-                [fetcher fetchPlaylistFromChannel:channel
-                                         withType:kFetchPlaylistTypePlaying
-                                              sid:playingItem.musicInfo[@"sid"]
-                                   startAttribute:nil];
-                waitsong = [fetcher getOnePlayableItem];
+            if(waitsong){
+                waitsong.delegate = self;
+                [waitPlaylist addObject:waitsong];
             }
-            waitsong.delegate = self;
-            [waitPlaylist addObject:waitsong];
         }
     }
     else if (state == AVPlayerItemStatusFailed){
