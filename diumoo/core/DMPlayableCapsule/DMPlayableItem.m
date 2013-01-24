@@ -8,6 +8,7 @@
 
 #import <math.h>
 #import "DMPlayableItem.h"
+#import "DMService.h"
 
 @implementation DMPlayableItem
 
@@ -81,7 +82,7 @@
                                              timeoutInterval:5.0];
         
         [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
+                                           queue:[DMService serviceQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                    if (error || data==nil)
                                        cover = [NSImage imageNamed:@"albumfail"];
