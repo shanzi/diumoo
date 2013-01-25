@@ -55,7 +55,7 @@
         channel = @"1";
         pauseType = PAUSE_PASS;
         
-        playerVolume = [[[NSUserDefaults standardUserDefaults] valueForKey:@"volume"] floatValue];
+        playerVolume = [[NSUserDefaults standardUserDefaults] floatForKey:@"volume"];
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(playSpecialNotification:)
@@ -684,7 +684,6 @@
 {
     if (musicPlayer == nil) {
         musicPlayer = [[AVPlayer alloc] initWithPlayerItem:playingItem];
-        musicPlayer.volume = playerVolume;
         [musicPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
         musicPlayer.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     }

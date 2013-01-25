@@ -17,9 +17,11 @@
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    mediakeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [self makeDefaultPreference];
+    center = [[DMControlCenter alloc] init];
+    
+    mediakeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMErrorLog sharedErrorLog];
     
@@ -136,10 +138,10 @@
 
 -(void) makeDefaultPreference
 {
-    NSDictionary *preferences=@{@"channel" : @1,
-                                  @"volume": @1.0f,
-                 @"max_wait_playlist_count": @1,
-                           @"versionsLimit": @100,
+    NSDictionary *preferences=@{@"channel" : @(1),
+                                  @"volume": @(1.0),
+                 @"max_wait_playlist_count": @(1),
+                           @"versionsLimit": @(100),
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
@@ -154,6 +156,8 @@
     };
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:preferences];
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:preferences];
+    
     
     if ([defaults valueForKey:@"shortcutDidRegistered"]==nil) {
         [defaults setValue:[[MASShortcut
