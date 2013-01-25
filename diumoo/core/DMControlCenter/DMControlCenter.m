@@ -684,6 +684,7 @@
 {
     if (musicPlayer == nil) {
         musicPlayer = [[AVPlayer alloc] initWithPlayerItem:playingItem];
+        musicPlayer.volume = playerVolume;
         [musicPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
         musicPlayer.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     }
