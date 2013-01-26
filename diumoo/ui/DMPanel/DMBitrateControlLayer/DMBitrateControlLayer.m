@@ -55,6 +55,7 @@
     SInt32 major,minor;
     Gestalt(gestaltSystemVersionMajor, &major);
     Gestalt(gestaltSystemVersionMinor,&minor);
+    [CATransaction begin];
     if (major == 10 && minor < 8) {
         for (CALayer* l in LayerArray) {
             if (l==layer) {
@@ -79,6 +80,7 @@
             }
         }
     }
+    [CATransaction commit];
 }
 
 -(BOOL) hitPostion:(NSPoint)point

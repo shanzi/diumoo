@@ -204,6 +204,7 @@ DMPanelWindowController *sharedWindow;
 -(void) setRated:(BOOL)rated
 {
     if ([rateButton isEnabled]) {
+        [CATransaction begin];
         if (rated){
             [menubarController setMixed:YES];
             [rateButton setImage:[NSImage imageNamed:@"rate_red"]];
@@ -212,6 +213,7 @@ DMPanelWindowController *sharedWindow;
             [menubarController setMixed:NO];
             [rateButton setImage:[NSImage imageNamed:@"rate"]];
         }
+        [CATransaction commit];
     }
 }
 
