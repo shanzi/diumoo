@@ -187,7 +187,7 @@
         [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
     }
     
-    if ([defaults valueForKey:@"useMediaKey"]) {
+    if ([defaults integerForKey:@"useMediaKey"]==NSOnState) {
         [mediakeyTap startWatchingMediaKeys];
     }
     

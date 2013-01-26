@@ -38,7 +38,7 @@
 -(id) init
 {
     if (self = [super init]) {
-        
+                
         timer = [[NSTimer alloc] init];
         
         canPlaySpecial = NO;

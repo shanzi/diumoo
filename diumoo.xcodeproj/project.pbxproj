@@ -106,8 +106,6 @@
 		F577112915E1097500FF6FAB /* volume_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112815E1097500FF6FAB /* volume_back@2x.png */; };
 		F577112D15E11E6900FF6FAB /* renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112B15E11E6900FF6FAB /* renren@2x.png */; };
 		F577112F15E11EC500FF6FAB /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112E15E11EC500FF6FAB /* renren.png */; };
-		F58C35111699AB3900BC588B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F58C35061699AB3900BC588B /* LICENSE */; };
-		F58C35121699AB3900BC588B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F58C35071699AB3900BC588B /* README.md */; };
 		F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */; };
 		F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */; };
 		F595995C1606369100FA3C3E /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F595995E1606369100FA3C3E /* DMDocumentWindow.xib */; };
@@ -324,8 +322,6 @@
 		F577112815E1097500FF6FAB /* volume_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_back@2x.png"; sourceTree = "<group>"; };
 		F577112B15E11E6900FF6FAB /* renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "renren@2x.png"; sourceTree = "<group>"; };
 		F577112E15E11EC500FF6FAB /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
-		F58C35061699AB3900BC588B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		F58C35071699AB3900BC588B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F58C350C1699AB3900BC588B /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		F58C350E1699AB3900BC588B /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
@@ -795,8 +791,6 @@
 		F58C35051699AB3900BC588B /* SPMediaKeyTap */ = {
 			isa = PBXGroup;
 			children = (
-				F58C35061699AB3900BC588B /* LICENSE */,
-				F58C35071699AB3900BC588B /* README.md */,
 				F58C35081699AB3900BC588B /* SPInvocationGrabbing */,
 				F58C350E1699AB3900BC588B /* SPMediaKeyTap.h */,
 				F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */,
@@ -1241,8 +1235,6 @@
 				F5BDCA181635A18C0073B689 /* search_mouseover.png in Resources */,
 				F5BDCA191635A18C0073B689 /* search_mouseover@2x.png in Resources */,
 				F5729B34164F566500B9C6BA /* channels.plist in Resources */,
-				F58C35111699AB3900BC588B /* LICENSE in Resources */,
-				F58C35121699AB3900BC588B /* README.md in Resources */,
 				F5BA9A9E16A6A7940007AB52 /* pro_icon.png in Resources */,
 				F5BA9A9F16A6A7940007AB52 /* pro_icon@2x.png in Resources */,
 				F5D25DC916A998E800ED70CC /* 64kbps.png in Resources */,
