@@ -40,7 +40,6 @@ DMPanelWindowController *sharedWindow;
         
         [self awakeFromNib];
         
-        
         [loadingIndicator startAnimation:nil];
         
     }
@@ -52,7 +51,7 @@ DMPanelWindowController *sharedWindow;
     Gestalt(gestaltSystemVersionMinor,&minor);
     // Make the window visible on all Spaces
     if (minor >= 8)
-        [[self window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+        [[self window] setCollectionBehavior: NSWindowCollectionBehaviorFullScreenAuxiliary];
     else
         [[self window] setCollectionBehavior:NSWindowCollectionBehaviorMoveToActiveSpace];
 }
@@ -399,9 +398,9 @@ DMPanelWindowController *sharedWindow;
     panelRect.origin.y = NSMaxY(statusRect) - NSHeight(panelRect);
     
     
-    [NSApp activateIgnoringOtherApps:NO];
+    //[NSApp activateIgnoringOtherApps:YES];
     [panel setFrame:panelRect display:YES];
-    [panel makeKeyAndOrderFront:nil];
+    [panel makeKeyAndOrderFront:self];
 }
 
 -(void) closePanel
@@ -412,8 +411,8 @@ DMPanelWindowController *sharedWindow;
 
 - (IBAction)togglePanel:(id)sender
 {
-    if (sender == nil && menubarController.hasActiveIcon) return;
-    
+    if (sender == nil && menubarController.hasActiveIcon)
+        return;
     menubarController.hasActiveIcon = !menubarController.hasActiveIcon;
     self.hasActivePanel = menubarController.hasActiveIcon;
 }
