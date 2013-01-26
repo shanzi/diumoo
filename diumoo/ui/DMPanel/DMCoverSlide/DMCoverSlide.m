@@ -148,10 +148,9 @@
 }
 
 -(void) setFrontCoverImage:(NSImage *)image
-{
-    frontFadeTransitionLayer.contents = image;
-    
+{    
     [CATransaction begin];
+    frontFadeTransitionLayer.contents = image;
     [CATransaction setAnimationDuration:1.0];
     [CATransaction setAnimationTimingFunction:
      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];

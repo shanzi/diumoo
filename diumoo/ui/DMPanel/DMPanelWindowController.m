@@ -187,6 +187,7 @@ DMPanelWindowController *sharedWindow;
 
 -(void)unlockUIWithError:(BOOL)has_err
 {
+    [CATransaction begin];
     [loadingIndicator stopAnimation:nil];
     [loadingIndicator setHidden:YES];
     [popupMenuController unlockChannelMenuButton];
@@ -198,6 +199,7 @@ DMPanelWindowController *sharedWindow;
     else{
         [indicateString setHidden:YES];
     }
+    [CATransaction commit];
 }
 
 -(void) setRated:(BOOL)rated
