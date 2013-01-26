@@ -16,12 +16,11 @@
 @implementation DMAppDelegate
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
-{
-    
+{    
+    mediakeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+
     [self makeDefaultPreference];
     center = [[DMControlCenter alloc] init];
-    
-    mediakeyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     
     [DMErrorLog sharedErrorLog];
     
