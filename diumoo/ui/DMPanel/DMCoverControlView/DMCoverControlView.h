@@ -15,7 +15,6 @@
     CALayer* mainLayer;
     DMCoverSlide* slide;
     DMBitrateControlLayer* bitratelayer;
-    SInt32 major,minor;
 }
 @property(readonly)DMCoverSlide* slide;
 

@@ -27,7 +27,7 @@
     #ifndef DEBUG
         [self redirectConsoleLogToDocumentFolder];
     #endif
-    
+        
     [DMShortcutsHandler registrationShortcuts];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self

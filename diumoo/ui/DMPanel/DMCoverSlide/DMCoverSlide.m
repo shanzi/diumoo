@@ -14,10 +14,8 @@
 -(id) init
 {
     if (self = [super init]) {
-        SInt32 major,minor;
-        Gestalt(gestaltSystemVersionMajor, &major);
-        Gestalt(gestaltSystemVersionMinor,&minor);
-        if (major == 10 && minor < 8) {
+        if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7_2)
+        {
             frontPosition = CGPointMake(0,80);
             titlePosition = CGPointMake(10,40);
             artistPosition = CGPointMake(13,22);

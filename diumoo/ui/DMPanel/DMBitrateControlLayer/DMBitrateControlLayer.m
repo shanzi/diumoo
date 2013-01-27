@@ -52,11 +52,8 @@
 
 -(void) selectLayer:(CALayer*) layer
 {
-    SInt32 major,minor;
-    Gestalt(gestaltSystemVersionMajor, &major);
-    Gestalt(gestaltSystemVersionMinor,&minor);
     [CATransaction begin];
-    if (major == 10 && minor < 8) {
+    if (floor(NSAppKitVersionNumber)<=NSAppKitVersionNumber10_7_2) {
         for (CALayer* l in LayerArray) {
             if (l==layer) {
                 l.backgroundColor = focus;
