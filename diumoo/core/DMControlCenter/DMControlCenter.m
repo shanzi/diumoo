@@ -224,7 +224,7 @@
     {
         DMLog(@"User Paused");
     }
-        
+    
     pauseType = PAUSE_PASS;
 }
 
@@ -285,8 +285,7 @@
         if(item == playingItem && playingItem.playState == PLAYING)
         {
             // 当前歌曲加载失败
-            // 做些事情
-            [self startToPlay:waitingItem];
+            // 什么也不做，等待暂停之后自动跳过
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
