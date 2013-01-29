@@ -16,7 +16,10 @@
 
 + (id)playableItemWithDictionary:(NSDictionary *)aDict
 {
-    return [[DMPlayableItem alloc] initWithDictionary:aDict];
+    if (aDict) {
+        return [[DMPlayableItem alloc] initWithDictionary:aDict];
+    }
+    return nil;
 }
 
 - (id)initWithDictionary:(NSDictionary *)aDict

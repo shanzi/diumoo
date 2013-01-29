@@ -75,7 +75,8 @@
         @"Store URL":item.musicInfo[@"albumLocation"],
         @"Album":item.musicInfo[@"albumtitle"],
         @"Name":item.musicInfo[@"title"],
-        @"Artist":item.musicInfo[@"artist"]
+        @"Artist":item.musicInfo[@"artist"],
+        @"Total Time":@([item.musicInfo[@"length"] integerValue]),
         };
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
                                                                        object:@"com.apple.iTunes.player"
