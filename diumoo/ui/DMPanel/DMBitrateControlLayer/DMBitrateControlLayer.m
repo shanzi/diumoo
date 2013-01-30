@@ -29,7 +29,7 @@
             layer.anchorPoint = CGPointMake(0, 0);
             layer.backgroundColor = black;
             layer.position = CGPointMake(72*count +17 , 10);
-            layer.contents = [NSImage imageNamed:[imagenames objectAtIndex:count]];
+            layer.contents = [NSImage imageNamed:imagenames[count]];
             [self addSublayer:layer];
             count ++;
         }

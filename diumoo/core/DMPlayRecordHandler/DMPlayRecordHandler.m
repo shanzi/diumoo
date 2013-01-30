@@ -215,7 +215,7 @@ static DMPlayRecordHandler* recordHandler;
         NSInteger limit = [[[NSUserDefaults standardUserDefaults] valueForKey:@"versionsLimit"] integerValue];
         NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
         for (NSInteger i = ([versions count] - 1); i > limit; i--) {
-            [[versions objectAtIndex:i] removeAndReturnError:nil];
+            [versions[i] removeAndReturnError:nil];
         }
     }
     [context save:nil];

@@ -130,7 +130,7 @@
 
         if ([waitPlaylist count] > 0) {
             // 缓冲列表不是空的，从缓冲列表里取出一个来
-            playingItem = [waitPlaylist objectAtIndex:0];
+            playingItem = waitPlaylist[0];
             playingItem.delegate = self;
             [waitPlaylist removeObject:playingItem];
         }
