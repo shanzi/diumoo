@@ -25,21 +25,35 @@
 - (id)initWithDictionary:(NSDictionary *)aDict
 {
     if (self = [super initWithURL:[NSURL URLWithString:aDict[@"url"]]]) {
+        @try {
+            musicInfo = @{ @"aid":aDict[@"aid"],
+                           @"sid":aDict[@"sid"],
+                           @"ssid":aDict[@"ssid"],
+                           @"subtype":aDict[@"subtype"],
+                           @"title":aDict[@"title"],
+                           @"artist":aDict[@"artist"],
+                           @"albumtitle":aDict[@"albumtitle"],
+                           @"albumLocation":[NSString stringWithFormat:@"%@%@",DOUBAN_URL_PRIFIX,aDict[@"album"]],
+                           @"musicLocation":aDict[@"url"],
+                           @"pictureLocation":aDict[@"picture"],
+                           @"largePictureLocation":[aDict[@"picture"]stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],
+                           @"length":@([aDict[@"length"] floatValue]*1000),
+                           @"rating_avg":@([aDict[@"rating_avg"] floatValue])
+                           };
+        }
+        @catch (NSException *exception) {
+            musicInfo = @{
+                          @"subtype":aDict[@"subtype"],
+                          @"title":aDict[@"title"],
+                          @"artist":aDict[@"artist"],
+                          @"albumtitle":aDict[@"albumtitle"],
+                          @"musicLocation":aDict[@"url"],
+                          @"pictureLocation":aDict[@"picture"],
+                          @"largePictureLocation":[aDict[@"picture"]stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],
+                          };
+        }
+            
         
-        musicInfo = @{ @"aid":aDict[@"aid"],
-                     @"sid":aDict[@"sid"],
-                    @"ssid":aDict[@"ssid"],
-                 @"subtype":aDict[@"subtype"],
-                   @"title":aDict[@"title"],
-                  @"artist":aDict[@"artist"],
-              @"albumtitle":aDict[@"albumtitle"],
-           @"albumLocation":[NSString stringWithFormat:@"%@%@",DOUBAN_URL_PRIFIX,aDict[@"album"]],
-           @"musicLocation":aDict[@"url"],
-         @"pictureLocation":aDict[@"picture"],
-    @"largePictureLocation":[aDict[@"picture"]stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],
-                  @"length":@([aDict[@"length"] floatValue]*1000),
-              @"rating_avg":@([aDict[@"rating_avg"] floatValue])
-                      };
         like = [aDict[@"like"] boolValue];
         playState = WAIT_TO_PLAY;
         cover = [NSImage imageNamed:@"albumfail"];
