@@ -491,24 +491,23 @@
     @"r" : playingItem.musicInfo[@"artist"],
     @"s" : [NSString stringWithFormat:@"%lx",[playingItem.musicInfo[@"sid"] integerValue]],
     @"ss" : playingItem.musicInfo[@"ssid"],
-    @"i": playingItem.musicInfo[@"largePictureLocation"]
+    @"i": playingItem.musicInfo[@"largePictureLocation"],
+    @"im":playingItem.cover,
+    @"al":playingItem.musicInfo[@"albumLocation"]
     };
-    
-    NSString* shareAttribute = [playingItem shareAttributeWithChannel:channel];
-    
     
     [DMService shareLinkWithDictionary:sharedict
                               callback:^(NSString *url) {
                                   if (url == nil) {
-                                      url = [NSString stringWithFormat:@"http://douban.fm/?start=%@&cid=%@",shareAttribute,channel];
+                                      url = sharedict[@"al"];
                                   }
                                   [self share:code
-                                    shareLink:url
+                                    shareItem:url
                                     sharedict:sharedict];
     }];
 }
 
--(void)share:(SNS_CODE)code shareLink:(NSString*) shareLink sharedict:(NSDictionary*) dict
+-(void)share:(SNS_CODE)code shareItem:(NSString*) shareLink sharedict:(NSDictionary*) dict
 {
     
     
@@ -517,8 +516,11 @@
                              shareTitle,dict[@"r"],dict[@"a"]];
    
     NSString* imageLink = dict[@"i"];
+
     NSDictionary* args = nil;
     NSString* urlBase = nil;
+    NSArray* shareItem =nil;
+    NSString* shareService = nil;
     
     switch (code) {
         case DOUBAN:
@@ -571,11 +573,33 @@
             args = @{@"t": shareString,
                     @"u": shareLink};
             break;
+        case SYS_TWITTER:
+            shareService = NSSharingServiceNamePostOnTwitter;
+            shareItem = @[[shareString stringByAppendingString:shareLink],dict[@"im"]];
+            break;
+        case SYS_FACEBOOK:
+            shareService = NSSharingServiceNamePostOnFacebook;
+            shareItem = @[[shareString stringByAppendingString:shareLink],dict[@"im"]];
+            break;
+        case SYS_WEIBO:
+            shareService = NSSharingServiceNamePostOnSinaWeibo;
+            shareItem = @[
+             [NSString stringWithFormat:@"%@ ( %@ )",
+              [NSString stringWithFormat:@"#nowplaying# #diumoo# %@ - %@ <%@>",
+               shareTitle,dict[@"r"],dict[@"a"]],shareLink],
+              dict[@"im"]];
+            break;
+        
     }
-    
-    NSString* urlstring = [urlBase stringByAppendingFormat:@"?%@",[args urlEncodedString]];
-    NSURL* url = [NSURL URLWithString:urlstring];
-    [[NSWorkspace sharedWorkspace] openURL:url];
+    if (shareItem && shareService) {
+        NSSharingService* service = [NSSharingService sharingServiceNamed:shareService];
+        [service performWithItems:shareItem];
+    }
+    else{
+        NSString* urlstring = [urlBase stringByAppendingFormat:@"?%@",[args urlEncodedString]];
+        NSURL* url = [NSURL URLWithString:urlstring];
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
 }
 
 //--------------------------------------------------------------------
@@ -819,7 +843,6 @@
 {
 	[musicPlayer seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
 }
-
 
 
 @end

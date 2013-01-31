@@ -30,6 +30,11 @@
 
     currentChannelID = [[[NSUserDefaults standardUserDefaults]
                          valueForKey:@"channel"]integerValue];
+    if(NSClassFromString(@"NSSharingService")){
+        for (NSMenuItem* item in shareMenu.itemArray) {
+            [item setHidden:NO];
+        }
+    }
     
     if (currentChannelID == 0 || currentChannelID == -3) {
         self.currentChannelMenuItem = [mainMenu itemWithTag:currentChannelID];
