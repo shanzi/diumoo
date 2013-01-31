@@ -512,7 +512,7 @@
     
     
     NSString* shareTitle = dict[@"t"];
-    NSString* shareString = [NSString stringWithFormat:@"#nowplaying #diumoo %@ - %@ <%@>",
+    NSString* shareString = [NSString stringWithFormat:@"#nowplaying #diumoo %@ - %@ <%@>  ",
                              shareTitle,dict[@"r"],dict[@"a"]];
    
     NSString* imageLink = dict[@"i"];
