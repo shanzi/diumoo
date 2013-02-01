@@ -285,8 +285,8 @@
         if(item == playingItem && playingItem.playState == PLAYING)
         {
             // 当前歌曲加载失败
-            if (musicPlayer.rate > 0)
-                [self startToPlay:waitingItem];
+            
+            [self startToPlay:waitingItem];
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
