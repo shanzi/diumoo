@@ -827,7 +827,7 @@
             if (musicPlayer.rate == 1.f) {
                 [self playableItemDidPlay:musicPlayer.currentItem];
             }
-            else if ((playingItem.duration >30) && (playingItem.duration - [self currentTime]) < 1) {
+            else if ((playingItem.duration > 5) && (playingItem.duration - [self currentTime]) < 1) {
                 [self playableItemDidEnd:musicPlayer.currentItem];
             }
             else {
