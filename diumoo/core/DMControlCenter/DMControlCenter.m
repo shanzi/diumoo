@@ -100,7 +100,7 @@
 -(void) stopForExit
 {
     pauseType = PAUSE_EXIT;
-    if (musicPlayer.rate != 0.f) {
+    if (musicPlayer || musicPlayer.rate > 0.f) {
         if (timer != nil) {
             [self invalidateTimer];
         }
@@ -115,6 +115,8 @@
 
 -(void) startToPlay:(DMPlayableItem*)aSong
 {
+    if (pauseType == PAUSE_EXIT) return;
+    
     [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"start to play %@",aSong.musicInfo[@"title"]]];
     
     if(aSong == nil){
