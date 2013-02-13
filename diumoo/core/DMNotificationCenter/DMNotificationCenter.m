@@ -70,14 +70,21 @@
     }
     
     if([[values valueForKey:@"useGlobalNotification"] integerValue]==NSOnState){
-        NSDictionary* userInfo = @{
-        @"Player State" : @"Playing",
-        @"Store URL":item.musicInfo[@"albumLocation"],
-        @"Album":item.musicInfo[@"albumtitle"],
-        @"Name":item.musicInfo[@"title"],
-        @"Artist":item.musicInfo[@"artist"],
-        @"Total Time":@([item.musicInfo[@"length"] integerValue]),
-        };
+        NSDictionary* userInfo;
+        if (item.musicInfo[@"sid"]) {
+            
+            userInfo = @{
+                                       @"Player State" : @"Playing",
+                                       @"Store URL":item.musicInfo[@"albumLocation"],
+                                       @"Album":item.musicInfo[@"albumtitle"],
+                                       @"Name":item.musicInfo[@"title"],
+                                       @"Artist":item.musicInfo[@"artist"],
+                                       @"Total Time":@([item.musicInfo[@"length"] integerValue]),
+                                       };
+        }
+        else{
+            userInfo = @{@"Player State": @"Paused"};
+        }
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
                                                                        object:@"com.apple.iTunes.player"
                                                                      userInfo:userInfo];

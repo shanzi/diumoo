@@ -56,7 +56,6 @@
         
         like = [aDict[@"like"] boolValue];
         playState = WAIT_TO_PLAY;
-        cover = [NSImage imageNamed:@"albumfail"];
         
         [self addObserver:self forKeyPath:@"status" options:0 context:nil];
     }
@@ -94,6 +93,10 @@
 -(void) prepareCoverWithCallbackBlock:(void (^)(NSImage*))block
 {
     if (block) {
+        if(self.cover) {
+            block(cover);
+            return;
+        }
         NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:musicInfo[@"largePictureLocation"]]
                                                  cachePolicy:NSURLCacheStorageAllowed
                                              timeoutInterval:5.0];

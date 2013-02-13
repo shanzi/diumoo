@@ -100,7 +100,7 @@
 -(void) stopForExit
 {
     pauseType = PAUSE_EXIT;
-    if (musicPlayer.rate != 0.f) {
+    if (musicPlayer || musicPlayer.rate > 0.f) {
         if (timer != nil) {
             [self invalidateTimer];
         }
@@ -115,6 +115,8 @@
 
 -(void) startToPlay:(DMPlayableItem*)aSong
 {
+    if (pauseType == PAUSE_EXIT) return;
+    
     [DMErrorLog logStateWith:self fromMethod:_cmd andString:[NSString stringWithFormat:@"start to play %@",aSong.musicInfo[@"title"]]];
     
     if(aSong == nil){
@@ -285,8 +287,8 @@
         if(item == playingItem && playingItem.playState == PLAYING)
         {
             // 当前歌曲加载失败
-            if (musicPlayer.rate > 0)
-                [self startToPlay:waitingItem];
+            
+            [self startToPlay:waitingItem];
         }
         else {
             // 缓冲列表里的歌曲加载失败，直接跳过好了
@@ -825,7 +827,7 @@
             if (musicPlayer.rate == 1.f) {
                 [self playableItemDidPlay:musicPlayer.currentItem];
             }
-            else if ((playingItem.duration >30) && (playingItem.duration - [self currentTime]) < 1) {
+            else if ((playingItem.duration > 5) && (playingItem.duration - [self currentTime]) < 1) {
                 [self playableItemDidEnd:musicPlayer.currentItem];
             }
             else {
