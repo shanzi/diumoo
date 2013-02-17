@@ -227,12 +227,14 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setPlaying:(BOOL)playing
 {
+    [CATransaction begin];
     if (playing) {
         [playPauseButton setImage:[NSImage imageNamed:@"pause"]];
     }
     else {
         [playPauseButton setImage:[NSImage imageNamed:@"play"]];
     }
+    [CATransaction commit];
 }
 
 -(void) setPlayingItem:(DMPlayableItem *)item
