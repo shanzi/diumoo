@@ -287,7 +287,7 @@
         if(item == playingItem && playingItem.playState == PLAYING)
         {
             // 当前歌曲加载失败
-            
+            [fetcher clearPlaylist];
             [self startToPlay:waitingItem];
         }
         else {
