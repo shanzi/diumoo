@@ -41,7 +41,7 @@ typedef enum{
 
 @property (readonly) float duration;
 @property (readonly) NSDictionary *musicInfo;
-@property (retain) NSImage *cover;
+@property (strong) NSImage *cover;
 @property ItemPlayState playState;
 @property id<DMPlayableItemDelegate> delegate;
 
