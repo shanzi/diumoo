@@ -586,7 +586,7 @@
         case SYS_WEIBO:
             shareService = NSSharingServiceNamePostOnSinaWeibo;
             shareItem = @[
-             [NSString stringWithFormat:@"%@ ( %@ )",
+             [NSString stringWithFormat:@"%@ ( %@  )",
               [NSString stringWithFormat:@"#nowplaying# #diumoo# %@ - %@ <%@>",
                shareTitle,dict[@"r"],dict[@"a"]],shareLink],
               dict[@"im"]];

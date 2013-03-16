@@ -145,7 +145,7 @@
                              @"enableGrowl": @(NSOnState),
                      @"enableEmulateITunes": @(NSOnState),
                             @"showDockIcon": @(NSOnState),
-                               @"filterAds": @(NSOffState),
+                               @"filterAds": @(NSOnState),
                                @"enableLog": @(NSOnState),
                            @"enableLogFile": @(NSOnState),
                              @"useMediaKey": @(NSOnState),
