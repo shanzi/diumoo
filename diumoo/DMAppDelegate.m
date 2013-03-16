@@ -139,7 +139,6 @@
 {
     NSDictionary *preferences=@{@"channel" : @(1),
                                   @"volume": @(1.0),
-                 @"max_wait_playlist_count": @(1),
                            @"versionsLimit": @(100),
                  @"displayAlbumCoverOnDock": @(NSOnState),
                              @"enableGrowl": @(NSOnState),

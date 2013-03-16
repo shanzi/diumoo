@@ -44,7 +44,7 @@
         canPlaySpecial = NO;
         fetcher = [[DMPlaylistFetcher alloc] init];
         notificationCenter = [[DMNotificationCenter alloc] init];
-        waitPlaylist = [[NSMutableOrderedSet alloc] init];
+  
         diumooPanel = [DMPanelWindowController sharedWindowController];
         recordHandler = [DMPlayRecordHandler sharedRecordHandler];
 
@@ -130,27 +130,20 @@
             [diumooPanel toggleSpecialWithDictionary:nil];
         }
 
-        if ([waitPlaylist count] > 0) {
-            // 缓冲列表不是空的，从缓冲列表里取出一个来
-            playingItem = [waitPlaylist objectAtIndex:0];
+        
+        playingItem = [fetcher getOnePlayableItem];
+        
+        // 没有获取到Item，说明歌曲列表已经为空，那么新获取一个播放列表
+        if(playingItem == nil) {
+            [fetcher fetchPlaylistFromChannel:channel
+                                     withType:kFetchPlaylistTypeNew
+                                          sid:nil
+                               startAttribute:nil];
+        }
+        else {
             playingItem.delegate = self;
-            [waitPlaylist removeObject:playingItem];
         }
-        else{
-            // 用户关闭了缓冲功能，或者缓冲列表为空，直接从播放列表里取歌曲
-            playingItem = [fetcher getOnePlayableItem];
-                        
-            // 没有获取到Item，说明歌曲列表已经为空，那么新获取一个播放列表
-            if(playingItem == nil) {
-                [fetcher fetchPlaylistFromChannel:channel 
-                                               withType:kFetchPlaylistTypeNew 
-                                                    sid:nil 
-                                         startAttribute:nil];
-            }
-            else {
-                playingItem.delegate = self;
-            }
-        }
+        
     }
     else {
         // 指定了要播放的歌曲
@@ -213,10 +206,9 @@
     else if(pauseType == PAUSE_SPECIAL)
     {
         // 把当前歌曲加入到 wait list 里
-        if (playingItem) {
-            [waitPlaylist insertObject:playingItem atIndex:0];
-            playingItem = nil;
-        }
+        
+        playingItem = nil;
+        
         
         // 开始获取新歌曲
         [self startToPlay:nil];
@@ -270,30 +262,14 @@
             [musicPlayer play];
         }
         
-        // 在这里执行一些缓冲歌曲的操作
-        NSUserDefaults* values = [NSUserDefaults standardUserDefaults];
-        NSInteger MAX_WAIT_PLAYLIST_COUNT = [[values valueForKey:@"max_wait_playlist_count"] integerValue];
-        
-        if ([waitPlaylist count] < MAX_WAIT_PLAYLIST_COUNT) {
-            DMPlayableItem* waitsong = [fetcher getOnePlayableItem];
-            if(waitsong){
-                waitsong.delegate = self;
-                [waitPlaylist addObject:waitsong];
-            }
-        }
     }
     else if (state == AVPlayerItemStatusFailed){
-        DMLog(@"<=LoadedNoti, capsule = %@, state = %ld, playState = %u",item,state,[item playState]);
-        if(item == playingItem && playingItem.playState == PLAYING)
-        {
-            // 当前歌曲加载失败
-            [fetcher clearPlaylist];
-            [self startToPlay:waitingItem];
-        }
-        else {
-            // 缓冲列表里的歌曲加载失败，直接跳过好了
-            [waitPlaylist removeObject:item];
-        }
+
+        // 当前歌曲加载失败
+        [fetcher clearPlaylist];
+            
+        [self startToPlay:waitingItem];
+
     }
 }
 
@@ -430,7 +406,6 @@
     if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_NEW_PLAYLIST, (int32_t*)&pauseType)) return NO;
     channel = ch;
     
-    [waitPlaylist removeAllObjects];
     [fetcher clearPlaylist];
     
     if (musicPlayer.rate != 0.f) {
@@ -639,7 +614,7 @@
         NSString* aid = (n.userInfo)[@"aid"];
         [fetcher fetchPlaylistForAlbum:aid callback:^(BOOL success) {
             if (success) {
-                [waitPlaylist removeAllObjects];
+
                 waitingItem = nil;
                 [self skip];
             }
@@ -659,7 +634,6 @@
         [fetcher fetchMusicianMusicsWithMusicianId:musician_id
                                           callback:^(BOOL success) {
                                               if (success) {
-                                                  [waitPlaylist removeAllObjects];
                                                   waitingItem = nil;
                                                   [self skip];
                                                   [diumooPanel invokeChannelWithCid:0
@@ -674,7 +648,6 @@
         [fetcher fetchSoundtrackWithSoundtrackId:soundtrack
                                         callback:^(BOOL success) {
                                             if (success) {
-                                                [waitPlaylist removeAllObjects];
                                                 waitingItem = nil;
                                                 [self skip];
                                                 [diumooPanel invokeChannelWithCid:10
@@ -697,7 +670,6 @@
         if (!OSAtomicCompareAndSwap32(PAUSE_PASS, PAUSE_NEW_PLAYLIST, (int32_t*)&pauseType))
             return;
         
-        [waitPlaylist removeAllObjects];
         [fetcher clearPlaylist];
         [self pause];
         [notificationCenter notifyBitrate];
