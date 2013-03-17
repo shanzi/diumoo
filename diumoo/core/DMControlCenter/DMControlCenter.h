@@ -50,8 +50,6 @@ typedef enum{
     DMNotificationCenter *notificationCenter;
     DMPanelWindowController *diumooPanel;
     DMPlayRecordHandler *recordHandler;
-    
-    NSMutableArray *specialWaitList;
 
     BOOL canPlaySpecial;
 }

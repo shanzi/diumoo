@@ -121,14 +121,6 @@
     
     if(aSong == nil){
         // start to play 的 song 为 nil， 则表明自动从缓冲列表或者播放列表里取出歌曲
-        if ([specialWaitList count] > 0) {
-            [self fireToPlay:specialWaitList[0]];
-            [specialWaitList removeObjectAtIndex:0];
-            return;
-        }
-        else {
-            [diumooPanel toggleSpecialWithDictionary:nil];
-        }
 
         
         playingItem = [fetcher getOnePlayableItem];
@@ -435,7 +427,7 @@
 
 -(void)exitedSpecialMode
 {
-    specialWaitList = nil;
+
     [diumooPanel toggleSpecialWithDictionary:nil];
     [self skip];
 }
@@ -585,10 +577,7 @@
 //-------------------------playrecord handler delegate ---------------
 -(void) playSongWithSid:(NSString *)sid andSsid:(NSString *)ssid
 {
-    if ([specialWaitList count]) {
-        [specialWaitList removeAllObjects];
-        [diumooPanel toggleSpecialWithDictionary:nil];
-    }
+
     NSString* startattribute = [NSString stringWithFormat:@"%@g%@g%@",sid,ssid,channel];
     [fetcher fetchPlaylistFromChannel:channel
                              withType:kFetchPlaylistTypeNew 

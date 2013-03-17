@@ -259,7 +259,7 @@ static DMDoubanAuthHelper* sharedHelper;
         NSString* user_id = [self user_id];
         
         
-        if(total && liked && banned && user && user_id){
+        if(user && user_id){
             if (pro_icon) is_pro=YES;
             NSString* userlink = [@"http://www.douban.com/people/" stringByAppendingString:user_id];
             NSString* name = [user contents];
@@ -272,9 +272,10 @@ static DMDoubanAuthHelper* sharedHelper;
                                                    range:NSMakeRange(0, [name length])
                                             withTemplate:@""];
             NSDictionary* play_record = @{
-            @"played": [total contents],
-            @"liked": [liked contents],
-            @"banned": [banned contents]};
+                                          @"played": (total==nil?@(0):[total contents]),
+                                          @"liked": (liked==nil?@(0):[liked contents]),
+                                          @"banned": (banned==nil ? @(0) : [banned contents])
+                                          };
             
             NSDictionary* user_info=@{
             @"name": name ,
