@@ -68,19 +68,22 @@ static DMDoubanAuthHelper* sharedHelper;
         [authRequest setHTTPMethod:@"GET"];
     }
 
-    [authRequest setTimeoutInterval:20.0];
+    //[authRequest setTimeoutInterval:20.0];
     
     
     // 发出同步请求
-    NSURLResponse* response;
-    NSError* error = nil;
-    NSData* data = [NSURLConnection sendSynchronousRequest:authRequest
+    NSURLResponse *response;
+    NSError *error = [[NSError alloc] initWithDomain:@"diumoo" code:0 userInfo:nil];
+    NSData *data = [NSURLConnection sendSynchronousRequest:authRequest
                                          returningResponse:&response
                                                      error:&error];
     
-    if(error){
+    if(error.code != 0){
         [DMErrorLog logErrorWith:self method:_cmd andError:error];
-        [self logoutAndCleanData];
+        if (data != nil) {
+            NSLog(@"%@",data);
+        }
+        //[self logoutAndCleanData];
         return nil;
     }
     
@@ -98,8 +101,6 @@ static DMDoubanAuthHelper* sharedHelper;
     bannedSongsCount = 0;
     promotion_chls = nil;
     recent_chls = nil;
-    
-    
     
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
