@@ -46,7 +46,6 @@ typedef enum{
     DMPlayableItem *__strong playingItem;
     DMPlayableItem *__strong waitingItem;
     DMPlaylistFetcher *fetcher;
-    NSMutableOrderedSet *waitPlaylist;
     
     DMNotificationCenter *notificationCenter;
     DMPanelWindowController *diumooPanel;

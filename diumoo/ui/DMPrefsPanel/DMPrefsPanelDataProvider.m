@@ -201,7 +201,10 @@
     @{kAuthAttributeUsername: em,
      kAuthAttributePassword: pw,
      kAuthAttributeCaptchaSolution: captcha_solution,
-     kAuthAttributeCaptchaCode: self.captcha_code};
+     kAuthAttributeCaptchaCode: self.captcha_code,
+      @"remember":@"on",
+      @"task":@"sync_channel_list"
+      };
     
     [DMService performOnServiceQueue:^{
         NSError* error = NULL;
