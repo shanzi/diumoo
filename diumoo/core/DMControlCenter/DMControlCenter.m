@@ -432,22 +432,6 @@
     [self skip];
 }
 
--(BOOL)canBanSong
-{
-    NSString* c = channel;
-    @try {
-        NSInteger channel_id = [c integerValue];
-        if (channel_id == 0 || channel_id == -3) {
-            return YES;
-        }
-        else {
-            return NO;
-        }
-    }
-    @catch (NSException *exception) {
-        return NO;
-    }
-}
 
 -(void) share:(SNS_CODE)code
 {

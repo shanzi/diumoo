@@ -80,7 +80,7 @@ DMPanelWindowController *sharedWindow;
         [usernameTextField setHidden:NO];
         
         [rateButton setEnabled:YES];
-        [banButton setEnabled:[self.delegate canBanSong]];
+        [banButton setEnabled:YES];
         
         [popupMenuController setPrivateChannelEnabled:YES];
     }
@@ -109,14 +109,13 @@ DMPanelWindowController *sharedWindow;
     [CATransaction begin];
     if ([self.delegate channelChangedTo:channel]) {
         
-        if (tag == 0 || tag == -3) {
-            if ([DMDoubanAuthHelper sharedHelper].username) {
-                [banButton setEnabled:YES];
-            }
+        if ([DMDoubanAuthHelper sharedHelper].username) {
+            [banButton setEnabled:YES];
         }
-        else {
+        else{
             [banButton setEnabled:NO];
         }
+        
         [popupMenuController updateChannelMenuWithSender:sender];
     }
     [CATransaction commit];
@@ -272,8 +271,7 @@ DMPanelWindowController *sharedWindow;
         [banButton setEnabled:NO];
         if (currentItem && currentItem.tag <= 0) {
             [CATransaction commit];
-            return [popupMenuController.publicMenu
-                                                 itemWithTag:1];
+            return [popupMenuController.publicMenu itemWithTag:1];
             
         }
     }
@@ -299,12 +297,13 @@ DMPanelWindowController *sharedWindow;
 {
     NSMenuItem* item = [self prepareCurrentMenuItem];
     [popupMenuController updateChannelMenuWithSender:item];
-    if ([item tag]==0 || [item tag] == -3) {
+    if ([DMDoubanAuthHelper sharedHelper].username != nil) {
         [banButton setEnabled:YES];
     }
     else{
         [banButton setEnabled:NO];
     }
+
     return [NSString stringWithFormat:@"%ld",item.tag];
 }
 
