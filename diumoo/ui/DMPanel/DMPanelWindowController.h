@@ -35,7 +35,6 @@ typedef enum{
 -(void)volumeChange:(float)volume;
 -(BOOL)channelChangedTo:(NSString*)channel;
 -(void)exitedSpecialMode;
--(BOOL)canBanSong;
 -(void)share:(SNS_CODE) code;
 
 @end
