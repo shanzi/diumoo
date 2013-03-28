@@ -165,10 +165,6 @@
 		F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */; };
 		F5D473BA163D747D00EE35B9 /* DMSearchPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D473BC163D747D00EE35B9 /* DMSearchPanelController.xib */; };
 		F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */; };
-		F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */; };
-		F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */; };
-		F5DFF1A315BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19C15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m */; };
-		F5DFF1A415BADEEB00ED3DAA /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19E15BADEEB00ED3DAA /* MASShortcutView.m */; };
 		F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */; };
 		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
 		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
@@ -408,14 +404,6 @@
 		F5D473BB163D747D00EE35B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMSearchPanelController.xib; sourceTree = "<group>"; };
 		F5D473BE163D74A100EE35B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMSearchPanelController.xib"; sourceTree = "<group>"; };
 		F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		F5DFF19715BADEEB00ED3DAA /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		F5DFF19915BADEEB00ED3DAA /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		F5DFF19B15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		F5DFF19C15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
-		F5DFF19D15BADEEB00ED3DAA /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		F5DFF19E15BADEEB00ED3DAA /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
 		F5E2D0F416005D2400389463 /* DMShortcutsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShortcutsHandler.h; sourceTree = "<group>"; };
 		F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShortcutsHandler.m; sourceTree = "<group>"; };
 		F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpButtonCell.h; sourceTree = "<group>"; };
@@ -624,6 +612,7 @@
 		F5148AD81580E707002B3D61 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
 				F58C35051699AB3900BC588B /* SPMediaKeyTap */,
 				F5DFF19515BADEEB00ED3DAA /* MASShortcut */,
 				F515C15B15B6F07500210826 /* StatusItem */,
@@ -1030,14 +1019,6 @@
 		F5DFF19515BADEEB00ED3DAA /* MASShortcut */ = {
 			isa = PBXGroup;
 			children = (
-				F5DFF19715BADEEB00ED3DAA /* MASShortcut+UserDefaults.h */,
-				F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */,
-				F5DFF19915BADEEB00ED3DAA /* MASShortcut.h */,
-				F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */,
-				F5DFF19B15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.h */,
-				F5DFF19C15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m */,
-				F5DFF19D15BADEEB00ED3DAA /* MASShortcutView.h */,
-				F5DFF19E15BADEEB00ED3DAA /* MASShortcutView.m */,
 			);
 			path = MASShortcut;
 			sourceTree = "<group>";
@@ -1065,7 +1046,6 @@
 		F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */ = {
 			isa = PBXGroup;
 			children = (
-				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
 				F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */,
 				F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */,
 				F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */,
@@ -1079,8 +1059,7 @@
 				F5ECCBFF158CE39500512F6A /* PLTabPreferenceControl.h */,
 				F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */,
 			);
-			name = PLTabPreference;
-			path = ../../../extern/PLTabPreference;
+			path = PLTabPreference;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1303,10 +1282,6 @@
 				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
 				F515C16015B6F07500210826 /* MenubarController.m in Sources */,
 				F515C16115B6F07500210826 /* StatusItemView.m in Sources */,
-				F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */,
-				F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */,
-				F5DFF1A315BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m in Sources */,
-				F5DFF1A415BADEEB00ED3DAA /* MASShortcutView.m in Sources */,
 				F528B1AA15BC54B500DC82B4 /* DMNotificationCenter.m in Sources */,
 				F566F60E15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m in Sources */,
 				F53C78DE15CC0AA000201C65 /* DMService.m in Sources */,
