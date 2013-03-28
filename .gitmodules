@@ -6,7 +6,7 @@
 	url = https://github.com/nevyn/SPMediaKeyTap.git
 [submodule "extern/EDStarRating"]
 	path = extern/EDStarRating
-	url = https://github.com/erndev/EDStarRating.git
+url=https://github.com/AnakinMac/EDStarRating.git
 [submodule "extern/SMTabBar"]
 	path = extern/SMTabBar
 	url = https://github.com/smic/InspectorTabBar.git
