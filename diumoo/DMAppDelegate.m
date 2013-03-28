@@ -89,6 +89,8 @@
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
             if([newvalue integerValue] == NSOffState)
                 [mediakeyTap stopWatchingMediaKeys];
+            else
+                [mediakeyTap startWatchingMediaKeys];
         }
     }
     else if([keyPath isEqualToString:@"musicQuality"]){
