@@ -27,7 +27,7 @@
     #ifndef DEBUG
         [self redirectConsoleLogToDocumentFolder];
     #endif
-    
+        
     [DMShortcutsHandler registrationShortcuts];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -89,6 +89,8 @@
         if ([newvalue respondsToSelector:@selector(integerValue)]) {
             if([newvalue integerValue] == NSOffState)
                 [mediakeyTap stopWatchingMediaKeys];
+            else
+                [mediakeyTap startWatchingMediaKeys];
         }
     }
     else if([keyPath isEqualToString:@"musicQuality"]){
@@ -189,7 +191,6 @@
     if ([defaults integerForKey:@"useMediaKey"]==NSOnState) {
         [mediakeyTap startWatchingMediaKeys];
     }
-    
 }
 
 

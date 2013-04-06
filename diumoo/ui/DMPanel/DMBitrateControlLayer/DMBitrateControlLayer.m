@@ -29,7 +29,7 @@
             layer.anchorPoint = CGPointMake(0, 0);
             layer.backgroundColor = black;
             layer.position = CGPointMake(72*count +17 , 10);
-            layer.contents = [NSImage imageNamed:[imagenames objectAtIndex:count]];
+            layer.contents = [NSImage imageNamed:imagenames[count]];
             [self addSublayer:layer];
             count ++;
         }
@@ -52,11 +52,8 @@
 
 -(void) selectLayer:(CALayer*) layer
 {
-    SInt32 major,minor;
-    Gestalt(gestaltSystemVersionMajor, &major);
-    Gestalt(gestaltSystemVersionMinor,&minor);
     [CATransaction begin];
-    if (major == 10 && minor < 8) {
+    if (floor(NSAppKitVersionNumber)<=NSAppKitVersionNumber10_7_2) {
         for (CALayer* l in LayerArray) {
             if (l==layer) {
                 l.backgroundColor = focus;

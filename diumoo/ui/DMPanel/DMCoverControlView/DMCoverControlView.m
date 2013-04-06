@@ -15,9 +15,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        Gestalt(gestaltSystemVersionMajor, &major);
-        Gestalt(gestaltSystemVersionMinor,&minor);
-        
         mainLayer = [[CALayer alloc] init];
         
         mainLayer.frame = frame;
@@ -31,7 +28,7 @@
         
         bitratelayer = [[DMBitrateControlLayer alloc] init];
         
-        if (minor < 8) {
+        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_7_2) {
             bitratelayer.position = CGPointMake(0, frame.size.height);
         }
         else {
@@ -60,7 +57,7 @@
 -(void) mouseEntered:(NSEvent *)event
 {
     [slide setOpacity:0.6];
-    if (minor < 8) {
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7_2) {
         bitratelayer.position = CGPointMake(0, self.frame.size.height-30);
     }
     else {
@@ -71,7 +68,7 @@
 -(void) mouseExited:(NSEvent *)event
 {
     [slide setOpacity:1.0];
-    if (minor < 8) {
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7_2) {
         bitratelayer.position = CGPointMake(0, self.frame.size.height);
     }
     else {

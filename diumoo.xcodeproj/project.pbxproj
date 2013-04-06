@@ -11,6 +11,17 @@
 		1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1758595C16A313CA00AAAFBE /* AVFoundation.framework */; };
 		177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 177DE82016A8D6E9009D9117 /* DMPlayableItem.m */; };
 		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
+		179842A61704DD4300D1CAE9 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842A51704DD4300D1CAE9 /* EDStarRating.m */; };
+		179842B21704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */; };
+		179842B31704DE3B00D1CAE9 /* SMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AB1704DE3B00D1CAE9 /* SMBar.m */; };
+		179842B41704DE3B00D1CAE9 /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AD1704DE3B00D1CAE9 /* SMTabBar.m */; };
+		179842B51704DE3B00D1CAE9 /* SMTabBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */; };
+		179842B61704DE3B00D1CAE9 /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */; };
+		179842C11704DE6500D1CAE9 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842B81704DE6500D1CAE9 /* MASShortcut.m */; };
+		179842C21704DE6500D1CAE9 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842BA1704DE6500D1CAE9 /* MASShortcut+Monitoring.m */; };
+		179842C31704DE6500D1CAE9 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842BC1704DE6500D1CAE9 /* MASShortcut+UserDefaults.m */; };
+		179842C41704DE6500D1CAE9 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842BE1704DE6500D1CAE9 /* MASShortcutView.m */; };
+		179842C51704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842C01704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
 		3F01021515DE99940076D6C8 /* ban_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021315DE99940076D6C8 /* ban_mouseover@2x.png */; };
@@ -106,8 +117,8 @@
 		F577112915E1097500FF6FAB /* volume_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112815E1097500FF6FAB /* volume_back@2x.png */; };
 		F577112D15E11E6900FF6FAB /* renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112B15E11E6900FF6FAB /* renren@2x.png */; };
 		F577112F15E11EC500FF6FAB /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112E15E11EC500FF6FAB /* renren.png */; };
-		F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */; };
-		F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */; };
+		F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F595995C1606369100FA3C3E /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F595995E1606369100FA3C3E /* DMDocumentWindow.xib */; };
 		F5959960160636AC00FA3C3E /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */; };
 		F5959963160636BC00FA3C3E /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959965160636BC00FA3C3E /* DMPanelWindowController.xib */; };
@@ -147,16 +158,10 @@
 		F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D362FF15A1F0EF003A40B2 /* DMDocument.m */; };
 		F5D3631F15A1F0EF003A40B2 /* DMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630315A1F0EF003A40B2 /* DMDetailViewController.m */; };
 		F5D3632115A1F0EF003A40B2 /* DMDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */; };
-		F5D3632215A1F0EF003A40B2 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630915A1F0EF003A40B2 /* EDStarRating.m */; };
 		F5D3632315A1F0EF003A40B2 /* JUInspectorBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630C15A1F0EF003A40B2 /* JUInspectorBaseView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5D3632415A1F0EF003A40B2 /* JUInspectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3630E15A1F0EF003A40B2 /* JUInspectorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5D3632515A1F0EF003A40B2 /* JUInspectorViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631015A1F0EF003A40B2 /* JUInspectorViewContainer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5D3632615A1F0EF003A40B2 /* JUInspectorViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631215A1F0EF003A40B2 /* JUInspectorViewHeader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F5D3632715A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631515A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m */; };
-		F5D3632815A1F0EF003A40B2 /* SMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631715A1F0EF003A40B2 /* SMBar.m */; };
-		F5D3632915A1F0EF003A40B2 /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631915A1F0EF003A40B2 /* SMTabBar.m */; };
-		F5D3632A15A1F0EF003A40B2 /* SMTabBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631B15A1F0EF003A40B2 /* SMTabBarButtonCell.m */; };
-		F5D3632B15A1F0EF003A40B2 /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3631D15A1F0EF003A40B2 /* SMTabBarItem.m */; };
 		F5D3633115A1F1EA003A40B2 /* view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D3633015A1F1EA003A40B2 /* view_icon.png */; };
 		F5D3633315A1F1F2003A40B2 /* detail_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D3633215A1F1F2003A40B2 /* detail_icon.png */; };
 		F5D3633915A1F1FF003A40B2 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D3633515A1F1FF003A40B2 /* star.png */; };
@@ -165,10 +170,6 @@
 		F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */; };
 		F5D473BA163D747D00EE35B9 /* DMSearchPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D473BC163D747D00EE35B9 /* DMSearchPanelController.xib */; };
 		F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */; };
-		F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */; };
-		F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */; };
-		F5DFF1A315BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19C15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m */; };
-		F5DFF1A415BADEEB00ED3DAA /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFF19E15BADEEB00ED3DAA /* MASShortcutView.m */; };
 		F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */; };
 		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
 		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
@@ -198,6 +199,28 @@
 		177DE82016A8D6E9009D9117 /* DMPlayableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPlayableItem.m; sourceTree = "<group>"; };
 		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		178B499216A30B5D00EB642D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		179842A41704DD4300D1CAE9 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDStarRating.h; path = EDStarRating/EDStarRating/EDStarRating.h; sourceTree = "<group>"; };
+		179842A51704DD4300D1CAE9 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDStarRating.m; path = EDStarRating/EDStarRating/EDStarRating.m; sourceTree = "<group>"; };
+		179842A81704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SMKeyValueObserving.h"; path = "SMTabBar/InspectorTabBar/NSDictionary+SMKeyValueObserving.h"; sourceTree = "<group>"; };
+		179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SMKeyValueObserving.m"; path = "SMTabBar/InspectorTabBar/NSDictionary+SMKeyValueObserving.m"; sourceTree = "<group>"; };
+		179842AA1704DE3B00D1CAE9 /* SMBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMBar.h; path = SMTabBar/InspectorTabBar/SMBar.h; sourceTree = "<group>"; };
+		179842AB1704DE3B00D1CAE9 /* SMBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMBar.m; path = SMTabBar/InspectorTabBar/SMBar.m; sourceTree = "<group>"; };
+		179842AC1704DE3B00D1CAE9 /* SMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBar.h; path = SMTabBar/InspectorTabBar/SMTabBar.h; sourceTree = "<group>"; };
+		179842AD1704DE3B00D1CAE9 /* SMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBar.m; path = SMTabBar/InspectorTabBar/SMTabBar.m; sourceTree = "<group>"; };
+		179842AE1704DE3B00D1CAE9 /* SMTabBarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBarButtonCell.h; path = SMTabBar/InspectorTabBar/SMTabBarButtonCell.h; sourceTree = "<group>"; };
+		179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBarButtonCell.m; path = SMTabBar/InspectorTabBar/SMTabBarButtonCell.m; sourceTree = "<group>"; };
+		179842B01704DE3B00D1CAE9 /* SMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBarItem.h; path = SMTabBar/InspectorTabBar/SMTabBarItem.h; sourceTree = "<group>"; };
+		179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBarItem.m; path = SMTabBar/InspectorTabBar/SMTabBarItem.m; sourceTree = "<group>"; };
+		179842B71704DE6500D1CAE9 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
+		179842B81704DE6500D1CAE9 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
+		179842B91704DE6500D1CAE9 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
+		179842BA1704DE6500D1CAE9 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
+		179842BB1704DE6500D1CAE9 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
+		179842BC1704DE6500D1CAE9 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
+		179842BD1704DE6500D1CAE9 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
+		179842BE1704DE6500D1CAE9 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
+		179842BF1704DE6500D1CAE9 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
+		179842C01704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
 		3F01021215DE99940076D6C8 /* ban_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_mouseover.png; sourceTree = "<group>"; };
@@ -378,8 +401,6 @@
 		F5D3630315A1F0EF003A40B2 /* DMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDetailViewController.m; sourceTree = "<group>"; };
 		F5D3630515A1F0EF003A40B2 /* DMDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDocumentWindowController.h; sourceTree = "<group>"; };
 		F5D3630615A1F0EF003A40B2 /* DMDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDocumentWindowController.m; sourceTree = "<group>"; };
-		F5D3630815A1F0EF003A40B2 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
-		F5D3630915A1F0EF003A40B2 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStarRating.m; sourceTree = "<group>"; };
 		F5D3630B15A1F0EF003A40B2 /* JUInspectorBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUInspectorBaseView.h; sourceTree = "<group>"; };
 		F5D3630C15A1F0EF003A40B2 /* JUInspectorBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUInspectorBaseView.m; sourceTree = "<group>"; };
 		F5D3630D15A1F0EF003A40B2 /* JUInspectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUInspectorView.h; sourceTree = "<group>"; };
@@ -388,16 +409,6 @@
 		F5D3631015A1F0EF003A40B2 /* JUInspectorViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUInspectorViewContainer.m; sourceTree = "<group>"; };
 		F5D3631115A1F0EF003A40B2 /* JUInspectorViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUInspectorViewHeader.h; sourceTree = "<group>"; };
 		F5D3631215A1F0EF003A40B2 /* JUInspectorViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUInspectorViewHeader.m; sourceTree = "<group>"; };
-		F5D3631415A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SMKeyValueObserving.h"; sourceTree = "<group>"; };
-		F5D3631515A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SMKeyValueObserving.m"; sourceTree = "<group>"; };
-		F5D3631615A1F0EF003A40B2 /* SMBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBar.h; sourceTree = "<group>"; };
-		F5D3631715A1F0EF003A40B2 /* SMBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBar.m; sourceTree = "<group>"; };
-		F5D3631815A1F0EF003A40B2 /* SMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBar.h; sourceTree = "<group>"; };
-		F5D3631915A1F0EF003A40B2 /* SMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBar.m; sourceTree = "<group>"; };
-		F5D3631A15A1F0EF003A40B2 /* SMTabBarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBarButtonCell.h; sourceTree = "<group>"; };
-		F5D3631B15A1F0EF003A40B2 /* SMTabBarButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarButtonCell.m; sourceTree = "<group>"; };
-		F5D3631C15A1F0EF003A40B2 /* SMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBarItem.h; sourceTree = "<group>"; };
-		F5D3631D15A1F0EF003A40B2 /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarItem.m; sourceTree = "<group>"; };
 		F5D3633015A1F1EA003A40B2 /* view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_icon.png; sourceTree = "<group>"; };
 		F5D3633215A1F1F2003A40B2 /* detail_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_icon.png; sourceTree = "<group>"; };
 		F5D3633515A1F1FF003A40B2 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
@@ -408,14 +419,6 @@
 		F5D473BB163D747D00EE35B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMSearchPanelController.xib; sourceTree = "<group>"; };
 		F5D473BE163D74A100EE35B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMSearchPanelController.xib"; sourceTree = "<group>"; };
 		F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		F5DFF19715BADEEB00ED3DAA /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		F5DFF19915BADEEB00ED3DAA /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		F5DFF19B15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		F5DFF19C15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
-		F5DFF19D15BADEEB00ED3DAA /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		F5DFF19E15BADEEB00ED3DAA /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
 		F5E2D0F416005D2400389463 /* DMShortcutsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShortcutsHandler.h; sourceTree = "<group>"; };
 		F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShortcutsHandler.m; sourceTree = "<group>"; };
 		F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpButtonCell.h; sourceTree = "<group>"; };
@@ -451,6 +454,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		179842A31704DD2D00D1CAE9 /* EDStarRating */ = {
+			isa = PBXGroup;
+			children = (
+				179842A41704DD4300D1CAE9 /* EDStarRating.h */,
+				179842A51704DD4300D1CAE9 /* EDStarRating.m */,
+			);
+			name = EDStarRating;
+			sourceTree = "<group>";
+		};
+		179842A71704DE2A00D1CAE9 /* SMTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				179842A81704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.h */,
+				179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */,
+				179842AA1704DE3B00D1CAE9 /* SMBar.h */,
+				179842AB1704DE3B00D1CAE9 /* SMBar.m */,
+				179842AC1704DE3B00D1CAE9 /* SMTabBar.h */,
+				179842AD1704DE3B00D1CAE9 /* SMTabBar.m */,
+				179842AE1704DE3B00D1CAE9 /* SMTabBarButtonCell.h */,
+				179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */,
+				179842B01704DE3B00D1CAE9 /* SMTabBarItem.h */,
+				179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */,
+			);
+			name = SMTabBar;
+			sourceTree = "<group>";
+		};
 		3F50FC4115DB4981000E5147 /* DMButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,12 +653,13 @@
 		F5148AD81580E707002B3D61 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				179842A71704DE2A00D1CAE9 /* SMTabBar */,
+				179842A31704DD2D00D1CAE9 /* EDStarRating */,
+				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
 				F58C35051699AB3900BC588B /* SPMediaKeyTap */,
 				F5DFF19515BADEEB00ED3DAA /* MASShortcut */,
 				F515C15B15B6F07500210826 /* StatusItem */,
-				F5D3630715A1F0EF003A40B2 /* EDStarRating */,
 				F5D3630A15A1F0EF003A40B2 /* JUInspectorView */,
-				F5D3631315A1F0EF003A40B2 /* SMTabBar */,
 				F5148AD91580E707002B3D61 /* HTMLParser */,
 			);
 			path = extern;
@@ -956,16 +986,6 @@
 			path = DMDetailViewController;
 			sourceTree = "<group>";
 		};
-		F5D3630715A1F0EF003A40B2 /* EDStarRating */ = {
-			isa = PBXGroup;
-			children = (
-				F5D3630815A1F0EF003A40B2 /* EDStarRating.h */,
-				F5D3630915A1F0EF003A40B2 /* EDStarRating.m */,
-			);
-			name = EDStarRating;
-			path = ../diumoo/DMDocument/EDStarRating;
-			sourceTree = "<group>";
-		};
 		F5D3630A15A1F0EF003A40B2 /* JUInspectorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,24 +1000,6 @@
 			);
 			name = JUInspectorView;
 			path = ../diumoo/DMDocument/JUInspectorView;
-			sourceTree = "<group>";
-		};
-		F5D3631315A1F0EF003A40B2 /* SMTabBar */ = {
-			isa = PBXGroup;
-			children = (
-				F5D3631415A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.h */,
-				F5D3631515A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m */,
-				F5D3631615A1F0EF003A40B2 /* SMBar.h */,
-				F5D3631715A1F0EF003A40B2 /* SMBar.m */,
-				F5D3631815A1F0EF003A40B2 /* SMTabBar.h */,
-				F5D3631915A1F0EF003A40B2 /* SMTabBar.m */,
-				F5D3631A15A1F0EF003A40B2 /* SMTabBarButtonCell.h */,
-				F5D3631B15A1F0EF003A40B2 /* SMTabBarButtonCell.m */,
-				F5D3631C15A1F0EF003A40B2 /* SMTabBarItem.h */,
-				F5D3631D15A1F0EF003A40B2 /* SMTabBarItem.m */,
-			);
-			name = SMTabBar;
-			path = ../diumoo/DMDocument/SMTabBar;
 			sourceTree = "<group>";
 		};
 		F5D3633C15A1F202003A40B2 /* Document */ = {
@@ -1030,14 +1032,16 @@
 		F5DFF19515BADEEB00ED3DAA /* MASShortcut */ = {
 			isa = PBXGroup;
 			children = (
-				F5DFF19715BADEEB00ED3DAA /* MASShortcut+UserDefaults.h */,
-				F5DFF19815BADEEB00ED3DAA /* MASShortcut+UserDefaults.m */,
-				F5DFF19915BADEEB00ED3DAA /* MASShortcut.h */,
-				F5DFF19A15BADEEB00ED3DAA /* MASShortcut.m */,
-				F5DFF19B15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.h */,
-				F5DFF19C15BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m */,
-				F5DFF19D15BADEEB00ED3DAA /* MASShortcutView.h */,
-				F5DFF19E15BADEEB00ED3DAA /* MASShortcutView.m */,
+				179842B71704DE6500D1CAE9 /* MASShortcut.h */,
+				179842B81704DE6500D1CAE9 /* MASShortcut.m */,
+				179842B91704DE6500D1CAE9 /* MASShortcut+Monitoring.h */,
+				179842BA1704DE6500D1CAE9 /* MASShortcut+Monitoring.m */,
+				179842BB1704DE6500D1CAE9 /* MASShortcut+UserDefaults.h */,
+				179842BC1704DE6500D1CAE9 /* MASShortcut+UserDefaults.m */,
+				179842BD1704DE6500D1CAE9 /* MASShortcutView.h */,
+				179842BE1704DE6500D1CAE9 /* MASShortcutView.m */,
+				179842BF1704DE6500D1CAE9 /* MASShortcutView+UserDefaults.h */,
+				179842C01704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m */,
 			);
 			path = MASShortcut;
 			sourceTree = "<group>";
@@ -1065,7 +1069,6 @@
 		F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */ = {
 			isa = PBXGroup;
 			children = (
-				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
 				F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */,
 				F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */,
 				F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */,
@@ -1079,8 +1082,7 @@
 				F5ECCBFF158CE39500512F6A /* PLTabPreferenceControl.h */,
 				F5ECCC00158CE39500512F6A /* PLTabPreferenceControl.m */,
 			);
-			name = PLTabPreference;
-			path = ../../../extern/PLTabPreference;
+			path = PLTabPreference;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1289,24 +1291,14 @@
 				F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */,
 				F5D3631F15A1F0EF003A40B2 /* DMDetailViewController.m in Sources */,
 				F5D3632115A1F0EF003A40B2 /* DMDocumentWindowController.m in Sources */,
-				F5D3632215A1F0EF003A40B2 /* EDStarRating.m in Sources */,
 				F5D3632315A1F0EF003A40B2 /* JUInspectorBaseView.m in Sources */,
 				F5D3632415A1F0EF003A40B2 /* JUInspectorView.m in Sources */,
 				F5D3632515A1F0EF003A40B2 /* JUInspectorViewContainer.m in Sources */,
 				F5D3632615A1F0EF003A40B2 /* JUInspectorViewHeader.m in Sources */,
-				F5D3632715A1F0EF003A40B2 /* NSDictionary+SMKeyValueObserving.m in Sources */,
-				F5D3632815A1F0EF003A40B2 /* SMBar.m in Sources */,
-				F5D3632915A1F0EF003A40B2 /* SMTabBar.m in Sources */,
-				F5D3632A15A1F0EF003A40B2 /* SMTabBarButtonCell.m in Sources */,
-				F5D3632B15A1F0EF003A40B2 /* SMTabBarItem.m in Sources */,
 				F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */,
 				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
 				F515C16015B6F07500210826 /* MenubarController.m in Sources */,
 				F515C16115B6F07500210826 /* StatusItemView.m in Sources */,
-				F5DFF1A115BADEEB00ED3DAA /* MASShortcut+UserDefaults.m in Sources */,
-				F5DFF1A215BADEEB00ED3DAA /* MASShortcut.m in Sources */,
-				F5DFF1A315BADEEB00ED3DAA /* MASShortcutView+UserDefaults.m in Sources */,
-				F5DFF1A415BADEEB00ED3DAA /* MASShortcutView.m in Sources */,
 				F528B1AA15BC54B500DC82B4 /* DMNotificationCenter.m in Sources */,
 				F566F60E15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m in Sources */,
 				F53C78DE15CC0AA000201C65 /* DMService.m in Sources */,
@@ -1322,6 +1314,17 @@
 				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
 				177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */,
 				F5D25DD216A999A700ED70CC /* DMBitrateControlLayer.m in Sources */,
+				179842A61704DD4300D1CAE9 /* EDStarRating.m in Sources */,
+				179842B21704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m in Sources */,
+				179842B31704DE3B00D1CAE9 /* SMBar.m in Sources */,
+				179842B41704DE3B00D1CAE9 /* SMTabBar.m in Sources */,
+				179842B51704DE3B00D1CAE9 /* SMTabBarButtonCell.m in Sources */,
+				179842B61704DE3B00D1CAE9 /* SMTabBarItem.m in Sources */,
+				179842C11704DE6500D1CAE9 /* MASShortcut.m in Sources */,
+				179842C21704DE6500D1CAE9 /* MASShortcut+Monitoring.m in Sources */,
+				179842C31704DE6500D1CAE9 /* MASShortcut+UserDefaults.m in Sources */,
+				179842C41704DE6500D1CAE9 /* MASShortcutView.m in Sources */,
+				179842C51704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

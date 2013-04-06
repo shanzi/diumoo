@@ -211,11 +211,10 @@ static DMPlayRecordHandler* recordHandler;
 -(void) removeVersionsToLimit{
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.recordFileURL.path]) {
-        
         NSInteger limit = [[[NSUserDefaults standardUserDefaults] valueForKey:@"versionsLimit"] integerValue];
         NSArray* versions = [NSFileVersion otherVersionsOfItemAtURL:self.recordFileURL];
         for (NSInteger i = ([versions count] - 1); i > limit; i--) {
-            [[versions objectAtIndex:i] removeAndReturnError:nil];
+            [versions[i] removeAndReturnError:nil];
         }
     }
     [context save:nil];

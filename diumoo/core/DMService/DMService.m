@@ -117,8 +117,8 @@ static NSOperationQueue* serviceQueue;
         
         NSArray* componets = [start componentsSeparatedByString:@"|"];
         if ([componets count] == 2) {
-            NSInteger cid = [[componets objectAtIndex:0] integerValue];
-            NSString* ctitle = [componets objectAtIndex:1];
+            NSInteger cid = [componets[0] integerValue];
+            NSString* ctitle = componets[1];
             @try {
                 if (cid > 0 && [ctitle length]) {
                     userinfo = @{ @"type" : @"channel",@"cid":@(cid),@"title":ctitle};

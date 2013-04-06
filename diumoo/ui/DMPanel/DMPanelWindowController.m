@@ -47,10 +47,8 @@ DMPanelWindowController *sharedWindow;
 }
 
 -(void)windowDidLoad {
-    SInt32 minor;
-    Gestalt(gestaltSystemVersionMinor,&minor);
     // Make the window visible on all Spaces
-    if (minor >= 8)
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_7)
         [[self window] setCollectionBehavior: NSWindowCollectionBehaviorFullScreenAuxiliary];
     else
         [[self window] setCollectionBehavior:NSWindowCollectionBehaviorMoveToActiveSpace];
@@ -228,12 +226,14 @@ DMPanelWindowController *sharedWindow;
 
 -(void) setPlaying:(BOOL)playing
 {
+    [CATransaction begin];
     if (playing) {
         [playPauseButton setImage:[NSImage imageNamed:@"pause"]];
     }
     else {
         [playPauseButton setImage:[NSImage imageNamed:@"play"]];
     }
+    [CATransaction commit];
 }
 
 -(void) setPlayingItem:(DMPlayableItem *)item
