@@ -183,6 +183,7 @@
         // 跳过当前歌曲
         if (waitingItem != nil) {
             [self startToPlay:waitingItem];
+            waitingItem=nil;
         }
         else {
             [self startToPlay:nil];
