@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12E3067</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">3084</string>
@@ -286,7 +286,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="631853183">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSButton" id="144613420">
@@ -798,12 +798,11 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{250, 480}</string>
-					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="144613420"/>
 					<bool key="NSViewIsLayerTreeHost">YES</bool>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1366, 768}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<int key="NSWindowAnimationBehavior">2</int>
 				<int key="NSWindowCollectionBehavior">82</int>
@@ -950,6 +949,25 @@
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
 						<int key="NSTag">6</int>
+					</object>
+					<object class="NSMenuItem" id="17748989">
+						<reference key="NSMenu" ref="575959324"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+					</object>
+					<object class="NSMenuItem" id="533309645">
+						<reference key="NSMenu" ref="575959324"/>
+						<string key="NSTitle">Copy share link</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="972873596"/>
+						<reference key="NSMixedImage" ref="261628404"/>
+						<int key="NSTag">10</int>
 					</object>
 				</array>
 			</object>
@@ -1776,6 +1794,8 @@
 							<reference ref="1033879574"/>
 							<reference ref="452695512"/>
 							<reference ref="427243849"/>
+							<reference ref="17748989"/>
+							<reference ref="533309645"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Share Menu</string>
@@ -1927,6 +1947,16 @@
 						<reference key="object" ref="70330160"/>
 						<reference key="parent" ref="575959324"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3919</int>
+						<reference key="object" ref="17748989"/>
+						<reference key="parent" ref="575959324"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3920</int>
+						<reference key="object" ref="533309645"/>
+						<reference key="parent" ref="575959324"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -2023,12 +2053,14 @@
 				<string key="3913.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3914.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3915.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3919.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3920.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3918</int>
+			<int key="maxID">3920</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

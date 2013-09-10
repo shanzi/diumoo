@@ -141,7 +141,6 @@
 		F5ADFAF71629C5A400FFC23D /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ADFAF51629C5A400FFC23D /* search.png */; };
 		F5ADFAF81629C5A400FFC23D /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ADFAF61629C5A400FFC23D /* search@2x.png */; };
 		F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AF817D163429BB006F15F0 /* DMSearchItemView.m */; };
-		F5B9DC7B15BD995B004788A9 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5B9DC8115BDACC6004788A9 /* status-icon-mixed.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */; };
 		F5BA9A9E16A6A7940007AB52 /* pro_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BA9A9C16A6A7940007AB52 /* pro_icon.png */; };
 		F5BA9A9F16A6A7940007AB52 /* pro_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5BA9A9D16A6A7940007AB52 /* pro_icon@2x.png */; };
@@ -447,7 +446,6 @@
 				F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */,
 				F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */,
 				F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */,
-				F5B9DC7B15BD995B004788A9 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1486,6 +1484,7 @@
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -1514,6 +1513,7 @@
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;

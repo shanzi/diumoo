@@ -22,7 +22,8 @@ typedef enum{
     FACEBOOK = 6,
     SYS_TWITTER=7,
     SYS_FACEBOOK=8,
-    SYS_WEIBO=9
+    SYS_WEIBO=9,
+    COPY_LINK=10
     
 } SNS_CODE ;
 

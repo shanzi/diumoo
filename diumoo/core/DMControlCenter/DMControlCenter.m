@@ -235,6 +235,7 @@
                                     startAttribute:nil];
             
             // 自动播放新的歌曲
+            playingItem = nil;
             [self startToPlay:nil];
         }
     }
@@ -452,8 +453,11 @@
     
     [DMService shareLinkWithDictionary:sharedict
                               callback:^(NSString *url) {
-                                  if (url == nil) {
+                                  if (url == nil && code!=COPY_LINK) {
                                       url = sharedict[@"al"];
+                                  }
+                                  else{
+                                      return;
                                   }
                                   [self share:code
                                     shareItem:url
@@ -543,7 +547,9 @@
                shareTitle,dict[@"r"],dict[@"a"]],shareLink],
               dict[@"im"]];
             break;
-        
+        case COPY_LINK:
+            [NSPasteboard generalPasteboard] setString:shareLink forType:NSPasteboardTypeString];
+            return;
     }
     if (shareItem && shareService) {
         NSSharingService* service = [NSSharingService sharingServiceNamed:shareService];
