@@ -193,8 +193,7 @@
                 }
             });
         });
-        dispatch_release(viewQueue);
-        dispatch_release(high);
+
     }
 }
 

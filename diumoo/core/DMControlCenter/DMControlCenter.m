@@ -453,12 +453,11 @@
     
     [DMService shareLinkWithDictionary:sharedict
                               callback:^(NSString *url) {
-                                  if (url == nil && code!=COPY_LINK) {
+                                  if (url == nil) {
+                                      if (code==COPY_LINK) return;
                                       url = sharedict[@"al"];
                                   }
-                                  else{
-                                      return;
-                                  }
+                                  
                                   [self share:code
                                     shareItem:url
                                     sharedict:sharedict];
@@ -548,7 +547,9 @@
               dict[@"im"]];
             break;
         case COPY_LINK:
-            [NSPasteboard generalPasteboard] setString:shareLink forType:NSPasteboardTypeString];
+            [[NSPasteboard generalPasteboard] clearContents];
+            [[NSPasteboard generalPasteboard] writeObjects:@[shareLink]];
+            [notificationCenter copylinkNotification:shareLink];
             return;
     }
     if (shareItem && shareService) {

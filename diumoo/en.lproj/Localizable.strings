@@ -168,3 +168,6 @@
 /* 音乐比特率改变到 */
 "BITRATE_CHANGED_TO_VALUE" = "Current bitrate of music is ";
 
+/* 分享链接已复制 */
+"SHARE_LINK_TITLE" = "share link copied";
+

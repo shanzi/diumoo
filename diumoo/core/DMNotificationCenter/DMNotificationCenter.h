@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Growl/Growl.h>
 #import "DMPlayableItem.h"
 #import "DMPanelWindowController.h"
 
-@interface DMNotificationCenter : NSObject<GrowlApplicationBridgeDelegate,NSUserNotificationCenterDelegate>
+@interface DMNotificationCenter : NSObject<NSUserNotificationCenterDelegate>
 {
     
 }
@@ -19,5 +18,6 @@
 -(void) notifyMusicWithItem:(DMPlayableItem*) item;
 -(void) notifyBitrate;
 -(void) clearNotifications;
+-(void) copylinkNotification:(NSString *) url;
 
 @end

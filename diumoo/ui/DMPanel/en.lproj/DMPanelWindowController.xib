@@ -950,7 +950,7 @@
 						<reference key="NSMixedImage" ref="261628404"/>
 						<int key="NSTag">6</int>
 					</object>
-					<object class="NSMenuItem" id="17748989">
+					<object class="NSMenuItem" id="497938798">
 						<reference key="NSMenu" ref="575959324"/>
 						<bool key="NSIsDisabled">YES</bool>
 						<bool key="NSIsSeparator">YES</bool>
@@ -960,7 +960,7 @@
 						<reference key="NSOnImage" ref="972873596"/>
 						<reference key="NSMixedImage" ref="261628404"/>
 					</object>
-					<object class="NSMenuItem" id="533309645">
+					<object class="NSMenuItem" id="684888706">
 						<reference key="NSMenu" ref="575959324"/>
 						<string key="NSTitle">Copy share link</string>
 						<string key="NSKeyEquiv"/>
@@ -1253,6 +1253,14 @@
 						<reference key="destination" ref="791921011"/>
 					</object>
 					<int key="connectionID">3918</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">shareAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="684888706"/>
+					</object>
+					<int key="connectionID">3921</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1794,8 +1802,8 @@
 							<reference ref="1033879574"/>
 							<reference ref="452695512"/>
 							<reference ref="427243849"/>
-							<reference ref="17748989"/>
-							<reference ref="533309645"/>
+							<reference ref="497938798"/>
+							<reference ref="684888706"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Share Menu</string>
@@ -1949,12 +1957,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3919</int>
-						<reference key="object" ref="17748989"/>
+						<reference key="object" ref="497938798"/>
 						<reference key="parent" ref="575959324"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3920</int>
-						<reference key="object" ref="533309645"/>
+						<reference key="object" ref="684888706"/>
 						<reference key="parent" ref="575959324"/>
 					</object>
 				</array>
@@ -2060,7 +2068,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3920</int>
+			<int key="maxID">3921</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

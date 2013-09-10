@@ -12,7 +12,6 @@
 #import "NSImage+AsyncLoadImage.h"
 #import "DMService.h"
 
-#import <Growl/Growl.h>
 
 
 
@@ -266,10 +265,6 @@
 
 -(id) generalView
 {
-    if ([GrowlApplicationBridge isGrowlRunning] == false) {
-        [forceGrowl setState:NSOffState];
-        [forceGrowl setEnabled:[GrowlApplicationBridge isGrowlRunning]];
-    }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *quality = [defaults valueForKey:@"musicQuality"];
     

@@ -82,7 +82,6 @@
 		F515C16515B6FAA000210826 /* status-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = F515C16315B6FAA000210826 /* status-icon-alt.png */; };
 		F515C16615B6FAA000210826 /* status-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F515C16415B6FAA000210826 /* status-icon.png */; };
 		F517B91215C1760200097815 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F517B91115C1760200097815 /* settings.png */; };
-		F517B91415C1771000097815 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5B9DC7A15BD995B004788A9 /* Growl.framework */; };
 		F5237A0615C958A500D2A1F2 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = F5237A0415C958A500D2A1F2 /* share.png */; };
 		F5237A0715C958A500D2A1F2 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5237A0515C958A500D2A1F2 /* share@2x.png */; };
 		F528B1AA15BC54B500DC82B4 /* DMNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F528B1A915BC54B500DC82B4 /* DMNotificationCenter.m */; };
@@ -177,19 +176,6 @@
 		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
 		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F5148B5415810758002B3D61 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F517B91415C1771000097815 /* Growl.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		175773FB16A38FB100F6E4C7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -378,7 +364,6 @@
 		F5ADFAF61629C5A400FFC23D /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		F5AF817C163429BB006F15F0 /* DMSearchItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMSearchItemView.h; path = DMSearchPanel/DMSearchItemView.h; sourceTree = "<group>"; };
 		F5AF817D163429BB006F15F0 /* DMSearchItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMSearchItemView.m; path = DMSearchPanel/DMSearchItemView.m; sourceTree = "<group>"; };
-		F5B9DC7A15BD995B004788A9 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		F5B9DC8015BDACC6004788A9 /* status-icon-mixed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-icon-mixed.png"; sourceTree = "<group>"; };
 		F5BA9A9C16A6A7940007AB52 /* pro_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pro_icon.png; sourceTree = "<group>"; };
 		F5BA9A9D16A6A7940007AB52 /* pro_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pro_icon@2x.png"; sourceTree = "<group>"; };
@@ -597,7 +582,6 @@
 				178B499216A30B5D00EB642D /* AudioToolbox.framework */,
 				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
 				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
-				F5B9DC7A15BD995B004788A9 /* Growl.framework */,
 				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
 				F5148B4B1580EE4D002B3D61 /* Security.framework */,
 				F5148B491580EE1F002B3D61 /* Carbon.framework */,
@@ -1093,7 +1077,6 @@
 				F5148AAA1580E58D002B3D61 /* Sources */,
 				F5148AAB1580E58D002B3D61 /* Frameworks */,
 				F5148AAC1580E58D002B3D61 /* Resources */,
-				F5148B5415810758002B3D61 /* CopyFiles */,
 				17FE6B001584AD5900EA34EA /* ShellScript */,
 			);
 			buildRules = (
@@ -1469,7 +1452,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Yancheng Zheng";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1486,7 +1469,6 @@
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1497,7 +1479,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Yancheng Zheng";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1515,7 +1497,6 @@
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

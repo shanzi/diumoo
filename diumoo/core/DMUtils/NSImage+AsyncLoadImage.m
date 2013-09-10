@@ -35,7 +35,5 @@
             });
         }
     });
-    dispatch_release(imageLoadQueue);
-    dispatch_release(high);
 }
 @end
