@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12E3067</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.39</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.SystemVersion">13D65</string>
+		<string key="IBDocument.InterfaceBuilderVersion">6154.17</string>
+		<string key="IBDocument.AppKitVersion">1265.20</string>
+		<string key="IBDocument.HIToolboxVersion">698.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">3084</string>
+			<string key="NS.object.0">6154.17</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSButton</string>
@@ -277,7 +277,7 @@
 				</array>
 			</object>
 			<object class="NSWindowTemplate" id="577421203">
-				<int key="NSWindowStyleMask">144</int>
+				<int key="NSWindowStyleMask">128</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{130, 110}, {250, 480}}</string>
 				<int key="NSWTFlags">1685586944</int>
@@ -296,6 +296,7 @@
 							<string key="NSFrame">{{5, 434}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="784427520">
@@ -303,7 +304,7 @@
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Gradient Button</string>
 								<object class="NSFont" key="NSSupport" id="347555876">
-									<string key="NSName">LucidaGrande</string>
+									<bool key="IBIsSystemFont">YES</bool>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">1044</int>
 								</object>
@@ -329,6 +330,7 @@
 							<string key="NSFrame">{{62, 434}, {63, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -359,6 +361,7 @@
 							<string key="NSFrame">{{124, 434}, {62, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -389,6 +392,7 @@
 							<string key="NSFrame">{{184, 435}, {60, 37}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">3</int>
 							<bool key="NSEnabled">YES</bool>
@@ -473,6 +477,7 @@
 								</object>
 							</object>
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+							<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 						</object>
 						<object class="NSButton" id="224481640">
 							<reference key="NSNextResponder" ref="631853183"/>
@@ -481,6 +486,7 @@
 							<string key="NSFrame">{{218, 74}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">-1</int>
 							<bool key="NSEnabled">YES</bool>
@@ -524,6 +530,7 @@
 								<reference key="NSTextColor" ref="120520224"/>
 							</object>
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+							<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 						</object>
 						<object class="NSTextField" id="179548798">
 							<reference key="NSNextResponder" ref="631853183"/>
@@ -539,9 +546,9 @@
 								<int key="NSCellFlags2">71304192</int>
 								<string key="NSContents">123</string>
 								<object class="NSFont" key="NSSupport">
-									<string key="NSName">LucidaGrande</string>
+									<bool key="IBIsSystemFont">YES</bool>
 									<double key="NSSize">12</double>
-									<int key="NSfFlags">16</int>
+									<int key="NSfFlags">4883</int>
 								</object>
 								<string key="NSCellIdentifier">_NS:1505</string>
 								<reference key="NSControlView" ref="179548798"/>
@@ -557,6 +564,7 @@
 								</object>
 							</object>
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+							<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 						</object>
 						<object class="NSButton" id="925075985">
 							<reference key="NSNextResponder" ref="631853183"/>
@@ -565,6 +573,7 @@
 							<string key="NSFrame">{{185, 8}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">9</int>
 							<bool key="NSEnabled">YES</bool>
@@ -622,6 +631,7 @@
 							<string key="NSFrame">{{5, 5}, {24, 24}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">5</int>
 							<bool key="NSEnabled">YES</bool>
@@ -729,6 +739,7 @@
 							<string key="NSFrame">{{225, 8}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">6</int>
 							<bool key="NSEnabled">YES</bool>
@@ -759,6 +770,7 @@
 							<string key="NSFrame">{{205, 8}, {18, 18}}</string>
 							<reference key="NSSuperview" ref="631853183"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<int key="NSTag">7</int>
 							<bool key="NSEnabled">YES</bool>
@@ -823,7 +835,7 @@
 					<bool key="NSViewIsLayerTreeHost">YES</bool>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 900}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<int key="NSWindowAnimationBehavior">2</int>
 				<int key="NSWindowCollectionBehavior">80</int>
@@ -2089,10 +2101,18 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3927</int>
+			<int key="maxID">3929</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">DMButton</string>
+					<string key="superclassName">NSButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMButton/DMButton.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">DMButton</string>
 					<string key="superclassName">NSButton</string>
@@ -2106,7 +2126,23 @@
 					<string key="superclassName">NSButton</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMCoverControlView/DMCoverControlView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMCoverControlView</string>
+					<string key="superclassName">NSButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DMCoverControlView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMPanel</string>
+					<string key="superclassName">NSPanel</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMPanel.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -2128,19 +2164,19 @@
 						<string key="togglePanel:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="controlAction:">
+						<object class="IBActionInfo" key="controlAction:" id="966485588">
 							<string key="name">controlAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="shareAction:">
+						<object class="IBActionInfo" key="shareAction:" id="187696967">
 							<string key="name">shareAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="showAlbumWindow:">
+						<object class="IBActionInfo" key="showAlbumWindow:" id="669147506">
 							<string key="name">showAlbumWindow:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="specialAction:">
+						<object class="IBActionInfo" key="specialAction:" id="416744550">
 							<string key="name">specialAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
@@ -2165,62 +2201,140 @@
 						<string key="usernameTextField">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="banButton">
+						<object class="IBToOneOutletInfo" key="banButton" id="260547281">
 							<string key="name">banButton</string>
 							<string key="candidateClassName">DMButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="coreView">
+						<object class="IBToOneOutletInfo" key="coreView" id="457631588">
 							<string key="name">coreView</string>
 							<string key="candidateClassName">DMCoverControlView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="coverView">
+						<object class="IBToOneOutletInfo" key="coverView" id="471532574">
 							<string key="name">coverView</string>
 							<string key="candidateClassName">DMCoverControlView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="delegate">
+						<object class="IBToOneOutletInfo" key="delegate" id="582838244">
 							<string key="name">delegate</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="indicateString">
+						<object class="IBToOneOutletInfo" key="indicateString" id="871775395">
 							<string key="name">indicateString</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="loadingIndicator">
+						<object class="IBToOneOutletInfo" key="loadingIndicator" id="378467311">
 							<string key="name">loadingIndicator</string>
 							<string key="candidateClassName">NSProgressIndicator</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="playPauseButton">
+						<object class="IBToOneOutletInfo" key="playPauseButton" id="652847064">
 							<string key="name">playPauseButton</string>
 							<string key="candidateClassName">DMButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="popupMenuController">
+						<object class="IBToOneOutletInfo" key="popupMenuController" id="887927682">
 							<string key="name">popupMenuController</string>
 							<string key="candidateClassName">DMPopUpMenuController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="rateButton">
+						<object class="IBToOneOutletInfo" key="rateButton" id="997355809">
 							<string key="name">rateButton</string>
 							<string key="candidateClassName">DMButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="ratedCountTextField">
+						<object class="IBToOneOutletInfo" key="ratedCountTextField" id="731895153">
 							<string key="name">ratedCountTextField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="skipButton">
+						<object class="IBToOneOutletInfo" key="skipButton" id="578059504">
 							<string key="name">skipButton</string>
 							<string key="candidateClassName">DMButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="userIconButton">
+						<object class="IBToOneOutletInfo" key="userIconButton" id="829639123">
 							<string key="name">userIconButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="usernameTextField">
+						<object class="IBToOneOutletInfo" key="usernameTextField" id="94722216">
 							<string key="name">usernameTextField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMPanelWindowController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMPanelWindowController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">togglePanel:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">togglePanel:</string>
+						<object class="IBActionInfo" key="NS.object.0" id="304936581">
+							<string key="name">togglePanel:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMPanelWindowController.m</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMPanelWindowController</string>
+					<string key="superclassName">NSWindowController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="controlAction:">id</string>
+						<string key="shareAction:">id</string>
+						<string key="showAlbumWindow:">id</string>
+						<string key="specialAction:">id</string>
+						<string key="togglePanel:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<reference key="controlAction:" ref="966485588"/>
+						<reference key="shareAction:" ref="187696967"/>
+						<reference key="showAlbumWindow:" ref="669147506"/>
+						<reference key="specialAction:" ref="416744550"/>
+						<reference key="togglePanel:" ref="304936581"/>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="banButton">DMButton</string>
+						<string key="coreView">DMCoverControlView</string>
+						<string key="coverView">DMCoverControlView</string>
+						<string key="delegate">id</string>
+						<string key="indicateString">NSTextField</string>
+						<string key="loadingIndicator">NSProgressIndicator</string>
+						<string key="playPauseButton">DMButton</string>
+						<string key="popupMenuController">DMPopUpMenuController</string>
+						<string key="rateButton">DMButton</string>
+						<string key="ratedCountTextField">NSTextField</string>
+						<string key="skipButton">DMButton</string>
+						<string key="userIconButton">NSButton</string>
+						<string key="usernameTextField">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<reference key="banButton" ref="260547281"/>
+						<reference key="coreView" ref="457631588"/>
+						<reference key="coverView" ref="471532574"/>
+						<reference key="delegate" ref="582838244"/>
+						<reference key="indicateString" ref="871775395"/>
+						<reference key="loadingIndicator" ref="378467311"/>
+						<reference key="playPauseButton" ref="652847064"/>
+						<reference key="popupMenuController" ref="887927682"/>
+						<reference key="rateButton" ref="997355809"/>
+						<reference key="ratedCountTextField" ref="731895153"/>
+						<reference key="skipButton" ref="578059504"/>
+						<reference key="userIconButton" ref="829639123"/>
+						<reference key="usernameTextField" ref="94722216"/>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DMPanelWindowController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMPopUpButtonCell</string>
+					<string key="superclassName">NSButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMPopUpButtonCell/DMPopUpButtonCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -2239,11 +2353,11 @@
 						<string key="popUpMenu:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="changeChannelAction:">
+						<object class="IBActionInfo" key="changeChannelAction:" id="766266816">
 							<string key="name">changeChannelAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="popUpMenu:">
+						<object class="IBActionInfo" key="popUpMenu:" id="954450072">
 							<string key="name">popUpMenu:</string>
 							<string key="candidateClassName">id</string>
 						</object>
@@ -2259,38 +2373,74 @@
 						<string key="subButton">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="delegate">
+						<object class="IBToOneOutletInfo" key="delegate" id="182359405">
 							<string key="name">delegate</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="exitSpecialMenu">
+						<object class="IBToOneOutletInfo" key="exitSpecialMenu" id="838466561">
 							<string key="name">exitSpecialMenu</string>
 							<string key="candidateClassName">NSMenu</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="longMainButton">
+						<object class="IBToOneOutletInfo" key="longMainButton" id="1000895898">
 							<string key="name">longMainButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="mainButton">
+						<object class="IBToOneOutletInfo" key="mainButton" id="487036352">
 							<string key="name">mainButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="mainMenu">
+						<object class="IBToOneOutletInfo" key="mainMenu" id="536115018">
 							<string key="name">mainMenu</string>
 							<string key="candidateClassName">NSMenu</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="moreChannelMenu">
+						<object class="IBToOneOutletInfo" key="moreChannelMenu" id="783739450">
 							<string key="name">moreChannelMenu</string>
 							<string key="candidateClassName">NSMenu</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="shareMenu">
+						<object class="IBToOneOutletInfo" key="shareMenu" id="166479611">
 							<string key="name">shareMenu</string>
 							<string key="candidateClassName">NSMenu</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="subButton">
+						<object class="IBToOneOutletInfo" key="subButton" id="842088444">
 							<string key="name">subButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMPopUpButtonCell/DMPopUpMenuController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMPopUpMenuController</string>
+					<string key="superclassName">NSObjectController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeChannelAction:">id</string>
+						<string key="popUpMenu:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<reference key="changeChannelAction:" ref="766266816"/>
+						<reference key="popUpMenu:" ref="954450072"/>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="delegate">id</string>
+						<string key="exitSpecialMenu">NSMenu</string>
+						<string key="longMainButton">NSButton</string>
+						<string key="mainButton">NSButton</string>
+						<string key="mainMenu">NSMenu</string>
+						<string key="moreChannelMenu">NSMenu</string>
+						<string key="shareMenu">NSMenu</string>
+						<string key="subButton">NSButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<reference key="delegate" ref="182359405"/>
+						<reference key="exitSpecialMenu" ref="838466561"/>
+						<reference key="longMainButton" ref="1000895898"/>
+						<reference key="mainButton" ref="487036352"/>
+						<reference key="mainMenu" ref="536115018"/>
+						<reference key="moreChannelMenu" ref="783739450"/>
+						<reference key="shareMenu" ref="166479611"/>
+						<reference key="subButton" ref="842088444"/>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -2302,13 +2452,37 @@
 					<string key="superclassName">NSSliderCell</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../diumoo/ui/DMPanel/DMVolumeSlideCell/DMVolumeSlideCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">DMVolumeSlideCell</string>
+					<string key="superclassName">NSSliderCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DMVolumeSlideCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FirstResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBUserSource</string>
+						<string key="minorKey"/>
 					</object>
 				</object>
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">NO</bool>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1080" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
+			<integer value="4600" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
