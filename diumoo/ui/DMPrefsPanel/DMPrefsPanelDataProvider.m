@@ -8,7 +8,7 @@
 
 #import "DMPrefsPanelDataProvider.h"
 #import "DMDoubanAuthHelper.h"
-//#import "MASShortcutView+UserDefaults.h"
+#import "Shortcut.h"
 #import "NSImage+AsyncLoadImage.h"
 #import "DMService.h"
 
@@ -307,12 +307,12 @@
                            dict[@"CFBundleVersion"]
                            ];
     
-//    playShortcut.associatedUserDefaultsKey = keyPlayShortcut;
-//    skipShortcut.associatedUserDefaultsKey = keySkipShortcut;
-//    rateShortcut.associatedUserDefaultsKey = keyRateShortcut;
-//    banShortcut.associatedUserDefaultsKey = keyBanShortcut;
-//    showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
-//    togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
+    playShortcut.associatedUserDefaultsKey = keyPlayShortcut;
+    skipShortcut.associatedUserDefaultsKey = keySkipShortcut;
+    rateShortcut.associatedUserDefaultsKey = keyRateShortcut;
+    banShortcut.associatedUserDefaultsKey = keyBanShortcut;
+    showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
+    togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
 	
 
     if ([[[NSUserDefaults standardUserDefaults]

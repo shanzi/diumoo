@@ -10,7 +10,7 @@
 #import "DMDoubanAuthHelper.h"
 #import "DMService.h"
 #import "DMErrorLog.h"
-#import "MASShortcut.h"
+#import "Shortcut.h"
 
 
 @implementation DMAppDelegate
@@ -159,35 +159,30 @@
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:preferences];
     
     
-    if ([defaults valueForKey:@"shortcutDidRegistered"]==nil) {
-//        [defaults setValue:[[MASShortcut
-//                             shortcutWithKeyCode:41
-//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-//                            data]
-//                    forKey:keyPlayShortcut];
-//        [defaults setValue:[[MASShortcut
-//                             shortcutWithKeyCode:39
-//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-//                            data]
-//                    forKey:keySkipShortcut];
-//        [defaults setValue:[[MASShortcut
-//                             shortcutWithKeyCode:43
-//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-//                            data]
-//                    forKey:keyRateShortcut];
-//        [defaults setValue:[[MASShortcut
-//                             shortcutWithKeyCode:47
-//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-//                            data]
-//                    forKey:keyBanShortcut];
-//        [defaults setValue:[[MASShortcut
-//                            shortcutWithKeyCode:44
-//                            modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-//                            data]
-//                    forKey:keyTogglePanelShortcut];
-        [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
+    if ([defaults valueForKey:@"shortcutDidRegistered"] != nil) {
+		// clear old short cuts as we updated MASShortcut
+		// This code is for compatibility
+		DMLog(@"Remove old shortcuts");
+        [defaults setValue: nil forKey:keyPlayShortcut];
+        [defaults setValue: nil forKey:keySkipShortcut];
+        [defaults setValue: nil forKey:keyRateShortcut];
+        [defaults setValue: nil forKey:keyBanShortcut];
+        [defaults setValue: nil forKey:keyTogglePanelShortcut];
+		[defaults setValue: nil forKey:keyShowPrefsPanel];
+		[defaults setValue: nil forKey:@"shortcutDidRegistered"];
     }
-    
+	
+	// Register default shortcuts
+	int flags = (NSAlternateKeyMask|NSCommandKeyMask);
+	[[MASShortcutBinder sharedBinder] registerDefaultShortcuts:
+	 @{keyPlayShortcut: [MASShortcut shortcutWithKeyCode:kVK_ANSI_Semicolon modifierFlags:flags],
+	   keySkipShortcut: [MASShortcut shortcutWithKeyCode:kVK_ANSI_Quote modifierFlags:flags],
+	   keyRateShortcut: [MASShortcut shortcutWithKeyCode:kVK_ANSI_Comma modifierFlags:flags],
+	   keyBanShortcut: [MASShortcut shortcutWithKeyCode:kVK_ANSI_Period modifierFlags:flags],
+	   keyTogglePanelShortcut: [MASShortcut shortcutWithKeyCode:kVK_ANSI_Slash modifierFlags:flags],
+	   keyShowPrefsPanel: [MASShortcut shortcutWithKeyCode:kVK_ANSI_P modifierFlags:flags]
+	   }];
+	
     if ([defaults integerForKey:@"useMediaKey"]==NSOnState) {
         [mediakeyTap startWatchingMediaKeys];
     }

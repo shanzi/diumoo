@@ -95,9 +95,7 @@
 
 - (NSRect)globalRect
 {
-    NSRect frame = [self frame];
-    frame.origin = [self.window convertBaseToScreen:frame.origin];
-    return frame;
+    return [self.window convertRectToScreen:[self frame]];
 }
 
 @end

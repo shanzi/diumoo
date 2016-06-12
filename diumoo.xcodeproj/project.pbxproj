@@ -418,7 +418,6 @@
 		F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPlayRecordHandler.m; path = DMPlayRecordHandler/DMPlayRecordHandler.m; sourceTree = "<group>"; };
 		F5D473BB163D747D00EE35B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMSearchPanelController.xib; sourceTree = "<group>"; };
 		F5D473BE163D74A100EE35B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DMSearchPanelController.xib"; sourceTree = "<group>"; };
-		F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F5E2D0F416005D2400389463 /* DMShortcutsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShortcutsHandler.h; sourceTree = "<group>"; };
 		F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShortcutsHandler.m; sourceTree = "<group>"; };
 		F5ECCBEA158CC71600512F6A /* DMPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPopUpButtonCell.h; sourceTree = "<group>"; };
@@ -627,7 +626,6 @@
 				1758595C16A313CA00AAAFBE /* AVFoundation.framework */,
 				178B499216A30B5D00EB642D /* AudioToolbox.framework */,
 				177F3CCC1630F42D00FE4780 /* IOKit.framework */,
-				F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */,
 				F5148B4F1580EE92002B3D61 /* QuartzCore.framework */,
 				F5148B4B1580EE4D002B3D61 /* Security.framework */,
 				F5148B491580EE1F002B3D61 /* Carbon.framework */,
