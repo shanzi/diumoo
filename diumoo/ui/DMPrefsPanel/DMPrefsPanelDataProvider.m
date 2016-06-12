@@ -245,18 +245,11 @@
     if ([DMDoubanAuthHelper sharedHelper].username) {
         // update account view 
         DMDoubanAuthHelper* sh = [DMDoubanAuthHelper sharedHelper];
-        
-        NSString* playedString = [NSString stringWithFormat:@"%ld", sh.playedSongsCount];
-        NSString* likedString = [NSString stringWithFormat:@"%ld", sh.likedSongsCount];
-        NSString* bannedString = [NSString stringWithFormat:@"%ld",sh.bannedSongsCount];
+		
         
         [usernameTextField setStringValue:sh.username];
         
         [userIconButton setImage:[sh getUserIcon]];
-        
-        [playrecordButton setLabel:playedString forSegment:0];
-        [playrecordButton setLabel:likedString forSegment:1];
-        [playrecordButton setLabel:bannedString forSegment:2];
         
         return account;
     }

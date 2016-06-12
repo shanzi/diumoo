@@ -28,10 +28,6 @@
     NSImage  *icon;
     NSDictionary *userinfo;
     
-    NSInteger playedSongsCount;
-    NSInteger likedSongsCount;
-    NSInteger bannedSongsCount;
-    
     BOOL isPro;
 }
 

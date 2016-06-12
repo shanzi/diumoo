@@ -74,7 +74,7 @@ static DMDoubanAuthHelper* sharedHelper;
     // 发出同步请求
     NSURLResponse *response;
     NSError *error = [[NSError alloc] initWithDomain:@"diumoo" code:0 userInfo:nil];
-    NSData *data = [NSURLConnection sendSynchronousRequest:authRequest
+	NSData *data = [NSURLConnection sendSynchronousRequest:authRequest
                                          returningResponse:&response
                                                      error:&error];
     
@@ -96,9 +96,6 @@ static DMDoubanAuthHelper* sharedHelper;
     userUrl = nil;
     userinfo = nil;
     icon = nil;
-    playedSongsCount = 0;
-    likedSongsCount = 0;
-    bannedSongsCount = 0;
     promotion_chls = nil;
     recent_chls = nil;
     
@@ -172,15 +169,6 @@ static DMDoubanAuthHelper* sharedHelper;
     userUrl = [info valueForKey:@"url"];
     userinfo = info;
     isPro = [[info valueForKey:@"is_pro"] boolValue];
-    
-    NSDictionary* play_record = [info valueForKey:@"play_record"];
-    
-    if (play_record) {
-        playedSongsCount = [[play_record valueForKey:@"played"] integerValue];
-        likedSongsCount =  [[play_record valueForKey:@"liked"] integerValue];
-        bannedSongsCount = [[play_record valueForKey:@"banned"] integerValue];
-    }
-    
     
     
     NSString* _id = [info valueForKey:@"id"];

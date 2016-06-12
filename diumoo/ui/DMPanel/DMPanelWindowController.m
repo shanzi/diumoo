@@ -70,11 +70,6 @@ DMPanelWindowController *sharedWindow;
 
         [userIconButton setImage:helper.icon];
         [usernameTextField setStringValue:helper.username];
-        
-        NSString* ratedCountString= [NSString stringWithFormat:@"♥ %ld",helper.likedSongsCount];
-        [ratedCountTextField setStringValue:ratedCountString];
-        
-        [ratedCountTextField setHidden:NO];
         [usernameTextField setHidden:NO];
         
         [rateButton setEnabled:YES];
@@ -84,9 +79,7 @@ DMPanelWindowController *sharedWindow;
     }
     else {
         [userIconButton setImage:[NSImage imageNamed:NSImageNameUser]];
-        [ratedCountTextField setStringValue:@""];
         [usernameTextField setStringValue:@""];
-        [ratedCountTextField setHidden:YES];
         [usernameTextField setHidden:YES];
         
         [popupMenuController setPrivateChannelEnabled:NO];
@@ -211,16 +204,6 @@ DMPanelWindowController *sharedWindow;
             [rateButton setImage:[NSImage imageNamed:@"rate"]];
         }
         [CATransaction commit];
-    }
-}
-
--(void) countRated:(NSInteger)count
-{
-    DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
-    if(helper.username){
-        helper.likedSongsCount += count ;
-        NSString* ratedCountString= [NSString stringWithFormat:@"♥ %ld",helper.likedSongsCount];
-        [ratedCountTextField setStringValue:ratedCountString];
     }
 }
 

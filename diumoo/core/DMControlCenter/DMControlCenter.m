@@ -355,7 +355,6 @@
                                  withType:kFetchPlaylistTypeUnrate
                                       sid:playingItem.musicInfo[@"sid"]
                            startAttribute:nil];
-        [diumooPanel countRated:-1];
         [diumooPanel setRated:NO];
     }
     else {
@@ -365,8 +364,7 @@
                                  withType:kFetchPlaylistTypeRate
                                       sid:playingItem.musicInfo[@"sid"]
                            startAttribute:nil];
-        
-        [diumooPanel countRated:1];
+		
         [diumooPanel setRated:YES];
     }
     // 在这里做些什么事情来更新 UI

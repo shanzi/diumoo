@@ -52,7 +52,6 @@ typedef enum{
     
     IBOutlet NSButton* userIconButton;
     IBOutlet NSTextField* usernameTextField;
-    IBOutlet NSTextField* ratedCountTextField;
     
     IBOutlet NSProgressIndicator* loadingIndicator;
     IBOutlet NSTextField* indicateString;
@@ -78,7 +77,6 @@ typedef enum{
 
 -(void) unlockUIWithError:(BOOL)has_err;
 -(void) setRated:(BOOL)rated;
--(void) countRated:(NSInteger)count;
 -(void) setPlaying:(BOOL) playing;
 -(void) setPlayingItem:(DMPlayableItem*) item;
 -(void) playDefaultChannel;
