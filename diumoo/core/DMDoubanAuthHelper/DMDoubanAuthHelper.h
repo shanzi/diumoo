@@ -12,7 +12,7 @@
 
 #define AccountStateChangedNotification @"accountstatechanged"
 #define AUTH_STRING @"https://douban.fm/j/login"
-#define DOUBAN_FM_INDEX @"https://douban.fm/"
+#define DOUBAN_FM_INDEX @"https://douban.fm/account/switch_version?san=0&error=1"
 #define PROMOTION_CHLS_URL @"https://douban.fm/j/explore/promotion_chls"
 #define RECENT_CHLS_URL @"https://douban.fm/j/explore/recent_chls"
 
