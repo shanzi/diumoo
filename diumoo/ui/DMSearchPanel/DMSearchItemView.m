@@ -8,58 +8,55 @@
 
 #import "DMSearchItemView.h"
 
-
 @implementation DMSearchCollectionView
 @synthesize target;
 
--(void) mouseDown:(NSEvent *)theEvent
+- (void)mouseDown:(NSEvent*)theEvent
 {
     [super mouseDown:theEvent];
-    
+
     if (theEvent.clickCount == 2) {
         NSManagedObject* songObject = [self selectedItem];
         if (songObject) {
-            
-            
-            NSString *sid = [songObject valueForKey:@"sid"];
-            NSString *ssid = [songObject valueForKey:@"ssid"];
-            NSString *start = [NSString stringWithFormat:@"%@g%@g0",sid,ssid];
-            
-            NSDictionary* info =@{
-            @"type":@"song",
-            @"start": start
+
+            NSString* sid = [songObject valueForKey:@"sid"];
+            NSString* ssid = [songObject valueForKey:@"ssid"];
+            NSString* start = [NSString stringWithFormat:@"%@g%@g0", sid, ssid];
+
+            NSDictionary* info = @{
+                @"type" : @"song",
+                @"start" : start
             };
-            
+
             [[NSNotificationCenter defaultCenter]
-             postNotificationName:@"playspecial"
-             object:self
-             userInfo:info];
+                postNotificationName:@"playspecial"
+                              object:self
+                            userInfo:info];
         }
     }
-    
 }
 
--(NSManagedObject*) selectedItem
+- (NSManagedObject*)selectedItem
 {
     if ([[self selectionIndexes] count]) {
         NSCollectionViewItem* selectedItem = [self itemAtIndex:
-                                          [[self selectionIndexes] firstIndex]];
+                                                       [[self selectionIndexes] firstIndex]];
         return selectedItem.representedObject;
     }
-    else return nil;
+    else
+        return nil;
 }
 
 @end
 
 @implementation DMSearchCollectionViewItem
--(void)setSelected:(BOOL)selected
+- (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
     [(DMSearchItemView*)self.view setSelected:selected];
     [self.view setNeedsDisplay:YES];
 }
 @end
-
 
 @implementation DMSearchItemView
 
@@ -69,7 +66,7 @@
     if (self) {
         // Initialization code here.
     }
-    
+
     return self;
 }
 

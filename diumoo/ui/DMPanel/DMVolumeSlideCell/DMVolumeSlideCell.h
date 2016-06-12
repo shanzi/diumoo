@@ -8,8 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface DMVolumeSlideCell : NSSliderCell
-{
+@interface DMVolumeSlideCell : NSSliderCell {
     NSImage* backImage;
     NSImage* sliderImage;
     NSRect sliderRect;

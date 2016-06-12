@@ -9,8 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DMSearchPanelController : NSWindowController
-@property(readonly) NSManagedObjectContext* contextObject;
+@property (readonly) NSManagedObjectContext* contextObject;
 
-+(DMSearchPanelController*) sharedSearchPanel;
++ (DMSearchPanelController*)sharedSearchPanel;
 
 @end

@@ -8,17 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@interface DMDocument : NSDocument <NSWindowDelegate> {
+    NSString* sid;
+    NSString* ssid;
+    NSString* aid;
 
-
-@interface DMDocument : NSDocument <NSWindowDelegate>
-{
-    NSString *sid;
-    NSString *ssid;
-    NSString *aid;
-    
-    NSDictionary *baseSongInfo;
+    NSDictionary* baseSongInfo;
 }
 
-@property (readonly) NSDictionary *baseSongInfo;
+@property (readonly) NSDictionary* baseSongInfo;
 
 @end

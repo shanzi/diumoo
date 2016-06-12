@@ -48,7 +48,6 @@
 		3FDD684B15DBE9B400DC834F /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684A15DBE9B400DC834F /* settings@2x.png */; };
 		3FDD684D15DBEF1200DC834F /* trash-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684C15DBEF1200DC834F /* trash-icon@2x.png */; };
 		3FDD684F15DBF16D00DC834F /* heart-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684E15DBF16D00DC834F /* heart-icon@2x.png */; };
-		525D5A981D0D431700A39D73 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 525D5A961D0D41F900A39D73 /* libxml2.tbd */; };
 		525D5AB71D0D452000A39D73 /* MASDictionaryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */; };
 		525D5AB91D0D452000A39D73 /* MASHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5A9F1D0D452000A39D73 /* MASHotKey.m */; };
 		525D5ABB1D0D452000A39D73 /* MASLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA31D0D452000A39D73 /* MASLocalization.m */; };
@@ -185,6 +184,7 @@
 		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
 		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
 		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
+		FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -241,7 +241,6 @@
 		3FDD684A15DBE9B400DC834F /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		3FDD684C15DBEF1200DC834F /* trash-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-icon@2x.png"; sourceTree = "<group>"; };
 		3FDD684E15DBF16D00DC834F /* heart-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon@2x.png"; sourceTree = "<group>"; };
-		525D5A961D0D41F900A39D73 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		525D5A9B1D0D452000A39D73 /* MASDictionaryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASDictionaryTransformer.h; sourceTree = "<group>"; };
 		525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASDictionaryTransformer.m; sourceTree = "<group>"; };
 		525D5A9E1D0D452000A39D73 /* MASHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASHotKey.h; sourceTree = "<group>"; };
@@ -443,6 +442,7 @@
 		F5F7EF101600EE850007D2DB /* record.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = record.icns; sourceTree = "<group>"; };
 		F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diumoo.entitlements; sourceTree = "<group>"; };
 		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
+		FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,7 +450,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525D5A981D0D431700A39D73 /* libxml2.tbd in Frameworks */,
+				FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */,
 				175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */,
 				1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */,
 				177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */,
@@ -633,7 +633,7 @@
 		F5148AB11580E58D002B3D61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				525D5A961D0D41F900A39D73 /* libxml2.tbd */,
+				FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */,
 				175773FB16A38FB100F6E4C7 /* CoreMedia.framework */,
 				1758595C16A313CA00AAAFBE /* AVFoundation.framework */,
 				178B499216A30B5D00EB642D /* AudioToolbox.framework */,
@@ -1143,7 +1143,7 @@
 				LastUpgradeCheck = 0730;
 				TargetAttributes = {
 					F5148AAD1580E58D002B3D61 = {
-						DevelopmentTeam = 4KWBUULLH3;
+						DevelopmentTeam = MC98392EJC;
 					};
 				};
 			};
@@ -1535,11 +1535,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"/usr/local/Cellar/libxml2/**",
+					"$(SDKROOT)/usr/include/libxml2/**",
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1563,11 +1564,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"/usr/local/Cellar/libxml2/**",
+					"$(SDKROOT)/usr/include/libxml2/**",
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

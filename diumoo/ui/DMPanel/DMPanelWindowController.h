@@ -6,86 +6,85 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "DMButton.h"
 #import "DMCoverControlView.h"
 #import "DMPlayableItem.h"
 #import "DMPopUpMenuController.h"
 #import "MenubarController.h"
-#import "DMButton.h"
+#import <Cocoa/Cocoa.h>
 
-typedef enum{
+typedef enum {
     DOUBAN = 1,
     FANFOU = 2,
     SINA_WEIBO = 3,
     RENREN = 4,
     TWITTER = 5,
     FACEBOOK = 6,
-    SYS_TWITTER=7,
-    SYS_FACEBOOK=8,
-    SYS_WEIBO=9,
-    COPY_LINK=10
-    
-} SNS_CODE ;
+    SYS_TWITTER = 7,
+    SYS_FACEBOOK = 8,
+    SYS_WEIBO = 9,
+    COPY_LINK = 10
+
+} SNS_CODE;
 
 @protocol DMPanelWindowDelegate <NSObject>
 
--(void)playOrPause;
--(void)skip;
--(void)rateOrUnrate;
--(void)ban;
--(void)volumeChange:(float)volume;
--(BOOL)channelChangedTo:(NSString*)channel;
--(void)exitedSpecialMode;
--(void)share:(SNS_CODE) code;
+- (void)playOrPause;
+- (void)skip;
+- (void)rateOrUnrate;
+- (void)ban;
+- (void)volumeChange:(float)volume;
+- (BOOL)channelChangedTo:(NSString*)channel;
+- (void)exitedSpecialMode;
+- (void)share:(SNS_CODE)code;
 
 @end
 
-@interface DMPanelWindowController : NSWindowController
-{
+@interface DMPanelWindowController : NSWindowController {
     IBOutlet DMCoverControlView* coverView;
     IBOutlet DMPopUpMenuController* popupMenuController;
-    
+
     IBOutlet DMButton* playPauseButton;
     IBOutlet DMButton* skipButton;
     IBOutlet DMButton* rateButton;
     IBOutlet DMButton* banButton;
-    
+
     IBOutlet NSButton* userIconButton;
     IBOutlet NSTextField* usernameTextField;
-    
+
     IBOutlet NSProgressIndicator* loadingIndicator;
     IBOutlet NSTextField* indicateString;
-    
+
     BOOL _hasActivePanel;
-    MenubarController *menubarController;
+    MenubarController* menubarController;
 }
 
-@property(nonatomic,strong) IBOutlet DMCoverControlView *coreView;
+@property (nonatomic, strong) IBOutlet DMCoverControlView* coreView;
 
-@property(copy) NSString* openURL;
+@property (copy) NSString* openURL;
 @property (nonatomic) BOOL hasActivePanel;
 
-@property(strong) IBOutlet id<DMPanelWindowDelegate> delegate;
+@property (strong) IBOutlet id<DMPanelWindowDelegate> delegate;
 
-+(DMPanelWindowController*)sharedWindowController;
++ (DMPanelWindowController*)sharedWindowController;
 
--(void) channelChangeActionWithSender:(id)sender;
--(IBAction)controlAction:(id)sender;
--(IBAction)showAlbumWindow:(id)sender;
--(IBAction)specialAction:(id)sender;
--(IBAction)shareAction:(id)sender;
+- (void)channelChangeActionWithSender:(id)sender;
+- (IBAction)controlAction:(id)sender;
+- (IBAction)showAlbumWindow:(id)sender;
+- (IBAction)specialAction:(id)sender;
+- (IBAction)shareAction:(id)sender;
 
--(void) unlockUIWithError:(BOOL)has_err;
--(void) setRated:(BOOL)rated;
--(void) setPlaying:(BOOL) playing;
--(void) setPlayingItem:(DMPlayableItem*) item;
--(void) playDefaultChannel;
+- (void)unlockUIWithError:(BOOL)has_err;
+- (void)setRated:(BOOL)rated;
+- (void)setPlaying:(BOOL)playing;
+- (void)setPlayingItem:(DMPlayableItem*)item;
+- (void)playDefaultChannel;
 
--(NSString*) switchToDefaultChannel;
--(void) invokeChannelWithCid:(NSInteger) cid andTitle:(NSString*) title andPlay:(BOOL)immediately;
+- (NSString*)switchToDefaultChannel;
+- (void)invokeChannelWithCid:(NSInteger)cid andTitle:(NSString*)title andPlay:(BOOL)immediately;
 
--(void) toggleSpecialWithDictionary:(NSDictionary *)info;
+- (void)toggleSpecialWithDictionary:(NSDictionary*)info;
 - (IBAction)togglePanel:(id)sender;
--(void) mouseScroll:(NSEvent*) event;
+- (void)mouseScroll:(NSEvent*)event;
 
 @end

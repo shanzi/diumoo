@@ -6,21 +6,19 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import "JUInspectorViewContainer.h"
+#import <Cocoa/Cocoa.h>
 
-@interface DMDetailViewController : JUInspectorViewContainer <NSTableViewDelegate,NSTableViewDataSource>
-{
+@interface DMDetailViewController : JUInspectorViewContainer <NSTableViewDelegate, NSTableViewDataSource> {
     NSDictionary* baseInfoDict;
     NSArray* baseInfoKeys;
     NSArray* songsArray;
 }
 
-@property(nonatomic,strong) NSTableView* baseInformationView;
-@property(nonatomic,strong) NSTextView* summaryView;
-@property(nonatomic,strong) NSTableView* songsView;
+@property (nonatomic, strong) NSTableView* baseInformationView;
+@property (nonatomic, strong) NSTextView* summaryView;
+@property (nonatomic, strong) NSTableView* songsView;
 
-
--(id) initWithBaseInformation:(NSDictionary*) info summary:(NSString*) summary andSongs:(NSArray*)songs;
+- (id)initWithBaseInformation:(NSDictionary*)info summary:(NSString*)summary andSongs:(NSArray*)songs;
 
 @end
