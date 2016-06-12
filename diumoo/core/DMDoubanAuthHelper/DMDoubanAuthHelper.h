@@ -11,10 +11,10 @@
 #define kAuthAttributeCaptchaCode @"captcha_id"
 
 #define AccountStateChangedNotification @"accountstatechanged"
-#define AUTH_STRING @"http://douban.fm/j/login"
-#define DOUBAN_FM_INDEX @"http://douban.fm/"
-#define PROMOTION_CHLS_URL @"http://douban.fm/j/explore/promotion_chls"
-#define RECENT_CHLS_URL @"http://douban.fm/j/explore/recent_chls"
+#define AUTH_STRING @"https://douban.fm/j/login"
+#define DOUBAN_FM_INDEX @"https://douban.fm/"
+#define PROMOTION_CHLS_URL @"https://douban.fm/j/explore/promotion_chls"
+#define RECENT_CHLS_URL @"https://douban.fm/j/explore/recent_chls"
 
 
 #import <Foundation/Foundation.h>

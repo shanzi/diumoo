@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#define PLAYLIST_FETCH_URL_BASE @"http://douban.fm/j/mine/playlist"
+#define PLAYLIST_FETCH_URL_BASE @"https://douban.fm/j/mine/playlist"
 #define DOUBAN_FM_ORIGIN_URL @".douban.fm"
-#define DOUBAN_ALBUM_GET_URL @"http://douban.fm/j/app/radio/people"
+#define DOUBAN_ALBUM_GET_URL @"https://douban.fm/j/app/radio/people"
 
 
 #import "DMPlaylistFetcher.h"

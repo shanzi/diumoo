@@ -29,7 +29,7 @@ static DMDoubanAuthHelper* sharedHelper;
 +(NSString*) getNewCaptchaCode
 {    
     NSError* error;
-    NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] 
+    NSString* code = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://douban.fm/j/new_captcha"]
                                               encoding:NSASCIIStringEncoding 
                                                  error:&error];
     if(error != nil){

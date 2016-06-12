@@ -110,7 +110,7 @@
                             nil);
             if (re==NSAlertDefaultReturn) {
                 [[NSWorkspace sharedWorkspace] openURL:
-                 [NSURL URLWithString:@"http://douban.fm/upgrade"]];
+                 [NSURL URLWithString:@"https://douban.fm/upgrade"]];
             }
         }
 

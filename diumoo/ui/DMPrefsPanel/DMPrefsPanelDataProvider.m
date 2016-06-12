@@ -8,7 +8,7 @@
 
 #import "DMPrefsPanelDataProvider.h"
 #import "DMDoubanAuthHelper.h"
-#import "MASShortcutView+UserDefaults.h"
+//#import "MASShortcutView+UserDefaults.h"
 #import "NSImage+AsyncLoadImage.h"
 #import "DMService.h"
 
@@ -122,7 +122,7 @@
             [indicator startAnimation:nil];
             captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
                     
-            NSString* captcha_url = [@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
+            NSString* captcha_url = [@"https://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
             
             [NSImage AsyncLoadImageWithURLString:captcha_url andCallBackBlock:^(NSImage * image) {
                     if (image == nil) {
@@ -284,13 +284,13 @@
     NSString* urlstring = nil;
     switch (selectedSegment) {
         case 0:
-            urlstring = @"http://douban.fm/mine?type=played";
+            urlstring = @"https://douban.fm/mine?type=played";
             break;
         case 1:
-            urlstring = @"http://douban.fm/mine?type=liked";
+            urlstring = @"https://douban.fm/mine?type=liked";
             break;
         case 2:
-            urlstring = @"http://douban.fm/mine?type=banned";
+            urlstring = @"https://douban.fm/mine?type=banned";
     }
     NSURL* openurl = [NSURL URLWithString:urlstring];
     [[NSWorkspace sharedWorkspace] openURL:openurl];
@@ -307,13 +307,13 @@
                            dict[@"CFBundleVersion"]
                            ];
     
-    playShortcut.associatedUserDefaultsKey = keyPlayShortcut;
-    skipShortcut.associatedUserDefaultsKey = keySkipShortcut;
-    rateShortcut.associatedUserDefaultsKey = keyRateShortcut;
-    banShortcut.associatedUserDefaultsKey = keyBanShortcut;
-    showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
-    togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
-    
+//    playShortcut.associatedUserDefaultsKey = keyPlayShortcut;
+//    skipShortcut.associatedUserDefaultsKey = keySkipShortcut;
+//    rateShortcut.associatedUserDefaultsKey = keyRateShortcut;
+//    banShortcut.associatedUserDefaultsKey = keyBanShortcut;
+//    showPrefsPanel.associatedUserDefaultsKey = keyShowPrefsPanel;
+//    togglePanelShortcut.associatedUserDefaultsKey = keyTogglePanelShortcut;
+	
 
     if ([[[NSUserDefaults standardUserDefaults]
           valueForKey:@"usesMediaKey"] integerValue] == NSOnState) {

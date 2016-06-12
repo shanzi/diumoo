@@ -17,11 +17,6 @@
 		179842B41704DE3B00D1CAE9 /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AD1704DE3B00D1CAE9 /* SMTabBar.m */; };
 		179842B51704DE3B00D1CAE9 /* SMTabBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */; };
 		179842B61704DE3B00D1CAE9 /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */; };
-		179842C11704DE6500D1CAE9 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842B81704DE6500D1CAE9 /* MASShortcut.m */; };
-		179842C21704DE6500D1CAE9 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842BA1704DE6500D1CAE9 /* MASShortcut+Monitoring.m */; };
-		179842C31704DE6500D1CAE9 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842BC1704DE6500D1CAE9 /* MASShortcut+UserDefaults.m */; };
-		179842C41704DE6500D1CAE9 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842BE1704DE6500D1CAE9 /* MASShortcutView.m */; };
-		179842C51704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842C01704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
 		3F01021515DE99940076D6C8 /* ban_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021315DE99940076D6C8 /* ban_mouseover@2x.png */; };
@@ -53,6 +48,16 @@
 		3FDD684B15DBE9B400DC834F /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684A15DBE9B400DC834F /* settings@2x.png */; };
 		3FDD684D15DBEF1200DC834F /* trash-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684C15DBEF1200DC834F /* trash-icon@2x.png */; };
 		3FDD684F15DBF16D00DC834F /* heart-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684E15DBF16D00DC834F /* heart-icon@2x.png */; };
+		525D5A981D0D431700A39D73 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 525D5A961D0D41F900A39D73 /* libxml2.tbd */; };
+		525D5AB71D0D452000A39D73 /* MASDictionaryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */; };
+		525D5AB91D0D452000A39D73 /* MASHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5A9F1D0D452000A39D73 /* MASHotKey.m */; };
+		525D5ABB1D0D452000A39D73 /* MASLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA31D0D452000A39D73 /* MASLocalization.m */; };
+		525D5ABC1D0D452000A39D73 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA51D0D452000A39D73 /* MASShortcut.m */; };
+		525D5ABD1D0D452000A39D73 /* MASShortcutBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA81D0D452000A39D73 /* MASShortcutBinder.m */; };
+		525D5ABF1D0D452000A39D73 /* MASShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AAB1D0D452000A39D73 /* MASShortcutMonitor.m */; };
+		525D5AC21D0D452000A39D73 /* MASShortcutValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AAF1D0D452000A39D73 /* MASShortcutValidator.m */; };
+		525D5AC31D0D452000A39D73 /* MASShortcutView+Bindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AB11D0D452000A39D73 /* MASShortcutView+Bindings.m */; };
+		525D5AC41D0D452000A39D73 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AB31D0D452000A39D73 /* MASShortcutView.m */; };
 		F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B015877062001C6158 /* DMCoverControlView.m */; };
 		F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3B315877062001C6158 /* DMCoverSlide.m */; };
 		F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F501B3BB1587708F001C6158 /* DMPanelWindowController.m */; };
@@ -167,7 +172,6 @@
 		F5D3633B15A1F1FF003A40B2 /* time_machine.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D3633715A1F1FF003A40B2 /* time_machine.png */; };
 		F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D3633F15A1F3AF003A40B2 /* DMPlayRecordHandler.m */; };
 		F5D473BA163D747D00EE35B9 /* DMSearchPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D473BC163D747D00EE35B9 /* DMSearchPanelController.xib */; };
-		F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9A4E515C19E2A005DE460 /* libxml2.2.dylib */; };
 		F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D0F516005D2400389463 /* DMShortcutsHandler.m */; };
 		F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEB158CC71600512F6A /* DMPopUpButtonCell.m */; };
 		F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCBEE158CC85600512F6A /* DMPopUpMenuController.m */; };
@@ -196,16 +200,6 @@
 		179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBarButtonCell.m; path = SMTabBar/InspectorTabBar/SMTabBarButtonCell.m; sourceTree = "<group>"; };
 		179842B01704DE3B00D1CAE9 /* SMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBarItem.h; path = SMTabBar/InspectorTabBar/SMTabBarItem.h; sourceTree = "<group>"; };
 		179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBarItem.m; path = SMTabBar/InspectorTabBar/SMTabBarItem.m; sourceTree = "<group>"; };
-		179842B71704DE6500D1CAE9 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		179842B81704DE6500D1CAE9 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		179842B91704DE6500D1CAE9 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
-		179842BA1704DE6500D1CAE9 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
-		179842BB1704DE6500D1CAE9 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		179842BC1704DE6500D1CAE9 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		179842BD1704DE6500D1CAE9 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		179842BE1704DE6500D1CAE9 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
-		179842BF1704DE6500D1CAE9 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		179842C01704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
 		3F01021215DE99940076D6C8 /* ban_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_mouseover.png; sourceTree = "<group>"; };
@@ -241,6 +235,28 @@
 		3FDD684A15DBE9B400DC834F /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		3FDD684C15DBEF1200DC834F /* trash-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-icon@2x.png"; sourceTree = "<group>"; };
 		3FDD684E15DBF16D00DC834F /* heart-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon@2x.png"; sourceTree = "<group>"; };
+		525D5A961D0D41F900A39D73 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		525D5A9B1D0D452000A39D73 /* MASDictionaryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASDictionaryTransformer.h; sourceTree = "<group>"; };
+		525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASDictionaryTransformer.m; sourceTree = "<group>"; };
+		525D5A9E1D0D452000A39D73 /* MASHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASHotKey.h; sourceTree = "<group>"; };
+		525D5A9F1D0D452000A39D73 /* MASHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASHotKey.m; sourceTree = "<group>"; };
+		525D5AA11D0D452000A39D73 /* MASKeyCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASKeyCodes.h; sourceTree = "<group>"; };
+		525D5AA21D0D452000A39D73 /* MASLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLocalization.h; sourceTree = "<group>"; };
+		525D5AA31D0D452000A39D73 /* MASLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLocalization.m; sourceTree = "<group>"; };
+		525D5AA41D0D452000A39D73 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
+		525D5AA51D0D452000A39D73 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
+		525D5AA71D0D452000A39D73 /* MASShortcutBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutBinder.h; sourceTree = "<group>"; };
+		525D5AA81D0D452000A39D73 /* MASShortcutBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutBinder.m; sourceTree = "<group>"; };
+		525D5AAA1D0D452000A39D73 /* MASShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutMonitor.h; sourceTree = "<group>"; };
+		525D5AAB1D0D452000A39D73 /* MASShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutMonitor.m; sourceTree = "<group>"; };
+		525D5AAE1D0D452000A39D73 /* MASShortcutValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutValidator.h; sourceTree = "<group>"; };
+		525D5AAF1D0D452000A39D73 /* MASShortcutValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutValidator.m; sourceTree = "<group>"; };
+		525D5AB01D0D452000A39D73 /* MASShortcutView+Bindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+Bindings.h"; sourceTree = "<group>"; };
+		525D5AB11D0D452000A39D73 /* MASShortcutView+Bindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+Bindings.m"; sourceTree = "<group>"; };
+		525D5AB21D0D452000A39D73 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
+		525D5AB31D0D452000A39D73 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
+		525D5AB41D0D452000A39D73 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		525D5AB51D0D452000A39D73 /* Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shortcut.h; sourceTree = "<group>"; };
 		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
 		F501B3B015877062001C6158 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
 		F501B3B215877062001C6158 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
@@ -423,10 +439,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525D5A981D0D431700A39D73 /* libxml2.tbd in Frameworks */,
 				175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */,
 				1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */,
 				177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */,
-				F5D9A4E615C19E2A005DE460 /* libxml2.2.dylib in Frameworks */,
 				F5148B501580EE92002B3D61 /* QuartzCore.framework in Frameworks */,
 				F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */,
 				F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */,
@@ -479,6 +495,35 @@
 				3FBE809815D4A632001A3BEC /* DMErrorLog.m */,
 			);
 			name = DMErrorLog;
+			sourceTree = "<group>";
+		};
+		525D5A991D0D452000A39D73 /* MASShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				525D5A9B1D0D452000A39D73 /* MASDictionaryTransformer.h */,
+				525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */,
+				525D5A9E1D0D452000A39D73 /* MASHotKey.h */,
+				525D5A9F1D0D452000A39D73 /* MASHotKey.m */,
+				525D5AA11D0D452000A39D73 /* MASKeyCodes.h */,
+				525D5AA21D0D452000A39D73 /* MASLocalization.h */,
+				525D5AA31D0D452000A39D73 /* MASLocalization.m */,
+				525D5AA41D0D452000A39D73 /* MASShortcut.h */,
+				525D5AA51D0D452000A39D73 /* MASShortcut.m */,
+				525D5AA71D0D452000A39D73 /* MASShortcutBinder.h */,
+				525D5AA81D0D452000A39D73 /* MASShortcutBinder.m */,
+				525D5AAA1D0D452000A39D73 /* MASShortcutMonitor.h */,
+				525D5AAB1D0D452000A39D73 /* MASShortcutMonitor.m */,
+				525D5AAE1D0D452000A39D73 /* MASShortcutValidator.h */,
+				525D5AAF1D0D452000A39D73 /* MASShortcutValidator.m */,
+				525D5AB01D0D452000A39D73 /* MASShortcutView+Bindings.h */,
+				525D5AB11D0D452000A39D73 /* MASShortcutView+Bindings.m */,
+				525D5AB21D0D452000A39D73 /* MASShortcutView.h */,
+				525D5AB31D0D452000A39D73 /* MASShortcutView.m */,
+				525D5AB41D0D452000A39D73 /* Prefix.pch */,
+				525D5AB51D0D452000A39D73 /* Shortcut.h */,
+			);
+			name = MASShortcut;
+			path = MASShortcut/Framework;
 			sourceTree = "<group>";
 		};
 		F501B3AC15877062001C6158 /* ui */ = {
@@ -577,6 +622,7 @@
 		F5148AB11580E58D002B3D61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				525D5A961D0D41F900A39D73 /* libxml2.tbd */,
 				175773FB16A38FB100F6E4C7 /* CoreMedia.framework */,
 				1758595C16A313CA00AAAFBE /* AVFoundation.framework */,
 				178B499216A30B5D00EB642D /* AudioToolbox.framework */,
@@ -635,11 +681,11 @@
 		F5148AD81580E707002B3D61 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				525D5A991D0D452000A39D73 /* MASShortcut */,
 				179842A71704DE2A00D1CAE9 /* SMTabBar */,
 				179842A31704DD2D00D1CAE9 /* EDStarRating */,
 				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
 				F58C35051699AB3900BC588B /* SPMediaKeyTap */,
-				F5DFF19515BADEEB00ED3DAA /* MASShortcut */,
 				F515C15B15B6F07500210826 /* StatusItem */,
 				F5D3630A15A1F0EF003A40B2 /* JUInspectorView */,
 				F5148AD91580E707002B3D61 /* HTMLParser */,
@@ -1011,23 +1057,6 @@
 			name = DMPlayRecordHandler;
 			sourceTree = "<group>";
 		};
-		F5DFF19515BADEEB00ED3DAA /* MASShortcut */ = {
-			isa = PBXGroup;
-			children = (
-				179842B71704DE6500D1CAE9 /* MASShortcut.h */,
-				179842B81704DE6500D1CAE9 /* MASShortcut.m */,
-				179842B91704DE6500D1CAE9 /* MASShortcut+Monitoring.h */,
-				179842BA1704DE6500D1CAE9 /* MASShortcut+Monitoring.m */,
-				179842BB1704DE6500D1CAE9 /* MASShortcut+UserDefaults.h */,
-				179842BC1704DE6500D1CAE9 /* MASShortcut+UserDefaults.m */,
-				179842BD1704DE6500D1CAE9 /* MASShortcutView.h */,
-				179842BE1704DE6500D1CAE9 /* MASShortcutView.m */,
-				179842BF1704DE6500D1CAE9 /* MASShortcutView+UserDefaults.h */,
-				179842C01704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m */,
-			);
-			path = MASShortcut;
-			sourceTree = "<group>";
-		};
 		F5E2D0F316005D2400389463 /* DMShortcutsHandler */ = {
 			isa = PBXGroup;
 			children = (
@@ -1095,7 +1124,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DM;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					F5148AAD1580E58D002B3D61 = {
+						DevelopmentTeam = 4KWBUULLH3;
+					};
+				};
 			};
 			buildConfigurationList = F5148AA81580E58D002B3D61 /* Build configuration list for PBXProject "diumoo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1258,15 +1292,20 @@
 				F5148B051580E707002B3D61 /* HTMLNode.m in Sources */,
 				F5148B061580E707002B3D61 /* HTMLParser.m in Sources */,
 				F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */,
+				525D5AC31D0D452000A39D73 /* MASShortcutView+Bindings.m in Sources */,
+				525D5ABC1D0D452000A39D73 /* MASShortcut.m in Sources */,
+				525D5ABB1D0D452000A39D73 /* MASLocalization.m in Sources */,
 				F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
 				F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */,
+				525D5ABF1D0D452000A39D73 /* MASShortcutMonitor.m in Sources */,
 				F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */,
 				F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */,
 				F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */,
 				F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */,
 				F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */,
+				525D5AC21D0D452000A39D73 /* MASShortcutValidator.m in Sources */,
 				F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */,
 				F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */,
 				F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */,
@@ -1278,6 +1317,7 @@
 				F5D3632615A1F0EF003A40B2 /* JUInspectorViewHeader.m in Sources */,
 				F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */,
 				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
+				525D5AC41D0D452000A39D73 /* MASShortcutView.m in Sources */,
 				F515C16015B6F07500210826 /* MenubarController.m in Sources */,
 				F515C16115B6F07500210826 /* StatusItemView.m in Sources */,
 				F528B1AA15BC54B500DC82B4 /* DMNotificationCenter.m in Sources */,
@@ -1295,17 +1335,15 @@
 				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
 				177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */,
 				F5D25DD216A999A700ED70CC /* DMBitrateControlLayer.m in Sources */,
+				525D5AB71D0D452000A39D73 /* MASDictionaryTransformer.m in Sources */,
 				179842A61704DD4300D1CAE9 /* EDStarRating.m in Sources */,
 				179842B21704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m in Sources */,
 				179842B31704DE3B00D1CAE9 /* SMBar.m in Sources */,
 				179842B41704DE3B00D1CAE9 /* SMTabBar.m in Sources */,
 				179842B51704DE3B00D1CAE9 /* SMTabBarButtonCell.m in Sources */,
 				179842B61704DE3B00D1CAE9 /* SMTabBarItem.m in Sources */,
-				179842C11704DE6500D1CAE9 /* MASShortcut.m in Sources */,
-				179842C21704DE6500D1CAE9 /* MASShortcut+Monitoring.m in Sources */,
-				179842C31704DE6500D1CAE9 /* MASShortcut+UserDefaults.m in Sources */,
-				179842C41704DE6500D1CAE9 /* MASShortcutView.m in Sources */,
-				179842C51704DE6500D1CAE9 /* MASShortcutView+UserDefaults.m in Sources */,
+				525D5AB91D0D452000A39D73 /* MASHotKey.m in Sources */,
+				525D5ABD1D0D452000A39D73 /* MASShortcutBinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,16 +1430,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1411,7 +1454,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1425,20 +1470,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PROVISIONING_PROFILE = "";
@@ -1452,24 +1503,24 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
 				);
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"/usr/include/libxml2/**",
+					"/usr/local/Cellar/libxml2/**",
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1479,7 +1530,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1487,17 +1538,17 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
 				);
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"/usr/include/libxml2/**",
+					"/usr/local/Cellar/libxml2/**",
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

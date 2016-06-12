@@ -160,31 +160,31 @@
     
     
     if ([defaults valueForKey:@"shortcutDidRegistered"]==nil) {
-        [defaults setValue:[[MASShortcut
-                             shortcutWithKeyCode:41
-                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-                            data]
-                    forKey:keyPlayShortcut];
-        [defaults setValue:[[MASShortcut
-                             shortcutWithKeyCode:39
-                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-                            data]
-                    forKey:keySkipShortcut];
-        [defaults setValue:[[MASShortcut
-                             shortcutWithKeyCode:43
-                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-                            data]
-                    forKey:keyRateShortcut];
-        [defaults setValue:[[MASShortcut
-                             shortcutWithKeyCode:47
-                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-                            data]
-                    forKey:keyBanShortcut];
-        [defaults setValue:[[MASShortcut
-                            shortcutWithKeyCode:44
-                            modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
-                            data]
-                    forKey:keyTogglePanelShortcut];
+//        [defaults setValue:[[MASShortcut
+//                             shortcutWithKeyCode:41
+//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+//                            data]
+//                    forKey:keyPlayShortcut];
+//        [defaults setValue:[[MASShortcut
+//                             shortcutWithKeyCode:39
+//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+//                            data]
+//                    forKey:keySkipShortcut];
+//        [defaults setValue:[[MASShortcut
+//                             shortcutWithKeyCode:43
+//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+//                            data]
+//                    forKey:keyRateShortcut];
+//        [defaults setValue:[[MASShortcut
+//                             shortcutWithKeyCode:47
+//                             modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+//                            data]
+//                    forKey:keyBanShortcut];
+//        [defaults setValue:[[MASShortcut
+//                            shortcutWithKeyCode:44
+//                            modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)]
+//                            data]
+//                    forKey:keyTogglePanelShortcut];
         [defaults setValue:@(YES) forKey:@"shortcutDidRegistered"];
     }
     
