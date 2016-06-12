@@ -5,8 +5,8 @@ For more details, refer to our [Homepage](http://diumoo.net).
 
 ## Why?
 
-1. No Flash, No web broswer
-2. Native code. Battery friendly
+1. NO Flash, NO web broswer
+2. Native code, battery friendly
 3. Silently rest in your status bar
 4. More features (Time Machine, Search, etc.)
 
@@ -15,7 +15,7 @@ For more details, refer to our [Homepage](http://diumoo.net).
 Download [precompiled version](https://github.com/shanzi/diumoo/upload/master) 
 or install from [Mac App Store](https://itunes.apple.com/us/app/diumoo/id562734497)
 
-**NOTE**: due to the limitations of Mac App Store, some feature can not be enabled
+**NOTE**: due to limitations of Mac App Store, some features can not be enabled
 in Mac App Store version, ex. use media keys on the keyboard (F7, F8, F9) to control playback.
 
 
@@ -33,7 +33,7 @@ brew install libxml2 # Ensure libxml2 is installed
 
 Then you can open `diumoo.xcodeproj` and modify the code or compile it.
 
-Pull requests is welcomed. Fork and conforms to [GitHub workflow](https://guides.github.com/introduction/flow/index.html)
+Pull requests are extremely welcomed. Fork and conforms to [GitHub workflow](https://guides.github.com/introduction/flow/index.html)
 before contribution :)
 
 ## Maintainers
