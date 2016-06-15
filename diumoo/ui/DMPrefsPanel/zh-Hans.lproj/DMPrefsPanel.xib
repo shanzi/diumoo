@@ -12,7 +12,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="82" customClass="DMPrefsPanelDataProvider">
             <connections>
                 <outlet property="account" destination="2988" id="3398"/>
@@ -21,17 +21,11 @@
                 <outlet property="captchaButton" destination="2902" id="4645"/>
                 <outlet property="developer" destination="7240" id="7242"/>
                 <outlet property="displayName" destination="7170" id="7174"/>
-                <outlet property="diumooLinkDescription" destination="7216" id="7244"/>
-                <outlet property="diumooLinkTitle" destination="7214" id="7243"/>
-                <outlet property="diumoohelper" destination="7210" id="7211"/>
                 <outlet property="email" destination="2899" id="4115"/>
                 <outlet property="errorLabel" destination="4119" id="4155"/>
                 <outlet property="general" destination="31" id="89"/>
                 <outlet property="indicator" destination="3400" id="3411"/>
                 <outlet property="info" destination="75" id="91"/>
-                <outlet property="installChromePlugin" destination="7224" id="7254"/>
-                <outlet property="installFirefoxPlugin" destination="7232" id="7253"/>
-                <outlet property="installSafriPligin" destination="7230" id="7252"/>
                 <outlet property="keybindings" destination="4718" id="6953"/>
                 <outlet property="login" destination="68" id="3399"/>
                 <outlet property="loginIndicator" destination="7238" id="7239"/>
@@ -49,7 +43,6 @@
                 <outlet property="userIconButton" destination="2989" id="4565"/>
                 <outlet property="usernameTextField" destination="4591" id="4623"/>
                 <outlet property="version" destination="7172" id="7175"/>
-                <outlet property="viewDetails" destination="7222" id="7255"/>
             </connections>
         </customObject>
         <window title="偏好设置" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
@@ -271,12 +264,12 @@
                 <popUpButton verticalHuggingPriority="750" id="7298">
                     <rect key="frame" x="234" y="59" width="157" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="64 kbps (默认）" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="64" imageScaling="proportionallyDown" inset="2" id="7299">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="7299">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="7300">
                             <items>
-                                <menuItem title="64 kbps (默认）" state="on" tag="64" id="7301"/>
+                                <menuItem title="64 kbps (默认）" tag="64" id="7301"/>
                                 <menuItem title="128 kbps" tag="128" id="7302"/>
                                 <menuItem title="192 kbps（最佳）" tag="192" id="7303"/>
                             </items>
@@ -671,15 +664,6 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" id="7264">
-                    <rect key="frame" x="81" y="20" width="206" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="diumoo © 2012 | All Rights Reserved." id="7265">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <button verticalHuggingPriority="750" id="7306">
                     <rect key="frame" x="203" y="61" width="66" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -691,95 +675,23 @@ DQ
                         <action selector="donation:" target="82" id="7308"/>
                     </connections>
                 </button>
-            </subviews>
-        </customView>
-        <customView autoresizesSubviews="NO" id="7210" userLabel="diumoo Helper">
-            <rect key="frame" x="0.0" y="0.0" width="440" height="256"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="7214">
-                    <rect key="frame" x="24" y="202" width="399" height="34"/>
+                <textField verticalHuggingPriority="750" id="7264">
+                    <rect key="frame" x="44" y="20" width="276" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="justified" title="diumoo Helper 用于在浏览豆瓣音乐时获得播放豆瓣电台艺术家歌曲和电影原声的链接。" id="7215">
-                        <font key="font" size="13" name="STHeitiSC-Light"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Open sourced at http://github.com/shanzi/diumoo" id="7265">
+                        <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="7216">
-                    <rect key="frame" x="24" y="157" width="399" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="justified" title="diumoo Helper 现提供适用于 Chrome 、Safari 和 Firefox 的插件。我们强烈建议您安装此浏览器插件（免费）。" id="7217">
-                        <font key="font" size="13" name="STHeitiSC-Light"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="7220">
-                    <rect key="frame" x="28" y="20" width="384" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="点击浏览器图标，立即获取对应版本 diumoo Helper。" id="7221">
-                        <font key="font" size="13" name="STHeitiSC-Light"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button id="7222">
-                    <rect key="frame" x="152" y="199" width="142" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" title="点击了解详细信息。" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="left" alignment="center" controlSize="mini" state="on" imageScaling="proportionallyDown" inset="2" id="7223">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="13" name="STHeitiSC-Light"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="installBrowserPlugins:" target="82" id="7237"/>
-                    </connections>
-                </button>
-                <button tag="1" id="7224">
-                    <rect key="frame" x="96" y="57" width="64" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="chrome" imagePosition="only" alignment="center" controlSize="mini" state="on" imageScaling="proportionallyDown" inset="2" id="7225">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="miniSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="installBrowserPlugins:" target="82" id="7249"/>
-                    </connections>
-                </button>
-                <button tag="2" id="7230">
-                    <rect key="frame" x="182" y="57" width="64" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="safari" imagePosition="only" alignment="center" controlSize="mini" state="on" imageScaling="proportionallyDown" inset="2" id="7231">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="miniSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="installBrowserPlugins:" target="82" id="7248"/>
-                    </connections>
-                </button>
-                <button tag="3" id="7232">
-                    <rect key="frame" x="273" y="57" width="64" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="firefox" imagePosition="only" alignment="center" controlSize="mini" state="on" imageScaling="proportionallyDown" inset="2" id="7233">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="miniSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="installBrowserPlugins:" target="82" id="7250"/>
-                    </connections>
-                </button>
             </subviews>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="7097"/>
     </objects>
     <resources>
-        <image name="NSQuickLookTemplate" width="19" height="12"/>
-        <image name="chrome" width="128" height="128"/>
-        <image name="firefox" width="128" height="128"/>
         <image name="heart-icon" width="20" height="18"/>
         <image name="icon" width="512" height="512"/>
         <image name="played-icon" width="16" height="16"/>
-        <image name="safari" width="128" height="128"/>
         <image name="trash-icon" width="13" height="14"/>
     </resources>
 </document>

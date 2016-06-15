@@ -41,9 +41,6 @@
     case INFO_PANEL_ID:
         return NSLocalizedString(@"PREF_ABOUT", @"关于");
         break;
-    case DMLINK_PANEL_ID:
-        return @"diumoo Helper";
-        break;
     default:
         return @"";
         break;
@@ -65,8 +62,6 @@
     case INFO_PANEL_ID:
         return [NSImage imageNamed:NSImageNameInfo];
         break;
-    case DMLINK_PANEL_ID:
-        return [NSImage imageNamed:NSImageNameNetwork];
     default:
         return nil;
         break;
@@ -87,9 +82,6 @@
         break;
     case INFO_PANEL_ID:
         return info;
-        break;
-    case DMLINK_PANEL_ID:
-        return diumoohelper;
         break;
     default:
         return nil;
@@ -311,26 +303,6 @@
         == NSOnState) {
         [playShortcut setEnabled:NO];
         [skipShortcut setEnabled:NO];
-    }
-}
-
-- (IBAction)installBrowserPlugins:(id)sender
-{
-    switch ([sender tag]) {
-    case 0:
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions"]];
-        break;
-    case 1:
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://chrome.google.com/webstore/detail/bhcipoegncngbamefblmbehlppibdgfe"]];
-        break;
-    case 2:
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/downloads.html"]];
-        break;
-    case 3:
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/extensions/downloads.html"]];
-        break;
-    default:
-        break;
     }
 }
 
