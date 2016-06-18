@@ -40,30 +40,10 @@
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
         notification.title = item.musicInfo[@"title"];
+        notification.contentImage = item.cover;
         notification.informativeText = detail;
         notification.soundName = nil;
         [center deliverNotification: notification];
-    }
-    
-    if([[values valueForKey:@"useGlobalNotification"] integerValue]==NSOnState){
-        NSDictionary* userInfo;
-        if (item.musicInfo[@"sid"]) {
-            
-            userInfo = @{
-                                       @"Player State" : @"Playing",
-                                       @"Store URL":item.musicInfo[@"albumLocation"],
-                                       @"Album":item.musicInfo[@"albumtitle"],
-                                       @"Name":item.musicInfo[@"title"],
-                                       @"Artist":item.musicInfo[@"artist"],
-                                       @"Total Time":@([item.musicInfo[@"length"] integerValue]),
-                                       };
-        }
-        else{
-            userInfo = @{@"Player State": @"Paused"};
-        }
-        //[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
-                                                                       //object:@"com.apple.iTunes.player"
-                                                                     //userInfo:userInfo];
     }
     
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){

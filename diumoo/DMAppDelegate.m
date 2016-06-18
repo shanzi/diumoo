@@ -146,7 +146,6 @@
         @"enableLog" : @(NSOnState),
         @"enableLogFile" : @(NSOnState),
         @"useMediaKey" : @(NSOnState),
-        @"useGlobalNotification" : @(NSOnState),
         @"musicQuality" : @(64),
         @"pro_musicQuality" : @(192)
     };
@@ -178,7 +177,7 @@
                                              keyShowPrefsPanel : [MASShortcut shortcutWithKeyCode:kVK_ANSI_P modifierFlags:flags] }];
 
     if ([defaults integerForKey:@"useMediaKey"] == NSOnState) {
-        //[mediakeyTap startWatchingMediaKeys];
+        [mediakeyTap startWatchingMediaKeys];
     }
 }
 
