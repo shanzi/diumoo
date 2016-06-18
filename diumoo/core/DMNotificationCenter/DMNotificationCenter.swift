@@ -10,9 +10,7 @@ import Foundation
 import AppKit
 
 public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  {
-    /*
-    -(void) copylinkNotification:(NSString *) url;*/
-    
+ 
     let pref = UserDefaults.standard()
     let NCCenter = NSUserNotificationCenter.default()
     

@@ -52,7 +52,7 @@ public class DMPlayableItem: AVPlayerItem {
             self.musicInfo["ssid"] = aDict["ssid"]
             self.musicInfo["length"] = Float(String(aDict["length"]!))! * 1000
             //self.musicInfo["rating_avg"] = Float(String(aDict["rating_avg"]!))
-            self.musicInfo["albumLocation"] = String(format:"%@%@",douban_URL_prefix, String(aDict["album"]))
+            self.musicInfo["albumLocation"] = String("\(douban_URL_prefix)\(String(aDict["album"]))")
         }
         
         self.like = NSString(string: String(aDict["like"])).boolValue

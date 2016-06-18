@@ -53,8 +53,8 @@
 
 - (NSString*)randomString
 {
-    int rand1 = rand();
-    int rand2 = rand();
+    int rand1 = arc4random();
+    int rand2 = arc4random();
     return [NSString stringWithFormat:@"%5x%5x",((rand1 & 0xfffff) | 0x10000),rand2] ;
 }
 
