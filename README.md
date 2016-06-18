@@ -12,7 +12,7 @@ For more details, refer to our [Homepage](http://diumoo.net).
 
 ## Installation
 
-Download [precompiled version](https://github.com/shanzi/diumoo/upload/master) 
+Download [precompiled version](https://github.com/shanzi/diumoo/releases) 
 or install from [Mac App Store](https://itunes.apple.com/us/app/diumoo/id562734497)
 
 **NOTE**: due to limitations of Mac App Store, some features can not be enabled

@@ -11,14 +11,13 @@
 #import "PLTabPreferenceControl.h"
 #import <Foundation/Foundation.h>
 
-#define PANEL_VIEW_COUNT 6
+#define PANEL_VIEW_COUNT 5
 
 #define GENERAL_PANEL_ID 0
 #define ACCOUNT_PANEL_ID 1
 #define KEYBINDINGS_PANNEL_ID 2
-#define DMLINK_PANEL_ID 3
-#define SPACE_PANEL_ID 4
-#define INFO_PANEL_ID 5
+#define SPACE_PANEL_ID 3
+#define INFO_PANEL_ID 4
 
 @interface DMPrefsPanelDataProvider : NSObject <PLTabPreferenceDelegate> {
     // tab controller ( file owner )
@@ -62,14 +61,6 @@
     IBOutlet MASShortcutView* banShortcut;
     IBOutlet MASShortcutView* togglePanelShortcut;
     IBOutlet MASShortcutView* showPrefsPanel;
-
-    //------ DiumooLink outlet ---------
-    IBOutlet NSTextField* diumooLinkTitle;
-    IBOutlet NSTextField* diumooLinkDescription;
-    IBOutlet NSButton* installSafriPligin;
-    IBOutlet NSButton* installFirefoxPlugin;
-    IBOutlet NSButton* installChromePlugin;
-    IBOutlet NSButton* viewDetails;
 
     //------ info outlet ---------------
     IBOutlet NSTextField* displayName;

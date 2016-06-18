@@ -74,7 +74,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.2</string>
+	<string>1.5.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -91,7 +91,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2466</string>
+	<string>2482</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
@@ -109,7 +109,7 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012年 xiuxiu. All rights reserved.</string>
+	<string>Open sourced with GPLv3 license</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

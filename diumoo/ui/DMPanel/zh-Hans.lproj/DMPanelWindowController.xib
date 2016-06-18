@@ -22,7 +22,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <objectController id="1983" customClass="DMPopUpMenuController">
             <connections>
                 <outlet property="delegate" destination="-2" id="2230"/>
@@ -37,7 +37,7 @@
         </objectController>
         <menu id="1440" userLabel="Main Menu">
             <items>
-                <menuItem title="红心兆赫" onStateImage="redheart" offStateImage="greyheart" tag="-3" id="1442">
+                <menuItem title="红心兆赫" onStateImage="menu-heart" offStateImage="menu-heart-gray" tag="-3" id="1442">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="changeChannelAction:" target="1983" id="2233"/>
@@ -55,14 +55,8 @@
                 <menuItem title="更多电台兆赫" tag="1000000" id="1445">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="3894"/>
-                <menuItem title="浏览所有支持的兆赫" tag="8" id="3896">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="controlAction:" target="-2" id="3897"/>
-                    </connections>
-                </menuItem>
             </items>
+            <point key="canvasLocation" x="159" y="261.5"/>
         </menu>
         <menu id="1850" userLabel="moreChannelMenu">
             <items>
@@ -394,11 +388,11 @@
         <image name="exit" width="16" height="16"/>
         <image name="facebook" width="16" height="16"/>
         <image name="fanfou" width="16" height="16"/>
-        <image name="greyheart" width="16" height="16"/>
+        <image name="menu-heart" width="17" height="17"/>
+        <image name="menu-heart-gray" width="17" height="17"/>
         <image name="play" width="60" height="37"/>
         <image name="pro_icon" width="20" height="10"/>
         <image name="rate" width="62" height="35"/>
-        <image name="redheart" width="16" height="16"/>
         <image name="renren" width="16" height="16"/>
         <image name="search" width="16" height="16"/>
         <image name="settings" width="16" height="16"/>

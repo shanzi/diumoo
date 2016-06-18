@@ -140,9 +140,6 @@ DMPanelWindowController* sharedWindow;
     case 7:
         [PLTabPreferenceControl showPrefsAtIndex:0];
         break;
-    case 8:
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.net/channels"]];
-        break;
     case 9:
         [[DMSearchPanelController sharedSearchPanel] showWindow:nil];
         break;
