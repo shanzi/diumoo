@@ -151,7 +151,7 @@
         [playingItem prepareCoverWithCallbackBlock:^(NSImage *image) {
             [diumooPanel setRated:playingItem.like];
             [diumooPanel setPlayingItem:playingItem];
-            [notificationCenter notifyMusicWithItem:playingItem];
+            [notificationCenter notifyMusicPlaybackWithItem:playingItem];
             [recordHandler addRecordWithItem:playingItem];
         }];
         
@@ -547,7 +547,7 @@
         case COPY_LINK:
             [[NSPasteboard generalPasteboard] clearContents];
             [[NSPasteboard generalPasteboard] writeObjects:@[shareLink]];
-            [notificationCenter copylinkNotification:shareLink];
+            [notificationCenter copylinkNotificationWithURLStr:shareLink];
             return;
     }
     if (shareItem && shareService) {

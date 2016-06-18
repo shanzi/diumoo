@@ -115,7 +115,7 @@
                         <font key="font" size="13" name="STHeitiSC-Light"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="7097" name="value" keyPath="values.enableGrowl" id="7118"/>
+                        <binding destination="7097" name="value" keyPath="values.enableNotification" id="0e8-kh-1Sd"/>
                     </connections>
                 </button>
                 <button id="4706">

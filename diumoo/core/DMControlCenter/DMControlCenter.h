@@ -23,7 +23,6 @@
 #import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
-#import "DMNotificationCenter.h"
 #import "NSDictionary+UrlEncoding.h"
 #import "DMService.h"
 #import "DMSearchPanelController.h"

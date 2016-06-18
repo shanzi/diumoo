@@ -139,7 +139,7 @@
         @"volume" : @(1.0),
         @"versionsLimit" : @(100),
         @"displayAlbumCoverOnDock" : @(NSOnState),
-        @"enableGrowl" : @(NSOnState),
+        @"enableNotification" : @(NSOnState),
         @"enableEmulateITunes" : @(NSOnState),
         @"showDockIcon" : @(NSOnState),
         @"filterAds" : @(NSOnState),
