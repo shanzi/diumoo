@@ -265,7 +265,7 @@ static NSOperationQueue* serviceQueue;
     NSURL* url = [NSURL URLWithString:urlstring];
     NSURLRequest* request = nil;
     request = [NSURLRequest requestWithURL:url
-                               cachePolicy:NSURLCacheStorageAllowed
+                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                            timeoutInterval:10.0];
     
     [NSURLConnection sendAsynchronousRequest:request

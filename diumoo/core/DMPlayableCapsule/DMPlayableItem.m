@@ -98,7 +98,7 @@
             return;
         }
         NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:musicInfo[@"largePictureLocation"]]
-                                                 cachePolicy:NSURLCacheStorageAllowed
+                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:5.0];
         
         [NSURLConnection sendAsynchronousRequest:request

@@ -111,7 +111,7 @@
         // -------------------------获取新的列表--------------------------
         NSURL* updateUrl = [NSURL URLWithString:UPDATE_URL];
         NSURLRequest* urlrequest = [NSURLRequest requestWithURL:updateUrl
-                                                    cachePolicy:NSURLCacheStorageAllowed
+                                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                 timeoutInterval:3.0];
         NSURLResponse* response = NULL;
         NSError* error = NULL;

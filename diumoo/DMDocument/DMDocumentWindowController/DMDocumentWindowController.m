@@ -151,7 +151,7 @@
             NSString* apiurlString = [NSString stringWithFormat:@"%@%@?alt=json",
                                                DOUBAN_API_URL, aid];
             NSURL* url = [NSURL URLWithString:apiurlString];
-            NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:5.0];
+            NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
 
             NSError* dataerror;
             NSURLResponse* response;

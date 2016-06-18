@@ -8,35 +8,31 @@
 
 #import "NSDictionary+UrlEncoding.h"
 
-
-static NSString *toString(id object) 
+static NSString* toString(id object)
 {
-    return [NSString stringWithFormat: @"%@", object];
+    return [NSString stringWithFormat:@"%@", object];
 }
 
-static NSString *urlEncode(id object) 
+static NSString* urlEncode(id object)
 {
-    NSString *inputString = toString(object);
-    CFStringRef string = CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)inputString,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
-    NSString *encodedString = [(__bridge NSString *)string copy];
-    CFRelease(string);
+    NSString* inputString = toString(object);
+    NSString* encodedString = [inputString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return encodedString;
 }
 
-
 @implementation NSDictionary (UrlEncoding)
 
-- (NSString*)urlEncodedString 
+- (NSString*)urlEncodedString
 {
-    NSMutableArray *parts = [NSMutableArray array];
+    NSMutableArray* parts = [NSMutableArray array];
     for (id key in self) {
         id value = self[key];
         NSString* encodedkey = urlEncode(key);
         NSString* encodedValue = urlEncode(value);
-        NSString *part = [NSString stringWithFormat: @"%@=%@", encodedkey, encodedValue];
-        [parts addObject: part];
+        NSString* part = [NSString stringWithFormat:@"%@=%@", encodedkey, encodedValue];
+        [parts addObject:part];
     }
-    return [parts componentsJoinedByString: @"&"];
+    return [parts componentsJoinedByString:@"&"];
 }
 
 - (NSString*)hString
@@ -44,7 +40,7 @@ static NSString *urlEncode(id object)
     NSMutableArray* parts = [NSMutableArray array];
     for (id key in self) {
         id value = self[key];
-        NSString* part = [NSString stringWithFormat:@"%@:%@",key,value];
+        NSString* part = [NSString stringWithFormat:@"%@:%@", key, value];
         [parts addObject:part];
     }
     return [parts componentsJoinedByString:@"|"];
