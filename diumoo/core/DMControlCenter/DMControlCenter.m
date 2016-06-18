@@ -7,6 +7,7 @@
 //
 
 #import "DMControlCenter.h"
+#import "DMApp.h"
 
 @interface DMControlCenter()
 {

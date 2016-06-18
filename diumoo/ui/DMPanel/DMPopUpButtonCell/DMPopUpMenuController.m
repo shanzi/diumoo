@@ -9,6 +9,7 @@
 #import "DMPopUpMenuController.h"
 #import "DMDoubanAuthHelper.h"
 #import "DMService.h"
+#import "DMPanelWindowController.h"
 
 #define UPDATE_URL @"http://channel.diumoo.net/channels/"
 

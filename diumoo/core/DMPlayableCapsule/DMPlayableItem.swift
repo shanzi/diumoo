@@ -47,15 +47,14 @@ public class DMPlayableItem: AVPlayerItem {
         self.musicInfo["largePictureLocation"] = pic.replacingOccurrences(of:"mpic", with:"lpic")
 
         if aDict["aid"] != nil {
-            self.musicInfo["aid"] = aDict["aid"]
-            self.musicInfo["sid"] = aDict["sid"]
-            self.musicInfo["ssid"] = aDict["ssid"]
+            self.musicInfo["aid"] = aDict["aid"]!
+            self.musicInfo["sid"] = aDict["sid"]!
+            self.musicInfo["ssid"] = aDict["ssid"]!
             self.musicInfo["length"] = Float(String(aDict["length"]!))! * 1000
-            //self.musicInfo["rating_avg"] = Float(String(aDict["rating_avg"]!))
             self.musicInfo["albumLocation"] = String("\(douban_URL_prefix)\(String(aDict["album"]))")
         }
         
-        self.like = NSString(string: String(aDict["like"])).boolValue
+        self.like = NSString(string: String(aDict["like"]!)).boolValue
         self.playState = ItemPlayState.waitToPlay
         self.cover = nil
         
@@ -74,7 +73,7 @@ public class DMPlayableItem: AVPlayerItem {
     
     override public func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         if keyPath == "status" {
-            print("\(#function) :: \(musicInfo["title"]) status changed to \(self.status)")
+            print("\(#function) :: \(musicInfo["title"]!) status changed to \(self.status)")
             self.delegate?.playableItem(self, logStateChanged: self.status.rawValue)
         }
     }

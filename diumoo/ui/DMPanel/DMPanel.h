@@ -2,7 +2,7 @@
 //  DMPanel.h
 //  diumoo
 //
-//  Created by AnakinGWY on 12-8-14.
+//  Created by Anakin Zheng on 12-8-14.
 //
 //
 

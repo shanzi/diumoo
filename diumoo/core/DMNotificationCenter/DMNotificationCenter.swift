@@ -82,5 +82,4 @@ public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  
         }
         
     }
-    
 }

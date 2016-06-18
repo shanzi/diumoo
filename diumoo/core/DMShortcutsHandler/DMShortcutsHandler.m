@@ -8,6 +8,7 @@
 
 #import "DMShortcutsHandler.h"
 #import "Shortcut.h"
+#import "DMAppDelegate.h"
 
 @implementation DMShortcutsHandler
 

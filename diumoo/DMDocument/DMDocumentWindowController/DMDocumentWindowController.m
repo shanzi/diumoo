@@ -13,6 +13,7 @@
 #import "NSImage+AsyncLoadImage.h"
 #import "SMTabBar.h"
 #import "SMTabBarItem.h"
+#import "DMDocument.h"
 #import <dispatch/dispatch.h>
 
 #define DOUBAN_API_URL @"http://api.douban.com/music/subject/"

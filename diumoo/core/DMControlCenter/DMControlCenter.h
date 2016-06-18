@@ -65,5 +65,5 @@ typedef enum{
 -(void) volumeChange:(float)volume;
 
 //methods in DMPlayableItemDelegate
-- (void)playableItem:(DMPlayableItem * _Nonnull)item logStateChanged:(NSInteger)logStateChanged;
+- (void)playableItem:(DMPlayableItem * )item logStateChanged:(NSInteger)logStateChanged;
 @end

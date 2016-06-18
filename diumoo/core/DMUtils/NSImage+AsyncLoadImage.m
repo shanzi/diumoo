@@ -19,7 +19,7 @@
     dispatch_async(imageLoadQueue, ^{
         
         NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlstring]
-                                                 cachePolicy:NSURLCacheStorageAllowed
+                                                 cachePolicy: NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:3.0];
         NSURLResponse *response;
         NSError *error;
