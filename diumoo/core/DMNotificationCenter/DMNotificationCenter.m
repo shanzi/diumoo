@@ -61,9 +61,9 @@
         else{
             userInfo = @{@"Player State": @"Paused"};
         }
-        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
-                                                                       object:@"com.apple.iTunes.player"
-                                                                     userInfo:userInfo];
+        //[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo"
+                                                                       //object:@"com.apple.iTunes.player"
+                                                                     //userInfo:userInfo];
     }
     
     if([[values valueForKey:@"displayAlbumCoverOnDock"] integerValue]==NSOnState){

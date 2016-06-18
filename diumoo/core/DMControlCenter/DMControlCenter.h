@@ -19,7 +19,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <IOKit/pwr_mgt/IOPMLib.h>
 
-#import "DMPlayableItem.h"
+#import "diumoo-Swift.h"
 #import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
@@ -28,6 +28,7 @@
 #import "DMService.h"
 #import "DMSearchPanelController.h"
 
+#define TIMER_INTERVAL 0.1
 
 
 typedef enum{
@@ -65,6 +66,5 @@ typedef enum{
 -(void) volumeChange:(float)volume;
 
 //methods in DMPlayableItemDelegate
--(void)playableItem:(DMPlayableItem *)item loadStateChanged:(long)state;
-
+- (void)playableItem:(DMPlayableItem * _Nonnull)item logStateChanged:(NSInteger)logStateChanged;
 @end

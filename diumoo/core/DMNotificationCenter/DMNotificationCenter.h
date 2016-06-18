@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DMPlayableItem.h"
+#import "diumoo-Swift.h"
 #import "DMPanelWindowController.h"
 
 @interface DMNotificationCenter : NSObject<NSUserNotificationCenterDelegate>

@@ -8,7 +8,7 @@
 
 #import "DMButton.h"
 #import "DMCoverControlView.h"
-#import "DMPlayableItem.h"
+#import "diumoo-Swift.h"
 #import "DMPopUpMenuController.h"
 #import "MenubarController.h"
 #import <Cocoa/Cocoa.h>

@@ -224,7 +224,7 @@
     }
     
     if (item == playingItem) {
-        if( playingItem.playState == PLAYING_AND_WILL_REPLAY)
+        if( playingItem.playState == ItemPlayStatePlaying_and_will_replay)
             [self replay];
         else {
             
@@ -243,7 +243,7 @@
     pauseType = PAUSE_PASS;
 }
 
-- (void)playableItem:(DMPlayableItem *)item loadStateChanged:(long)state
+- (void)playableItem:(DMPlayableItem * _Nonnull)item logStateChanged:(NSInteger)state
 {
     [DMErrorLog logStateWith:item.musicInfo[@"title"] fromMethod:_cmd andString:[NSString stringWithFormat:@"load status changed to %ld",state]];
     if (state == AVPlayerItemStatusReadyToPlay) {
@@ -252,7 +252,7 @@
                 item.cover = image;
             }];
         }
-        if (item == playingItem && (item.playState != PLAYING)){
+        if (item == playingItem && (item.playState != ItemPlayStatePlaying)){
             [musicPlayer play];
         }
         
@@ -669,13 +669,13 @@
         return;
     }
     
-    if (playingItem.playState == WAIT_TO_PLAY) {
+    if (playingItem.playState == ItemPlayStateWaitToPlay) {
         NSLog(@"player volume : %f",playerVolume);
-        playingItem.playState = PLAYING;
+        playingItem.playState = ItemPlayStatePlaying;
         musicPlayer.volume = playerVolume;
     }
     else
-        playingItem.playState = REPLAYING;
+        playingItem.playState = ItemPlayStateReplaying;
     
     CFStringRef reasonForActivity= CFSTR("Diumoo playing");
     if (musicPlayer.rate == 0.f) {
@@ -778,7 +778,7 @@
             if (musicPlayer.rate == 1.f) {
                 [self playableItemDidPlay:musicPlayer.currentItem];
             }
-            else if ((playingItem.duration > 5) && (playingItem.duration - [self currentTime]) < 1) {
+            else if ((playingItem.floatDuration > 5) && (playingItem.floatDuration - [self currentTime]) < 1) {
                 [self playableItemDidEnd:musicPlayer.currentItem];
             }
             else {

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175773FB16A38FB100F6E4C7 /* CoreMedia.framework */; };
 		1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1758595C16A313CA00AAAFBE /* AVFoundation.framework */; };
-		177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 177DE82016A8D6E9009D9117 /* DMPlayableItem.m */; };
 		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
 		179842A61704DD4300D1CAE9 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842A51704DD4300D1CAE9 /* EDStarRating.m */; };
 		179842B21704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */; };
@@ -186,14 +185,13 @@
 		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
 		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
 		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
+		FD39574F1D1594320029E923 /* DMPlayableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD39574D1D1586A40029E923 /* DMPlayableItem.swift */; };
 		FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		175773FB16A38FB100F6E4C7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		1758595C16A313CA00AAAFBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		177DE81F16A8D6E9009D9117 /* DMPlayableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlayableItem.h; sourceTree = "<group>"; };
-		177DE82016A8D6E9009D9117 /* DMPlayableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPlayableItem.m; sourceTree = "<group>"; };
 		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		178B499216A30B5D00EB642D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		179842A41704DD4300D1CAE9 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDStarRating.h; path = EDStarRating/EDStarRating/EDStarRating.h; sourceTree = "<group>"; };
@@ -444,8 +442,9 @@
 		F5ECCC02158CE43100512F6A /* DMPrefsPanelDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPrefsPanelDataProvider.h; sourceTree = "<group>"; };
 		F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPrefsPanelDataProvider.m; sourceTree = "<group>"; };
 		F5F7EF101600EE850007D2DB /* record.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = record.icns; sourceTree = "<group>"; };
-		F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diumoo.entitlements; sourceTree = "<group>"; };
 		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
+		FD39574D1D1586A40029E923 /* DMPlayableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMPlayableItem.swift; sourceTree = "<group>"; };
+		FD3957501D15946C0029E923 /* diumoo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "diumoo-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -664,7 +663,6 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
-				F5FC21A615FCCBE400B1F761 /* diumoo.entitlements */,
 				F5D362FD15A1F0EF003A40B2 /* DMDocument */,
 				F501B3AC15877062001C6158 /* ui */,
 				F5148B1F1580E904002B3D61 /* core */,
@@ -747,8 +745,8 @@
 		F5148B231580E904002B3D61 /* DMPlayableItem */ = {
 			isa = PBXGroup;
 			children = (
-				177DE81F16A8D6E9009D9117 /* DMPlayableItem.h */,
-				177DE82016A8D6E9009D9117 /* DMPlayableItem.m */,
+				FD39574D1D1586A40029E923 /* DMPlayableItem.swift */,
+				FD3957501D15946C0029E923 /* diumoo-Bridging-Header.h */,
 			);
 			name = DMPlayableItem;
 			path = DMPlayableCapsule;
@@ -1146,10 +1144,16 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DM;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					F5148AAD1580E58D002B3D61 = {
-						DevelopmentTeam = 4KWBUULLH3;
+						DevelopmentTeam = MC98392EJC;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1316,6 +1320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD39574F1D1594320029E923 /* DMPlayableItem.swift in Sources */,
 				F5148ABF1580E58D002B3D61 /* main.m in Sources */,
 				F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */,
 				F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */,
@@ -1363,7 +1368,6 @@
 				F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */,
 				F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */,
 				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
-				177DE82116A8D6E9009D9117 /* DMPlayableItem.m in Sources */,
 				F5D25DD216A999A700ED70CC /* DMBitrateControlLayer.m in Sources */,
 				525D5AB71D0D452000A39D73 /* MASDictionaryTransformer.m in Sources */,
 				179842A61704DD4300D1CAE9 /* EDStarRating.m in Sources */,
@@ -1460,6 +1464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1500,6 +1505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1531,8 +1537,8 @@
 		F5148AD01580E58E002B3D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1547,11 +1553,15 @@
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "diumoo/core/DMPlayableCapsule/diumoo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1559,8 +1569,8 @@
 		F5148AD11580E58E002B3D61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -1576,11 +1586,14 @@
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "diumoo/core/DMPlayableCapsule/diumoo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -178,7 +178,7 @@
                                              keyShowPrefsPanel : [MASShortcut shortcutWithKeyCode:kVK_ANSI_P modifierFlags:flags] }];
 
     if ([defaults integerForKey:@"useMediaKey"] == NSOnState) {
-        [mediakeyTap startWatchingMediaKeys];
+        //[mediakeyTap startWatchingMediaKeys];
     }
 }
 

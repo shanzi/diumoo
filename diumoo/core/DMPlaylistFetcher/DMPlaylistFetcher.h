@@ -15,7 +15,7 @@
 #define kFetchPlaylistTypeBye @"b"
 
 #import <Foundation/Foundation.h>
-#import "DMPlayableItem.h"
+#import "diumoo-Swift.h"
 #import "DMPlaylistFetcherDeleate.h"
 
 @interface DMPlaylistFetcher : NSObject

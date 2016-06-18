@@ -7,7 +7,7 @@
 //
 
 #import "DMPlayRecordHandler.h"
-#import "DMPlayableItem.h"
+#import "diumoo-Swift.h"
 #import "DMService.h"
 #import "DMErrorLog.h"
 
