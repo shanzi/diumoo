@@ -20,7 +20,6 @@
 #import <IOKit/pwr_mgt/IOPMLib.h>
 
 #import "diumoo-Swift.h"
-#import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
 #import "NSDictionary+UrlEncoding.h"

@@ -85,7 +85,6 @@
 		F5148B051580E707002B3D61 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADB1580E707002B3D61 /* HTMLNode.m */; };
 		F5148B061580E707002B3D61 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADD1580E707002B3D61 /* HTMLParser.m */; };
 		F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B221580E904002B3D61 /* DMControlCenter.m */; };
-		F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */; };
 		F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */; };
 		F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B491580EE1F002B3D61 /* Carbon.framework */; };
 		F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B4B1580EE4D002B3D61 /* Security.framework */; };
@@ -187,6 +186,8 @@
 		FD39574F1D1594320029E923 /* DMPlayableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD39574D1D1586A40029E923 /* DMPlayableItem.swift */; };
 		FDC7F9A41D15C54400C93642 /* DMNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */; };
 		FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */; };
+		FDFC972A1D16134600F7D474 /* DMPlaylistFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */; };
+		FDFC972C1D16226A00F7D474 /* Dictionary+urlEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC972B1D16226A00F7D474 /* Dictionary+urlEncoding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -306,9 +307,6 @@
 		F5148ADD1580E707002B3D61 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		F5148B211580E904002B3D61 /* DMControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMControlCenter.h; sourceTree = "<group>"; };
 		F5148B221580E904002B3D61 /* DMControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMControlCenter.m; sourceTree = "<group>"; };
-		F5148B281580E904002B3D61 /* DMPlaylistFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlaylistFetcher.h; sourceTree = "<group>"; };
-		F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPlaylistFetcher.m; sourceTree = "<group>"; };
-		F5148B2A1580E904002B3D61 /* DMPlaylistFetcherDeleate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPlaylistFetcherDeleate.h; sourceTree = "<group>"; };
 		F5148B2C1580E904002B3D61 /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
 		F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
 		F5148B491580EE1F002B3D61 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -445,6 +443,8 @@
 		FD3957501D15946C0029E923 /* diumoo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "diumoo-Bridging-Header.h"; path = "core/DMPlayableCapsule/diumoo-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMNotificationCenter.swift; path = DMNotificationCenter/DMNotificationCenter.swift; sourceTree = "<group>"; };
 		FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
+		FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMPlaylistFetcher.swift; sourceTree = "<group>"; };
+		FDFC972B1D16226A00F7D474 /* Dictionary+urlEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+urlEncoding.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -754,9 +754,7 @@
 		F5148B271580E904002B3D61 /* DMPlaylistFetcher */ = {
 			isa = PBXGroup;
 			children = (
-				F5148B281580E904002B3D61 /* DMPlaylistFetcher.h */,
-				F5148B291580E904002B3D61 /* DMPlaylistFetcher.m */,
-				F5148B2A1580E904002B3D61 /* DMPlaylistFetcherDeleate.h */,
+				FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */,
 			);
 			path = DMPlaylistFetcher;
 			sourceTree = "<group>";
@@ -772,6 +770,7 @@
 				F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */,
 				F566F60C15C6E4A200FC7143 /* NSImage+AsyncLoadImage.h */,
 				F566F60D15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m */,
+				FDFC972B1D16226A00F7D474 /* Dictionary+urlEncoding.swift */,
 			);
 			path = DMUtils;
 			sourceTree = "<group>";
@@ -1319,17 +1318,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD39574F1D1594320029E923 /* DMPlayableItem.swift in Sources */,
+				FDFC972A1D16134600F7D474 /* DMPlaylistFetcher.swift in Sources */,
+				FDC7F9A41D15C54400C93642 /* DMNotificationCenter.swift in Sources */,
+				FDFC972C1D16226A00F7D474 /* Dictionary+urlEncoding.swift in Sources */,
 				F5148ABF1580E58D002B3D61 /* main.m in Sources */,
 				F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */,
 				F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */,
 				F5148B051580E707002B3D61 /* HTMLNode.m in Sources */,
 				F5148B061580E707002B3D61 /* HTMLParser.m in Sources */,
-				FDC7F9A41D15C54400C93642 /* DMNotificationCenter.swift in Sources */,
 				F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */,
 				525D5AC31D0D452000A39D73 /* MASShortcutView+Bindings.m in Sources */,
 				525D5ABC1D0D452000A39D73 /* MASShortcut.m in Sources */,
 				525D5ABB1D0D452000A39D73 /* MASLocalization.m in Sources */,
-				F5148B301580E904002B3D61 /* DMPlaylistFetcher.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F54A524F158347DE00F6C18A /* DMDoubanAuthHelper.m in Sources */,
 				F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */,

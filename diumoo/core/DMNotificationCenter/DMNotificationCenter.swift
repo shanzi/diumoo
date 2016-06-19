@@ -11,14 +11,18 @@ import AppKit
 
 public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  {
  
-    let pref = UserDefaults.standard()
-    let NCCenter = NSUserNotificationCenter.default()
+    internal let pref = UserDefaults.standard()
+    internal let NCCenter = NSUserNotificationCenter.default()
+    internal let needToUpdateDock : Bool
     
     public func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         return true
     }
     
     override init() {
+        // Show Dock icon setting won't change without restart app, so it's safe to put it here
+        // I'm not sure about how expensive this is
+        needToUpdateDock = (Int(self.pref.value(forKey: "displayAlbumCoverOnDock") as! NSNumber) == NSOnState)
         super.init()
         NSUserNotificationCenter.default().delegate = self
     }
@@ -42,7 +46,7 @@ public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  
             self.NCCenter.deliver(aNotification)
         }
         
-        if Int(self.pref.value(forKey: "displayAlbumCoverOnDock") as! NSNumber) == NSOnState {
+        if self.needToUpdateDock {
             NSApplication.shared().applicationIconImage = item.cover
         }
     }
