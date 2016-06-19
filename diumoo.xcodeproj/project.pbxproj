@@ -183,10 +183,10 @@
 		F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */; };
 		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
 		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
-		FD39574F1D1594320029E923 /* DMPlayableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD39574D1D1586A40029E923 /* DMPlayableItem.swift */; };
-		FDC7F9A41D15C54400C93642 /* DMNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */; };
 		FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */; };
-		FDFC972A1D16134600F7D474 /* DMPlaylistFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */; };
+		FDE594851D17015400F0011E /* DMPlaylistFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */; };
+		FDE594861D17015400F0011E /* DMPlayableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD39574D1D1586A40029E923 /* DMPlayableItem.swift */; };
+		FDE594871D17015400F0011E /* DMNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */; };
 		FDFC972C1D16226A00F7D474 /* Dictionary+urlEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC972B1D16226A00F7D474 /* Dictionary+urlEncoding.swift */; };
 /* End PBXBuildFile section */
 
@@ -440,8 +440,8 @@
 		F5F7EF101600EE850007D2DB /* record.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = record.icns; sourceTree = "<group>"; };
 		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
 		FD39574D1D1586A40029E923 /* DMPlayableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMPlayableItem.swift; sourceTree = "<group>"; };
-		FD3957501D15946C0029E923 /* diumoo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "diumoo-Bridging-Header.h"; path = "core/DMPlayableCapsule/diumoo-Bridging-Header.h"; sourceTree = "<group>"; };
-		FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMNotificationCenter.swift; path = DMNotificationCenter/DMNotificationCenter.swift; sourceTree = "<group>"; };
+		FD3957501D15946C0029E923 /* diumoo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "diumoo-Bridging-Header.h"; sourceTree = "<group>"; };
+		FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMNotificationCenter.swift; sourceTree = "<group>"; };
 		FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 		FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMPlaylistFetcher.swift; sourceTree = "<group>"; };
 		FDFC972B1D16226A00F7D474 /* Dictionary+urlEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+urlEncoding.swift"; sourceTree = "<group>"; };
@@ -719,15 +719,15 @@
 		F5148B1F1580E904002B3D61 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */,
+				FD39574D1D1586A40029E923 /* DMPlayableItem.swift */,
+				FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */,
 				F5E2D0F316005D2400389463 /* DMShortcutsHandler */,
 				3FBE809515D4A615001A3BEC /* DMErrorLog */,
 				F53C78E015CC0AA700201C65 /* DMService */,
-				F528B1A615BC548000DC82B4 /* DMNotificationCenter */,
 				F5D3633D15A1F379003A40B2 /* DMPlayRecordHandler */,
 				F54A524C1583477300F6C18A /* DMDoubanAuthHelper */,
 				F5148B201580E904002B3D61 /* DMControlCenter */,
-				F5148B231580E904002B3D61 /* DMPlayableItem */,
-				F5148B271580E904002B3D61 /* DMPlaylistFetcher */,
 				F5148B2B1580E904002B3D61 /* DMUtils */,
 			);
 			path = core;
@@ -740,23 +740,6 @@
 				F5148B221580E904002B3D61 /* DMControlCenter.m */,
 			);
 			path = DMControlCenter;
-			sourceTree = "<group>";
-		};
-		F5148B231580E904002B3D61 /* DMPlayableItem */ = {
-			isa = PBXGroup;
-			children = (
-				FD39574D1D1586A40029E923 /* DMPlayableItem.swift */,
-			);
-			name = DMPlayableItem;
-			path = DMPlayableCapsule;
-			sourceTree = "<group>";
-		};
-		F5148B271580E904002B3D61 /* DMPlaylistFetcher */ = {
-			isa = PBXGroup;
-			children = (
-				FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */,
-			);
-			path = DMPlaylistFetcher;
 			sourceTree = "<group>";
 		};
 		F5148B2B1580E904002B3D61 /* DMUtils */ = {
@@ -803,14 +786,6 @@
 				3F01022B15DE9DA70076D6C8 /* status-icon@2x.png */,
 			);
 			name = StatusItem;
-			sourceTree = "<group>";
-		};
-		F528B1A615BC548000DC82B4 /* DMNotificationCenter */ = {
-			isa = PBXGroup;
-			children = (
-				FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */,
-			);
-			name = DMNotificationCenter;
 			sourceTree = "<group>";
 		};
 		F528CA3B15C2DB6400094E35 /* sns */ = {
@@ -1317,9 +1292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD39574F1D1594320029E923 /* DMPlayableItem.swift in Sources */,
-				FDFC972A1D16134600F7D474 /* DMPlaylistFetcher.swift in Sources */,
-				FDC7F9A41D15C54400C93642 /* DMNotificationCenter.swift in Sources */,
+				FDE594851D17015400F0011E /* DMPlaylistFetcher.swift in Sources */,
+				FDE594861D17015400F0011E /* DMPlayableItem.swift in Sources */,
+				FDE594871D17015400F0011E /* DMNotificationCenter.swift in Sources */,
 				FDFC972C1D16226A00F7D474 /* Dictionary+urlEncoding.swift in Sources */,
 				F5148ABF1580E58D002B3D61 /* main.m in Sources */,
 				F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */,
@@ -1557,7 +1532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "diumoo/core/DMPlayableCapsule/diumoo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "diumoo/diumoo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
@@ -1590,7 +1565,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "diumoo/core/DMPlayableCapsule/diumoo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "diumoo/diumoo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
