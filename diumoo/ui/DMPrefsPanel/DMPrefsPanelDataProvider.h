@@ -51,7 +51,6 @@
     //------ account view outlet -------
     IBOutlet NSButton* userIconButton;
     IBOutlet NSTextField* usernameTextField;
-    IBOutlet NSSegmentedControl* playrecordButton;
     //----------------------------------
 
     //------ key bindings outlet -------
@@ -72,8 +71,6 @@
 
 - (IBAction)loginAction:(id)sender;
 - (IBAction)logoutAction:(id)sender;
-- (IBAction)showPlayRecord:(id)sender;
-- (IBAction)installBrowserPlugins:(id)sender;
 - (IBAction)donation:(id)sender;
 
 @end

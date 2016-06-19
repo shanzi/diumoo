@@ -264,25 +264,7 @@
     return general;
 }
 
-- (void)showPlayRecord:(id)sender
-{
-    NSInteger selectedSegment = [sender selectedSegment];
-    NSString* urlstring = nil;
-    switch (selectedSegment) {
-    case 0:
-        urlstring = @"https://douban.fm/mine?type=played";
-        break;
-    case 1:
-        urlstring = @"https://douban.fm/mine?type=liked";
-        break;
-    case 2:
-        urlstring = @"https://douban.fm/mine?type=banned";
-    }
-    NSURL* openurl = [NSURL URLWithString:urlstring];
-    [[NSWorkspace sharedWorkspace] openURL:openurl];
-}
 // ----------------------- 快捷键控制 ----------------------------
-
 - (void)awakeFromNib
 {
     NSDictionary* dict = [[NSBundle mainBundle] infoDictionary];
