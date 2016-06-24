@@ -9,7 +9,6 @@
 #import "DMDetailViewController.h"
 #import "DMDocumentWindowController.h"
 #import "DMErrorLog.h"
-#import "EDStarRating.h"
 #import "NSImage+AsyncLoadImage.h"
 #import "SMTabBar.h"
 #import "SMTabBarItem.h"
@@ -36,11 +35,6 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-
-    starRating.displayMode = EDStarRatingDisplayAccurate;
-    starRating.editable = NO;
-    starRating.starHighlightedImage = [NSImage imageNamed:@"starhighlighted"];
-    starRating.starImage = [NSImage imageNamed:@"star"];
     [self buildTabButton];
     [self setupWindowForDocument:self.document];
     if ([self.document isInViewingMode]) {
@@ -99,8 +93,6 @@
     albumTitle = [[dict valueForKey:@"albumtitle"] copy];
     aid = [[dict valueForKey:@"aid"] copy];
     albumLocation = [[dict valueForKey:@"url"] copy];
-    starRating.rating = [[dict valueForKey:@"rating_avg"] floatValue];
-    [starRating setNeedsDisplay];
 }
 
 - (NSString*)windowTitleForDocumentDisplayName:(NSString*)displayName
