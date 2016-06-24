@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 @class SMTabBar;
-@class EDStarRating;
 
 @interface DMDocumentWindowController : NSWindowController <NSWindowDelegate> {
 
@@ -16,7 +15,6 @@
     IBOutlet NSTabView* tabView;
 
     // -------------------------预览标签页--------------------------
-    IBOutlet EDStarRating* starRating;
     IBOutlet NSButton* revertButton;
     IBOutlet NSButton* albumCoverButton;
     IBOutlet NSTextField* songTitle;

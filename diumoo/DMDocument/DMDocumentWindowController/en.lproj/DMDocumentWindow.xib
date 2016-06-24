@@ -12,14 +12,13 @@
                 <outlet property="progressIndicator" destination="86" id="104"/>
                 <outlet property="revertButton" destination="59" id="65"/>
                 <outlet property="songTitle" destination="53" id="99"/>
-                <outlet property="starRating" destination="45" id="46"/>
                 <outlet property="tabBar" destination="17" id="18"/>
                 <outlet property="tabView" destination="23" id="102"/>
                 <outlet property="window" destination="15" id="22"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="15">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES"/>
             <rect key="contentRect" x="451" y="76" width="400" height="500"/>
@@ -45,7 +44,7 @@
                             <tabViewItem label="View" identifier="1" id="24">
                                 <view key="view" id="27">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="480"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="43">
                                             <rect key="frame" x="20" y="121" width="360" height="340"/>
@@ -58,12 +57,8 @@
                                                 <action selector="openAlbumLocation:" target="-2" id="108"/>
                                             </connections>
                                         </button>
-                                        <customView id="45" customClass="EDStarRating">
-                                            <rect key="frame" x="119" y="91" width="163" height="23"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </customView>
                                         <textField verticalHuggingPriority="750" id="53">
-                                            <rect key="frame" x="17" y="70" width="366" height="17"/>
+                                            <rect key="frame" x="17" y="77" width="366" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Music" usesSingleLineMode="YES" id="54">
                                                 <font key="font" size="13" name="STHeitiSC-Light"/>
@@ -72,7 +67,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="55">
-                                            <rect key="frame" x="17" y="51" width="366" height="17"/>
+                                            <rect key="frame" x="17" y="58" width="366" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" title="Artist" usesSingleLineMode="YES" id="56">
                                                 <font key="font" size="13" name="STHeitiSC-Light"/>
@@ -81,7 +76,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="59">
-                                            <rect key="frame" x="140" y="13" width="120" height="23"/>
+                                            <rect key="frame" x="140" y="20" width="120" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" title="Time Machine" bezelStyle="smallSquare" image="time_machine" imagePosition="left" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="60">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
