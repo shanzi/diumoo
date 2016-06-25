@@ -13,11 +13,6 @@ For more details, refer to our [Homepage](http://diumoo.net).
 ## Installation
 
 Download [precompiled version](https://github.com/shanzi/diumoo/releases) 
-or install from [Mac App Store](https://itunes.apple.com/us/app/diumoo/id562734497)
-
-**NOTE**: due to limitations of Mac App Store, some features can not be enabled
-in Mac App Store version, ex. use media keys on the keyboard (F7, F8, F9) to control playback.
-
 
 ## Develop
 
@@ -36,12 +31,14 @@ Then you can open `diumoo.xcodeproj` and modify the code or compile it.
 Pull requests are extremely welcomed. Fork and conforms to [GitHub workflow](https://guides.github.com/introduction/flow/index.html)
 before contribution :)
 
+Since 1.6 we will move to Swift 3. Please make sure you compile with Xcode >= 8.0.
+
 ## Maintainers
 
 Currently, this project is mainly maintained by:
 
 1. [Chase Zhang](github.com/shanzi)
-2. [Yancheng Zheng](https://github.com/AnakinMac)
+2. [Anakin(Yancheng) Zheng](https://github.com/AnakinMac)
 
 More developers are wanted!
 
