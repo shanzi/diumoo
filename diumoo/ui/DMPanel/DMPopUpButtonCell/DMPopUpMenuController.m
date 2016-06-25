@@ -7,7 +7,7 @@
 //
 
 #import "DMPopUpMenuController.h"
-#import "DMDoubanAuthHelper.h"
+#import "diumoo-Swift.h"
 #import "DMService.h"
 #import "DMPanelWindowController.h"
 
@@ -185,8 +185,8 @@
         }
     }
     
-    NSArray* promotions = [DMDoubanAuthHelper sharedHelper].promotion_chls;
-    NSArray* recents = [DMDoubanAuthHelper sharedHelper].recent_chls;
+    NSArray* promotions = [DMAuthHelper sharedHelper].promotion_chls;
+    NSArray* recents = [DMAuthHelper sharedHelper].recent_chls;
     
     if ([promotions count]>0) {
         NSMenuItem* pemptyItem = [moreChannelMenu itemWithTag:-14];

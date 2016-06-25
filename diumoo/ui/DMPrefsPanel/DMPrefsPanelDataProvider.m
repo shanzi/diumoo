@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "DMDoubanAuthHelper.h"
+#import "diumoo-Swift.h"
 #import "DMPrefsPanelDataProvider.h"
 #import "DMService.h"
 #import "NSImage+AsyncLoadImage.h"
@@ -107,7 +107,7 @@
         case 0: // 获取验证码
             [sender setEnabled:NO];
             [indicator startAnimation:nil];
-            captcha_code = [DMDoubanAuthHelper getNewCaptchaCode];
+            captcha_code = [DMAuthHelper getNewCaptchaCode];
 
             NSString* captcha_url = [@"https://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code];
 
@@ -167,56 +167,56 @@
     NSString* em = [email stringValue];
     NSString* pw = [password stringValue];
     NSString* captcha_solution = [captcha stringValue];
-
-    NSString* errorstring = nil;
+    [errorLabel setHidden:YES];
+    
     if (!(em && [em length])) {
-        errorstring = NSLocalizedString(@"EMAIL_MUST_NOT_BE_EMPTY", @"邮箱不能为空");
-    }
-    else if (!(pw && [pw length])) {
-        errorstring = NSLocalizedString(@"PASSWORD_MUST_NOT_BE_EMPTY", @"密码不能为空");
-    }
-    else if (!(captcha_solution && [captcha_solution length])) {
-        errorstring = NSLocalizedString(@"CAPTCHA_MUST_NOT_BE_EMPTY", @"验证码不能为空");
-    }
-
-    if (errorstring) {
-        [errorLabel setStringValue:errorstring];
+        [errorLabel setStringValue: NSLocalizedString(@"EMAIL_MUST_NOT_BE_EMPTY", @"邮箱不能为空")];
         [errorLabel setHidden:NO];
         return;
     }
-    else {
-        [errorLabel setHidden:YES];
+    else if (!(pw && [pw length])) {
+        [errorLabel setStringValue:NSLocalizedString(@"PASSWORD_MUST_NOT_BE_EMPTY", @"密码不能为空")];
+        [errorLabel setHidden:NO];
+        return;
+    }
+    else if (!(captcha_solution && [captcha_solution length])) {
+        [errorLabel setStringValue: NSLocalizedString(@"CAPTCHA_MUST_NOT_BE_EMPTY", @"验证码不能为空")];
+        [errorLabel setHidden:NO];
+        return;
+    }
+    else if (!self.captcha_code) {
+        [errorLabel setStringValue: NSLocalizedString(@"INVALID_CAPTCHA_CODE", @"未获取验证码")];
+        [errorLabel setHidden:NO];
+        return;
     }
 
     [self lockLoginForm:YES];
     [loginIndicator startAnimation:nil];
     NSDictionary* authDict =
-        @{ kAuthAttributeUsername : em,
-            kAuthAttributePassword : pw,
-            kAuthAttributeCaptchaSolution : captcha_solution,
-            kAuthAttributeCaptchaCode : self.captcha_code,
+        @{ [DMAuthHelper kAuthAttributeUsername] : em,
+           [DMAuthHelper kAuthAttributePassword] : pw,
+           [DMAuthHelper kAuthAttributeCaptchaSolution] : captcha_solution,
+           [DMAuthHelper kAuthAttributeCaptchaCode] : self.captcha_code,
             @"remember" : @"on",
             @"task" : @"sync_channel_list"
         };
 
     [DMService performOnServiceQueue:^{
-        NSError* error = NULL;
-        error = [[DMDoubanAuthHelper sharedHelper] authWithDictionary:authDict];
+        NSError* error = [[DMAuthHelper sharedHelper] authWithDictionary:authDict];
 
         [self lockLoginForm:NO];
         [loginIndicator stopAnimation:nil];
 
         if (error) {
-            if ([error code] == -2 && error.userInfo) {
-                NSString* err_msg = [NSString stringWithFormat:@"%@", error.userInfo];
-                [errorLabel setStringValue:err_msg];
-            }
-            else {
-                [errorLabel setStringValue:NSLocalizedString(@"LOGIN_FAILED", @"登陆失败！")];
-            }
+            [errorLabel setStringValue:NSLocalizedString(@"LOGIN_FAILED", @"登陆失败！")];
             [errorLabel setHidden:NO];
             [captcha setStringValue:@""];
-            [captchaButton performClick:nil];
+            
+            self.captcha_code = nil;
+            [captchaButton setImage:nil];
+            [captchaButton setTitle:NSLocalizedString(@"点击获取验证码", @"获取失败，请重试")];
+            [captchaButton setBordered:YES];
+            [loginIndicator setHidden: YES];
         }
         else {
             [DMService performOnMainQueue:^{
@@ -228,20 +228,20 @@
 
 - (void)logoutAction:(id)sender
 {
-    [[DMDoubanAuthHelper sharedHelper] logoutAndCleanData];
+    [[DMAuthHelper sharedHelper] logout];
     [self resetLoginForm];
     [tabcontroller selectPanelAtIndex:ACCOUNT_PANEL_ID];
 }
 
 - (id)accountView
 {
-    if ([DMDoubanAuthHelper sharedHelper].username) {
+    if ([DMAuthHelper sharedHelper].username) {
         // update account view
-        DMDoubanAuthHelper* sh = [DMDoubanAuthHelper sharedHelper];
+        DMAuthHelper* sh = [DMAuthHelper sharedHelper];
 
         [usernameTextField setStringValue:sh.username];
-
-        [userIconButton setImage:[sh getUserIcon]];
+        
+        [userIconButton setImage:sh.userIcon];
 
         return account;
     }

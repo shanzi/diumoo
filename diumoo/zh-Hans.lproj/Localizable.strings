@@ -124,6 +124,9 @@
 /* 未知 */
 "DETAIL_UNKNOWN" = "未知";
 
+/* 需要验证码 */
+"INVALID_CAPTCHA_CODE" = "未获取验证码";
+
 /* 验证码不能为空 */
 "CAPTCHA_MUST_NOT_BE_EMPTY" = "验证码不能为空";
 

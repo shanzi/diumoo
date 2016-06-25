@@ -32,8 +32,7 @@ public class DMPlayableItem: AVPlayerItem {
     }
     
     // Const variables
-    let douban_URL_prefix = "https://music.douban.com"
-    let timer_interval = 0.1
+    static let douban_URL_prefix = "https://music.douban.com"
     
     init(WithDict aDict: Dictionary<String, AnyObject>) {
         self.musicInfo = [ "subtype":aDict["subtype"]!,
@@ -51,7 +50,7 @@ public class DMPlayableItem: AVPlayerItem {
             self.musicInfo["sid"] = aDict["sid"]!
             self.musicInfo["ssid"] = aDict["ssid"]!
             self.musicInfo["length"] = Float(String(aDict["length"]!))! * 1000
-            self.musicInfo["albumLocation"] = String("\(douban_URL_prefix)\(String(aDict["album"]))")
+            self.musicInfo["albumLocation"] = String("\(DMPlayableItem.douban_URL_prefix)\(String(aDict["album"]))")
         }
         
         self.like = NSString(string: String(aDict["like"]!)).boolValue

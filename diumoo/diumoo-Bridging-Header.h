@@ -10,6 +10,7 @@
 #define diumoo_Bridging_Header_h
 
 #import "debugLog.h"
+#import "HTMLParser.h"
 #import "NSDictionary+UrlEncoding.h"
 
 #endif /* diumoo_Bridging_Header_h */

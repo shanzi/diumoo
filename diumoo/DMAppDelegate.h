@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "DMControlCenter.h"
-#import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
 #import "DMShortcutsHandler.h"
 #import "PLTabPreferenceControl.h"

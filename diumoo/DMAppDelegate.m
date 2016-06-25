@@ -7,10 +7,10 @@
 //
 
 #import "DMAppDelegate.h"
-#import "DMDoubanAuthHelper.h"
 #import "DMErrorLog.h"
 #import "DMService.h"
 #import "Shortcut.h"
+#import "diumoo-Swift.h"
 
 @implementation DMAppDelegate
 
@@ -118,7 +118,7 @@
 
 - (void)startPlayInBackground;
 {
-    [[DMDoubanAuthHelper sharedHelper] authWithDictionary:nil];
+    [[DMAuthHelper sharedHelper] authWithDictionary:nil];
     [center fireToPlayDefault];
     [DMService showDMNotification];
 }

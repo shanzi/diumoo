@@ -123,6 +123,9 @@
 /* 未知 */
 "DETAIL_UNKNOWN" = "unknown";
 
+/* 需要验证码 */
+"INVALID_CAPTCHA_CODE" = "Haven't fetch captcha yet";
+
 /* 验证码不能为空 */
 "CAPTCHA_MUST_NOT_BE_EMPTY" = "Captcha must not be empty";
 

@@ -6,12 +6,12 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "DMDoubanAuthHelper.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
 #import "DMPrefsPanelDataProvider.h"
 #import "DMSearchPanelController.h"
 #import "StatusItemView.h"
+#import "diumoo-Swift.h"
 
 DMPanelWindowController* sharedWindow;
 
@@ -29,10 +29,11 @@ DMPanelWindowController* sharedWindow;
 - (id)init
 {
     if (self = [super initWithWindowNibName:@"DMPanelWindowController"]) {
-
+        
+        NSString * notificationName = [DMAuthHelper AccountStateChangedNotification];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(accountStateChanged:)
-                                                     name:AccountStateChangedNotification
+                                                     name:notificationName
                                                    object:nil];
 
         menubarController = [[MenubarController alloc] init];
@@ -64,11 +65,10 @@ DMPanelWindowController* sharedWindow;
 
 - (void)accountStateChanged:(NSNotification*)n
 {
-    DMDoubanAuthHelper* helper = [DMDoubanAuthHelper sharedHelper];
+    DMAuthHelper* helper = [DMAuthHelper sharedHelper];
     [CATransaction begin];
     if (helper.username) {
-
-        [userIconButton setImage:helper.icon];
+        [userIconButton setImage:helper.userIcon];
         [usernameTextField setStringValue:helper.username];
         [usernameTextField setHidden:NO];
 
@@ -99,7 +99,7 @@ DMPanelWindowController* sharedWindow;
     [CATransaction begin];
     if ([self.delegate channelChangedTo:channel]) {
 
-        if ([DMDoubanAuthHelper sharedHelper].username) {
+        if ([DMAuthHelper sharedHelper].username) {
             [banButton setEnabled:YES];
         }
         else {
@@ -242,7 +242,7 @@ DMPanelWindowController* sharedWindow;
     NSMenuItem* currentItem = popupMenuController.currentChannelMenuItem;
 
     [CATransaction begin];
-    if ([DMDoubanAuthHelper sharedHelper].username == nil) {
+    if ([DMAuthHelper sharedHelper].username == nil) {
         [popupMenuController setPrivateChannelEnabled:NO];
         [rateButton setEnabled:NO];
         [banButton setEnabled:NO];
@@ -273,7 +273,7 @@ DMPanelWindowController* sharedWindow;
 {
     NSMenuItem* item = [self prepareCurrentMenuItem];
     [popupMenuController updateChannelMenuWithSender:item];
-    if ([DMDoubanAuthHelper sharedHelper].username != nil) {
+    if ([DMAuthHelper sharedHelper].username != nil) {
         [banButton setEnabled:YES];
     }
     else {
