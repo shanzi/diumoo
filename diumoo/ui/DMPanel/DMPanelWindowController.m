@@ -49,11 +49,7 @@ DMPanelWindowController* sharedWindow;
 - (void)windowDidLoad
 {
     // Make the window visible on all Spaces
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_7)
-        [[self window] setCollectionBehavior:NSWindowCollectionBehaviorFullScreenAuxiliary];
-    else
-        [[self window] setCollectionBehavior:NSWindowCollectionBehaviorMoveToActiveSpace];
-}
+    [[self window] setCollectionBehavior:NSWindowCollectionBehaviorFullScreenAuxiliary];}
 
 - (void)awakeFromNib
 {

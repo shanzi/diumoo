@@ -14,19 +14,10 @@
 -(id) init
 {
     if (self = [super init]) {
-        if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7_2)
-        {
-            frontPosition = CGPointMake(0,80);
-            titlePosition = CGPointMake(10,40);
-            artistPosition = CGPointMake(13,22);
-            albumPosition = CGPointMake(13,4);
-        }
-        else {
-            frontPosition = CGPointMake(0,0);
-            titlePosition = CGPointMake(10,260);
-            artistPosition = CGPointMake(13,283);
-            albumPosition = CGPointMake(13,301);
-        }
+        frontPosition = CGPointMake(0,0);
+        titlePosition = CGPointMake(10,260);
+        artistPosition = CGPointMake(13,283);
+        albumPosition = CGPointMake(13,301);
         self.bounds = BOUNDS;
         self.masksToBounds = YES;
         

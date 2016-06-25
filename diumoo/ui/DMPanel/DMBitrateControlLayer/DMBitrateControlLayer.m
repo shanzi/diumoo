@@ -53,28 +53,14 @@
 -(void) selectLayer:(CALayer*) layer
 {
     [CATransaction begin];
-    if (floor(NSAppKitVersionNumber)<=NSAppKitVersionNumber10_7_2) {
-        for (CALayer* l in LayerArray) {
-            if (l==layer) {
-                l.backgroundColor = focus;
-                l.position = CGPointMake(l.position.x, 0);
-            }
-            else{
-                l.backgroundColor=black;
-                l.position = CGPointMake(l.position.x, 10);
-            }
+    for (CALayer* l in LayerArray) {
+        if (l==layer) {
+            l.backgroundColor = focus;
+            l.position = CGPointMake(l.position.x, 10);
         }
-    }
-    else{
-        for (CALayer* l in LayerArray) {
-            if (l==layer) {
-                l.backgroundColor = focus;
-                l.position = CGPointMake(l.position.x, 10);
-            }
-            else{
-                l.backgroundColor=black;
-                l.position = CGPointMake(l.position.x, 0);
-            }
+        else{
+            l.backgroundColor=black;
+            l.position = CGPointMake(l.position.x, 0);
         }
     }
     [CATransaction commit];

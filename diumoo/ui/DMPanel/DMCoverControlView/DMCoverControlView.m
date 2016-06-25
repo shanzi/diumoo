@@ -28,12 +28,7 @@
         
         bitratelayer = [[DMBitrateControlLayer alloc] init];
         
-        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_7_2) {
-            bitratelayer.position = CGPointMake(0, frame.size.height);
-        }
-        else {
-            bitratelayer.position = CGPointMake(0, -50);
-        }
+        bitratelayer.position = CGPointMake(0, frame.size.height);
         
         [mainLayer addSublayer:bitratelayer];
         
@@ -57,23 +52,13 @@
 -(void) mouseEntered:(NSEvent *)event
 {
     [slide setOpacity:0.6];
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7_2) {
-        bitratelayer.position = CGPointMake(0, self.frame.size.height-30);
-    }
-    else {
-        bitratelayer.position = CGPointMake(0, -20);
-    }    
+    bitratelayer.position = CGPointMake(0, -20);
 }
 
 -(void) mouseExited:(NSEvent *)event
 {
     [slide setOpacity:1.0];
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7_2) {
-        bitratelayer.position = CGPointMake(0, self.frame.size.height);
-    }
-    else {
-        bitratelayer.position = CGPointMake(0, -50);
-    }
+    bitratelayer.position = CGPointMake(0, -50);
 }
 
 -(void) mouseDown:(NSEvent *)theEvent
