@@ -38,7 +38,7 @@ Since 1.6 we will move to Swift 3. Please make sure you compile with Xcode >= 8.
 
 ## TODO
 
-- [ ] migrate to CocoaPods or Carthage instead of git submodules
+- [ ] migrate to CocoaPods instead of git submodules
 - [ ] migrate to swift (Anakin is working on this)
 
 ## Maintainers
