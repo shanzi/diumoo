@@ -31,7 +31,15 @@ Then you can open `diumoo.xcodeproj` and modify the code or compile it.
 Pull requests are extremely welcomed. Fork and conforms to [GitHub workflow](https://guides.github.com/introduction/flow/index.html)
 before contribution :)
 
+**NOTICE**: We use `master` branch for developing and new pull requests will be merged into `master`.
+For latest stable version, pleace switch to `release` branch.
+
 Since 1.6 we will move to Swift 3. Please make sure you compile with Xcode >= 8.0.
+
+## TODO
+
+- [ ] migrate to CocoaPods instead of git submodules
+- [ ] migrate to swift (Anakin is working on this)
 
 ## Maintainers
 
