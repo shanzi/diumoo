@@ -81,17 +81,17 @@ public class DMAuthHelper: NSObject {
         self.isPro = false
         
         // Delete cookie
-        let cookies = HTTPCookieStorage.shared().cookies
+        let cookies = HTTPCookieStorage.shared.cookies
         
         for cookie in cookies! {
             if cookie.domain == ".douban.fm" {
-                HTTPCookieStorage.shared().deleteCookie(cookie)
+                HTTPCookieStorage.shared.deleteCookie(cookie)
             }
         }
         
         // Reset user default
-        UserDefaults.standard().set(false, forKey: "isPro")
-        UserDefaults.standard().set(64, forKey: "musicQuality")
+        UserDefaults.standard.set(false, forKey: "isPro")
+        UserDefaults.standard.set(64, forKey: "musicQuality")
     }
     
     private func encodeAuthDictionary(_ aDict: Dictionary<String, String>) -> String {
@@ -100,7 +100,7 @@ public class DMAuthHelper: NSObject {
     
     private func getUserId()->String? {
         let url = URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!
-        let cookies = HTTPCookieStorage.shared().cookies(for: url)
+        let cookies = HTTPCookieStorage.shared.cookies(for: url)
         
         for cookie in cookies! {
             print(cookie.name)
@@ -129,18 +129,18 @@ public class DMAuthHelper: NSObject {
                 
                 let userlink = "http://www.douban.com/people/" + theId
                 var name = aUser.contents()!
-                let regexp = try! RegularExpression.init(pattern: "(^\\s+|\\s+$)",
-                                                    options: RegularExpression.Options.caseInsensitive)
+                let regexp = try! NSRegularExpression.init(pattern: "(^\\s+|\\s+$)",
+                                                    options: NSRegularExpression.Options.caseInsensitive)
                 name = regexp.stringByReplacingMatches(in: name,
-                                                       options: RegularExpression.MatchingOptions(rawValue: UInt(0)),
+                                                       options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)),
                                                        range: NSMakeRange(0, name.characters.count),
                                                        withTemplate: "")
                 
                 let user_info = ["name" : name,
                                  "url"  : userlink,
                                  "id"   : theId,
-                                "is_pro": is_pro]
-                return user_info as? Dictionary<String, AnyObject>
+                                "is_pro": is_pro] as [String : Any]
+                return user_info as Dictionary<String, AnyObject>?
             }
         }
         return nil
@@ -158,7 +158,7 @@ public class DMAuthHelper: NSObject {
                 let cookie = HTTPCookie.cookies(withResponseHeaderFields: headerFields,
                                                 for: response.url!)
                 
-                HTTPCookieStorage.shared().setCookies(cookie,
+                HTTPCookieStorage.shared.setCookies(cookie,
                                                       for: URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!, mainDocumentURL: nil)
                 self.loginSuccess(withUserInfo: resultDict["user_info"] as! Dictionary<String, AnyObject>)
             } else {
@@ -221,15 +221,15 @@ public class DMAuthHelper: NSObject {
         
         self.userInfo = info 
         
-        UserDefaults.standard().set(self.isPro, forKey: "isPro")
+        UserDefaults.standard.set(self.isPro, forKey: "isPro")
         if !self.isPro {
-            UserDefaults.standard().set(64, forKey: "musicQuality")
+            UserDefaults.standard.set(64, forKey: "musicQuality")
         } else {
-            let proQuality = UserDefaults.standard().integer(forKey: "pro_musicQuality")
-            UserDefaults.standard().set(proQuality, forKey: "musicQuality")
+            let proQuality = UserDefaults.standard.integer(forKey: "pro_musicQuality")
+            UserDefaults.standard.set(proQuality, forKey: "musicQuality")
         }
         
-        NotificationCenter.default().post(name: DMAuthHelper.AccountStateChangedNotification,
+        NotificationCenter.default.post(name: DMAuthHelper.AccountStateChangedNotification,
                                           object: self)
     }
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import AppKit
 
 @objc public enum ItemPlayState : Int {
     case waitToPlay, playing, playing_and_will_replay, replaying, replayed
@@ -42,22 +43,22 @@ public class DMPlayableItem: AVPlayerItem {
                      "musicLocation":aDict["url"]!,
                    "pictureLocation":aDict["picture"]!]
         
-        let pic = String(aDict["picture"]!)
-        self.musicInfo["largePictureLocation"] = pic.replacingOccurrences(of:"mpic", with:"lpic")
+        let pic = String(describing: aDict["picture"]!)
+        self.musicInfo["largePictureLocation"] = pic.replacingOccurrences(of:"mpic", with:"lpic") as AnyObject?
 
         if aDict["aid"] != nil {
             self.musicInfo["aid"] = aDict["aid"]!
             self.musicInfo["sid"] = aDict["sid"]!
             self.musicInfo["ssid"] = aDict["ssid"]!
-            self.musicInfo["length"] = Float(String(aDict["length"]!))! * 1000
-            self.musicInfo["albumLocation"] = String("\(DMPlayableItem.douban_URL_prefix)\(String(aDict["album"]))")
+            self.musicInfo["length"] = Float(String(describing: aDict["length"]!))! * 1000 as AnyObject
+            self.musicInfo["albumLocation"] = String("\(DMPlayableItem.douban_URL_prefix)\(String(describing: aDict["album"]))") as AnyObject?
         }
         
-        self.like = NSString(string: String(aDict["like"]!)).boolValue
+        self.like = NSString(string: String(describing: aDict["like"]!)).boolValue
         self.playState = ItemPlayState.waitToPlay
         self.cover = nil
         
-        let dictURL = String(aDict["url"]!)
+        let dictURL = String(describing: aDict["url"]!)
         let aURL  = URL(string: dictURL)
         let aAsset = AVAsset(url: aURL!)
         super.init(asset: aAsset, automaticallyLoadedAssetKeys: nil)
@@ -70,7 +71,7 @@ public class DMPlayableItem: AVPlayerItem {
         self.removeObserver(self, forKeyPath:"status")
     }
     
-    override public func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "status" {
             print("\(#function) :: \(musicInfo["title"]!) status changed to \(self.status)")
             self.delegate?.playableItem(self, logStateChanged: self.status.rawValue)
@@ -79,23 +80,23 @@ public class DMPlayableItem: AVPlayerItem {
     
     public func shareAttributeWithChannel(_ channel: String) -> String? {
         if self.musicInfo["ssid"] != nil {
-            return String(format:"%@g%@g%@",String(self.musicInfo["sid"]), String(self.musicInfo["ssid"]), channel)
+            return String(format:"%@g%@g%@",String(describing: self.musicInfo["sid"]), String(describing: self.musicInfo["ssid"]), channel)
         } else {
             return nil
         }
     }
     
-    public func prepareCoverWithCallbackBlock(_ block: (NSImage?)->Void) {
+    public func prepareCoverWithCallbackBlock(_ block: @escaping (NSImage?)->Void) {
         if self.cover != nil {
             block(self.cover!)
             return
         }
         
-        let strURL = String(musicInfo["largePictureLocation"]!)
+        let strURL = String(describing: musicInfo["largePictureLocation"]!)
         let aURL = URL(string: strURL)
         let request = URLRequest(url: aURL!, cachePolicy: .useProtocolCachePolicy , timeoutInterval: 5.0)
         
-        let session = URLSession.shared().dataTask(with: request) { data, response, error in
+        let session = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil || data == nil {
                 print("\(#function) failed to get album image with reason \(error)")
                 self.cover = #imageLiteral(resourceName: "albumfail")

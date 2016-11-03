@@ -11,8 +11,8 @@ import AppKit
 
 public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  {
  
-    internal let pref = UserDefaults.standard()
-    internal let NCCenter = NSUserNotificationCenter.default()
+    internal let pref = UserDefaults.standard
+    internal let NCCenter = NSUserNotificationCenter.default
     internal let needToUpdateDock : Bool
     
     public func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
@@ -24,11 +24,11 @@ public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  
         // I'm not sure about how expensive this is
         needToUpdateDock = (Int(self.pref.value(forKey: "displayAlbumCoverOnDock") as! NSNumber) == NSOnState)
         super.init()
-        NSUserNotificationCenter.default().delegate = self
+        NSUserNotificationCenter.default.delegate = self
     }
     
     deinit {
-        NSUserNotificationCenter.default().delegate = nil
+        NSUserNotificationCenter.default.delegate = nil
     }
     
     func isNotificationON() -> Bool {

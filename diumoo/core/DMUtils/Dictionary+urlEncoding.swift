@@ -11,7 +11,7 @@ import Foundation
 extension Dictionary {
     
     static func toString(_ object: Any) -> String {
-        return String(object);
+        return String(describing: object);
     }
     
     static func urlEncode(_ object: Any) -> String {
@@ -26,7 +26,7 @@ extension Dictionary {
             let encodedkey = Dictionary.urlEncode(key)
             let encodedVal = Dictionary.urlEncode(value)
             let part = String("\(encodedkey)=\(encodedVal)")
-            parts.append(part)
+            parts.append(part!)
         }
         return parts.joined(separator: "&")
     }
@@ -35,7 +35,7 @@ extension Dictionary {
         var parts : Array<String> = []
         for (key, value) in self {
             let part = String("\(Dictionary.toString(key)):\(Dictionary.toString(value))")
-            parts.append(part)
+            parts.append(part!)
         }
         return parts.joined(separator: "|")
     }

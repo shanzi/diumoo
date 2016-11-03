@@ -35,7 +35,7 @@ public class DMPlaylistFetcher : NSObject{
     
     internal var playlist : Array<Dictionary<String, AnyObject>> = []
     internal var playedSongs : Dictionary<String, String> = [:]
-    internal var searchResults : OrderedSet = []
+    internal var searchResults : NSOrderedSet = []
     
     internal func randomString() -> String {
         let rand1 : UInt32 = arc4random();
@@ -59,16 +59,16 @@ public class DMPlaylistFetcher : NSObject{
             self.playedSongs[sid!] = type
         }
         
-        let pref = UserDefaults.standard()
+        let pref = UserDefaults.standard
         let quality = pref.value(forKey: "musicQuality") as! NSNumber
         
         let fetchDictionary : Dictionary<String, AnyObject> = [
-                                                          "type": type,
-                                                       "channel": Int(channel)!,
-                                                           "sid": ((sid != nil) ? sid : "")!,
-                                                             "h": self.playedSongs.hString(),
-                                                             "r": self.randomString(),
-                                                          "from": "mainsite",
+                                                          "type": type as AnyObject,
+                                                       "channel": Int(channel) as AnyObject,
+                                                           "sid": ((sid != nil) ? sid : "") as AnyObject,
+                                                             "h": self.playedSongs.hString() as AnyObject,
+                                                             "r": self.randomString() as AnyObject,
+                                                          "from": "mainsite" as AnyObject,
                                                           "kbps": quality]
         self.fetchPlaylist(withDictionary: fetchDictionary, startAttribute: attribute, errCount: 0)
     }
@@ -85,9 +85,9 @@ public class DMPlaylistFetcher : NSObject{
                                                  HTTPCookiePropertyKey.discard: true,
                                                     HTTPCookiePropertyKey.path:"/"])
         
-        HTTPCookieStorage.shared().setCookie(cookie!)
+        HTTPCookieStorage.shared.setCookie(cookie!)
         
-        let session = URLSession.shared().dataTask(with: urlRequest) { data, response, error in
+        let session = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
                 self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: attribute!, errorThreshould: errCount + 1)
             } else {
@@ -131,7 +131,7 @@ public class DMPlaylistFetcher : NSObject{
         if self.playlist.count > 0 {
             let songInfo = self.playlist[0]
             let subtype = songInfo["subtype"] as! String
-            let filterAds = UserDefaults.standard().value(forKey: "filterAds") as! Int
+            let filterAds = UserDefaults.standard.value(forKey: "filterAds") as! Int
             if  subtype == "T" && filterAds == NSOnState {
                 self.playlist.remove(at: 0)
                 return self.getOnePlayableItem()
@@ -148,11 +148,11 @@ public class DMPlaylistFetcher : NSObject{
         self.playlist.removeAll()
     }
 
-    internal func sendRequest(forURL urlString: String, callback: (Array<Dictionary<String, AnyObject>>?)->Void){
+    internal func sendRequest(forURL urlString: String, callback: @escaping (Array<Dictionary<String, AnyObject>>?)->Void){
         let url = URL.init(string: urlString)
         let request = URLRequest.init(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         
-        let session = URLSession.shared().dataTask(with: request) { data, response, error in
+        let session = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
                 do {
                     let jResponse = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
@@ -167,14 +167,14 @@ public class DMPlaylistFetcher : NSObject{
         session.resume()
     }
     
-    public func fetchSongs(withMusician musicianID: String, callback:(Bool)->Void) {
+    public func fetchSongs(withMusician musicianID: String, callback:@escaping (Bool)->Void) {
          let dict = ["type" : DMPlaylistFetcher.kFetchPlaylistTypeNew,
                   "channel":Int(0),
                         "r": self.randomString(),
                      "from": "mainsite",
-                  "context": String("context=channel:0|musician_id:\(musicianID)")]
+                  "context": String("context=channel:0|musician_id:\(musicianID)")!] as [String : Any]
         let urlString = String("\(DMPlaylistFetcher.PLAYLIST_FETCH_URL_BASE)?\(dict.urlEncodedString())")
-        self.sendRequest(forURL: urlString) { list in
+        self.sendRequest(forURL: urlString!) { list in
             if list != nil {
                 self.playlist.removeAll()
                 self.playlist.append(contentsOf: list!)
@@ -185,16 +185,16 @@ public class DMPlaylistFetcher : NSObject{
         }
     }
     
-    public func fetchSongs(withSoundtrackID songID: String, callback:(Bool)->Void) {
+    public func fetchSongs(withSoundtrackID songID: String, callback:@escaping (Bool)->Void) {
         let dict = ["type":DMPlaylistFetcher.kFetchPlaylistTypeNew,
                  "channel":Int(10),
                        "r":self.randomString(),
                     "from":"mainsite",
-                 "context":String("context=channel:10|subject_id:\(songID)")]
+                 "context":String("context=channel:10|subject_id:\(songID)")!] as [String : Any]
         
         let urlstring = String("\(DMPlaylistFetcher.PLAYLIST_FETCH_URL_BASE)?\(dict.urlEncodedString())")
 
-        self.sendRequest(forURL: urlstring) { list in
+        self.sendRequest(forURL: urlstring!) { list in
             if list != nil {
                 self.playlist.removeAll()
                 self.playlist.append(contentsOf: list!)
@@ -205,27 +205,27 @@ public class DMPlaylistFetcher : NSObject{
         }
     }
     
-    public func fetchSongs(withAlbum album: String, callback:(Bool)->Void) {
+    public func fetchSongs(withAlbum album: String, callback:@escaping (Bool)->Void) {
         let data = Date()
         let expire = Int(data.timeIntervalSince1970 + 1000 * 60 * 5 * 30)
         let dict = ["type" : DMPlaylistFetcher.kFetchPlaylistTypeNew,
-                  "context": String("channel:0|subject_id:\(album)"),
+                  "context": String("channel:0|subject_id:\(album)")!,
                   "channel":Int(0),
                  "app_name":"radio_ipad",
                   "version":"1",
-                  "expire" : expire]
+                  "expire" : expire] as [String : Any]
         
         let urlstring = String("\(DMPlaylistFetcher.DOUBAN_ALBUM_GET_URL)?\(dict.urlEncodedString())")
-        self.sendRequest(forURL: urlstring) { list in
+        self.sendRequest(forURL: urlstring!) { list in
             if list != nil {
-                let albumSong = []
+                var albumSong = [] as Array<Dictionary<String, AnyObject>>
                 for song in list! {
                     if song["aid"] as! String == album {
-                        albumSong.adding(song)
+                        albumSong.append(song)
                     }
                 }
                 if albumSong.count > 0 {
-                    self.playlist = albumSong as! Array<Dictionary<String, AnyObject>>
+                    self.playlist = albumSong 
                     callback(true)
                 } else {
                     callback(false)
