@@ -466,17 +466,6 @@
                                        shareLink] };
         break;
 
-    case RENREN:
-        urlBase = @"http://widget.renren.com/dialog/share";
-        args = @{
-            @"title" : shareTitle,
-            @"srcUrl" : shareLink,
-            @"resourceUrl" : shareLink,
-            @"pic" : imageLink,
-            @"description" : shareString
-        };
-        break;
-
     case TWITTER:
         if (YES) {
             NSString* content = [NSString stringWithFormat:@"%@ ( %@ )", shareString, shareLink];

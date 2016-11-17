@@ -17,13 +17,12 @@ typedef enum {
     DOUBAN = 1,
     FANFOU = 2,
     SINA_WEIBO = 3,
-    RENREN = 4,
-    TWITTER = 5,
-    FACEBOOK = 6,
-    SYS_TWITTER = 7,
-    SYS_FACEBOOK = 8,
-    SYS_WEIBO = 9,
-    COPY_LINK = 10
+    TWITTER = 4,
+    FACEBOOK = 5,
+    SYS_TWITTER = 6,
+    SYS_FACEBOOK = 7,
+    SYS_WEIBO = 8,
+    COPY_LINK = 9
 
 } SNS_CODE;
 
