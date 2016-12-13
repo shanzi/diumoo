@@ -169,7 +169,6 @@
 		F5F7EF111600EE850007D2DB /* record.icns in Resources */ = {isa = PBXBuildFile; fileRef = F5F7EF101600EE850007D2DB /* record.icns */; };
 		F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5FC4DA315A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld */; };
 		FDAB5DF01D1EFB0200F1201A /* DMAuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAB5DEF1D1EFB0200F1201A /* DMAuthHelper.swift */; };
-		FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCFE29C1D0DB29D00B7F668 /* libxml2.2.dylib */; };
 		FDE594851D17015400F0011E /* DMPlaylistFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC97291D16134600F7D474 /* DMPlaylistFetcher.swift */; };
 		FDE594861D17015400F0011E /* DMPlayableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD39574D1D1586A40029E923 /* DMPlayableItem.swift */; };
 		FDE594871D17015400F0011E /* DMNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC7F9A31D15C54400C93642 /* DMNotificationCenter.swift */; };
@@ -420,7 +419,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDCFE29D1D0DB29D00B7F668 /* libxml2.2.dylib in Frameworks */,
 				175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */,
 				1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */,
 				177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */,
