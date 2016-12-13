@@ -23,7 +23,6 @@ git clone git@github.com:shanzi/diumoo.git
 
 git submodule init # Initialize dependencies
 
-brew install libxml2 # Ensure libxml2 is installed
 ```
 
 Then you can open `diumoo.xcodeproj` and modify the code or compile it.
@@ -34,7 +33,7 @@ before contribution :)
 **NOTICE**: We use `master` branch for developing and new pull requests will be merged into `master`.
 For latest stable version, pleace switch to `release` branch.
 
-Since 1.6 we will move to Swift 3. Please make sure you compile with Xcode >= 8.0.
+Since 1.6 we will move to Swift 3+. Please make sure you compile with Xcode >= 8.1.
 
 ## TODO
 
