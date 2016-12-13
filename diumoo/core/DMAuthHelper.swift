@@ -16,7 +16,7 @@ public class DMAuthHelper: NSObject {
     public static let kAuthAttributeCaptchaCode = "captcha_id"
     
     internal static let AUTH_URL_STRING  = "https://douban.fm/j/login"
-    internal static let DOUBAN_FM_INDEX = "https://douban.fm/account/switch_version?san=0&error=1"
+    internal static let DOUBAN_FM_INDEX = "https://douban.fm/j/v2/user_info?"
     internal static let PROMOTION_CHLS_URL = "https://douban.fm/j/explore/promotion_chls"
     internal static let RECENT_CHLS_URL = "https://douban.fm/j/explore/recent_chls"
     internal static let DOUBAN_CAPTCHA_STR = "https://douban.fm/j/new_captcha"
@@ -98,54 +98,6 @@ public class DMAuthHelper: NSObject {
         return "remember=on&source=radio&\(aDict.urlEncodedString())"
     }
     
-    private func getUserId()->String? {
-        let url = URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!
-        let cookies = HTTPCookieStorage.shared.cookies(for: url)
-        
-        for cookie in cookies! {
-            print(cookie.name)
-            if cookie.name == "dbcl2" {
-                let dbcl2 = cookie.value
-                let data = dbcl2.components(separatedBy: ":")
-                if data.count > 1 {
-                    return data[0].replacingOccurrences(of: "\"", with: "")
-                }
-            }
-        }
-        return nil
-    }
-    
-    private func parseHTML(withData data: Data) -> Dictionary<String, AnyObject>? {
-        if let parser = try? HTMLParser.init(data: data) {
-            var is_pro = false
-            let body = parser.body()!
-            let user = body.findChild(withAttribute: "id", matchingName: "user_name", allowPartial: false)
-            let pro_icon = body.findChild(ofClass: "pro_icon")
-            
-            if let aUser = user , let theId = self.getUserId() {
-                if pro_icon != nil {
-                    is_pro = true
-                }
-                
-                let userlink = "http://www.douban.com/people/" + theId
-                var name = aUser.contents()!
-                let regexp = try! NSRegularExpression.init(pattern: "(^\\s+|\\s+$)",
-                                                    options: NSRegularExpression.Options.caseInsensitive)
-                name = regexp.stringByReplacingMatches(in: name,
-                                                       options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)),
-                                                       range: NSMakeRange(0, name.characters.count),
-                                                       withTemplate: "")
-                
-                let user_info = ["name" : name,
-                                 "url"  : userlink,
-                                 "id"   : theId,
-                                "is_pro": is_pro] as [String : Any]
-                return user_info as Dictionary<String, AnyObject>?
-            }
-        }
-        return nil
-    }
-    
     private func handleConnectionResponse(_ response: URLResponse, Data data: Data) -> NSError? {
         let jsonRect = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
         
@@ -161,18 +113,24 @@ public class DMAuthHelper: NSObject {
                 HTTPCookieStorage.shared.setCookies(cookie,
                                                       for: URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!, mainDocumentURL: nil)
                 self.loginSuccess(withUserInfo: resultDict["user_info"] as! Dictionary<String, AnyObject>)
+            } else if let name = resultDict["name"] as? String {
+                let userId = resultDict["user_id"] as? String
+                let userlink = "http://www.douban.com/people/" +  userId!
+                let is_pro = (resultDict["pro_status"] as? String != "E")
+                
+                let user_info = ["name" : name,
+                                 "url"  : userlink,
+                                 "id"   : userId!,
+                                 "is_pro": is_pro] as [String : Any]
+                self.loginSuccess(withUserInfo: user_info as Dictionary<String, AnyObject>)
             } else {
                 print("\(#function) json returns invalid data, cleanup and logout")
                 self.logout()
                 return NSError.init(domain: "AuthError", code: Int(-2), userInfo: nil)
             }
         } else {
-            if let info = self.parseHTML(withData: data) {
-                self.loginSuccess(withUserInfo: info)
-            } else {
-                print("\(#function) HTML parse error")
-                return NSError.init(domain: "AuthError", code: Int(-1), userInfo: nil)
-            }
+            print("\(#function) Login invalid.")
+            return NSError.init(domain: "AuthError", code: Int(-1), userInfo: nil)
         }
         return nil
     }

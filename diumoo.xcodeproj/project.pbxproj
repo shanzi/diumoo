@@ -79,8 +79,6 @@
 		F5148ACC1580E58E002B3D61 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5148ACA1580E58E002B3D61 /* MainMenu.xib */; };
 		F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AD31580E5F4002B3D61 /* DMAppDelegate.m */; };
 		F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148AD61580E6AD002B3D61 /* DMApp.m */; };
-		F5148B051580E707002B3D61 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADB1580E707002B3D61 /* HTMLNode.m */; };
-		F5148B061580E707002B3D61 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148ADD1580E707002B3D61 /* HTMLParser.m */; };
 		F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B221580E904002B3D61 /* DMControlCenter.m */; };
 		F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F5148B2D1580E904002B3D61 /* NSDictionary+UrlEncoding.m */; };
 		F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5148B491580EE1F002B3D61 /* Carbon.framework */; };
@@ -285,10 +283,6 @@
 		F5148AD31580E5F4002B3D61 /* DMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAppDelegate.m; sourceTree = "<group>"; };
 		F5148AD51580E6AD002B3D61 /* DMApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMApp.h; sourceTree = "<group>"; };
 		F5148AD61580E6AD002B3D61 /* DMApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMApp.m; sourceTree = "<group>"; };
-		F5148ADA1580E707002B3D61 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
-		F5148ADB1580E707002B3D61 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
-		F5148ADC1580E707002B3D61 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
-		F5148ADD1580E707002B3D61 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		F5148B211580E904002B3D61 /* DMControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMControlCenter.h; sourceTree = "<group>"; };
 		F5148B221580E904002B3D61 /* DMControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMControlCenter.m; sourceTree = "<group>"; };
 		F5148B2C1580E904002B3D61 /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
@@ -663,20 +657,8 @@
 				F58C35051699AB3900BC588B /* SPMediaKeyTap */,
 				F515C15B15B6F07500210826 /* StatusItem */,
 				F5D3630A15A1F0EF003A40B2 /* JUInspectorView */,
-				F5148AD91580E707002B3D61 /* HTMLParser */,
 			);
 			path = extern;
-			sourceTree = "<group>";
-		};
-		F5148AD91580E707002B3D61 /* HTMLParser */ = {
-			isa = PBXGroup;
-			children = (
-				F5148ADA1580E707002B3D61 /* HTMLNode.h */,
-				F5148ADB1580E707002B3D61 /* HTMLNode.m */,
-				F5148ADC1580E707002B3D61 /* HTMLParser.h */,
-				F5148ADD1580E707002B3D61 /* HTMLParser.m */,
-			);
-			path = HTMLParser;
 			sourceTree = "<group>";
 		};
 		F5148B1F1580E904002B3D61 /* core */ = {
@@ -1224,8 +1206,6 @@
 				F5148ABF1580E58D002B3D61 /* main.m in Sources */,
 				F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */,
 				F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */,
-				F5148B051580E707002B3D61 /* HTMLNode.m in Sources */,
-				F5148B061580E707002B3D61 /* HTMLParser.m in Sources */,
 				F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */,
 				525D5AC31D0D452000A39D73 /* MASShortcutView+Bindings.m in Sources */,
 				525D5ABC1D0D452000A39D73 /* MASShortcut.m in Sources */,
