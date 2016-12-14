@@ -45,11 +45,6 @@
                                                context:nil];
 
     [[NSUserDefaults standardUserDefaults] addObserver:self
-                                            forKeyPath:@"useMediaKey"
-                                               options:(NSKeyValueObservingOptionNew)
-                                               context:nil];
-
-    [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:@"musicQuality"
                                                options:(NSKeyValueObservingOptionNew)
                                                context:nil];
@@ -79,15 +74,6 @@
     }
     else if ([keyPath isEqualToString:@"enableLogFile"]) {
         [self redirectConsoleLogToDocumentFolder];
-    }
-    else if ([keyPath isEqualToString:@"useMediaKey"]) {
-        id newvalue = [change valueForKey:@"new"];
-        if ([newvalue respondsToSelector:@selector(integerValue)]) {
-            if ([newvalue integerValue] == NSOffState)
-                [mediakeyTap stopWatchingMediaKeys];
-            else
-                [mediakeyTap startWatchingMediaKeys];
-        }
     }
     else if ([keyPath isEqualToString:@"musicQuality"]) {
         id newvalue = [change valueForKey:@"new"];
@@ -145,7 +131,6 @@
         @"filterAds" : @(NSOnState),
         @"enableLog" : @(NSOnState),
         @"enableLogFile" : @(NSOnState),
-        @"useMediaKey" : @(NSOnState),
         @"musicQuality" : @(64),
         @"pro_musicQuality" : @(192)
     };
@@ -175,10 +160,6 @@
                                              keyBanShortcut : [MASShortcut shortcutWithKeyCode:kVK_ANSI_Period modifierFlags:flags],
                                              keyTogglePanelShortcut : [MASShortcut shortcutWithKeyCode:kVK_ANSI_Slash modifierFlags:flags],
                                              keyShowPrefsPanel : [MASShortcut shortcutWithKeyCode:kVK_ANSI_P modifierFlags:flags] }];
-
-    if ([defaults integerForKey:@"useMediaKey"] == NSOnState) {
-        //[mediakeyTap startWatchingMediaKeys];
-    }
 }
 
 - (void)keyShortcuts:(id)key

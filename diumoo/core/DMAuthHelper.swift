@@ -15,11 +15,14 @@ public class DMAuthHelper: NSObject {
     public static let kAuthAttributeCaptchaSolution = "captcha_solution"
     public static let kAuthAttributeCaptchaCode = "captcha_id"
     
+    internal static let DOUBAN_FM_INDEX  = "https://douban.fm/"
     internal static let AUTH_URL_STRING  = "https://douban.fm/j/login"
-    internal static let DOUBAN_FM_INDEX = "https://douban.fm/j/v2/user_info?"
+    internal static let DOUBAN_CHECK_LOGIN = "https://douban.fm/j/check_loggedin?san=1"
+    internal static let DOUBAN_USER_INFO = "https://douban.fm/j/v2/user_info?avatar_size=large"
     internal static let PROMOTION_CHLS_URL = "https://douban.fm/j/explore/promotion_chls"
     internal static let RECENT_CHLS_URL = "https://douban.fm/j/explore/recent_chls"
     internal static let DOUBAN_CAPTCHA_STR = "https://douban.fm/j/new_captcha"
+    internal static let DOUBAN_PEOPLE_PREFIX = "https://www.douban.com/people/"
 
     public static let AccountStateChangedNotification = Notification.Name.init("accountstatechanged")
     
@@ -56,7 +59,7 @@ public class DMAuthHelper: NSObject {
             authRequest?.httpMethod = "POST"
             authRequest?.httpBody = requestBody
         } else {
-            authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!)
+            authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_USER_INFO)!)
             authRequest?.httpMethod = "GET"
         }
         
@@ -98,6 +101,32 @@ public class DMAuthHelper: NSObject {
         return "remember=on&source=radio&\(aDict.urlEncodedString())"
     }
     
+    private func constructUserInfo(fromDict aDict: Dictionary<String, AnyObject>) -> Dictionary<String, AnyObject> {
+        let name = aDict["name"] as! String
+        let userId = aDict["user_id"] as! String
+        let userlink = DMAuthHelper.DOUBAN_PEOPLE_PREFIX +  userId
+        let is_pro = (aDict["pro_status"] as! String != "E")
+        let icon = aDict["icon"] as! String
+        let user_info = ["name" : name,
+                         "url"  : userlink,
+                         "id"   : userId,
+                         "icon" : icon,
+                         "is_pro": is_pro] as [String : Any]
+        return user_info as Dictionary<String, AnyObject>
+
+    }
+    
+    private func fetchUserInfoAfterLogin() -> Dictionary<String, AnyObject> {
+        var authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_USER_INFO)!)
+        authRequest.httpMethod = "GET"
+        var response: URLResponse?
+    
+        let urlData = try! NSURLConnection.sendSynchronousRequest(authRequest, returning: &response)
+        let jsonRet = try! JSONSerialization.jsonObject(with: urlData, options: JSONSerialization.ReadingOptions.mutableContainers) as! Dictionary<String, AnyObject>
+        
+        return constructUserInfo(fromDict: jsonRet)
+    }
+
     private func handleConnectionResponse(_ response: URLResponse, Data data: Data) -> NSError? {
         let jsonRect = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
         
@@ -112,17 +141,9 @@ public class DMAuthHelper: NSObject {
                 
                 HTTPCookieStorage.shared.setCookies(cookie,
                                                       for: URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!, mainDocumentURL: nil)
-                self.loginSuccess(withUserInfo: resultDict["user_info"] as! Dictionary<String, AnyObject>)
-            } else if let name = resultDict["name"] as? String {
-                let userId = resultDict["user_id"] as? String
-                let userlink = "http://www.douban.com/people/" +  userId!
-                let is_pro = (resultDict["pro_status"] as? String != "E")
-                
-                let user_info = ["name" : name,
-                                 "url"  : userlink,
-                                 "id"   : userId!,
-                                 "is_pro": is_pro] as [String : Any]
-                self.loginSuccess(withUserInfo: user_info as Dictionary<String, AnyObject>)
+                self.loginSuccess(withUserInfo: fetchUserInfoAfterLogin())
+            } else if resultDict.index(forKey:"name") != nil {
+                self.loginSuccess(withUserInfo: constructUserInfo(fromDict: resultDict))
             } else {
                 print("\(#function) json returns invalid data, cleanup and logout")
                 self.logout()
@@ -172,12 +193,8 @@ public class DMAuthHelper: NSObject {
         self.username = info["name"] as? String
         self.userUrl  = info["url"] as? String
         self.isPro    = (info["is_pro"] as? Bool)!
-        
-        if let id = info["id"] as? String {
-            self.userIcon = NSImage.init(contentsOf: URL.init(string: "http://img3.douban.com/icon/u\(id).jpg")!)
-        }
-        
-        self.userInfo = info 
+        self.userIcon = NSImage.init(contentsOf: URL.init(string: (info["icon"] as! String))!)
+        self.userInfo = info
         
         UserDefaults.standard.set(self.isPro, forKey: "isPro")
         if !self.isPro {
