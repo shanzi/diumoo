@@ -405,6 +405,7 @@
 		F5ECCC03158CE43100512F6A /* DMPrefsPanelDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPrefsPanelDataProvider.m; sourceTree = "<group>"; };
 		F5F7EF101600EE850007D2DB /* record.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = record.icns; sourceTree = "<group>"; };
 		F5FC4DA415A31F8E00197D1A /* DMPlayRecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMPlayRecordModel.xcdatamodel; sourceTree = "<group>"; };
+		FD1B7A1C1E00C6A300FAAE90 /* diumoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = diumoo.entitlements; sourceTree = "<group>"; };
 		FD39574D1D1586A40029E923 /* DMPlayableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMPlayableItem.swift; sourceTree = "<group>"; };
 		FD3957501D15946C0029E923 /* diumoo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "diumoo-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDAB5DEF1D1EFB0200F1201A /* DMAuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMAuthHelper.swift; sourceTree = "<group>"; };
@@ -618,6 +619,7 @@
 		F5148AB81580E58D002B3D61 /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				FD1B7A1C1E00C6A300FAAE90 /* diumoo.entitlements */,
 				F5D362FD15A1F0EF003A40B2 /* DMDocument */,
 				F501B3AC15877062001C6158 /* ui */,
 				F5148B1F1580E904002B3D61 /* core */,
@@ -1035,12 +1037,12 @@
 				LastUpgradeCheck = 0810;
 				TargetAttributes = {
 					F5148AAD1580E58D002B3D61 = {
-						DevelopmentTeam = 4KWBUULLH3;
+						DevelopmentTeam = MC98392EJC;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1420,10 +1422,11 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4KWBUULLH3;
+				DEVELOPMENT_TEAM = MC98392EJC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
@@ -1453,11 +1456,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = diumoo/diumoo.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4KWBUULLH3;
+				DEVELOPMENT_TEAM = MC98392EJC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
