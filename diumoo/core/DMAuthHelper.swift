@@ -8,31 +8,36 @@
 
 import Foundation
 import AppKit
+import os
 
 public class DMAuthHelper: NSObject {
+    // String const for login dictionary field names
     public static let kAuthAttributeUsername = "alias"
     public static let kAuthAttributePassword = "form_password"
     public static let kAuthAttributeCaptchaSolution = "captcha_solution"
     public static let kAuthAttributeCaptchaCode = "captcha_id"
     
-    internal static let DOUBAN_FM_INDEX  = "https://douban.fm/"
-    internal static let AUTH_URL_STRING  = "https://douban.fm/j/login"
-    internal static let DOUBAN_CHECK_LOGIN = "https://douban.fm/j/check_loggedin?san=1"
-    internal static let DOUBAN_USER_INFO = "https://douban.fm/j/v2/user_info?avatar_size=large"
-    internal static let PROMOTION_CHLS_URL = "https://douban.fm/j/explore/promotion_chls"
-    internal static let RECENT_CHLS_URL = "https://douban.fm/j/explore/recent_chls"
-    internal static let DOUBAN_CAPTCHA_STR = "https://douban.fm/j/new_captcha"
-    internal static let DOUBAN_PEOPLE_PREFIX = "https://www.douban.com/people/"
+    // Internal string const for urls
+    internal static let DOUBAN_FM_MAIN  = "https://douban.fm/"
+    internal static let DOUBAN_FM_AUTH  = "https://douban.fm/j/login"
+    internal static let DOUBAN_FM_CHECK_LOGIN = "https://douban.fm/j/check_loggedin?san=1"
+    internal static let DOUBAN_FM_GET_USERINFO = "https://douban.fm/j/v2/user_info?avatar_size=large"
+    internal static let DOUBAN_FM_PROMOTION_CHLS = "https://douban.fm/j/explore/promotion_chls"
+    internal static let DOUBAN_FM_RECENT_CHLS = "https://douban.fm/j/explore/recent_chls"
+    internal static let DOUBAN_FM_CAPTCHA = "https://douban.fm/j/new_captcha"
+    internal static let DOUBAN_PEOPLE = "https://www.douban.com/people/"
 
     public static let AccountStateChangedNotification = Notification.Name.init("accountstatechanged")
     
     private(set) public var username : String? = nil
     private(set) public var userUrl : String? = nil
     private(set) public var userIcon = NSImage.init(named: NSImageNameUser)
-    private(set) public var isPro: Bool = false
+    private(set) public var isPro = false
     private(set) public var promotion_chls : Array<Dictionary<String, AnyObject>> = []
     private(set) public var recent_chls : Array<Dictionary<String, AnyObject>> = []
     private(set) public var userInfo : Dictionary<String, AnyObject> = [:]
+    
+    internal let authLogger = OSLog.init(subsystem: "com.diumoo.diumoo", category: "login")
     
     // Singleton
     static let sharedHelper = DMAuthHelper()
@@ -40,11 +45,12 @@ public class DMAuthHelper: NSObject {
     private override init() {}
     
     public class func getNewCaptchaCode () -> String {
-        let url = URL.init(string: DMAuthHelper.DOUBAN_CAPTCHA_STR)
+        let url = URL.init(string: DMAuthHelper.DOUBAN_FM_CAPTCHA)!
         do {
-            let code = try String.init(contentsOf: url!, encoding: String.Encoding.ascii)
+            let code = try String.init(contentsOf: url, encoding: String.Encoding.ascii)
             return code.replacingOccurrences(of: "\"", with: "")
         } catch {
+            os_log("Cannot fetch captcha code from Douban", log: authLogger, type: .error)
             return ""
         }
     }
@@ -52,26 +58,26 @@ public class DMAuthHelper: NSObject {
     public func authWithDictionary(_ aDict: Dictionary<String, String>?) -> NSError? {
         var authRequest:URLRequest? = nil
         
-        if let authDict = aDict {
-            let authStringBody = self.encodeAuthDictionary(authDict)
+        if aDict != nil {
+            let authStringBody = self.encodeAuthDictionary(aDict!)
             let requestBody = authStringBody.data(using: String.Encoding.utf8)
-            authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.AUTH_URL_STRING)!)
+            authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_FM_AUTH)!)
             authRequest?.httpMethod = "POST"
             authRequest?.httpBody = requestBody
         } else {
-            authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_USER_INFO)!)
+            authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_FM_GET_USERINFO)!)
             authRequest?.httpMethod = "GET"
         }
         
         var response: URLResponse?
-        
         do {
             let urlData = try NSURLConnection.sendSynchronousRequest(authRequest!, returning: &response)
             return self.handleConnectionResponse(response!, Data: urlData)
         } catch {
-            print("\(#function) caught: \(error)")
+            os_log("Douban FM auth failed %@.", log: authLogger, type: .error, error)
             return NSError.init(domain: "douban.fm", code: 0, userInfo: nil)
         }
+
     }
     
     public func logout() {
@@ -104,7 +110,7 @@ public class DMAuthHelper: NSObject {
     private func constructUserInfo(fromDict aDict: Dictionary<String, AnyObject>) -> Dictionary<String, AnyObject> {
         let name = aDict["name"] as! String
         let userId = aDict["user_id"] as! String
-        let userlink = DMAuthHelper.DOUBAN_PEOPLE_PREFIX +  userId
+        let userlink = DMAuthHelper.DOUBAN_PEOPLE +  userId
         let is_pro = (aDict["pro_status"] as! String != "E")
         let icon = aDict["icon"] as! String
         let user_info = ["name" : name,
@@ -117,7 +123,7 @@ public class DMAuthHelper: NSObject {
     }
     
     private func fetchUserInfoAfterLogin() -> Dictionary<String, AnyObject> {
-        var authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_USER_INFO)!)
+        var authRequest = URLRequest.init(url: URL.init(string: DMAuthHelper.DOUBAN_FM_GET_USERINFO)!)
         authRequest.httpMethod = "GET"
         var response: URLResponse?
     
@@ -140,7 +146,7 @@ public class DMAuthHelper: NSObject {
                                                 for: response.url!)
                 
                 HTTPCookieStorage.shared.setCookies(cookie,
-                                                      for: URL.init(string: DMAuthHelper.DOUBAN_FM_INDEX)!, mainDocumentURL: nil)
+                                                      for: URL.init(string: DMAuthHelper.DOUBAN_FM_MAIN)!, mainDocumentURL: nil)
                 self.loginSuccess(withUserInfo: fetchUserInfoAfterLogin())
             } else if resultDict.index(forKey:"name") != nil {
                 self.loginSuccess(withUserInfo: constructUserInfo(fromDict: resultDict))
@@ -157,8 +163,8 @@ public class DMAuthHelper: NSObject {
     }
     
     private func fetchPromotionAndRecentChannels() {
-        let promotion_url = URL.init(string: DMAuthHelper.PROMOTION_CHLS_URL)!
-        let recent_url = URL.init(string: DMAuthHelper.RECENT_CHLS_URL)!
+        let promotion_url = URL.init(string: DMAuthHelper.DOUBAN_FM_PROMOTION_CHLS)!
+        let recent_url = URL.init(string: DMAuthHelper.DOUBAN_FM_RECENT_CHLS)!
         
         let promotion_request = URLRequest.init(url: promotion_url)
         let recent_request = URLRequest.init(url: recent_url)
