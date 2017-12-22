@@ -47,7 +47,8 @@ public class DMNotificationCenter : NSObject, NSUserNotificationCenterDelegate  
         }
         
         if self.needToUpdateDock {
-            NSApplication.shared().applicationIconImage = item.cover
+            let image = DockImage.processedImage(item.cover)
+            NSApplication.shared().applicationIconImage = image
         }
     }
     

@@ -40,6 +40,7 @@
 		3FD5B6DC15DD530700E131F2 /* exit_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD5B6DA15DD530700E131F2 /* exit_mouseover@2x.png */; };
 		3FDD684815DBE7D200DC834F /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684715DBE7D200DC834F /* exit@2x.png */; };
 		3FDD684B15DBE9B400DC834F /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD684A15DBE9B400DC834F /* settings@2x.png */; };
+		41BD4EB61FED50700028B8BC /* DockImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BD4EB51FED50700028B8BC /* DockImage.swift */; };
 		521827FA1D1195C200B3F43F /* menu-heart-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 521827F61D1195C200B3F43F /* menu-heart-gray.png */; };
 		521827FB1D1195C200B3F43F /* menu-heart-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521827F71D1195C200B3F43F /* menu-heart-gray@2x.png */; };
 		521827FC1D1195C200B3F43F /* menu-heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 521827F81D1195C200B3F43F /* menu-heart.png */; };
@@ -199,6 +200,7 @@
 		3FD5B6DA15DD530700E131F2 /* exit_mouseover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit_mouseover@2x.png"; sourceTree = "<group>"; };
 		3FDD684715DBE7D200DC834F /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
 		3FDD684A15DBE9B400DC834F /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		41BD4EB51FED50700028B8BC /* DockImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockImage.swift; sourceTree = "<group>"; };
 		521827F61D1195C200B3F43F /* menu-heart-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-heart-gray.png"; sourceTree = "<group>"; };
 		521827F71D1195C200B3F43F /* menu-heart-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-heart-gray@2x.png"; sourceTree = "<group>"; };
 		521827F81D1195C200B3F43F /* menu-heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-heart.png"; sourceTree = "<group>"; };
@@ -413,9 +415,18 @@
 			name = DMErrorLog;
 			sourceTree = "<group>";
 		};
+		41BD4EB41FED505C0028B8BC /* DockIcon */ = {
+			isa = PBXGroup;
+			children = (
+				41BD4EB51FED50700028B8BC /* DockImage.swift */,
+			);
+			path = DockIcon;
+			sourceTree = "<group>";
+		};
 		F501B3AC15877062001C6158 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				41BD4EB41FED505C0028B8BC /* DockIcon */,
 				F50A0A581624768500664316 /* DMSearchPanel */,
 				F5ECCBF4158CDF0000512F6A /* DMPrefsPanel */,
 				F501B3AD15877062001C6158 /* DMPanel */,
@@ -1154,6 +1165,7 @@
 				FDFC972C1D16226A00F7D474 /* Dictionary+urlEncoding.swift in Sources */,
 				F5148ABF1580E58D002B3D61 /* main.m in Sources */,
 				F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */,
+				41BD4EB61FED50700028B8BC /* DockImage.swift in Sources */,
 				F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */,
 				F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */,
 				FDAB5DF01D1EFB0200F1201A /* DMAuthHelper.swift in Sources */,
