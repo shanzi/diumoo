@@ -140,10 +140,12 @@
 
         [self play];
         [playingItem prepareCoverWithCallbackBlock:^(NSImage* image) {
-            [diumooPanel setRated:playingItem.like];
-            [diumooPanel setPlayingItem:playingItem];
-            [notificationCenter notifyMusicPlaybackWithItem:playingItem];
-            [recordHandler addRecordWithItem:playingItem];
+            [DMService performOnMainQueue:^{
+                [diumooPanel setRated:playingItem.like];
+                [diumooPanel setPlayingItem:playingItem];
+                [notificationCenter notifyMusicPlaybackWithItem:playingItem];
+                [recordHandler addRecordWithItem:playingItem];
+            }];
         }];
     }
     pauseType = PAUSE_PASS;

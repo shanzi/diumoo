@@ -78,10 +78,10 @@ public class DMPlaylistFetcher : NSObject{
         let urlRequest = URLRequest.init(url: URL.init(string: urlString)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 20.0)
         
         // Processing cookie
-        let validAttr = (attribute != nil) ? attribute : ""
+        let validAttr = attribute ?? ""
         let cookie = HTTPCookie.init(properties: [HTTPCookiePropertyKey.domain: "douban.fm",
                                                     HTTPCookiePropertyKey.name: "start",
-                                                   HTTPCookiePropertyKey.value: validAttr!,
+                                                   HTTPCookiePropertyKey.value: validAttr,
                                                  HTTPCookiePropertyKey.discard: true,
                                                     HTTPCookiePropertyKey.path:"/"])
         
@@ -89,7 +89,7 @@ public class DMPlaylistFetcher : NSObject{
         
         let session = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
-                self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: attribute!, errorThreshould: errCount + 1)
+                self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: validAttr, errorThreshould: errCount + 1)
             } else {
                 do {
                     let jResponse = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
@@ -103,7 +103,7 @@ public class DMPlaylistFetcher : NSObject{
                         
                         // Something's wrong
                         if jrVal != 0 {
-                            self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: attribute!, errorThreshould: errCount + 1)
+                            self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: validAttr, errorThreshould: errCount + 1)
                         } else {
                             let jList = jDict["song"] as? Array<Dictionary<String, AnyObject>>
                             if attribute != nil {
@@ -120,7 +120,7 @@ public class DMPlaylistFetcher : NSObject{
                         }
                     }
                 } catch _ {
-                    self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: attribute!, errorThreshould: errCount + 1)
+                    self.delegate?.fetchPlaylist(WithDictionary: dict, startAttribute: validAttr, errorThreshould: errCount + 1)
                 }
             }
         }
