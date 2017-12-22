@@ -1,0 +1,24 @@
+PODS:
+  - MASShortcut (2.3.6)
+  - SMTabBar (0.0.1)
+  - SPMediaKeyTap (0.0.1)
+
+DEPENDENCIES:
+  - MASShortcut (~> 2.3.6)
+  - SMTabBar (from `./third-party/SMTabBar`)
+  - SPMediaKeyTap (from `./third-party/SPMediaKeyTap`)
+
+EXTERNAL SOURCES:
+  SMTabBar:
+    :path: ./third-party/SMTabBar
+  SPMediaKeyTap:
+    :path: ./third-party/SPMediaKeyTap
+
+SPEC CHECKSUMS:
+  MASShortcut: 9c215e8a8a78f3d01ce56da48e2730ab66b538fa
+  SMTabBar: 11521459249d577ef278442319c0ac4d90628d2e
+  SPMediaKeyTap: ddb3cf0f3485bf2ac5a31c1b5ce9fc396115be7f
+
+PODFILE CHECKSUM: b0edc7bd09b1788418d857997b326ea538e805c2
+
+COCOAPODS: 1.3.1

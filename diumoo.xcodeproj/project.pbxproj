@@ -10,11 +10,7 @@
 		175773FC16A38FB100F6E4C7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175773FB16A38FB100F6E4C7 /* CoreMedia.framework */; };
 		1758595D16A313CA00AAAFBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1758595C16A313CA00AAAFBE /* AVFoundation.framework */; };
 		177F3CCD1630F42D00FE4780 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177F3CCC1630F42D00FE4780 /* IOKit.framework */; };
-		179842B21704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */; };
-		179842B31704DE3B00D1CAE9 /* SMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AB1704DE3B00D1CAE9 /* SMBar.m */; };
-		179842B41704DE3B00D1CAE9 /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AD1704DE3B00D1CAE9 /* SMTabBar.m */; };
-		179842B51704DE3B00D1CAE9 /* SMTabBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */; };
-		179842B61704DE3B00D1CAE9 /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */; };
+		38F8ACF17FBDD685F6B48658 /* libPods-diumoo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D2B03A41D0AEC7208214B3 /* libPods-diumoo.a */; };
 		3F01021015DE998E0076D6C8 /* ban@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01020F15DE998E0076D6C8 /* ban@2x.png */; };
 		3F01021415DE99940076D6C8 /* ban_mouseover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021215DE99940076D6C8 /* ban_mouseover.png */; };
 		3F01021515DE99940076D6C8 /* ban_mouseover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F01021315DE99940076D6C8 /* ban_mouseover@2x.png */; };
@@ -48,15 +44,6 @@
 		521827FB1D1195C200B3F43F /* menu-heart-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521827F71D1195C200B3F43F /* menu-heart-gray@2x.png */; };
 		521827FC1D1195C200B3F43F /* menu-heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 521827F81D1195C200B3F43F /* menu-heart.png */; };
 		521827FD1D1195C200B3F43F /* menu-heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521827F91D1195C200B3F43F /* menu-heart@2x.png */; };
-		525D5AB71D0D452000A39D73 /* MASDictionaryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */; };
-		525D5AB91D0D452000A39D73 /* MASHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5A9F1D0D452000A39D73 /* MASHotKey.m */; };
-		525D5ABB1D0D452000A39D73 /* MASLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA31D0D452000A39D73 /* MASLocalization.m */; };
-		525D5ABC1D0D452000A39D73 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA51D0D452000A39D73 /* MASShortcut.m */; };
-		525D5ABD1D0D452000A39D73 /* MASShortcutBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AA81D0D452000A39D73 /* MASShortcutBinder.m */; };
-		525D5ABF1D0D452000A39D73 /* MASShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AAB1D0D452000A39D73 /* MASShortcutMonitor.m */; };
-		525D5AC21D0D452000A39D73 /* MASShortcutValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AAF1D0D452000A39D73 /* MASShortcutValidator.m */; };
-		525D5AC31D0D452000A39D73 /* MASShortcutView+Bindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AB11D0D452000A39D73 /* MASShortcutView+Bindings.m */; };
-		525D5AC41D0D452000A39D73 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D5AB31D0D452000A39D73 /* MASShortcutView.m */; };
 		525D5ACB1D0D936E00A39D73 /* dark-status-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 525D5AC51D0D936E00A39D73 /* dark-status-icon-alt.png */; };
 		525D5ACC1D0D936E00A39D73 /* dark-status-icon-alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525D5AC61D0D936E00A39D73 /* dark-status-icon-alt@2x.png */; };
 		525D5ACD1D0D936E00A39D73 /* dark-status-icon-mixed.png in Resources */ = {isa = PBXBuildFile; fileRef = 525D5AC71D0D936E00A39D73 /* dark-status-icon-mixed.png */; };
@@ -114,8 +101,6 @@
 		F5729B34164F566500B9C6BA /* channels.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5729B33164F566500B9C6BA /* channels.plist */; };
 		F577112715E1096400FF6FAB /* volume_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112615E1096400FF6FAB /* volume_slider@2x.png */; };
 		F577112915E1097500FF6FAB /* volume_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F577112815E1097500FF6FAB /* volume_back@2x.png */; };
-		F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F595995C1606369100FA3C3E /* DMDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F595995E1606369100FA3C3E /* DMDocumentWindow.xib */; };
 		F5959960160636AC00FA3C3E /* DMPrefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959962160636AC00FA3C3E /* DMPrefsPanel.xib */; };
 		F5959963160636BC00FA3C3E /* DMPanelWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5959965160636BC00FA3C3E /* DMPanelWindowController.xib */; };
@@ -180,17 +165,8 @@
 		1758595C16A313CA00AAAFBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		177F3CCC1630F42D00FE4780 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		178B499216A30B5D00EB642D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		179842A81704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SMKeyValueObserving.h"; path = "SMTabBar/InspectorTabBar/NSDictionary+SMKeyValueObserving.h"; sourceTree = "<group>"; };
-		179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SMKeyValueObserving.m"; path = "SMTabBar/InspectorTabBar/NSDictionary+SMKeyValueObserving.m"; sourceTree = "<group>"; };
-		179842AA1704DE3B00D1CAE9 /* SMBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMBar.h; path = SMTabBar/InspectorTabBar/SMBar.h; sourceTree = "<group>"; };
-		179842AB1704DE3B00D1CAE9 /* SMBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMBar.m; path = SMTabBar/InspectorTabBar/SMBar.m; sourceTree = "<group>"; };
-		179842AC1704DE3B00D1CAE9 /* SMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBar.h; path = SMTabBar/InspectorTabBar/SMTabBar.h; sourceTree = "<group>"; };
-		179842AD1704DE3B00D1CAE9 /* SMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBar.m; path = SMTabBar/InspectorTabBar/SMTabBar.m; sourceTree = "<group>"; };
-		179842AE1704DE3B00D1CAE9 /* SMTabBarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBarButtonCell.h; path = SMTabBar/InspectorTabBar/SMTabBarButtonCell.h; sourceTree = "<group>"; };
-		179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBarButtonCell.m; path = SMTabBar/InspectorTabBar/SMTabBarButtonCell.m; sourceTree = "<group>"; };
-		179842B01704DE3B00D1CAE9 /* SMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTabBarItem.h; path = SMTabBar/InspectorTabBar/SMTabBarItem.h; sourceTree = "<group>"; };
-		179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTabBarItem.m; path = SMTabBar/InspectorTabBar/SMTabBarItem.m; sourceTree = "<group>"; };
 		179AFA331583916200968BAD /* debugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debugLog.h; sourceTree = "<group>"; };
+		20D2B03A41D0AEC7208214B3 /* libPods-diumoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-diumoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F01020F15DE998E0076D6C8 /* ban@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban@2x.png"; sourceTree = "<group>"; };
 		3F01021215DE99940076D6C8 /* ban_mouseover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban_mouseover.png; sourceTree = "<group>"; };
 		3F01021315DE99940076D6C8 /* ban_mouseover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ban_mouseover@2x.png"; sourceTree = "<group>"; };
@@ -227,33 +203,14 @@
 		521827F71D1195C200B3F43F /* menu-heart-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-heart-gray@2x.png"; sourceTree = "<group>"; };
 		521827F81D1195C200B3F43F /* menu-heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-heart.png"; sourceTree = "<group>"; };
 		521827F91D1195C200B3F43F /* menu-heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-heart@2x.png"; sourceTree = "<group>"; };
-		525D5A9B1D0D452000A39D73 /* MASDictionaryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASDictionaryTransformer.h; sourceTree = "<group>"; };
-		525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASDictionaryTransformer.m; sourceTree = "<group>"; };
-		525D5A9E1D0D452000A39D73 /* MASHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASHotKey.h; sourceTree = "<group>"; };
-		525D5A9F1D0D452000A39D73 /* MASHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASHotKey.m; sourceTree = "<group>"; };
-		525D5AA11D0D452000A39D73 /* MASKeyCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASKeyCodes.h; sourceTree = "<group>"; };
-		525D5AA21D0D452000A39D73 /* MASLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLocalization.h; sourceTree = "<group>"; };
-		525D5AA31D0D452000A39D73 /* MASLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLocalization.m; sourceTree = "<group>"; };
-		525D5AA41D0D452000A39D73 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		525D5AA51D0D452000A39D73 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		525D5AA71D0D452000A39D73 /* MASShortcutBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutBinder.h; sourceTree = "<group>"; };
-		525D5AA81D0D452000A39D73 /* MASShortcutBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutBinder.m; sourceTree = "<group>"; };
-		525D5AAA1D0D452000A39D73 /* MASShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutMonitor.h; sourceTree = "<group>"; };
-		525D5AAB1D0D452000A39D73 /* MASShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutMonitor.m; sourceTree = "<group>"; };
-		525D5AAE1D0D452000A39D73 /* MASShortcutValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutValidator.h; sourceTree = "<group>"; };
-		525D5AAF1D0D452000A39D73 /* MASShortcutValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutValidator.m; sourceTree = "<group>"; };
-		525D5AB01D0D452000A39D73 /* MASShortcutView+Bindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+Bindings.h"; sourceTree = "<group>"; };
-		525D5AB11D0D452000A39D73 /* MASShortcutView+Bindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+Bindings.m"; sourceTree = "<group>"; };
-		525D5AB21D0D452000A39D73 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		525D5AB31D0D452000A39D73 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
-		525D5AB41D0D452000A39D73 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		525D5AB51D0D452000A39D73 /* Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shortcut.h; sourceTree = "<group>"; };
 		525D5AC51D0D936E00A39D73 /* dark-status-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-status-icon-alt.png"; sourceTree = "<group>"; };
 		525D5AC61D0D936E00A39D73 /* dark-status-icon-alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-status-icon-alt@2x.png"; sourceTree = "<group>"; };
 		525D5AC71D0D936E00A39D73 /* dark-status-icon-mixed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-status-icon-mixed.png"; sourceTree = "<group>"; };
 		525D5AC81D0D936E00A39D73 /* dark-status-icon-mixed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-status-icon-mixed@2x.png"; sourceTree = "<group>"; };
 		525D5AC91D0D936E00A39D73 /* dark-status-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-status-icon.png"; sourceTree = "<group>"; };
 		525D5ACA1D0D936E00A39D73 /* dark-status-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-status-icon@2x.png"; sourceTree = "<group>"; };
+		9EAD9E5D5CB65D7EDCE8478F /* Pods-diumoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diumoo.release.xcconfig"; path = "Pods/Target Support Files/Pods-diumoo/Pods-diumoo.release.xcconfig"; sourceTree = "<group>"; };
+		BE91A78563AA81EABA8B8D0E /* Pods-diumoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diumoo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diumoo/Pods-diumoo.debug.xcconfig"; sourceTree = "<group>"; };
 		F501B3AF15877062001C6158 /* DMCoverControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverControlView.h; sourceTree = "<group>"; };
 		F501B3B015877062001C6158 /* DMCoverControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCoverControlView.m; sourceTree = "<group>"; };
 		F501B3B215877062001C6158 /* DMCoverSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCoverSlide.h; sourceTree = "<group>"; };
@@ -325,10 +282,6 @@
 		F5729B33164F566500B9C6BA /* channels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channels.plist; sourceTree = "<group>"; };
 		F577112615E1096400FF6FAB /* volume_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_slider@2x.png"; sourceTree = "<group>"; };
 		F577112815E1097500FF6FAB /* volume_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_back@2x.png"; sourceTree = "<group>"; };
-		F58C350C1699AB3900BC588B /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
-		F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
-		F58C350E1699AB3900BC588B /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
-		F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		F595995D1606369100FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMDocumentWindow.xib; sourceTree = "<group>"; };
 		F5959961160636AC00FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMPrefsPanel.xib; sourceTree = "<group>"; };
 		F5959964160636BC00FA3C3E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DMPanelWindowController.xib; sourceTree = "<group>"; };
@@ -426,27 +379,20 @@
 				F5148B4C1580EE4D002B3D61 /* Security.framework in Frameworks */,
 				F5148B4A1580EE1F002B3D61 /* Carbon.framework in Frameworks */,
 				F5148AB31580E58D002B3D61 /* Cocoa.framework in Frameworks */,
+				38F8ACF17FBDD685F6B48658 /* libPods-diumoo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		179842A71704DE2A00D1CAE9 /* SMTabBar */ = {
+		24544BA4F17D121B54ED9379 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				179842A81704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.h */,
-				179842A91704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m */,
-				179842AA1704DE3B00D1CAE9 /* SMBar.h */,
-				179842AB1704DE3B00D1CAE9 /* SMBar.m */,
-				179842AC1704DE3B00D1CAE9 /* SMTabBar.h */,
-				179842AD1704DE3B00D1CAE9 /* SMTabBar.m */,
-				179842AE1704DE3B00D1CAE9 /* SMTabBarButtonCell.h */,
-				179842AF1704DE3B00D1CAE9 /* SMTabBarButtonCell.m */,
-				179842B01704DE3B00D1CAE9 /* SMTabBarItem.h */,
-				179842B11704DE3B00D1CAE9 /* SMTabBarItem.m */,
+				BE91A78563AA81EABA8B8D0E /* Pods-diumoo.debug.xcconfig */,
+				9EAD9E5D5CB65D7EDCE8478F /* Pods-diumoo.release.xcconfig */,
 			);
-			name = SMTabBar;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		3F50FC4115DB4981000E5147 /* DMButton */ = {
@@ -465,35 +411,6 @@
 				3FBE809815D4A632001A3BEC /* DMErrorLog.m */,
 			);
 			name = DMErrorLog;
-			sourceTree = "<group>";
-		};
-		525D5A991D0D452000A39D73 /* MASShortcut */ = {
-			isa = PBXGroup;
-			children = (
-				525D5A9B1D0D452000A39D73 /* MASDictionaryTransformer.h */,
-				525D5A9C1D0D452000A39D73 /* MASDictionaryTransformer.m */,
-				525D5A9E1D0D452000A39D73 /* MASHotKey.h */,
-				525D5A9F1D0D452000A39D73 /* MASHotKey.m */,
-				525D5AA11D0D452000A39D73 /* MASKeyCodes.h */,
-				525D5AA21D0D452000A39D73 /* MASLocalization.h */,
-				525D5AA31D0D452000A39D73 /* MASLocalization.m */,
-				525D5AA41D0D452000A39D73 /* MASShortcut.h */,
-				525D5AA51D0D452000A39D73 /* MASShortcut.m */,
-				525D5AA71D0D452000A39D73 /* MASShortcutBinder.h */,
-				525D5AA81D0D452000A39D73 /* MASShortcutBinder.m */,
-				525D5AAA1D0D452000A39D73 /* MASShortcutMonitor.h */,
-				525D5AAB1D0D452000A39D73 /* MASShortcutMonitor.m */,
-				525D5AAE1D0D452000A39D73 /* MASShortcutValidator.h */,
-				525D5AAF1D0D452000A39D73 /* MASShortcutValidator.m */,
-				525D5AB01D0D452000A39D73 /* MASShortcutView+Bindings.h */,
-				525D5AB11D0D452000A39D73 /* MASShortcutView+Bindings.m */,
-				525D5AB21D0D452000A39D73 /* MASShortcutView.h */,
-				525D5AB31D0D452000A39D73 /* MASShortcutView.m */,
-				525D5AB41D0D452000A39D73 /* Prefix.pch */,
-				525D5AB51D0D452000A39D73 /* Shortcut.h */,
-			);
-			name = MASShortcut;
-			path = MASShortcut/Framework;
 			sourceTree = "<group>";
 		};
 		F501B3AC15877062001C6158 /* ui */ = {
@@ -577,6 +494,7 @@
 				F501B3C215877A88001C6158 /* resources */,
 				F5148AB11580E58D002B3D61 /* Frameworks */,
 				F5148AAF1580E58D002B3D61 /* Products */,
+				24544BA4F17D121B54ED9379 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -601,6 +519,7 @@
 				F5148B491580EE1F002B3D61 /* Carbon.framework */,
 				F5148AB21580E58D002B3D61 /* Cocoa.framework */,
 				F5148AB41580E58D002B3D61 /* Other Frameworks */,
+				20D2B03A41D0AEC7208214B3 /* libPods-diumoo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -649,10 +568,7 @@
 		F5148AD81580E707002B3D61 /* extern */ = {
 			isa = PBXGroup;
 			children = (
-				525D5A991D0D452000A39D73 /* MASShortcut */,
-				179842A71704DE2A00D1CAE9 /* SMTabBar */,
 				F5ECCBFE158CE39500512F6A /* PLTabPreference */,
-				F58C35051699AB3900BC588B /* SPMediaKeyTap */,
 				F515C15B15B6F07500210826 /* StatusItem */,
 				F5D3630A15A1F0EF003A40B2 /* JUInspectorView */,
 			);
@@ -766,25 +682,6 @@
 				F56F57B615CD851000C35515 /* volume_slider.png */,
 			);
 			name = volumeSlder;
-			sourceTree = "<group>";
-		};
-		F58C35051699AB3900BC588B /* SPMediaKeyTap */ = {
-			isa = PBXGroup;
-			children = (
-				F58C35081699AB3900BC588B /* SPInvocationGrabbing */,
-				F58C350E1699AB3900BC588B /* SPMediaKeyTap.h */,
-				F58C350F1699AB3900BC588B /* SPMediaKeyTap.m */,
-			);
-			path = SPMediaKeyTap;
-			sourceTree = "<group>";
-		};
-		F58C35081699AB3900BC588B /* SPInvocationGrabbing */ = {
-			isa = PBXGroup;
-			children = (
-				F58C350C1699AB3900BC588B /* NSObject+SPInvocationGrabbing.h */,
-				F58C350D1699AB3900BC588B /* NSObject+SPInvocationGrabbing.m */,
-			);
-			path = SPInvocationGrabbing;
 			sourceTree = "<group>";
 		};
 		F598DFD915FCDEE500F8C469 /* diumooHelper */ = {
@@ -1011,10 +908,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5148ACF1580E58E002B3D61 /* Build configuration list for PBXNativeTarget "diumoo" */;
 			buildPhases = (
+				36EC0B39C01231F7CEFCCA4D /* [CP] Check Pods Manifest.lock */,
 				F5148AAA1580E58D002B3D61 /* Sources */,
 				F5148AAB1580E58D002B3D61 /* Frameworks */,
 				F5148AAC1580E58D002B3D61 /* Resources */,
 				17FE6B001584AD5900EA34EA /* ShellScript */,
+				839DD16DD090286A94C3F418 /* [CP] Embed Pods Frameworks */,
+				AC53C1DCCFC993456635CD37 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1035,7 +935,6 @@
 				LastUpgradeCheck = 0810;
 				TargetAttributes = {
 					F5148AAD1580E58D002B3D61 = {
-						DevelopmentTeam = 4KWBUULLH3;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1191,6 +1090,57 @@
 			shellPath = /bin/sh;
 			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH`\nversion=`expr $version + 1`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $PRODUCT_SETTINGS_PATH";
 		};
+		36EC0B39C01231F7CEFCCA4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-diumoo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		839DD16DD090286A94C3F418 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-diumoo/Pods-diumoo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC53C1DCCFC993456635CD37 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-diumoo/Pods-diumoo-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-diumoo/Pods-diumoo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1206,19 +1156,14 @@
 				F5148AD41580E5F4002B3D61 /* DMAppDelegate.m in Sources */,
 				F5148AD71580E6AD002B3D61 /* DMApp.m in Sources */,
 				F5148B2E1580E904002B3D61 /* DMControlCenter.m in Sources */,
-				525D5AC31D0D452000A39D73 /* MASShortcutView+Bindings.m in Sources */,
-				525D5ABC1D0D452000A39D73 /* MASShortcut.m in Sources */,
 				FDAB5DF01D1EFB0200F1201A /* DMAuthHelper.swift in Sources */,
-				525D5ABB1D0D452000A39D73 /* MASLocalization.m in Sources */,
 				F5148B311580E904002B3D61 /* NSDictionary+UrlEncoding.m in Sources */,
 				F501B3B715877062001C6158 /* DMCoverControlView.m in Sources */,
-				525D5ABF1D0D452000A39D73 /* MASShortcutMonitor.m in Sources */,
 				F501B3B815877062001C6158 /* DMCoverSlide.m in Sources */,
 				F501B3BD1587708F001C6158 /* DMPanelWindowController.m in Sources */,
 				F5ECCBEC158CC71600512F6A /* DMPopUpButtonCell.m in Sources */,
 				F5ECCBEF158CC85600512F6A /* DMPopUpMenuController.m in Sources */,
 				F5ECCC01158CE39500512F6A /* PLTabPreferenceControl.m in Sources */,
-				525D5AC21D0D452000A39D73 /* MASShortcutValidator.m in Sources */,
 				F5ECCC04158CE43100512F6A /* DMPrefsPanelDataProvider.m in Sources */,
 				F5BB89F4159744B80017E6FE /* DMVolumeSlideCell.m in Sources */,
 				F5D3631E15A1F0EF003A40B2 /* DMDocument.m in Sources */,
@@ -1230,7 +1175,6 @@
 				F5D3632615A1F0EF003A40B2 /* JUInspectorViewHeader.m in Sources */,
 				F5D3634015A1F3AF003A40B2 /* DMPlayRecordHandler.m in Sources */,
 				F5FC4DA515A31F8E00197D1A /* DMPlayRecordModel.xcdatamodeld in Sources */,
-				525D5AC41D0D452000A39D73 /* MASShortcutView.m in Sources */,
 				F515C16015B6F07500210826 /* MenubarController.m in Sources */,
 				F515C16115B6F07500210826 /* StatusItemView.m in Sources */,
 				F566F60E15C6E4A200FC7143 /* NSImage+AsyncLoadImage.m in Sources */,
@@ -1243,17 +1187,7 @@
 				F5E2D0F616005D2400389463 /* DMShortcutsHandler.m in Sources */,
 				F50A0A6816247A8800664316 /* DMSearchPanelController.m in Sources */,
 				F5AF817E163429BB006F15F0 /* DMSearchItemView.m in Sources */,
-				F58C35161699AB3900BC588B /* NSObject+SPInvocationGrabbing.m in Sources */,
-				F58C35171699AB3900BC588B /* SPMediaKeyTap.m in Sources */,
 				F5D25DD216A999A700ED70CC /* DMBitrateControlLayer.m in Sources */,
-				525D5AB71D0D452000A39D73 /* MASDictionaryTransformer.m in Sources */,
-				179842B21704DE3B00D1CAE9 /* NSDictionary+SMKeyValueObserving.m in Sources */,
-				179842B31704DE3B00D1CAE9 /* SMBar.m in Sources */,
-				179842B41704DE3B00D1CAE9 /* SMTabBar.m in Sources */,
-				179842B51704DE3B00D1CAE9 /* SMTabBarButtonCell.m in Sources */,
-				179842B61704DE3B00D1CAE9 /* SMTabBarItem.m in Sources */,
-				525D5AB91D0D452000A39D73 /* MASHotKey.m in Sources */,
-				525D5ABD1D0D452000A39D73 /* MASShortcutBinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,13 +1351,14 @@
 		};
 		F5148AD01580E58E002B3D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE91A78563AA81EABA8B8D0E /* Pods-diumoo.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4KWBUULLH3;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
@@ -1433,11 +1368,15 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2/**",
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1450,6 +1389,7 @@
 		};
 		F5148AD11580E58E002B3D61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EAD9E5D5CB65D7EDCE8478F /* Pods-diumoo.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1457,7 +1397,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4KWBUULLH3;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/**",
@@ -1467,11 +1407,15 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2/**",
 					"\"$(SRCROOT)/frameworks/Growl.framework/\"/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diumoo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
