@@ -13,19 +13,18 @@ class DockImage {
         guard let image = image else {
             return nil
         }
-        if abs(image.size.width - image.size.height) < 3 {
-            return image
-        }
 
         let edge = min(image.size.height, image.size.width, 100)
-        return image.resizeImage(size: CGSize(width: edge, height: edge))
+        let radius = 0.2 * edge
+        let margin = 0.05 * edge
+        return image.resizeImage(size: CGSize(width: edge, height: edge), radius: radius, margin: margin)
     }
 
 }
 
 extension NSImage {
 
-    func resizeImage(size: CGSize) -> NSImage {
+    fileprivate func resizeImage(size: CGSize, radius: CGFloat, margin: CGFloat) -> NSImage {
         let newImage = NSImage(size: size)
         newImage.lockFocus()
 
@@ -45,11 +44,24 @@ extension NSImage {
 
         let ctx = NSGraphicsContext.current()
         ctx?.imageInterpolation = .high
-        self.draw(in: NSMakeRect(0, 0, size.width, size.height),
+        let imageFrame = NSRect(x: margin, y: margin, width: size.width-margin*2, height: size.height-margin*2)
+
+        let backShape = NSBezierPath(roundedRect: imageFrame.insetBy(dx: -margin*0.5, dy: -margin*0.5)
+            , xRadius: radius*1.1, yRadius: radius*1.1)
+        NSColor.white.set()
+        backShape.fill()
+
+        let clipPath = NSBezierPath(roundedRect: imageFrame, xRadius: radius, yRadius: radius)
+        clipPath.windingRule = .evenOddWindingRule
+        clipPath.addClip()
+
+
+        self.draw(in: imageFrame,
                   from: visiableRect,
                   operation: .copy, fraction: 1)
         newImage.unlockFocus()
         return newImage
     }
+
 }
 
