@@ -1,5 +1,5 @@
 //
-//  DockImage.swift
+//  DockImageProvider.swift
 //  diumoo
 //
 //  Created by leave on 22/12/2017.
@@ -7,7 +7,8 @@
 
 import AppKit
 
-class DockImage {
+class DockImageProvider {
+
 
     static func processedImage(_ image: NSImage?) -> NSImage? {
         guard let image = image else {
@@ -17,14 +18,16 @@ class DockImage {
         let edge = min(image.size.height, image.size.width, 100)
         let radius = 0.2 * edge
         let margin = 0.05 * edge
-        return image.resizeImage(size: CGSize(width: edge, height: edge), radius: radius, margin: margin)
+        return image.resizeImage(to: CGSize(width: edge, height: edge),
+                                 radius: radius,
+                                 margin: margin)
     }
 
 }
 
 extension NSImage {
 
-    fileprivate func resizeImage(size: CGSize, radius: CGFloat, margin: CGFloat) -> NSImage {
+    fileprivate func resizeImage(to size: CGSize, radius: CGFloat, margin: CGFloat) -> NSImage {
         let newImage = NSImage(size: size)
         newImage.lockFocus()
 
