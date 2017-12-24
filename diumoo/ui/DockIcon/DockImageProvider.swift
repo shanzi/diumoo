@@ -9,8 +9,14 @@ import AppKit
 
 class DockImageProvider {
 
+    static func albumImage(from playableItem: DMPlayableItem) -> NSImage? {
+        if playableItem.isUsingDefaultFailedAlbumPhoto {
+            return nil
+        }
+        return self.processedImage(playableItem.cover)
+    }
 
-    static func processedImage(_ image: NSImage?) -> NSImage? {
+    private static func processedImage(_ image: NSImage?) -> NSImage? {
         guard let image = image else {
             return nil
         }

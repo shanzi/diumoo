@@ -21,6 +21,7 @@ import AppKit
 public class DMPlayableItem: AVPlayerItem {
     // Interface variables
     public var cover : NSImage?
+    public var isUsingDefaultFailedAlbumPhoto: Bool = false
     public var like : Bool
     private(set) public var musicInfo : [String: AnyObject]!
     public var playState: ItemPlayState
@@ -100,8 +101,10 @@ public class DMPlayableItem: AVPlayerItem {
             if error != nil || data == nil {
                 print("\(#function) failed to get album image with reason \(error)")
                 self.cover = #imageLiteral(resourceName: "albumfail")
+                self.isUsingDefaultFailedAlbumPhoto = true
             } else {
                 self.cover = NSImage(data: data!)
+                self.isUsingDefaultFailedAlbumPhoto = false
             }
             block(self.cover)
         }        
